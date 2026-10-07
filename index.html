@@ -166,12 +166,32 @@
 
   async function fetchText(path) {
     if (cache.has(path)) return cache.get(path);
-    const response = await fetch(RAW_BASE + path.split("/").map(encodeURIComponent).join("/"), { cache: "no-store" });
-    if (!response.ok) throw new Error("Não foi possível carregar " + path + " (" + response.status + ")");
-    const html = await response.text();
-    const item = { path, title: titleFromHtml(html, path), text: textFromHtml(html), html };
-    cache.set(path, item);
-    return item;
+
+    const url = RAW_BASE + path.split("/").map(encodeURIComponent).join("/");
+    let lastError = null;
+
+    // GitHub/Raw pode falhar de forma transitória. Não descarte um instrumento inteiro
+    // só porque uma requisição resolveu ter um pequeno momento de humanidade.
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const response = await fetch(url, {
+          cache: "no-store",
+          headers: { "Accept": "text/html, text/plain, */*" }
+        });
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const html = await response.text();
+        if (!html.trim()) throw new Error("resposta vazia");
+
+        const item = { path, title: titleFromHtml(html, path), text: textFromHtml(html), html };
+        cache.set(path, item);
+        return item;
+      } catch (error) {
+        lastError = error;
+        if (attempt < 3) await new Promise(resolve => setTimeout(resolve, attempt * 350));
+      }
+    }
+
+    throw new Error("Não foi possível carregar " + path + " (" + (lastError?.message || "erro desconhecido") + ")");
   }
 
   function isInstrumentPath(path) {
@@ -300,12 +320,28 @@
 
       // Carrega título e prévia em paralelo, mas mantém a página utilizável se um arquivo falhar.
       const results = await Promise.allSettled(paths.map(fetchText));
+      const failed = results.filter(x => x.status === "rejected");
       instruments = results
         .filter(x => x.status === "fulfilled")
         .flatMap(x => extractItems(x.value.html, x.value.path))
         .sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
 
       if (!instruments.length) throw new Error("Os arquivos foram encontrados, mas nenhum pôde ser carregado.");
+
+      // Um arquivo que falhou não deve reduzir silenciosamente o catálogo.
+      // Tenta novamente, em série, os casos restantes antes de renderizar a contagem final.
+      if (failed.length) {
+        const missingPaths = paths.filter((_, index) => results[index].status === "rejected");
+        for (const missingPath of missingPaths) {
+          try {
+            const item = await fetchText(missingPath);
+            instruments.push(...extractItems(item.html, item.path));
+          } catch (_) {
+            // Mantém o restante do catálogo utilizável.
+          }
+        }
+        instruments.sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
+      }
       message.style.display = "none";
       applyFilter();
     } catch (error) {
