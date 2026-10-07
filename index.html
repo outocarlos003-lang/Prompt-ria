@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Promptária — instrumentos promptuais recuperados diretamente do repositório GitHub.">
+  <title>Promptária — Instrumentos Promptuais</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f0f12;
+      --panel: #18181d;
+      --panel-2: #202027;
+      --text: #f3f3f5;
+      --muted: #a8a8b2;
+      --line: #34343d;
+      --accent: #c7a6ff;
+      --accent-2: #9d7be0;
+      --danger: #ff8f8f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent); }
+    .wrap { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 52px 0 30px; border-bottom: 1px solid var(--line); }
+    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .14em; font-size: .76rem; font-weight: 700; }
+    h1 { margin: 8px 0 12px; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.02; }
+    .intro { max-width: 760px; color: var(--muted); font-size: 1.08rem; }
+    .toolbar {
+      position: sticky; top: 0; z-index: 5; padding: 14px 0;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .toolbar-inner { display: flex; gap: 10px; align-items: center; }
+    input {
+      width: 100%; padding: 13px 15px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--panel); color: var(--text);
+      outline: none;
+    }
+    input:focus { border-color: var(--accent-2); }
+    .status { color: var(--muted); font-size: .9rem; white-space: nowrap; }
+    main { padding: 28px 0 70px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+    .card {
+      display: flex; flex-direction: column; min-height: 250px;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+      overflow: hidden;
+    }
+    .card-body { padding: 20px; flex: 1; }
+    .path { color: var(--muted); font-size: .78rem; word-break: break-word; }
+    .card h2 { margin: 8px 0 10px; font-size: 1.2rem; line-height: 1.25; }
+    .preview { color: var(--muted); display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-line; }
+    .actions {
+      display: flex; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--line);
+      background: var(--panel-2);
+    }
+    button {
+      border: 0; border-radius: 10px; padding: 10px 13px; cursor: pointer;
+      background: var(--accent); color: #17131e; font-weight: 700;
+    }
+    button.secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    button:disabled { opacity: .55; cursor: wait; }
+    .empty, .error {
+      padding: 24px; border: 1px solid var(--line); border-radius: 14px;
+      background: var(--panel); color: var(--muted);
+    }
+    .error { color: var(--danger); }
+    footer { padding: 28px 0 50px; color: var(--muted); border-top: 1px solid var(--line); }
+    dialog {
+      width: min(900px, calc(100% - 24px)); max-height: 88vh; padding: 0;
+      border: 1px solid var(--line); border-radius: 16px; background: var(--panel); color: var(--text);
+    }
+    dialog::backdrop { background: rgba(0,0,0,.7); }
+    .modal-head { display:flex; justify-content:space-between; gap:16px; padding:18px 20px; border-bottom:1px solid var(--line); }
+    .modal-body { padding: 20px; overflow:auto; max-height: calc(88vh - 76px); }
+    pre {
+      white-space: pre-wrap; overflow-wrap: anywhere; margin: 0;
+      font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 20px, 1100px); }
+      .toolbar-inner { align-items: stretch; flex-direction: column; }
+      .status { white-space: normal; }
+      .actions { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Prompt-ria</div>
+      <h1>Promptária</h1>
+      <p class="intro">
+        Repositório de instrumentos promptuais. Cada título é uma chave; cada instrumento,
+        uma possibilidade de ação. Esta interface lê os instrumentos diretamente do GitHub,
+        permite pesquisá-los, visualizar seu conteúdo e copiá-los para uso no ChatGPT.
+      </p>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="wrap toolbar-inner">
+      <input id="search" type="search" placeholder="Pesquisar instrumentos..." autocomplete="off">
+      <div id="status" class="status">Carregando instrumentos…</div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div id="message" class="empty">Carregando a árvore do repositório…</div>
+    <section id="grid" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Fonte: <a href="https://github.com/outocarlos003-lang/Prompt-ria" target="_blank" rel="noopener">outocarlos003-lang/Prompt-ria</a>.
+      Os instrumentos são mantidos no repositório; esta página é apenas a interface de descoberta e uso.
+    </div>
+  </footer>
+
+  <dialog id="viewer">
+    <div class="modal-head">
+      <strong id="viewer-title">Instrumento</strong>
+      <button class="secondary" id="close-viewer">Fechar</button>
+    </div>
+    <div class="modal-body"><pre id="viewer-content"></pre></div>
+  </dialog>
+
+<script>
+(() => {
+  const OWNER = "outocarlos003-lang";
+  const REPO = "Prompt-ria";
+  const BRANCH = "main";
+  const API_TREE = `https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${BRANCH}?recursive=1`;
+  const RAW_BASE = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
+
+  const grid = document.getElementById("grid");
+  const message = document.getElementById("message");
+  const status = document.getElementById("status");
+  const search = document.getElementById("search");
+  const viewer = document.getElementById("viewer");
+  const viewerTitle = document.getElementById("viewer-title");
+  const viewerContent = document.getElementById("viewer-content");
+  const closeViewer = document.getElementById("close-viewer");
+
+  let instruments = [];
+  const cache = new Map();
+
+  function titleFromHtml(html, path) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const h1 = doc.querySelector("h1");
+    if (h1 && h1.textContent.trim()) return h1.textContent.trim();
+    return path.split("/").pop().replace(/\.html?$/i, "").replace(/[-_]+/g, " ");
+  }
+
+  function textFromHtml(html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return (doc.body?.textContent || "").replace(/\s+/g, " ").trim();
+  }
+
+  async function fetchText(path) {
+    if (cache.has(path)) return cache.get(path);
+    const response = await fetch(RAW_BASE + path.split("/").map(encodeURIComponent).join("/"), { cache: "no-store" });
+    if (!response.ok) throw new Error("Não foi possível carregar " + path + " (" + response.status + ")");
+    const html = await response.text();
+    const item = { path, title: titleFromHtml(html, path), text: textFromHtml(html), html };
+    cache.set(path, item);
+    return item;
+  }
+
+  function isInstrumentPath(path) {
+    return path.startsWith("Promptária/") && /\.html?$/i.test(path) && !path.includes("/.github/");
+  }
+
+  function prettyPath(path) {
+    return path.replace(/^Promptária\//, "").replace(/\/Index\.html$/i, "") || "Promptária";
+  }
+
+  function render(list) {
+    grid.innerHTML = "";
+    message.style.display = list.length ? "none" : "block";
+    if (!list.length) {
+      message.textContent = "Nenhum instrumento corresponde à pesquisa.";
+      return;
+    }
+
+    for (const item of list) {
+      const card = document.createElement("article");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="card-body">
+          <div class="path"></div>
+          <h2></h2>
+          <p class="preview"></p>
+        </div>
+        <div class="actions">
+          <button data-action="view">Visualizar</button>
+          <button class="secondary" data-action="copy">Copiar prompt</button>
+          <button class="secondary" data-action="github">GitHub</button>
+        </div>`;
+      card.querySelector(".path").textContent = prettyPath(item.path);
+      card.querySelector("h2").textContent = item.title;
+      card.querySelector(".preview").textContent = item.text.slice(0, 360) || "Instrumento sem prévia textual.";
+
+      card.querySelector('[data-action="view"]').addEventListener("click", async () => {
+        const button = card.querySelector('[data-action="view"]');
+        button.disabled = true;
+        try {
+          const full = await fetchText(item.path);
+          viewerTitle.textContent = full.title;
+          viewerContent.textContent = full.text;
+          viewer.showModal();
+        } catch (error) {
+          alert(error.message);
+        } finally {
+          button.disabled = false;
+        }
+      });
+
+      card.querySelector('[data-action="copy"]').addEventListener("click", async () => {
+        const button = card.querySelector('[data-action="copy"]');
+        button.disabled = true;
+        try {
+          const full = await fetchText(item.path);
+          await navigator.clipboard.writeText(full.text);
+          const old = button.textContent;
+          button.textContent = "Copiado ✓";
+          setTimeout(() => button.textContent = old, 1600);
+        } catch (error) {
+          alert("Não foi possível copiar automaticamente. Abra o instrumento e copie o texto manualmente.");
+        } finally {
+          button.disabled = false;
+        }
+      });
+
+      card.querySelector('[data-action="github"]').addEventListener("click", () => {
+        window.open("https://github.com/" + OWNER + "/" + REPO + "/blob/" + BRANCH + "/" +
+          item.path.split("/").map(encodeURIComponent).join("/"), "_blank", "noopener");
+      });
+
+      grid.appendChild(card);
+    }
+  }
+
+  function applyFilter() {
+    const q = search.value.trim().toLocaleLowerCase();
+    const filtered = !q ? instruments : instruments.filter(x =>
+      (x.title + " " + x.path + " " + x.text).toLocaleLowerCase().includes(q)
+    );
+    render(filtered);
+    status.textContent = `${filtered.length} instrumento(s)`;
+  }
+
+  async function load() {
+    try {
+      const response = await fetch(API_TREE, { headers: { "Accept": "application/vnd.github+json" } });
+      if (!response.ok) throw new Error("GitHub API respondeu com " + response.status);
+      const tree = await response.json();
+
+      if (tree.truncated) {
+        throw new Error("A árvore do repositório excedeu o limite retornado pela API.");
+      }
+
+      const paths = tree.tree.filter(x => x.type === "blob" && isInstrumentPath(x.path)).map(x => x.path);
+      if (!paths.length) throw new Error("Nenhum arquivo de instrumento foi encontrado em Promptária/.");
+
+      // Carrega título e prévia em paralelo, mas mantém a página utilizável se um arquivo falhar.
+      const results = await Promise.allSettled(paths.map(fetchText));
+      instruments = results.filter(x => x.status === "fulfilled").map(x => x.value)
+        .sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
+
+      if (!instruments.length) throw new Error("Os arquivos foram encontrados, mas nenhum pôde ser carregado.");
+      message.style.display = "none";
+      applyFilter();
+    } catch (error) {
+      status.textContent = "Falha ao carregar";
+      message.className = "error";
+      message.textContent = "Não foi possível carregar os instrumentos automaticamente. " + error.message;
+      // Fallback explícito para os arquivos atuais do repositório.
+      const fallback = [
+        "Promptária/Index.html",
+        "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+        "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+        "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+        "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html"
+      ];
+      const results = await Promise.allSettled(fallback.map(fetchText));
+      instruments = results.filter(x => x.status === "fulfilled").map(x => x.value)
+        .sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
+      if (instruments.length) {
+        message.className = "empty";
+        message.style.display = "none";
+        applyFilter();
+      }
+    }
+  }
+
+  search.addEventListener("input", applyFilter);
+  closeViewer.addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", event => {
+    if (event.target === viewer) viewer.close();
+  });
+  load();
+})();
+</script>
+</body>
+</html>
