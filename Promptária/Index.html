@@ -363,5 +363,537 @@ Confirme que toda criação tem origem, toda edição tem destino, toda transfor
 
 O rastreio passa a abranger não apenas **onde o conteúdo pode ser encontrado**, mas também **como, por quem, a partir de onde e para onde foi produzido**.</pre>
 </section>
+<hr>
+<section id="organizacao-inteligente-de-zip-no-diretorio-do-github">
+<h1>✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦</h1>
+<pre>✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦
+
+@GitHub
+
+Tenho um arquivo ".zip" que já foi carregado diretamente no repositório GitHub e que precisa ser incorporado de maneira organizada, segura e estruturalmente coerente ao diretório do próprio repositório para a criação do meu site.
+
+A tarefa deve ser realizada utilizando o conector do GitHub integrado ao ChatGPT, tratando o arquivo ZIP existente no repositório como uma fonte de conteúdo a ser inspecionada, descompactada logicamente e integrada à arquitetura existente do projeto.
+
+O ZIP não deve ser tratado simplesmente como um arquivo comum a ser mantido no diretório. Seu conteúdo deve ser analisado e, quando apropriado, incorporado aos locais estruturalmente corretos do repositório.
+
+---
+
+ABORDAGEM ÚNICA — ZIP JÁ CARREGADO NO PRÓPRIO DIRETÓRIO DO GITHUB
+
+Caso o arquivo ".zip" já esteja presente no repositório GitHub:
+
+1. Localize o arquivo ZIP no repositório utilizando o conector do GitHub.
+
+2. Inspecione integralmente a estrutura interna do arquivo ZIP antes de realizar qualquer alteração.
+
+3. Liste e analise sua estrutura interna, identificando:
+   
+   - diretórios;
+   - arquivos;
+   - extensões;
+   - arquivos duplicados;
+   - arquivos potencialmente conflitantes;
+   - diretórios redundantes;
+   - níveis desnecessários de aninhamento;
+   - arquivos ocultos ou metadados;
+   - arquivos que possam ser artefatos de compilação ou dependências.
+
+4. Inspecione também a estrutura atual do repositório GitHub, incluindo os diretórios e arquivos relevantes existentes fora do ZIP.
+
+5. Determine a correspondência semântica entre os arquivos e diretórios contidos no ZIP e a estrutura existente do repositório.
+
+6. Não presuma que a estrutura interna do ZIP corresponde automaticamente à estrutura final do repositório.
+
+7. Descompacte logicamente o conteúdo do ZIP e determine, arquivo por arquivo e diretório por diretório, onde cada elemento deve realmente existir dentro da arquitetura do repositório.
+
+8. Organize cada arquivo no local estruturalmente correto, preservando a arquitetura existente sempre que ela for coerente.
+
+9. Evite criar estruturas redundantes como:
+
+/projeto/projeto/arquivo
+
+quando a estrutura correta for:
+
+/projeto/arquivo
+
+10. Da mesma forma, se o ZIP possuir uma estrutura como:
+
+arquivo.zip
+└── projeto
+    └── src
+        └── ...
+
+e o repositório já possuir:
+
+/src
+
+não crie automaticamente:
+
+/projeto/src
+
+apenas para reproduzir literalmente a estrutura interna do ZIP.
+
+Determine semanticamente qual é o diretório de destino correto.
+
+11. Preserve a organização existente sempre que ela for estruturalmente coerente.
+
+12. Não substitua arquivos existentes indiscriminadamente.
+
+13. Antes de sobrescrever qualquer arquivo, compare seu conteúdo e determine se ele:
+
+- é realmente uma atualização;
+- é uma duplicata;
+- deve ser mesclado;
+- ou deve permanecer separado.
+
+14. Quando dois arquivos ocuparem o mesmo caminho lógico:
+
+- compare seus conteúdos;
+- determine se são idênticos;
+- se forem idênticos, evite duplicação;
+- se forem diferentes, determine qual representa a versão apropriada;
+- preserve informações relevantes quando uma fusão for necessária;
+- não descarte silenciosamente conteúdo conflitante.
+
+15. Não crie uma segunda cópia de um arquivo apenas porque ele aparece em locais diferentes dentro do ZIP ou entre o ZIP e o repositório.
+
+16. Preserve extensões, codificação, nomes relevantes e conteúdo binário sem corrupção.
+
+17. Não transforme arquivos binários em texto.
+
+18. Não altere arquivos que não tenham relação com a operação.
+
+19. Não exclua arquivos existentes simplesmente porque eles não aparecem no ZIP.
+
+20. Preserve arquivos existentes que não estejam sendo substituídos de forma justificada.
+
+21. Não modifique nomes de arquivos ou diretórios sem justificativa estrutural clara.
+
+22. Não crie diretórios redundantes, artificiais ou resultantes apenas da reprodução literal da hierarquia interna do ZIP.
+
+23. Não trate o primeiro diretório encontrado dentro do ZIP como sendo necessariamente o diretório de destino.
+
+24. Não presuma que a estrutura interna do ZIP corresponde à estrutura final do projeto.
+
+25. Utilize o ZIP como fonte de arquivos para reorganização estrutural, e não simplesmente como um arquivo a ser armazenado dentro do repositório.
+
+---
+
+PRINCÍPIO CENTRAL
+
+Independentemente da estrutura encontrada, siga rigorosamente esta sequência:
+
+IDENTIFICAR → INSPECIONAR → COMPARAR → CLASSIFICAR → MAPEAR → ORGANIZAR → VALIDAR → APLICAR
+
+Não faça uma simples extração mecânica.
+
+O objetivo é transformar o conteúdo compactado em uma estrutura coerente dentro do projeto, respeitando a arquitetura existente do repositório GitHub.
+
+A operação deve ser realizada considerando o significado estrutural de cada arquivo e diretório, e não apenas sua posição física dentro do ZIP.
+
+---
+
+REGRAS DE SEGURANÇA
+
+- Não apagar arquivos existentes sem necessidade.
+- Não sobrescrever conteúdo sem comparação.
+- Não duplicar arquivos.
+- Não criar diretórios redundantes.
+- Não alterar arquivos não relacionados.
+- Não modificar nomes sem justificativa estrutural.
+- Não corromper arquivos binários.
+- Não presumir que o primeiro diretório encontrado dentro do ZIP seja necessariamente o diretório de destino.
+- Não assumir que a estrutura interna do ZIP corresponde à estrutura final do repositório.
+- Não criar uma segunda cópia de um arquivo apenas porque ele aparece em locais diferentes.
+- Preservar a integridade do projeto existente.
+- Não descartar silenciosamente conteúdo conflitante.
+- Não excluir arquivos existentes apenas porque não estão presentes no ZIP.
+- Não substituir arquivos existentes sem determinar previamente a relação entre as versões.
+- Não realizar alterações destrutivas enquanto houver ambiguidade estrutural relevante.
+- Se uma decisão puder resultar em perda de dados ou alteração indevida da arquitetura, interrompa a aplicação dessa alteração e identifique explicitamente o conflito.
+
+---
+
+DETECÇÃO DE ESTRUTURA REDUNDANTE
+
+Se o ZIP possuir estruturas como:
+
+arquivo.zip
+└── projeto
+    └── src
+        └── ...
+
+e o repositório já estiver estruturado como:
+
+/src
+
+não crie:
+
+/projeto/src
+
+apenas para reproduzir literalmente a estrutura do ZIP.
+
+Determine a estrutura de destino semanticamente correta.
+
+O mesmo princípio deve ser aplicado a qualquer nível redundante de aninhamento.
+
+Se o ZIP contiver, por exemplo:
+
+/projeto/projeto/
+
+mas o conteúdo pertencer logicamente à raiz já existente do projeto, elimine conceitualmente esse nível redundante durante a organização, sem transportar cegamente a estrutura artificial para o repositório.
+
+---
+
+CONFLITOS
+
+Quando dois arquivos ocuparem o mesmo caminho lógico:
+
+1. compare os conteúdos;
+
+2. determine se são idênticos;
+
+3. se forem idênticos, evite duplicação;
+
+4. se forem diferentes, determine qual representa a versão apropriada;
+
+5. preserve informações relevantes quando uma fusão for necessária;
+
+6. não descarte silenciosamente conteúdo conflitante.
+
+Quando não for possível determinar com segurança qual versão deve prevalecer, não faça uma substituição destrutiva.
+
+Identifique explicitamente o conflito antes de aplicar a alteração.
+
+---
+
+ARQUIVOS ESPECIAIS, BINÁRIOS E METADADOS
+
+Preserve a integridade de:
+
+- imagens;
+- vídeos;
+- áudios;
+- PDFs;
+- fontes;
+- arquivos compactados;
+- bancos de dados;
+- arquivos de configuração;
+- arquivos executáveis;
+- outros formatos binários.
+
+Não converta arquivos binários em representações textuais apenas para facilitar a análise.
+
+Identifique também:
+
+- arquivos ocultos;
+- metadados;
+- arquivos temporários;
+- artefatos de compilação;
+- dependências;
+- caches;
+- arquivos gerados automaticamente.
+
+A presença desses elementos no ZIP não significa automaticamente que devam ser incorporados ao projeto.
+
+Classifique-os conforme sua função real dentro da arquitetura existente.
+
+Não remova ou preserve tais arquivos arbitrariamente.
+
+---
+
+ARQUIVOS DE COMPILAÇÃO E DEPENDÊNCIAS
+
+Identifique arquivos que possam representar:
+
+- artefatos de compilação;
+- dependências instaladas;
+- caches;
+- arquivos gerados automaticamente;
+- builds;
+- diretórios temporários;
+- arquivos derivados de outros arquivos-fonte.
+
+Determine se esses elementos fazem parte efetiva do projeto ou se são apenas produtos intermediários.
+
+Não incorpore automaticamente artefatos gerados ou dependências apenas porque estão presentes no ZIP.
+
+Da mesma forma, não os exclua automaticamente sem determinar sua função no projeto.
+
+---
+
+PRESERVAÇÃO DA ARQUITETURA EXISTENTE
+
+A arquitetura atual do repositório deve ser tratada como referência estrutural primária.
+
+O conteúdo do ZIP deve adaptar-se à arquitetura existente quando esta for coerente, e não o contrário.
+
+Preserve:
+
+- diretórios existentes;
+- arquivos existentes;
+- convenções de nomenclatura;
+- organização modular;
+- separação de responsabilidades;
+- estruturas de código;
+- configurações;
+- referências internas relevantes.
+
+Somente reorganize estruturas existentes quando isso for necessário para integrar corretamente o conteúdo do ZIP ou corrigir uma redundância estrutural diretamente relacionada à operação.
+
+Não aproveite a operação para realizar alterações não relacionadas.
+
+---
+
+INTEGRAÇÃO E REFERÊNCIAS INTERNAS
+
+Depois de determinar os destinos dos arquivos, verifique se a reorganização pode afetar:
+
+- caminhos relativos;
+- imports;
+- referências entre arquivos;
+- configurações;
+- scripts;
+- manifestos;
+- links internos;
+- referências a diretórios;
+- referências a recursos;
+- caminhos de build;
+- configurações de execução.
+
+Se a movimentação de um arquivo tornar uma referência interna incoerente, considere a correção necessária para preservar a funcionalidade do projeto.
+
+Não altere referências que não sejam afetadas pela reorganização.
+
+---
+
+DESTINO DO PRÓPRIO ARQUIVO ZIP
+
+Depois de incorporar corretamente seu conteúdo, determine se o próprio arquivo ".zip" deve:
+
+- permanecer no repositório;
+- ser movido para um diretório apropriado;
+- ou ser removido por ser apenas um artefato temporário.
+
+A decisão deve considerar a função real do ZIP dentro do projeto, e não apenas sua posição atual no diretório.
+
+Não mantenha o ZIP automaticamente apenas porque ele já está no repositório.
+
+Da mesma forma, não o remova automaticamente apenas porque seu conteúdo foi incorporado.
+
+Determine primeiro se o ZIP possui função legítima como:
+
+- distribuição;
+- backup versionado;
+- pacote de release;
+- recurso do projeto;
+- artefato deliberadamente versionado;
+- ou simples arquivo temporário utilizado para transferência.
+
+Se sua remoção for apropriada, ela deverá ser justificada pela função real do arquivo e não simplesmente pelo fato de seus conteúdos terem sido extraídos.
+
+---
+
+VALIDAÇÃO FINAL
+
+Depois da organização, antes de considerar a operação concluída:
+
+- verifique se todos os arquivos necessários foram incorporados;
+- verifique se os caminhos estão corretos;
+- verifique se não foram criadas duplicações;
+- verifique se não houve exclusões indevidas;
+- verifique se referências internas relevantes continuam coerentes;
+- verifique a estrutura final do repositório;
+- verifique se arquivos binários permanecem íntegros;
+- verifique se extensões e nomes relevantes foram preservados;
+- verifique se os diretórios redundantes foram evitados;
+- verifique se arquivos existentes foram preservados quando não havia justificativa para alteração;
+- verifique se arquivos conflitantes foram identificados e tratados corretamente;
+- confirme quais alterações foram efetivamente realizadas.
+
+Somente depois dessa validação considere a organização concluída.
+
+---
+
+CRITÉRIO DE AMBIGUIDADE
+
+Se houver ambiguidade estrutural que possa resultar em:
+
+- perda de dados;
+- sobrescrita indevida;
+- exclusão indevida;
+- alteração incorreta de arquitetura;
+- quebra de referências;
+- descarte de conteúdo relevante;
+- ou interpretação estrutural insegura;
+
+pare antes da alteração destrutiva.
+
+Identifique explicitamente:
+
+1. qual é o conflito;
+2. quais arquivos ou diretórios estão envolvidos;
+3. quais interpretações estruturais são possíveis;
+4. qual consequência cada interpretação produziria;
+5. qual decisão não pode ser tomada com segurança sem uma definição adicional.
+
+Não escolha silenciosamente uma interpretação potencialmente destrutiva.
+
+---
+
+RESULTADO ESPERADO
+
+O resultado final deve ser o conteúdo do ZIP corretamente integrado ao repositório GitHub.
+
+Não simplesmente:
+
+- manter o ZIP armazenado sem análise;
+- despejar seu conteúdo em um diretório aleatório;
+- reproduzir mecanicamente sua hierarquia interna;
+- criar uma segunda estrutura paralela;
+- duplicar arquivos existentes;
+- ou substituir arquivos sem comparação.
+
+O objetivo é que o conteúdo compactado passe a fazer parte da estrutura real do projeto nos locais semanticamente apropriados.
+
+A operação deve ser realizada por meio do conector do GitHub integrado ao ChatGPT, utilizando o ZIP já existente no repositório como fonte para a reorganização.
+
+---
+
+RELATÓRIO FINAL DA OPERAÇÃO
+
+Ao concluir, apresente um resumo claro e separado das alterações realizadas, contendo:
+
+ARQUIVOS ADICIONADOS
+
+Liste os arquivos provenientes do ZIP que foram incorporados ao repositório e não possuíam equivalente existente.
+
+ARQUIVOS ATUALIZADOS
+
+Liste os arquivos existentes cujo conteúdo foi efetivamente atualizado após comparação com a versão proveniente do ZIP.
+
+ARQUIVOS MANTIDOS
+
+Liste os arquivos existentes que foram preservados porque não precisavam ser substituídos ou porque sua manutenção era estruturalmente adequada.
+
+ARQUIVOS IGNORADOS
+
+Liste os arquivos do ZIP que não foram incorporados e explique brevemente o motivo, como:
+
+- artefato de compilação;
+- dependência;
+- metadado;
+- duplicata;
+- arquivo temporário;
+- conteúdo não relacionado;
+- estrutura redundante;
+- ou outra justificativa estrutural.
+
+CONFLITOS ENCONTRADOS
+
+Liste todos os conflitos detectados, indicando como foram resolvidos ou, quando não puderam ser resolvidos com segurança, quais permaneceram pendentes.
+
+ARQUIVOS QUE EXIGIRAM REORGANIZAÇÃO
+
+Liste os arquivos que precisaram ser colocados em caminhos diferentes daqueles apresentados originalmente dentro do ZIP e explique a justificativa estrutural.
+
+ZIP ORIGINAL
+
+Informe se o arquivo ZIP:
+
+- permaneceu no repositório;
+- foi movido;
+- ou foi removido,
+
+e explique a razão estrutural da decisão.
+
+VALIDAÇÃO
+
+Confirme:
+
+- estrutura final verificada;
+- ausência de duplicações indevidas;
+- ausência de exclusões indevidas;
+- integridade dos arquivos;
+- coerência dos caminhos;
+- coerência das referências internas relevantes;
+- preservação da arquitetura existente;
+- e alterações efetivamente aplicadas.
+
+---
+
+PRINCÍPIO DE PRIORIDADE
+
+Em qualquer decisão durante a operação, aplique esta ordem de prioridade:
+
+INTEGRIDADE → ORGANIZAÇÃO → COMPATIBILIDADE → NÃO DUPLICAÇÃO → PRESERVAÇÃO DA ARQUITETURA EXISTENTE.
+
+Não sacrifique a integridade do projeto para reproduzir literalmente a estrutura do ZIP.
+
+Não sacrifique a arquitetura existente para acomodar uma hierarquia artificialmente produzida pelo arquivo compactado.
+
+Não sacrifique conteúdo relevante simplesmente para eliminar um conflito.
+
+Não faça alterações destrutivas quando a estrutura correta não puder ser determinada com segurança.
+
+O ZIP é a fonte de conteúdo.
+
+O repositório GitHub é a estrutura de destino.
+
+A função da operação é determinar, com base na análise estrutural e semântica, como o primeiro deve ser integrado ao segundo.
+
+---
+
+# ADAPTAÇÃO EXTENSIVA — OPERAÇÃO MULTIDIRETÓRIO E ESCRITA CONTROLADA
+
+A presente adaptação é **aditiva**. Todas as instruções, etapas, critérios, princípios, restrições, procedimentos, sequências, validações, relatórios e comportamentos definidos anteriormente neste instrumento permanecem integralmente vigentes e não são substituídos por esta extensão.
+
+A capacidade operacional deste instrumento é ampliada para permitir que o conteúdo seja escrito, organizado, editado, transformado ou aplicado **no próprio diretório de instrumentos/promptária do repositório ou em outro diretório de destino determinado pela demanda**, preservando a distinção entre o local onde o instrumento está armazenado, o local de origem do conteúdo e o local de destino da operação.
+
+## RESOLUÇÃO DE ORIGEM E DESTINO
+
+Antes da aplicação, determine separadamente:
+- **origem**;
+- **instrumento responsável**;
+- **instrumentos auxiliares participantes**, quando houver;
+- **destino**;
+- **arquivos afetados**;
+- **relações afetadas**.
+
+O diretório de instalação deste instrumento não deverá ser confundido com o destino da operação.
+
+A prioridade para determinação do destino será: (1) indicação explícita do usuário; (2) contexto inequivocamente determinado; (3) função original do instrumento; (4) inferência contextual segura e não destrutiva. Nunca escreva em destino baseado em associação temática fraca.
+
+## CAPACIDADE DE ESCRITA NO PRÓPRIO DIRETÓRIO E EM OUTROS DIRETÓRIOS
+
+Quando o destino for o próprio diretório da promptária/instruments, respeite integralmente sua arquitetura. Quando for outro diretório, preserve sua arquitetura existente e adapte a organização do ZIP a ela. Origem e destino nunca devem ser presumidos como iguais.
+
+## REGRA ESPECIAL PARA NOCTURNA
+
+**Nocturna** é destino válido quando explicitamente indicada ou quando o contexto tornar inequivocamente claro que o resultado pertence ao projeto/diretório Nocturna. Não é destino padrão. Não deve ser escolhida por semelhança temática, associação histórica ou inferência fraca. Se houver outro destino explicitamente indicado, ele prevalece. Se houver ambiguidade, não escreva em Nocturna.
+
+## MAPEAMENTO MULTIDIRETÓRIO
+
+Estabeleça: **ORIGEM → CONTEÚDO → CLASSIFICAÇÃO → INSTRUMENTO RESPONSÁVEL → TRANSFORMAÇÃO → DESTINO → VALIDAÇÃO → RASTREABILIDADE**.
+
+## PRESERVAÇÃO E NÃO DUPLICAÇÃO ENTRE DIRETÓRIOS
+
+A regra de não duplicação permanece válida entre diretórios distintos. Antes de criar arquivo no destino, compare identidade, conteúdo, função, versão, referências e compatibilidade estrutural. Cópia deliberada deverá ser registrada como materialização intencional.
+
+## APLICAÇÃO COORDENADA E RESULTADOS INTERMEDIÁRIOS
+
+Quando acionado por outro instrumento, preserve sua responsabilidade especializada. Resultados intermediários podem existir em destinos autorizados, mas devem ser identificados e não confundidos com o resultado final.
+
+## VALIDAÇÃO EXTENSIVA DO DESTINO
+
+Além das validações originais, confirme origem, destino, autorização da escrita, coerência estrutural, arquivos criados/atualizados, referências, ausência de duplicação, integridade binária, instrumentos participantes, rastreabilidade e resultado efetivamente materializado.
+
+## REGISTRO OPERACIONAL
+
+Quando aplicável, complemente o relatório original com: **DIRETÓRIO DE ORIGEM; DIRETÓRIO DE DESTINO; INSTRUMENTOS PARTICIPANTES; ARQUIVOS CRIADOS/EDITADOS/MOVIDOS; RESULTADOS INTERMEDIÁRIOS; VALIDAÇÃO DE DESTINO**.
+
+A sequência central permanece: **IDENTIFICAR → INSPECIONAR → COMPARAR → CLASSIFICAR → MAPEAR → ORGANIZAR → VALIDAR → APLICAR**. Esta extensão apenas qualifica sua operação multidiretório.</pre>
+</section>
+
 </body>
 </html>
