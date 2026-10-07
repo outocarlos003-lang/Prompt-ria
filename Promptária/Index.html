@@ -895,5 +895,241 @@ Quando aplicável, complemente o relatório original com: **DIRETÓRIO DE ORIGEM
 A sequência central permanece: **IDENTIFICAR → INSPECIONAR → COMPARAR → CLASSIFICAR → MAPEAR → ORGANIZAR → VALIDAR → APLICAR**. Esta extensão apenas qualifica sua operação multidiretório.</pre>
 </section>
 
+
+
+<hr>
+<section id="principio-da-integridade-sistemica-arquitetura-conexao-coesao-e-funcionalidade-de-ponta-a-ponta">
+<h1># Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta</h1>
+<pre># Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta
+
+Execute imediatamente a correção, integração, funcionalização, reorganização estrutural e validação completa do projeto web fornecido. Trate o repositório como uma única arquitetura funcional e execute o trabalho de forma sistêmica, considerando todas as relações entre arquivos, diretórios, módulos, componentes, páginas, dados, assets, configurações, scripts, workflows, serviços e demais elementos que compõem a aplicação.
+
+Não trate os arquivos isoladamente. Um site não é a soma de arquivos soltos; é a relação funcional entre eles.
+
+Analise o repositório como uma única arquitetura e identifique como cada arquivo deve se relacionar com os demais para que o sistema funcione de ponta a ponta. Verifique, conecte, reorganize e valide, conforme aplicável:
+
+- HTML ↔ CSS;
+- HTML ↔ JavaScript;
+- JavaScript ↔ módulos, scripts e bibliotecas;
+- páginas ↔ rotas;
+- páginas ↔ componentes;
+- componentes ↔ estilos;
+- JavaScript ↔ dados;
+- dados ↔ estruturas esperadas pelo código;
+- imagens, fontes, ícones e demais assets ↔ seus respectivos consumidores;
+- manifest ↔ aplicação;
+- sitemap ↔ páginas efetivamente existentes;
+- páginas ↔ links internos;
+- formulários ↔ seus processadores;
+- frontend ↔ APIs e serviços externos;
+- frontend ↔ backend/Workers;
+- scripts ↔ arquivos que eles geram ou consomem;
+- workflows ↔ arquivos e comandos efetivamente existentes;
+- configurações de build/deploy ↔ estrutura real do projeto;
+- caminhos relativos e absolutos ↔ localização real dos arquivos;
+- imports, exports, referências, IDs, nomes, endpoints e parâmetros ↔ seus correspondentes reais;
+- mecanismos de fallback, tratamento de erros e dependências ↔ o fluxo efetivo da aplicação.
+
+Rastreie as dependências e referências nos dois sentidos: descubra não apenas quem chama quem, mas também quais arquivos dependem de determinado arquivo e quais elementos ficariam quebrados se essa relação não existisse.
+
+Considere como defeito não somente um arquivo inexistente, mas também uma conexão inexistente, incorreta, desatualizada, incompatível, apontando para o lugar errado ou que não produz o comportamento esperado.
+
+A correção deve preservar a intenção, o conteúdo e a arquitetura existente sempre que possível. Não substitua uma funcionalidade por outra apenas para mascarar uma conexão quebrada. Restabeleça a conexão correta.
+
+Além de corrigir as conexões funcionais, faça uma análise global da organização estrutural do repositório. Identifique arquivos, componentes, módulos, scripts, estilos, assets, dados, configurações e demais elementos redundantes, duplicados, sobrepostos ou distribuídos de maneira desnecessariamente fragmentada.
+
+Quando houver redundâncias reais, avalie suas dependências e, quando for seguro, funda, consolide ou reorganize esses elementos em uma estrutura mais coerente, mantendo uma única fonte de verdade para cada responsabilidade. Não faça fusões cegas: antes de remover, mover, renomear ou consolidar qualquer elemento, rastreie todos os seus consumidores, referências, imports, exports, rotas, scripts, workflows, configurações e processos de build/deploy.
+
+A reorganização deve buscar globalmente a melhor arquitetura estrutural possível para o repositório, respeitando a arquitetura, tecnologia, finalidade e intenção original do projeto.
+
+Tudo que pertence à mesma categoria ou possui a mesma responsabilidade deve, quando arquiteturalmente apropriado, ficar organizado em conjunto no repositório. Agrupe de maneira lógica e consistente páginas, componentes, estilos, scripts, módulos, dados, assets, configurações, utilitários, serviços, APIs, workflows e demais recursos relacionados, evitando dispersão desnecessária.
+
+A organização deve reduzir ambiguidades, duplicidades, referências frágeis, caminhos confusos, responsabilidades sobrepostas e possibilidades de erro. O objetivo é fazer com que a estrutura física do repositório reflita, da forma mais clara possível, a estrutura funcional da aplicação.
+
+Ao reorganizar arquivos e diretórios, atualize todas as referências afetadas. Isso inclui, conforme aplicável, imports, exports, caminhos relativos, caminhos absolutos, referências HTML, URLs internas, rotas, aliases, configurações, scripts, comandos, workflows, manifests, sitemaps, arquivos de build, configurações de deploy, documentação operacional e qualquer outro mecanismo que dependa da localização ou do nome desses elementos.
+
+Não mantenha duplicações apenas por receio de reorganizar o projeto quando for possível consolidá-las com segurança. Da mesma forma, não elimine arquivos simplesmente porque parecem duplicados. Determine primeiro se são realmente redundantes ou se possuem responsabilidades, consumidores, contextos, fallbacks ou comportamentos diferentes.
+
+Quando duas ou mais implementações realizarem essencialmente a mesma função, determine qual delas representa a implementação correta ou mais adequada à arquitetura existente e, quando possível, consolide-as em uma única implementação sem perda de comportamento. Migre todos os consumidores para a implementação consolidada antes de remover a redundância.
+
+Quando houver arquivos aparentemente independentes, determine primeiro se realmente são independentes ou se existe uma relação implícita que precisa ser restabelecida.
+
+Quando houver múltiplas versões de um mesmo recurso, determine qual é efetivamente utilizada, qual deveria ser utilizada pela arquitetura e quais dependências precisam ser migradas antes de qualquer remoção. Não deixe versões concorrentes ou fontes de verdade duplicadas sem necessidade.
+
+Quando mover ou consolidar qualquer elemento, considere também os consumidores indiretos. Uma referência pode não aparecer apenas como um import explícito; ela pode existir em HTML, CSS, JavaScript, JSON, YAML, scripts de shell, configurações, workflows, templates, manifests, sitemaps, variáveis de ambiente, comandos de build, regras de roteamento, carregamento dinâmico, nomes de arquivos, convenções de diretórios ou mecanismos de descoberta automática.
+
+Portanto, não presuma que um arquivo é inútil apenas porque nenhuma referência textual direta foi encontrada. Analise o contexto arquitetural e os mecanismos utilizados pelo projeto antes de considerá-lo removível.
+
+A reorganização também deve evitar criar novas dependências desnecessárias. Não mova arquivos apenas por estética. Cada mudança estrutural deve ter uma justificativa funcional, arquitetural, de manutenção, clareza, segurança ou confiabilidade.
+
+Priorize uma estrutura que facilite:
+
+- localização dos arquivos;
+- manutenção;
+- reutilização;
+- descoberta de dependências;
+- isolamento de responsabilidades;
+- compartilhamento de componentes;
+- consistência de estilos;
+- gerenciamento de assets;
+- gerenciamento de dados;
+- manutenção das rotas;
+- manutenção das APIs;
+- build;
+- testes;
+- deploy;
+- debugging;
+- escalabilidade;
+- prevenção de duplicidades;
+- prevenção de referências quebradas;
+- evolução futura do projeto.
+
+Não introduza uma reorganização abstrata, excessivamente complexa ou incompatível com o projeto apenas para seguir um padrão genérico. A melhor arquitetura é aquela que se adapta ao sistema real, preserva sua intenção e reduz sua complexidade efetiva.
+
+Sempre que houver conflito entre organização estrutural e funcionamento, o funcionamento deve ser preservado. A reorganização nunca deve comprometer uma funcionalidade existente, uma integração, uma rota, um processo de build, um deploy, uma API, um workflow ou qualquer outro comportamento esperado.
+
+Antes de remover, substituir, fundir, mover ou renomear qualquer elemento, determine quais relações serão afetadas e restabeleça essas relações no novo local ou na nova estrutura.
+
+Depois de reorganizar o repositório, faça uma nova análise de dependências para garantir que nenhuma referência permaneceu apontando para a estrutura antiga.
+
+A regra central é:
+
+«Não corrija arquivos; corrija o sistema. Não procure apenas erros de sintaxe; restaure as relações que fazem os arquivos funcionarem como um único organismo. Não reorganize arquivos apenas visualmente; organize a arquitetura para que cada elemento tenha um lugar coerente, uma responsabilidade clara e relações funcionais corretamente estabelecidas.»
+
+A correção deve ser sistêmica, e a organização deve ser igualmente sistêmica.
+
+Execute uma validação de ponta a ponta antes de considerar a tarefa concluída: cada referência deve apontar para seu destino correto, cada dependência deve estar disponível, cada fluxo deve ter seus elos conectados e o conjunto deve funcionar como uma aplicação coerente.
+
+Valide, conforme aplicável:
+
+- carregamento das páginas;
+- rotas e navegação;
+- links internos;
+- componentes;
+- estilos;
+- scripts;
+- imports e exports;
+- dados;
+- APIs;
+- backend;
+- Workers;
+- formulários;
+- autenticação;
+- estados e parâmetros;
+- assets;
+- fontes;
+- imagens;
+- ícones;
+- manifest;
+- sitemap;
+- build;
+- testes;
+- workflows;
+- deploy;
+- configurações;
+- variáveis e referências necessárias;
+- fallbacks;
+- tratamento de erros;
+- integrações externas;
+- geração e consumo de arquivos;
+- caminhos após movimentações;
+- referências após renomeações;
+- ausência de duplicidades funcionais desnecessárias;
+- ausência de arquivos órfãos resultantes da reorganização;
+- ausência de referências para arquivos removidos ou movidos;
+- coerência entre a estrutura física do repositório e a arquitetura funcional da aplicação.
+
+Rastreie novamente as dependências após as correções e reorganizações. A validação final deve considerar tanto os fluxos que partem de cada elemento quanto os fluxos que chegam a cada elemento.
+
+Verifique não apenas se cada arquivo consegue chamar seus dependentes, mas também se cada dependente ainda possui todos os consumidores necessários e se nenhum consumidor ficou órfão após uma alteração estrutural.
+
+Quando houver arquivos, diretórios ou recursos aparentemente não utilizados, determine se são realmente órfãos ou se são consumidos dinamicamente, por convenção, por configuração, por descoberta automática, por build, por deploy ou por algum fluxo indireto.
+
+Quando houver arquivos redundantes, consolide-os somente quando a consolidação puder ser feita sem perda de funcionalidade, conteúdo, configuração, compatibilidade ou intenção.
+
+Quando houver necessidade de manter mais de uma implementação por razões legítimas, deixe suas responsabilidades claramente separadas e evite que existam duas fontes de verdade para a mesma responsabilidade.
+
+A arquitetura final deve ser coerente, previsível, navegável e funcional, sem sacrificar recursos existentes para obter uma estrutura aparentemente mais limpa.
+
+Preserve o conteúdo e a intenção do projeto sempre que possível. Preserve também comportamentos, contratos, interfaces, APIs, nomes públicos, formatos de dados, integrações e compatibilidades existentes, salvo quando uma alteração for necessária para restaurar o funcionamento correto ou eliminar uma inconsistência comprovada.
+
+Não faça mudanças cosméticas que possam introduzir risco. Não substitua componentes funcionais por equivalentes apenas por preferência pessoal. Não reescreva partes estáveis sem necessidade. Não altere a finalidade do sistema.
+
+Quando uma alteração estrutural for necessária, faça-a de maneira completa: mova ou consolide o elemento, atualize seus consumidores, atualize as referências, verifique os dependentes, valide o fluxo e confirme que não existe nenhuma referência antiga ou dependência quebrada.
+
+O resultado esperado não é apenas um conjunto de arquivos sem erros. O resultado esperado é um único sistema coerente, no qual estrutura, dependências, conteúdo, funcionalidades, integrações e organização do repositório estejam alinhados.
+
+A meta final é que:
+
+1. cada arquivo esteja onde faz sentido estar;
+2. cada responsabilidade tenha uma localização clara;
+3. elementos da mesma categoria estejam logicamente agrupados quando isso melhorar a arquitetura;
+4. redundâncias desnecessárias tenham sido consolidadas com segurança;
+5. exista uma fonte de verdade clara para cada responsabilidade;
+6. todas as referências apontem para os destinos corretos;
+7. todas as dependências necessárias estejam disponíveis;
+8. todos os consumidores estejam conectados aos seus provedores;
+9. todas as páginas estejam conectadas às suas rotas e recursos;
+10. todos os componentes estejam conectados aos seus estilos, scripts e dados;
+11. todos os formulários estejam conectados aos processadores corretos;
+12. frontend, backend, APIs e serviços externos estejam corretamente interligados;
+13. scripts e workflows correspondam aos arquivos e comandos reais do projeto;
+14. build e deploy correspondam à estrutura efetiva do repositório;
+15. assets estejam corretamente conectados aos seus consumidores;
+16. manifest e sitemap correspondam à aplicação real;
+17. fallbacks e tratamento de erros façam parte dos fluxos efetivos;
+18. nenhuma movimentação, renomeação, fusão ou remoção tenha deixado referências quebradas;
+19. nenhuma funcionalidade tenha sido removida apenas para mascarar uma conexão quebrada;
+20. a arquitetura final seja mais coerente sem comprometer o funcionamento;
+21. o projeto esteja funcional de ponta a ponta.
+
+A regra definitiva é:
+
+«Não corrija arquivos; corrija o sistema. Não organize arquivos apenas por aparência; organize a arquitetura. Não elimine redundâncias cegamente; consolide-as quando forem realmente redundantes e quando isso puder ser feito sem comprometer o funcionamento. Não preserve desorganização apenas porque ela já existe; reorganize o que for necessário para estabelecer uma arquitetura global coerente. Não substitua conexões quebradas por atalhos; restabeleça as relações corretas. Não considere funcional aquilo que apenas não apresenta erro aparente. Funcional significa conectado, resolvido, validado e operacional de ponta a ponta.»
+
+Execute tudo isso sem comprometer o funcionamento existente, preservando a intenção, o conteúdo, as funcionalidades, as integrações e a arquitetura válida do projeto sempre que possível.
+
+A prioridade de execução é, nesta ordem:
+
+entender o sistema → rastrear suas relações → identificar falhas e redundâncias → corrigir as conexões → consolidar o que puder ser consolidado com segurança → reorganizar estruturalmente o repositório → atualizar todas as referências afetadas → validar novamente todas as dependências → testar os fluxos de ponta a ponta → somente então considerar o projeto concluído.
+
+---
+
+# ADAPTAÇÃO EXTENSIVA — INTEGRIDADE ENTRE ORIGEM, TRANSFORMAÇÃO E DESTINO
+
+Esta extensão acrescenta uma dimensão multidiretório ao princípio existente sem substituir qualquer princípio, regra, procedimento, dependência, validação ou critério.
+
+## INTEGRIDADE DE DESTINO
+
+A integridade sistêmica passa a abranger: **ORIGEM → CONTEÚDO → TRANSFORMAÇÃO → DESTINO → REFERÊNCIAS → CONSUMIDORES → RESULTADO**. Conteúdo correto em local incorreto é inconsistência estrutural.
+
+## DIRETÓRIO COMO COMPONENTE SISTÊMICO
+
+A arquitetura, convenções, referências, dependências, consumidores e relações do destino fazem parte da integridade.
+
+## PRÓPRIO DIRETÓRIO DA PROMPTÁRIA
+
+A promptária/instruments pode ser destino quando determinado. Preserve identidade dos instrumentos, separação, estrutura, referências, arquivos e relações. A escrita não autoriza mistura de escopos.
+
+## OUTROS DIRETÓRIOS
+
+Valide compatibilidade estrutural, convenções, caminhos, dependências, consumidores, links, referências, equivalentes e impactos.
+
+## NOCTURNA
+
+Nocturna constitui destino válido somente quando explicitamente indicada ou inequivocamente identificada. Não é padrão. Quando for destino, valide compatibilidade arquitetural, caminhos, arquivos, referências, órfãos e links quebrados.
+
+## INTEGRIDADE EM OPERAÇÕES COORDENADAS
+
+Valide cada instrumento e também suas interfaces: funções, transições, resultados intermediários, destinos, perda/duplicação, referências e resultado de ponta a ponta.
+
+## CRITÉRIO DE FALHA
+
+A operação é incompleta se houver destino incorreto, referência quebrada, conteúdo perdido, contexto perdido, arquivo incompatível, consumidor desconectado, relação rompida ou resultado não rastreável.
+
+## VALIDAÇÃO FINAL ESTENDIDA
+
+**origem correta? → conteúdo correto? → transformação correta? → destino correto? → referências corretas? → consumidores conectados? → arquitetura preservada? → resultado íntegro? → rastreabilidade preservada?**</pre>
+</section>
 </body>
 </html>
