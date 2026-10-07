@@ -178,8 +178,45 @@
     return path.startsWith("Promptária/") && /\.html?$/i.test(path) && !path.includes("/.github/");
   }
 
-  function prettyPath(path) {
-    return path.replace(/^Promptária\//, "").replace(/\/Index\.html$/i, "") || "Promptária";
+  function prettyPath(path, anchor) {
+    const base = path.replace(/^Promptária\//, "").replace(/\/Index\.html$/i, "") || "Promptária";
+    return anchor ? base + " • " + anchor : base;
+  }
+
+  function extractItems(html, path) {
+    // Promptária/Index.html is a catalog: several instruments live inside separate <section>s.
+    // Each section with an H1 and PRE is exposed as its own instrument.
+    if (path === "Promptária/Index.html") {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const sections = [...doc.querySelectorAll("section")];
+      const items = sections
+        .map((section, index) => {
+          const h1 = section.querySelector(":scope > h1, h1");
+          const pre = section.querySelector(":scope > pre, pre");
+          if (!h1 || !pre) return null;
+          const title = h1.textContent.trim();
+          const text = pre.textContent.trim();
+          if (!title || !text) return null;
+          return {
+            sourcePath: path,
+            anchor: section.id || "instrumento-" + (index + 1),
+            title,
+            text,
+            html: section.outerHTML
+          };
+        })
+        .filter(Boolean);
+
+      if (items.length) return items;
+    }
+
+    return [{
+      sourcePath: path,
+      anchor: "",
+      title: titleFromHtml(html, path),
+      text: textFromHtml(html),
+      html
+    }];
   }
 
   function render(list) {
@@ -204,31 +241,21 @@
           <button class="secondary" data-action="copy">Copiar prompt</button>
           <button class="secondary" data-action="github">GitHub</button>
         </div>`;
-      card.querySelector(".path").textContent = prettyPath(item.path);
+      card.querySelector(".path").textContent = prettyPath(item.sourcePath, item.anchor);
       card.querySelector("h2").textContent = item.title;
       card.querySelector(".preview").textContent = item.text.slice(0, 360) || "Instrumento sem prévia textual.";
 
-      card.querySelector('[data-action="view"]').addEventListener("click", async () => {
-        const button = card.querySelector('[data-action="view"]');
-        button.disabled = true;
-        try {
-          const full = await fetchText(item.path);
-          viewerTitle.textContent = full.title;
-          viewerContent.textContent = full.text;
-          viewer.showModal();
-        } catch (error) {
-          alert(error.message);
-        } finally {
-          button.disabled = false;
-        }
+      card.querySelector('[data-action="view"]').addEventListener("click", () => {
+        viewerTitle.textContent = item.title;
+        viewerContent.textContent = item.text;
+        viewer.showModal();
       });
 
       card.querySelector('[data-action="copy"]').addEventListener("click", async () => {
         const button = card.querySelector('[data-action="copy"]');
         button.disabled = true;
         try {
-          const full = await fetchText(item.path);
-          await navigator.clipboard.writeText(full.text);
+          await navigator.clipboard.writeText(item.text);
           const old = button.textContent;
           button.textContent = "Copiado ✓";
           setTimeout(() => button.textContent = old, 1600);
@@ -240,8 +267,9 @@
       });
 
       card.querySelector('[data-action="github"]').addEventListener("click", () => {
-        window.open("https://github.com/" + OWNER + "/" + REPO + "/blob/" + BRANCH + "/" +
-          item.path.split("/").map(encodeURIComponent).join("/"), "_blank", "noopener");
+        const fileUrl = "https://github.com/" + OWNER + "/" + REPO + "/blob/" + BRANCH + "/" +
+          item.sourcePath.split("/").map(encodeURIComponent).join("/");
+        window.open(item.anchor ? fileUrl + "#" + encodeURIComponent(item.anchor) : fileUrl, "_blank", "noopener");
       });
 
       grid.appendChild(card);
@@ -272,7 +300,9 @@
 
       // Carrega título e prévia em paralelo, mas mantém a página utilizável se um arquivo falhar.
       const results = await Promise.allSettled(paths.map(fetchText));
-      instruments = results.filter(x => x.status === "fulfilled").map(x => x.value)
+      instruments = results
+        .filter(x => x.status === "fulfilled")
+        .flatMap(x => extractItems(x.value.html, x.value.path))
         .sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
 
       if (!instruments.length) throw new Error("Os arquivos foram encontrados, mas nenhum pôde ser carregado.");
@@ -291,7 +321,9 @@
         "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html"
       ];
       const results = await Promise.allSettled(fallback.map(fetchText));
-      instruments = results.filter(x => x.status === "fulfilled").map(x => x.value)
+      instruments = results
+        .filter(x => x.status === "fulfilled")
+        .flatMap(x => extractItems(x.value.html, x.value.path))
         .sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
       if (instruments.length) {
         message.className = "empty";
