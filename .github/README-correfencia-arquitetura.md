@@ -269,3 +269,228 @@ GitHub Actions pode validar, recuperar e materializar um pacote.
 A aplicação efetiva das instruções recuperadas sobre a demanda continua sendo responsabilidade do runtime/agente que consome esse pacote. Nenhum campo `active`, `execution_plan` ou `resolved` deve ser interpretado como prova de execução externa já realizada.
 
 Essa separação mantém a arquitetura verificável e impede que identificação seja confundida com execução real.
+
+## 24. Contrato arquitetural completo e interconectado
+
+Esta seção consolida os elementos estruturais dos dois textos de especificação em uma única relação, sem substituir a correferência existente e sem exigir a reprodução integral dos instrumentos.
+
+### 24.1 Elementos permanentes e elementos variáveis
+
+A arquitetura completa compreende:
+
+- título;
+- requisição personalizada;
+- ChatGPT;
+- conector GitHub;
+- repositório;
+- instrumento;
+- instruções estruturadas;
+- lógica operacional;
+- demanda;
+- contexto;
+- contextualização;
+- parametrização;
+- adaptação;
+- execução;
+- origem;
+- destino;
+- participantes;
+- dependências;
+- resultados intermediários;
+- composição;
+- validação;
+- rastreabilidade.
+
+Pertencem ao instrumento, como núcleo estável: identidade, finalidade, função, instruções essenciais e lógica operacional. Pertencem à aplicação, como configuração variável: demanda, objetivo, requisitos, restrições, contexto, escopo, parâmetros, critérios, formato, origem, destino, circunstâncias, dependências e adaptações.
+
+A estabilidade não exige que todos os aspectos da execução sejam invariáveis. Ela exige preservação daquilo que caracteriza finalidade, função e identidade operacional.
+
+### 24.2 Unidade de acionamento
+
+O título é referência nominal, identificador operacional, ponto de entrada, chave de acesso e mecanismo de acionamento. Ele não é apenas etiqueta e não precisa ser apresentado isoladamente.
+
+A unidade de acionamento é:
+
+**título + requisição personalizada no ChatGPT.**
+
+O título determina qual instrumento deve ser localizado; a requisição determina a situação concreta na qual a lógica será instanciada. A escrita conjunta dessas duas partes liga estrutura estável e demanda variável.
+
+### 24.3 Recuperação e fonte de verdade
+
+O repositório conserva lógicas operacionais previamente estabelecidas. Ele não recria a lógica a cada demanda.
+
+O conector GitHub localiza e disponibiliza o conteúdo existente; não cria, reconstrói ou presume a lógica. A identidade de um instrumento adicional só é confirmada pelo conteúdo efetivamente recuperado.
+
+A cadeia de recuperação é:
+
+**título → GitHub → localização → conteúdo efetivo → confirmação de identidade → instruções/lógica → aplicação.**
+
+A ausência de um instrumento previsto deve ser registrada como ausência, e não compensada por conteúdo inventado.
+
+### 24.4 Reutilização sem reconstrução
+
+Reutilizar não significa repetir mecanicamente. O mesmo instrumento pode receber diferentes demandas porque a lógica permanece como eixo e a aplicação pode variar.
+
+O repositório preserva aquilo que deve permanecer e permite aquilo que precisa mudar. Não é necessário reconstruir, reformular ou reproduzir integralmente um instrumento para cada aplicação.
+
+A identidade decorre da continuidade de lógica, finalidade e função, e não da repetição literal de palavras.
+
+### 24.5 Contextualização, parametrização e adaptação
+
+A contextualização relaciona lógica e circunstâncias da conversa.
+
+A parametrização determina valores e condições variáveis, podendo incluir escopo, parâmetros, critérios, formato, restrições, origem, destino, participantes, dependências e condições de validação.
+
+A adaptação complementa, especifica, delimita ou reorganiza aspectos dependentes da situação. Ela permanece subordinada à lógica, finalidade e função do instrumento e não pode inventar instruções, substituir a lógica ou transferir responsabilidade especializada.
+
+### 24.6 Coordenação
+
+**Acionamento Coordenado de Instrumentos Promptuais** é o instrumento coordenador arquiteturalmente previsto.
+
+Ele orienta, coordena e articula. Não substitui os instrumentos especializados.
+
+A arquitetura coordenada é:
+
+**coordenador + instrumento fixo “Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas” + zero, um ou tantos instrumentos adicionais quantos forem indicados por títulos do usuário.**
+
+O instrumento fixo permanece uma unidade própria. Cada adicional permanece uma unidade própria. O coordenador estabelece relações entre essas unidades, sem absorção, fusão, descaracterização ou substituição.
+
+### 24.7 Cardinalidade aberta
+
+Não existe limite máximo predefinido para instrumentos adicionais.
+
+Cada título adicional é uma unidade própria que deve ser:
+
+1. reconhecida;
+2. localizada individualmente;
+3. recuperada;
+4. compreendida pelo conteúdo efetivo;
+5. preservada como unidade;
+6. incorporada à coordenação;
+7. mantida distinguível das demais.
+
+Repetições são ocorrências adicionais da mesma unidade, não novas identidades.
+
+Nenhum adicional pode ser omitido por quantidade, truncado, substituído ou selecionado arbitrariamente.
+
+A inexistência de adicionais não invalida a arquitetura: permanecem o coordenador e o instrumento fixo.
+
+### 24.8 Uma demanda concreta e responsabilidades
+
+A aplicação conjunta incide sobre uma única demanda concreta do usuário.
+
+O coordenador articula as instruções; cada instrumento especializado executa sua própria lógica; contexto, parâmetros e adaptação pertencem à aplicação; e o resultado representa a combinação coordenada.
+
+A coordenação não transforma a demanda em identidade de nenhum instrumento.
+
+### 24.9 Origem, destino e multidiretório
+
+Origem e destino são parâmetros operacionais.
+
+O local físico do instrumento não determina automaticamente o local do resultado. Instrumento, auxiliares, origem, arquivos afetados e destino podem estar em diretórios diferentes.
+
+A resolução do destino obedece à prioridade:
+
+**indicação explícita → contexto inequivocamente determinante → função original quando realmente aplicável → inferência contextual segura.**
+
+Associação temática fraca nunca autoriza escrita.
+
+### 24.10 Nocturna
+
+Nocturna é destino especial, nunca padrão.
+
+Somente indicação explícita ou determinação inequívoca autoriza seu uso. Outro destino explicitamente indicado prevalece. Em ambiguidade, não se materializa conteúdo dependente dessa decisão.
+
+Essa regra é uma regra de destino operacional e não altera a identidade ou a lógica de qualquer instrumento.
+
+### 24.11 Resultados intermediários e composição
+
+Resultados intermediários podem ser produzidos quando necessários.
+
+Cada resultado deve manter:
+
+- origem;
+- instrumento responsável;
+- etapa;
+- destino;
+- relação com o resultado final.
+
+Quando múltiplos instrumentos produzem conteúdo, o coordenador define responsabilidades e integração, evitando duplicação desnecessária. Conflitos devem preservar as regras originais; decisões destrutivas exigem validação de integridade.
+
+Determinar destino não transfere função especializada.
+
+### 24.12 Fluxos complementares
+
+O fluxo fundamental permanece preservado:
+
+**título → identificação/acionamento → requisição → localização GitHub → recuperação → instruções/lógica → demanda → contexto → contextualização → parametrização → adaptação → aplicação → execução → resultado.**
+
+O fluxo coordenado amplia-o para:
+
+**próprio título → própria ativação → títulos adicionais → ativações adicionais → título fixo → ativação fixa → recuperação individual → preservação das identidades → interpretação conjunta → relação entre instruções → contextualização → parametrização → adaptação → aplicação conjunta → execução → validação → resultado.**
+
+O fluxo multidiretório acrescenta:
+
+**TÍTULO → RECUPERAÇÃO → INSTRUMENTO → DEMANDA → CONTEXTO → ORIGEM → DESTINO → PARÂMETROS → ADAPTAÇÃO → EXECUÇÃO → VALIDAÇÃO → RASTREABILIDADE.**
+
+Esses fluxos são complementares, não substitutivos.
+
+### 24.13 Rastreabilidade ponta a ponta
+
+Toda operação coordenada deve poder relacionar:
+
+**título → instrumento → papel → ativação → recuperação → origem → destino → etapa → responsável → resultado → validação.**
+
+A rastreabilidade deve acompanhar tanto a ocorrência original quanto os resultados intermediários e o resultado final.
+
+### 24.14 Validação final
+
+A validação final coordenada confirma, no mínimo:
+
+1. instrumentos recuperados;
+2. identidades corretas;
+3. sequência;
+4. responsabilidades;
+5. origem;
+6. destino;
+7. resultados intermediários;
+8. materialização final;
+9. referências;
+10. relações;
+11. integridade de ponta a ponta.
+
+Validação estrutural não é prova de execução externa.
+
+### 24.15 Política de saída e limite honesto
+
+O conteúdo recuperado é base operacional. Não precisa ser reproduzido integralmente ao usuário quando isso não for necessário.
+
+matches, active_instruments, execution_plan, participantes resolvidos ou qualquer estado equivalente representam identificação, planejamento ou recuperação; não constituem, isoladamente, prova de que um agente externo executou as instruções.
+
+A execução efetiva continua pertencendo ao runtime que consome a estrutura recuperada.
+
+### 24.16 Garantias de preservação
+
+A complementação:
+
+- preserva a correferência atual;
+- preserva múltiplas ocorrências e múltiplos títulos;
+- preserva o catálogo e a árvore física;
+- preserva a distinção entre instrumento e aplicação;
+- preserva identidade, finalidade, função, instruções e lógica;
+- preserva a separação entre coordenador e especialistas;
+- mantém cardinalidade adicional aberta;
+- permite operação multidiretório;
+- mantém origem e destino como parâmetros;
+- mantém Nocturna fora da condição de destino padrão;
+- permite resultados intermediários rastreáveis;
+- exige validação final;
+- evita reprodução integral desnecessária;
+- não cria conteúdo para instrumento ausente;
+- não presume identidade pelo título sozinho;
+- não funde instrumentos;
+- não transforma contexto, parâmetro ou adaptação em identidade;
+- não autoriza escrita por associação temática;
+- não transfere responsabilidades especializadas por mera determinação de destino.
+
+A complementação, portanto, melhora o funcionamento da correferência por títulos acrescentando uma camada operacional interconectada, sem apagar ou substituir sua estrutura atual.
