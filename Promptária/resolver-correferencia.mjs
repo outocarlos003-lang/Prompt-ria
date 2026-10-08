@@ -263,8 +263,19 @@ export function resolveMentions(text, instruments, index = buildReferenceIndex(i
       }
       const originalStart = normalizedSource.origins[nStart];
       const originalEnd = normalizedSource.origins[nEnd - 1] + 1;
-      const resolved = resolveReference(instrument.title, index);
-      if (resolved.instrument_id !== instrument.id) continue;
+      const resolved = {
+        mention: source.slice(originalStart, originalEnd),
+        instrument_id: instrument.id,
+        canonical_title: instrument.title,
+        path: instrument.path ?? null,
+        match_type: MATCH_TYPES.EXACT_TITLE,
+        confidence: 1,
+        activation: true,
+        correferencia: true,
+        function_status: FUNCTION_STATUS.OWN,
+        exception_scope: null,
+        candidates: []
+      };
 
       const context = localContext(source, originalStart, originalEnd);
       const classification = classifyFunction(context);
