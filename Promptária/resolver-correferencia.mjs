@@ -252,11 +252,15 @@ export function resolveMentions(text, instruments, index = buildReferenceIndex(i
     if (!instrument?.title) continue;
     const needle = normalize(instrument.title);
     if (!needle) continue;
-    const re = new RegExp(escapeRegExp(needle).replace(/ /g, "\\s+"), "giu");
-    let match;
-    while ((match = re.exec(normalizedSource.text))) {
-      const nStart = match.index;
-      const nEnd = match.index + match[0].length;
+    let nStart = 0;
+    while ((nStart = normalizedSource.text.indexOf(needle, nStart)) !== -1) {
+      const nEnd = nStart + needle.length;
+      const before = nStart > 0 ? normalizedSource.text[nStart - 1] : "";
+      const after = nEnd < normalizedSource.text.length ? normalizedSource.text[nEnd] : "";
+      if ((before && /[a-z0-9]/i.test(before)) || (after && /[a-z0-9]/i.test(after))) {
+        nStart = nEnd;
+        continue;
+      }
       const originalStart = normalizedSource.origins[nStart];
       const originalEnd = normalizedSource.origins[nEnd - 1] + 1;
       const resolved = resolveReference(instrument.title, index);
@@ -277,6 +281,7 @@ export function resolveMentions(text, instruments, index = buildReferenceIndex(i
           ? "acionar_função_própria"
           : "não_acionar_função_própria_nesta_ocorrência"
       });
+      nStart = nEnd;
     }
   }
 
