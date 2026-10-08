@@ -1,13 +1,14 @@
 {
-  "schema_version": "2.1",
+  "schema_version": "3.0",
   "operation": "integração da navegação neural, rastreabilidade de produção e integridade sistêmica",
   "demand": "Preservar integralmente o conteúdo existente e estabelecer uma única arquitetura operacional de navegação, pesquisa, conexão, origem, transformação, destino, referência, validação e resultado.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
-    "branch": "main",
+    "branch": "feat/unificar-resolucao-fail-closed",
     "root": "Promptária",
     "preserved": true,
-    "existing_instruments": 10
+    "existing_instruments": 10,
+    "contract": "Promptária/manifest.json"
   },
   "transformation": [
     "preservação dos 10 instrumentos existentes",
@@ -26,16 +27,16 @@
     "Promptária/rastreabilidade-producao.json"
   ],
   "validation": {
-    "content_preserved": "10 instrumentos existentes preservados; alterações de integração restritas à camada navegacional e aos metadados de rastreio",
-    "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 10,
-    "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
-    "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
-    "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
-    "orphan_policy": "não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação",
-    "automated_integrity": "Promptária/verificador-integridade.mjs executado pelo workflow .github/workflows/promptaria-integrity.yml em push para main e pull requests",
-    "semantic_cross_reference": "manifesto mantém identidade canônica por id/título/path; aliases e capabilities sustentam correferência por título e função; novos instrumentos registrados em instruments entram automaticamente no catálogo navegacional",
-    "fail_closed": "falhas estruturais interrompem a validação em vez de serem aceitas silenciosamente"
+    "mode": "fail_closed",
+    "entrypoint": "Promptária/verificador-integridade.mjs",
+    "workflow": ".github/workflows/promptaria-integrity.yml",
+    "requires": [
+      "manifest",
+      "navigation_graph",
+      "production_chain",
+      "physical_identity",
+      "internal_edges"
+    ]
   },
   "production_chain": [
     "demanda",
@@ -58,5 +59,45 @@
     "cada instrumento possui entrada no núcleo",
     "cada instrumento possui retorno e continuidade anterior/próximo",
     "a pesquisa transversal alcança os 10 instrumentos"
+  ],
+  "networks": {
+    "navigation": {
+      "root": "Promptária/Index.html",
+      "search": "Promptária/navegacao-neural.js",
+      "graph": "Promptária/rede-navegacional.json"
+    },
+    "functional": {
+      "manifest": "Promptária/manifest.json",
+      "resolver": "Promptária/resolver-correferencia.mjs",
+      "validator": "Promptária/verificador-integridade.mjs"
+    },
+    "production": {
+      "trace": "Promptária/rastreabilidade-producao.json",
+      "chain": [
+        "demanda",
+        "instrumento responsável",
+        "instrumentos participantes",
+        "operação",
+        "origem",
+        "transformação",
+        "arquivo/artefato",
+        "destino",
+        "referências",
+        "validação",
+        "resultado"
+      ]
+    }
+  },
+  "invariants": [
+    "todo conteúdo web catalogado ou explicitamente excluído por política",
+    "todo nó navegacional possui entrada, destino e retorno",
+    "todo caminho aponta para recurso existente",
+    "todo resultado possui demanda e origem",
+    "toda transformação possui instrumento responsável",
+    "toda referência aponta para destino válido",
+    "toda identidade ativável é fisicamente verificada",
+    "ambiguidades bloqueiam ativação",
+    "capacidades não ativam instrumentos",
+    "Nocturna só é destino por determinação explícita ou inequívoca"
   ]
 }
