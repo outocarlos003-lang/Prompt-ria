@@ -16,12 +16,16 @@ on:
       - "tests/test_correfencia_funcional.py"
       - "Promptária/**"
       - "index.html"
+      - ".github/README-correfencia.md"
   push:
     branches: ["**"]
     paths:
       - ".github/scripts/validate_promptaria_corref.py"
       - ".github/workflows/correfencia-funcional.yml"
       - "tests/test_correfencia_funcional.py"
+      - "Promptária/**"
+      - "index.html"
+      - ".github/README-correfencia.md"
 
 permissions:
   contents: read
@@ -44,12 +48,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Preparar requisição
         env:
-          PROMPT_INPUT: ${{ inputs.prompt }}
-          EVENT_PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+          PROMPT_INPUT: \${{ inputs.prompt }}
+          EVENT_PAYLOAD: \${{ toJSON(github.event.client_payload) }}
         run: |
           python3 - <<'PY'
-          import json
-          import os
+          import json, os
           from pathlib import Path
 
           prompt = os.environ.get("PROMPT_INPUT", "").strip()
@@ -60,7 +63,7 @@ jobs:
               raise SystemExit("Nenhuma requisição foi fornecida.")
           Path("promptaria-request.txt").write_text(prompt, encoding="utf-8")
           PY
-      - name: Validar correferência
+      - name: Validar correferência e plano de execução
         run: |
           python3 .github/scripts/validate_promptaria_corref.py \
             --prompt-file promptaria-request.txt \
@@ -84,17 +87,15 @@ jobs:
           import re
 
           root = Path("Promptária")
-          manifest_path = root / "manifest.json"
-          sitemap_path = root / "sitemap.xml"
-          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-          entries = sorted(p for p in root.glob("*/Index.html"))
+          manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+          entries = sorted(root.glob("*/Index.html"))
+          declared = {x["path"] for x in manifest["instruments"]}
+          physical = {p.as_posix() for p in entries}
 
           assert manifest.get("schema_version") == "2.0", "Manifesto fora do schema 2.0"
-          assert len(entries) == len(manifest["instruments"]) == 11, (
+          assert len(entries) == len(manifest["instruments"]) == 10, (
               f"Catálogo inconsistente: físicos={len(entries)} manifesto={len(manifest['instruments'])}"
           )
-          physical = {p.as_posix() for p in entries}
-          declared = {x["path"] for x in manifest["instruments"]}
           assert physical == declared, "Manifesto e árvore física divergem"
 
           main = (root / "Index.html").read_text(encoding="utf-8")
@@ -105,6 +106,7 @@ jobs:
               entry = Path(item["path"])
               assert entry.is_file(), f"Entrada inexistente: {entry}"
               html = entry.read_text(encoding="utf-8")
+              assert "<title>" in html.lower(), f"Instrumento sem <title>: {entry}"
               assert 'id="promptaria-network-style"' in html, f"Sem camada navegacional: {entry}"
               assert 'id="promptaria-search-form"' in html, f"Sem pesquisa transversal: {entry}"
               assert 'href="../Index.html"' in html, f"Sem retorno ao núcleo: {entry}"
@@ -116,7 +118,7 @@ jobs:
           required = {"entry", "return", "main-interface", "next", "previous"}
           assert required <= edge_types, f"Arestas obrigatórias ausentes: {required - edge_types}"
 
-          sitemap = sitemap_path.read_text(encoding="utf-8")
+          sitemap = (root / "sitemap.xml").read_text(encoding="utf-8")
           for path in sorted(declared | {"Promptária/Index.html"}):
               assert f"<loc>{path}</loc>" in sitemap, f"Ausente no sitemap: {path}"
 
