@@ -14,7 +14,7 @@ class CorreferenciaRulesTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         root = Path(self.tmp.name) / "Promptária"
-        for name in ("Instrumento Alfa", "Instrumento Beta"):
+        for name in ("Instrumento Alfa", "Instrumento Beta", "Acionamento Coordenado de Instrumentos Promptuais"):
             d = root / name
             d.mkdir(parents=True)
             (d / "Index.html").write_text(
@@ -28,7 +28,7 @@ class CorreferenciaRulesTest(unittest.TestCase):
                     "id": "instrumento-alfa",
                     "title": "Instrumento Alfa",
                     "path": "Promptária/Instrumento Alfa/Index.html",
-                    "aliases": ["alfa"],
+                    "aliases": ["Instrumento Alfa", "alfa"],
                     "capabilities": ["capacidade alfa"],
                     "canonical_reference": {"id": "instrumento-alfa", "title": "Instrumento Alfa", "path": "Promptária/Instrumento Alfa/Index.html"},
                 },
@@ -36,9 +36,17 @@ class CorreferenciaRulesTest(unittest.TestCase):
                     "id": "instrumento-beta",
                     "title": "Instrumento Beta",
                     "path": "Promptária/Instrumento Beta/Index.html",
-                    "aliases": ["beta"],
+                    "aliases": ["Instrumento Beta", "beta"],
                     "capabilities": ["capacidade beta"],
                     "canonical_reference": {"id": "instrumento-beta", "title": "Instrumento Beta", "path": "Promptária/Instrumento Beta/Index.html"},
+                },
+                {
+                    "id": "instrumento-coordenador",
+                    "title": "Acionamento Coordenado de Instrumentos Promptuais",
+                    "path": "Promptária/Acionamento Coordenado de Instrumentos Promptuais/Index.html",
+                    "aliases": ["Acionamento Coordenado de Instrumentos Promptuais"],
+                    "capabilities": ["coordenação"],
+                    "canonical_reference": {"id": "instrumento-coordenador", "title": "Acionamento Coordenado de Instrumentos Promptuais", "path": "Promptária/Acionamento Coordenado de Instrumentos Promptuais/Index.html"},
                 },
             ],
         }
@@ -127,8 +135,9 @@ class CorreferenciaRulesTest(unittest.TestCase):
 
     def test_capability_is_discovery_only_and_never_activates(self):
         r = self.validate("capacidade alfa.")
-        self.assertEqual(r["matched_occurrences"], 0)
-        self.assertEqual(r["active_instruments"], [])
+        self.assertEqual(r["matched_occurrences"], 1)
+        self.assertFalse(r["matches"][0]["active"])
+        self.assertEqual(r["matches"][0]["function_status"], "propria_preservada")
 
     def test_coordination_preserves_roles_and_open_cardinality(self):
         r = self.validate(
