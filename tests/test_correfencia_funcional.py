@@ -140,6 +140,12 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertEqual(alpha["occurrences"], 2)
         self.assertFalse(alpha["identity_presumed_from_title"])
 
+    def test_nocturna_mention_without_positive_destination_does_not_authorize_write(self):
+        r = self.validate("Instrumento Alfa; não use Nocturna como destino.")
+        d = r["coordination"]["parameters"]["destination"]
+        self.assertEqual(d["status"], "ambiguous")
+        self.assertFalse(d["materialization_allowed"])
+
 
 if __name__ == "__main__":
     unittest.main()
