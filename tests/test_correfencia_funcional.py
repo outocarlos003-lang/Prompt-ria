@@ -63,7 +63,7 @@ class CorreferenciaRulesTest(unittest.TestCase):
         r = self.validate("Aplique Instrumento Alfa à requisição.")
         self.assertEqual(r["matched_occurrences"], 1)
         self.assertTrue(r["matches"][0]["active"])
-        self.assertEqual(r["matches"][0]["function_status"], "discovery_only")
+        self.assertEqual(r["matches"][0]["function_status"], "propria_preservada")
 
     def test_silence_is_not_diverse(self):
         r = self.validate("Instrumento Alfa.")
@@ -137,7 +137,8 @@ class CorreferenciaRulesTest(unittest.TestCase):
         r = self.validate("capacidade alfa.")
         self.assertEqual(r["matched_occurrences"], 1)
         self.assertFalse(r["matches"][0]["active"])
-        self.assertEqual(r["matches"][0]["function_status"], "propria_preservada")
+        self.assertEqual(r["matches"][0]["function_status"], "discovery_only")
+        self.assertEqual(r["matches"][0]["match_type"], "capability")
 
     def test_coordination_preserves_roles_and_open_cardinality(self):
         r = self.validate(
