@@ -79,32 +79,22 @@
       "path": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "entry": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "previous": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "next": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "node_type": "instrument",
-      "source_of_truth": "Promptária/manifest.json"
-    },
-    {
-      "id": "instrumento-09",
-      "title": "Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta",
-      "path": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "entry": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "previous": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "next": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json"
     },
     {
-      "id": "instrumento-10",
+      "id": "instrumento-09",
       "title": "PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
       "path": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
       "entry": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "previous": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
+      "previous": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "next": "Promptária/Rastreio-GitHub/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json"
     },
     {
-      "id": "instrumento-11",
+      "id": "instrumento-10",
       "title": "Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou",
       "path": "Promptária/Rastreio-GitHub/Index.html",
       "entry": "Promptária/Rastreio-GitHub/Index.html",
@@ -320,37 +310,12 @@
     },
     {
       "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "to": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
+      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
       "type": "next"
     },
     {
       "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
-      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "type": "previous"
     },
     {
@@ -375,7 +340,7 @@
     },
     {
       "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "to": "Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html",
+      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "type": "previous"
     },
     {
@@ -407,14 +372,14 @@
   "provenance": {
     "operation": "reorganização sistêmica da Promptária",
     "origin": "conteúdo e estrutura existentes no repositório outocarlos003-lang/Prompt-ria",
-    "instrument": "Rastreio-GitHub + Princípio da Integridade Sistêmica + arquitetura navegacional existente",
+    "instrument": "Rastreio-GitHub + arquitetura navegacional existente",
     "transformation": "consolidação do catálogo em fonte única de verdade, explicitação das arestas navegacionais, validação de integridade e criação de índice navegacional derivado",
     "destination": "Promptária/manifest.json, Promptária/Index.html, Promptária/sitemap.xml, Promptária/README.md",
     "validation": [
-      "manifesto consistente com 11 entradas físicas",
+      "manifesto consistente com 10 entradas físicas",
       "cada entrada possui retorno, anterior e próximo",
       "pesquisa transversal preservada",
-      "conteúdo dos instrumentos não alterado"
+      "conteúdo dos 10 instrumentos remanescentes não alterado"
     ]
   }
 }
