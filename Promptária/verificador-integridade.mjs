@@ -122,7 +122,7 @@ for(const file of ["index.html",...webFiles.filter(p=>p!=="index.html")]) {
     const raw=m[1].trim();
     if(!raw || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(raw)) continue;
     let target;
-    try { target=new URL(raw,"https://promptaria.invalid/"+file).pathname.replace(/^\\//,""); }
+    try { target=new URL(raw,"https://promptaria.invalid/"+file).pathname.split("/").filter(Boolean).join("/"); }
     catch { fail(file+": referência interna inválida: "+raw); continue; }
     const targetAbs=path.join(ROOT,target);
     if(!fs.existsSync(targetAbs)) fail(file+": referência interna quebrada: "+raw+" -> "+target);
