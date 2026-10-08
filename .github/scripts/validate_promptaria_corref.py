@@ -601,8 +601,9 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
 
     for item in catalog:
         seen: set[tuple[int, int]] = set()
-        for alias in item["aliases"]:
+        for alias in list(item["aliases"]) + list(item["capabilities"]):
             needle = norm(alias)
+            capability_only = not any(norm(a) == needle for a in item["aliases"])
             if not needle:
                 continue
             for match in phrase_pattern(needle).finditer(normalized_prompt):
@@ -624,12 +625,13 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
                     "instrument": item["instrument"],
                     "canonical_path": item["path"],
                     "correferencia": True,
-                    "resolution_status": "resolved",
+                    "resolution_status": "discovery_only" if capability_only else "resolved",
+                    "match_type": "capability" if capability_only else "alias_or_title",
                     "identity_status": "verified" if identity_verified else "invalid",
                     "identity_verified": identity_verified,
-                    "function_status": "diversa_explicitamente_atribuida" if diverse else "propria_preservada",
-                    "activation_status": "ready" if (catalog_ok and identity_verified and not diverse) else ("blocked_diverse_function" if diverse else "blocked_identity"),
-                    "active": bool(catalog_ok and identity_verified and not diverse),
+                    "function_status": "discovery_only" if capability_only else ("diversa_explicitamente_atribuida" if diverse else "propria_preservada"),
+                    "activation_status": "discovery_only" if capability_only else ("ready" if (catalog_ok and identity_verified and not diverse) else ("blocked_diverse_function" if diverse else "blocked_identity")),
+                    "active": bool(catalog_ok and identity_verified and not diverse and not capability_only),
                     "exception_scope": "occurrence" if diverse else None,
                     "context_window": context,
                 })
