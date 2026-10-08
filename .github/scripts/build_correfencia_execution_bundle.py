@@ -29,10 +29,15 @@ def build(result: dict) -> dict:
             "content": visible_text(raw),
         })
     return {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "source_status": result.get("status"),
         "matched_occurrences": result.get("matched_occurrences", 0),
         "instruments": items,
+        "coordination": result.get("coordination", {}),
+        "traceability": result.get("coordination", {}).get("traceability", {}),
+        "origin": result.get("coordination", {}).get("parameters", {}).get("origin", {}),
+        "destination": result.get("coordination", {}).get("parameters", {}).get("destination", {}),
+        "sequence": result.get("coordination", {}).get("sequence", []),
     }
 
 
