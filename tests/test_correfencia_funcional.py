@@ -140,6 +140,31 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertEqual(alpha["occurrences"], 2)
         self.assertFalse(alpha["identity_presumed_from_title"])
 
+    def test_explicit_unknown_additional_title_is_represented_as_unresolved(self):
+        r = self.validate('título: "Instrumento Ômega Externo" para a demanda.')
+        unresolved = r["coordination"]["unresolved_explicit_additional_titles"]
+        self.assertEqual(len(unresolved), 1)
+        self.assertEqual(unresolved[0]["title"], "Instrumento Ômega Externo")
+        self.assertEqual(unresolved[0]["status"], "catalog_missing")
+        self.assertFalse(unresolved[0]["identity_presumed_from_title"])
+        self.assertTrue(r["coordination"]["cardinality"]["additional_is_unbounded"])
+
+    def test_title_and_request_are_joint_activation_unit(self):
+        r = self.validate("Acionamento Coordenado de Instrumentos Promptuais: executar a demanda concreta.")
+        a = r["coordination"]["activation_unit"]
+        self.assertTrue(a["title_plus_custom_request_forms_activation_unit"])
+        self.assertTrue(a["title_identifies_and_activates"])
+        self.assertTrue(a["request_defines_concrete_application"])
+        self.assertTrue(r["coordination"]["instrument_application_separation"]["identity_is_not_changed_by_contextual_variation"])
+
+    def test_final_validation_and_writing_coordination_are_structured(self):
+        r = self.validate("Instrumento Alfa e Instrumento Beta. Destino: Promptária/resultados.")
+        c = r["coordination"]
+        self.assertTrue(c["writing_coordination"]["multiple_producers_require_role_assignment"])
+        self.assertTrue(c["writing_coordination"]["destructive_resolution_requires_integrity_validation"])
+        self.assertTrue(c["validation"]["final_validation_is_coordinated"])
+        self.assertIn("integridade de ponta a ponta", c["validation"]["checks"])
+
     def test_nocturna_mention_without_positive_destination_does_not_authorize_write(self):
         r = self.validate("Instrumento Alfa; não use Nocturna como destino.")
         d = r["coordination"]["parameters"]["destination"]
