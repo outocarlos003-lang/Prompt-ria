@@ -13,7 +13,7 @@ const warn=(m)=>warnings.push(m);
 const exists=(p)=>fs.existsSync(path.join(ROOT,p));
 const unique=(xs,label)=>{const seen=new Set();for(const x of xs){if(seen.has(x))fail(label+" duplicado: "+x);seen.add(x)}};
 
-if(manifest.schema_version!=="3.0") fail("schema_version inesperado");
+if(manifest.schema_version!=="4.0") fail("schema_version inesperado");
 if(!Array.isArray(instruments)||!instruments.length) fail("manifest.instruments vazio ou inválido");
 
 unique(instruments.map(x=>x.id),"id");
@@ -122,7 +122,7 @@ for(const file of ["index.html",...webFiles.filter(p=>p!=="index.html")]) {
     const raw=m[1].trim();
     if(!raw || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(raw)) continue;
     let target;
-    try { target=new URL(raw,"https://promptaria.invalid/"+file).pathname.split("/").filter(Boolean).join("/"); }
+    try { target=decodeURIComponent(new URL(raw,"https://promptaria.invalid/"+file).pathname).split("/").filter(Boolean).join("/"); }
     catch { fail(file+": referência interna inválida: "+raw); continue; }
     const targetAbs=path.join(ROOT,target);
     if(!fs.existsSync(targetAbs)) fail(file+": referência interna quebrada: "+raw+" -> "+target);
