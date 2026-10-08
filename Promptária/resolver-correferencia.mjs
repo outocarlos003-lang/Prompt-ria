@@ -292,9 +292,8 @@ export function validateReferenceIndex(instruments = []) {
     }
   }
 
-  for (const [alias, owners] of seenAliases) {
-    if (owners.length > 1) errors.push('alias ambíguo entre instrumentos: "' + alias + '" -> ' + owners.join(", "));
-  }
+  // Aliases podem ser compartilhados: são apenas pistas não acionantes.
+  // A ambiguidade relevante para acionamento é a do título canônico.
   return errors;
 }
 
