@@ -245,64 +245,49 @@ function localContext(text, start, end) {
 
 export function resolveMentions(text, instruments, index = buildReferenceIndex(instruments)) {
   const source = String(text ?? "");
-  const normalizedSource = normalizeWithOrigins(source);
+  const normalizedSource = normalize(source);
   const candidates = [];
 
   for (const instrument of instruments || []) {
     if (!instrument?.title) continue;
     const needle = normalize(instrument.title);
     if (!needle) continue;
-    let nStart = 0;
-    while ((nStart = normalizedSource.text.indexOf(needle, nStart)) !== -1) {
-      const nEnd = nStart + needle.length;
-      const before = nStart > 0 ? normalizedSource.text[nStart - 1] : "";
-      const after = nEnd < normalizedSource.text.length ? normalizedSource.text[nEnd] : "";
-      if ((before && /[a-z0-9]/i.test(before)) || (after && /[a-z0-9]/i.test(after))) {
-        nStart = nEnd;
-        continue;
-      }
-      const originalStart = normalizedSource.origins[nStart];
-      const originalEnd = normalizedSource.origins[nEnd - 1] + 1;
-      const resolved = {
-        mention: source.slice(originalStart, originalEnd),
-        instrument_id: instrument.id,
-        canonical_title: instrument.title,
-        path: instrument.path ?? null,
-        match_type: MATCH_TYPES.EXACT_TITLE,
-        confidence: 1,
-        activation: true,
-        correferencia: true,
-        function_status: FUNCTION_STATUS.OWN,
-        exception_scope: null,
-        candidates: []
-      };
 
-      const context = localContext(source, originalStart, originalEnd);
-      const classification = classifyFunction(context);
-      candidates.push({
-        ...resolved,
-        mention: source.slice(originalStart, originalEnd),
-        start: originalStart,
-        end: originalEnd,
-        context,
-        function_status: classification.status,
-        exception_scope: classification.exception_scope ?? null,
-        activation: classification.status === FUNCTION_STATUS.OWN,
-        action: classification.status === FUNCTION_STATUS.OWN
-          ? "acionar_função_própria"
-          : "não_acionar_função_própria_nesta_ocorrência"
-      });
-      nStart = nEnd;
+    let from = 0;
+    while (true) {
+      const found = normalizedSource.indexOf(needle, from);
+      if (found === -1) break;
+
+      const before = found > 0 ? normalizedSource[found - 1] : "";
+      const afterIndex = found + needle.length;
+      const after = afterIndex < normalizedSource.length ? normalizedSource[afterIndex] : "";
+      if ((!before || !/[a-z0-9]/i.test(before)) && (!after || !/[a-z0-9]/i.test(after))) {
+        const classification = classifyFunction(source);
+        candidates.push({
+          mention: instrument.title,
+          instrument_id: instrument.id,
+          canonical_title: instrument.title,
+          path: instrument.path ?? null,
+          match_type: MATCH_TYPES.NORMALIZED_TITLE,
+          confidence: 0.99,
+          activation: classification.status === FUNCTION_STATUS.OWN,
+          correferencia: true,
+          function_status: classification.status,
+          exception_scope: classification.exception_scope ?? null,
+          start: found,
+          end: found + needle.length,
+          context: source,
+          action: classification.status === FUNCTION_STATUS.OWN
+            ? "acionar_função_própria"
+            : "não_acionar_função_própria_nesta_ocorrência",
+          candidates: []
+        });
+      }
+      from = found + needle.length;
     }
   }
 
-  const deduped = new Map();
-  for (const item of candidates) {
-    const key = [item.start, item.end, item.instrument_id].join(":");
-    if (!deduped.has(key)) deduped.set(key, item);
-  }
-  return [...deduped.values()]
-    .sort((a, b) => a.start - b.start || a.instrument_id.localeCompare(b.instrument_id));
+  return candidates.sort((a, b) => a.start - b.start || a.instrument_id.localeCompare(b.instrument_id));
 }
 
 export function validateReferenceIndex(instruments = []) {
