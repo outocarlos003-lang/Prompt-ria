@@ -224,7 +224,7 @@ function normalizeWithOrigins(value) {
     out.push(char);
     outOrigins.push(origins[i]);
   }
-  return { text: out.join(" "), origins: outOrigins };
+  return { text: out.join(""), origins: outOrigins };
 }
 
 function localContext(text, start, end) {
