@@ -195,50 +195,6 @@
       font-size: 1.02rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .btn {
-      min-height: 42px;
-      padding: 10px 15px;
-      border: 1px solid var(--line-strong);
-      border-radius: 11px;
-      color: var(--text);
-      background: rgba(255,255,255,.035);
-      text-decoration: none;
-      transition: .2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      border-color: rgba(77,231,255,.45);
-      background: var(--cyan-soft);
-    }
-
-    .btn.primary {
-      color: #031017;
-      border-color: transparent;
-      background: linear-gradient(100deg, var(--cyan), #9cf4ff);
-      box-shadow: 0 10px 30px rgba(77,231,255,.16);
-      font-weight: 800;
-    }
-
-    .btn.primary:hover { box-shadow: 0 14px 38px rgba(77,231,255,.25); }
-
-    .toolbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      padding: 13px 0;
-      background: rgba(5,7,13,.74);
-      backdrop-filter: blur(18px) saturate(130%);
-      border-bottom: 1px solid var(--line);
-    }
-
     .toolbar-inner {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -549,11 +505,6 @@
         Um sistema de instrumentos promptuais recuperados diretamente do GitHub.
         Explore, pesquise, visualize e copie cada instrumento para transformar intenção em ação.
       </p>
-
-      <div class="hero-actions">
-        <a class="btn primary" href="#instrumentos">Explorar instrumentos ↓</a>
-        <a class="btn" href="./Promptária/Index.html">Abrir mapa neural →</a>
-      </div>
     </div>
   </header>
 
@@ -578,13 +529,6 @@
     <div id="message" class="empty">Sincronizando a árvore do repositório…</div>
     <section id="grid" class="grid" aria-live="polite"></section>
   </main>
-
-  <footer>
-    <div class="wrap">
-      Fonte: <a href="https://github.com/outocarlos003-lang/Prompt-ria" target="_blank" rel="noopener">outocarlos003-lang/Prompt-ria</a>.
-      A interface é a camada de descoberta; os instrumentos continuam mantidos no GitHub.
-    </div>
-  </footer>
 
   <dialog id="viewer">
     <div class="modal-head">
