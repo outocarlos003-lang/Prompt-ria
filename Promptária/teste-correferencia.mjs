@@ -1,7 +1,15 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { buildReferenceIndex, resolveReference, resolveMentions, validateReferenceIndex, MATCH_TYPES } from "./resolver-correferencia.mjs";
+import {
+  buildReferenceIndex,
+  resolveReference,
+  resolveMentions,
+  validateReferenceIndex,
+  MATCH_TYPES,
+  FUNCTION_STATUS,
+  ARCHITECTURE_POLICY
+} from "./resolver-correferencia.mjs";
 
 const root = process.cwd();
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "Promptária", "manifest.json"), "utf8"));
@@ -10,33 +18,45 @@ const index = buildReferenceIndex(instruments);
 
 assert.deepEqual(validateReferenceIndex(instruments), [], "manifesto possui referências ambíguas/duplicadas");
 
-const cases = [
-  ["instrumento-05", "id", MATCH_TYPES.ID],
-  ["Prompt-Matriz", "prompt-matriz", MATCH_TYPES.ALIAS],
-  ["Rastreio GitHub", "rastreio GitHub", MATCH_TYPES.ALIAS],
-  ["CORREFERÊNCIA FUNCIONAL AUTOMÁTICA", "correferência funcional automática", MATCH_TYPES.ALIAS],
-  ["  prompt-matriz  ", "prompt-matriz", MATCH_TYPES.ALIAS]
-];
+const exact = resolveReference("Acionamento Coordenado de Instrumentos Promptuais", index);
+assert.equal(exact.activation, true);
+assert.equal(exact.correferencia, true);
+assert.equal(exact.match_type, MATCH_TYPES.EXACT_TITLE);
 
-for (const [input] of cases) {
-  const resolved = resolveReference(input, index);
-  assert.equal(resolved.activation, true, input);
-}
+const normalized = resolveReference("  acionamento coordenado de instrumentos promptuais  ", index);
+assert.equal(normalized.activation, true);
+assert.equal(normalized.match_type, MATCH_TYPES.NORMALIZED_TITLE);
 
-assert.equal(resolveReference("acionamento", index).activation, false, "termo genérico não deve ativar instrumento silenciosamente");
-assert.equal(resolveReference("não existe na Promptária", index).match_type, MATCH_TYPES.NONE);
+const aliasHint = resolveReference("coordenação", index);
+assert.equal(aliasHint.activation, false, "alias não deve acionar instrumento sozinho");
+assert.equal(aliasHint.match_type, MATCH_TYPES.ALIAS_HINT);
+
+const unknown = resolveReference("não existe na Promptária", index);
+assert.equal(unknown.match_type, MATCH_TYPES.NONE);
+assert.equal(unknown.activation, false);
 
 const multi = resolveMentions(
-  "Use a Prompt-Matriz junto com a correferência funcional automática.",
+  "Acionamento Coordenado de Instrumentos Promptuais e PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO.",
   instruments,
   index
 );
 assert.deepEqual(
   [...new Set(multi.map(x => x.instrument_id))].sort(),
-  ["instrumento-05", "instrumento-09"]
+  ["instrumento-01", "instrumento-09"]
 );
+assert.equal(multi.every(x => x.correferencia), true);
+assert.equal(multi.every(x => x.function_status === FUNCTION_STATUS.OWN), true);
 
-console.log("PROMPTÁRIA — CORREFERÊNCIA: TESTES OK");
-console.log("Casos determinísticos: 5");
-console.log("Múltiplas menções: OK");
-console.log("Ambiguidade/negativo: OK");
+assert.equal(ARCHITECTURE_POLICY.sections.length, 19);
+assert.equal(ARCHITECTURE_POLICY.titleActivates, true);
+assert.equal(ARCHITECTURE_POLICY.genericMentionPreservesOwnFunction, true);
+assert.equal(ARCHITECTURE_POLICY.diverseFunctionIsException, true);
+assert.equal(ARCHITECTURE_POLICY.multipleTitlesAreCumulative, true);
+assert.equal(ARCHITECTURE_POLICY.multipleTitlesAreNonExclusive, true);
+assert.equal(ARCHITECTURE_POLICY.destinationNocturnaIsNotDefault, true);
+
+console.log("PROMPTÁRIA — CORREFERÊNCIA NODE: TESTES OK");
+console.log("Título determinístico: OK");
+console.log("Alias não acionante: OK");
+console.log("Múltiplos títulos cumulativos: OK");
+console.log("Política arquitetural: 19 seções");
