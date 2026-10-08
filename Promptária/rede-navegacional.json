@@ -99,12 +99,12 @@
     },
     {
       "from": "instrumento-01",
-      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-02",
       "type": "next"
     },
     {
       "from": "instrumento-01",
-      "to": "Promptária/Rastreio-GitHub/Index.html",
+      "to": "instrumento-10",
       "type": "previous"
     },
     {
@@ -119,12 +119,12 @@
     },
     {
       "from": "instrumento-02",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-03",
       "type": "next"
     },
     {
       "from": "instrumento-02",
-      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-01",
       "type": "previous"
     },
     {
@@ -139,12 +139,12 @@
     },
     {
       "from": "instrumento-03",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-04",
       "type": "next"
     },
     {
       "from": "instrumento-03",
-      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-02",
       "type": "previous"
     },
     {
@@ -159,12 +159,12 @@
     },
     {
       "from": "instrumento-04",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-05",
       "type": "next"
     },
     {
       "from": "instrumento-04",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-03",
       "type": "previous"
     },
     {
@@ -179,12 +179,12 @@
     },
     {
       "from": "instrumento-05",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "to": "instrumento-06",
       "type": "next"
     },
     {
       "from": "instrumento-05",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-04",
       "type": "previous"
     },
     {
@@ -199,12 +199,12 @@
     },
     {
       "from": "instrumento-06",
-      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "to": "instrumento-07",
       "type": "next"
     },
     {
       "from": "instrumento-06",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-05",
       "type": "previous"
     },
     {
@@ -219,12 +219,12 @@
     },
     {
       "from": "instrumento-07",
-      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "to": "instrumento-08",
       "type": "next"
     },
     {
       "from": "instrumento-07",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "to": "instrumento-06",
       "type": "previous"
     },
     {
@@ -239,12 +239,12 @@
     },
     {
       "from": "instrumento-08",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "instrumento-09",
       "type": "next"
     },
     {
       "from": "instrumento-08",
-      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "to": "instrumento-07",
       "type": "previous"
     },
     {
@@ -259,12 +259,12 @@
     },
     {
       "from": "instrumento-09",
-      "to": "Promptária/Rastreio-GitHub/Index.html",
+      "to": "instrumento-10",
       "type": "next"
     },
     {
       "from": "instrumento-09",
-      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "to": "instrumento-08",
       "type": "previous"
     },
     {
@@ -279,12 +279,12 @@
     },
     {
       "from": "instrumento-10",
-      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "to": "instrumento-01",
       "type": "next"
     },
     {
       "from": "instrumento-10",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "instrumento-09",
       "type": "previous"
     }
   ],
