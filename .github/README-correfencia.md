@@ -33,6 +33,12 @@ O resultado possui `execution_plan`. Ele identifica, para cada instrumento ativo
 
 Importante: **plano de execução não significa que GitHub Actions execute o HTML como um instrumento**. O validador não inventa uma execução que não existe. Para execução real, uma camada externa precisa consumir o `execution_plan`, recuperar o conteúdo do instrumento e aplicar suas instruções.
 
+## Recuperação dos instrumentos acionados
+
+Após a validação, `build_correfencia_execution_bundle.py` recupera o conteúdo dos instrumentos presentes no `execution_plan` e produz `correfencia-execution-bundle.json`. Assim, o fluxo deixa de parar na identificação: ele também materializa o conjunto de instruções que uma camada executora externa deve consumir.
+
+A aplicação efetiva dessas instruções sobre a requisição continua sendo responsabilidade do runtime que integra a Promptária ao modelo/agente. O repositório não finge que um HTML foi “executado” apenas por ter sido identificado.
+
 ## GitHub Actions
 
 O workflow `.github/workflows/correfencia-funcional.yml` executa:
