@@ -138,6 +138,297 @@ def phrase_pattern(needle: str) -> re.Pattern[str]:
     return re.compile(rf"(?<!\w){re.escape(needle)}(?!\w)", re.UNICODE)
 
 
+FIXED_COORDINATOR_TITLE = "Acionamento Coordenado de Instrumentos Promptuais"
+FIXED_GITHUB_INSTRUMENT_TITLE = "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"
+DESTINATION_PATTERNS = (
+    re.compile(r"\b(?:destino|destin[oó]|gravar|escrever|materializar|salvar)\s*[:=]\s*([^\n.;]+)", re.I),
+    re.compile(r"\b(?:no|na|em|para o|para a)\s+(diret[oó]rio|pasta|arquivo)\s+([^\n.;]+)", re.I),
+)
+ORIGIN_PATTERN = re.compile(r"\b(?:origem|origin[aá]rio|proveni[eê]ncia)\s*[:=]\s*([^\n.;]+)", re.I)
+
+
+def find_catalog_item(catalog: list[dict], title: str) -> dict | None:
+    target = norm(title)
+    for item in catalog:
+        if any(norm(alias) == target for alias in item["aliases"]):
+            return item
+    return None
+
+
+def explicit_value(patterns: tuple[re.Pattern[str], ...], prompt: str) -> str | None:
+    for pattern in patterns:
+        match = pattern.search(prompt)
+        if not match:
+            continue
+        value = match.group(match.lastindex or 1).strip(" \t\r\n:;,")
+        if value:
+            return value
+    return None
+
+
+def resolve_destination(prompt: str) -> dict:
+    """Resolve destino conservadoramente; não autoriza escrita por associação temática."""
+    explicit = explicit_value(DESTINATION_PATTERNS, prompt)
+    nocturna = bool(re.search(r"\bnocturna\b", norm(prompt), re.I))
+    if explicit:
+        value = explicit
+        if "nocturna" in norm(value):
+            return {
+                "value": value,
+                "source": "explicit",
+                "status": "resolved",
+                "is_nocturna": True,
+                "materialization_allowed": True,
+                "rule": "indicação explícita prevalece",
+            }
+        return {
+            "value": value,
+            "source": "explicit",
+            "status": "resolved",
+            "is_nocturna": False,
+            "materialization_allowed": True,
+            "rule": "indicação explícita prevalece",
+        }
+    if nocturna:
+        return {
+            "value": "Nocturna",
+            "source": "explicit_keyword",
+            "status": "resolved",
+            "is_nocturna": True,
+            "materialization_allowed": True,
+            "rule": "Nocturna só é destino quando explicitamente indicada",
+        }
+    return {
+        "value": None,
+        "source": None,
+        "status": "ambiguous",
+        "is_nocturna": False,
+        "materialization_allowed": False,
+        "rule": "sem destino explícito ou inequivocamente determinado, não materializar",
+    }
+
+
+def resolve_origin(prompt: str) -> dict:
+    explicit = explicit_value((ORIGIN_PATTERN,), prompt)
+    return {
+        "value": explicit,
+        "source": "explicit" if explicit else None,
+        "status": "resolved" if explicit else "contextual",
+        "rule": "origem é parâmetro operacional e não identidade permanente",
+    }
+
+
+def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) -> dict:
+    coordinator = find_catalog_item(catalog, FIXED_COORDINATOR_TITLE)
+    fixed = find_catalog_item(catalog, FIXED_GITHUB_INSTRUMENT_TITLE)
+    active = [m for m in matches if m["active"]]
+    additional_by_path = {}
+    for match in active:
+        if norm(match["title"]) in {norm(FIXED_COORDINATOR_TITLE), norm(FIXED_GITHUB_INSTRUMENT_TITLE)}:
+            continue
+        additional_by_path.setdefault(match["instrument"], {
+            "title": match["title"],
+            "instrument": match["instrument"],
+            "occurrences": 0,
+            "identity_source": "conteúdo recuperado do GitHub",
+            "identity_presumed_from_title": False,
+        })
+        additional_by_path[match["instrument"]]["occurrences"] += 1
+
+    participants = []
+    if coordinator:
+        participants.append({
+            "role": "coordinator",
+            "title": coordinator["title"],
+            "instrument": coordinator["instrument"],
+            "activation": "own_title",
+            "recovery": "github",
+            "status": "resolved",
+        })
+    else:
+        participants.append({
+            "role": "coordinator",
+            "title": FIXED_COORDINATOR_TITLE,
+            "instrument": None,
+            "activation": "own_title",
+            "recovery": "github",
+            "status": "catalog_missing",
+        })
+
+    if fixed:
+        participants.append({
+            "role": "fixed_github_instrument",
+            "title": fixed["title"],
+            "instrument": fixed["instrument"],
+            "activation": "fixed_title",
+            "recovery": "github",
+            "status": "resolved",
+        })
+    else:
+        participants.append({
+            "role": "fixed_github_instrument",
+            "title": FIXED_GITHUB_INSTRUMENT_TITLE,
+            "instrument": None,
+            "activation": "fixed_title",
+            "recovery": "github",
+            "status": "catalog_missing",
+        })
+
+    participants.extend({
+        "role": "additional_instrument",
+        "title": item["title"],
+        "instrument": item["instrument"],
+        "activation": "user_supplied_title",
+        "recovery": "github",
+        "status": "resolved",
+        "occurrences": item["occurrences"],
+        "identity_source": item["identity_source"],
+        "identity_presumed_from_title": item["identity_presumed_from_title"],
+    } for item in sorted(additional_by_path.values(), key=lambda x: norm(x["title"])))
+
+    origin = resolve_origin(prompt)
+    destination = resolve_destination(prompt)
+    unresolved = [p["title"] for p in participants if p["status"] != "resolved"]
+    return {
+        "architecture_version": "1.0",
+        "preserves_existing_correfencia": True,
+        "coordinator": {
+            "title": FIXED_COORDINATOR_TITLE,
+            "activation": "own_title",
+            "recovery": "github",
+            "identity_source": "conteúdo efetivamente recuperado",
+            "status": "resolved" if coordinator else "catalog_missing",
+        },
+        "fixed_instrument": {
+            "title": FIXED_GITHUB_INSTRUMENT_TITLE,
+            "activation": "fixed_title",
+            "recovery": "github",
+            "identity_source": "conteúdo efetivamente recuperado",
+            "status": "resolved" if fixed else "catalog_missing",
+        },
+        "additional_instruments": [p for p in participants if p["role"] == "additional_instrument"],
+        "cardinality": {
+            "additional_is_unbounded": True,
+            "minimum_additional": 0,
+            "maximum_additional": None,
+            "selection_is_arbitrary": False,
+            "all_user_supplied_titles_are_considered": True,
+        },
+        "participants": participants,
+        "demand": {
+            "is_external_to_instrument_identity": True,
+            "source": "current_prompt",
+        },
+        "context": {
+            "source": "current_prompt",
+            "is_external_to_instrument_identity": True,
+        },
+        "parameters": {
+            "origin": origin,
+            "destination": destination,
+            "scope": "current_demand",
+            "criteria": "current_demand",
+            "format": "current_demand",
+            "restrictions": "current_demand",
+        },
+        "adaptation": {
+            "allowed": True,
+            "preserve_identity": True,
+            "preserve_purpose": True,
+            "preserve_instructions": True,
+            "preserve_operational_logic": True,
+            "may_reorganize_context_dependent_aspects": True,
+            "does_not_transfer_specialized_responsibilities": True,
+        },
+        "coordination": {
+            "is_fusion": False,
+            "is_cumulative": True,
+            "is_simultaneous": True,
+            "is_nonexclusive": True,
+            "single_concrete_demand": True,
+            "coordinator_role": "orientação, coordenação e articulação",
+            "specialized_roles_preserved": True,
+            "compatibility_is_coordinated": True,
+            "conflicts_require_integrity_validation": True,
+            "destructive_resolution_is_forbidden_without_validation": True,
+        },
+        "sequence": [
+            "próprio título",
+            "própria ativação",
+            "títulos dos instrumentos promptuais adicionais fornecidos pelo usuário",
+            "ativação dos instrumentos promptuais adicionais",
+            "título do instrumento fixo",
+            "ativação do instrumento fixo",
+            "recuperação individual dos instrumentos pelo GitHub",
+            "preservação das identidades",
+            "interpretação conjunta",
+            "relação entre as instruções",
+            "contextualização",
+            "parametrização",
+            "adaptação",
+            "aplicação conjunta",
+            "execução",
+            "validação",
+            "resultado",
+        ],
+        "multidirectory": {
+            "enabled": True,
+            "origin_and_destination_are_operational_parameters": True,
+            "instrument_storage_location_does_not_define_result_destination": True,
+            "cross_directory_operation_allowed": True,
+            "nocturna_is_not_default": True,
+            "explicit_destination_precedes_contextual_inference": True,
+            "ambiguous_destination_blocks_materialization": True,
+        },
+        "intermediate_results": {
+            "allowed": True,
+            "must_preserve_origin": True,
+            "must_preserve_responsible_instrument": True,
+            "must_preserve_stage": True,
+            "must_preserve_destination": True,
+            "must_preserve_relation_to_final_result": True,
+        },
+        "traceability": {
+            "required": True,
+            "fields": [
+                "title",
+                "instrument",
+                "role",
+                "activation",
+                "recovery",
+                "origin",
+                "destination",
+                "stage",
+                "responsible_instrument",
+                "result_relation",
+                "validation",
+            ],
+        },
+        "recovery_policy": {
+            "github_is_source_of_truth_for_instrument_content": True,
+            "title_is_identifier_and_activation_key": True,
+            "title_alone_does_not_define_additional_identity": True,
+            "content_must_be_recovered_before_application": True,
+            "instrument_content_is_not_invented_or_rewritten": True,
+        },
+        "output_policy": {
+            "full_instrument_reproduction_not_required": True,
+            "recovered_content_is_operational_basis": True,
+            "final_result_preserves_participant_distinctions": True,
+        },
+        "validation": {
+            "resolved_participants": len([p for p in participants if p["status"] == "resolved"]),
+            "unresolved_participants": unresolved,
+            "all_additional_titles_represented": True,
+            "identities_preserved": True,
+            "sequence_preserved": True,
+            "responsibilities_preserved": True,
+            "origin_destination_tracked": True,
+            "end_to_end_integrity_required": True,
+        },
+    }
+
+
 def validate(prompt: str, root: Path = ROOT) -> dict:
     catalog = instrument_catalog(root)
     consistency_errors = catalog_consistency(root, catalog)
@@ -183,6 +474,7 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
                 "instrument": match["instrument"],
             }
 
+    coordination = build_coordination(prompt, catalog, matches)
     status = "ok" if not consistency_errors else "catalog_inconsistente"
     return {
         "schema_version": "3.0",
@@ -215,6 +507,7 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
         ],
         "exceptions": [m for m in matches if not m["active"]],
         "matches": matches,
+        "coordination": coordination,
     }
 
 
