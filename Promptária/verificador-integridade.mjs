@@ -118,7 +118,7 @@ walk(ROOT);
 for(const file of ["index.html",...webFiles.filter(p=>p!=="index.html")]) {
   if(!exists(file)) continue;
   const html=fs.readFileSync(path.join(ROOT,file),"utf8");
-  for(const m of html.matchAll(/(?:href|src)\\s*=\\s*["']([^"'#]+)(?:#[^"']*)?["']/gi)){
+  for(const m of html.matchAll(/(?:href|src)[ \t]*=[ \t]*["\x27]([^"\x27#]+)(?:#[^"\x27]*)?["\x27]/gi)){
     const raw=m[1].trim();
     if(!raw || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(raw)) continue;
     let target;
