@@ -66,7 +66,7 @@ def has_diverse_assignment(context: str, title: str) -> bool:
     if not c:
         return False
     for pattern in DIVERSE_PATTERNS:
-        if re.search(pattern.format(TITLE=t), c, re.I):
+        if re.search(pattern.replace("{TITLE}", t), c, re.I):
             return True
     return bool(re.search(
         rf"\b{t}\b\s+(?:não|nao)\s+(?:deve|deverá|devera|será|sera|é|e)\b",
