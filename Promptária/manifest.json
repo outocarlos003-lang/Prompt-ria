@@ -1,5 +1,5 @@
 {
-  "schema_version": "3.0",
+  "schema_version": "4.0",
   "purpose": "Contrato executável único da identidade, resolução e recuperação dos instrumentos da Promptária.",
   "root": "Promptária/Index.html",
   "instruments": [
@@ -293,16 +293,12 @@
   ],
   "navigation": {
     "root": "Promptária/Index.html",
-    "main_interface": "index.html",
-    "search": "Promptária/Index.html?q={query}",
-    "model": "árvore física + rede navegacional por caminhos de entrada, retorno, anterior/próximo e pesquisa transversal",
-    "invariants": [
-      "todo instrumento possui entrada no núcleo",
-      "todo instrumento possui retorno ao núcleo",
-      "todo instrumento possui retorno à interface principal",
-      "todo instrumento participa do ciclo anterior/próximo",
-      "a pesquisa transversal alcança todos os instrumentos"
-    ]
+    "external_root": "index.html",
+    "search": "Promptária/navegacao-neural.js",
+    "graph": "Promptária/rede-navegacional.json",
+    "required_return": true,
+    "required_forward_continuity": true,
+    "required_searchability": true
   },
   "edges": [
     {
@@ -582,5 +578,34 @@
     "ambiguity_policy": "fail-closed",
     "identity_policy": "canonical_id_title_path_and_content_title_must_match",
     "activation_requires_identity_verification": true
+  },
+  "contract_version": "4.0",
+  "policies": {
+    "single_source_of_truth": "manifest.json",
+    "activation": "fail_closed",
+    "identity": "id+canonical_title+canonical_path+physical_title",
+    "capabilities": "discovery_only",
+    "ambiguity": "never_activate",
+    "orphan": "block",
+    "production_traceability": "required"
+  },
+  "production": {
+    "trace": "Promptária/rastreabilidade-producao.json",
+    "required_chain": [
+      "demand",
+      "origin",
+      "responsible_instrument",
+      "participants",
+      "operation",
+      "transformation",
+      "artifact",
+      "destination",
+      "references",
+      "validation",
+      "result"
+    ],
+    "destination_policy": "explicit_or_inequivocally_determined",
+    "nocturna_policy": "never_infer_from_weak_thematic_association",
+    "result_must_trace_to_demand": true
   }
 }
