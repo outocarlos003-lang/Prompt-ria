@@ -5,14 +5,6 @@
   <title>Acionamento Coordenado de Instrumentos Promptuais</title>
 </head>
 <body>
-
-
-<script>
-(()=>{const f=document.getElementById("promptaria-search-form"),q=document.getElementById("promptaria-search"),j=document.getElementById("promptaria-jump");
-f?.addEventListener("submit",e=>{e.preventDefault();const v=q.value.trim();location.href="../Index.html"+(v?"?q="+encodeURIComponent(v):"")});
-j?.addEventListener("change",()=>{if(j.value)location.href=j.value});
-})();
-</script>
 <pre>Acionamento Coordenado de Instrumentos Promptuais
 
 ## Título
@@ -304,19 +296,21 @@ Antes de considerar a operação concluída, o coordenador deverá verificar:
 </nav>
 </template>
 <script>
-(()=>{
-  const template=document.getElementById("promptaria-network-ui");
-  if(!template) return;
-  document.body.appendChild(template.content.cloneNode(true));
-  const f=document.getElementById("promptaria-search-form");
-  const q=document.getElementById("promptaria-search");
-  const j=document.getElementById("promptaria-jump");
-  f?.addEventListener("submit",e=>{
+(() => {
+  const t = document.getElementById("promptaria-network-ui");
+  if (!t) return;
+  document.body.appendChild(t.content.cloneNode(true));
+  const f = document.getElementById("promptaria-search-form");
+  const q = document.getElementById("promptaria-search");
+  const j = document.getElementById("promptaria-jump");
+  f?.addEventListener("submit", e => {
     e.preventDefault();
-    const v=q.value.trim();
-    location.href="../Index.html"+(v?"?q="+encodeURIComponent(v):"");
+    const v = q.value.trim();
+    location.href = "../Index.html" + (v ? "?q=" + encodeURIComponent(v) : "");
   });
-  j?.addEventListener("change",()=>{if(j.value) location.href=j.value});
+  j?.addEventListener("change", () => {
+    if (j.value) location.href = j.value;
+  });
 })();
 </script>
 </body>
