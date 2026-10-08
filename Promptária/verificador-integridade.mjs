@@ -67,16 +67,16 @@ function resolveInternalTarget(file,raw){
   try { return decodeURIComponent(new URL(raw,"https://promptaria.invalid/"+file).pathname).split("/").filter(Boolean).join("/"); }
   catch { return null; }
 }
-function stripMarkup(v){ return String(v||"").replace(/<[^>]*>/g," ").replace(/\\s+/g," ").trim(); }
+function stripMarkup(v){ return String(v||"").replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim(); }
 
 // A navegação visível é parte do contrato executável: menu e anterior/próximo
 // não podem divergir do manifesto, mesmo quando os arquivos físicos existem.
 for(const x of instruments){
   const html=fs.readFileSync(path.join(ROOT,x.path),"utf8");
-  const navMatch=html.match(/<nav\\b[^>]*data-promptaria-ui=["']navigation["'][^>]*>[\\s\\S]*?<\\/nav>/i);
+  const navMatch=html.match(/<nav\b[^>]*data-promptaria-ui=["']navigation["'][^>]*>[\s\S]*?<\/nav>/i);
   if(!navMatch){ fail(x.id+": navegação canônica ausente no HTML"); continue; }
   const nav=navMatch[0];
-  const anchors=[...nav.matchAll(/<a\\b[^>]*href=["']([^"']+)["'][^>]*>([\\s\\S]*?)<\\/a>/gi)];
+  const anchors=[...nav.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
   const anterior=anchors.find(m=>/anterior/i.test(stripMarkup(m[2])));
   const proximo=anchors.find(m=>/próximo/i.test(stripMarkup(m[2])));
   const expectedPrevious=resolveInternalTarget(x.path,relativeFromFile(x.path,x.previous));
@@ -86,7 +86,7 @@ for(const x of instruments){
   if(!proximo) fail(x.id+": link Próximo ausente na navegação canônica");
   else if(resolveInternalTarget(x.path,proximo[1])!==expectedNext) fail(x.id+": link Próximo diverge do manifest.next");
 
-  const options=[...nav.matchAll(/<option\\b[^>]*value=["']([^"']+)["'][^>]*>/gi)].map(m=>resolveInternalTarget(x.path,m[1])).filter(Boolean);
+  const options=[...nav.matchAll(/<option\b[^>]*value=["']([^"']+)["'][^>]*>/gi)].map(m=>resolveInternalTarget(x.path,m[1])).filter(Boolean);
   const expectedOptions=instruments.map(y=>y.path).sort();
   const actualOptions=[...new Set(options)].sort();
   for(const target of actualOptions) if(!instruments.some(y=>y.path===target)) fail(x.id+": menu aponta para instrumento não catalogado: "+target);
