@@ -145,6 +145,23 @@ DESTINATION_PATTERNS = (
     re.compile(r"\b(?:no|na|em|para o|para a)\s+(diret[oó]rio|pasta|arquivo)\s+([^\n.;]+)", re.I),
 )
 ORIGIN_PATTERN = re.compile(r"\b(?:origem|origin[aá]rio|proveni[eê]ncia)\s*[:=]\s*([^\n.;]+)", re.I)
+EXPLICIT_TITLE_PATTERNS = (
+    re.compile(r"\bt[ií]tulo(?:\s+do\s+instrumento(?:\s+promptual)?)?\s*[:=]\s*[“\"]([^”\"]+)[”\"]", re.I),
+    re.compile(r"\binstrumento(?:\s+promptual)?\s+denominado\s*[“\"]([^”\"]+)[”\"]", re.I),
+    re.compile(r"\binstrumento(?:\s+promptual)?\s+chamado\s*[“\"]([^”\"]+)[”\"]", re.I),
+)
+
+def explicit_titles(prompt: str) -> list[str]:
+    titles = []
+    seen = set()
+    for pattern in EXPLICIT_TITLE_PATTERNS:
+        for match in pattern.finditer(prompt):
+            title = match.group(1).strip()
+            key = norm(title)
+            if title and key and key not in seen:
+                seen.add(key)
+                titles.append(title)
+    return titles
 
 
 def find_catalog_item(catalog: list[dict], title: str) -> dict | None:
@@ -289,12 +306,30 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
 
     origin = resolve_origin(prompt)
     destination = resolve_destination(prompt)
+    known_titles = {norm(p["title"]) for p in participants}
+    unresolved_explicit_titles = []
+    for title in explicit_titles(prompt):
+        if norm(title) in known_titles:
+            continue
+        unresolved_explicit_titles.append({
+            "role": "additional_instrument",
+            "title": title,
+            "instrument": None,
+            "activation": "user_supplied_title",
+            "recovery": "github",
+            "status": "catalog_missing",
+            "occurrences": 1,
+            "identity_source": "conteúdo a recuperar do GitHub",
+            "identity_presumed_from_title": False,
+            "activated_by_current_prompt": True,
+        })
+    participants.extend(unresolved_explicit_titles)
     unresolved = [p["title"] for p in participants if p["status"] != "resolved"]
     activated_titles = {norm(m["title"]) for m in active}
     for participant in participants:
         participant["activated_by_current_prompt"] = norm(participant["title"]) in activated_titles
     return {
-        "architecture_version": "1.0",
+        "architecture_version": "1.1",
         "preserves_existing_correfencia": True,
         "coordinator": {
             "title": FIXED_COORDINATOR_TITLE,
@@ -311,6 +346,7 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "status": "resolved" if fixed else "catalog_missing",
         },
         "additional_instruments": [p for p in participants if p["role"] == "additional_instrument"],
+        "unresolved_explicit_additional_titles": unresolved_explicit_titles,
         "cardinality": {
             "additional_is_unbounded": True,
             "minimum_additional": 0,
@@ -319,9 +355,21 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "all_user_supplied_titles_are_considered": True,
         },
         "participants": participants,
+        "activation_unit": {
+            "title_and_request_are_joint_entry": True,
+            "title_is_point_of_entry": True,
+            "custom_request_supplies_demand": True,
+            "title_alone_is_not_the_whole_application": True,
+        },
+        "instrument_application_separation": {
+            "instrument_elements": ["identity", "purpose", "function", "essential_instructions", "operational_logic"],
+            "application_elements": ["demand", "context", "scope", "parameters", "criteria", "format", "restrictions", "origin", "destination", "adaptation"],
+            "identity_is_not_changed_by_contextual_variation": True,
+        },
         "demand": {
             "is_external_to_instrument_identity": True,
             "source": "current_prompt",
+            "single_concrete_demand": True,
         },
         "context": {
             "source": "current_prompt",
@@ -346,6 +394,9 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
         },
         "coordination": {
             "is_fusion": False,
+            "instrument_coordinator_is_reusable": True,
+            "specialized_instruments_remain_distinct": True,
+            "all_recovered_instruments_are_individually_identified": True,
             "is_cumulative": True,
             "is_simultaneous": True,
             "is_nonexclusive": True,
@@ -408,6 +459,24 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
                 "validation",
             ],
         },
+        "destination_resolution": {
+            "priority": [
+                "indicação explícita",
+                "contexto inequivocamente determinante",
+                "função original quando realmente aplicável",
+                "inferência contextual segura",
+            ],
+            "weak_thematic_association_is_never_sufficient": True,
+            "ambiguous_destination_blocks_materialization": True,
+            "explicit_other_destination_precedes_nocturna": True,
+        },
+        "writing_coordination": {
+            "multiple_producers_require_role_assignment": True,
+            "avoid_unnecessary_duplication": True,
+            "conflicts_preserve_original_rules": True,
+            "destructive_resolution_requires_integrity_validation": True,
+            "destination_does_not_transfer_specialized_responsibility": True,
+        },
         "recovery_policy": {
             "github_is_source_of_truth_for_instrument_content": True,
             "title_is_identifier_and_activation_key": True,
@@ -427,6 +496,20 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "additional_titles_present": [p["title"] for p in participants if p["role"] == "additional_instrument"],
         },
         "validation": {
+            "final_validation_is_coordinated": True,
+            "checks": [
+                "instrumentos recuperados",
+                "identidades corretas",
+                "sequência",
+                "responsabilidades",
+                "origem",
+                "destino",
+                "resultados intermediários",
+                "materialização final",
+                "referências",
+                "relações",
+                "integridade de ponta a ponta",
+            ],
             "resolved_participants": len([p for p in participants if p["status"] == "resolved"]),
             "unresolved_participants": unresolved,
             "all_additional_titles_represented": True,
@@ -490,6 +573,12 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
         "schema_version": "3.0",
         "status": status,
         "validation_errors": consistency_errors,
+        "activation_rule": {
+            "title_plus_custom_request_forms_activation_unit": True,
+            "title_identifies_and_activates": True,
+            "github_recovers_existing_logic": True,
+            "request_defines_concrete_application": True,
+        },
         "rule": {
             "generic_mention_establishes_corref": True,
             "generic_mention_preserves_own_function": True,
@@ -501,6 +590,10 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
             "instrument_content_is_not_modified": True,
             "matching_uses_phrase_boundaries": True,
             "context_preserves_original_prompt": True,
+            "title_is_not_just_a_label": True,
+            "contextualization_does_not_rewrite_instrument_identity": True,
+            "parameterization_does_not_replace_operational_logic": True,
+            "adaptation_does_not_replace_operational_logic": True,
         },
         "instrument_count": len(catalog),
         "matched_occurrences": len(matches),
