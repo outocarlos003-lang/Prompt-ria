@@ -1,32 +1,59 @@
 {
-  "schema_version": "1.0",
-  "operation": "organização sistêmica da Promptária",
-  "demand": "Preservar conteúdo, reforçar navegação, pesquisa, rastreabilidade, integração e validação de ponta a ponta.",
+  "schema_version": "2.0",
+  "operation": "integração da navegação neural, rastreabilidade de produção e integridade sistêmica",
+  "demand": "Preservar integralmente o conteúdo existente e estabelecer uma única arquitetura operacional de navegação, pesquisa, conexão, origem, transformação, destino, referência, validação e resultado.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
-    "preserved": true
+    "preserved": true,
+    "existing_instruments": 10
   },
   "transformation": [
-    "catalogação por fonte única de verdade",
-    "explicitação de nós e arestas navegacionais",
-    "derivação do índice a partir do manifesto",
-    "mapa navegacional por sitemap",
-    "validação de invariantes de retorno, entrada e ciclo"
+    "preservação dos 10 instrumentos existentes",
+    "camada compartilhada Promptária/navegacao-neural.js aplicada ao núcleo e aos 10 instrumentos",
+    "pesquisa transversal por título, caminho e conteúdo",
+    "entradas, retornos, anterior e próximo derivados de Promptária/manifest.json",
+    "validação de arestas contra a fonte única de verdade",
+    "distinção entre diretório do instrumento e destino de produção"
   ],
   "destinations": [
-    "Promptária/manifest.json",
+    "index.html",
     "Promptária/Index.html",
+    "Promptária/navegacao-neural.js",
+    "Promptária/manifest.json",
     "Promptária/sitemap.xml",
-    "Promptária/README.md",
-    ".github/workflows/correfencia-funcional.yml"
+    "Promptária/rastreabilidade-producao.json"
   ],
   "validation": {
-    "content_preserved": "conteúdo dos instrumentos remanescentes não foi fundido, truncado ou alterado",
+    "content_preserved": "10 instrumentos existentes preservados; alterações de integração restritas à camada navegacional e aos metadados de rastreio",
     "source_of_truth": "Promptária/manifest.json",
     "expected_instruments": 10,
-    "navigation": "entrada + retorno + interface principal + anterior + próximo + pesquisa transversal",
-    "destination_determination": "Nocturna não foi registrado como destino desta operação"
-  }
+    "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
+    "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
+    "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
+    "orphan_policy": "não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação"
+  },
+  "production_chain": [
+    "demanda",
+    "instrumento responsável",
+    "instrumentos participantes",
+    "operação",
+    "origem",
+    "transformação",
+    "arquivo/artefato",
+    "destino",
+    "referências",
+    "validação",
+    "resultado"
+  ],
+  "navigation_invariants": [
+    "se existe conteúdo, existe caminho",
+    "se existe caminho, existe destino",
+    "se existe destino, existe retorno",
+    "se existe relação, existe conexão",
+    "cada instrumento possui entrada no núcleo",
+    "cada instrumento possui retorno e continuidade anterior/próximo",
+    "a pesquisa transversal alcança os 10 instrumentos"
+  ]
 }
