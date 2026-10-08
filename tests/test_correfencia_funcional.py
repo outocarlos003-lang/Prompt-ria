@@ -63,7 +63,7 @@ class CorreferenciaRulesTest(unittest.TestCase):
         r = self.validate("Aplique Instrumento Alfa à requisição.")
         self.assertEqual(r["matched_occurrences"], 1)
         self.assertTrue(r["matches"][0]["active"])
-        self.assertEqual(r["matches"][0]["function_status"], "propria_preservada")
+        self.assertEqual(r["matches"][0]["function_status"], "discovery_only")
 
     def test_silence_is_not_diverse(self):
         r = self.validate("Instrumento Alfa.")
