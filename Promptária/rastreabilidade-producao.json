@@ -1,5 +1,5 @@
 {
-  "schema_version": "3.0",
+  "schema_version": "4.0",
   "operation": "integração da navegação neural, rastreabilidade de produção e integridade sistêmica",
   "demand": "Preservar integralmente o conteúdo existente e estabelecer uma única arquitetura operacional de navegação, pesquisa, conexão, origem, transformação, destino, referência, validação e resultado.",
   "source": {
@@ -100,5 +100,71 @@
     "ambiguidades bloqueiam ativação",
     "capacidades não ativam instrumentos",
     "Nocturna só é destino por determinação explícita ou inequívoca"
-  ]
+  ],
+  "execution_trace": {
+    "contract": "Promptária/rastreabilidade-producao.json",
+    "trace_id": "required_per_execution",
+    "id_policy": "unique_per_execution",
+    "format": "TRACE-<timestamp>-<nonce>",
+    "required_fields": [
+      "trace_id",
+      "demand_id",
+      "manifest_sha256",
+      "source_commit",
+      "instrument_id",
+      "instrument_title",
+      "instrument_path",
+      "content_sha256",
+      "operation",
+      "origin",
+      "artifacts",
+      "destination",
+      "references",
+      "validation",
+      "result"
+    ],
+    "states": [
+      "created",
+      "resolved",
+      "identity_verified",
+      "recovered",
+      "ready",
+      "applied",
+      "validated",
+      "failed_closed"
+    ],
+    "fail_closed_rules": [
+      "sem trace_id não há execução",
+      "sem demand_id não há execução",
+      "sem identidade física verificada não há execução",
+      "sem content_sha256 não há execução",
+      "sem origem ou destino determinado não há execução",
+      "sem validação final não há resultado válido",
+      "qualquer divergência entre trace e artefato invalida o resultado"
+    ],
+    "artifact_policy": {
+      "track": [
+        "created",
+        "modified",
+        "preserved",
+        "removed"
+      ],
+      "every_artifact_requires_origin": true,
+      "every_artifact_requires_destination": true
+    }
+  },
+  "production_trace_contract": {
+    "demand_to_result": "one_trace",
+    "storage": "execution_bundle_or_external_append_only_store",
+    "immutable_fields": [
+      "trace_id",
+      "demand_id",
+      "manifest_sha256",
+      "source_commit",
+      "instrument_id",
+      "content_sha256"
+    ],
+    "coordinated_operations": "participants_are_recorded_individually_under_the_same_trace_id",
+    "nocturna": "destination_status_must_be_explicit_or_unequivocal"
+  }
 }
