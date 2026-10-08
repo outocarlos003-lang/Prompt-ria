@@ -14,6 +14,8 @@ on:
       - ".github/scripts/validate_promptaria_corref.py"
       - ".github/workflows/correfencia-funcional.yml"
       - "tests/test_correfencia_funcional.py"
+      - "Promptária/**"
+      - "index.html"
   push:
     branches: ["**"]
     paths:
@@ -68,3 +70,34 @@ jobs:
         with:
           name: correfencia-funcional
           path: correfencia-result.json
+
+  validar-navegacao:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validar rede navegacional da Promptária
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          root = Path("Promptária")
+          entries = sorted(p for p in root.glob("*/Index.html"))
+          assert len(entries) == 11, f"Esperados 11 instrumentos, encontrados {len(entries)}"
+          index = root / "Index.html"
+          main = index.read_text(encoding="utf-8")
+          for entry in entries:
+              rel = entry.relative_to(root).as_posix()
+              assert rel in main, f"Instrumento não indexado: {rel}"
+              html = entry.read_text(encoding="utf-8")
+              assert 'id="promptaria-network-style"' in html, f"Sem camada navegacional: {entry}"
+              assert 'href="../Index.html"' in html, f"Sem retorno ao núcleo: {entry}"
+              assert 'href="../../index.html"' in html, f"Sem retorno à interface principal: {entry}"
+              assert 'id="promptaria-search-form"' in html, f"Sem pesquisa transversal: {entry}"
+          hrefs = re.findall(r'href="([^"]+)"', main)
+          for href in hrefs:
+              if href.startswith("./"):
+                  target = (root / href[2:]).resolve()
+                  assert target.is_file(), f"Destino inexistente no índice: {href}"
+          print(f"OK: {len(entries)} instrumentos conectados, indexados e com retorno/pesquisa.")
+          PY

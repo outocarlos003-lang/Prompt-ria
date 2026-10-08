@@ -1,25 +1,57 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Promptária — Catálogo de Instrumentos</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mapa navegacional e índice transversal da Promptária.">
+<title>Promptária — Mapa Neural e Índice Transversal</title>
+<style>
+:root{color-scheme:dark;--bg:#0e1015;--panel:#171a22;--panel2:#20242e;--text:#f5f5f7;--muted:#aeb2bd;--line:#343947;--accent:#c8a9ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:var(--accent)}.wrap{width:min(1180px,calc(100% - 24px));margin:auto}
+header{padding:42px 0 24px;border-bottom:1px solid var(--line)}h1{margin:.2em 0;font-size:clamp(2rem,6vw,4rem);line-height:1.02}.lead{max-width:900px;color:var(--muted)}
+.network{position:sticky;top:0;z-index:20;background:rgba(14,16,21,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px 0}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.toolbar form{display:flex;gap:8px;flex:1 1 420px}.toolbar input{flex:1;min-width:180px;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px}.toolbar button,.node a{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel2);color:var(--text);text-decoration:none;cursor:pointer}.toolbar button{background:var(--accent);color:#17131e;font-weight:700}
+main{padding:26px 0 60px}.meta{color:var(--muted);font-size:.9rem;margin-bottom:18px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}.node{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;min-height:180px}.node h2{font-size:1.08rem;line-height:1.3;margin:0}.node p{color:var(--muted);margin:0;flex:1}.node .links{display:flex;gap:8px;flex-wrap:wrap}.empty{padding:22px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}.map{margin-top:26px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px}.map code{white-space:pre-wrap;color:var(--muted)}
+@media(max-width:650px){.wrap{width:min(100% - 16px,1180px)}.toolbar form{flex-basis:100%}.node{min-height:0}}
+</style>
 </head>
 <body>
-  <h1>Promptária</h1>
-  <p>Catálogo dos 11 instrumentos promptuais. Cada instrumento possui seu próprio diretório e seu próprio <code>Index.html</code>.</p>
-  <ol>
-    <li><a href="./Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html">Acionamento Coordenado de Instrumentos Promptuais</a></li>
-    <li><a href="./Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html">Adaptação e Execução Extensiva dos Instrumentos Promptuais</a></li>
-    <li><a href="./Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html">Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais</a></li>
-    <li><a href="./Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html">Da Correferência Funcional Automática dos Instrumentos Promptuais</a></li>
-    <li><a href="./Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html">Inserção de Coleção no Site via Sistema Editorial</a></li>
-    <li><a href="./Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html">Inserção de Prompts na Promptária via GitHub</a></li>
-    <li><a href="./Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html">ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS</a></li>
-    <li><a href="./ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html">✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦</a></li>
-    <li><a href="./Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html">Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta</a></li>
-    <li><a href="./Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html">PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO</a></li>
-    <li><a href="./Rastreio-GitHub/Index.html">Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou</a></li>
-  </ol>
+<header><div class="wrap">
+<div class="meta">Prompt-ria / Promptária / índice transversal</div>
+<h1>Promptária</h1>
+<p class="lead">Núcleo de convergência da rede. A partir daqui, cada instrumento possui entrada, retorno, vizinhança, pesquisa transversal e caminho direto para seu conteúdo. A árvore física dos diretórios é preservada; a navegação acrescenta uma rede sobre essa árvore.</p>
+</div></header>
+<div class="network"><div class="wrap toolbar">
+<a href="../../index.html">← Interface principal</a>
+<form id="search-form" role="search"><input id="search" type="search" placeholder="Pesquisar títulos, caminhos e conteúdo dos 11 instrumentos…" autocomplete="off"><button>Pesquisar</button></form>
+<button id="clear" type="button">Limpar</button>
+</div></div>
+<main class="wrap">
+<div id="status" class="meta">Carregando a rede…</div>
+<section id="grid" class="grid" aria-live="polite"></section>
+<section class="map">
+<strong>Topologia</strong>
+<code>núcleo (Promptária/Index.html)
+  ├─ pesquisa transversal → todos os instrumentos
+  ├─ navegação direta → cada diretório/Index.html
+  ├─ retorno ← cada instrumento
+  ├─ anterior ↔ próximo → ciclo navegacional
+  └─ interface principal → ../../index.html</code>
+</section>
+</main>
+<script>
+const INSTRUMENTS=[{"id":"instrumento-01","title":"Acionamento Coordenado de Instrumentos Promptuais","path":"Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html","href":"./Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-02","title":"ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS","path":"Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html","href":"./Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-03","title":"ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS","path":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html","href":"./Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-04","title":"Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais","path":"Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html","href":"./Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-05","title":"DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS","path":"Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html","href":"./Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-06","title":"Inserção de Coleção no Site via Sistema Editorial","path":"Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html","href":"./Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html"},{"id":"instrumento-07","title":"Inserção de Prompts na Promptária via GitHub","path":"Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html","href":"./Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html"},{"id":"instrumento-08","title":"✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦","path":"Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html","href":"./ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html"},{"id":"instrumento-09","title":"Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta","path":"Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html","href":"./Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html"},{"id":"instrumento-10","title":"PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO","path":"Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html","href":"./Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html"},{"id":"instrumento-11","title":"Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou","path":"Promptária/Rastreio-GitHub/Index.html","href":"./Rastreio-GitHub/Index.html"}];
+const grid=document.getElementById("grid"),status=document.getElementById("status"),search=document.getElementById("search"),form=document.getElementById("search-form");
+const cache=new Map();
+async function loadText(path){if(cache.has(path))return cache.get(path);const r=await fetch(path,{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);const html=await r.text();const d=new DOMParser().parseFromString(html,"text/html");const text=(d.body?.textContent||"").replace(/\s+/g," ").trim();const item={html,text};cache.set(path,item);return item}
+function render(items){grid.innerHTML="";if(!items.length){grid.innerHTML='<div class="empty">Nenhum conteúdo corresponde à pesquisa.</div>';return}
+items.forEach((x,i)=>{const n=document.createElement("article");n.className="node";n.innerHTML='<h2></h2><p></p><div class="links"><a class="open">Abrir instrumento</a><a class="github" target="_blank" rel="noopener">GitHub</a></div>';n.querySelector("h2").textContent=x.title;n.querySelector("p").textContent=x.text?x.text.slice(0,320)+"…":"Conteúdo disponível no instrumento.";n.querySelector(".open").href=x.href;n.querySelector(".github").href="https://github.com/outocarlos003-lang/Prompt-ria/blob/main/"+encodeURI(x.path);grid.appendChild(n)})}
+async function boot(){const results=await Promise.allSettled(INSTRUMENTS.map(x=>loadText(x.href)));INSTRUMENTS.forEach((x,i)=>x.text=results[i].status==="fulfilled"?results[i].value.text:"");render(INSTRUMENTS);status.textContent=INSTRUMENTS.length+" instrumentos conectados • pesquisa transversal ativa";}
+function filter(){const q=search.value.trim().toLocaleLowerCase();render(!q?INSTRUMENTS:INSTRUMENTS.filter(x=>(x.title+" "+x.path+" "+x.text).toLocaleLowerCase().includes(q)));status.textContent=(q?grid.children.length+" resultado(s) • ":"")+INSTRUMENTS.length+" instrumentos na rede";}
+form.addEventListener("submit",e=>{e.preventDefault();filter();document.getElementById("grid").scrollIntoView({behavior:"smooth",block:"start"})});
+search.addEventListener("input",filter);document.getElementById("clear").addEventListener("click",()=>{search.value="";filter();search.focus()});boot();
+const params=new URLSearchParams(location.search);if(params.get("q")){search.value=params.get("q");setTimeout(filter,0)}
+</script>
 </body>
 </html>
