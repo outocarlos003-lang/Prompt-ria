@@ -5,8 +5,7 @@ document.head.appendChild(css);
 const nav=document.createElement("div");nav.className="neural-nav";nav.innerHTML=`<nav class="bar" aria-label="Navegação neural"><a class="brand" data-home>◈ PROMPTÁRIA</a><a data-prev>← Anterior</a><a data-next>Próximo →</a><a data-main>⌂ Interface</a><form role="search"><input name="q" type="search" placeholder="Pesquisar em todos os instrumentos…" aria-label="Pesquisa transversal"><button>Pesquisar</button></form></nav><div class="meta"><span data-crumb>Conectando rede…</span> <span>•</span> <span data-status>rastreabilidade: verificando</span></div><div class="neural-results" data-results></div>`;
 document.body.prepend(nav);
 const home=nav.querySelector("[data-home]"),prev=nav.querySelector("[data-prev]"),next=nav.querySelector("[data-next]"),main=nav.querySelector("[data-main]"),form=nav.querySelector("form"),input=nav.querySelector("input"),results=nav.querySelector("[data-results]"),crumb=nav.querySelector("[data-crumb]"),status=nav.querySelector("[data-status]");
-const here=decodeURIComponent(location.pathname).split("/Prompt-ria/")[1]||"index.html";
-const href=p=>p==="index.html"?new URL("../index.html",base).href:p==="Promptária/Index.html"?new URL("./Index.html",base).href:new URL(p.replace(/^Promptária\//,""),base).href;
+const href=p=>{if(p==="index.html")return new URL(inInstrument?"../../index.html":"../index.html",base).href;if(p==="Promptária/Index.html")return new URL(inInstrument?"../Index.html":"./Index.html",base).href;const rel=p.replace(/^Promptária\//,"");return new URL(inInstrument?"../"+rel:rel,base).href;};
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
 async function boot(){try{
 const r=await fetch(manifestURL,{cache:"no-store"});if(!r.ok)throw Error("manifest HTTP "+r.status);
