@@ -412,6 +412,9 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "title_is_point_of_entry": True,
             "custom_request_supplies_demand": True,
             "title_alone_is_not_the_whole_application": True,
+            "title_plus_custom_request_forms_activation_unit": True,
+            "title_identifies_and_activates": True,
+            "request_defines_concrete_application": True,
         },
         "instrument_application_separation": {
             "instrument_elements": ["identity", "purpose", "function", "essential_instructions", "operational_logic"],
