@@ -76,6 +76,67 @@ const trace=JSON.parse(fs.readFileSync(path.join(ROOT,"Promptária","rastreabili
 if(!trace.production_chain?.length) fail("rastreabilidade sem production_chain");
 if(!trace.navigation_invariants?.length) fail("rastreabilidade sem navigation_invariants");
 
+
+const graphPath=path.join(ROOT,"Promptária","rede-navegacional.json");
+if(!fs.existsSync(graphPath)) fail("grafo navegacional ausente: Promptária/rede-navegacional.json");
+else {
+  try {
+    const graph=JSON.parse(fs.readFileSync(graphPath,"utf8"));
+    if(graph.source_of_truth!=="Promptária/manifest.json") fail("grafo navegacional não referencia o manifesto como fonte única");
+    const nodeById=new Map((graph.nodes||[]).map(n=>[n.id,n]));
+    const nodeByPath=new Map((graph.nodes||[]).map(n=>[n.path,n]));
+    for(const n of graph.nodes||[]) {
+      if(!n.id||!n.path) fail("nó navegacional incompleto: "+JSON.stringify(n));
+      if(!exists(n.path)) fail("nó navegacional aponta para conteúdo inexistente: "+n.path);
+    }
+    for(const e of graph.edges||[]) {
+      if(!nodeById.has(e.from)||!nodeById.has(e.to)) fail("aresta navegacional órfã: "+JSON.stringify(e));
+    }
+    for(const x of instruments){
+      if(!nodeByPath.has(x.path)) fail(x.id+": ausente no grafo navegacional");
+      const nid=nodeByPath.get(x.path).id;
+      const out=(graph.edges||[]).filter(e=>e.from===nid);
+      const incoming=(graph.edges||[]).filter(e=>e.to===nid);
+      if(!out.some(e=>e.type==="return")) fail(x.id+": sem aresta de retorno");
+      if(!out.some(e=>e.type==="next")) fail(x.id+": sem continuidade next");
+      if(!out.some(e=>e.type==="previous")) fail(x.id+": sem continuidade previous");
+      if(!incoming.some(e=>e.type==="entry")) fail(x.id+": sem entrada pelo núcleo");
+    }
+  } catch(e) { fail("grafo navegacional inválido: "+e.message); }
+}
+
+const webFiles=[];
+function walk(dir){
+  for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
+    const full=path.join(dir,entry.name);
+    if(entry.name.startsWith(".")) continue;
+    if(entry.isDirectory()) walk(full);
+    else if(/\\.html?$/i.test(entry.name)) webFiles.push(path.relative(ROOT,full).replaceAll(path.sep,"/"));
+  }
+}
+walk(ROOT);
+for(const file of ["index.html",...webFiles.filter(p=>p!=="index.html")]) {
+  if(!exists(file)) continue;
+  const html=fs.readFileSync(path.join(ROOT,file),"utf8");
+  for(const m of html.matchAll(/(?:href|src)\\s*=\\s*["']([^"'#]+)(?:#[^"']*)?["']/gi)){
+    const raw=m[1].trim();
+    if(!raw || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(raw)) continue;
+    let target;
+    try { target=new URL(raw,"https://promptaria.invalid/"+file).pathname.replace(/^\\//,""); }
+    catch { fail(file+": referência interna inválida: "+raw); continue; }
+    const targetAbs=path.join(ROOT,target);
+    if(!fs.existsSync(targetAbs)) fail(file+": referência interna quebrada: "+raw+" -> "+target);
+  }
+}
+
+try {
+  const trace=JSON.parse(fs.readFileSync(path.join(ROOT,"Promptária","rastreabilidade-producao.json"),"utf8"));
+  const chain=trace.production_chain||[];
+  const required=["demanda","instrumento responsável","instrumentos participantes","operação","origem","transformação","arquivo/artefato","destino","referências","validação","resultado"];
+  for(const item of required) if(!chain.includes(item)) fail("cadeia de produção sem etapa: "+item);
+  if(trace.validation?.mode!=="fail_closed") fail("rastreabilidade não declara modo fail_closed");
+} catch(e) { fail("rastreabilidade de produção inválida: "+e.message); }
+
 if(errors.length){
   console.error("\nPROMPTÁRIA — INTEGRIDADE: FALHA");
   errors.forEach(e=>console.error("✖ "+e));
