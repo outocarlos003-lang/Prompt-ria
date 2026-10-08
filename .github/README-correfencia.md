@@ -83,3 +83,17 @@ Essa camada conecta título e requisição personalizada, recuperação efetiva 
 A quantidade de instrumentos adicionais é deliberadamente **não limitada**. Cada título adicional reconhecido é uma unidade independente; repetições são ocorrências da mesma unidade. Nenhuma identidade adicional é presumida somente pelo título: a identidade operacional depende do conteúdo recuperado.
 
 A nova camada também não transforma `active` ou `execution_plan` em prova de execução externa. Eles representam identificação/planejamento e recuperação. A aplicação efetiva continua pertencendo ao runtime que consome o pacote.
+
+
+## Complementação operacional consolidada
+
+A implementação agora explicita a unidade de acionamento como **título + requisição personalizada no ChatGPT** e separa instrumento de aplicação: identidade, finalidade, função, instruções essenciais e lógica pertencem ao instrumento; demanda, contexto, escopo, parâmetros, critérios, formato, restrições, origem, destino e adaptação pertencem à aplicação.
+
+A coordenação continua aberta: além do coordenador **Acionamento Coordenado de Instrumentos Promptuais** e do instrumento fixo arquiteturalmente previsto **Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas**, podem existir zero, um ou tantos instrumentos adicionais quantos forem identificados pelos títulos fornecidos. Títulos adicionais explicitamente apresentados e não encontrados no catálogo são registrados como catalog_missing, sem presumir sua identidade e sem criar conteúdo para eles.
+
+A resolução operacional mantém origem e destino como parâmetros, permite operação multidiretório e aplica a prioridade de destino: indicação explícita, contexto inequivocamente determinante, função original quando aplicável e inferência contextual segura. Associação temática fraca não autoriza escrita. Nocturna permanece fora da condição de destino padrão.
+
+Quando houver múltiplos produtores, a coordenação preserva responsabilidades, evita duplicação desnecessária e exige validação de integridade antes de decisões destrutivas. Resultados intermediários conservam origem, instrumento responsável, etapa, destino e relação com o resultado final.
+
+A especificação consolidada está em .github/README-correfencia-arquitetura.md. O bloco coordination da implementação mantém a correferência anterior e acrescenta ativação conjunta, separação instrumento/aplicação, cardinalidade aberta, recuperação GitHub, coordenação sem fusão, origem/destino, escrita coordenada, rastreabilidade e validação final.
+
