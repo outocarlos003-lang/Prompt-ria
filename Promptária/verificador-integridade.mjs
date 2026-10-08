@@ -13,7 +13,7 @@ const warn=(m)=>warnings.push(m);
 const exists=(p)=>fs.existsSync(path.join(ROOT,p));
 const unique=(xs,label)=>{const seen=new Set();for(const x of xs){if(seen.has(x))fail(label+" duplicado: "+x);seen.add(x)}};
 
-if(manifest.schema_version!=="2.0") fail("schema_version inesperado");
+if(manifest.schema_version!=="3.0") fail("schema_version inesperado");
 if(!Array.isArray(instruments)||!instruments.length) fail("manifest.instruments vazio ou inválido");
 
 unique(instruments.map(x=>x.id),"id");
@@ -32,6 +32,14 @@ for(const x of instruments){
   if(!Array.isArray(x.aliases)||!x.aliases.length) fail(x.id+": sem aliases");
   if(!Array.isArray(x.capabilities)||!x.capabilities.length) fail(x.id+": sem capabilities");
   if(!exists(x.path)) fail(x.id+": arquivo não existe: "+x.path);
+  else {
+    const html=fs.readFileSync(path.join(ROOT,x.path),"utf8");
+    const titleMatch=html.match(/<title>\\s*(.*?)\\s*<\\/title>/is);
+    const physicalTitle=titleMatch ? titleMatch[1].replace(/&amp;/g,"&").trim() : "";
+    const normalizeTitle=(v)=>String(v??"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLocaleLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+    if(!physicalTitle || normalizeTitle(physicalTitle)!==normalizeTitle(x.title))
+      fail(x.id+": identidade física inválida: <title> não corresponde ao manifesto");
+  }
   for(const rel of ["previous","next","entry"]){
     if(!x[rel]) fail(x.id+": "+rel+" ausente");
     else if(!instruments.some(y=>y.path===x[rel])) fail(x.id+": "+rel+" aponta para nó inexistente: "+x[rel]);
