@@ -92,6 +92,52 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertEqual(r["status"], "ok")
         self.assertFalse(r["validation_errors"])
 
+    def test_coordination_preserves_roles_and_open_cardinality(self):
+        r = self.validate(
+            "Acionamento Coordenado de Instrumentos Promptuais + Instrumento Alfa + Instrumento Beta. "
+            "Destino: Promptária/resultados; Origem: Promptária/entrada."
+        )
+        c = r["coordination"]
+        self.assertTrue(c["preserves_existing_correfencia"])
+        self.assertFalse(c["coordination"]["is_fusion"])
+        self.assertTrue(c["cardinality"]["additional_is_unbounded"])
+        self.assertEqual(c["cardinality"]["maximum_additional"], None)
+        self.assertEqual(
+            {x["title"] for x in c["additional_instruments"]},
+            {"Instrumento Alfa", "Instrumento Beta"},
+        )
+        self.assertEqual(c["parameters"]["origin"]["value"], "Promptária/entrada")
+        self.assertEqual(c["parameters"]["destination"]["status"], "resolved")
+        self.assertTrue(c["traceability"]["required"])
+
+    def test_fixed_and_coordinator_are_explicit_participants_even_when_missing(self):
+        r = self.validate("Instrumento Alfa para a demanda.")
+        participants = r["coordination"]["participants"]
+        roles = {p["role"] for p in participants}
+        self.assertIn("coordinator", roles)
+        self.assertIn("fixed_github_instrument", roles)
+        fixed = next(p for p in participants if p["role"] == "fixed_github_instrument")
+        self.assertEqual(fixed["status"], "catalog_missing")
+
+    def test_nocturna_requires_explicit_destination_and_is_not_default(self):
+        normal = self.validate("Instrumento Alfa para executar a demanda.")
+        self.assertEqual(normal["coordination"]["parameters"]["destination"]["status"], "ambiguous")
+        self.assertFalse(normal["coordination"]["parameters"]["destination"]["materialization_allowed"])
+
+        nocturna = self.validate("Instrumento Alfa. Destino: Nocturna.")
+        d = nocturna["coordination"]["parameters"]["destination"]
+        self.assertEqual(d["status"], "resolved")
+        self.assertTrue(d["is_nocturna"])
+        self.assertTrue(d["materialization_allowed"])
+
+    def test_multiple_occurrences_do_not_duplicate_participant_identity(self):
+        r = self.validate("Instrumento Alfa. Instrumento Alfa. Instrumento Beta.")
+        additional = r["coordination"]["additional_instruments"]
+        self.assertEqual(len(additional), 2)
+        alpha = next(x for x in additional if x["title"] == "Instrumento Alfa")
+        self.assertEqual(alpha["occurrences"], 2)
+        self.assertFalse(alpha["identity_presumed_from_title"])
+
 
 if __name__ == "__main__":
     unittest.main()
