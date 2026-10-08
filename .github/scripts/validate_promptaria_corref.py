@@ -289,6 +289,9 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
     origin = resolve_origin(prompt)
     destination = resolve_destination(prompt)
     unresolved = [p["title"] for p in participants if p["status"] != "resolved"]
+    activated_titles = {norm(m["title"]) for m in active}
+    for participant in participants:
+        participant["activated_by_current_prompt"] = norm(participant["title"]) in activated_titles
     return {
         "architecture_version": "1.0",
         "preserves_existing_correfencia": True,
@@ -415,6 +418,12 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "full_instrument_reproduction_not_required": True,
             "recovered_content_is_operational_basis": True,
             "final_result_preserves_participant_distinctions": True,
+        },
+        "status": "ready" if not unresolved else "partial_catalog_resolution",
+        "activation": {
+            "coordinator_title_present": norm(FIXED_COORDINATOR_TITLE) in activated_titles,
+            "fixed_title_present": norm(FIXED_GITHUB_INSTRUMENT_TITLE) in activated_titles,
+            "additional_titles_present": [p["title"] for p in participants if p["role"] == "additional_instrument"],
         },
         "validation": {
             "resolved_participants": len([p for p in participants if p["status"] == "resolved"]),
