@@ -50,7 +50,10 @@ def normalize_with_map(value: str) -> tuple[str, list[int]]:
             pending_space = False
         out.append(char)
         out_origins.append(origin)
-    return "".join(out).strip(), out_origins
+    normalized = "".join(out)
+    left = len(normalized) - len(normalized.lstrip())
+    right = len(normalized.rstrip())
+    return normalized.strip(), out_origins[left:right]
 
 
 def norm(value: str) -> str:
