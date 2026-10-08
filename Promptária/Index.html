@@ -41,17 +41,63 @@ main{padding:26px 0 60px}.meta{color:var(--muted);font-size:.9rem;margin-bottom:
 </section>
 </main>
 <script>
-const INSTRUMENTS=[{"id":"instrumento-01","title":"Acionamento Coordenado de Instrumentos Promptuais","path":"Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html","href":"./Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-02","title":"ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS","path":"Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html","href":"./Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-03","title":"ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS","path":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html","href":"./Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-04","title":"Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais","path":"Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html","href":"./Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-05","title":"DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS","path":"Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html","href":"./Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html"},{"id":"instrumento-06","title":"Inserção de Coleção no Site via Sistema Editorial","path":"Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html","href":"./Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html"},{"id":"instrumento-07","title":"Inserção de Prompts na Promptária via GitHub","path":"Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html","href":"./Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html"},{"id":"instrumento-08","title":"✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦","path":"Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html","href":"./ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html"},{"id":"instrumento-09","title":"Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta","path":"Promptária/Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html","href":"./Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html"},{"id":"instrumento-10","title":"PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO","path":"Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html","href":"./Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html"},{"id":"instrumento-11","title":"Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou","path":"Promptária/Rastreio-GitHub/Index.html","href":"./Rastreio-GitHub/Index.html"}];
 const grid=document.getElementById("grid"),status=document.getElementById("status"),search=document.getElementById("search"),form=document.getElementById("search-form");
+let INSTRUMENTS=[];
 const cache=new Map();
-async function loadText(path){if(cache.has(path))return cache.get(path);const r=await fetch(path,{cache:"no-store"});if(!r.ok)throw new Error("HTTP "+r.status);const html=await r.text();const d=new DOMParser().parseFromString(html,"text/html");const text=(d.body?.textContent||"").replace(/\s+/g," ").trim();const item={html,text};cache.set(path,item);return item}
-function render(items){grid.innerHTML="";if(!items.length){grid.innerHTML='<div class="empty">Nenhum conteúdo corresponde à pesquisa.</div>';return}
-items.forEach((x,i)=>{const n=document.createElement("article");n.className="node";n.innerHTML='<h2></h2><p></p><div class="links"><a class="open">Abrir instrumento</a><a class="github" target="_blank" rel="noopener">GitHub</a></div>';n.querySelector("h2").textContent=x.title;n.querySelector("p").textContent=x.text?x.text.slice(0,320)+"…":"Conteúdo disponível no instrumento.";n.querySelector(".open").href=x.href;n.querySelector(".github").href="https://github.com/outocarlos003-lang/Prompt-ria/blob/main/"+encodeURI(x.path);grid.appendChild(n)})}
-async function boot(){const results=await Promise.allSettled(INSTRUMENTS.map(x=>loadText(x.href)));INSTRUMENTS.forEach((x,i)=>x.text=results[i].status==="fulfilled"?results[i].value.text:"");render(INSTRUMENTS);status.textContent=INSTRUMENTS.length+" instrumentos conectados • pesquisa transversal ativa";}
-function filter(){const q=search.value.trim().toLocaleLowerCase();render(!q?INSTRUMENTS:INSTRUMENTS.filter(x=>(x.title+" "+x.path+" "+x.text).toLocaleLowerCase().includes(q)));status.textContent=(q?grid.children.length+" resultado(s) • ":"")+INSTRUMENTS.length+" instrumentos na rede";}
-form.addEventListener("submit",e=>{e.preventDefault();filter();document.getElementById("grid").scrollIntoView({behavior:"smooth",block:"start"})});
-search.addEventListener("input",filter);document.getElementById("clear").addEventListener("click",()=>{search.value="";filter();search.focus()});boot();
-const params=new URLSearchParams(location.search);if(params.get("q")){search.value=params.get("q");setTimeout(filter,0)}
+async function loadText(path){
+  if(cache.has(path)) return cache.get(path);
+  const r=await fetch(path,{cache:"no-store"});
+  if(!r.ok) throw new Error("HTTP "+r.status);
+  const html=await r.text();
+  const d=new DOMParser().parseFromString(html,"text/html");
+  const text=(d.body?.textContent||"").replace(/\s+/g," ").trim();
+  const item={html,text}; cache.set(path,item); return item;
+}
+function render(items){
+  grid.innerHTML="";
+  if(!items.length){grid.innerHTML='<div class="empty">Nenhum conteúdo corresponde à pesquisa.</div>';return;}
+  items.forEach(x=>{
+    const n=document.createElement("article"); n.className="node";
+    n.innerHTML='<h2></h2><p></p><div class="links"><a class="open">Abrir instrumento</a><a class="github" target="_blank" rel="noopener">GitHub</a></div>';
+    n.querySelector("h2").textContent=x.title;
+    n.querySelector("p").textContent=x.text?x.text.slice(0,320)+"…":"Conteúdo disponível no instrumento.";
+    n.querySelector(".open").href=x.href;
+    n.querySelector(".github").href="https://github.com/outocarlos003-lang/Prompt-ria/blob/main/"+x.path.split("/").map(encodeURIComponent).join("/");
+    grid.appendChild(n);
+  });
+}
+async function loadManifest(){
+  const response=await fetch("./manifest.json",{cache:"no-store"});
+  if(!response.ok) throw new Error("manifest.json: HTTP "+response.status);
+  const manifest=await response.json();
+  if(!Array.isArray(manifest.instruments)) throw new Error("manifest.json sem catálogo de instrumentos");
+  INSTRUMENTS=manifest.instruments.map(x=>({...x,href:"./"+x.path.replace(/^Promptária\//,"")}));
+}
+async function boot(){
+  try{
+    await loadManifest();
+    const results=await Promise.allSettled(INSTRUMENTS.map(x=>loadText(x.href)));
+    INSTRUMENTS.forEach((x,i)=>x.text=results[i].status==="fulfilled"?results[i].value.text:"");
+    render(INSTRUMENTS);
+    const failed=results.filter(x=>x.status==="rejected").length;
+    status.textContent=INSTRUMENTS.length+" instrumentos conectados • pesquisa transversal ativa"+(failed?" • "+failed+" indisponível(is)":"");
+  }catch(error){
+    status.textContent="Falha ao carregar o catálogo: "+error.message;
+    grid.innerHTML='<div class="empty">O núcleo não conseguiu carregar a fonte única de verdade. Tente recarregar.</div>';
+  }
+}
+function filter(){
+  const q=search.value.trim().toLocaleLowerCase();
+  const results=!q?INSTRUMENTS:INSTRUMENTS.filter(x=>(x.title+" "+x.path+" "+x.text).toLocaleLowerCase().includes(q));
+  render(results);
+  status.textContent=(q?results.length+" resultado(s) • ":"")+INSTRUMENTS.length+" instrumentos na rede";
+}
+form.addEventListener("submit",e=>{e.preventDefault();filter();document.getElementById("grid").scrollIntoView({behavior:"smooth",block:"start"});});
+search.addEventListener("input",filter);
+document.getElementById("clear").addEventListener("click",()=>{search.value="";filter();search.focus();});
+boot();
+const params=new URLSearchParams(location.search);
+if(params.get("q")){search.value=params.get("q");setTimeout(filter,0);}
 </script>
 </body>
 </html>
