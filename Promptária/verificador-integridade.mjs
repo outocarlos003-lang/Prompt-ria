@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { buildReferenceIndex, validateReferenceIndex } from "./resolver-correferencia.mjs";
 
 const ROOT=process.cwd();
 const manifestPath=path.join(ROOT,"Promptária","manifest.json");
@@ -18,6 +19,10 @@ if(!Array.isArray(instruments)||!instruments.length) fail("manifest.instruments 
 unique(instruments.map(x=>x.id),"id");
 unique(instruments.map(x=>x.title),"título");
 unique(instruments.map(x=>x.path),"path");
+
+const referenceIndex=buildReferenceIndex(instruments);
+const referenceErrors=validateReferenceIndex(instruments);
+referenceErrors.forEach(fail);
 
 for(const x of instruments){
   if(!x.id||!x.title||!x.path) fail("instrumento incompleto: "+JSON.stringify(x));
@@ -74,4 +79,6 @@ console.log("Instrumentos:",instruments.length);
 console.log("Páginas catalogadas:",pages.length);
 console.log("Sitemap verificado: sim");
 console.log("Correferência semântica: "+(manifest.semantic_cross_reference?"sim":"não"));
+console.log("Resolvedor determinístico: "+(manifest.semantic_cross_reference?.runtime_resolver||"ausente"));
+console.log("Política de ambiguidade: "+(manifest.semantic_cross_reference?.ambiguity_policy||"ausente"));
 if(warnings.length) warnings.forEach(w=>console.warn("⚠ "+w));
