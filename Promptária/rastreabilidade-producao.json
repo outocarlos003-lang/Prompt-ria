@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "operation": "organização sistêmica da Promptária",
+  "demand": "Preservar conteúdo, reforçar navegação, pesquisa, rastreabilidade, integração e validação de ponta a ponta.",
+  "source": {
+    "repository": "outocarlos003-lang/Prompt-ria",
+    "branch": "main",
+    "root": "Promptária",
+    "preserved": true
+  },
+  "transformation": [
+    "catalogação por fonte única de verdade",
+    "explicitação de nós e arestas navegacionais",
+    "derivação do índice a partir do manifesto",
+    "mapa navegacional por sitemap",
+    "validação de invariantes de retorno, entrada e ciclo"
+  ],
+  "destinations": [
+    "Promptária/manifest.json",
+    "Promptária/Index.html",
+    "Promptária/sitemap.xml",
+    "Promptária/README.md",
+    ".github/workflows/correfencia-funcional.yml"
+  ],
+  "validation": {
+    "content_preserved": "instrumentos existentes não foram fundidos, removidos ou truncados",
+    "source_of_truth": "Promptária/manifest.json",
+    "expected_instruments": 11,
+    "navigation": "entrada + retorno + interface principal + anterior + próximo + pesquisa transversal",
+    "destination_determination": "Nocturna não foi registrado como destino desta operação"
+  }
+}
