@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { buildReferenceIndex, resolveReference, resolveMentions, validateReferenceIndex, MATCH_TYPES } from "./resolver-correferencia.mjs";
+import { buildReferenceIndex, resolveReference, resolveMentions, validateReferenceIndex, verifyInstrumentIdentity, MATCH_TYPES } from "./resolver-correferencia.mjs";
 
 const root = process.cwd();
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "Promptária", "manifest.json"), "utf8"));
@@ -24,6 +24,12 @@ for (const [input] of cases) {
 }
 
 assert.equal(resolveReference("acionamento", index).activation, false, "termo genérico não deve ativar instrumento silenciosamente");
+assert.equal(resolveReference("GitHub", index).activation, false, "capacidade genérica nunca deve ativar instrumento");
+assert.equal(resolveReference("GitHub", index).match_type, MATCH_TYPES.CAPABILITY);
+const coordinator = instruments.find(x => x.id === "instrumento-01");
+const coordinatorHtml = fs.readFileSync(path.join(root, coordinator.path), "utf8");
+assert.equal(verifyInstrumentIdentity(coordinator, coordinatorHtml).verified, true, "identidade física deve ser verificável");
+assert.equal(verifyInstrumentIdentity({...coordinator, title: "Título adulterado"}, coordinatorHtml).verified, false, "identidade adulterada deve bloquear");
 assert.equal(resolveReference("não existe na Promptária", index).match_type, MATCH_TYPES.NONE);
 
 const multi = resolveMentions(

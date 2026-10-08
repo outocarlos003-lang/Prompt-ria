@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -65,42 +66,94 @@ def html_title(raw: str) -> str | None:
     return html.unescape(re.sub(r"\s+", " ", match.group(1))).strip() if match else None
 
 
+def load_manifest(root: Path) -> dict:
+    manifest_path = root / "manifest.json"
+    if not manifest_path.is_file():
+        raise FileNotFoundError("manifest.json é obrigatório: contrato executável ausente")
+    return json.loads(manifest_path.read_text(encoding="utf-8"))
+
+
 def instrument_catalog(root: Path = ROOT) -> list[dict]:
-    """Lê metadados físicos; nenhum instrumento é alterado."""
+    """Carrega exclusivamente o catálogo do contrato executável."""
+    manifest = load_manifest(root)
     items = []
-    if not root.exists():
-        return items
-    for directory in sorted(root.iterdir(), key=lambda p: norm(p.name)):
-        if not directory.is_dir():
+    for item in manifest.get("instruments", []):
+        if not item.get("id") or not item.get("title") or not item.get("path"):
             continue
-        index = directory / "Index.html"
-        if not index.is_file():
-            continue
-        raw = index.read_text(encoding="utf-8", errors="replace")
-        title = html_title(raw) or directory.name.replace("-", " ")
-        aliases = [title]
-        fallback = directory.name.replace("-", " ")
-        if norm(fallback) != norm(title):
-            aliases.append(fallback)
-        items.append({"title": title, "aliases": aliases, "instrument": str(index)})
+        physical = root.parent / item["path"]
+        items.append({
+            "id": item["id"],
+            "title": item["title"],
+            "aliases": list(dict.fromkeys(item.get("aliases", []))),
+            "capabilities": list(dict.fromkeys(item.get("capabilities", []))),
+            "instrument": str(physical),
+            "path": item["path"],
+            "manifest_title": item["title"],
+        })
     return items
 
 
 def catalog_consistency(root: Path, catalog: list[dict]) -> list[str]:
-    manifest_path = root / "manifest.json"
-    if not manifest_path.is_file():
-        return []
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    expected = {item["path"]: item["title"] for item in manifest.get("instruments", [])}
-    actual = {item["instrument"]: item["title"] for item in catalog}
+    """Valida o contrato e a identidade física; qualquer divergência bloqueia ativação."""
     errors = []
-    if set(expected) != set(actual):
-        errors.append("manifest.json e árvore física possuem caminhos diferentes")
-    for path, title in expected.items():
-        if path in actual and norm(title) != norm(actual[path]):
-            errors.append(f"título divergente em {path!r}")
-    return errors
+    try:
+        manifest = load_manifest(root)
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        return [str(exc)]
 
+    instruments = manifest.get("instruments")
+    if not isinstance(instruments, list) or not instruments:
+        return ["manifest.instruments vazio ou inválido"]
+
+    ids, titles, paths = set(), set(), set()
+    alias_owners: dict[str, set[str]] = {}
+    expected_paths = set()
+
+    for item in instruments:
+        iid, title, relpath = item.get("id"), item.get("title"), item.get("path")
+        if not iid or not title or not relpath:
+            errors.append(f"instrumento incompleto: {item!r}")
+            continue
+        if iid in ids: errors.append(f"id duplicado: {iid}")
+        if norm(title) in titles: errors.append(f"título duplicado: {title}")
+        if relpath in paths: errors.append(f"path duplicado: {relpath}")
+        ids.add(iid); titles.add(norm(title)); paths.add(relpath); expected_paths.add(relpath)
+
+        canonical = item.get("canonical_reference", {})
+        if (canonical.get("id"), canonical.get("title"), canonical.get("path")) != (iid, title, relpath):
+            errors.append(f"{iid}: canonical_reference divergente")
+
+        for alias in item.get("aliases", []):
+            key = norm(alias)
+            if not key:
+                errors.append(f"{iid}: alias vazio após normalização")
+                continue
+            alias_owners.setdefault(key, set()).add(iid)
+
+        physical = root.parent / relpath
+        if not physical.is_file():
+            errors.append(f"{iid}: conteúdo não recuperável: {relpath}")
+            continue
+        raw = physical.read_text(encoding="utf-8", errors="replace")
+        physical_title = html_title(raw)
+        if not physical_title:
+            errors.append(f"{iid}: <title> ausente em {relpath}")
+        elif norm(physical_title) != norm(title):
+            errors.append(f"{iid}: identidade inválida — título físico divergente em {relpath!r}")
+
+    for alias, owners in alias_owners.items():
+        if len(owners) > 1:
+            errors.append(f'alias ambíguo entre instrumentos: "{alias}" -> {", ".join(sorted(owners))}')
+
+    actual_paths = {
+        str(p.relative_to(root.parent)).replace("\\", "/")
+        for d in root.iterdir() if d.is_dir()
+        for p in [d / "Index.html"] if p.is_file()
+    } if root.exists() else set()
+    if expected_paths != actual_paths:
+        errors.append("manifest.json e árvore física possuem caminhos diferentes")
+
+    return errors
 
 def local_context(text: str, start: int, end: int) -> str:
     """Mantém a análise da exceção local à ocorrência."""
@@ -167,7 +220,7 @@ def explicit_titles(prompt: str) -> list[str]:
 def find_catalog_item(catalog: list[dict], title: str) -> dict | None:
     target = norm(title)
     for item in catalog:
-        if any(norm(alias) == target for alias in item["aliases"]):
+        if norm(item["id"]) == target or norm(item["title"]) == target or any(norm(alias) == target for alias in item["aliases"]):
             return item
     return None
 
@@ -360,6 +413,9 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "title_is_point_of_entry": True,
             "custom_request_supplies_demand": True,
             "title_alone_is_not_the_whole_application": True,
+            "title_plus_custom_request_forms_activation_unit": True,
+            "title_identifies_and_activates": True,
+            "request_defines_concrete_application": True,
         },
         "instrument_application_separation": {
             "instrument_elements": ["identity", "purpose", "function", "essential_instructions", "operational_logic"],
@@ -523,15 +579,32 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
 
 
 def validate(prompt: str, root: Path = ROOT) -> dict:
-    catalog = instrument_catalog(root)
+    try:
+        catalog = instrument_catalog(root)
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        return {
+            "schema_version": "4.0",
+            "status": "blocked_contract",
+            "validation_errors": [str(exc)],
+            "instrument_count": 0,
+            "matched_occurrences": 0,
+            "matched_titles": [],
+            "active_instruments": [],
+            "execution_plan": [],
+            "exceptions": [],
+            "matches": [],
+            "coordination": {"status": "blocked_contract"},
+        }
     consistency_errors = catalog_consistency(root, catalog)
+    catalog_ok = not consistency_errors
     normalized_prompt, origin_map = normalize_with_map(prompt)
     matches = []
 
     for item in catalog:
         seen: set[tuple[int, int]] = set()
-        for alias in item["aliases"]:
+        for alias in list(item["aliases"]) + list(item["capabilities"]):
             needle = norm(alias)
+            capability_only = not any(norm(a) == needle for a in item["aliases"])
             if not needle:
                 continue
             for match in phrase_pattern(needle).finditer(normalized_prompt):
@@ -543,13 +616,23 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
                 original_end = origin_map[match.end() - 1] + 1
                 context = local_context(prompt, original_start, original_end)
                 diverse = has_diverse_assignment(context, alias)
+                physical = Path(item["instrument"])
+                physical_title = html_title(physical.read_text(encoding="utf-8", errors="replace")) if physical.is_file() else None
+                identity_verified = bool(physical_title and norm(physical_title) == norm(item["title"]) and item.get("path"))
                 matches.append({
+                    "instrument_id": item["id"],
                     "title": item["title"],
                     "matched_text": prompt[original_start:original_end],
                     "instrument": item["instrument"],
+                    "canonical_path": item["path"],
                     "correferencia": True,
-                    "function_status": "diversa_explicitamente_atribuida" if diverse else "propria_preservada",
-                    "active": not diverse,
+                    "resolution_status": "discovery_only" if capability_only else "resolved",
+                    "match_type": "capability" if capability_only else "alias_or_title",
+                    "identity_status": "verified" if identity_verified else "invalid",
+                    "identity_verified": identity_verified,
+                    "function_status": "discovery_only" if capability_only else ("diversa_explicitamente_atribuida" if diverse else "propria_preservada"),
+                    "activation_status": "discovery_only" if capability_only else ("ready" if (catalog_ok and identity_verified and not diverse) else ("blocked_diverse_function" if diverse else "blocked_identity")),
+                    "active": bool(catalog_ok and identity_verified and not diverse and not capability_only),
                     "exception_scope": "occurrence" if diverse else None,
                     "context_window": context,
                 })
@@ -569,13 +652,24 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
 
     coordination = build_coordination(prompt, catalog, matches)
     status = "ok" if not consistency_errors else "catalog_inconsistente"
+    demand_id = "DEMAND-" + hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:16]
+    manifest_path = root / "manifest.json" if (root / "manifest.json").is_file() else root / "Promptária" / "manifest.json"
+    manifest_raw = manifest_path.read_bytes()
+    manifest_sha256 = hashlib.sha256(manifest_raw).hexdigest()
     return {
-        "schema_version": "3.0",
+        "schema_version": "4.0",
+        "demand_id": demand_id,
+        "manifest_sha256": manifest_sha256,
+        "trace_contract": "Promptária/rastreabilidade-producao.json",
+        "trace_required": True,
         "status": status,
         "validation_errors": consistency_errors,
         "activation_rule": {
             "title_plus_custom_request_forms_activation_unit": True,
             "title_identifies_and_activates": True,
+            "identity_verification_required": True,
+            "activation_fail_closed": True,
+            "manifest_is_executable_contract": True,
             "github_recovers_existing_logic": True,
             "request_defines_concrete_application": True,
         },
@@ -601,8 +695,11 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
         "active_instruments": list(active_by_instrument.values()),
         "execution_plan": [
             {
+                "instrument_id": next((m["instrument_id"] for m in index.get(item["title"], []) if m["active"]), None),
                 "title": item["title"],
                 "instrument": item["instrument"],
+                "canonical_path": next((m["canonical_path"] for m in index.get(item["title"], []) if m["active"]), None),
+                "identity_verified": all(m["identity_verified"] for m in index.get(item["title"], []) if m["active"]),
                 "mode": "preserve_own_function",
                 "occurrences": len(index.get(item["title"], [])),
             }

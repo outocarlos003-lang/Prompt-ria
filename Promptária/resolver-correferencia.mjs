@@ -12,6 +12,7 @@ export const MATCH_TYPES = Object.freeze({
   NORMALIZED_TITLE: "normalized_title",
   ALIAS: "alias",
   CAPABILITY: "capability",
+  INVALID_IDENTITY: "invalid_identity",
   AMBIGUOUS: "ambiguous",
   NONE: "none"
 });
@@ -71,7 +72,7 @@ const result = (instrument, matchType, confidence, mention, candidates = []) => 
   path: instrument?.path ?? null,
   match_type: matchType,
   confidence,
-  activation: Boolean(instrument),
+  activation: Boolean(instrument) && matchType !== MATCH_TYPES.CAPABILITY,
   candidates: candidates.map(x => x.id)
 });
 
@@ -97,10 +98,8 @@ export function resolveReference(text, index) {
     return { ...result(null, MATCH_TYPES.AMBIGUOUS, 0, mention, aliases), activation: false };
 
   const capabilities = index.byCapability.get(normalized) || [];
-  if (capabilities.length === 1)
-    return result(capabilities[0], MATCH_TYPES.CAPABILITY, 0.9, mention);
-  if (capabilities.length > 1)
-    return { ...result(null, MATCH_TYPES.AMBIGUOUS, 0, mention, capabilities), activation: false };
+  if (capabilities.length)
+    return { ...result(null, MATCH_TYPES.CAPABILITY, 0.5, mention, capabilities), activation: false, candidates: capabilities.map(x => x.id) };
 
   return result(null, MATCH_TYPES.NONE, 0, mention);
 }
@@ -139,6 +138,7 @@ export function resolveMentions(text, instruments, index = buildReferenceIndex(i
 
   return [...deduped.values()]
     .sort((a, b) => a.start - b.start || b.confidence - a.confidence)
+    .filter(item => item.activation !== false)
     .filter((item, i, all) => i === 0 || item.start >= all[i - 1].end || item.instrument_id !== all[i - 1].instrument_id);
 }
 
@@ -172,4 +172,24 @@ export function validateReferenceIndex(instruments = []) {
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^\${}()|[\]\\]/g, "\\$&");
+}
+
+
+export function verifyInstrumentIdentity(instrument, content) {
+  if (!instrument?.id || !instrument?.title || !instrument?.path) {
+    return { verified: false, status: MATCH_TYPES.INVALID_IDENTITY, reason: "canonical_identity_incomplete" };
+  }
+  const html = String(content ?? "");
+  const match = html.match(/<title>[ \t\r\n]*(.*?)[ \t\r\n]*<\/title>/is);
+  const physicalTitle = match ? match[1].replace(/&amp;/g, "&").trim() : null;
+  const verified = Boolean(physicalTitle && normalize(physicalTitle) === normalize(instrument.title));
+  return {
+    verified,
+    status: verified ? "verified" : MATCH_TYPES.INVALID_IDENTITY,
+    id: instrument.id,
+    canonical_title: instrument.title,
+    path: instrument.path,
+    physical_title: physicalTitle,
+    reason: verified ? "canonical_id_title_path_content_title_match" : "content_title_mismatch_or_missing"
+  };
 }

@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.0",
+  "source_of_truth": "Promptária/manifest.json",
+  "root": "promptaria-root",
+  "nodes": [
+    {
+      "id": "site-root",
+      "path": "index.html",
+      "type": "root",
+      "title": "Promptária — interface principal"
+    },
+    {
+      "id": "promptaria-root",
+      "path": "Promptária/Index.html",
+      "type": "root",
+      "title": "Promptária — núcleo"
+    },
+    {
+      "id": "instrumento-01",
+      "path": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "type": "instrument",
+      "title": "Acionamento Coordenado de Instrumentos Promptuais"
+    },
+    {
+      "id": "instrumento-02",
+      "path": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "type": "instrument",
+      "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS"
+    },
+    {
+      "id": "instrumento-03",
+      "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "instrument",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS"
+    },
+    {
+      "id": "instrumento-04",
+      "path": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "instrument",
+      "title": "Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais"
+    },
+    {
+      "id": "instrumento-05",
+      "path": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "type": "instrument",
+      "title": "DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS"
+    },
+    {
+      "id": "instrumento-06",
+      "path": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "type": "instrument",
+      "title": "Inserção de Coleção no Site via Sistema Editorial"
+    },
+    {
+      "id": "instrumento-07",
+      "path": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "type": "instrument",
+      "title": "Inserção de Prompts na Promptária via GitHub"
+    },
+    {
+      "id": "instrumento-08",
+      "path": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "type": "instrument",
+      "title": "✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦"
+    },
+    {
+      "id": "instrumento-09",
+      "path": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "type": "instrument",
+      "title": "PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO"
+    },
+    {
+      "id": "instrumento-10",
+      "path": "Promptária/Rastreio-GitHub/Index.html",
+      "type": "instrument",
+      "title": "Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou"
+    }
+  ],
+  "edges": [
+    {
+      "from": "site-root",
+      "to": "promptaria-root",
+      "type": "entry"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "site-root",
+      "type": "return"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-01",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-01",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-01",
+      "to": "instrumento-02",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-01",
+      "to": "instrumento-10",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-02",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-02",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-02",
+      "to": "instrumento-03",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-02",
+      "to": "instrumento-01",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-03",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-03",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-03",
+      "to": "instrumento-04",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-03",
+      "to": "instrumento-02",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-04",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-04",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-04",
+      "to": "instrumento-05",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-04",
+      "to": "instrumento-03",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-05",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-05",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-05",
+      "to": "instrumento-06",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-05",
+      "to": "instrumento-04",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-06",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-06",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-06",
+      "to": "instrumento-07",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-06",
+      "to": "instrumento-05",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-07",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-07",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-07",
+      "to": "instrumento-08",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-07",
+      "to": "instrumento-06",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-08",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-08",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-08",
+      "to": "instrumento-09",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-08",
+      "to": "instrumento-07",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-09",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-09",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-09",
+      "to": "instrumento-10",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-09",
+      "to": "instrumento-08",
+      "type": "previous"
+    },
+    {
+      "from": "promptaria-root",
+      "to": "instrumento-10",
+      "type": "entry"
+    },
+    {
+      "from": "instrumento-10",
+      "to": "promptaria-root",
+      "type": "return"
+    },
+    {
+      "from": "instrumento-10",
+      "to": "instrumento-01",
+      "type": "next"
+    },
+    {
+      "from": "instrumento-10",
+      "to": "instrumento-09",
+      "type": "previous"
+    }
+  ],
+  "policies": {
+    "orphan": "block",
+    "broken_edge": "block",
+    "return_required": true,
+    "search_required": true
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "schema_version": "2.0",
-  "purpose": "Fonte única de verdade da rede navegacional da Promptária.",
+  "schema_version": "4.0",
+  "purpose": "Contrato executável único da identidade, resolução e recuperação dos instrumentos da Promptária.",
   "root": "Promptária/Index.html",
   "instruments": [
     {
@@ -75,9 +75,6 @@
       "aliases": [
         "arquitetura unificada de acionamento, correferência, recuperação e aplicação de instrumentos promptuais",
         "arquitetura unificada",
-        "acionamento",
-        "correferência",
-        "recuperação",
         "aplicação de instrumentos"
       ],
       "capabilities": [
@@ -104,9 +101,6 @@
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
         "arquitetura de acionamento, recuperação e aplicação de instrumentos promptuais",
-        "acionamento",
-        "recuperação",
-        "aplicação",
         "recuperar instrumento",
         "aplicar instrumento"
       ],
@@ -193,7 +187,6 @@
       "aliases": [
         "inserção de prompts na promptária via github",
         "inserção de prompts",
-        "GitHub",
         "adicionar prompt",
         "inserir prompt na Promptária"
       ],
@@ -221,7 +214,6 @@
       "aliases": [
         "organização inteligente de zip no diretório do github",
         "organização de ZIP",
-        "ZIP",
         "arquivo compactado",
         "organização de diretório"
       ],
@@ -300,16 +292,12 @@
   ],
   "navigation": {
     "root": "Promptária/Index.html",
-    "main_interface": "index.html",
-    "search": "Promptária/Index.html?q={query}",
-    "model": "árvore física + rede navegacional por caminhos de entrada, retorno, anterior/próximo e pesquisa transversal",
-    "invariants": [
-      "todo instrumento possui entrada no núcleo",
-      "todo instrumento possui retorno ao núcleo",
-      "todo instrumento possui retorno à interface principal",
-      "todo instrumento participa do ciclo anterior/próximo",
-      "a pesquisa transversal alcança todos os instrumentos"
-    ]
+    "external_root": "index.html",
+    "search": "Promptária/navegacao-neural.js",
+    "graph": "Promptária/rede-navegacional.json",
+    "required_return": true,
+    "required_forward_continuity": true,
+    "required_searchability": true
   },
   "edges": [
     {
@@ -577,36 +565,46 @@
     ]
   },
   "semantic_cross_reference": {
-    "version": "2.0",
-    "purpose": "Mapear menções a instrumentos por título, aliases, função e contexto, mantendo o título canônico e o destino navegável.",
-    "rules": [
-      "correspondência exata do título tem prioridade máxima",
-      "correspondência por título normalizado e alias é segunda prioridade",
-      "correspondência funcional exige contexto compatível",
-      "não substituir menção textual por execução automática quando o contexto não determinar acionamento",
-      "quando múltiplos instrumentos forem compatíveis, preservar todos os candidatos e sua função individual",
-      "novos instrumentos entram no índice ao serem adicionados ao array instruments"
-    ],
-    "fields": [
-      "id",
-      "title",
-      "path",
-      "aliases",
-      "capabilities",
-      "canonical_reference"
-    ],
-    "future_instruments": "Qualquer instrumento posteriormente registrado em instruments passa a integrar a correferência sem exigir alteração da lógica de navegação.",
     "runtime_resolver": "Promptária/resolver-correferencia.mjs",
+    "source_of_truth": "Promptária/manifest.json",
     "resolution_order": [
       "id",
       "exact_title",
       "normalized_title",
-      "alias",
-      "capability"
+      "activation_alias"
     ],
-    "ambiguity_policy": "never_auto_activate",
-    "activation_contract": "activation=true somente para correspondência determinística e não ambígua",
-    "multiple_mentions": "resolveMentions preserva instrumentos distintos na mesma entrada",
-    "auditability": "cada resolução retorna mention, instrument_id, canonical_title, path, match_type, confidence e activation"
+    "capabilities_are_non_activating": true,
+    "ambiguity_policy": "fail-closed",
+    "identity_policy": "canonical_id_title_path_and_content_title_must_match",
+    "activation_requires_identity_verification": true
+  },
+  "contract_version": "4.0",
+  "policies": {
+    "single_source_of_truth": "manifest.json",
+    "activation": "fail_closed",
+    "identity": "id+canonical_title+canonical_path+physical_title",
+    "capabilities": "discovery_only",
+    "ambiguity": "never_activate",
+    "orphan": "block",
+    "production_traceability": "required"
+  },
+  "production": {
+    "trace": "Promptária/rastreabilidade-producao.json",
+    "required_chain": [
+      "demand",
+      "origin",
+      "responsible_instrument",
+      "participants",
+      "operation",
+      "transformation",
+      "artifact",
+      "destination",
+      "references",
+      "validation",
+      "result"
+    ],
+    "destination_policy": "explicit_or_inequivocally_determined",
+    "nocturna_policy": "never_infer_from_weak_thematic_association",
+    "result_must_trace_to_demand": true
   }
 }

@@ -13,7 +13,7 @@ const warn=(m)=>warnings.push(m);
 const exists=(p)=>fs.existsSync(path.join(ROOT,p));
 const unique=(xs,label)=>{const seen=new Set();for(const x of xs){if(seen.has(x))fail(label+" duplicado: "+x);seen.add(x)}};
 
-if(manifest.schema_version!=="2.0") fail("schema_version inesperado");
+if(manifest.schema_version!=="4.0") fail("schema_version inesperado");
 if(!Array.isArray(instruments)||!instruments.length) fail("manifest.instruments vazio ou inválido");
 
 unique(instruments.map(x=>x.id),"id");
@@ -32,6 +32,14 @@ for(const x of instruments){
   if(!Array.isArray(x.aliases)||!x.aliases.length) fail(x.id+": sem aliases");
   if(!Array.isArray(x.capabilities)||!x.capabilities.length) fail(x.id+": sem capabilities");
   if(!exists(x.path)) fail(x.id+": arquivo não existe: "+x.path);
+  else {
+    const html=fs.readFileSync(path.join(ROOT,x.path),"utf8");
+    const titleMatch=html.match(/<title>\s*(.*?)\s*<\/title>/is);
+    const physicalTitle=titleMatch ? titleMatch[1].replace(/&amp;/g,"&").trim() : "";
+    const normalizeTitle=(v)=>String(v??"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLocaleLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+    if(!physicalTitle || normalizeTitle(physicalTitle)!==normalizeTitle(x.title))
+      fail(x.id+": identidade física inválida: <title> não corresponde ao manifesto");
+  }
   for(const rel of ["previous","next","entry"]){
     if(!x[rel]) fail(x.id+": "+rel+" ausente");
     else if(!instruments.some(y=>y.path===x[rel])) fail(x.id+": "+rel+" aponta para nó inexistente: "+x[rel]);
@@ -55,6 +63,41 @@ for(const x of instruments){
 for(const p of ["index.html","Promptária/Index.html","Promptária/navegacao-neural.js","Promptária/manifest.json","Promptária/rastreabilidade-producao.json","Promptária/README.md","Promptária/sitemap.xml"])
   if(!exists(p)) fail("artefato estrutural ausente: "+p);
 
+function resolveInternalTarget(file,raw){
+  try { return decodeURIComponent(new URL(raw,"https://promptaria.invalid/"+file).pathname).split("/").filter(Boolean).join("/"); }
+  catch { return null; }
+}
+function stripMarkup(v){ return String(v||"").replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim(); }
+
+// A navegação visível é parte do contrato executável: menu e anterior/próximo
+// não podem divergir do manifesto, mesmo quando os arquivos físicos existem.
+for(const x of instruments){
+  const html=fs.readFileSync(path.join(ROOT,x.path),"utf8");
+  const navMatch=html.match(/<nav\b[^>]*data-promptaria-ui=["']navigation["'][^>]*>[\s\S]*?<\/nav>/i);
+  if(!navMatch){ fail(x.id+": navegação canônica ausente no HTML"); continue; }
+  const nav=navMatch[0];
+  const anchors=[...nav.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
+  const anterior=anchors.find(m=>/anterior/i.test(stripMarkup(m[2])));
+  const proximo=anchors.find(m=>/próximo/i.test(stripMarkup(m[2])));
+  const expectedPrevious=resolveInternalTarget(x.path,relativeFromFile(x.path,x.previous));
+  const expectedNext=resolveInternalTarget(x.path,relativeFromFile(x.path,x.next));
+  if(!anterior) fail(x.id+": link Anterior ausente na navegação canônica");
+  else if(resolveInternalTarget(x.path,anterior[1])!==expectedPrevious) fail(x.id+": link Anterior diverge do manifest.previous");
+  if(!proximo) fail(x.id+": link Próximo ausente na navegação canônica");
+  else if(resolveInternalTarget(x.path,proximo[1])!==expectedNext) fail(x.id+": link Próximo diverge do manifest.next");
+
+  const options=[...nav.matchAll(/<option\b[^>]*value=["']([^"']+)["'][^>]*>/gi)].map(m=>resolveInternalTarget(x.path,m[1])).filter(Boolean);
+  const expectedOptions=instruments.map(y=>y.path).sort();
+  const actualOptions=[...new Set(options)].sort();
+  for(const target of actualOptions) if(!instruments.some(y=>y.path===target)) fail(x.id+": menu aponta para instrumento não catalogado: "+target);
+  if(JSON.stringify(actualOptions)!==JSON.stringify(expectedOptions)) fail(x.id+": menu de instrumentos diverge do catálogo do manifesto");
+}
+function relativeFromFile(file,target){
+  const a=file.split("/").slice(0,-1), b=target.split("/"); let i=0;
+  while(i<a.length&&i<b.length&&a[i]===b[i]) i++;
+  return [...Array(a.length-i).fill(".."),...b.slice(i)].join("/");
+}
+
 if(exists(sitemapPath)){
   const sitemap=fs.readFileSync(sitemapPath,"utf8");
   const listed=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1].trim());
@@ -67,6 +110,73 @@ if(exists(sitemapPath)){
 const trace=JSON.parse(fs.readFileSync(path.join(ROOT,"Promptária","rastreabilidade-producao.json"),"utf8"));
 if(!trace.production_chain?.length) fail("rastreabilidade sem production_chain");
 if(!trace.navigation_invariants?.length) fail("rastreabilidade sem navigation_invariants");
+if(trace.schema_version!=="4.0") fail("rastreabilidade schema_version inesperado");
+const traceRequired=["trace_id","demand_id","manifest_sha256","source_commit","instrument_id","instrument_title","instrument_path","content_sha256","operation","origin","artifacts","destination","references","validation","result"];
+for(const field of trace.execution_trace?.required_fields||[]) if(!traceRequired.includes(field)) fail("campo de trace não reconhecido no contrato: "+field);
+for(const field of traceRequired) if(!(trace.execution_trace?.required_fields||[]).includes(field)) fail("contrato de trace sem campo obrigatório: "+field);
+if(trace.execution_trace?.id_policy!=="unique_per_execution") fail("trace_id não exige unicidade por execução");
+if(trace.production_trace_contract?.demand_to_result!=="one_trace") fail("rastreabilidade demanda→resultado não está vinculada a um trace único");
+
+
+const graphPath=path.join(ROOT,"Promptária","rede-navegacional.json");
+if(!fs.existsSync(graphPath)) fail("grafo navegacional ausente: Promptária/rede-navegacional.json");
+else {
+  try {
+    const graph=JSON.parse(fs.readFileSync(graphPath,"utf8"));
+    if(graph.source_of_truth!=="Promptária/manifest.json") fail("grafo navegacional não referencia o manifesto como fonte única");
+    const nodeById=new Map((graph.nodes||[]).map(n=>[n.id,n]));
+    const nodeByPath=new Map((graph.nodes||[]).map(n=>[n.path,n]));
+    for(const n of graph.nodes||[]) {
+      if(!n.id||!n.path) fail("nó navegacional incompleto: "+JSON.stringify(n));
+      if(!exists(n.path)) fail("nó navegacional aponta para conteúdo inexistente: "+n.path);
+    }
+    for(const e of graph.edges||[]) {
+      if(!nodeById.has(e.from)||!nodeById.has(e.to)) fail("aresta navegacional órfã: "+JSON.stringify(e));
+    }
+    for(const x of instruments){
+      if(!nodeByPath.has(x.path)) fail(x.id+": ausente no grafo navegacional");
+      const nid=nodeByPath.get(x.path).id;
+      const out=(graph.edges||[]).filter(e=>e.from===nid);
+      const incoming=(graph.edges||[]).filter(e=>e.to===nid);
+      if(!out.some(e=>e.type==="return")) fail(x.id+": sem aresta de retorno");
+      if(!out.some(e=>e.type==="next")) fail(x.id+": sem continuidade next");
+      if(!out.some(e=>e.type==="previous")) fail(x.id+": sem continuidade previous");
+      if(!incoming.some(e=>e.type==="entry")) fail(x.id+": sem entrada pelo núcleo");
+    }
+  } catch(e) { fail("grafo navegacional inválido: "+e.message); }
+}
+
+const webFiles=[];
+function walk(dir){
+  for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
+    const full=path.join(dir,entry.name);
+    if(entry.name.startsWith(".")) continue;
+    if(entry.isDirectory()) walk(full);
+    else if(/\\.html?$/i.test(entry.name)) webFiles.push(path.relative(ROOT,full).replaceAll(path.sep,"/"));
+  }
+}
+walk(ROOT);
+for(const file of ["index.html",...webFiles.filter(p=>p!=="index.html")]) {
+  if(!exists(file)) continue;
+  const html=fs.readFileSync(path.join(ROOT,file),"utf8");
+  for(const m of html.matchAll(/(?:href|src)[ \t]*=[ \t]*["\x27]([^"\x27#]+)(?:#[^"\x27]*)?["\x27]/gi)){
+    const raw=m[1].trim();
+    if(!raw || /^(?:https?:|mailto:|tel:|data:|javascript:)/i.test(raw)) continue;
+    let target;
+    try { target=decodeURIComponent(new URL(raw,"https://promptaria.invalid/"+file).pathname).split("/").filter(Boolean).join("/"); }
+    catch { fail(file+": referência interna inválida: "+raw); continue; }
+    const targetAbs=path.join(ROOT,target);
+    if(!fs.existsSync(targetAbs)) fail(file+": referência interna quebrada: "+raw+" -> "+target);
+  }
+}
+
+try {
+  const trace=JSON.parse(fs.readFileSync(path.join(ROOT,"Promptária","rastreabilidade-producao.json"),"utf8"));
+  const chain=trace.production_chain||[];
+  const required=["demanda","instrumento responsável","instrumentos participantes","operação","origem","transformação","arquivo/artefato","destino","referências","validação","resultado"];
+  for(const item of required) if(!chain.includes(item)) fail("cadeia de produção sem etapa: "+item);
+  if(trace.validation?.mode!=="fail_closed") fail("rastreabilidade não declara modo fail_closed");
+} catch(e) { fail("rastreabilidade de produção inválida: "+e.message); }
 
 if(errors.length){
   console.error("\nPROMPTÁRIA — INTEGRIDADE: FALHA");

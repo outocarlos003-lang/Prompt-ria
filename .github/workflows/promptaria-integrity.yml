@@ -23,3 +23,5 @@ jobs:
         run: node Promptária/verificador-integridade.mjs
       - name: Test deterministic coreference
         run: node Promptária/teste-correferencia.mjs
+      - name: Test manifest-driven functional coreference
+        run: python3 -m unittest discover -s tests -p 'test_correfencia_funcional.py' -v
