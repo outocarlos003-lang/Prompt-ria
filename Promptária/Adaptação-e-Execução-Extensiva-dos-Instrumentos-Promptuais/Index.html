@@ -5,36 +5,6 @@
   <title>ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS</title>
 </head>
 <body>
-<style id="promptaria-network-style">
-  .promptaria-network{font:14px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#11131a;color:#f4f4f6;border-bottom:1px solid #30333d;padding:10px 14px;position:sticky;top:0;z-index:999}
-  .promptaria-network .bar{max-width:1180px;margin:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .promptaria-network a,.promptaria-network button{color:#e8dcff;background:#1b1e27;border:1px solid #383c48;border-radius:9px;padding:8px 10px;text-decoration:none;cursor:pointer;font:inherit}
-  .promptaria-network a:hover,.promptaria-network button:hover{border-color:#8f74c7}
-  .promptaria-network .current{border-color:#a88be0;background:#292333}
-  .promptaria-network form{display:flex;gap:6px;flex:1 1 240px}
-  .promptaria-network input{min-width:0;flex:1;background:#0c0e13;color:#fff;border:1px solid #383c48;border-radius:9px;padding:8px 10px}
-  .promptaria-network select{max-width:min(44vw,360px);background:#0c0e13;color:#fff;border:1px solid #383c48;border-radius:9px;padding:8px}
-</style>
-<nav class="promptaria-network" aria-label="Rede navegacional da Promptária">
-  <div class="bar">
-    <a href="../Index.html" title="Núcleo da Promptária">⌂ Núcleo</a>
-    <a href="../../index.html" title="Interface principal do repositório">Início</a>
-    <a href="../Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html" title="Instrumento anterior">← Anterior</a>
-    <a href="../Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html" title="Próximo instrumento">Próximo →</a>
-    <form id="promptaria-search-form" role="search">
-      <input id="promptaria-search" type="search" placeholder="Pesquisar em toda a Promptária…" aria-label="Pesquisar em toda a Promptária">
-      <button type="submit">Pesquisar</button>
-    </form>
-    <select id="promptaria-jump" aria-label="Navegar entre instrumentos"><option value="../Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html" >Acionamento Coordenado de Instrumentos Promptuais</option><option value="../Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html" selected>ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS</option><option value="../Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html" >ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS</option><option value="../Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html" >Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais</option><option value="../Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html" >DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS</option><option value="../Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html" >Inserção de Coleção no Site via Sistema Editorial</option><option value="../Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html" >Inserção de Prompts na Promptária via GitHub</option><option value="../ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html" >✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦</option><option value="../Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html" >Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta</option><option value="../Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html" >PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO</option><option value="../Rastreio-GitHub/Index.html" >Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou</option></select>
-  </div>
-</nav>
-<script>
-(()=>{const f=document.getElementById("promptaria-search-form"),q=document.getElementById("promptaria-search"),j=document.getElementById("promptaria-jump");
-f?.addEventListener("submit",e=>{e.preventDefault();const v=q.value.trim();location.href="../Index.html"+(v?"?q="+encodeURIComponent(v):"")});
-j?.addEventListener("change",()=>{if(j.value)location.href=j.value});
-})();
-</script>
-<h1>ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS</h1>
 <pre>ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS
 
 Finalidade
@@ -484,5 +454,48 @@ aditiva, extensiva, modular, coordenada, rastreável, verificável e operacional
 Não produzir apenas uma especificação da adaptação.
 
 Quando houver autorização para execução, realizar efetivamente a adaptação nos instrumentos e arquivos correspondentes.</pre>
+<template id="promptaria-network-ui">
+<style id="promptaria-network-style">
+  .promptaria-network{position:fixed!important;top:0;left:0;right:0;z-index:9999;font:14px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#11131a;color:#f4f4f6;border-bottom:1px solid #30333d;padding:10px 14px;position:sticky;top:0;z-index:999}
+  .promptaria-network .bar{max-width:1180px;margin:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .promptaria-network a,.promptaria-network button{color:#e8dcff;background:#1b1e27;border:1px solid #383c48;border-radius:9px;padding:8px 10px;text-decoration:none;cursor:pointer;font:inherit}
+  .promptaria-network a:hover,.promptaria-network button:hover{border-color:#8f74c7}
+  .promptaria-network .current{border-color:#a88be0;background:#292333}
+  .promptaria-network form{display:flex;gap:6px;flex:1 1 240px}
+  .promptaria-network input{min-width:0;flex:1;background:#0c0e13;color:#fff;border:1px solid #383c48;border-radius:9px;padding:8px 10px}
+  .promptaria-network select{max-width:min(44vw,360px);background:#0c0e13;color:#fff;border:1px solid #383c48;border-radius:9px;padding:8px}
+</style>
+<nav class="promptaria-network" aria-label="Rede navegacional da Promptária" data-promptaria-ui="navigation">
+  <div class="bar">
+    <a href="../Index.html" title="Núcleo da Promptária">⌂ Núcleo</a>
+    <a href="../../index.html" title="Interface principal do repositório">Início</a>
+    <a href="../Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html" title="Instrumento anterior">← Anterior</a>
+    <a href="../Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html" title="Próximo instrumento">Próximo →</a>
+    <form id="promptaria-search-form" role="search">
+      <input id="promptaria-search" type="search" placeholder="Pesquisar em toda a Promptária…" aria-label="Pesquisar em toda a Promptária">
+      <button type="submit">Pesquisar</button>
+    </form>
+    <select id="promptaria-jump" aria-label="Navegar entre instrumentos"><option value="../Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html" >Acionamento Coordenado de Instrumentos Promptuais</option><option value="../Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html" selected>ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS</option><option value="../Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html" >ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS</option><option value="../Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html" >Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais</option><option value="../Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html" >DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS</option><option value="../Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html" >Inserção de Coleção no Site via Sistema Editorial</option><option value="../Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html" >Inserção de Prompts na Promptária via GitHub</option><option value="../ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html" >✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦</option><option value="../Principio-da-Integridade-Sistemica-Arquitetura-Conexao-Coesao-e-Funcionalidade-de-Ponta-a-Ponta/Index.html" >Princípio da Integridade Sistêmica: Arquitetura, Conexão, Coesão e Funcionalidade de Ponta a Ponta</option><option value="../Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html" >PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO</option><option value="../Rastreio-GitHub/Index.html" >Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou</option></select>
+  </div>
+</nav>
+</template>
+<script>
+(() => {
+  const t = document.getElementById("promptaria-network-ui");
+  if (!t) return;
+  document.body.appendChild(t.content.cloneNode(true));
+  const f = document.getElementById("promptaria-search-form");
+  const q = document.getElementById("promptaria-search");
+  const j = document.getElementById("promptaria-jump");
+  f?.addEventListener("submit", e => {
+    e.preventDefault();
+    const v = q.value.trim();
+    location.href = "../Index.html" + (v ? "?q=" + encodeURIComponent(v) : "");
+  });
+  j?.addEventListener("change", () => {
+    if (j.value) location.href = j.value;
+  });
+})();
+</script>
 </body>
 </html>
