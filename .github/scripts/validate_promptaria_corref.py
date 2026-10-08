@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -651,8 +652,15 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
 
     coordination = build_coordination(prompt, catalog, matches)
     status = "ok" if not consistency_errors else "catalog_inconsistente"
+    demand_id = "DEMAND-" + hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:16]
+    manifest_raw = (root / "Promptária" / "manifest.json").read_bytes()
+    manifest_sha256 = hashlib.sha256(manifest_raw).hexdigest()
     return {
         "schema_version": "4.0",
+        "demand_id": demand_id,
+        "manifest_sha256": manifest_sha256,
+        "trace_contract": "Promptária/rastreabilidade-producao.json",
+        "trace_required": true,
         "status": status,
         "validation_errors": consistency_errors,
         "activation_rule": {
