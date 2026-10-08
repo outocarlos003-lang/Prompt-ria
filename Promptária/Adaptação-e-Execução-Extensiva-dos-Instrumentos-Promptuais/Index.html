@@ -5,8 +5,6 @@
   <title>ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS</title>
 </head>
 <body>
-
-
 <pre>ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS
 
 Finalidade
@@ -481,6 +479,23 @@ Quando houver autorização para execução, realizar efetivamente a adaptação
   </div>
 </nav>
 </template>
-<script>(()=>{const t=document.getElementById("promptaria-network-ui");if(!t)return;document.body.appendChild(t.content.cloneNode(true));const f=document.getElementById("promptaria-search-form"),q=document.getElementById("promptaria-search"),j=document.getElementById("promptaria-jump");f?.addEventListener("submit",e=>{e.preventDefault();const v=q.value.trim();location.href="../Index.html"+(v?"?q="+encodeURIComponent(v):"")});j?.addEventListener("change",()=>{if(j.value)location.href=j.value})})();</script>
+<script>
+(() => {
+  const t = document.getElementById("promptaria-network-ui");
+  if (!t) return;
+  document.body.appendChild(t.content.cloneNode(true));
+  const f = document.getElementById("promptaria-search-form");
+  const q = document.getElementById("promptaria-search");
+  const j = document.getElementById("promptaria-jump");
+  f?.addEventListener("submit", e => {
+    e.preventDefault();
+    const v = q.value.trim();
+    location.href = "../Index.html" + (v ? "?q=" + encodeURIComponent(v) : "");
+  });
+  j?.addEventListener("change", () => {
+    if (j.value) location.href = j.value;
+  });
+})();
+</script>
 </body>
 </html>
