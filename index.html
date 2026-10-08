@@ -3,132 +3,593 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Promptária — instrumentos promptuais recuperados diretamente do repositório GitHub.">
-  <title>Promptária — Instrumentos Promptuais</title>
+  <meta name="description" content="Promptária — sistema de instrumentos promptuais com interface futurista de inteligência artificial.">
+  <meta name="theme-color" content="#070a12">
+  <title>Promptária — Neural Prompt System</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0f0f12;
-      --panel: #18181d;
-      --panel-2: #202027;
-      --text: #f3f3f5;
-      --muted: #a8a8b2;
-      --line: #34343d;
-      --accent: #c7a6ff;
-      --accent-2: #9d7be0;
-      --danger: #ff8f8f;
+      --bg: #05070d;
+      --bg-2: #080c16;
+      --panel: rgba(12, 17, 29, .78);
+      --panel-solid: #0c111d;
+      --panel-2: rgba(17, 24, 40, .86);
+      --text: #f4f7ff;
+      --muted: #8792aa;
+      --muted-2: #59657d;
+      --line: rgba(117, 137, 176, .18);
+      --line-strong: rgba(117, 137, 176, .34);
+      --cyan: #4de7ff;
+      --cyan-soft: rgba(77, 231, 255, .12);
+      --violet: #9b7bff;
+      --violet-soft: rgba(155, 123, 255, .13);
+      --danger: #ff7f9f;
+      --radius: 18px;
+      --shadow: 0 22px 70px rgba(0,0,0,.38);
     }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--bg);
+      min-height: 100vh;
       color: var(--text);
-      font: 16px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(77,231,255,.08), transparent 28rem),
+        radial-gradient(circle at 85% 18%, rgba(155,123,255,.10), transparent 30rem),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 58%, #050811 100%);
+      font: 15px/1.6 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
     }
-    a { color: var(--accent); }
-    .wrap { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
-    header { padding: 52px 0 30px; border-bottom: 1px solid var(--line); }
-    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .14em; font-size: .76rem; font-weight: 700; }
-    h1 { margin: 8px 0 12px; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.02; }
-    .intro { max-width: 760px; color: var(--muted); font-size: 1.08rem; }
-    .toolbar {
-      position: sticky; top: 0; z-index: 5; padding: 14px 0;
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
-      backdrop-filter: blur(12px);
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .28;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      top: -280px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(77,231,255,.07);
+      filter: blur(100px);
+      pointer-events: none;
+    }
+
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .wrap { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+
+    header {
+      position: relative;
+      padding: 72px 0 46px;
       border-bottom: 1px solid var(--line);
-    }
-    .toolbar-inner { display: flex; gap: 10px; align-items: center; }
-    input {
-      width: 100%; padding: 13px 15px; border-radius: 12px;
-      border: 1px solid var(--line); background: var(--panel); color: var(--text);
-      outline: none;
-    }
-    input:focus { border-color: var(--accent-2); }
-    .status { color: var(--muted); font-size: .9rem; white-space: nowrap; }
-    main { padding: 28px 0 70px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
-    .card {
-      display: flex; flex-direction: column; min-height: 250px;
-      background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
       overflow: hidden;
     }
-    .card-body { padding: 20px; flex: 1; }
-    .path { color: var(--muted); font-size: .78rem; word-break: break-word; }
-    .card h2 { margin: 8px 0 10px; font-size: 1.2rem; line-height: 1.25; }
-    .preview { color: var(--muted); display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-line; }
+
+    .hero-orbit {
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      right: -260px;
+      top: -340px;
+      border: 1px solid rgba(77,231,255,.12);
+      border-radius: 50%;
+      box-shadow: 0 0 80px rgba(77,231,255,.06);
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      inset: 70px;
+      border: 1px solid rgba(155,123,255,.10);
+      border-radius: 50%;
+    }
+
+    .hero-orbit::after {
+      inset: 150px;
+      border-color: rgba(77,231,255,.10);
+    }
+
+    .hero-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(77,231,255,.55);
+      border-radius: 9px;
+      color: var(--cyan);
+      background: linear-gradient(135deg, rgba(77,231,255,.12), rgba(155,123,255,.12));
+      box-shadow: 0 0 24px rgba(77,231,255,.12);
+      font-size: 12px;
+    }
+
+    .system-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 5px rgba(77,231,255,.08), 0 0 18px rgba(77,231,255,.7);
+      animation: pulse 2.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .65; transform: scale(.9); }
+      50% { opacity: 1; transform: scale(1.12); }
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: .68rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: .91;
+      letter-spacing: -.065em;
+      font-weight: 850;
+      text-wrap: balance;
+    }
+
+    h1 span {
+      display: block;
+      color: transparent;
+      background: linear-gradient(100deg, #fff 0%, #d9e9ff 36%, var(--cyan) 68%, var(--violet) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      min-height: 42px;
+      padding: 10px 15px;
+      border: 1px solid var(--line-strong);
+      border-radius: 11px;
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      text-decoration: none;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(77,231,255,.45);
+      background: var(--cyan-soft);
+    }
+
+    .btn.primary {
+      color: #031017;
+      border-color: transparent;
+      background: linear-gradient(100deg, var(--cyan), #9cf4ff);
+      box-shadow: 0 10px 30px rgba(77,231,255,.16);
+      font-weight: 800;
+    }
+
+    .btn.primary:hover { box-shadow: 0 14px 38px rgba(77,231,255,.25); }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 13px 0;
+      background: rgba(5,7,13,.74);
+      backdrop-filter: blur(18px) saturate(130%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toolbar-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .search-shell {
+      position: relative;
+    }
+
+    .search-shell::before {
+      content: "⌕";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-52%);
+      color: var(--cyan);
+      font-size: 20px;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 15px 12px 44px;
+      border-radius: 13px;
+      border: 1px solid var(--line-strong);
+      outline: none;
+      color: var(--text);
+      background: rgba(10,14,24,.86);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+      transition: .2s ease;
+    }
+
+    input::placeholder { color: var(--muted-2); }
+    input:focus {
+      border-color: rgba(77,231,255,.55);
+      box-shadow: 0 0 0 3px rgba(77,231,255,.07), inset 0 1px 0 rgba(255,255,255,.03);
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: .72rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    main { padding: 34px 0 82px; }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 17px;
+    }
+
+    .section-kicker {
+      color: var(--muted-2);
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 4px 0 0;
+      font-size: 1.45rem;
+      letter-spacing: -.025em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(150deg, rgba(17,24,40,.88), rgba(8,12,21,.91));
+      box-shadow: 0 10px 35px rgba(0,0,0,.18);
+      transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      right: -100px;
+      top: -100px;
+      border-radius: 50%;
+      background: var(--cyan);
+      opacity: .06;
+      filter: blur(35px);
+      transition: opacity .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(77,231,255,.28);
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover::before { opacity: .12; }
+
+    .card-body {
+      position: relative;
+      padding: 20px 20px 18px;
+      flex: 1;
+    }
+
+    .card-index {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 19px;
+      color: var(--muted-2);
+      font: 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .node {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 7px;
+      border-radius: 2px;
+      border: 1px solid var(--cyan);
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(77,231,255,.45);
+    }
+
+    .path {
+      color: var(--cyan);
+      font: 10px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      opacity: .72;
+      word-break: break-word;
+    }
+
+    .card h2 {
+      margin: 10px 0 10px;
+      font-size: 1.16rem;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+    }
+
+    .preview {
+      margin: 0;
+      color: var(--muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: pre-line;
+      font-size: .9rem;
+    }
+
     .actions {
-      display: flex; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--line);
-      background: var(--panel-2);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 14px 16px;
+      border-top: 1px solid var(--line);
+      background: rgba(3,6,12,.42);
     }
-    button {
-      border: 0; border-radius: 10px; padding: 10px 13px; cursor: pointer;
-      background: var(--accent); color: #17131e; font-weight: 700;
+
+    .actions button {
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      min-height: 36px;
+      padding: 8px 11px;
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      font-size: .78rem;
+      font-weight: 700;
+      transition: .18s ease;
     }
-    button.secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
-    button:disabled { opacity: .55; cursor: wait; }
+
+    .actions button:first-child {
+      color: #031017;
+      border-color: transparent;
+      background: var(--cyan);
+    }
+
+    .actions button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: rgba(77,231,255,.5);
+    }
+
+    .actions button:disabled { opacity: .5; cursor: wait; }
+
     .empty, .error {
-      padding: 24px; border: 1px solid var(--line); border-radius: 14px;
-      background: var(--panel); color: var(--muted);
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      color: var(--muted);
+      text-align: center;
     }
+
     .error { color: var(--danger); }
-    footer { padding: 28px 0 50px; color: var(--muted); border-top: 1px solid var(--line); }
+
+    footer {
+      padding: 28px 0 50px;
+      color: var(--muted-2);
+      border-top: 1px solid var(--line);
+      font-size: .8rem;
+    }
+
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--cyan); }
+
     dialog {
-      width: min(900px, calc(100% - 24px)); max-height: 88vh; padding: 0;
-      border: 1px solid var(--line); border-radius: 16px; background: var(--panel); color: var(--text);
+      width: min(920px, calc(100% - 24px));
+      max-height: 88vh;
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 18px;
+      background: #090e19;
+      color: var(--text);
+      box-shadow: 0 30px 100px rgba(0,0,0,.65);
     }
-    dialog::backdrop { background: rgba(0,0,0,.7); }
-    .modal-head { display:flex; justify-content:space-between; gap:16px; padding:18px 20px; border-bottom:1px solid var(--line); }
-    .modal-body { padding: 20px; overflow:auto; max-height: calc(88vh - 76px); }
-    pre {
-      white-space: pre-wrap; overflow-wrap: anywhere; margin: 0;
-      font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    dialog::backdrop {
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(7px);
     }
-    @media (max-width: 600px) {
-      .wrap { width: min(100% - 20px, 1100px); }
-      .toolbar-inner { align-items: stretch; flex-direction: column; }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(77,231,255,.05), rgba(155,123,255,.05));
+    }
+
+    .modal-head strong {
+      font-size: .95rem;
+      letter-spacing: -.01em;
+    }
+
+    .modal-body {
+      padding: 22px;
+      overflow: auto;
+      max-height: calc(88vh - 74px);
+    }
+
+    .modal-body pre {
+      margin: 0;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      color: #cbd5e8;
+      font: 13px/1.72 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .modal-close {
+      border: 1px solid var(--line-strong);
+      border-radius: 9px;
+      padding: 8px 11px;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+    }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 22px, 1180px); }
+      header { padding-top: 45px; }
+      .hero-topline { align-items: flex-start; }
+      .system-status { display: none; }
+      h1 { font-size: clamp(3rem, 17vw, 5rem); }
+      .toolbar-inner { grid-template-columns: 1fr; }
       .status { white-space: normal; }
-      .actions { flex-wrap: wrap; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 5px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
     }
   </style>
 </head>
 <body>
   <header>
+    <div class="hero-orbit" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="eyebrow">Prompt-ria</div>
-      <h1>Promptária</h1>
+      <div class="hero-topline">
+        <div class="brand">
+          <span class="brand-mark">P/</span>
+          <span>PROMPTÁRIA</span>
+        </div>
+        <div class="system-status"><span class="pulse"></span> Neural interface online</div>
+      </div>
+
+      <div class="eyebrow">AI / PROMPT INTELLIGENCE SYSTEM</div>
+      <h1>Seu arsenal de prompts.<span>Organizado como uma IA.</span></h1>
       <p class="intro">
-        Repositório de instrumentos promptuais. Cada título é uma chave; cada instrumento,
-        uma possibilidade de ação. Esta interface lê os instrumentos diretamente do GitHub,
-        permite pesquisá-los, visualizar seu conteúdo e copiá-los para uso no ChatGPT.
+        Um sistema de instrumentos promptuais recuperados diretamente do GitHub.
+        Explore, pesquise, visualize e copie cada instrumento para transformar intenção em ação.
       </p>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="#instrumentos">Explorar instrumentos ↓</a>
+        <a class="btn" href="./Promptária/Index.html">Abrir mapa neural →</a>
+      </div>
     </div>
   </header>
 
-  <div class="wrap" style="padding-top:12px"><a href="./Promptária/Index.html" style="display:inline-block;padding:10px 13px;border:1px solid var(--line);border-radius:10px;text-decoration:none">Abrir mapa neural da Promptária →</a></div>
   <div class="toolbar">
     <div class="wrap toolbar-inner">
-      <input id="search" type="search" placeholder="Pesquisar instrumentos..." autocomplete="off">
-      <div id="status" class="status">Carregando instrumentos…</div>
+      <div class="search-shell">
+        <input id="search" type="search" placeholder="Pesquisar por instrumento, conceito ou conteúdo..." autocomplete="off" aria-label="Pesquisar instrumentos">
+      </div>
+      <div id="status" class="status">Inicializando sistema…</div>
     </div>
   </div>
 
-  <main class="wrap">
-    <div id="message" class="empty">Carregando a árvore do repositório…</div>
+  <main class="wrap" id="instrumentos">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Knowledge layer / 01</div>
+        <h2 class="section-title">Instrumentos disponíveis</h2>
+      </div>
+      <div class="section-kicker">Live from GitHub</div>
+    </div>
+
+    <div id="message" class="empty">Sincronizando a árvore do repositório…</div>
     <section id="grid" class="grid" aria-live="polite"></section>
   </main>
 
   <footer>
     <div class="wrap">
       Fonte: <a href="https://github.com/outocarlos003-lang/Prompt-ria" target="_blank" rel="noopener">outocarlos003-lang/Prompt-ria</a>.
-      Os instrumentos são mantidos no repositório; esta página é apenas a interface de descoberta e uso.
+      A interface é a camada de descoberta; os instrumentos continuam mantidos no GitHub.
     </div>
   </footer>
 
   <dialog id="viewer">
     <div class="modal-head">
       <strong id="viewer-title">Instrumento</strong>
-      <button class="secondary" id="close-viewer">Fechar</button>
+      <button class="modal-close" id="close-viewer">Fechar</button>
     </div>
     <div class="modal-body"><pre id="viewer-content"></pre></div>
   </dialog>
@@ -157,13 +618,8 @@
     const doc = new DOMParser().parseFromString(html, "text/html");
     const h1 = doc.querySelector("h1");
     if (h1 && h1.textContent.trim()) return h1.textContent.trim();
-
-    // Prefer the document title before falling back to the filename.
-    // This keeps Index.html as the physical entry point without exposing
-    // "Index" as the instrument title when an explicit title exists.
     const title = doc.querySelector("title");
     if (title && title.textContent.trim()) return title.textContent.trim();
-
     return path.split("/").pop().replace(/\.html?$/i, "").replace(/[-_]+/g, " ");
   }
 
@@ -178,8 +634,6 @@
     const url = RAW_BASE + path.split("/").map(encodeURIComponent).join("/");
     let lastError = null;
 
-    // GitHub/Raw pode falhar de forma transitória. Não descarte um instrumento inteiro
-    // só porque uma requisição resolveu ter um pequeno momento de humanidade.
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
         const response = await fetch(url, {
@@ -212,8 +666,6 @@
   }
 
   function extractItems(html, path) {
-    // Promptária/Index.html is a catalog: several instruments live inside separate <section>s.
-    // Each section with an H1 and PRE is exposed as its own instrument.
     if (path === "Promptária/Index.html") {
       const doc = new DOMParser().parseFromString(html, "text/html");
       const sections = [...doc.querySelectorAll("section")];
@@ -250,25 +702,31 @@
   function render(list) {
     grid.innerHTML = "";
     message.style.display = list.length ? "none" : "block";
+
     if (!list.length) {
       message.textContent = "Nenhum instrumento corresponde à pesquisa.";
       return;
     }
 
-    for (const item of list) {
+    list.forEach((item, index) => {
       const card = document.createElement("article");
       card.className = "card";
       card.innerHTML = `
         <div class="card-body">
+          <div class="card-index">
+            <span><i class="node"></i>Node ${String(index + 1).padStart(2, "0")}</span>
+            <span>ACTIVE</span>
+          </div>
           <div class="path"></div>
           <h2></h2>
           <p class="preview"></p>
         </div>
         <div class="actions">
           <button data-action="view">Visualizar</button>
-          <button class="secondary" data-action="copy">Copiar prompt</button>
-          <button class="secondary" data-action="github">GitHub</button>
+          <button data-action="copy">Copiar prompt</button>
+          <button data-action="github">GitHub ↗</button>
         </div>`;
+
       card.querySelector(".path").textContent = prettyPath(item.sourcePath, item.anchor);
       card.querySelector("h2").textContent = item.title;
       card.querySelector(".preview").textContent = item.text.slice(0, 360) || "Instrumento sem prévia textual.";
@@ -301,16 +759,16 @@
       });
 
       grid.appendChild(card);
-    }
+    });
   }
 
   function applyFilter() {
     const q = search.value.trim().toLocaleLowerCase();
     const filtered = !q ? instruments : instruments.filter(x =>
-      (x.title + " " + x.path + " " + x.text).toLocaleLowerCase().includes(q)
+      (x.title + " " + x.sourcePath + " " + x.text).toLocaleLowerCase().includes(q)
     );
     render(filtered);
-    status.textContent = `${filtered.length} instrumento(s)`;
+    status.textContent = `${filtered.length} / ${instruments.length} nodes`;
   }
 
   async function load() {
@@ -319,16 +777,14 @@
       if (!response.ok) throw new Error("GitHub API respondeu com " + response.status);
       const tree = await response.json();
 
-      if (tree.truncated) {
-        throw new Error("A árvore do repositório excedeu o limite retornado pela API.");
-      }
+      if (tree.truncated) throw new Error("A árvore do repositório excedeu o limite retornado pela API.");
 
       const paths = tree.tree.filter(x => x.type === "blob" && isInstrumentPath(x.path)).map(x => x.path);
       if (!paths.length) throw new Error("Nenhum arquivo de instrumento foi encontrado em Promptária/.");
 
-      // Carrega título e prévia em paralelo, mas mantém a página utilizável se um arquivo falhar.
       const results = await Promise.allSettled(paths.map(fetchText));
       const failed = results.filter(x => x.status === "rejected");
+
       instruments = results
         .filter(x => x.status === "fulfilled")
         .flatMap(x => extractItems(x.value.html, x.value.path))
@@ -336,27 +792,24 @@
 
       if (!instruments.length) throw new Error("Os arquivos foram encontrados, mas nenhum pôde ser carregado.");
 
-      // Um arquivo que falhou não deve reduzir silenciosamente o catálogo.
-      // Tenta novamente, em série, os casos restantes antes de renderizar a contagem final.
       if (failed.length) {
         const missingPaths = paths.filter((_, index) => results[index].status === "rejected");
         for (const missingPath of missingPaths) {
           try {
             const item = await fetchText(missingPath);
             instruments.push(...extractItems(item.html, item.path));
-          } catch (_) {
-            // Mantém o restante do catálogo utilizável.
-          }
+          } catch (_) {}
         }
         instruments.sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
       }
+
       message.style.display = "none";
       applyFilter();
     } catch (error) {
       status.textContent = "Falha ao carregar";
       message.className = "error";
       message.textContent = "Não foi possível carregar os instrumentos automaticamente. " + error.message;
-      // Fallback explícito para os arquivos atuais do repositório.
+
       const fallback = [
         "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
         "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
@@ -368,11 +821,13 @@
         "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
         "Promptária/Rastreio-GitHub/Index.html"
       ];
+
       const results = await Promise.allSettled(fallback.map(fetchText));
       instruments = results
         .filter(x => x.status === "fulfilled")
         .flatMap(x => extractItems(x.value.html, x.value.path))
         .sort((a, b) => a.title.localeCompare(b.title, "pt-BR"));
+
       if (instruments.length) {
         message.className = "empty";
         message.style.display = "none";
@@ -386,6 +841,7 @@
   viewer.addEventListener("click", event => {
     if (event.target === viewer) viewer.close();
   });
+
   load();
 })();
 </script>
