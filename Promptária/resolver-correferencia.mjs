@@ -192,15 +192,39 @@ export function classifyFunction(context) {
 function normalizeWithOrigins(value) {
   const chars = [];
   const origins = [];
-  for (let i = 0; i < String(value).length; i++) {
-    const chunk = String(value)[i].normalize("NFKC").normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase();
+  const input = String(value ?? "");
+  for (let i = 0; i < input.length; i++) {
+    const chunk = input[i].normalize("NFKC").normalize("NFD")
+      .replace(/[\\u0300-\\u036f]/g, "").toLocaleLowerCase();
     for (const char of chunk) {
-      chars.push(char);
+      const normalized = /[a-z0-9]/i.test(char) ? char : " ";
+      chars.push(normalized);
       origins.push(i);
     }
   }
-  return { text: chars.join(""), origins };
+
+  const out = [];
+  const outOrigins = [];
+  let pendingSpace = false;
+  let pendingOrigin = 0;
+  for (let i = 0; i < chars.length; i++) {
+    const char = chars[i];
+    if (char === " ") {
+      if (out.length) {
+        pendingSpace = true;
+        pendingOrigin = origins[i];
+      }
+      continue;
+    }
+    if (pendingSpace) {
+      out.push(" ");
+      outOrigins.push(pendingOrigin);
+      pendingSpace = false;
+    }
+    out.push(char);
+    outOrigins.push(origins[i]);
+  }
+  return { text: out.join(" "), origins: outOrigins };
 }
 
 function localContext(text, start, end) {
