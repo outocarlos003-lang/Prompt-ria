@@ -9,7 +9,7 @@
       "path": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "previous": "Promptária/Rastreio-GitHub/Index.html",
-      "next": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -31,36 +31,6 @@
         "title": "Acionamento Coordenado de Instrumentos Promptuais",
         "path": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
         "id": "instrumento-01"
-      }
-    },
-    {
-      "id": "instrumento-02",
-      "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS",
-      "path": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "entry": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "node_type": "instrument",
-      "source_of_truth": "Promptária/manifest.json",
-      "aliases": [
-        "adaptação e execução extensiva dos instrumentos promptuais",
-        "adaptação extensiva",
-        "execução extensiva",
-        "adaptar instrumento",
-        "executar instrumento",
-        "adaptação"
-      ],
-      "capabilities": [
-        "adaptação extensiva",
-        "execução extensiva",
-        "adaptar instrumento",
-        "executar instrumento",
-        "adaptação"
-      ],
-      "canonical_reference": {
-        "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVA DOS INSTRUMENTOS PROMPTUAIS",
-        "path": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-        "id": "instrumento-02"
       }
     },
     {
@@ -98,7 +68,7 @@
       "title": "Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais",
       "path": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "previous": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "next": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
@@ -329,37 +299,7 @@
     },
     {
       "from": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "to": "Promptária/Rastreio-GitHub/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "type": "previous"
     },
     {
@@ -381,11 +321,6 @@
       "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
       "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
       "type": "next"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
     },
     {
       "from": "Promptária/Index.html",
@@ -409,7 +344,7 @@
     },
     {
       "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "type": "previous"
     },
     {
