@@ -7,6 +7,9 @@ import hashlib
 import html
 import json
 import re
+import subprocess
+import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -17,7 +20,32 @@ def visible_text(raw: str) -> str:
     return " ".join(html.unescape(raw).split())
 
 
+def current_commit() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], text=True, stderr=subprocess.DEVNULL
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return ""
+
 def build(result: dict) -> dict:
+    if result.get("status") != "ok":
+        raise ValueError("resultado não validado; rastreio não pode ser materializado")
+    demand_id = result.get("demand_id")
+    manifest_sha256 = result.get("manifest_sha256")
+    if not demand_id or not manifest_sha256:
+        raise ValueError("demand_id e manifest_sha256 são obrigatórios para rastreio")
+    coordination = result.get("coordination", {})
+    origin = coordination.get("parameters", {}).get("origin", {})
+    destination = coordination.get("parameters", {}).get("destination", {})
+    if origin.get("status") != "resolved":
+        raise ValueError("origem não determinada; execução bloqueada")
+    if destination.get("status") != "resolved":
+        raise ValueError("destino não determinado; execução bloqueada")
+    source_commit = current_commit()
+    if not source_commit:
+        raise ValueError("commit de origem indisponível; execução bloqueada")
+    trace_id = "TRACE-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid.uuid4().hex[:12]
     items = []
     for item in result.get("execution_plan", []):
         if not item.get("identity_verified", True):
@@ -36,15 +64,47 @@ def build(result: dict) -> dict:
             "mode": item["mode"],
             "content": visible_text(raw),
         })
+    trace = {
+        "trace_id": trace_id,
+        "demand_id": demand_id,
+        "manifest_sha256": manifest_sha256,
+        "source_commit": source_commit,
+        "state": "identity_verified",
+        "operation": "coordinated_promptaria_execution",
+        "origin": origin,
+        "participants": [
+            {
+                "instrument_id": item.get("instrument_id"),
+                "instrument_title": item["title"],
+                "instrument_path": item["canonical_path"],
+                "content_sha256": item["content_sha256"],
+                "identity_verified": item["identity_verified"],
+            }
+            for item in items
+        ],
+        "artifacts": [],
+        "destination": destination,
+        "references": result.get("coordination", {}).get("references", []),
+        "validation": {
+            "status": "pending_final_validation",
+            "fail_closed": True,
+            "identity_verified": all(item["identity_verified"] for item in items),
+        },
+        "result": {
+            "status": "ready",
+            "materialized": False,
+        },
+    }
     return {
-        "schema_version": "2.0",
+        "schema_version": "3.0",
         "source_status": result.get("status"),
         "matched_occurrences": result.get("matched_occurrences", 0),
         "instruments": items,
         "coordination": result.get("coordination", {}),
-        "traceability": result.get("coordination", {}).get("traceability", {}),
-        "origin": result.get("coordination", {}).get("parameters", {}).get("origin", {}),
-        "destination": result.get("coordination", {}).get("parameters", {}).get("destination", {}),
+        "traceability": trace,
+        "trace": trace,
+        "origin": origin,
+        "destination": destination,
         "sequence": result.get("coordination", {}).get("sequence", []),
     }
 
@@ -55,8 +115,6 @@ def main() -> int:
     parser.add_argument("--output", default="correfencia-execution-bundle.json")
     args = parser.parse_args()
     result = json.loads(Path(args.input).read_text(encoding="utf-8"))
-    if result.get("status") != "ok":
-        raise SystemExit("Resultado de correferência inválido; pacote não gerado.")
     bundle = build(result)
     Path(args.output).write_text(
         json.dumps(bundle, ensure_ascii=False, indent=2),
