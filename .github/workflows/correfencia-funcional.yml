@@ -12,6 +12,7 @@ on:
   pull_request:
     paths:
       - ".github/scripts/validate_promptaria_corref.py"
+      - ".github/scripts/build_correfencia_execution_bundle.py"
       - ".github/workflows/correfencia-funcional.yml"
       - "tests/test_correfencia_funcional.py"
       - "Promptária/**"
@@ -68,11 +69,18 @@ jobs:
           python3 .github/scripts/validate_promptaria_corref.py \
             --prompt-file promptaria-request.txt \
             --output correfencia-result.json
+      - name: Recuperar instrumentos acionados
+        run: |
+          python3 .github/scripts/build_correfencia_execution_bundle.py \
+            --input correfencia-result.json \
+            --output correfencia-execution-bundle.json
       - name: Publicar resultado
         uses: actions/upload-artifact@v4
         with:
           name: correfencia-funcional
-          path: correfencia-result.json
+          path: |
+            correfencia-result.json
+            correfencia-execution-bundle.json
 
   validar-navegacao:
     runs-on: ubuntu-latest
