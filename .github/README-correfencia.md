@@ -70,3 +70,16 @@ O JSON conserva, por ocorrência:
 - plano de execução cumulativo.
 
 Todas as correspondências permanecem representadas; não há redução automática para um único instrumento.
+
+
+## Complementação arquitetural interconectada
+
+A correferência agora possui uma camada complementar de coordenação que **não substitui nenhum elemento estrutural existente**. Ela adiciona ao resultado o bloco `coordination`, preservando `schema_version`, `rule`, `matches`, `active_instruments`, `exceptions` e `execution_plan`.
+
+A especificação completa está em [`.github/README-correfencia-arquitetura.md`](README-correfencia-arquitetura.md).
+
+Essa camada conecta título e requisição personalizada, recuperação efetiva pelo GitHub, instrumento coordenador, instrumento fixo previsto, coleção aberta de instrumentos adicionais, interpretação conjunta, contextualização, parametrização, adaptação, aplicação conjunta, origem, destino, operação multidiretório, regra especial para Nocturna, resultados intermediários, rastreabilidade e validação final.
+
+A quantidade de instrumentos adicionais é deliberadamente **não limitada**. Cada título adicional reconhecido é uma unidade independente; repetições são ocorrências da mesma unidade. Nenhuma identidade adicional é presumida somente pelo título: a identidade operacional depende do conteúdo recuperado.
+
+A nova camada também não transforma `active` ou `execution_plan` em prova de execução externa. Eles representam identificação/planejamento e recuperação. A aplicação efetiva continua pertencendo ao runtime que consome o pacote.
