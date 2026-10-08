@@ -109,6 +109,7 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertEqual(c["parameters"]["origin"]["value"], "Promptária/entrada")
         self.assertEqual(c["parameters"]["destination"]["status"], "resolved")
         self.assertTrue(c["traceability"]["required"])
+        self.assertTrue(c["activation"]["coordinator_title_present"])
 
     def test_fixed_and_coordinator_are_explicit_participants_even_when_missing(self):
         r = self.validate("Instrumento Alfa para a demanda.")
@@ -118,6 +119,7 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertIn("fixed_github_instrument", roles)
         fixed = next(p for p in participants if p["role"] == "fixed_github_instrument")
         self.assertEqual(fixed["status"], "catalog_missing")
+        self.assertFalse(next(p for p in participants if p["role"] == "coordinator")["activated_by_current_prompt"])
 
     def test_nocturna_requires_explicit_destination_and_is_not_default(self):
         normal = self.validate("Instrumento Alfa para executar a demanda.")
