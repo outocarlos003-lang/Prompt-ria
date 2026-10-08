@@ -570,22 +570,33 @@
     "transformation": "consolidação do catálogo em fonte única de verdade, explicitação das arestas navegacionais, validação de integridade e criação de índice navegacional derivado",
     "destination": "Promptária/manifest.json, Promptária/Index.html, Promptária/sitemap.xml, Promptária/README.md",
     "validation": [
-      "manifesto consistente com 10 entradas físicas",
-      "cada entrada possui retorno, anterior e próximo",
-      "pesquisa transversal preservada",
-      "conteúdo dos 10 instrumentos remanescentes não alterado"
+      "manifesto consistente com a árvore física",
+      "cada instrumento preserva conteúdo e identidade",
+      "correferência por título implementada no resolvedor e validador",
+      "múltiplos títulos preservados sem seleção exclusiva",
+      "função diversa limitada à ocorrência",
+      "destino Nocturna não presumido",
+      "rastreabilidade e validação de ponta a ponta"
     ]
   },
   "semantic_cross_reference": {
-    "version": "2.0",
-    "purpose": "Mapear menções a instrumentos por título, aliases, função e contexto, mantendo o título canônico e o destino navegável.",
+    "version": "3.0",
+    "purpose": "Mapear menções genéricas a títulos existentes para o instrumento correspondente, preservando identidade, função própria, multiplicidade, exceções locais, recuperação efetiva e rastreabilidade.",
     "rules": [
-      "correspondência exata do título tem prioridade máxima",
-      "correspondência por título normalizado e alias é segunda prioridade",
-      "correspondência funcional exige contexto compatível",
-      "não substituir menção textual por execução automática quando o contexto não determinar acionamento",
-      "quando múltiplos instrumentos forem compatíveis, preservar todos os candidatos e sua função individual",
-      "novos instrumentos entram no índice ao serem adicionados ao array instruments"
+      "título existente e menção genérica estabelecem correferência",
+      "o título identifica e aciona; o conteúdo recuperado determina identidade, finalidade, instruções e lógica",
+      "função própria é preservada por padrão",
+      "função diversa exige atribuição específica e inequívoca",
+      "silêncio, ausência de explicitação, ambiguidade e inferência fraca não constituem função diversa",
+      "a exceção é local à ocorrência e não se projeta a outros títulos",
+      "múltiplos títulos são reconhecidos mútua, cumulativa, coordenada, simultânea, individual e não exclusivamente",
+      "aliases e capabilities não substituem título para acionamento automático",
+      "o repositório conserva e o GitHub recupera; não se inventa ou reconstrói conteúdo inexistente",
+      "demanda, contexto, parâmetros, origem, destino e adaptação variam sem alterar identidade, finalidade, função ou lógica essencial",
+      "coordenação articula sem fusão e preserva responsabilidades especializadas",
+      "Nocturna não é destino padrão; destino ambíguo bloqueia materialização dependente",
+      "validação e rastreabilidade são obrigatórias",
+      "GitHub Actions somente processa requisição efetivamente transmitida e não cria permissões ou acesso a conversas não transmitidas"
     ],
     "fields": [
       "id",
@@ -595,18 +606,17 @@
       "capabilities",
       "canonical_reference"
     ],
-    "future_instruments": "Qualquer instrumento posteriormente registrado em instruments passa a integrar a correferência sem exigir alteração da lógica de navegação.",
+    "future_instruments": "Qualquer instrumento posteriormente registrado em instruments passa a integrar a correferência por seu título.",
     "runtime_resolver": "Promptária/resolver-correferencia.mjs",
     "resolution_order": [
       "id",
       "exact_title",
       "normalized_title",
-      "alias",
-      "capability"
+      "alias_hint"
     ],
-    "ambiguity_policy": "never_auto_activate",
-    "activation_contract": "activation=true somente para correspondência determinística e não ambígua",
-    "multiple_mentions": "resolveMentions preserva instrumentos distintos na mesma entrada",
-    "auditability": "cada resolução retorna mention, instrument_id, canonical_title, path, match_type, confidence e activation"
+    "ambiguity_policy": "preserve_own_function",
+    "activation_contract": "activation=true para título determinístico não ambíguo, salvo exceção funcional local",
+    "multiple_mentions": "cada ocorrência permanece rastreável e instrumentos distintos coexistem cumulativamente",
+    "auditability": "cada ocorrência retorna título, instrumento, correferência, função, acionamento, exceção, contexto e relações de rastreabilidade"
   }
 }

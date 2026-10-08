@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Recupera o conteúdo dos instrumentos acionados e produz um pacote de execução."""
+"""Recupera conteúdo efetivo e produz pacote rastreável de execução."""
 from __future__ import annotations
 
 import argparse
@@ -20,24 +20,41 @@ def build(result: dict) -> dict:
     items = []
     for item in result.get("execution_plan", []):
         path = Path(item["instrument"])
+        if not path.is_file():
+            raise FileNotFoundError(f"instrumento não recuperável: {path}")
         raw = path.read_text(encoding="utf-8", errors="replace")
         items.append({
             "title": item["title"],
+            "instrument_id": item.get("instrument_id"),
             "instrument": item["instrument"],
             "occurrences": item["occurrences"],
             "mode": item["mode"],
+            "recovery": item.get("recovery", "github"),
+            "identity_preserved": item.get("identity_preserved", True),
+            "content_effective": item.get("content_effective", True),
             "content": visible_text(raw),
         })
+
+    coordination = result.get("coordination", {})
     return {
-        "schema_version": "1.1",
+        "schema_version": "2.0",
         "source_status": result.get("status"),
+        "architecture_policy": result.get("architecture_policy", {}),
+        "activation_rule": result.get("activation_rule", {}),
+        "rule": result.get("rule", {}),
         "matched_occurrences": result.get("matched_occurrences", 0),
         "instruments": items,
-        "coordination": result.get("coordination", {}),
-        "traceability": result.get("coordination", {}).get("traceability", {}),
-        "origin": result.get("coordination", {}).get("parameters", {}).get("origin", {}),
-        "destination": result.get("coordination", {}).get("parameters", {}).get("destination", {}),
-        "sequence": result.get("coordination", {}).get("sequence", []),
+        "matches": result.get("matches", []),
+        "exceptions": result.get("exceptions", []),
+        "coordination": coordination,
+        "traceability": coordination.get("traceability", {}),
+        "origin": coordination.get("parameters", {}).get("origin", {}),
+        "destination": coordination.get("parameters", {}).get("destination", {}),
+        "parameters": coordination.get("parameters", {}),
+        "adaptation": coordination.get("adaptation", {}),
+        "sequence": coordination.get("sequences", {}),
+        "validation": coordination.get("validation", {}),
+        "github_limits": coordination.get("github_limits", {}),
     }
 
 
@@ -47,17 +64,18 @@ def main() -> int:
     parser.add_argument("--output", default="correfencia-execution-bundle.json")
     args = parser.parse_args()
     result = json.loads(Path(args.input).read_text(encoding="utf-8"))
+
     if result.get("status") != "ok":
         raise SystemExit("Resultado de correferência inválido; pacote não gerado.")
+
     bundle = build(result)
-    Path(args.output).write_text(
-        json.dumps(bundle, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
+    Path(args.output).write_text(json.dumps(bundle, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({
         "status": "ok",
         "instruments": len(bundle["instruments"]),
         "matched_occurrences": bundle["matched_occurrences"],
+        "exceptions": len(bundle["exceptions"]),
+        "traceability_occurrences": len(bundle["traceability"].get("occurrences", [])),
     }, ensure_ascii=False))
     return 0
 
