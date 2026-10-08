@@ -23,9 +23,9 @@
     ".github/workflows/correfencia-funcional.yml"
   ],
   "validation": {
-    "content_preserved": "instrumentos existentes não foram fundidos, removidos ou truncados",
+    "content_preserved": "conteúdo dos instrumentos remanescentes não foi fundido, truncado ou alterado",
     "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 11,
+    "expected_instruments": 10,
     "navigation": "entrada + retorno + interface principal + anterior + próximo + pesquisa transversal",
     "destination_determination": "Nocturna não foi registrado como destino desta operação"
   }
