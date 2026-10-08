@@ -38,3 +38,24 @@ A validação deve verificar simultaneamente:
 10. funcionamento de ponta a ponta.
 
 Consulte Promptária/rastreabilidade-producao.json para o registro da transformação.
+
+
+## Garantia operacional
+
+A Promptária não depende apenas de convenções humanas para manter sua rede íntegra.
+
+- `manifest.json` define a identidade canônica dos instrumentos.
+- Título, aliases e capacidades sustentam a correferência semântica.
+- `navegacao-neural.js` materializa a rede no navegador.
+- `verificador-integridade.mjs` verifica catálogo, arquivos, arestas, reciprocidade, sitemap, camada navegacional e rastreabilidade.
+- O workflow `.github/workflows/promptaria-integrity.yml` executa essa verificação em alterações da `main` e em pull requests.
+- A validação é *fail-closed*: uma inconsistência estrutural produz falha, em vez de ser silenciosamente aceita.
+- Instrumentos futuros devem ser registrados no catálogo; a arquitetura de navegação e correferência os incorpora a partir dessa fonte única.
+
+### Regra de evolução
+
+Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
+
+**ID → título canônico → aliases → capacidades → caminho → entrada → anterior → próximo → conteúdo → sitemap → referências → validação.**
+
+O objetivo é reduzir a possibilidade de um instrumento existir fisicamente sem existir funcionalmente, ou ser mencionado funcionalmente sem possuir uma referência navegável e rastreável.
