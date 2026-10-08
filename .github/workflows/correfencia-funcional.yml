@@ -70,6 +70,23 @@ jobs:
           python3 .github/scripts/validate_promptaria_corref.py \
             --prompt-file promptaria-request.txt \
             --output correfencia-result.json
+      - name: Verificar arquitetura complementar
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("correfencia-result.json").read_text(encoding="utf-8"))
+          c = result.get("coordination")
+          assert isinstance(c, dict), "Bloco coordination ausente"
+          assert c["cardinality"]["additional_is_unbounded"] is True
+          assert c["cardinality"]["maximum_additional"] is None
+          assert c["coordination"]["is_fusion"] is False
+          assert c["multidirectory"]["enabled"] is True
+          assert c["multidirectory"]["nocturna_is_not_default"] is True
+          assert c["traceability"]["required"] is True
+          assert c["validation"]["all_additional_titles_represented"] is True
+          print("OK: arquitetura complementar íntegra.")
+          PY
       - name: Recuperar instrumentos acionados
         run: |
           python3 .github/scripts/build_correfencia_execution_bundle.py \
