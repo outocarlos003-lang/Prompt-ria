@@ -169,7 +169,8 @@ def explicit_value(patterns: tuple[re.Pattern[str], ...], prompt: str) -> str | 
 def resolve_destination(prompt: str) -> dict:
     """Resolve destino conservadoramente; não autoriza escrita por associação temática."""
     explicit = explicit_value(DESTINATION_PATTERNS, prompt)
-    normalized_prompt = norm(prompt)\n    nocturna = bool(re.search(r"\b(?:destino|destine|destinar|gravar|escrever|materializar|salvar)\b.{0,80}\bnocturna\b|\b(?:em|no|na|para)\s+nocturna\b", normalized_prompt, re.I)) and not bool(re.search(r"\b(?:nao|não)\b.{0,30}\b(?:use|usar|destino|destinar|grave|gravar|escreva|escrever|materializar|salvar)\b.{0,40}\bnocturna\b", normalized_prompt, re.I))
+    normalized_prompt = norm(prompt)
+    nocturna = bool(re.search(r"\b(?:destino|destine|destinar|gravar|escrever|materializar|salvar)\b.{0,80}\bnocturna\b|\b(?:em|no|na|para)\s+nocturna\b", normalized_prompt, re.I)) and not bool(re.search(r"\b(?:nao|não)\b.{0,30}\b(?:use|usar|destino|destinar|grave|gravar|escreva|escrever|materializar|salvar)\b.{0,40}\bnocturna\b", normalized_prompt, re.I))
     if explicit:
         value = explicit
         if "nocturna" in norm(value):
