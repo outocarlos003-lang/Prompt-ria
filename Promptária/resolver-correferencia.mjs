@@ -179,7 +179,7 @@ export function verifyInstrumentIdentity(instrument, content) {
     return { verified: false, status: MATCH_TYPES.INVALID_IDENTITY, reason: "canonical_identity_incomplete" };
   }
   const html = String(content ?? "");
-  const match = html.match(/<title>\\s*(.*?)\\s*<\\/title>/is);
+  const match = html.match(/<title>[ \t\r\n]*(.*?)[ \t\r\n]*<\/title>/is);
   const physicalTitle = match ? match[1].replace(/&amp;/g, "&").trim() : null;
   const verified = Boolean(physicalTitle && normalize(physicalTitle) === normalize(instrument.title));
   return {
