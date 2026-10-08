@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.0",
+  "schema_version": "2.1",
   "operation": "integração da navegação neural, rastreabilidade de produção e integridade sistêmica",
   "demand": "Preservar integralmente o conteúdo existente e estabelecer uma única arquitetura operacional de navegação, pesquisa, conexão, origem, transformação, destino, referência, validação e resultado.",
   "source": {
@@ -32,7 +32,10 @@
     "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
     "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
     "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
-    "orphan_policy": "não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação"
+    "orphan_policy": "não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação",
+    "automated_integrity": "Promptária/verificador-integridade.mjs executado pelo workflow .github/workflows/promptaria-integrity.yml em push para main e pull requests",
+    "semantic_cross_reference": "manifesto mantém identidade canônica por id/título/path; aliases e capabilities sustentam correferência por título e função; novos instrumentos registrados em instruments entram automaticamente no catálogo navegacional",
+    "fail_closed": "falhas estruturais interrompem a validação em vez de serem aceitas silenciosamente"
   },
   "production_chain": [
     "demanda",
