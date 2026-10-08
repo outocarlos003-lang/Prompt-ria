@@ -690,6 +690,20 @@
       if (items.length) return items;
     }
 
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const pre = doc.querySelector("pre");
+    if (pre) {
+      const title = titleFromHtml(html, path);
+      const text = pre.textContent.trim();
+      return [{
+        sourcePath: path,
+        anchor: "",
+        title,
+        text,
+        html
+      }];
+    }
+
     return [{
       sourcePath: path,
       anchor: "",
