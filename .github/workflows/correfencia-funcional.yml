@@ -76,28 +76,55 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Validar rede navegacional da Promptária
+      - name: Validar rede navegacional e fonte única de verdade
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import json
           import re
+
           root = Path("Promptária")
+          manifest_path = root / "manifest.json"
+          sitemap_path = root / "sitemap.xml"
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
           entries = sorted(p for p in root.glob("*/Index.html"))
-          assert len(entries) == 11, f"Esperados 11 instrumentos, encontrados {len(entries)}"
-          index = root / "Index.html"
-          main = index.read_text(encoding="utf-8")
-          for entry in entries:
-              rel = entry.relative_to(root).as_posix()
-              assert rel in main, f"Instrumento não indexado: {rel}"
+
+          assert manifest.get("schema_version") == "2.0", "Manifesto fora do schema 2.0"
+          assert len(entries) == len(manifest["instruments"]) == 11, (
+              f"Catálogo inconsistente: físicos={len(entries)} manifesto={len(manifest['instruments'])}"
+          )
+          physical = {p.as_posix() for p in entries}
+          declared = {x["path"] for x in manifest["instruments"]}
+          assert physical == declared, "Manifesto e árvore física divergem"
+
+          main = (root / "Index.html").read_text(encoding="utf-8")
+          assert 'id="search-form"' in main, "Núcleo sem pesquisa"
+          assert "manifest.json" in main, "Núcleo não deriva do manifesto"
+
+          for item in manifest["instruments"]:
+              entry = Path(item["path"])
+              assert entry.is_file(), f"Entrada inexistente: {entry}"
               html = entry.read_text(encoding="utf-8")
               assert 'id="promptaria-network-style"' in html, f"Sem camada navegacional: {entry}"
+              assert 'id="promptaria-search-form"' in html, f"Sem pesquisa transversal: {entry}"
               assert 'href="../Index.html"' in html, f"Sem retorno ao núcleo: {entry}"
               assert 'href="../../index.html"' in html, f"Sem retorno à interface principal: {entry}"
-              assert 'id="promptaria-search-form"' in html, f"Sem pesquisa transversal: {entry}"
+              assert item["next"] in declared, f"Próximo inválido no manifesto: {item['next']}"
+              assert item["previous"] in declared, f"Anterior inválido no manifesto: {item['previous']}"
+
+          edge_types = {edge["type"] for edge in manifest.get("edges", [])}
+          required = {"entry", "return", "main-interface", "next", "previous"}
+          assert required <= edge_types, f"Arestas obrigatórias ausentes: {required - edge_types}"
+
+          sitemap = sitemap_path.read_text(encoding="utf-8")
+          for path in sorted(declared | {"Promptária/Index.html"}):
+              assert f"<loc>{path}</loc>" in sitemap, f"Ausente no sitemap: {path}"
+
           hrefs = re.findall(r'href="([^"]+)"', main)
           for href in hrefs:
               if href.startswith("./"):
                   target = (root / href[2:]).resolve()
                   assert target.is_file(), f"Destino inexistente no índice: {href}"
-          print(f"OK: {len(entries)} instrumentos conectados, indexados e com retorno/pesquisa.")
+
+          print(f"OK: {len(entries)} instrumentos, manifesto, sitemap, pesquisa e retornos íntegros.")
           PY
