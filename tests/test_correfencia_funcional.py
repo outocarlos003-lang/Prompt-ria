@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import tempfile
 import unittest
+import json
 from pathlib import Path
 from importlib.util import module_from_spec, spec_from_file_location
 
@@ -20,6 +21,28 @@ class CorreferenciaRulesTest(unittest.TestCase):
                 f"<html><head><title>{name}</title></head><body><h1>{name}</h1></body></html>",
                 encoding="utf-8",
             )
+        manifest = {
+            "schema_version": "3.0",
+            "instruments": [
+                {
+                    "id": "instrumento-alfa",
+                    "title": "Instrumento Alfa",
+                    "path": "Promptária/Instrumento Alfa/Index.html",
+                    "aliases": ["alfa"],
+                    "capabilities": ["capacidade alfa"],
+                    "canonical_reference": {"id": "instrumento-alfa", "title": "Instrumento Alfa", "path": "Promptária/Instrumento Alfa/Index.html"},
+                },
+                {
+                    "id": "instrumento-beta",
+                    "title": "Instrumento Beta",
+                    "path": "Promptária/Instrumento Beta/Index.html",
+                    "aliases": ["beta"],
+                    "capabilities": ["capacidade beta"],
+                    "canonical_reference": {"id": "instrumento-beta", "title": "Instrumento Beta", "path": "Promptária/Instrumento Beta/Index.html"},
+                },
+            ],
+        }
+        (root / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False), encoding="utf-8")
         self.root = root
 
     def tearDown(self):
@@ -87,10 +110,25 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertEqual(r["matched_occurrences"], 1)
         self.assertTrue(r["matches"][0]["active"])
 
-    def test_manifest_is_not_required_for_unit_catalog(self):
+    def test_manifest_is_required_as_executable_contract(self):
+        (self.root / "manifest.json").unlink()
         r = self.validate("Instrumento Alfa e Instrumento Beta.")
-        self.assertEqual(r["status"], "ok")
-        self.assertFalse(r["validation_errors"])
+        self.assertEqual(r["status"], "blocked_contract")
+        self.assertEqual(r["active_instruments"], [])
+
+    def test_identity_mismatch_blocks_activation(self):
+        path = self.root / "Instrumento Alfa" / "Index.html"
+        path.write_text("<html><head><title>Outro Instrumento</title></head><body></body></html>", encoding="utf-8")
+        r = self.validate("Instrumento Alfa.")
+        self.assertEqual(r["matched_occurrences"], 1)
+        self.assertFalse(r["matches"][0]["identity_verified"])
+        self.assertFalse(r["matches"][0]["active"])
+        self.assertEqual(r["matches"][0]["activation_status"], "blocked_identity")
+
+    def test_capability_is_discovery_only_and_never_activates(self):
+        r = self.validate("capacidade alfa.")
+        self.assertEqual(r["matched_occurrences"], 0)
+        self.assertEqual(r["active_instruments"], [])
 
     def test_coordination_preserves_roles_and_open_cardinality(self):
         r = self.validate(
