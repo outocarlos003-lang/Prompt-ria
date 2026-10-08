@@ -382,12 +382,6 @@
       transition: .18s ease;
     }
 
-    .actions button:first-child {
-      color: #031017;
-      border-color: transparent;
-      background: var(--cyan);
-    }
-
     .actions button:hover:not(:disabled) {
       transform: translateY(-1px);
       border-color: rgba(77,231,255,.5);
@@ -682,7 +676,6 @@
         <div class="actions">
           <button data-action="view">Visualizar</button>
           <button data-action="copy">Copiar prompt</button>
-          <button data-action="github">GitHub ↗</button>
         </div>`;
 
       card.querySelector(".path").textContent = prettyPath(item.sourcePath, item.anchor);
@@ -708,12 +701,6 @@
         } finally {
           button.disabled = false;
         }
-      });
-
-      card.querySelector('[data-action="github"]').addEventListener("click", () => {
-        const fileUrl = "https://github.com/" + OWNER + "/" + REPO + "/blob/" + BRANCH + "/" +
-          item.sourcePath.split("/").map(encodeURIComponent).join("/");
-        window.open(item.anchor ? fileUrl + "#" + encodeURIComponent(item.anchor) : fileUrl, "_blank", "noopener");
       });
 
       grid.appendChild(card);
