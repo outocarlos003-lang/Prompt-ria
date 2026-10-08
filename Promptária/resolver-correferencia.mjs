@@ -138,6 +138,7 @@ export function resolveMentions(text, instruments, index = buildReferenceIndex(i
 
   return [...deduped.values()]
     .sort((a, b) => a.start - b.start || b.confidence - a.confidence)
+    .filter(item => item.activation !== false)
     .filter((item, i, all) => i === 0 || item.start >= all[i - 1].end || item.instrument_id !== all[i - 1].instrument_id);
 }
 
