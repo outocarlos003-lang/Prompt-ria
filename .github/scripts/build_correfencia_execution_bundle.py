@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -19,17 +20,24 @@ def visible_text(raw: str) -> str:
 def build(result: dict) -> dict:
     items = []
     for item in result.get("execution_plan", []):
+        if not item.get("identity_verified", True):
+            raise ValueError(f"identidade não verificada: {item.get('title')}")
         path = Path(item["instrument"])
         raw = path.read_text(encoding="utf-8", errors="replace")
+        content_sha256 = hashlib.sha256(raw.encode("utf-8")).hexdigest()
         items.append({
+            "instrument_id": item.get("instrument_id"),
             "title": item["title"],
             "instrument": item["instrument"],
+            "canonical_path": item.get("canonical_path"),
+            "identity_verified": True,
+            "content_sha256": content_sha256,
             "occurrences": item["occurrences"],
             "mode": item["mode"],
             "content": visible_text(raw),
         })
     return {
-        "schema_version": "1.1",
+        "schema_version": "2.0",
         "source_status": result.get("status"),
         "matched_occurrences": result.get("matched_occurrences", 0),
         "instruments": items,
