@@ -156,6 +156,13 @@
     const doc = new DOMParser().parseFromString(html, "text/html");
     const h1 = doc.querySelector("h1");
     if (h1 && h1.textContent.trim()) return h1.textContent.trim();
+
+    // Prefer the document title before falling back to the filename.
+    // This keeps Index.html as the physical entry point without exposing
+    // "Index" as the instrument title when an explicit title exists.
+    const title = doc.querySelector("title");
+    if (title && title.textContent.trim()) return title.textContent.trim();
+
     return path.split("/").pop().replace(/\.html?$/i, "").replace(/[-_]+/g, " ");
   }
 
