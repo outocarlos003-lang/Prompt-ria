@@ -41,12 +41,12 @@ ARCHITECTURE_SECTIONS = [
 ]
 
 DIVERSE_PATTERNS = (
-    r"\b(?:outra|diversa|diferente)\s+(?:função|finalidade|papel)\b",
-    r"\b(?:função|finalidade|papel)\s+(?:diverso|diversa|diferente|substituto|substituta)\b",
-    r"\b(?:substitu[ai]|substituir|substituição)\b.{0,180}\b(?:função|finalidade|papel)\b",
-    r"\b(?:não|nao)\s+(?:use|utilize|empregue|aplique|acione|preserve)\b.{0,180}\b(?:função|finalidade|papel)\s+(?:própri[ao]|original)\b",
-    r"\b(?:exclua|excluir|impeça|impedir|não permita|nao permita)\b.{0,180}\b(?:função|finalidade|papel)\b.{0,120}\b(?:original|própri[ao]|anterior)\b",
-    r"\b(?:use|utilize|empregue|trate|considere|faça|faca)\b.{0,100}\bcomo\b.{0,100}\b(?:outra|diversa|diferente)\b",
+    r"\b(?:outra|diversa|diferente)\s+(?:funcao|finalidade|papel)\b",
+    r"\b(?:funcao|finalidade|papel)\s+(?:diverso|diversa|diferente|substituto|substituta)\b",
+    r"\b(?:substitua|substituir|substituicao)\b.{0,180}\b(?:funcao|finalidade|papel)\b",
+    r"\b(?:nao)\s+(?:use|utilize|empregue|aplique|acione|preserve)\b.{0,180}\b(?:funcao|finalidade|papel)\s+(?:propria|original)\b",
+    r"\b(?:exclua|excluir|impeca|impedir|nao permita)\b.{0,180}\b(?:funcao|finalidade|papel)\b.{0,120}\b(?:original|propria|anterior)\b",
+    r"\b(?:use|utilize|empregue|trate|considere|faca)\b.{0,100}\bcomo\b.{0,100}\b(?:outra|diversa|diferente)\b",
 )
 
 FIXED_COORDINATOR_TITLE = "Acionamento Coordenado de Instrumentos Promptuais"
