@@ -4,11 +4,12 @@
   "demand": "Preservar integralmente o conteúdo existente e estabelecer uma única arquitetura operacional de navegação, pesquisa, conexão, origem, transformação, destino, referência, validação e resultado.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
-    "branch": "feat/unificar-resolucao-fail-closed",
+    "branch": "default",
     "root": "Promptária",
     "preserved": true,
     "existing_instruments": 10,
-    "contract": "Promptária/manifest.json"
+    "contract": "Promptária/manifest.json",
+    "commit": "runtime_head"
   },
   "transformation": [
     "preservação dos 10 instrumentos existentes",
