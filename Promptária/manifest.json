@@ -14,7 +14,6 @@
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
         "acionamento coordenado de instrumentos promptuais",
-        "acionamento coordenado de instrumentos promptuais",
         "acionamento coordenado",
         "coordenação",
         "orquestração",
@@ -44,7 +43,6 @@
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
-        "adaptação e execução extensiva dos instrumentos promptuais",
         "adaptação e execução extensiva dos instrumentos promptuais",
         "adaptação extensiva",
         "execução extensiva",
@@ -76,7 +74,6 @@
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
         "arquitetura unificada de acionamento, correferência, recuperação e aplicação de instrumentos promptuais",
-        "arquitetura unificada de acionamento, correferência, recuperação e aplicação de instrumentos promptuais",
         "arquitetura unificada",
         "acionamento",
         "correferência",
@@ -107,7 +104,6 @@
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
         "arquitetura de acionamento, recuperação e aplicação de instrumentos promptuais",
-        "arquitetura de acionamento, recuperação e aplicação de instrumentos promptuais",
         "acionamento",
         "recuperação",
         "aplicação",
@@ -137,7 +133,6 @@
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
-        "da correferência funcional automática dos instrumentos promptuais: menção genérica identifica o instrumento, preserva sua função própria e aciona sua execução, salvo atribuição específica e inequívoca de função diversa, com reconhecimento mútuo, cumulativo, coordenado e simultâneo de múltiplos títulos",
         "da correferência funcional automática dos instrumentos promptuais menção genérica identifica o instrumento, preserva sua função própria e aciona sua execução, salvo atribuição específica e inequívoca de função diversa, com reconhecimento mútuo, cumulativo, coordenado e simultâneo de múltiplos títulos",
         "correferência funcional automática",
         "menção genérica",
@@ -169,7 +164,6 @@
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
         "inserção de coleção no site via sistema editorial",
-        "inserção de coleção no site via sistema editorial",
         "inserção de coleção",
         "sistema editorial",
         "coleção",
@@ -198,7 +192,6 @@
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
         "inserção de prompts na promptária via github",
-        "inserção de prompts na promptária via github",
         "inserção de prompts",
         "GitHub",
         "adicionar prompt",
@@ -226,7 +219,6 @@
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
-        "✦ organização inteligente de zip no diretório do github ✦",
         "organização inteligente de zip no diretório do github",
         "organização de ZIP",
         "ZIP",
@@ -255,7 +247,6 @@
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
-        "prompt-matriz — adaptação extensiva multidiretório",
         "prompt-matriz adaptação extensiva multidiretório",
         "prompt-matriz",
         "adaptação multidiretório",
@@ -284,7 +275,6 @@
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
-        "tudo se conecta, tudo se rastreia e tudo se integra, para que nenhum conteúdo se perca, nenhuma relação se rompa, nenhuma origem se apague, nenhum caminho se interrompa e nenhum resultado fique sem destino, sem referência, sem validação ou sem vínculo com aquilo que o originou",
         "tudo se conecta, tudo se rastreia e tudo se integra, para que nenhum conteúdo se perca, nenhuma relação se rompa, nenhuma origem se apague, nenhum caminho se interrompa e nenhum resultado fique sem destino, sem referência, sem validação ou sem vínculo com aquilo que o originou",
         "rastreio GitHub",
         "rastreabilidade",
@@ -587,7 +577,7 @@
     ]
   },
   "semantic_cross_reference": {
-    "version": "1.0",
+    "version": "2.0",
     "purpose": "Mapear menções a instrumentos por título, aliases, função e contexto, mantendo o título canônico e o destino navegável.",
     "rules": [
       "correspondência exata do título tem prioridade máxima",
@@ -605,6 +595,18 @@
       "capabilities",
       "canonical_reference"
     ],
-    "future_instruments": "Qualquer instrumento posteriormente registrado em instruments passa a integrar a correferência sem exigir alteração da lógica de navegação."
+    "future_instruments": "Qualquer instrumento posteriormente registrado em instruments passa a integrar a correferência sem exigir alteração da lógica de navegação.",
+    "runtime_resolver": "Promptária/resolver-correferencia.mjs",
+    "resolution_order": [
+      "id",
+      "exact_title",
+      "normalized_title",
+      "alias",
+      "capability"
+    ],
+    "ambiguity_policy": "never_auto_activate",
+    "activation_contract": "activation=true somente para correspondência determinística e não ambígua",
+    "multiple_mentions": "resolveMentions preserva instrumentos distintos na mesma entrada",
+    "auditability": "cada resolução retorna mention, instrument_id, canonical_title, path, match_type, confidence e activation"
   }
 }
