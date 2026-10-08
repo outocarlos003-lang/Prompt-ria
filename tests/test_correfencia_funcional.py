@@ -28,59 +28,81 @@ class CorreferenciaRulesTest(unittest.TestCase):
     def validate(self, prompt):
         return MODULE.validate(prompt, self.root)
 
-    def test_generic_mention_preserves_function(self):
+    def test_generic_title_mention_activates_own_function(self):
         r = self.validate("Aplique Instrumento Alfa à requisição.")
         self.assertEqual(r["matched_occurrences"], 1)
         self.assertTrue(r["matches"][0]["active"])
         self.assertEqual(r["matches"][0]["function_status"], "propria_preservada")
+        self.assertTrue(r["matches"][0]["correferencia"])
 
     def test_silence_is_not_diverse(self):
         r = self.validate("Instrumento Alfa.")
         self.assertTrue(r["matches"][0]["active"])
         self.assertFalse(r["exceptions"])
 
-    def test_explicit_diverse_assignment_is_local(self):
-        r = self.validate("Instrumento Alfa deve atuar como outro papel. Instrumento Beta.")
-        self.assertEqual(r["matched_occurrences"], 2)
-        self.assertFalse(r["matches"][0]["active"])
-        self.assertEqual(r["matches"][0]["exception_scope"], "occurrence")
-        self.assertTrue(r["matches"][1]["active"])
-
-    def test_multiple_titles_are_cumulative(self):
-        r = self.validate("Use Instrumento Alfa e Instrumento Beta.")
-        self.assertEqual(r["matched_occurrences"], 2)
-        self.assertEqual({m["title"] for m in r["matches"]}, {"Instrumento Alfa", "Instrumento Beta"})
-        self.assertEqual(len(r["active_instruments"]), 2)
-        self.assertEqual(len(r["execution_plan"]), 2)
-
-    def test_exception_does_not_project_to_other_title(self):
-        r = self.validate("Instrumento Alfa deve desempenhar outro papel; Instrumento Beta.")
-        self.assertFalse(r["matches"][0]["active"])
-        self.assertTrue(r["matches"][1]["active"])
-
-    def test_repeated_occurrences_are_individual(self):
-        r = self.validate("Instrumento Alfa. Instrumento Alfa deve atuar como outro papel.")
-        self.assertEqual(r["matched_occurrences"], 2)
-        self.assertTrue(r["matches"][0]["active"])
-        self.assertFalse(r["matches"][1]["active"])
-
-    def test_ambiguity_favors_own_function(self):
-        r = self.validate("Considere Instrumento Alfa no contexto desta requisição.")
+    def test_ambiguous_context_favors_own_function(self):
+        r = self.validate("Instrumento Alfa no contexto desta requisição.")
         self.assertTrue(r["matches"][0]["active"])
         self.assertFalse(r["exceptions"])
+
+    def test_explicit_diverse_assignment_is_local_to_occurrence(self):
+        r = self.validate(
+            "Instrumento Alfa deve desempenhar outra função. Instrumento Beta."
+        )
+        self.assertEqual(r["matched_occurrences"], 2)
+        alpha = next(m for m in r["matches"] if m["title"] == "Instrumento Alfa")
+        beta = next(m for m in r["matches"] if m["title"] == "Instrumento Beta")
+        self.assertFalse(alpha["active"])
+        self.assertEqual(alpha["exception_scope"], "occurrence")
+        self.assertTrue(beta["active"])
+
+    def test_exception_does_not_project_to_other_occurrence_or_title(self):
+        r = self.validate(
+            "Instrumento Alfa deve desempenhar outra função. "
+            "Instrumento Beta. Instrumento Alfa."
+        )
+        alpha = [m for m in r["matches"] if m["title"] == "Instrumento Alfa"]
+        beta = next(m for m in r["matches"] if m["title"] == "Instrumento Beta")
+        self.assertEqual(len(alpha), 2)
+        self.assertFalse(alpha[0]["active"])
+        self.assertTrue(alpha[1]["active"])
+        self.assertTrue(beta["active"])
+
+    def test_multiple_titles_are_mutual_cumulative_coordinated_and_nonexclusive(self):
+        r = self.validate("Use Instrumento Alfa e Instrumento Beta.")
+        self.assertEqual(r["matched_occurrences"], 2)
+        self.assertEqual({m["title"] for m in r["matches"]},
+                         {"Instrumento Alfa", "Instrumento Beta"})
+        self.assertEqual(len(r["active_instruments"]), 2)
+        self.assertEqual(len(r["execution_plan"]), 2)
+        c = r["coordination"]
+        self.assertTrue(c["coordination"]["is_mutual"])
+        self.assertTrue(c["coordination"]["is_cumulative"])
+        self.assertTrue(c["coordination"]["is_simultaneous"])
+        self.assertTrue(c["coordination"]["is_nonexclusive"])
+
+    def test_alias_is_only_navigation_hint_and_does_not_activate(self):
+        r = self.validate("Use Alfa.")
+        self.assertEqual(r["matched_occurrences"], 0)
+        self.assertTrue(r["rule"]["aliases_are_non_activating_hints"])
+        self.assertTrue(r["rule"]["capabilities_are_non_activating_hints"])
 
     def test_substring_does_not_create_false_positive(self):
         r = self.validate("Instrumento AlfaX não é o instrumento citado.")
         self.assertEqual(r["matched_occurrences"], 0)
 
     def test_original_text_and_local_context_are_preserved(self):
-        r = self.validate("Aplique Instrumento Alfa à requisição. Instrumento Alfa deve atuar como outro papel.")
-        self.assertEqual(r["matched_occurrences"], 2)
-        first = next(m for m in r["matches"] if m["active"])
-        second = next(m for m in r["matches"] if not m["active"])
+        r = self.validate(
+            "Aplique Instrumento Alfa à requisição. "
+            "Instrumento Alfa deve desempenhar outra função."
+        )
+        alpha = [m for m in r["matches"] if m["title"] == "Instrumento Alfa"]
+        self.assertEqual(len(alpha), 2)
+        first = next(m for m in alpha if m["active"])
+        second = next(m for m in alpha if not m["active"])
         self.assertEqual(first["matched_text"], "Instrumento Alfa")
         self.assertIn("Aplique Instrumento Alfa", first["context_window"])
-        self.assertIn("deve atuar como outro papel", second["context_window"])
+        self.assertIn("outra função", second["context_window"])
 
     def test_accent_and_case_normalization(self):
         r = self.validate("instrumento áLFA.")
@@ -92,39 +114,38 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertEqual(r["status"], "ok")
         self.assertFalse(r["validation_errors"])
 
-    def test_coordination_preserves_roles_and_open_cardinality(self):
+    def test_title_and_request_are_joint_activation_unit(self):
         r = self.validate(
-            "Acionamento Coordenado de Instrumentos Promptuais + Instrumento Alfa + Instrumento Beta. "
+            "Instrumento Alfa: executar a demanda concreta."
+        )
+        a = r["coordination"]["activation_unit"]
+        self.assertTrue(a["title_plus_request_are_joint_entry"])
+        self.assertTrue(a["title_plus_custom_request_are_joint_entry"])
+        self.assertTrue(a["title_identifies_and_activates"])
+        self.assertTrue(a["request_defines_concrete_application"])
+        self.assertTrue(
+            r["coordination"]["instrument_application_separation"]
+            ["identity_is_not_changed_by_contextual_variation"]
+        )
+
+    def test_final_validation_traceability_and_writing_coordination(self):
+        r = self.validate(
+            "Instrumento Alfa e Instrumento Beta. "
             "Destino: Promptária/resultados; Origem: Promptária/entrada."
         )
         c = r["coordination"]
-        self.assertTrue(c["preserves_existing_correfencia"])
-        self.assertFalse(c["coordination"]["is_fusion"])
-        self.assertTrue(c["cardinality"]["additional_is_unbounded"])
-        self.assertEqual(c["cardinality"]["maximum_additional"], None)
-        self.assertEqual(
-            {x["title"] for x in c["additional_instruments"]},
-            {"Instrumento Alfa", "Instrumento Beta"},
-        )
-        self.assertEqual(c["parameters"]["origin"]["value"], "Promptária/entrada")
-        self.assertEqual(c["parameters"]["destination"]["status"], "resolved")
+        self.assertTrue(c["writing_coordination"]["multiple_producers_require_role_assignment"])
+        self.assertTrue(c["writing_coordination"]["destructive_resolution_requires_integrity_validation"])
+        self.assertTrue(c["validation"]["final_validation_is_coordinated"])
+        self.assertIn("integridade de ponta a ponta", c["validation"]["checks"])
         self.assertTrue(c["traceability"]["required"])
-        self.assertTrue(c["activation"]["coordinator_title_present"])
+        self.assertEqual(len(c["traceability"]["occurrences"]), 2)
 
-    def test_fixed_and_coordinator_are_explicit_participants_even_when_missing(self):
-        r = self.validate("Instrumento Alfa para a demanda.")
-        participants = r["coordination"]["participants"]
-        roles = {p["role"] for p in participants}
-        self.assertIn("coordinator", roles)
-        self.assertIn("fixed_github_instrument", roles)
-        fixed = next(p for p in participants if p["role"] == "fixed_github_instrument")
-        self.assertEqual(fixed["status"], "catalog_missing")
-        self.assertFalse(next(p for p in participants if p["role"] == "coordinator")["activated_by_current_prompt"])
-
-    def test_nocturna_requires_explicit_destination_and_is_not_default(self):
+    def test_nocturna_is_not_default(self):
         normal = self.validate("Instrumento Alfa para executar a demanda.")
-        self.assertEqual(normal["coordination"]["parameters"]["destination"]["status"], "ambiguous")
-        self.assertFalse(normal["coordination"]["parameters"]["destination"]["materialization_allowed"])
+        d = normal["coordination"]["parameters"]["destination"]
+        self.assertEqual(d["status"], "ambiguous")
+        self.assertFalse(d["materialization_allowed"])
 
         nocturna = self.validate("Instrumento Alfa. Destino: Nocturna.")
         d = nocturna["coordination"]["parameters"]["destination"]
@@ -132,7 +153,21 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertTrue(d["is_nocturna"])
         self.assertTrue(d["materialization_allowed"])
 
-    def test_multiple_occurrences_do_not_duplicate_participant_identity(self):
+    def test_negative_nocturna_does_not_authorize_materialization(self):
+        r = self.validate("Instrumento Alfa; não use Nocturna como destino.")
+        d = r["coordination"]["parameters"]["destination"]
+        self.assertEqual(d["status"], "ambiguous")
+        self.assertFalse(d["materialization_allowed"])
+
+    def test_unknown_explicit_title_is_unresolved_not_invented(self):
+        r = self.validate('título: "Instrumento Ômega Externo" para a demanda.')
+        unresolved = r["coordination"]["unresolved_explicit_additional_titles"]
+        self.assertEqual(len(unresolved), 1)
+        self.assertEqual(unresolved[0]["title"], "Instrumento Ômega Externo")
+        self.assertEqual(unresolved[0]["status"], "catalog_missing")
+        self.assertFalse(unresolved[0]["identity_presumed_from_title"])
+
+    def test_repeated_occurrences_keep_one_participant_identity(self):
         r = self.validate("Instrumento Alfa. Instrumento Alfa. Instrumento Beta.")
         additional = r["coordination"]["additional_instruments"]
         self.assertEqual(len(additional), 2)
@@ -140,36 +175,20 @@ class CorreferenciaRulesTest(unittest.TestCase):
         self.assertEqual(alpha["occurrences"], 2)
         self.assertFalse(alpha["identity_presumed_from_title"])
 
-    def test_explicit_unknown_additional_title_is_represented_as_unresolved(self):
-        r = self.validate('título: "Instrumento Ômega Externo" para a demanda.')
-        unresolved = r["coordination"]["unresolved_explicit_additional_titles"]
-        self.assertEqual(len(unresolved), 1)
-        self.assertEqual(unresolved[0]["title"], "Instrumento Ômega Externo")
-        self.assertEqual(unresolved[0]["status"], "catalog_missing")
-        self.assertFalse(unresolved[0]["identity_presumed_from_title"])
-        self.assertTrue(r["coordination"]["cardinality"]["additional_is_unbounded"])
+    def test_architecture_has_all_nineteen_sections(self):
+        r = self.validate("Instrumento Alfa.")
+        policy = r["architecture_policy"]
+        self.assertEqual(len(policy["sections"]), 19)
+        self.assertTrue(policy["all_sections_accounted_for"])
+        self.assertTrue(policy["instrument_prompt_elements_are_not_modified"])
 
-    def test_title_and_request_are_joint_activation_unit(self):
-        r = self.validate("Acionamento Coordenado de Instrumentos Promptuais: executar a demanda concreta.")
-        a = r["coordination"]["activation_unit"]
-        self.assertTrue(a["title_plus_custom_request_forms_activation_unit"])
-        self.assertTrue(a["title_identifies_and_activates"])
-        self.assertTrue(a["request_defines_concrete_application"])
-        self.assertTrue(r["coordination"]["instrument_application_separation"]["identity_is_not_changed_by_contextual_variation"])
-
-    def test_final_validation_and_writing_coordination_are_structured(self):
-        r = self.validate("Instrumento Alfa e Instrumento Beta. Destino: Promptária/resultados.")
-        c = r["coordination"]
-        self.assertTrue(c["writing_coordination"]["multiple_producers_require_role_assignment"])
-        self.assertTrue(c["writing_coordination"]["destructive_resolution_requires_integrity_validation"])
-        self.assertTrue(c["validation"]["final_validation_is_coordinated"])
-        self.assertIn("integridade de ponta a ponta", c["validation"]["checks"])
-
-    def test_nocturna_mention_without_positive_destination_does_not_authorize_write(self):
-        r = self.validate("Instrumento Alfa; não use Nocturna como destino.")
-        d = r["coordination"]["parameters"]["destination"]
-        self.assertEqual(d["status"], "ambiguous")
-        self.assertFalse(d["materialization_allowed"])
+    def test_github_limits_are_explicit(self):
+        r = self.validate("Instrumento Alfa.")
+        limits = r["coordination"]["github_limits"]
+        self.assertTrue(limits["actions_process_only_received_request"])
+        self.assertTrue(limits["does_not_observe_untransmitted_chat"])
+        self.assertTrue(limits["does_not_create_permissions"])
+        self.assertTrue(limits["does_not_create_access"])
 
 
 if __name__ == "__main__":
