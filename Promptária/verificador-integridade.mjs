@@ -75,6 +75,12 @@ if(exists(sitemapPath)){
 const trace=JSON.parse(fs.readFileSync(path.join(ROOT,"Promptária","rastreabilidade-producao.json"),"utf8"));
 if(!trace.production_chain?.length) fail("rastreabilidade sem production_chain");
 if(!trace.navigation_invariants?.length) fail("rastreabilidade sem navigation_invariants");
+if(trace.schema_version!=="4.0") fail("rastreabilidade schema_version inesperado");
+const traceRequired=["trace_id","demand_id","manifest_sha256","source_commit","instrument_id","instrument_title","instrument_path","content_sha256","operation","origin","artifacts","destination","references","validation","result"];
+for(const field of trace.execution_trace?.required_fields||[]) if(!traceRequired.includes(field)) fail("campo de trace não reconhecido no contrato: "+field);
+for(const field of traceRequired) if(!(trace.execution_trace?.required_fields||[]).includes(field)) fail("contrato de trace sem campo obrigatório: "+field);
+if(trace.execution_trace?.id_policy!=="unique_per_execution") fail("trace_id não exige unicidade por execução");
+if(trace.production_trace_contract?.demand_to_result!=="one_trace") fail("rastreabilidade demanda→resultado não está vinculada a um trace único");
 
 
 const graphPath=path.join(ROOT,"Promptária","rede-navegacional.json");
