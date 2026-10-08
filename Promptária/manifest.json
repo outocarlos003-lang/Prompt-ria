@@ -362,7 +362,7 @@
   "provenance": {
     "operation": "reorganização sistêmica da Promptária",
     "origin": "conteúdo e estrutura existentes no repositório outocarlos003-lang/Prompt-ria",
-    "instrument": "Rastreio-GitHub + Princípio da Integridade Sistêmica + arquitetura navegacional existente",
+    "instrument": "Rastreio-GitHub + arquitetura navegacional existente",
     "transformation": "consolidação do catálogo em fonte única de verdade, explicitação das arestas navegacionais, validação de integridade e criação de índice navegacional derivado",
     "destination": "Promptária/manifest.json, Promptária/Index.html, Promptária/sitemap.xml, Promptária/README.md",
     "validation": [
