@@ -1,0 +1,49 @@
+name: Correferência funcional dos instrumentos promptuais
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: "Requisição textual a validar contra os títulos da Promptária"
+        required: true
+        type: string
+  repository_dispatch:
+    types: [promptaria-correfencia]
+
+permissions:
+  contents: read
+
+jobs:
+  validar-correfencia:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Preparar requisição
+        env:
+          PROMPT_INPUT: ${{ inputs.prompt }}
+          EVENT_PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+        run: |
+          python - <<'PY'
+          import json, os
+          prompt = os.environ.get("PROMPT_INPUT", "")
+          if not prompt:
+              payload = json.loads(os.environ.get("EVENT_PAYLOAD", "{}") or "{}")
+              prompt = payload.get("prompt", "")
+          if not prompt:
+              raise SystemExit("Nenhuma requisição foi fornecida.")
+          open("promptaria-request.txt", "w", encoding="utf-8").write(prompt)
+          PY
+
+      - name: Validar correferência
+        run: |
+          python3 .github/scripts/validate_promptaria_corref.py \
+            --prompt-file promptaria-request.txt \
+            --output correfencia-result.json
+
+      - name: Publicar resultado
+        uses: actions/upload-artifact@v4
+        with:
+          name: correfencia-funcional
+          path: correfencia-result.json
