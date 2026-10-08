@@ -85,6 +85,11 @@ jobs:
           assert c["multidirectory"]["nocturna_is_not_default"] is True
           assert c["traceability"]["required"] is True
           assert c["validation"]["all_additional_titles_represented"] is True
+          assert c["activation_unit"]["title_plus_request_are_joint_entry"] is True
+          assert c["instrument_application_separation"]["identity_is_not_changed_by_contextual_variation"] is True
+          assert c["destination_resolution"]["weak_thematic_association_is_never_sufficient"] is True
+          assert c["writing_coordination"]["destructive_resolution_requires_integrity_validation"] is True
+          assert c["validation"]["final_validation_is_coordinated"] is True
           print("OK: arquitetura complementar íntegra.")
           PY
       - name: Recuperar instrumentos acionados
