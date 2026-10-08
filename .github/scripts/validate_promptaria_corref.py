@@ -456,7 +456,6 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "composition_preserves_intermediate_results": True,
             "materialization_does_not_change_identity": True,
         },
-        },
         "multidirectory": {
             "enabled": True,
             "origin_and_destination_are_operational_parameters": True,
@@ -465,7 +464,6 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "nocturna_is_not_default": True,
             "explicit_destination_precedes_contextual_inference": True,
             "contextual_inference_requires_inequivocal_context": True,
-            "weak_thematic_association_is_never_sufficient": True,
             "weak_thematic_association_is_never_sufficient": True,
             "ambiguous_destination_blocks_materialization": True,
         },
