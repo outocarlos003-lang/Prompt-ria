@@ -660,7 +660,7 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
         "demand_id": demand_id,
         "manifest_sha256": manifest_sha256,
         "trace_contract": "Promptária/rastreabilidade-producao.json",
-        "trace_required": true,
+        "trace_required": True,
         "status": status,
         "validation_errors": consistency_errors,
         "activation_rule": {
