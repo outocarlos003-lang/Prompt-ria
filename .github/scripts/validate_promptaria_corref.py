@@ -686,8 +686,11 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
         "active_instruments": list(active_by_instrument.values()),
         "execution_plan": [
             {
+                "instrument_id": next((m["instrument_id"] for m in index.get(item["title"], []) if m["active"]), None),
                 "title": item["title"],
                 "instrument": item["instrument"],
+                "canonical_path": next((m["canonical_path"] for m in index.get(item["title"], []) if m["active"]), None),
+                "identity_verified": all(m["identity_verified"] for m in index.get(item["title"], []) if m["active"]),
                 "mode": "preserve_own_function",
                 "occurrences": len(index.get(item["title"], [])),
             }
