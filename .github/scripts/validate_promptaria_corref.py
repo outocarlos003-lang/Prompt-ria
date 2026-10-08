@@ -385,6 +385,7 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
         "participants": participants,
         "activation_unit": {
             "title_plus_custom_request_are_joint_entry": True,
+            "title_plus_request_are_joint_entry": True,
             "title_identifies_and_activates": True,
             "request_defines_concrete_application": True,
             "title_alone_is_not_the_whole_application": True,
@@ -441,6 +442,21 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "conflicts_require_integrity_validation": True,
             "destructive_resolution_is_forbidden_without_validation": True,
         },
+        "destination_resolution": {
+            "explicit_precedes_context": True,
+            "context_precedes_own_function": True,
+            "own_function_precedes_safe_inference": True,
+            "weak_thematic_association_is_never_sufficient": True,
+            "nocturna_is_not_default": True,
+            "ambiguous_destination_blocks_materialization": True,
+        },
+        "writing_coordination": {
+            "multiple_producers_require_role_assignment": True,
+            "destructive_resolution_requires_integrity_validation": True,
+            "composition_preserves_intermediate_results": True,
+            "materialization_does_not_change_identity": True,
+        },
+        },
         "multidirectory": {
             "enabled": True,
             "origin_and_destination_are_operational_parameters": True,
@@ -449,6 +465,7 @@ def build_coordination(prompt: str, catalog: list[dict], matches: list[dict]) ->
             "nocturna_is_not_default": True,
             "explicit_destination_precedes_contextual_inference": True,
             "contextual_inference_requires_inequivocal_context": True,
+            "weak_thematic_association_is_never_sufficient": True,
             "weak_thematic_association_is_never_sufficient": True,
             "ambiguous_destination_blocks_materialization": True,
         },
