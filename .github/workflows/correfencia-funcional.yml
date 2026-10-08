@@ -15,7 +15,7 @@ on:
       - ".github/workflows/correfencia-funcional.yml"
       - "tests/test_correfencia_funcional.py"
   push:
-    branches: [main]
+    branches: ["**"]
     paths:
       - ".github/scripts/validate_promptaria_corref.py"
       - ".github/workflows/correfencia-funcional.yml"
