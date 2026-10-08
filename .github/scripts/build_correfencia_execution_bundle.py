@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import re
 from pathlib import Path
 
 
@@ -16,7 +17,6 @@ def visible_text(raw: str) -> str:
 
 
 def build(result: dict) -> dict:
-    base = Path(".")
     items = []
     for item in result.get("execution_plan", []):
         path = Path(item["instrument"])
@@ -58,5 +58,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    import re
     raise SystemExit(main())
