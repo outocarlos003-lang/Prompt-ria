@@ -1,6 +1,6 @@
 # Validação automática de correferência funcional
 
-Esta área contém **somente a implementação técnica** da correferência. Os instrumentos promptuais armazenados em `Promptária/` não são reescritos por este validador.
+Esta área contém a implementação técnica da correferência. Os instrumentos promptuais armazenados em `Promptária/` não são reescritos pelo validador.
 
 ## Regra implementada
 
@@ -12,47 +12,55 @@ Para cada ocorrência de um título reconhecido:
 4. função diversa somente é reconhecida por atribuição expressa ou contexto local inequivocamente suficiente;
 5. a exceção pertence à ocorrência que a qualifica e não se projeta a outros títulos;
 6. múltiplos títulos permanecem independentes, cumulativos, coordenáveis, simultâneos e não exclusivos;
-7. a validação não modifica o conteúdo dos instrumentos.
+7. a validação não modifica o conteúdo dos instrumentos;
+8. a correspondência usa limites de frase/palavra para evitar casar um título apenas como substring de outro texto;
+9. o trecho casado e o contexto são preservados no texto original; a normalização é usada somente para comparação;
+10. o `manifest.json` é confrontado com a árvore física quando está presente.
 
-A implementação também distingue **título**, **ocorrência**, **instrumento**, **função própria**, **exceção local** e **conjunto cumulativo de correspondências**, evitando transformar várias correferências em uma seleção única.
+## Catálogo e fonte de verdade
 
-## Limite da heurística
+O validador descobre os instrumentos fisicamente e, se existir `Promptária/manifest.json`, verifica que:
 
-A classificação automática não pretende inferir intenção subjetiva. Ela procura marcadores textuais suficientes para caracterizar desvio funcional. Diante de incerteza, preserva a correferência e a função própria.
+- cada caminho físico está declarado;
+- cada título físico coincide com o título declarado;
+- divergências tornam o resultado `catalog_inconsistente`.
 
-O contexto usado para a exceção é local à ocorrência. Isso evita que uma atribuição diversa feita para um título contamine outra ocorrência ou outro instrumento.
+Isso impede que o manifesto diga uma coisa enquanto a validação consulta outra.
 
-## Catálogo
+## Plano de execução
 
-O validador lê apenas metadados dos diretórios imediatos de `Promptária/` que contenham `Index.html`. Essa leitura serve para localizar títulos e caminhos; **nenhum arquivo de instrumento é alterado**.
+O resultado possui `execution_plan`. Ele identifica, para cada instrumento ativo, o arquivo que deve ser recuperado/executado e quantas ocorrências o acionaram.
+
+Importante: **plano de execução não significa que GitHub Actions execute o HTML como um instrumento**. O validador não inventa uma execução que não existe. Para execução real, uma camada externa precisa consumir o `execution_plan`, recuperar o conteúdo do instrumento e aplicar suas instruções.
 
 ## GitHub Actions
 
-O workflow `correfencia-funcional.yml` executa:
+O workflow `.github/workflows/correfencia-funcional.yml` executa:
 
-- **pull request/push:** testes automatizados da função de correferência;
+- **pull request/push:** testes, catálogo, manifesto, sitemap e navegação;
 - **workflow_dispatch:** validação de um `prompt` fornecido manualmente;
 - **repository_dispatch:** validação de `client_payload.prompt` recebido por integração autorizada.
 
+As alterações em `Promptária/**` também disparam o workflow em `push`, evitando que mudanças de títulos/instrumentos escapem da validação.
+
 Exemplo de payload:
 
-```json
-{"prompt":"Instrumento A + Instrumento B: executar a requisição"}
-```
+    {"prompt":"Instrumento A + Instrumento B: executar a requisição"}
 
 GitHub Actions não observa autonomamente conversas do ChatGPT. O texto precisa ser efetivamente transmitido ao workflow.
 
 ## Resultado
 
-O artefato JSON conserva, por ocorrência:
+O JSON conserva, por ocorrência:
 
 - título;
-- texto correspondente;
+- texto original correspondente;
 - instrumento;
 - correferência;
 - estado da função;
 - atividade;
 - escopo local da exceção;
-- contexto local.
+- contexto original;
+- plano de execução cumulativo.
 
 Todas as correspondências permanecem representadas; não há redução automática para um único instrumento.
