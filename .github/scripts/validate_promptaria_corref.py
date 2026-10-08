@@ -653,7 +653,8 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
     coordination = build_coordination(prompt, catalog, matches)
     status = "ok" if not consistency_errors else "catalog_inconsistente"
     demand_id = "DEMAND-" + hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:16]
-    manifest_raw = (root / "Promptária" / "manifest.json").read_bytes()
+    manifest_path = root / "manifest.json" if (root / "manifest.json").is_file() else root / "Promptária" / "manifest.json"
+    manifest_raw = manifest_path.read_bytes()
     manifest_sha256 = hashlib.sha256(manifest_raw).hexdigest()
     return {
         "schema_version": "4.0",
