@@ -570,12 +570,14 @@ def validate(prompt: str, root: Path = ROOT) -> dict:
                 "active": not diverse,
                 "exception_scope": "occurrence" if diverse else None,
                 "context_window": context,
+                "start": original_start,
+                "end": original_end,
                 "recovery": "github",
                 "content_source": "conteúdo efetivamente armazenado",
                 "identity_presumed_from_title": False,
             })
 
-    matches.sort(key=lambda item: (item["instrument"], item["matched_text"].casefold(), item["context_window"]))
+    matches.sort(key=lambda item: (item["start"], item["end"], item["instrument"]))
     active_by_instrument: dict[str, dict] = {}
     for match in matches:
         if match["active"]:
