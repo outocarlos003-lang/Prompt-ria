@@ -252,7 +252,7 @@ export function resolveMentions(text, instruments, index = buildReferenceIndex(i
     if (!instrument?.title) continue;
     const needle = normalize(instrument.title);
     if (!needle) continue;
-    const re = new RegExp(escapeRegExp(needle).replace(/\\ /g, "\\s+"), "giu");
+    const re = new RegExp(escapeRegExp(needle).replace(/ /g, "\\s+"), "giu");
     let match;
     while ((match = re.exec(normalizedSource.text))) {
       const nStart = match.index;
