@@ -34,7 +34,7 @@ for(const x of instruments){
   if(!exists(x.path)) fail(x.id+": arquivo não existe: "+x.path);
   else {
     const html=fs.readFileSync(path.join(ROOT,x.path),"utf8");
-    const titleMatch=html.match(/<title>\\s*(.*?)\\s*<\\/title>/is);
+    const titleMatch=html.match(/<title>\s*(.*?)\s*<\/title>/is);
     const physicalTitle=titleMatch ? titleMatch[1].replace(/&amp;/g,"&").trim() : "";
     const normalizeTitle=(v)=>String(v??"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLocaleLowerCase().replace(/[^a-z0-9]+/g," ").trim();
     if(!physicalTitle || normalizeTitle(physicalTitle)!==normalizeTitle(x.title))
