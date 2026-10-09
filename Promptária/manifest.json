@@ -4,6 +4,49 @@
   "root": "Promptária/Index.html",
   "instruments": [
     {
+      "id": "instrumento-17",
+      "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
+      "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "entry": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "previous": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "node_type": "instrument",
+      "source_of_truth": "Promptária/manifest.json",
+      "aliases": [
+        "adaptação e execução extensiva dos instrumentos promptuais",
+        "prompt-matriz de adaptação extensiva multidiretório",
+        "adaptação multidiretório",
+        "execução extensiva multidiretório"
+      ],
+      "capabilities": [
+        "preservação aditiva e conservativa",
+        "operações multidiretório com origem, instrumento e destino distintos",
+        "resolução explícita de destino e regra Nocturna condicionada",
+        "materialização e validação de arquivos",
+        "coordenação de instrumentos sem fusão de responsabilidades",
+        "rastreabilidade operacional de ponta a ponta"
+      ],
+      "canonical_reference": {
+        "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
+        "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+        "id": "instrumento-17"
+      },
+      "related_instruments": [
+        {
+          "id": "instrumento-12",
+          "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+          "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+          "relation": "acionamento e coordenação relacionados; identidade e conteúdo autônomos"
+        },
+        {
+          "id": "instrumento-14",
+          "title": "INSTRUMENTO PROMPTUAL — TUDO SE CONECTA, TUDO SE RASTREIA E TUDO SE INTEGRA",
+          "path": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+          "relation": "integridade e rastreabilidade relacionadas; identidade e conteúdo autônomos"
+        }
+      ]
+    },
+    {
       "id": "instrumento-12",
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
@@ -187,7 +230,7 @@
       "path": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "entry": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "previous": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
-      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -377,27 +420,49 @@
       "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "to": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "to": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "type": "related-instrument"
     }
   ],
   "provenance": {
-    "operation": "incorporação do instrumento-16 de execução editorial, integridade textual e arquitetura hierárquica; sincronização da rede navegacional",
-    "origin": "conteúdo integral fornecido pelo usuário nesta conversa",
-    "instrument": "DIRETRIZ FUNDAMENTAL DE EXECUÇÃO EDITORIAL, INTEGRIDADE TEXTUAL E ARQUITETURA HIERÁRQUICA",
+    "operation": "incorporação do instrumento-17 de adaptação e execução extensivas multidiretório; sincronização do catálogo e da navegação",
+    "origin": "conteúdo fornecido pelo usuário nesta conversa",
+    "instrument": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
     "transformation": [
       "criação do instrumento em diretório próprio no formato Index.html",
-      "preservação do conteúdo fornecido em bloco preformatado HTML",
       "registro na fonte única de verdade Promptária/manifest.json",
-      "integração de entrada, retorno, interface principal e ciclo anterior/próximo",
-      "criação de referências cruzadas sem fusão de identidades",
-      "atualização do sitemap, README e rastreabilidade",
+      "integração de entrada, retorno, interface principal e relações de navegação",
+      "atualização do sitemap e README",
       "verificação pós-gravação do arquivo, catálogo e relações estruturais"
     ],
-    "destination": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+    "destination": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
     "validation": [
       "arquivo criado na branch main",
-      "conteúdo preservado em bloco preformatado",
-      "catálogo e ciclo de navegação sincronizados",
-      "verificação automatizada final pendente"
+      "catálogo atualizado",
+      "verificação integral do conteúdo e workflow automatizado ainda precisam ser confirmados"
     ]
   },
   "semantic_cross_reference": {
