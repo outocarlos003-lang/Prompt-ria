@@ -63,26 +63,31 @@ def instrument_index() -> dict[str, list[dict[str, str]]]:
                 # Avoid duplicate records for the same path/title/source combination.
                 if entry not in entries:
                     entries.append(entry)
-    # The existing Promptária manifest is the canonical catalog for HTML instruments.
-    # Do not import aliases here: the architecture explicitly treats them as hints, not activation titles.
-    manifest_path = Path("Promptária/manifest.json")
-    if manifest_path.is_file():
-        try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        except (OSError, UnicodeError, json.JSONDecodeError):
-            manifest = {}
-        for instrument in manifest.get("instruments", []):
-            title = str(instrument.get("title", "")).strip()
-            path = str(instrument.get("path", "")).strip()
-            if not title or not path:
-                continue
-            key = normalize(title)
-            entry = {"title": title, "path": path, "matched_by": "manifest"}
-            entries = index.setdefault(key, [])
-            if entry not in entries:
-                entries.append(entry)
-
+    add_manifest_entries(index)
     return index
+
+
+def add_manifest_entries(
+    index: dict[str, list[dict[str, str]]],
+    manifest_path: Path = Path("Promptária/manifest.json"),
+) -> None:
+    """Add canonical manifest titles without treating aliases as activation titles."""
+    if not manifest_path.is_file():
+        return
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        return
+    for instrument in manifest.get("instruments", []):
+        title = str(instrument.get("title", "")).strip()
+        path = str(instrument.get("path", "")).strip()
+        if not title or not path:
+            continue
+        key = normalize(title)
+        entry = {"title": title, "path": path, "matched_by": "manifest"}
+        entries = index.setdefault(key, [])
+        if entry not in entries:
+            entries.append(entry)
 
 
 def resolve(title: str, index: dict[str, list[dict[str, str]]]) -> dict:
