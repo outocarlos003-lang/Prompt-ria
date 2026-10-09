@@ -1,0 +1,53 @@
+name: Promptária title coreference
+on:
+  workflow_dispatch:
+    inputs:
+      titles:
+        description: "Instrument titles, one per line (all supplied titles are processed)"
+        required: true
+        type: string
+      strict:
+        description: "Fail if any title is missing or ambiguous"
+        required: true
+        default: true
+        type: boolean
+  pull_request:
+    paths:
+      - "scripts/promptaria_coreference.py"
+      - ".github/workflows/promptaria-coreference.yml"
+      - "**/*.md"
+permissions:
+  contents: read
+jobs:
+  resolve-titles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Resolve all supplied titles
+        id: resolve
+        env:
+          TITLES_INPUT: \${{ inputs.titles }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          Path("titles-input.txt").write_text(os.environ.get("TITLES_INPUT", ""), encoding="utf-8")
+          PY
+          set +e
+          python scripts/promptaria_coreference.py --titles-file titles-input.txt --json > coreference-result.json
+          status=$?
+          cat coreference-result.json
+          echo "resolver_status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Enforce strict resolution
+        if: github.event_name == 'workflow_dispatch' && inputs.strict
+        env:
+          RESOLVER_STATUS: \${{ steps.resolve.outputs.resolver_status }}
+        run: |
+          if [ "$RESOLVER_STATUS" != "0" ]; then
+            echo "::error::A title was missing or ambiguous; no arbitrary match was selected."
+            exit 1
+          fi
