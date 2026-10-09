@@ -55,6 +55,22 @@ class ResolveTests(unittest.TestCase):
         result = coref.resolve("Título Oficial", index)
         self.assertEqual(result["status"], "ambiguous")
 
+    def test_manifest_path_traversal_is_rejected(self):
+        unsafe = dict(self.entry, path="../outside.html", matched_by="manifest")
+        result = coref.resolve("Título Oficial", {coref.normalize("Título Oficial"): [unsafe]})
+        self.assertEqual(result["status"], "invalid_manifest_path")
+
+    def test_safe_manifest_path_stays_inside_repository(self):
+        inside = self.root / "instrumentos" / "Index.html"
+        inside.parent.mkdir()
+        inside.write_text("conteúdo", encoding="utf-8")
+        self.assertEqual(
+            coref.safe_manifest_path("instrumentos/Index.html", self.root),
+            inside.resolve(),
+        )
+        self.assertIsNone(coref.safe_manifest_path("../outside.html", self.root))
+        self.assertIsNone(coref.safe_manifest_path(str(inside), self.root))
+
     def test_manifest_canonical_title_is_indexed(self):
         manifest = self.root / "manifest.json"
         manifest.write_text(json.dumps({
