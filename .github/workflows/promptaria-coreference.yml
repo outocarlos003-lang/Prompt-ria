@@ -15,11 +15,23 @@ on:
     paths:
       - "scripts/promptaria_coreference.py"
       - ".github/workflows/promptaria-coreference.yml"
+      - "tests/**"
       - "**/*.md"
 permissions:
   contents: read
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
+
   resolve-titles:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +41,7 @@ jobs:
       - name: Resolve all supplied titles
         id: resolve
         env:
-          TITLES_INPUT: \${{ inputs.titles }}
+          TITLES_INPUT: ${{ inputs.titles }}
         run: |
           python - <<'PY'
           import os
@@ -43,9 +55,9 @@ jobs:
           echo "resolver_status=$status" >> "$GITHUB_OUTPUT"
           exit 0
       - name: Enforce strict resolution
-        if: github.event_name == 'workflow_dispatch' && inputs.strict
+        if: inputs.strict
         env:
-          RESOLVER_STATUS: \${{ steps.resolve.outputs.resolver_status }}
+          RESOLVER_STATUS: ${{ steps.resolve.outputs.resolver_status }}
         run: |
           if [ "$RESOLVER_STATUS" != "0" ]; then
             echo "::error::A title was missing or ambiguous; no arbitrary match was selected."
