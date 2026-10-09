@@ -70,3 +70,9 @@ O manifesto é a fonte única de verdade da navegação. A validação verifica:
 Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
 
 **ID → título canônico → aliases → capacidades → caminho → entrada → anterior → próximo → conteúdo → sitemap → referências → validação.**
+
+
+- **DIRETRIZ FUNDAMENTAL DE EXECUÇÃO EDITORIAL, INTEGRIDADE TEXTUAL E ARQUITETURA HIERÁRQUICA**
+  - Caminho: `Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html`.
+  - Registro canônico: `instrumento-16` em `Promptária/manifest.json`.
+  - Relação: execução editorial seriada, preservação textual e hierarquia coleção–blocos–capítulos, mantendo identidade autônoma.
