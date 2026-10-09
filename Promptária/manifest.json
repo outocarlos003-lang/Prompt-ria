@@ -504,5 +504,20 @@
     "activation_contract": "activation=true para título determinístico não ambíguo, salvo exceção funcional local",
     "multiple_mentions": "cada ocorrência permanece rastreável e instrumentos distintos coexistem cumulativamente",
     "auditability": "cada ocorrência retorna título, instrumento, correferência, função, acionamento, exceção, contexto e relações de rastreabilidade"
-  }
+  },
+  "provenance_history": [
+    {
+      "operation": "incorporação do instrumento-16 de execução editorial, integridade textual e arquitetura hierárquica; sincronização da rede navegacional",
+      "origin": "conteúdo integral fornecido pelo usuário",
+      "instrument": "DIRETRIZ FUNDAMENTAL DE EXECUÇÃO EDITORIAL, INTEGRIDADE TEXTUAL E ARQUITETURA HIERÁRQUICA",
+      "destination": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "transformation": [
+        "criação do instrumento em diretório próprio no formato Index.html",
+        "registro na fonte única de verdade",
+        "integração de entrada, retorno e ciclo anterior/próximo",
+        "atualização de sitemap, README e rastreabilidade"
+      ],
+      "validation": "histórico preservado a partir do registro anterior; verificação atualizada em andamento"
+    }
+  ]
 }
