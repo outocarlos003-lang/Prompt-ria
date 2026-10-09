@@ -55,6 +55,11 @@ O manifesto é a fonte única de verdade da navegação. A validação verifica:
   - Registro canônico: `instrumento-13` em `Promptária/manifest.json`.
   - Relação: instrumento de acionamento, recuperação, personalização e execução, relacionado à arquitetura coordenadora sem fusão de identidades.
 
+- **INSTRUMENTO PROMPTUAL — TUDO SE CONECTA, TUDO SE RASTREIA E TUDO SE INTEGRA**
+  - Caminho: `Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html`.
+  - Registro canônico: `instrumento-14` em `Promptária/manifest.json`.
+  - Relação: integração de rastreabilidade navegacional, produção e integridade sistêmica, mantendo identidade autônoma.
+
 ## Regra de evolução
 
 Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
