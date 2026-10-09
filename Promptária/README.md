@@ -16,15 +16,13 @@ A Promptária preserva a árvore física dos instrumentos e acrescenta uma rede 
 
 ## Topologia
 
-`index.html` → `Promptária/Index.html` ↔ Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais.
+`index.html` → `Promptária/Index.html` ↔ instrumentos catalogados.
 
-O instrumento catalogado mantém caminho de entrada e retorno à interface principal.
+O núcleo conecta cada instrumento por caminhos de entrada, retorno e interface principal. Instrumentos relacionados permanecem autônomos.
 
 ## Integridade
 
-A coleção catalogada contém um instrumento: a Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais. O manifesto é a fonte única de verdade da navegação.
-
-A validação verifica:
+O manifesto é a fonte única de verdade da navegação. A validação verifica:
 
 1. existência do conteúdo;
 2. existência de caminho e destino;
@@ -35,8 +33,6 @@ A validação verifica:
 7. ausência de páginas órfãs;
 8. coerência entre árvore física e rede navegacional;
 9. funcionamento estrutural de ponta a ponta.
-
-Consulte `Promptária/rastreabilidade-producao.json` para o registro da operação de saneamento.
 
 ## Garantia operacional
 
@@ -53,6 +49,11 @@ Consulte `Promptária/rastreabilidade-producao.json` para o registro da operaç�
 - **Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais**
   - Caminho: `Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html`.
   - Registro canônico: `instrumento-12` em `Promptária/manifest.json`.
+
+- **ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS**
+  - Caminho: `Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html`.
+  - Registro canônico: `instrumento-13` em `Promptária/manifest.json`.
+  - Relação: instrumento de acionamento, recuperação, personalização e execução, relacionado à arquitetura coordenadora sem fusão de identidades.
 
 ## Regra de evolução
 
