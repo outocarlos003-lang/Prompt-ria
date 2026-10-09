@@ -1,7 +1,7 @@
 {
   "schema_version": "2.2",
-  "operation": "saneamento de referências residuais e sincronização do catálogo da Promptária",
-  "demand": "Eliminar referências obsoletas a um instrumento removido e manter a documentação coerente com a fonte única de verdade.",
+  "operation": "incorporação de novo instrumento promptual e sincronização da rede navegacional",
+  "demand": "Incorporar o instrumento fornecido pelo usuário em Promptária/ usando Index.html, preservando o conteúdo operacional e integrando catálogo, navegação, sitemap e rastreabilidade.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
@@ -10,33 +10,42 @@
     "catalog_source": "Promptária/manifest.json"
   },
   "transformation": [
-    "sincronização do README com o catálogo vigente",
-    "remoção de referências residuais do registro de rastreabilidade",
-    "confirmação do sitemap com apenas o núcleo e os caminhos catalogados",
-    "preservação do manifesto e do conteúdo do instrumento vigente"
+    "criação do instrumento em diretório próprio no formato Index.html",
+    "registro do instrumento-13 na fonte única de verdade Promptária/manifest.json",
+    "preservação da autonomia do instrumento-12 relacionado",
+    "conexão recíproca anterior/próximo na rede navegacional",
+    "atualização do sitemap e do README",
+    "verificação posterior do conteúdo e da integridade estrutural"
   ],
   "destinations": [
-    "Promptária/README.md",
-    "Promptária/rastreabilidade-producao.json",
+    "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
     "Promptária/manifest.json",
-    "Promptária/sitemap.xml"
+    "Promptária/Index.html",
+    "Promptária/sitemap.xml",
+    "Promptária/README.md",
+    "Promptária/rastreabilidade-producao.json"
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
-    "catalog_count": 1,
-    "catalog_path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-    "sitemap": "sincronizado com o núcleo e o instrumento catalogado",
-    "navigation": "entrada, retorno e interface principal mantidos",
+    "catalog_count": 2,
+    "catalog_paths": [
+      "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html"
+    ],
+    "sitemap": "atualizado para incluir núcleo e dois instrumentos catalogados",
+    "navigation": "entrada, retorno, interface principal e ciclo anterior/próximo definidos",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
-    "automated_integrity": "Promptária/verificador-integridade.mjs é executado pelo workflow .github/workflows/promptaria-integrity.yml",
-    "result": "documentação e registro de produção sincronizados com o catálogo vigente"
+    "automated_integrity": "Promptária/verificador-integridade.mjs via .github/workflows/promptaria-integrity.yml",
+    "result": "incorporação gravada; verificação final do arquivo e da integridade automatizada pendente"
   },
   "production_chain": [
-    "demanda",
-    "identificação das referências obsoletas",
-    "sincronização do catálogo documental",
-    "atualização do registro de rastreabilidade",
-    "validação estrutural automatizada"
+    "demanda e autorização expressa",
+    "localização do repositório conectado e confirmação do diretório Promptária",
+    "exame da árvore física, catálogo, índice, navegação e convenções existentes",
+    "criação do instrumento-13 em diretório próprio com Index.html",
+    "registro no manifesto e integração de relações de navegação",
+    "sincronização do sitemap e README",
+    "verificação final de conteúdo, catálogo, referências e integridade"
   ],
   "navigation_invariants": [
     "todo instrumento catalogado possui caminho existente",
