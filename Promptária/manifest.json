@@ -1,132 +1,47 @@
 {
-  "schema_version": "2.0",
-  "purpose": "Fonte única de verdade da rede navegacional da Promptária.",
-  "root": "Promptária/Index.html",
-  "instruments": [
+  "schema_version":"2.0",
+  "purpose":"Fonte única de verdade da rede navegacional da Promptária.",
+  "root":"Promptária/Index.html",
+  "instruments":[
     {
-      "id": "instrumento-11",
-      "title": "Instrumento Promptual de Ensaio",
-      "path": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "entry": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "previous": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "next": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "node_type": "instrument",
-      "source_of_truth": "Promptária/manifest.json",
-      "aliases": [
-        "instrumento promptual de ensaio",
-        "ensaio",
-        "redação de ensaio",
-        "ensaio argumentativo",
-        "ensaio crítico",
-        "elaboração de ensaio"
-      ],
-      "capabilities": [
-        "delimitação de tema",
-        "formulação de tese",
-        "estruturação argumentativa",
-        "redação de ensaio",
-        "revisão e validação textual"
-      ],
-      "canonical_reference": {
-        "title": "Instrumento Promptual de Ensaio",
-        "path": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-        "id": "instrumento-11"
-      }
+      "id":"instrumento-11",
+      "title":"Instrumento Promptual de Ensaio",
+      "path":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "entry":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "previous":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "next":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "node_type":"instrument",
+      "source_of_truth":"Promptária/manifest.json",
+      "aliases":["instrumento promptual de ensaio","ensaio","redação de ensaio","ensaio argumentativo","ensaio crítico","elaboração de ensaio"],
+      "capabilities":["delimitação de tema","formulação de tese","estruturação argumentativa","redação de ensaio","revisão e validação textual"],
+      "canonical_reference":{"title":"Instrumento Promptual de Ensaio","path":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html","id":"instrumento-11"}
+    },
+    {
+      "id":"instrumento-12",
+      "title":"ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+      "path":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "entry":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "previous":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "next":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "node_type":"instrument",
+      "source_of_truth":"Promptária/manifest.json",
+      "aliases":["arquitetura unificada de acionamento","arquitetura unificada de instrumentos promptuais","acionamento coordenado de instrumentos promptuais","correferência funcional automática","arquitetura de acionamento recuperação e aplicação","arquitetura unificada"],
+      "capabilities":["acionamento coordenado de múltiplos instrumentos","correferência funcional automática por títulos","recuperação e preservação de conteúdo efetivo","coordenação sem fusão ou substituição","contextualização, parametrização e adaptação","resolução de origem e destino multidiretório","materialização e rastreabilidade de resultados","validação coordenada e rastreabilidade operacional"],
+      "canonical_reference":{"title":"ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS","path":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html","id":"instrumento-12"}
     }
   ],
-  "navigation": {
-    "root": "Promptária/Index.html",
-    "main_interface": "index.html",
-    "search": "Promptária/Index.html?q={query}",
-    "model": "árvore física + rede navegacional por caminhos de entrada, retorno, anterior/próximo e pesquisa transversal",
-    "invariants": [
-      "somente o Instrumento Promptual de Ensaio permanece no catálogo",
-      "o instrumento possui entrada no núcleo",
-      "o instrumento possui retorno ao núcleo e à interface principal",
-      "a pesquisa transversal alcança o instrumento remanescente"
-    ]
-  },
-  "edges": [
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "to": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "to": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
-      "type": "next"
-    }
+  "navigation":{"root":"Promptária/Index.html","main_interface":"index.html","search":"Promptária/Index.html?q={query}","model":"árvore física + rede navegacional por caminhos de entrada, retorno, anterior/próximo e pesquisa transversal","invariants":["todos os instrumentos físicos catalogados permanecem na fonte única de verdade","cada instrumento possui entrada no núcleo","cada instrumento possui retorno ao núcleo e à interface principal","a pesquisa transversal alcança todos os instrumentos catalogados","a ordem navegacional preserva ciclo recíproco entre os instrumentos"]},
+  "edges":[
+    {"from":"Promptária/Index.html","to":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html","type":"entry"},
+    {"from":"Promptária/Index.html","to":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html","type":"entry"},
+    {"from":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html","to":"Promptária/Index.html","type":"return"},
+    {"from":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html","to":"index.html","type":"main-interface"},
+    {"from":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html","to":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html","type":"next"},
+    {"from":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html","to":"Promptária/Index.html","type":"return"},
+    {"from":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html","to":"index.html","type":"main-interface"},
+    {"from":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html","to":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html","type":"previous"},
+    {"from":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html","to":"Promptária/Instrumento-Promptual-de-Ensaio/Index.html","type":"next"}
   ],
-  "provenance": {
-    "operation": "reorganização sistêmica da Promptária",
-    "origin": "conteúdo e estrutura existentes no repositório outocarlos003-lang/Prompt-ria",
-    "instrument": "Rastreio-GitHub + arquitetura navegacional existente",
-    "transformation": "consolidação do catálogo em fonte única de verdade, explicitação das arestas navegacionais, validação de integridade e criação de índice navegacional derivado",
-    "destination": "Promptária/manifest.json, Promptária/Index.html, Promptária/sitemap.xml, Promptária/README.md",
-    "validation": [
-      "manifesto consistente com a árvore física",
-      "cada instrumento preserva conteúdo e identidade",
-      "correferência por título implementada no resolvedor e validador",
-      "múltiplos títulos preservados sem seleção exclusiva",
-      "função diversa limitada à ocorrência",
-      "destino Nocturna não presumido",
-      "rastreabilidade e validação de ponta a ponta"
-    ]
-  },
-  "semantic_cross_reference": {
-    "version": "3.0",
-    "purpose": "Mapear menções genéricas a títulos existentes para o instrumento correspondente, preservando identidade, função própria, multiplicidade, exceções locais, recuperação efetiva e rastreabilidade.",
-    "rules": [
-      "título existente e menção genérica estabelecem correferência",
-      "o título identifica e aciona; o conteúdo recuperado determina identidade, finalidade, instruções e lógica",
-      "função própria é preservada por padrão",
-      "função diversa exige atribuição específica e inequívoca",
-      "silêncio, ausência de explicitação, ambiguidade e inferência fraca não constituem função diversa",
-      "a exceção é local à ocorrência e não se projeta a outros títulos",
-      "múltiplos títulos são reconhecidos mútua, cumulativa, coordenada, simultânea, individual e não exclusivamente",
-      "aliases e capabilities não substituem título para acionamento automático",
-      "o repositório conserva e o GitHub recupera; não se inventa ou reconstrói conteúdo inexistente",
-      "demanda, contexto, parâmetros, origem, destino e adaptação variam sem alterar identidade, finalidade, função ou lógica essencial",
-      "coordenação articula sem fusão e preserva responsabilidades especializadas",
-      "Nocturna não é destino padrão; destino ambíguo bloqueia materialização dependente",
-      "validação e rastreabilidade são obrigatórias",
-      "GitHub Actions somente processa requisição efetivamente transmitida e não cria permissões ou acesso a conversas não transmitidas"
-    ],
-    "fields": [
-      "id",
-      "title",
-      "path",
-      "aliases",
-      "capabilities",
-      "canonical_reference"
-    ],
-    "future_instruments": "Qualquer instrumento posteriormente registrado em instruments passa a integrar a correferência por seu título.",
-    "runtime_resolver": "Promptária/resolver-correferencia.mjs",
-    "resolution_order": [
-      "id",
-      "exact_title",
-      "normalized_title",
-      "alias_hint"
-    ],
-    "ambiguity_policy": "preserve_own_function",
-    "activation_contract": "activation=true para título determinístico não ambíguo, salvo exceção funcional local",
-    "multiple_mentions": "cada ocorrência permanece rastreável e instrumentos distintos coexistem cumulativamente",
-    "auditability": "cada ocorrência retorna título, instrumento, correferência, função, acionamento, exceção, contexto e relações de rastreabilidade"
-  }
+  "provenance":{"operation":"incorporação original de novo instrumento promptual na arquitetura existente","origin":"conteúdo fornecido pelo usuário para inserção no repositório outocarlos003-lang/Prompt-ria","instrument":"ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS","transformation":"materialização no formato Index.html, registro no catálogo único, integração na navegação e atualização do sitemap","destination":"Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html, Promptária/manifest.json, Promptária/sitemap.xml, Promptária/README.md","validation":["conteúdo preservado como instrumento HTML","identidade nominal registrada pelo título integral","novo caminho compatível com a arquitetura de diretório/Index.html","correferência por título incorporada à fonte única de verdade","múltiplos instrumentos preservados sem seleção exclusiva","navegação recíproca registrada","sitemap atualizado","verificação estrutural pendente de execução do workflow"]},
+  "semantic_cross_reference":{"version":"3.0","purpose":"Mapear menções genéricas a títulos existentes para o instrumento correspondente, preservando identidade, função própria, multiplicidade, exceções locais, recuperação efetiva e rastreabilidade.","rules":["título existente e menção genérica estabelecem correferência","o título identifica e aciona; o conteúdo recuperado determina identidade, finalidade, instruções e lógica","função própria é preservada por padrão","função diversa exige atribuição específica e inequívoca","silêncio, ausência de explicitação, ambiguidade e inferência fraca não constituem função diversa","a exceção é local à ocorrência e não se projeta a outros títulos","múltiplos títulos são reconhecidos mútua, cumulativa, coordenada, simultânea, individual e não exclusivamente","aliases e capabilities não substituem título para acionamento automático","o repositório conserva e o GitHub recupera; não se inventa ou reconstrói conteúdo inexistente","demanda, contexto, parâmetros, origem, destino e adaptação variam sem alterar identidade, finalidade, função ou lógica essencial","coordenação articula sem fusão e preserva responsabilidades especializadas","Nocturna não é destino padrão; destino ambíguo bloqueia materialização dependente","validação e rastreabilidade são obrigatórias","GitHub Actions somente processa requisição efetivamente transmitida e não cria permissões ou acesso a conversas não transmitidas"],"fields":["id","title","path","aliases","capabilities","canonical_reference"],"future_instruments":"Qualquer instrumento posteriormente registrado em instruments passa a integrar a correferência por seu título.","runtime_resolver":"Promptária/resolver-correferencia.mjs","resolution_order":["id","exact_title","normalized_title","alias_hint"],"ambiguity_policy":"preserve_own_function","activation_contract":"activation=true para título determinístico não ambíguo, salvo exceção funcional local","multiple_mentions":"cada ocorrência permanece rastreável e instrumentos distintos coexistem cumulativamente","auditability":"cada ocorrência retorna título, instrumento, correferência, função, acionamento, exceção, contexto e relações de rastreabilidade"}
 }
