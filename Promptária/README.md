@@ -60,6 +60,11 @@ O manifesto é a fonte única de verdade da navegação. A validação verifica:
   - Registro canônico: `instrumento-14` em `Promptária/manifest.json`.
   - Relação: integração de rastreabilidade navegacional, produção e integridade sistêmica, mantendo identidade autônoma.
 
+- **ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB**
+  - Caminho: `Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html`.
+  - Registro canônico: `instrumento-15` em `Promptária/manifest.json`.
+  - Relação: instrumento para integração controlada de ZIP, preservação arquitetural e validação rastreável.
+
 ## Regra de evolução
 
 Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
