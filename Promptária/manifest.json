@@ -8,7 +8,7 @@
       "title": "Acionamento Coordenado de Instrumentos Promptuais",
       "path": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Rastreio-GitHub/Index.html",
+      "previous": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
       "next": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
@@ -271,7 +271,7 @@
       "path": "Promptária/Rastreio-GitHub/Index.html",
       "entry": "Promptária/Rastreio-GitHub/Index.html",
       "previous": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "next": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -295,6 +295,36 @@
         "title": "Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou",
         "path": "Promptária/Rastreio-GitHub/Index.html",
         "id": "instrumento-10"
+      }
+    },
+    {
+      "id": "instrumento-11",
+      "title": "Instrumento Promptual de Ensaio",
+      "path": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "entry": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "previous": "Promptária/Rastreio-GitHub/Index.html",
+      "next": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "node_type": "instrument",
+      "source_of_truth": "Promptária/manifest.json",
+      "aliases": [
+        "instrumento promptual de ensaio",
+        "ensaio",
+        "redação de ensaio",
+        "ensaio argumentativo",
+        "ensaio crítico",
+        "elaboração de ensaio"
+      ],
+      "capabilities": [
+        "delimitação de tema",
+        "formulação de tese",
+        "estruturação argumentativa",
+        "redação de ensaio",
+        "revisão e validação textual"
+      ],
+      "canonical_reference": {
+        "title": "Instrumento Promptual de Ensaio",
+        "path": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+        "id": "instrumento-11"
       }
     }
   ],
@@ -333,233 +363,258 @@
       "type": "next"
     },
     {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "Promptária/Rastreio-GitHub/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Rastreio-GitHub/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Rastreio-GitHub/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Rastreio-GitHub/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Rastreio-GitHub/Index.html",
+      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "to": "Promptária/Rastreio-GitHub/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Rastreio-GitHub/Index.html",
+      "to": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
+      "type": "next"
+    },
+    {
       "from": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Rastreio-GitHub/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "to": "Promptária/Rastreio-GitHub/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Rastreio-GitHub/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Rastreio-GitHub/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Rastreio-GitHub/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Rastreio-GitHub/Index.html",
-      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Rastreio-GitHub/Index.html",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "Promptária/Instrumento-Promptual-de-Ensaio/Index.html",
       "type": "previous"
     }
   ],
