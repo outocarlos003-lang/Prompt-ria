@@ -84,16 +84,29 @@ def add_manifest_entries(
         if not title or not path:
             continue
         key = normalize(title)
-        entry = {"title": title, "path": path, "matched_by": "manifest"}
+        entry = {
+            "id": str(instrument.get("id", "")).strip(),
+            "title": title,
+            "path": path,
+            "matched_by": "manifest",
+        }
         entries = index.setdefault(key, [])
         if entry not in entries:
             entries.append(entry)
+        instrument_id = entry["id"]
+        if instrument_id:
+            id_entries = index.setdefault("__id__:" + instrument_id, [])
+            if entry not in id_entries:
+                id_entries.append(entry)
 
 
 def resolve(title: str, index: dict[str, list[dict[str, str]]]) -> dict:
+    # Stable IDs take precedence over titles, matching the JavaScript resolver contract.
+    id_matches = index.get("__id__:" + title.strip(), [])
+    candidates = id_matches if id_matches else index.get(normalize(title), [])
     # Multiple headings in one file are not ambiguous; distinct files are.
     by_path: dict[str, dict[str, str]] = {}
-    for item in index.get(normalize(title), []):
+    for item in candidates:
         by_path.setdefault(item["path"], item)
     matches = list(by_path.values())
     if not matches:
