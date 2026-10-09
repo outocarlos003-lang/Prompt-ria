@@ -1,58 +1,48 @@
 {
-  "schema_version":"2.1",
-  "operation":"incorporação original da Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais",
-  "demand":"Inserir o instrumento promptual fornecido pelo usuário na Promptária, preservando sua identidade, conteúdo operacional e integração arquitetural.",
-  "source":{"repository":"outocarlos003-lang/Prompt-ria","branch":"main","root":"Promptária","preserved":true,"existing_instruments":2},
-  "transformation":[
-    "preservação do Instrumento Promptual de Ensaio existente",
-    "criação do novo instrumento em diretório próprio com Index.html",
-    "registro do novo instrumento no manifesto como fonte única de verdade",
-    "atualização da navegação recíproca e do sitemap",
-    "atualização deste registro de rastreabilidade"
-  ],
-  "destinations":[
-    "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-    "Promptária/manifest.json",
-    "Promptária/sitemap.xml",
-    "Promptária/README.md",
-    "Promptária/rastreabilidade-producao.json"
-  ],
-  "validation":{
-    "content_preserved":"Novo instrumento materializado como Index.html, mantendo o título integral e o conteúdo operacional fornecido; instrumento existente não foi fundido nem substituído.",
-    "source_of_truth":"Promptária/manifest.json",
-    "expected_instruments":2,
-    "navigation":"núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
-    "production":"origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
-    "destination_determination":"Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
-    "orphan_policy":"não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação",
-    "automated_integrity":"Promptária/verificador-integridade.mjs é executado pelo workflow .github/workflows/promptaria-integrity.yml em push para main e pull requests",
-    "semantic_cross_reference":"manifesto mantém identidade canônica por id/título/path; aliases e capabilities sustentam correferência; o novo título integral está registrado como chave canônica",
-    "fail_closed":"falhas estruturais interrompem a validação em vez de serem aceitas silenciosamente",
-    "workflow_status":"execução automática não foi retornada para o commit final no momento da verificação"
+  "schema_version": "2.2",
+  "operation": "saneamento de referências residuais e sincronização do catálogo da Promptária",
+  "demand": "Eliminar referências obsoletas a um instrumento removido e manter a documentação coerente com a fonte única de verdade.",
+  "source": {
+    "repository": "outocarlos003-lang/Prompt-ria",
+    "branch": "main",
+    "root": "Promptária",
+    "preserved": true,
+    "catalog_source": "Promptária/manifest.json"
   },
-  "production_chain":[
-    "demanda",
-    "instrumento responsável",
-    "instrumentos participantes",
-    "operação",
-    "origem",
-    "transformação",
-    "arquivo/artefato",
-    "destino",
-    "referências",
-    "validação",
-    "resultado",
-    "Instrumento Promptual de Ensaio preservado",
-    "nova Arquitetura Unificada registrada no catálogo",
-    "manifesto, sitemap, README e rastreabilidade atualizados"
+  "transformation": [
+    "sincronização do README com o catálogo vigente",
+    "remoção de referências residuais do registro de rastreabilidade",
+    "confirmação do sitemap com apenas o núcleo e os caminhos catalogados",
+    "preservação do manifesto e do conteúdo do instrumento vigente"
   ],
-  "navigation_invariants":[
-    "se existe conteúdo, existe caminho",
-    "se existe caminho, existe destino",
-    "se existe destino, existe retorno",
-    "se existe relação, existe conexão",
+  "destinations": [
+    "Promptária/README.md",
+    "Promptária/rastreabilidade-producao.json",
+    "Promptária/manifest.json",
+    "Promptária/sitemap.xml"
+  ],
+  "validation": {
+    "source_of_truth": "Promptária/manifest.json",
+    "catalog_count": 1,
+    "catalog_path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+    "sitemap": "sincronizado com o núcleo e o instrumento catalogado",
+    "navigation": "entrada, retorno e interface principal mantidos",
+    "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
+    "automated_integrity": "Promptária/verificador-integridade.mjs é executado pelo workflow .github/workflows/promptaria-integrity.yml",
+    "result": "documentação e registro de produção sincronizados com o catálogo vigente"
+  },
+  "production_chain": [
+    "demanda",
+    "identificação das referências obsoletas",
+    "sincronização do catálogo documental",
+    "atualização do registro de rastreabilidade",
+    "validação estrutural automatizada"
+  ],
+  "navigation_invariants": [
+    "todo instrumento catalogado possui caminho existente",
     "cada instrumento possui entrada no núcleo",
-    "cada instrumento possui retorno e continuidade anterior/próximo",
-    "a pesquisa transversal alcança os 2 instrumentos catalogados"
+    "cada instrumento possui retorno à interface principal",
+    "a pesquisa transversal alcança todos os instrumentos catalogados",
+    "a navegação contém somente instrumentos catalogados e caminhos existentes"
   ]
 }
