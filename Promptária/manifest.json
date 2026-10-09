@@ -8,7 +8,7 @@
       "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
       "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "entry": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-      "previous": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "previous": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
       "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
@@ -230,7 +230,7 @@
       "path": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "entry": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "previous": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
-      "next": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "next": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -268,6 +268,47 @@
           "title": "ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB",
           "path": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
           "relation": "organização estrutural e validação de integridade relacionadas; identidade e conteúdo autônomos"
+        }
+      ]
+    },
+    {
+      "id": "instrumento-18",
+      "title": "INSTRUMENTO PROMPTUAL",
+      "path": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "entry": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "previous": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "next": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "node_type": "instrument",
+      "source_of_truth": "Promptária/manifest.json",
+      "aliases": [
+        "instrumento promptual",
+        "solicitação de incorporação de prompts",
+        "instrumento solicitante de cadastramento",
+        "incorporar instrumento promptual na Promptária"
+      ],
+      "capabilities": [
+        "solicitação de incorporação de prompts fornecidos posteriormente",
+        "preservação integral do conteúdo fornecido",
+        "espera pelo fornecimento de cada prompt definitivo",
+        "integração no repositório GitHub e verificação da incorporação"
+      ],
+      "canonical_reference": {
+        "title": "INSTRUMENTO PROMPTUAL",
+        "path": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+        "id": "instrumento-18"
+      },
+      "related_instruments": [
+        {
+          "id": "instrumento-13",
+          "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
+          "path": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+          "relation": "inserção e recuperação via GitHub relacionadas; identidade e conteúdo autônomos"
+        },
+        {
+          "id": "instrumento-16",
+          "title": "DIRETRIZ FUNDAMENTAL DE EXECUÇÃO EDITORIAL, INTEGRIDADE TEXTUAL E ARQUITETURA HIERÁRQUICA",
+          "path": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+          "relation": "preservação textual e integração estrutural relacionadas; identidade e conteúdo autônomos"
         }
       ]
     }
