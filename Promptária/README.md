@@ -9,20 +9,20 @@ A Promptária preserva a árvore física dos instrumentos e acrescenta uma rede 
 - Promptária/Index.html é o índice transversal.
 - Promptária/manifest.json é a fonte única de verdade da topologia.
 - Promptária/navegacao-neural.js materializa entrada, retorno, anterior, próximo e pesquisa em todas as páginas.
-- A pesquisa atravessa títulos, caminhos e conteúdo do único instrumento remanescente: Instrumento Promptual de Ensaio.
+- A pesquisa atravessa títulos, caminhos e conteúdo de todos os instrumentos catalogados.
 - A rastreabilidade de produção registra demanda, origem, instrumento, operação, transformação, artefato, destino, referências, validação e resultado.
 - O diretório do instrumento não determina automaticamente o destino de uma operação.
 - Nocturna só é considerado destino quando houver determinação explícita ou inequivocamente determinada.
 
 ## Topologia
 
-index.html → Promptária/Index.html → Instrumento Promptual de Ensaio → núcleo.
+index.html → Promptária/Index.html → Instrumento Promptual de Ensaio ↔ Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais → núcleo.
 
-Cada instrumento mantém também caminho de retorno à interface principal.
+Cada instrumento mantém caminho de retorno à interface principal.
 
 ## Integridade
 
-A coleção foi reduzida a um único instrumento: Instrumento Promptual de Ensaio. O manifesto permanece como fonte única de verdade da navegação.
+A coleção catalogada contém o Instrumento Promptual de Ensaio e a nova Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais. O manifesto permanece como fonte única de verdade da navegação.
 
 A validação deve verificar simultaneamente:
 
@@ -38,7 +38,6 @@ A validação deve verificar simultaneamente:
 10. funcionamento de ponta a ponta.
 
 Consulte Promptária/rastreabilidade-producao.json para o registro da transformação.
-
 
 ## Garantia operacional
 
@@ -60,9 +59,11 @@ Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
 
 O objetivo é reduzir a possibilidade de um instrumento existir fisicamente sem existir funcionalmente, ou ser mencionado funcionalmente sem possuir uma referência navegável e rastreável.
 
-
-## Instrumento adicionado
+## Instrumentos catalogados
 
 - **Instrumento Promptual de Ensaio** — delimitação do tema, formulação da tese, arquitetura argumentativa, redação, revisão e validação de ensaios.
-- Caminho: `Promptária/Instrumento-Promptual-de-Ensaio/Index.html`.
-- Registro canônico: `instrumento-11` em `Promptária/manifest.json`.
+  - Caminho: `Promptária/Instrumento-Promptual-de-Ensaio/Index.html`.
+  - Registro canônico: `instrumento-11` em `Promptária/manifest.json`.
+- **ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS**
+  - Caminho: `Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html`.
+  - Registro canônico: `instrumento-12` em `Promptária/manifest.json`.
