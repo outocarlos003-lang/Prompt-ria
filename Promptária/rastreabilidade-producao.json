@@ -7,11 +7,11 @@
     "branch": "main",
     "root": "Promptária",
     "preserved": true,
-    "existing_instruments": 9
+    "existing_instruments": 8
   },
   "transformation": [
-    "preservação dos 9 instrumentos existentes",
-    "camada compartilhada Promptária/navegacao-neural.js aplicada ao núcleo e aos 9 instrumentos",
+    "preservação dos 8 instrumentos existentes",
+    "camada compartilhada Promptária/navegacao-neural.js aplicada ao núcleo e aos 8 instrumentos",
     "pesquisa transversal por título, caminho e conteúdo",
     "entradas, retornos, anterior e próximo derivados de Promptária/manifest.json",
     "validação de arestas contra a fonte única de verdade",
@@ -28,7 +28,7 @@
   "validation": {
     "content_preserved": "Conteúdo dos instrumentos restantes preservado; o instrumento isolado foi removido e seu conteúdo incorporado à arquitetura unificada permanece intacto.",
     "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 9,
+    "expected_instruments": 8,
     "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
     "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
     "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
@@ -57,6 +57,6 @@
     "se existe relação, existe conexão",
     "cada instrumento possui entrada no núcleo",
     "cada instrumento possui retorno e continuidade anterior/próximo",
-    "a pesquisa transversal alcança os 9 instrumentos"
+    "a pesquisa transversal alcança os 8 instrumentos"
   ]
 }
