@@ -1,40 +1,36 @@
 {
-  "schema_version": "2.1",
-  "operation": "redução do catálogo para manter apenas o Instrumento Promptual de Ensaio",
-  "demand": "Excluir todos os instrumentos promptuais, exceto o Instrumento Promptual de Ensaio.",
-  "source": {
-    "repository": "outocarlos003-lang/Prompt-ria",
-    "branch": "main",
-    "root": "Promptária",
-    "preserved": true,
-    "existing_instruments": 1
-  },
-  "transformation": [
-    "remoção dos nove instrumentos promptuais anteriores e do instrumento de rastreio da coleção",
-    "manutenção do Instrumento Promptual de Ensaio",
-    "atualização do manifesto, mapa e sitemap para um único instrumento"
+  "schema_version":"2.1",
+  "operation":"incorporação original da Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais",
+  "demand":"Inserir o instrumento promptual fornecido pelo usuário na Promptária, preservando sua identidade, conteúdo operacional e integração arquitetural.",
+  "source":{"repository":"outocarlos003-lang/Prompt-ria","branch":"main","root":"Promptária","preserved":true,"existing_instruments":2},
+  "transformation":[
+    "preservação do Instrumento Promptual de Ensaio existente",
+    "criação do novo instrumento em diretório próprio com Index.html",
+    "registro do novo instrumento no manifesto como fonte única de verdade",
+    "atualização da navegação recíproca e do sitemap",
+    "atualização deste registro de rastreabilidade"
   ],
-  "destinations": [
-    "index.html",
-    "Promptária/Index.html",
-    "Promptária/navegacao-neural.js",
+  "destinations":[
+    "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
     "Promptária/manifest.json",
     "Promptária/sitemap.xml",
+    "Promptária/README.md",
     "Promptária/rastreabilidade-producao.json"
   ],
-  "validation": {
-    "content_preserved": "Instrumento Promptual de Ensaio mantido; os demais instrumentos foram removidos do catálogo.",
-    "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 1,
-    "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
-    "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
-    "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
-    "orphan_policy": "não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação",
-    "automated_integrity": "Promptária/verificador-integridade.mjs executado pelo workflow .github/workflows/promptaria-integrity.yml em push para main e pull requests",
-    "semantic_cross_reference": "manifesto mantém identidade canônica por id/título/path; aliases e capabilities sustentam correferência por título e função; novos instrumentos registrados em instruments entram automaticamente no catálogo navegacional",
-    "fail_closed": "falhas estruturais interrompem a validação em vez de serem aceitas silenciosamente"
+  "validation":{
+    "content_preserved":"Novo instrumento materializado como Index.html, mantendo o título integral e o conteúdo operacional fornecido; instrumento existente não foi fundido nem substituído.",
+    "source_of_truth":"Promptária/manifest.json",
+    "expected_instruments":2,
+    "navigation":"núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
+    "production":"origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
+    "destination_determination":"Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
+    "orphan_policy":"não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação",
+    "automated_integrity":"Promptária/verificador-integridade.mjs é executado pelo workflow .github/workflows/promptaria-integrity.yml em push para main e pull requests",
+    "semantic_cross_reference":"manifesto mantém identidade canônica por id/título/path; aliases e capabilities sustentam correferência; o novo título integral está registrado como chave canônica",
+    "fail_closed":"falhas estruturais interrompem a validação em vez de serem aceitas silenciosamente",
+    "workflow_status":"execução automática não foi retornada para o commit final no momento da verificação"
   },
-  "production_chain": [
+  "production_chain":[
     "demanda",
     "instrumento responsável",
     "instrumentos participantes",
@@ -46,16 +42,17 @@
     "referências",
     "validação",
     "resultado",
-    "instrumento promptual de ensaio: delimitação, tese, estrutura, redação, revisão e validação",
-    "registro no manifesto, atualização do sitemap e validação da rede navegacional"
+    "Instrumento Promptual de Ensaio preservado",
+    "nova Arquitetura Unificada registrada no catálogo",
+    "manifesto, sitemap, README e rastreabilidade atualizados"
   ],
-  "navigation_invariants": [
+  "navigation_invariants":[
     "se existe conteúdo, existe caminho",
     "se existe caminho, existe destino",
     "se existe destino, existe retorno",
     "se existe relação, existe conexão",
     "cada instrumento possui entrada no núcleo",
     "cada instrumento possui retorno e continuidade anterior/próximo",
-    "a pesquisa transversal alcança os 11 instrumentos"
+    "a pesquisa transversal alcança os 2 instrumentos catalogados"
   ]
 }
