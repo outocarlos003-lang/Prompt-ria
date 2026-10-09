@@ -1,21 +1,18 @@
 {
   "schema_version": "2.1",
-  "operation": "integração da navegação neural, rastreabilidade de produção e integridade sistêmica",
-  "demand": "Preservar integralmente o conteúdo existente e estabelecer uma única arquitetura operacional de navegação, pesquisa, conexão, origem, transformação, destino, referência, validação e resultado.",
+  "operation": "redução do catálogo para manter apenas o Instrumento Promptual de Ensaio",
+  "demand": "Excluir todos os instrumentos promptuais, exceto o Instrumento Promptual de Ensaio.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
     "preserved": true,
-    "existing_instruments": 10
+    "existing_instruments": 1
   },
   "transformation": [
-    "preservação dos 10 instrumentos existentes",
-    "camada compartilhada Promptária/navegacao-neural.js aplicada ao núcleo e aos 10 instrumentos",
-    "pesquisa transversal por título, caminho e conteúdo",
-    "entradas, retornos, anterior e próximo derivados de Promptária/manifest.json",
-    "validação de arestas contra a fonte única de verdade",
-    "distinção entre diretório do instrumento e destino de produção"
+    "remoção dos nove instrumentos promptuais anteriores e do instrumento de rastreio da coleção",
+    "manutenção do Instrumento Promptual de Ensaio",
+    "atualização do manifesto, mapa e sitemap para um único instrumento"
   ],
   "destinations": [
     "index.html",
@@ -26,9 +23,9 @@
     "Promptária/rastreabilidade-producao.json"
   ],
   "validation": {
-    "content_preserved": "10 instrumentos existentes preservados; alterações de integração restritas à camada navegacional e aos metadados de rastreio",
+    "content_preserved": "Instrumento Promptual de Ensaio mantido; os demais instrumentos foram removidos do catálogo.",
     "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 10,
+    "expected_instruments": 1,
     "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
     "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
     "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
