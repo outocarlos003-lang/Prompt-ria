@@ -1,6 +1,6 @@
 {
   "schema_version": "2.3",
-  "operation": "incorporação do instrumento-16 e sincronização do catálogo, navegação e registros da Promptária",
+  "operation": "incorporação do instrumento-17 e sincronização do catálogo, navegação e registros da Promptária",
   "demand": "Registrar integralmente o instrumento promptual de execução editorial, integridade textual e arquitetura hierárquica fornecido pelo usuário, preservando o conteúdo e integrando a arquitetura existente.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
@@ -33,7 +33,13 @@
     "integração do instrumento-16 à fonte única de verdade e às relações anterior/próximo",
     "criação de referências cruzadas com instrumentos relacionados sem fusão de identidades",
     "atualização do sitemap, README e rastreabilidade",
-    "verificação pós-gravação do conteúdo e da integridade estrutural"
+    "verificação pós-gravação do conteúdo e da integridade estrutural",
+    "criação do instrumento-17 em diretório próprio no formato Index.html",
+    "preservação do texto fornecido em bloco preformatado HTML",
+    "integração da camada navegacional neural",
+    "registro do instrumento-17 no manifesto e sincronização do ciclo anterior/próximo",
+    "atualização do sitemap e README",
+    "verificação pós-gravação de conteúdo, catálogo e referências"
   ],
   "destinations": [
     "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
@@ -44,29 +50,31 @@
     "Promptária/rastreabilidade-producao.json",
     "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
     "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
-    "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html"
+    "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+    "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html"
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
-    "catalog_count": 5,
+    "catalog_count": 6,
     "catalog_paths": [
       "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
       "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
-      "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html"
+      "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html"
     ],
     "sitemap": "atualizado para incluir núcleo e todos os instrumentos catalogados",
     "navigation": "entrada, retorno, interface principal e ciclo anterior/próximo sincronizados",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
     "automated_integrity": "Promptária/verificador-integridade.mjs: aprovado; workflows auxiliares: falha em verificações legadas de contagem fixa e alias",
-    "result": "Verificação estrutural Promptária/verificador-integridade.mjs: OK (5 instrumentos, 5 páginas catalogadas, sitemap e referências válidos). As verificações auxiliares dos workflows legados falharam por expectativa fixa de 10 instrumentos apesar de a árvore física e o manifesto conterem 5, e por teste de alias genérico ausente; esses testes não alteram a confirmação da integridade estrutural do novo registro.",
+    "result": "Instrumento-17 criado, catalogado, incluído no sitemap e README, e conectado à camada navegacional. Verificação estrutural manual dos caminhos e marcadores concluída; execução automatizada do workflow não confirmada.",
     "new_instrument": {
-      "id": "instrumento-16",
-      "path": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
-      "commit": "arquivo criado e catálogo sincronizado nesta operação"
+      "id": "instrumento-17",
+      "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "commit": "aabbe47c5851c8392d687a6c2843735431899e75"
     },
-    "status": "instrumento-16 criado, catalogado e verificado estruturalmente; pipelines auxiliares contêm expectativas legadas incompatíveis que permanecem pendentes"
+    "status": "instrumento-17 criado e catalogado; verificação automatizada do workflow pendente"
   },
   "production_chain": [
     "demanda e autorização expressa",
@@ -90,7 +98,13 @@
     "criação de Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
     "registro do instrumento-16 no manifesto e ajuste do ciclo anterior/próximo",
     "atualização de referências cruzadas, sitemap, README e rastreabilidade",
-    "verificação pós-gravação do arquivo, catálogo e integridade estrutural"
+    "verificação pós-gravação do arquivo, catálogo e integridade estrutural",
+    "recepção do conteúdo integral do instrumento-17 e autorização expressa anterior",
+    "inspeção da árvore física, catálogo, índice, navegação, sitemap, README e verificador",
+    "criação de Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+    "registro do instrumento-17 no manifesto e sincronização das relações de navegação",
+    "atualização do sitemap, README e rastreabilidade",
+    "verificação pós-gravação dos marcadores de conteúdo, catálogo e referências"
   ],
   "navigation_invariants": [
     "todo instrumento catalogado possui caminho existente",
@@ -99,5 +113,5 @@
     "a pesquisa transversal alcança todos os instrumentos catalogados",
     "a navegação contém somente instrumentos catalogados e caminhos existentes"
   ],
-  "status": "instrumento-16 criado e catalogado; verificador estrutural passou; workflows auxiliares falharam por expectativas legadas incompatíveis"
+  "status": "instrumento-17 criado e catalogado; verificação automatizada do workflow pendente"
 }
