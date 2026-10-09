@@ -71,6 +71,22 @@ class ResolveTests(unittest.TestCase):
         self.assertIsNone(coref.safe_manifest_path("../outside.html", self.root))
         self.assertIsNone(coref.safe_manifest_path(str(inside), self.root))
 
+    def test_manifest_html_content_is_recovered(self):
+        html = self.root / "instrumentos" / "Index.html"
+        html.parent.mkdir()
+        html.write_text("<main>HTML recuperado</main>", encoding="utf-8")
+        entry = {
+            "id": "instrumento-html",
+            "title": "Instrumento HTML",
+            "path": "instrumentos/Index.html",
+            "matched_by": "manifest",
+        }
+        index = {coref.normalize(entry["title"]): [entry]}
+        with patch.object(Path, "cwd", return_value=self.root):
+            result = coref.resolve("Instrumento HTML", index)
+        self.assertEqual(result["status"], "identified_and_recovered")
+        self.assertEqual(result["content"], "<main>HTML recuperado</main>")
+
     def test_manifest_canonical_title_is_indexed(self):
         manifest = self.root / "manifest.json"
         manifest.write_text(json.dumps({
