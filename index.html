@@ -755,11 +755,10 @@
       message.className = "error";
       message.textContent = "Não foi possível carregar os instrumentos automaticamente. " + error.message;
 
+      // Fallback sincronizado com os seis instrumentos HTML realmente existentes.
+      // Evita nomes históricos/inexistentes que faziam a recuperação falhar parcialmente.
       const fallback = [
         "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-        "Promptária/Adaptação-e-Execução-Extensiva-dos-Instrumentos-Promptuais/Index.html",
-        "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-        "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
         "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
         "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
         "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
