@@ -70,6 +70,9 @@ class ResolveTests(unittest.TestCase):
         result = coref.resolve("titulo canonico html", index)
         self.assertEqual(result["status"], "identified_content_unavailable")
         self.assertEqual(result["matches"][0]["matched_by"], "manifest")
+        by_id = coref.resolve("instrumento-99", index)
+        self.assertEqual(by_id["status"], "identified_content_unavailable")
+        self.assertEqual(by_id["matches"][0]["id"], "instrumento-99")
         self.assertEqual(coref.resolve("apelido curto", index)["status"], "not_found")
 
 
