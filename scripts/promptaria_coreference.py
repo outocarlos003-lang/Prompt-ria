@@ -100,6 +100,18 @@ def add_manifest_entries(
                 id_entries.append(entry)
 
 
+def safe_manifest_path(raw_path: str, repo_root: Path = Path.cwd()) -> Path | None:
+    """Return a manifest path only when it stays inside the repository."""
+    candidate = Path(raw_path)
+    if candidate.is_absolute() or ".." in candidate.parts:
+        return None
+    root = repo_root.resolve()
+    resolved = (root / candidate).resolve()
+    if not resolved.is_relative_to(root):
+        return None
+    return resolved
+
+
 def resolve(title: str, index: dict[str, list[dict[str, str]]]) -> dict:
     # Stable IDs take precedence over titles, matching the JavaScript resolver contract.
     id_matches = index.get("__id__:" + title.strip(), [])
@@ -114,8 +126,19 @@ def resolve(title: str, index: dict[str, list[dict[str, str]]]) -> dict:
     if len(matches) > 1:
         return {"input_title": title, "status": "ambiguous", "matches": matches}
     item = matches[0]
+    content_path = Path(item["path"])
+    if item.get("matched_by") == "manifest":
+        safe_path = safe_manifest_path(item["path"])
+        if safe_path is None:
+            return {
+                "input_title": title,
+                "status": "invalid_manifest_path",
+                "matches": [item],
+                "error": "manifest path must stay inside the repository and be relative",
+            }
+        content_path = safe_path
     try:
-        content = Path(item["path"]).read_text(encoding="utf-8")
+        content = content_path.read_text(encoding="utf-8")
     except (OSError, UnicodeError) as exc:
         return {
             "input_title": title,
