@@ -100,12 +100,12 @@ def add_manifest_entries(
                 id_entries.append(entry)
 
 
-def safe_manifest_path(raw_path: str, repo_root: Path = Path.cwd()) -> Path | None:
+def safe_manifest_path(raw_path: str, repo_root: Path | None = None) -> Path | None:
     """Return a manifest path only when it stays inside the repository."""
     candidate = Path(raw_path)
     if candidate.is_absolute() or ".." in candidate.parts:
         return None
-    root = repo_root.resolve()
+    root = (repo_root if repo_root is not None else Path.cwd()).resolve()
     resolved = (root / candidate).resolve()
     if not resolved.is_relative_to(root):
         return None
