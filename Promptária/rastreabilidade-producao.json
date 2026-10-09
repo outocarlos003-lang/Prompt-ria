@@ -1,49 +1,40 @@
 {
-  "schema_version": "2.1",
-  "operation": "redução do catálogo da Promptária aos seis instrumentos preservados",
-  "demand": "Remover do catálogo as entradas Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais e Da Correferência Funcional Automática dos Instrumentos Promptuais, preservando intactos os conteúdos dos seis instrumentos restantes.",
+  "schema_version": "3.0",
+  "operation": "normalização do catálogo canônico e ampliação da rastreabilidade dos seis instrumentos promptuais",
+  "demand": "Registrar os seis títulos fornecidos como identidades canônicas, manter seus conteúdos físicos rastreáveis e permitir pesquisa, correferência e vínculo entre instrumentos relacionados sem fusão de funções.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
-    "preserved": true,
-    "existing_instruments": 6
-  },
-  "transformation": [
-    "remoção das duas entradas especificadas do catálogo e das referências navegacionais correspondentes",
-    "preservação integral dos seis instrumentos restantes e de seus conteúdos subjacentes",
-    "reconstrução do ciclo anterior/próximo entre os seis instrumentos",
-    "sincronização do sitemap e da documentação",
-    "validação de arestas contra a fonte única de verdade"
-  ],
-  "destinations": [
-    "index.html",
-    "Promptária/Index.html",
-    "Promptária/navegacao-neural.js",
-    "Promptária/manifest.json",
-    "Promptária/sitemap.xml",
-    "Promptária/rastreabilidade-producao.json"
-  ],
-  "validation": {
-    "content_preserved": "Os conteúdos dos seis instrumentos restantes permanecem intactos; foram removidas apenas as duas entradas solicitadas e suas referências no catálogo e na navegação.",
     "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 6,
-    "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
-    "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
-    "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
-    "orphan_policy": "não criar órfãos; referências devem ser restabelecidas após movimentação ou renomeação",
-    "automated_integrity": "Promptária/verificador-integridade.mjs executado pelo workflow .github/workflows/promptaria-integrity.yml em push para main e pull requests",
-    "semantic_cross_reference": "manifesto mantém identidade canônica por id/título/path; aliases e capabilities sustentam correferência por título e função; novos instrumentos registrados em instruments entram automaticamente no catálogo navegacional",
-    "fail_closed": "falhas estruturais interrompem a validação em vez de serem aceitas silenciosamente"
+    "canonical_instruments": 6
   },
+  "canonical_order": [
+    "Tudo se Conecta, Tudo se Rastreia e Tudo se Integra, para que Nenhum Conteúdo se Perca, Nenhuma Relação se Rompa, Nenhuma Origem se Apague, Nenhum Caminho se Interrompa e Nenhum Resultado Fique sem Destino, sem Referência, sem Validação ou sem Vínculo com aquilo que o Originou",
+    "Inserção de Prompts na Promptária via GitHub",
+    "Inserção de Coleção no Site via Sistema Editorial",
+    "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+    "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
+    "✦ ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB ✦"
+  ],
+  "transformation": [
+    "normalização dos seis títulos como identidades canônicas no manifest",
+    "atribuição dos IDs instrumento-01 a instrumento-06 na ordem fornecida",
+    "preservação dos caminhos físicos existentes",
+    "reconstrução do ciclo anterior/próximo na mesma ordem canônica",
+    "expansão de aliases e capabilities para descoberta e pesquisa",
+    "inclusão de related_instruments para vínculos explícitos e rastreáveis",
+    "sincronização do sitemap com a ordem canônica",
+    "manutenção da correferência determinística por id, título exato, título normalizado e alias como pista"
+  ],
   "production_chain": [
     "demanda",
-    "instrumento responsável",
-    "instrumentos participantes",
-    "operação",
+    "instrumento canônico",
+    "identidade",
     "origem",
     "transformação",
     "arquivo/artefato",
+    "relações",
     "destino",
     "referências",
     "validação",
@@ -53,9 +44,20 @@
     "se existe conteúdo, existe caminho",
     "se existe caminho, existe destino",
     "se existe destino, existe retorno",
-    "se existe relação, existe conexão",
+    "se existe relação, existe conexão rastreável",
     "cada instrumento possui entrada no núcleo",
     "cada instrumento possui retorno e continuidade anterior/próximo",
-    "a pesquisa transversal alcança os 6 instrumentos"
-  ]
+    "a pesquisa transversal alcança os 6 instrumentos",
+    "novos instrumentos registrados em manifest.instruments entram automaticamente na pesquisa e na correferência"
+  ],
+  "validation": {
+    "source_of_truth": "Promptária/manifest.json",
+    "expected_instruments": 6,
+    "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
+    "semantic_cross_reference": "título canônico + título normalizado + aliases + capabilities + related_instruments",
+    "orphan_policy": "não criar órfãos; cada diretório de instrumento com Index.html deve estar no manifest",
+    "automated_integrity": "Promptária/verificador-integridade.mjs executado pelo workflow .github/workflows/promptaria-integrity.yml",
+    "fail_closed": "falhas estruturais interrompem a validação em vez de serem aceitas silenciosamente",
+    "content_policy": "a identidade canônica aponta para o conteúdo efetivamente existente; a rastreabilidade não inventa conteúdo ausente"
+  }
 }
