@@ -48,7 +48,9 @@
     "destino",
     "referências",
     "validação",
-    "resultado"
+    "resultado",
+    "instrumento promptual de ensaio: delimitação, tese, estrutura, redação, revisão e validação",
+    "registro no manifesto, atualização do sitemap e validação da rede navegacional"
   ],
   "navigation_invariants": [
     "se existe conteúdo, existe caminho",
@@ -57,6 +59,6 @@
     "se existe relação, existe conexão",
     "cada instrumento possui entrada no núcleo",
     "cada instrumento possui retorno e continuidade anterior/próximo",
-    "a pesquisa transversal alcança os 10 instrumentos"
+    "a pesquisa transversal alcança os 11 instrumentos"
   ]
 }
