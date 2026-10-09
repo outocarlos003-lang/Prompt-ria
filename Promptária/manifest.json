@@ -9,7 +9,7 @@
       "path": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "previous": "Promptária/Rastreio-GitHub/Index.html",
-      "next": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -39,7 +39,7 @@
       "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
       "previous": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "next": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -64,41 +64,11 @@
       }
     },
     {
-      "id": "instrumento-04",
-      "title": "Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais",
-      "path": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "entry": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "next": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "node_type": "instrument",
-      "source_of_truth": "Promptária/manifest.json",
-      "aliases": [
-        "arquitetura de acionamento, recuperação e aplicação de instrumentos promptuais",
-        "acionamento",
-        "recuperação",
-        "aplicação",
-        "recuperar instrumento",
-        "aplicar instrumento"
-      ],
-      "capabilities": [
-        "acionamento",
-        "recuperação",
-        "aplicação",
-        "recuperar instrumento",
-        "aplicar instrumento"
-      ],
-      "canonical_reference": {
-        "title": "Arquitetura de Acionamento, Recuperação e Aplicação de Instrumentos Promptuais",
-        "path": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-        "id": "instrumento-04"
-      }
-    },
-    {
       "id": "instrumento-05",
       "title": "DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "path": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "previous": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
       "next": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
