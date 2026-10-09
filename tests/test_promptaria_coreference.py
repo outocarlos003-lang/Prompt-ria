@@ -1,4 +1,5 @@
 """Regression tests for title normalization and safe coreference resolution."""
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -53,6 +54,23 @@ class ResolveTests(unittest.TestCase):
             index = coref.instrument_index()
         result = coref.resolve("Título Oficial", index)
         self.assertEqual(result["status"], "ambiguous")
+
+    def test_manifest_canonical_title_is_indexed(self):
+        manifest = self.root / "manifest.json"
+        manifest.write_text(json.dumps({
+            "instruments": [{
+                "id": "instrumento-99",
+                "title": "Título Canônico HTML",
+                "path": "instrumentos/canonico/Index.html",
+                "aliases": ["apelido curto"]
+            }]
+        }), encoding="utf-8")
+        index = {}
+        coref.add_manifest_entries(index, manifest)
+        result = coref.resolve("titulo canonico html", index)
+        self.assertEqual(result["status"], "identified_content_unavailable")
+        self.assertEqual(result["matches"][0]["matched_by"], "manifest")
+        self.assertEqual(coref.resolve("apelido curto", index)["status"], "not_found")
 
 
 if __name__ == "__main__":
