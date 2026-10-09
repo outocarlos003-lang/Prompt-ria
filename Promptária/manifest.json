@@ -8,7 +8,7 @@
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "previous": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
       "next": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
@@ -81,7 +81,7 @@
       "path": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
       "entry": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
       "previous": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
-      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -117,6 +117,53 @@
           "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
           "path": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
           "relation": "instrumento relacionado; identidade e conteúdo autônomos"
+        }
+      ]
+    },
+    {
+      "id": "instrumento-15",
+      "title": "ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB",
+      "path": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "entry": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "previous": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "node_type": "instrument",
+      "source_of_truth": "Promptária/manifest.json",
+      "aliases": [
+        "organização inteligente de zip",
+        "inspeção e integração de zip",
+        "integração segura de conteúdo zip no github",
+        "mapeamento estrutural de arquivos compactados",
+        "zip no diretório do github",
+        "organização de arquivos de zip no repositório"
+      ],
+      "capabilities": [
+        "inspeção de ZIP e estrutura do repositório",
+        "comparação semântica e prevenção de sobrescritas indevidas",
+        "mapeamento de arquivos e diretórios antes da escrita",
+        "preservação arquitetural e prevenção de duplicações",
+        "tratamento de conflitos, binários e dependências",
+        "integração controlada e validação rastreável",
+        "resolução multidiretório de origem e destino",
+        "relatório final de alterações, pendências e limitações"
+      ],
+      "canonical_reference": {
+        "title": "ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB",
+        "path": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+        "id": "instrumento-15"
+      },
+      "related_instruments": [
+        {
+          "id": "instrumento-14",
+          "title": "INSTRUMENTO PROMPTUAL — TUDO SE CONECTA, TUDO SE RASTREIA E TUDO SE INTEGRA",
+          "path": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+          "relation": "rastreabilidade e integridade sistêmica relacionadas; identidade e conteúdo autônomos"
+        },
+        {
+          "id": "instrumento-12",
+          "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+          "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+          "relation": "arquitetura coordenadora relacionada; identidade e conteúdo autônomos"
         }
       ]
     }
@@ -199,26 +246,53 @@
       "from": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
       "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "to": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "to": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "type": "related-instrument"
     }
   ],
   "provenance": {
-    "operation": "incorporação original de instrumento promptual adicional à Promptária",
-    "origin": "conteúdo definitivo fornecido pelo usuário e autorização expressa nesta conversa",
-    "instrument": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
-    "transformation": "materialização integral no formato Index.html, registro na fonte única de verdade, integração de navegação, sitemap e documentação",
-    "destination": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+    "operation": "incorporação do instrumento-15 de organização inteligente de ZIP e sincronização da rede navegacional",
+    "origin": "conteúdo integral fornecido pelo usuário nesta conversa",
+    "instrument": "ORGANIZAÇÃO INTELIGENTE DE ZIP NO DIRETÓRIO DO GITHUB",
+    "transformation": "materialização em Index.html com texto preformatado; inclusão na fonte única de verdade; ajuste de ciclo anterior/próximo; atualização de sitemap, documentação e rastreabilidade",
+    "destination": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
     "validation": [
-      "arquivo criado pelo conector GitHub",
-      "título nominal preservado",
-      "conteúdo operacional armazenado integralmente em bloco preformatado",
-      "catálogo e navegação a sincronizar e verificar após gravação"
-    ],
-    "latest_operation": "incorporação do instrumento-14 fornecido integralmente pelo usuário",
-    "latest_destination": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
-    "latest_validation": [
-      "arquivo Index.html criado na branch main",
-      "camada navegacional incluída",
-      "catálogo e arestas atualizados após criação do arquivo"
+      "página criada na branch main",
+      "conteúdo armazenado em bloco preformatado",
+      "catálogo, relações navegacionais, sitemap e documentação sincronizados; validação automatizada pendente de execução"
     ]
   },
   "semantic_cross_reference": {
