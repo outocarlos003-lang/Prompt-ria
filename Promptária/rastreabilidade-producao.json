@@ -1,15 +1,15 @@
 {
   "schema_version": "2.3",
-  "operation": "incorporação do instrumento-14 e sincronização da rede navegacional e dos registros de produção",
-  "demand": "Registrar integralmente o instrumento promptual fornecido pelo usuário, em diretório próprio, preservando o texto e integrando catálogo, navegação, sitemap, documentação e rastreabilidade.",
+  "operation": "incorporação do instrumento-15 e sincronização do catálogo, navegação e registros da Promptária",
+  "demand": "Registrar integralmente o instrumento promptual de organização inteligente de ZIP fornecido pelo usuário, preservando seu conteúdo e integrando a arquitetura existente.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
     "preserved": true,
     "catalog_source": "Promptária/manifest.json",
-    "origin": "texto integral fornecido nesta conversa pelo usuário",
-    "authorization": "autorização expressa anterior do usuário e envio do conteúdo integral nesta mensagem"
+    "origin": "texto integral fornecido pelo usuário nesta conversa",
+    "authorization": "autorização expressa anterior e conteúdo definitivo fornecido nesta mensagem"
   },
   "transformation": [
     "criação do instrumento em diretório próprio no formato Index.html",
@@ -22,7 +22,12 @@
     "preservação do texto fornecido dentro de bloco preformatado HTML",
     "integração da camada navegacional",
     "registro no manifesto, arestas, sitemap e README",
-    "verificação posterior de conteúdo, ordem, ausência de duplicação e integridade estrutural"
+    "verificação posterior de conteúdo, ordem, ausência de duplicação e integridade estrutural",
+    "criação de instrumento-15 em diretório próprio no formato Index.html",
+    "preservação do conteúdo integral em bloco preformatado",
+    "integração do instrumento-15 à fonte única de verdade e às relações anterior/próximo",
+    "atualização do sitemap e do README",
+    "verificação posterior do conteúdo e da integridade estrutural"
   ],
   "destinations": [
     "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
@@ -31,26 +36,27 @@
     "Promptária/sitemap.xml",
     "Promptária/README.md",
     "Promptária/rastreabilidade-producao.json",
-    "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html"
+    "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+    "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html"
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
-    "catalog_count": 3,
+    "catalog_count": 4,
     "catalog_paths": [
       "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
-      "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html"
+      "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html"
     ],
-    "sitemap": "atualizado para incluir núcleo e dois instrumentos catalogados",
-    "navigation": "entrada, retorno, interface principal e ciclo anterior/próximo definidos",
+    "sitemap": "atualizado para incluir núcleo e quatro instrumentos catalogados",
+    "navigation": "entrada, retorno, interface principal e ciclo anterior/próximo sincronizados",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
     "automated_integrity": "Promptária/verificador-integridade.mjs via .github/workflows/promptaria-integrity.yml",
-    "result": "incorporação gravada; verificação final do arquivo e da integridade automatizada pendente",
+    "result": "página, catálogo, sitemap, README e rastreabilidade gravados; validação automatizada ainda precisa ser confirmada",
     "new_instrument": {
-      "id": "instrumento-14",
-      "path": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
-      "content_sha": "74acd263ea3ffd705d3e13452a77a825567899cd",
-      "commit": "742f9c7bb97440204ffcea5e6116ea540cd03738"
+      "id": "instrumento-15",
+      "path": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "commit": "criação e atualizações registradas nos commits desta operação"
     },
     "status": "arquivo criado e catalogado; verificação final de integridade automatizada ainda precisa ser executada no repositório"
   },
@@ -64,7 +70,13 @@
     "verificação final de conteúdo, catálogo, referências e integridade",
     "recepção do texto integral do instrumento-14",
     "criação do Index.html em diretório próprio",
-    "integração navegacional e sincronização de manifesto, sitemap, README e rastreabilidade"
+    "integração navegacional e sincronização de manifesto, sitemap, README e rastreabilidade",
+    "recepção do conteúdo integral do instrumento-15 e autorização prévia",
+    "inspeção do catálogo, do índice, da navegação, do sitemap, do README e do verificador de integridade",
+    "criação de Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+    "registro no manifesto e ajuste das relações de navegação",
+    "sincronização do sitemap, README e rastreabilidade",
+    "verificação pós-gravação pendente"
   ],
   "navigation_invariants": [
     "todo instrumento catalogado possui caminho existente",
@@ -72,5 +84,6 @@
     "cada instrumento possui retorno à interface principal",
     "a pesquisa transversal alcança todos os instrumentos catalogados",
     "a navegação contém somente instrumentos catalogados e caminhos existentes"
-  ]
+  ],
+  "status": "instrumento-15 criado e catalogado; verificação final de integridade automatizada ainda precisa ser executada no repositório"
 }
