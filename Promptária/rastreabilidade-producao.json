@@ -1,21 +1,20 @@
 {
   "schema_version": "2.1",
-  "operation": "integração da navegação neural, rastreabilidade de produção e integridade sistêmica",
-  "demand": "Remover o instrumento isolado de arquitetura de acionamento, preservando o conteúdo incorporado à arquitetura unificada.",
+  "operation": "redução do catálogo da Promptária aos seis instrumentos preservados",
+  "demand": "Remover do catálogo as entradas Arquitetura Unificada de Acionamento, Correferência, Recuperação e Aplicação de Instrumentos Promptuais e Da Correferência Funcional Automática dos Instrumentos Promptuais, preservando intactos os conteúdos dos seis instrumentos restantes.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
     "preserved": true,
-    "existing_instruments": 8
+    "existing_instruments": 6
   },
   "transformation": [
-    "preservação dos 8 instrumentos existentes",
-    "camada compartilhada Promptária/navegacao-neural.js aplicada ao núcleo e aos 8 instrumentos",
-    "pesquisa transversal por título, caminho e conteúdo",
-    "entradas, retornos, anterior e próximo derivados de Promptária/manifest.json",
-    "validação de arestas contra a fonte única de verdade",
-    "distinção entre diretório do instrumento e destino de produção"
+    "remoção das duas entradas especificadas do catálogo e das referências navegacionais correspondentes",
+    "preservação integral dos seis instrumentos restantes e de seus conteúdos subjacentes",
+    "reconstrução do ciclo anterior/próximo entre os seis instrumentos",
+    "sincronização do sitemap e da documentação",
+    "validação de arestas contra a fonte única de verdade"
   ],
   "destinations": [
     "index.html",
@@ -26,9 +25,9 @@
     "Promptária/rastreabilidade-producao.json"
   ],
   "validation": {
-    "content_preserved": "Conteúdo dos instrumentos restantes preservado; o instrumento isolado foi removido e seu conteúdo incorporado à arquitetura unificada permanece intacto.",
+    "content_preserved": "Os conteúdos dos seis instrumentos restantes permanecem intactos; foram removidas apenas as duas entradas solicitadas e suas referências no catálogo e na navegação.",
     "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 8,
+    "expected_instruments": 6,
     "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
     "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
     "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
@@ -57,6 +56,6 @@
     "se existe relação, existe conexão",
     "cada instrumento possui entrada no núcleo",
     "cada instrumento possui retorno e continuidade anterior/próximo",
-    "a pesquisa transversal alcança os 8 instrumentos"
+    "a pesquisa transversal alcança os 6 instrumentos"
   ]
 }
