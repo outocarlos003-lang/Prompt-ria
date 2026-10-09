@@ -71,6 +71,17 @@ class ResolveTests(unittest.TestCase):
         self.assertIsNone(coref.safe_manifest_path("../outside.html", self.root))
         self.assertIsNone(coref.safe_manifest_path(str(inside), self.root))
 
+    def test_manifest_symlink_cannot_escape_repository(self):
+        outside = self.root.parent / (self.root.name + "-outside.html")
+        outside.write_text("fora da raiz", encoding="utf-8")
+        self.addCleanup(lambda: outside.unlink(missing_ok=True))
+        link = self.root / "escape.html"
+        try:
+            link.symlink_to(outside)
+        except (OSError, NotImplementedError):
+            self.skipTest("symlinks are unavailable in this environment")
+        self.assertIsNone(coref.safe_manifest_path("escape.html", self.root))
+
     def test_manifest_html_content_is_recovered(self):
         html = self.root / "instrumentos" / "Index.html"
         html.parent.mkdir()
