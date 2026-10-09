@@ -18,12 +18,12 @@ const index = buildReferenceIndex(instruments);
 
 assert.deepEqual(validateReferenceIndex(instruments), [], "manifesto possui referências ambíguas/duplicadas");
 
-const exact = resolveReference("Acionamento Coordenado de Instrumentos Promptuais", index);
+const exact = resolveReference("ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS", index);
 assert.equal(exact.activation, true);
 assert.equal(exact.correferencia, true);
 assert.equal(exact.match_type, MATCH_TYPES.EXACT_TITLE);
 
-const normalized = resolveReference("  acionamento coordenado de instrumentos promptuais  ", index);
+const normalized = resolveReference("  arquitetura unificada de acionamento, correferência, recuperação e aplicação de instrumentos promptuais: acionamento coordenado de instrumentos promptuais e arquitetura de acionamento, recuperação e aplicação de instrumentos promptuais, com correferência funcional automática por títulos dos instrumentos promptuais, na qual a menção genérica identifica o instrumento, preserva sua função própria e aciona sua execução, salvo atribuição específica e inequívoca de função diversa, com reconhecimento mútuo, cumulativo, coordenado e simultâneo de múltiplos títulos  ", index);
 assert.equal(normalized.activation, true);
 assert.equal(normalized.match_type, MATCH_TYPES.NORMALIZED_TITLE);
 
@@ -36,7 +36,7 @@ assert.equal(unknown.match_type, MATCH_TYPES.NONE);
 assert.equal(unknown.activation, false);
 
 const multi = resolveMentions(
-  "Acionamento Coordenado de Instrumentos Promptuais e PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO.",
+  "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS e PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO.",
   instruments,
   index
 );
