@@ -9,7 +9,7 @@
       "path": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "previous": "Promptária/Rastreio-GitHub/Index.html",
-      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -34,71 +34,11 @@
       }
     },
     {
-      "id": "instrumento-03",
-      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-      "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "entry": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "next": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "node_type": "instrument",
-      "source_of_truth": "Promptária/manifest.json",
-      "aliases": [
-        "arquitetura unificada de acionamento, correferência, recuperação e aplicação de instrumentos promptuais",
-        "arquitetura unificada",
-        "acionamento",
-        "correferência",
-        "recuperação",
-        "aplicação de instrumentos"
-      ],
-      "capabilities": [
-        "arquitetura unificada",
-        "acionamento",
-        "correferência",
-        "recuperação",
-        "aplicação de instrumentos"
-      ],
-      "canonical_reference": {
-        "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-        "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-        "id": "instrumento-03"
-      }
-    },
-    {
-      "id": "instrumento-05",
-      "title": "DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
-      "path": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "entry": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "next": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "node_type": "instrument",
-      "source_of_truth": "Promptária/manifest.json",
-      "aliases": [
-        "da correferência funcional automática dos instrumentos promptuais menção genérica identifica o instrumento, preserva sua função própria e aciona sua execução, salvo atribuição específica e inequívoca de função diversa, com reconhecimento mútuo, cumulativo, coordenado e simultâneo de múltiplos títulos",
-        "correferência funcional automática",
-        "menção genérica",
-        "reconhecimento de título",
-        "correferência de instrumentos",
-        "múltiplos títulos"
-      ],
-      "capabilities": [
-        "correferência funcional automática",
-        "menção genérica",
-        "reconhecimento de título",
-        "correferência de instrumentos",
-        "múltiplos títulos"
-      ],
-      "canonical_reference": {
-        "title": "DA CORREFERÊNCIA FUNCIONAL AUTOMÁTICA DOS INSTRUMENTOS PROMPTUAIS: MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
-        "path": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-        "id": "instrumento-05"
-      }
-    },
-    {
       "id": "instrumento-06",
       "title": "Inserção de Coleção no Site via Sistema Editorial",
       "path": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "entry": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "previous": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
+      "previous": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "next": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
@@ -273,99 +213,34 @@
       "type": "previous"
     },
     {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferência-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "from": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "type": "next"
     },
     {
       "from": "Promptária/Index.html",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "type": "entry"
     },
     {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "to": "Promptária/Index.html",
       "type": "return"
     },
     {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "to": "index.html",
       "type": "main-interface"
     },
     {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
+      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
       "type": "previous"
     },
     {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Arquitetura-de-Acionamento-Recuperação-e-Aplicação-de-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
-    },
-    {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
       "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
       "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
       "type": "next"
-    },
-    {
-      "from": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "to": "Promptária/Da-Correferência-Funcional-Automática-dos-Instrumentos-Promptuais/Index.html",
-      "type": "previous"
     },
     {
       "from": "Promptária/Index.html",
@@ -381,16 +256,16 @@
       "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
       "to": "index.html",
       "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
+      "type": "previous"
     },
     {
       "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
       "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
       "type": "next"
-    },
-    {
-      "from": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "to": "Promptária/Insercao-de-Colecao-no-Site-via-Sistema-Editorial/Index.html",
-      "type": "previous"
     },
     {
       "from": "Promptária/Index.html",
@@ -409,13 +284,13 @@
     },
     {
       "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "type": "next"
+      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
+      "type": "previous"
     },
     {
       "from": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "to": "Promptária/Inserção-de-Prompts-na-Promptária-via-GitHub/Index.html",
-      "type": "previous"
+      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "type": "next"
     },
     {
       "from": "Promptária/Index.html",
@@ -431,16 +306,16 @@
       "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
       "to": "index.html",
       "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
+      "type": "previous"
     },
     {
       "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
       "to": "Promptária/Rastreio-GitHub/Index.html",
       "type": "next"
-    },
-    {
-      "from": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "to": "Promptária/ORGANIZACAO-INTELIGENTE-DE-ZIP-NO-DIRETORIO-DO-GITHUB/Index.html",
-      "type": "previous"
     },
     {
       "from": "Promptária/Index.html",
@@ -459,29 +334,27 @@
     },
     {
       "from": "Promptária/Rastreio-GitHub/Index.html",
-      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
-      "type": "next"
+      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
+      "type": "previous"
     },
     {
       "from": "Promptária/Rastreio-GitHub/Index.html",
-      "to": "Promptária/Prompt-Matriz-Adaptação-Extensiva-Multidiretório/Index.html",
-      "type": "previous"
+      "to": "Promptária/Acionamento-Coordenado-de-Instrumentos-Promptuais/Index.html",
+      "type": "next"
     }
   ],
   "provenance": {
-    "operation": "reorganização sistêmica da Promptária",
+    "operation": "ajuste do catálogo para manter exclusivamente os seis instrumentos físicos existentes",
     "origin": "conteúdo e estrutura existentes no repositório outocarlos003-lang/Prompt-ria",
     "instrument": "Rastreio-GitHub + arquitetura navegacional existente",
-    "transformation": "consolidação do catálogo em fonte única de verdade, explicitação das arestas navegacionais, validação de integridade e criação de índice navegacional derivado",
+    "transformation": "remoção das duas entradas de catálogo solicitadas e de suas referências navegacionais; preservação integral dos seis instrumentos restantes e reconstrução do ciclo anterior/próximo",
     "destination": "Promptária/manifest.json, Promptária/Index.html, Promptária/sitemap.xml, Promptária/README.md",
     "validation": [
-      "manifesto consistente com a árvore física",
-      "cada instrumento preserva conteúdo e identidade",
-      "correferência por título implementada no resolvedor e validador",
-      "múltiplos títulos preservados sem seleção exclusiva",
-      "função diversa limitada à ocorrência",
-      "destino Nocturna não presumido",
-      "rastreabilidade e validação de ponta a ponta"
+      "manifesto contém exatamente os seis instrumentos físicos preservados",
+      "cada instrumento preserva conteúdo, identidade e caminho",
+      "nenhuma aresta aponta para os dois instrumentos removidos",
+      "cada instrumento mantém entrada, retorno, interface principal e ciclo navegacional",
+      "sitemap sincronizado com o catálogo"
     ]
   },
   "semantic_cross_reference": {
