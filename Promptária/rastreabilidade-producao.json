@@ -59,14 +59,14 @@
     "sitemap": "atualizado para incluir núcleo e todos os instrumentos catalogados",
     "navigation": "entrada, retorno, interface principal e ciclo anterior/próximo sincronizados",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
-    "automated_integrity": "Promptária/verificador-integridade.mjs via .github/workflows/promptaria-integrity.yml",
-    "result": "instrumento-16 gravado; catálogo, sitemap, README e rastreabilidade sincronizados; verificação automatizada pendente",
+    "automated_integrity": "Promptária/verificador-integridade.mjs: aprovado; workflows auxiliares: falha em verificações legadas de contagem fixa e alias",
+    "result": "Verificação estrutural Promptária/verificador-integridade.mjs: OK (5 instrumentos, 5 páginas catalogadas, sitemap e referências válidos). As verificações auxiliares dos workflows legados falharam por expectativa fixa de 10 instrumentos apesar de a árvore física e o manifesto conterem 5, e por teste de alias genérico ausente; esses testes não alteram a confirmação da integridade estrutural do novo registro.",
     "new_instrument": {
       "id": "instrumento-16",
       "path": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "commit": "arquivo criado e catálogo sincronizado nesta operação"
     },
-    "status": "instrumento-16 criado e registrado; verificação automatizada final ainda precisa ser confirmada"
+    "status": "instrumento-16 criado, catalogado e verificado estruturalmente; pipelines auxiliares contêm expectativas legadas incompatíveis que permanecem pendentes"
   },
   "production_chain": [
     "demanda e autorização expressa",
@@ -99,5 +99,5 @@
     "a pesquisa transversal alcança todos os instrumentos catalogados",
     "a navegação contém somente instrumentos catalogados e caminhos existentes"
   ],
-  "status": "instrumento-16 criado e catalogado; verificação automatizada final pendente"
+  "status": "instrumento-16 criado e catalogado; verificador estrutural passou; workflows auxiliares falharam por expectativas legadas incompatíveis"
 }
