@@ -1,17 +1,17 @@
 {
   "schema_version": "2.1",
   "operation": "integração da navegação neural, rastreabilidade de produção e integridade sistêmica",
-  "demand": "Preservar integralmente o conteúdo existente e estabelecer uma única arquitetura operacional de navegação, pesquisa, conexão, origem, transformação, destino, referência, validação e resultado.",
+  "demand": "Remover o instrumento isolado de arquitetura de acionamento, preservando o conteúdo incorporado à arquitetura unificada.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
     "preserved": true,
-    "existing_instruments": 10
+    "existing_instruments": 9
   },
   "transformation": [
-    "preservação dos 10 instrumentos existentes",
-    "camada compartilhada Promptária/navegacao-neural.js aplicada ao núcleo e aos 10 instrumentos",
+    "preservação dos 9 instrumentos existentes",
+    "camada compartilhada Promptária/navegacao-neural.js aplicada ao núcleo e aos 9 instrumentos",
     "pesquisa transversal por título, caminho e conteúdo",
     "entradas, retornos, anterior e próximo derivados de Promptária/manifest.json",
     "validação de arestas contra a fonte única de verdade",
@@ -26,9 +26,9 @@
     "Promptária/rastreabilidade-producao.json"
   ],
   "validation": {
-    "content_preserved": "10 instrumentos existentes preservados; alterações de integração restritas à camada navegacional e aos metadados de rastreio",
+    "content_preserved": "Conteúdo dos instrumentos restantes preservado; o instrumento isolado foi removido e seu conteúdo incorporado à arquitetura unificada permanece intacto.",
     "source_of_truth": "Promptária/manifest.json",
-    "expected_instruments": 10,
+    "expected_instruments": 9,
     "navigation": "núcleo + pesquisa transversal + entradas + retornos + anterior/próximo + interface principal",
     "production": "origem + instrumento + operação + transformação + artefato + destino + referências + validação + resultado",
     "destination_determination": "Nocturna não é presumido como destino; exige determinação explícita ou inequívoca",
@@ -57,6 +57,6 @@
     "se existe relação, existe conexão",
     "cada instrumento possui entrada no núcleo",
     "cada instrumento possui retorno e continuidade anterior/próximo",
-    "a pesquisa transversal alcança os 10 instrumentos"
+    "a pesquisa transversal alcança os 9 instrumentos"
   ]
 }
