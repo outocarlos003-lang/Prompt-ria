@@ -76,3 +76,9 @@ Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
   - Caminho: `Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html`.
   - Registro canônico: `instrumento-16` em `Promptária/manifest.json`.
   - Relação: execução editorial seriada, preservação textual e hierarquia coleção–blocos–capítulos, mantendo identidade autônoma.
+
+
+- **ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO**
+  - Caminho: `Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html`.
+  - Registro canônico: `instrumento-17` em `Promptária/manifest.json`.
+  - Relação: adaptação conservativa, operações multidiretório, resolução de destinos, materialização, coordenação e rastreabilidade; identidade autônoma.
