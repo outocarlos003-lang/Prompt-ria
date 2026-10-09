@@ -16,6 +16,7 @@ on:
       - "scripts/promptaria_coreference.py"
       - ".github/workflows/promptaria-coreference.yml"
       - "tests/**"
+      - "Promptária/manifest.json"
       - "**/*.md"
 permissions:
   contents: read
