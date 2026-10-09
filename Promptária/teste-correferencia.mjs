@@ -18,12 +18,13 @@ const index = buildReferenceIndex(instruments);
 
 assert.deepEqual(validateReferenceIndex(instruments), [], "manifesto possui referências ambíguas/duplicadas");
 
-const exact = resolveReference("Acionamento Coordenado de Instrumentos Promptuais", index);
+const canonical = instruments.find(x => x.id === "instrumento-12").title;
+const exact = resolveReference(canonical, index);
 assert.equal(exact.activation, true);
 assert.equal(exact.correferencia, true);
 assert.equal(exact.match_type, MATCH_TYPES.EXACT_TITLE);
 
-const normalized = resolveReference("  acionamento coordenado de instrumentos promptuais  ", index);
+const normalized = resolveReference(`  ${canonical.toLocaleLowerCase()}  `, index);
 assert.equal(normalized.activation, true);
 assert.equal(normalized.match_type, MATCH_TYPES.NORMALIZED_TITLE);
 
@@ -36,13 +37,13 @@ assert.equal(unknown.match_type, MATCH_TYPES.NONE);
 assert.equal(unknown.activation, false);
 
 const multi = resolveMentions(
-  "Acionamento Coordenado de Instrumentos Promptuais e PROMPT-MATRIZ — ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO.",
+  `ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS e ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS`,
   instruments,
   index
 );
 assert.deepEqual(
   [...new Set(multi.map(x => x.instrument_id))].sort(),
-  ["instrumento-01", "instrumento-09"]
+  ["instrumento-12", "instrumento-13"]
 );
 assert.equal(multi.every(x => x.correferencia), true);
 assert.equal(multi.every(x => x.function_status === FUNCTION_STATUS.OWN), true);
