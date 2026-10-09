@@ -9,7 +9,7 @@ A Promptária preserva a árvore física dos instrumentos e acrescenta uma rede 
 - Promptária/Index.html é o índice transversal.
 - Promptária/manifest.json é a fonte única de verdade da topologia.
 - Promptária/navegacao-neural.js materializa entrada, retorno, anterior, próximo e pesquisa em todas as páginas.
-- A pesquisa atravessa títulos, caminhos e conteúdo dos 10 instrumentos.
+- A pesquisa atravessa títulos, caminhos e conteúdo dos 6 instrumentos preservados.
 - A rastreabilidade de produção registra demanda, origem, instrumento, operação, transformação, artefato, destino, referências, validação e resultado.
 - O diretório do instrumento não determina automaticamente o destino de uma operação.
 - Nocturna só é considerado destino quando houver determinação explícita ou inequivocamente determinada.
