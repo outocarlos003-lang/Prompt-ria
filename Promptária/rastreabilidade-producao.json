@@ -1,13 +1,15 @@
 {
-  "schema_version": "2.2",
-  "operation": "incorporação de novo instrumento promptual e sincronização da rede navegacional",
-  "demand": "Incorporar o instrumento fornecido pelo usuário em Promptária/ usando Index.html, preservando o conteúdo operacional e integrando catálogo, navegação, sitemap e rastreabilidade.",
+  "schema_version": "2.3",
+  "operation": "incorporação do instrumento-14 e sincronização da rede navegacional e dos registros de produção",
+  "demand": "Registrar integralmente o instrumento promptual fornecido pelo usuário, em diretório próprio, preservando o texto e integrando catálogo, navegação, sitemap, documentação e rastreabilidade.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
     "preserved": true,
-    "catalog_source": "Promptária/manifest.json"
+    "catalog_source": "Promptária/manifest.json",
+    "origin": "texto integral fornecido nesta conversa pelo usuário",
+    "authorization": "autorização expressa anterior do usuário e envio do conteúdo integral nesta mensagem"
   },
   "transformation": [
     "criação do instrumento em diretório próprio no formato Index.html",
@@ -15,7 +17,12 @@
     "preservação da autonomia do instrumento-12 relacionado",
     "conexão recíproca anterior/próximo na rede navegacional",
     "atualização do sitemap e do README",
-    "verificação posterior do conteúdo e da integridade estrutural"
+    "verificação posterior do conteúdo e da integridade estrutural",
+    "criação de instrumento-14 em diretório próprio com Index.html",
+    "preservação do texto fornecido dentro de bloco preformatado HTML",
+    "integração da camada navegacional",
+    "registro no manifesto, arestas, sitemap e README",
+    "verificação posterior de conteúdo, ordem, ausência de duplicação e integridade estrutural"
   ],
   "destinations": [
     "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
@@ -23,20 +30,29 @@
     "Promptária/Index.html",
     "Promptária/sitemap.xml",
     "Promptária/README.md",
-    "Promptária/rastreabilidade-producao.json"
+    "Promptária/rastreabilidade-producao.json",
+    "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html"
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
-    "catalog_count": 2,
+    "catalog_count": 3,
     "catalog_paths": [
       "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-      "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html"
+      "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html"
     ],
     "sitemap": "atualizado para incluir núcleo e dois instrumentos catalogados",
     "navigation": "entrada, retorno, interface principal e ciclo anterior/próximo definidos",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
     "automated_integrity": "Promptária/verificador-integridade.mjs via .github/workflows/promptaria-integrity.yml",
-    "result": "incorporação gravada; verificação final do arquivo e da integridade automatizada pendente"
+    "result": "incorporação gravada; verificação final do arquivo e da integridade automatizada pendente",
+    "new_instrument": {
+      "id": "instrumento-14",
+      "path": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "content_sha": "74acd263ea3ffd705d3e13452a77a825567899cd",
+      "commit": "742f9c7bb97440204ffcea5e6116ea540cd03738"
+    },
+    "status": "arquivo criado e catalogado; verificação final de integridade automatizada ainda precisa ser executada no repositório"
   },
   "production_chain": [
     "demanda e autorização expressa",
@@ -45,7 +61,10 @@
     "criação do instrumento-13 em diretório próprio com Index.html",
     "registro no manifesto e integração de relações de navegação",
     "sincronização do sitemap e README",
-    "verificação final de conteúdo, catálogo, referências e integridade"
+    "verificação final de conteúdo, catálogo, referências e integridade",
+    "recepção do texto integral do instrumento-14",
+    "criação do Index.html em diretório próprio",
+    "integração navegacional e sincronização de manifesto, sitemap, README e rastreabilidade"
   ],
   "navigation_invariants": [
     "todo instrumento catalogado possui caminho existente",
