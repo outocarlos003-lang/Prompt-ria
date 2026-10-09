@@ -311,6 +311,50 @@
           "relation": "preservação textual e integração estrutural relacionadas; identidade e conteúdo autônomos"
         }
       ]
+    },
+    {
+      "id": "instrumento-19",
+      "title": "INSERÇÃO INTEGRAL DE PUBLICAÇÕES NO SITE: AUTONOMIA EDITORIAL, FIDELIDADE TEXTUAL E INTEGRAÇÃO SISTÊMICA",
+      "path": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "entry": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "previous": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "next": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "node_type": "instrument",
+      "source_of_truth": "Promptária/manifest.json",
+      "aliases": [
+        "inserção integral de publicações no site",
+        "autonomia editorial e fidelidade textual",
+        "integração sistêmica de publicações",
+        "inserção editorial via GitHub",
+        "publicações no site"
+      ],
+      "capabilities": [
+        "inserção de publicações pelo sistema editorial existente",
+        "preservação integral do corpo textual fornecido",
+        "derivação autônoma de metadados editoriais",
+        "criação e incorporação de imagem ilustrativa em estética dark romanticism",
+        "integração com busca, índices, categorias, tags e navegação",
+        "verificação da incorporação e descoberta editorial"
+      ],
+      "canonical_reference": {
+        "title": "INSERÇÃO INTEGRAL DE PUBLICAÇÕES NO SITE: AUTONOMIA EDITORIAL, FIDELIDADE TEXTUAL E INTEGRAÇÃO SISTÊMICA",
+        "path": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+        "id": "instrumento-19"
+      },
+      "related_instruments": [
+        {
+          "id": "instrumento-16",
+          "title": "DIRETRIZ FUNDAMENTAL DE EXECUÇÃO EDITORIAL, INTEGRIDADE TEXTUAL E ARQUITETURA HIERÁRQUICA",
+          "path": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+          "relation": "execução editorial e preservação textual relacionadas; identidade e conteúdo autônomos"
+        },
+        {
+          "id": "instrumento-13",
+          "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
+          "path": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+          "relation": "acionamento e operações pelo GitHub relacionados; identidade e conteúdo autônomos"
+        }
+      ]
     }
   ],
   "navigation": {
@@ -486,6 +530,31 @@
       "from": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "type": "related-instrument"
     }
   ],
   "provenance": {
@@ -559,6 +628,18 @@
         "atualização de sitemap, README e rastreabilidade"
       ],
       "validation": "histórico preservado a partir do registro anterior; verificação atualizada em andamento"
+    },
+    {
+      "operation": "incorporação do instrumento-19 de inserção integral de publicações; sincronização do catálogo e da navegação",
+      "origin": "conteúdo integral fornecido pelo usuário nesta conversa",
+      "instrument": "INSERÇÃO INTEGRAL DE PUBLICAÇÕES NO SITE: AUTONOMIA EDITORIAL, FIDELIDADE TEXTUAL E INTEGRAÇÃO SISTÊMICA",
+      "destination": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "transformation": [
+        "criação do instrumento em diretório próprio no formato Index.html",
+        "registro na fonte única de verdade Promptária/manifest.json",
+        "integração de entrada, retorno, interface principal e relações pertinentes"
+      ],
+      "validation": "arquivo criado; catálogo e sitemap atualizados; verificação pós-gravação pendente"
     }
   ]
 }
