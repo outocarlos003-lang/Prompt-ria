@@ -8,8 +8,8 @@
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-      "previous": null,
-      "next": null,
+      "previous": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "next": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -35,6 +35,45 @@
         "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
         "id": "instrumento-12"
       }
+    },
+    {
+      "id": "instrumento-13",
+      "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
+      "path": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "entry": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "previous": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "node_type": "instrument",
+      "source_of_truth": "Promptária/manifest.json",
+      "aliases": [
+        "acione a promptaria pelo github",
+        "inserir recuperar e aplicar demandas",
+        "instrumento promptual fixo de acionamento recuperação personalização e execução",
+        "acionamento recuperação personalização e execução de demandas",
+        "acionar promptaria pelo github"
+      ],
+      "capabilities": [
+        "identificação de demanda específica",
+        "recuperação de instrumentos promptuais por título via GitHub",
+        "contextualização parametrização e adaptação da aplicação",
+        "coordenação de múltiplos instrumentos sem fusão",
+        "execução e validação de demandas",
+        "rastreabilidade entre demanda instrumentos operações e resultados",
+        "registro de demandas no GitHub quando solicitado e tecnicamente disponível"
+      ],
+      "canonical_reference": {
+        "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
+        "path": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+        "id": "instrumento-13"
+      },
+      "related_instruments": [
+        {
+          "id": "instrumento-12",
+          "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+          "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+          "relation": "arquitetura coordenadora relacionada; identidade e conteúdo autônomos"
+        }
+      ]
     }
   ],
   "navigation": {
@@ -65,23 +104,44 @@
       "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "to": "index.html",
       "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "type": "related-instrument"
     }
   ],
   "provenance": {
-    "operation": "incorporação original de novo instrumento promptual na arquitetura existente",
-    "origin": "conteúdo fornecido pelo usuário para inserção no repositório outocarlos003-lang/Prompt-ria",
-    "instrument": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-    "transformation": "materialização no formato Index.html, registro no catálogo único, integração na navegação e atualização do sitemap",
-    "destination": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html, Promptária/manifest.json, Promptária/sitemap.xml, Promptária/README.md",
+    "operation": "incorporação original de instrumento promptual adicional à Promptária",
+    "origin": "conteúdo definitivo fornecido pelo usuário e autorização expressa nesta conversa",
+    "instrument": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
+    "transformation": "materialização integral no formato Index.html, registro na fonte única de verdade, integração de navegação, sitemap e documentação",
+    "destination": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
     "validation": [
-      "conteúdo preservado como instrumento HTML",
-      "identidade nominal registrada pelo título integral",
-      "novo caminho compatível com a arquitetura de diretório/Index.html",
-      "correferência por título incorporada à fonte única de verdade",
-      "múltiplos instrumentos preservados sem seleção exclusiva",
-      "navegação recíproca registrada",
-      "sitemap atualizado",
-      "verificação estrutural pendente de execução do workflow"
+      "arquivo criado pelo conector GitHub",
+      "título nominal preservado",
+      "conteúdo operacional armazenado integralmente em bloco preformatado",
+      "catálogo e navegação a sincronizar e verificar após gravação"
     ]
   },
   "semantic_cross_reference": {
