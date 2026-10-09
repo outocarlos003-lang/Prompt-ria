@@ -23,7 +23,7 @@ assert.equal(exact.activation, true);
 assert.equal(exact.correferencia, true);
 assert.equal(exact.match_type, MATCH_TYPES.EXACT_TITLE);
 
-const normalized = resolveReference("  acionamento coordenado de instrumentos promptuais  ", index);
+const normalized = resolveReference("  arquitetura unificada de acionamento, correferência, recuperação e aplicação de instrumentos promptuais: acionamento coordenado de instrumentos promptuais e arquitetura de acionamento, recuperação e aplicação de instrumentos promptuais, com correferência funcional automática por títulos dos instrumentos promptuais, na qual a menção genérica identifica o instrumento, preserva sua função própria e aciona sua execução, salvo atribuição específica e inequívoca de função diversa, com reconhecimento mútuo, cumulativo, coordenado e simultâneo de múltiplos títulos  ", index);
 assert.equal(normalized.activation, true);
 assert.equal(normalized.match_type, MATCH_TYPES.NORMALIZED_TITLE);
 
