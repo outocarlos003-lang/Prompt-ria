@@ -59,3 +59,10 @@ Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
 **ID → título canônico → aliases → capacidades → caminho → entrada → anterior → próximo → conteúdo → sitemap → referências → validação.**
 
 O objetivo é reduzir a possibilidade de um instrumento existir fisicamente sem existir funcionalmente, ou ser mencionado funcionalmente sem possuir uma referência navegável e rastreável.
+
+
+## Instrumento adicionado
+
+- **Instrumento Promptual de Ensaio** — delimitação do tema, formulação da tese, arquitetura argumentativa, redação, revisão e validação de ensaios.
+- Caminho: `Promptária/Instrumento-Promptual-de-Ensaio/Index.html`.
+- Registro canônico: `instrumento-11` em `Promptária/manifest.json`.
