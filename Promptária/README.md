@@ -84,3 +84,9 @@ Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
   - Caminho: `Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html`.
   - Registro canônico: `instrumento-17` em `Promptária/manifest.json`.
   - Relação: adaptação conservativa, operações multidiretório, resolução de destinos, materialização, coordenação e rastreabilidade; identidade autônoma.
+
+
+- **Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.**
+  - Caminho: `Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html`.
+  - Registro canônico: `instrumento-20` em `Promptária/manifest.json`.
+  - Relação: reconstrução recursiva da identidade sistêmica a partir das manifestações pertinentes do repositório Nocturna, com correferência multiescalar, verificação das derivações e distinção entre necessidade, possibilidade, hipótese e lacuna; identidade autônoma.
