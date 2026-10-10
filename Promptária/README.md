@@ -65,6 +65,12 @@ O manifesto é a fonte única de verdade da navegação. A validação verifica:
   - Registro canônico: `instrumento-15` em `Promptária/manifest.json`.
   - Relação: instrumento para integração controlada de ZIP, preservação arquitetural e validação rastreável.
 
+
+- **PROMPT INTEGRAL — RECONSTRUÇÃO ARQUITETÔNICA, REAPROVEITAMENTO GENERATIVO E DESENVOLVIMENTO DO NOVO EIXO DISCURSIVO DO NOCTURNA**
+  - Caminho: `Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html`.
+  - Registro canônico: `instrumento-20` em `Promptária/manifest.json`.
+  - Relação: reconstrução estrutural, reaproveitamento generativo e desenvolvimento do eixo discursivo do Nocturna; conteúdo operacional autônomo, associado a instrumentos relacionados sem fusão de identidades.
+
 ## Regra de evolução
 
 Adicionar, renomear, mover ou remover um instrumento exige manter sincronizados:
