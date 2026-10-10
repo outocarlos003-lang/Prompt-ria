@@ -8,7 +8,7 @@
       "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
       "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "entry": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-      "previous": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "previous": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
       "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
@@ -319,7 +319,7 @@
       "path": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
       "entry": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
       "previous": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
-      "next": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "next": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -354,6 +354,62 @@
           "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
           "path": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
           "relation": "acionamento e operações pelo GitHub relacionados; identidade e conteúdo autônomos"
+        }
+      ]
+    },
+    {
+      "id": "instrumento-20",
+      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+      "path": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "entry": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "previous": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "next": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "node_type": "instrument",
+      "source_of_truth": "Promptária/manifest.json",
+      "aliases": [
+        "Nocturna",
+        "Instrumento Promptual Nocturna",
+        "Arquitetura da Necessidade",
+        "Reconstrução Recursiva da Identidade Sistêmica",
+        "Indução Fractal e Correferência Multiescalar"
+      ],
+      "capabilities": [
+        "análise integrada de coleções, publicações, postagens e manifestações documentais pertinentes do repositório Nocturna",
+        "reconstrução recursiva da identidade sistêmica e de seus invariantes de origem, causalidade, teleologia e identidade",
+        "encadeamento de objeções retóricas em cadeia causal e convergência indutiva",
+        "correferência multiescalar, proveniência e verificação das derivações",
+        "distinção entre conteúdo explícito, inferência legítima, hipótese, possibilidade e lacuna documental",
+        "reconstrução estrutural sem confundir semelhança temática com identidade ou necessidade"
+      ],
+      "canonical_reference": {
+        "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+        "path": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+        "id": "instrumento-20"
+      },
+      "related_instruments": [
+        {
+          "id": "instrumento-19",
+          "title": "INSERÇÃO INTEGRAL DE PUBLICAÇÕES NO SITE: AUTONOMIA EDITORIAL, FIDELIDADE TEXTUAL E INTEGRAÇÃO SISTÊMICA",
+          "path": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+          "relation": "coleções e publicações; relação documental e editorial, mantendo autonomia"
+        },
+        {
+          "id": "instrumento-16",
+          "title": "DIRETRIZ FUNDAMENTAL DE EXECUÇÃO EDITORIAL, INTEGRIDADE TEXTUAL E ARQUITETURA HIERÁRQUICA",
+          "path": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+          "relation": "preservação textual e organização estrutural relacionadas; identidade e conteúdo autônomos"
+        },
+        {
+          "id": "instrumento-17",
+          "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
+          "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+          "relation": "adaptação e reconstrução funcional relacionadas; identidade e conteúdo autônomos"
+        },
+        {
+          "id": "instrumento-12",
+          "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+          "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+          "relation": "correferência e coordenação de instrumentos relacionadas; identidade e conteúdo autônomos"
         }
       ]
     }
@@ -558,11 +614,6 @@
       "type": "related-instrument"
     },
     {
-      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-      "to": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
-      "type": "previous"
-    },
-    {
       "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "type": "next"
@@ -634,11 +685,6 @@
     },
     {
       "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
-      "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
       "to": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
       "type": "previous"
     },
@@ -651,6 +697,81 @@
       "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "to": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "to": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "to": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "type": "related-instrument"
     }
   ],
   "provenance": {
