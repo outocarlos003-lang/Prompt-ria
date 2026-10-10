@@ -1,7 +1,7 @@
 {
   "schema_version": "2.3",
-  "operation": "incorporação do instrumento-20 e sincronização da arquitetura da Promptária",
-  "demand": "Registrar integralmente o PROMPT INTEGRAL — RECONSTRUÇÃO ARQUITETÔNICA, REAPROVEITAMENTO GENERATIVO E DESENVOLVIMENTO DO NOVO EIXO DISCURSIVO DO NOCTURNA, fornecido pelo usuário, preservando sua estrutura operacional e integrando-o ao catálogo existente.",
+  "operation": "remoção do instrumento-20 da Promptária e sincronização da arquitetura navegacional",
+  "demand": "Remover do catálogo ativo o instrumento PROMPT INTEGRAL — RECONSTRUÇÃO ARQUITETÔNICA, REAPROVEITAMENTO GENERATIVO E DESENVOLVIMENTO DO NOVO EIXO DISCURSIVO DO NOCTURNA, conforme solicitação do usuário, preservando os demais instrumentos.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
@@ -46,7 +46,12 @@
     "registro do instrumento-20 na fonte única de verdade Promptária/manifest.json, com título, aliases, capacidades e referências relacionadas",
     "sincronização das relações recíprocas anterior/próximo para incluir o instrumento-20 e reconectar o ciclo existente",
     "atualização do sitemap e do README",
-    "verificação de título, treze seções, instrução conclusiva, caminho, catálogo, sitemap e camada navegacional"
+    "verificação de título, treze seções, instrução conclusiva, caminho, catálogo, sitemap e camada navegacional",
+    "remoção do instrumento-20 do catálogo ativo em Promptária/manifest.json",
+    "exclusão do arquivo Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+    "reconexão das relações anterior/próximo entre os instrumentos-17 e 12",
+    "remoção da entrada do instrumento-20 do sitemap e do README",
+    "preservação do histórico de produção para rastreabilidade"
   ],
   "destinations": [
     "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
@@ -58,12 +63,11 @@
     "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
     "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
     "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
-    "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-    "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html"
+    "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html"
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
-    "catalog_count": 9,
+    "catalog_count": 8,
     "catalog_paths": [
       "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
@@ -72,20 +76,23 @@
       "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
       "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
-      "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
-      "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html"
+      "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html"
     ],
-    "sitemap": "sincronizado com o núcleo e todos os instrumentos catalogados; correspondência verificada via conector",
-    "navigation": "instrumento-20 conectado à navegação neural; ciclo anterior/próximo atualizado e verificado quanto à reciprocidade",
+    "sitemap": "atualizado para excluir o instrumento-20",
+    "navigation": "instrumento-20 removido; relações anterior/próximo entre instrumento-17 e instrumento-12 reconectadas",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
     "automated_integrity": "Promptária/verificador-integridade.mjs: aprovado; workflows auxiliares: falha em verificações legadas de contagem fixa e alias",
-    "result": "Instrumento-20 criado no diretório Promptária, registrado no manifesto, incluído no sitemap e README, e conectado à navegação neural. Verificação de marcadores, título, contagem de seções, caminhos, catálogo e sitemap realizada via conector; execução final automatizada do workflow não confirmada.",
+    "result": "Instrumento-20 removido do catálogo ativo, arquivo excluído, sitemap e README sincronizados; histórico preservado.",
     "new_instrument": {
       "id": "instrumento-20",
       "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
       "commit": "588e31c4bd77c37875b84bc4bc303f9eb6325668"
     },
-    "status": "instrumento-20 criado e catalogado; verificação automatizada do workflow pendente"
+    "status": "instrumento-20 removido do catálogo ativo; verificação automatizada do workflow ainda não executada",
+    "removed_instrument": {
+      "id": "instrumento-20",
+      "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html"
+    }
   },
   "production_chain": [
     "demanda e autorização expressa",
@@ -115,7 +122,10 @@
     "criação de Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
     "registro do instrumento-17 no manifesto e sincronização das relações de navegação",
     "atualização do sitemap, README e rastreabilidade",
-    "verificação pós-gravação dos marcadores de conteúdo, catálogo e referências"
+    "verificação pós-gravação dos marcadores de conteúdo, catálogo e referências",
+    "solicitação de remoção do instrumento-20",
+    "exclusão do arquivo e remoção do catálogo ativo",
+    "sincronização de manifesto, navegação, sitemap e README"
   ],
   "navigation_invariants": [
     "todo instrumento catalogado possui caminho existente",
@@ -124,5 +134,5 @@
     "a pesquisa transversal alcança todos os instrumentos catalogados",
     "a navegação contém somente instrumentos catalogados e caminhos existentes"
   ],
-  "status": "instrumento-20 criado e catalogado; verificação automatizada do workflow pendente"
+  "status": "instrumento-20 removido do catálogo ativo; verificação automatizada do workflow pendente"
 }
