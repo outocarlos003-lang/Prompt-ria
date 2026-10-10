@@ -1,15 +1,15 @@
 {
   "schema_version": "2.3",
-  "operation": "remoção do instrumento-20 da Promptária e sincronização da arquitetura navegacional",
-  "demand": "Remover do catálogo ativo o instrumento PROMPT INTEGRAL — RECONSTRUÇÃO ARQUITETÔNICA, REAPROVEITAMENTO GENERATIVO E DESENVOLVIMENTO DO NOVO EIXO DISCURSIVO DO NOCTURNA, conforme solicitação do usuário, preservando os demais instrumentos.",
+  "operation": "incorporação do instrumento-20 Nocturna e sincronização da rede navegacional da Promptária",
+  "demand": "Incorporar integralmente o instrumento promptual Nocturna fornecido pelo usuário, preservando título, conteúdo operacional, autonomia e formato Index.html.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
     "root": "Promptária",
     "preserved": true,
     "catalog_source": "Promptária/manifest.json",
-    "origin": "texto integral fornecido pelo usuário nesta conversa",
-    "authorization": "autorização expressa anterior e conteúdo definitivo fornecido nesta mensagem"
+    "origin": "conteúdo integral fornecido pelo usuário nesta conversa",
+    "authorization": "autorização prévia aplicável e conteúdo definitivo fornecido nesta mensagem"
   },
   "transformation": [
     "criação do instrumento em diretório próprio no formato Index.html",
@@ -51,7 +51,14 @@
     "exclusão do arquivo Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
     "reconexão das relações anterior/próximo entre os instrumentos-17 e 12",
     "remoção da entrada do instrumento-20 do sitemap e do README",
-    "preservação do histórico de produção para rastreabilidade"
+    "preservação do histórico de produção para rastreabilidade",
+    "criação de Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html com o instrumento promptual fornecido",
+    "preservação do conteúdo operacional no corpo do arquivo HTML, sem transformar o instrumento em artigo ou resumo",
+    "integração da camada navegacional neural no arquivo do instrumento",
+    "registro do instrumento-20 na fonte única de verdade Promptária/manifest.json, com título, aliases, capacidades e referências relacionadas",
+    "atualização recíproca das relações anterior/próximo entre os instrumentos-19, 20 e 17",
+    "atualização das arestas de entrada, retorno, interface principal e relações cruzadas pertinentes",
+    "atualização do sitemap.xml e do README.md"
   ],
   "destinations": [
     "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
@@ -63,7 +70,8 @@
     "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
     "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
     "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
-    "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html"
+    "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+    "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html"
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
@@ -85,10 +93,11 @@
     "result": "Instrumento-20 removido do catálogo ativo, arquivo excluído, sitemap e README sincronizados; histórico preservado.",
     "new_instrument": {
       "id": "instrumento-20",
-      "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "commit": "588e31c4bd77c37875b84bc4bc303f9eb6325668"
+      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+      "path": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
+      "commit": "cbd13644276f656da903dfa6ae5b7a5fd9de30da"
     },
-    "status": "instrumento-20 removido do catálogo ativo; verificação automatizada do workflow ainda não executada",
+    "status": "arquivo do instrumento criado; manifesto, navegação, sitemap e README atualizados; verificação pós-gravação pendente",
     "removed_instrument": {
       "id": "instrumento-20",
       "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html"
@@ -125,7 +134,14 @@
     "verificação pós-gravação dos marcadores de conteúdo, catálogo e referências",
     "solicitação de remoção do instrumento-20",
     "exclusão do arquivo e remoção do catálogo ativo",
-    "sincronização de manifesto, navegação, sitemap e README"
+    "sincronização de manifesto, navegação, sitemap e README",
+    "recepção do conteúdo definitivo do instrumento Nocturna e confirmação da autorização aplicável",
+    "localização do repositório conectado e confirmação do diretório Promptária",
+    "exame da arquitetura, do manifesto, do índice transversal e dos mecanismos de navegação",
+    "criação do instrumento Nocturna no formato Index.html em diretório próprio",
+    "registro do instrumento-20 no manifesto e integração das relações navegacionais e referências cruzadas",
+    "atualização do sitemap, README e rastreabilidade de produção",
+    "verificação pós-gravação do arquivo, do conteúdo e da integridade estrutural"
   ],
   "navigation_invariants": [
     "todo instrumento catalogado possui caminho existente",
