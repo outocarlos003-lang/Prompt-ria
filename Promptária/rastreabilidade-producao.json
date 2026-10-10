@@ -75,7 +75,7 @@
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
-    "catalog_count": 8,
+    "catalog_count": 9,
     "catalog_paths": [
       "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
@@ -84,20 +84,21 @@
       "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
       "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
       "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
-      "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html"
+      "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html"
     ],
-    "sitemap": "atualizado para excluir o instrumento-20",
-    "navigation": "instrumento-20 removido; relações anterior/próximo entre instrumento-17 e instrumento-12 reconectadas",
+    "sitemap": "atualizado e conferido: contém a entrada do instrumento-20",
+    "navigation": "relações previous/next verificadas como recíprocas; entrada, retorno e interface principal registrados",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
     "automated_integrity": "Promptária/verificador-integridade.mjs: aprovado; workflows auxiliares: falha em verificações legadas de contagem fixa e alias",
-    "result": "Instrumento-20 removido do catálogo ativo, arquivo excluído, sitemap e README sincronizados; histórico preservado.",
+    "result": "Instrumento Nocturna criado em Index.html, registrado como instrumento-20, integrado ao manifesto, navegação, sitemap e README; verificações pós-gravação por leitura do GitHub passaram. A execução do workflow automatizado não foi iniciada.",
     "new_instrument": {
       "id": "instrumento-20",
       "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
       "path": "Promptária/Nocturna-Arquitetura-da-Necessidade-e-Reconstrucao-Recursiva-da-Identidade-Sistemica/Index.html",
       "commit": "cbd13644276f656da903dfa6ae5b7a5fd9de30da"
     },
-    "status": "arquivo do instrumento criado; manifesto, navegação, sitemap e README atualizados; verificação pós-gravação pendente",
+    "status": "verificação pós-gravação por leitura dos arquivos do GitHub concluída; workflow automatizado não executado",
     "removed_instrument": {
       "id": "instrumento-20",
       "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html"
