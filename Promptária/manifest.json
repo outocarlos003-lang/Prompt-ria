@@ -609,6 +609,126 @@
       "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
       "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "type": "related-instrument"
+    },
+    {
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "to": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "to": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "to": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "to": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "to": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "to": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "to": "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "to": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "to": "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "to": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "to": "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "to": "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "type": "previous"
+    },
+    {
+      "from": "Promptária/Index.html",
+      "to": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "type": "entry"
+    },
+    {
+      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "to": "Promptária/Index.html",
+      "type": "return"
+    },
+    {
+      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "to": "index.html",
+      "type": "main-interface"
+    },
+    {
+      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
+      "type": "next"
+    },
+    {
+      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+      "type": "previous"
     }
   ],
   "provenance": {
