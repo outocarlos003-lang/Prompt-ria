@@ -12,12 +12,12 @@ h1, h2 { color: #eee; line-height: 1.25; }
 </head>
 <body>
 <h1>Promptária — Regra de criação e persistência</h1>
-<p>Este arquivo define o procedimento operacional de criação, atualização e verificação de arquivos no repositório. Não é um registro de pendências de conteúdo nem uma declaração de que algum instrumento específico esteja incompleto.</p>
+<p>Este arquivo define o procedimento operacional de criação, atualização e verificação de arquivos no repositório. Ele estabelece regras gerais de persistência e não altera o estado nem o conteúdo dos instrumentos catalogados.</p>
 
 <h2>Regra de criação e persistência do arquivo</h2>
 <p>A gravação não depende da existência prévia de <code>Index.html</code>. A ausência do arquivo é uma condição normal de criação, não um impedimento nem motivo para rejeitar a solicitação. Sempre que uma solicitação exigir a inserção ou gravação de conteúdo e o arquivo de destino não existir, criar o arquivo no caminho solicitado; se já existir, recuperar sua versão atual e atualizá-la sem sobrescrever material não relacionado.</p>
 <p>Antes de gravar, confirmar o caminho de destino e o estado do arquivo. Se estiver ausente, executar a operação de criação; se estiver presente, executar a operação de atualização usando a versão corrente como base. Respeitar o escopo solicitado e preservar instrumentos promptuais já catalogados corretamente, sem alterações não solicitadas.</p>
-<p>Após a operação, verificar o resultado efetivamente gravado, incluindo caminho, conteúdo e commit. Relatar com precisão o que foi realizado e o que foi verificado. Se ocorrer uma falha técnica real, identificar a operação e a mensagem de erro concreta; não substituir a execução por um marcador de posição, uma declaração genérica de pendência ou uma alegação não verificada.</p>
+<p>Após a operação, verificar o resultado efetivamente gravado, incluindo caminho, conteúdo e commit. Relatar com precisão o que foi realizado e o que foi verificado. Se ocorrer uma falha técnica real, identificar a operação e a mensagem de erro concreta, distinguindo os resultados confirmados das limitações efetivamente encontradas.</p>
 <p><strong>Regra resumida:</strong> destino ausente → criar; destino existente → atualizar conservativamente; após gravar → verificar o conteúdo e o commit. Preservar o texto-fonte fornecido pelo usuário conforme o escopo da solicitação, sem paráfrase ou omissão não autorizada. A inexistência prévia de um arquivo nunca deve, por si só, impedir a criação solicitada.</p>
 </body>
 </html>
