@@ -9,7 +9,7 @@
       "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "entry": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "previous": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
-      "next": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
       "aliases": [
@@ -51,7 +51,7 @@
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "entry": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-      "previous": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "previous": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "next": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "node_type": "instrument",
       "source_of_truth": "Promptária/manifest.json",
@@ -356,59 +356,6 @@
           "relation": "acionamento e operações pelo GitHub relacionados; identidade e conteúdo autônomos"
         }
       ]
-    },
-    {
-      "id": "instrumento-20",
-      "title": "PROMPT INTEGRAL — RECONSTRUÇÃO ARQUITETÔNICA, REAPROVEITAMENTO GENERATIVO E DESENVOLVIMENTO DO NOVO EIXO DISCURSIVO DO NOCTURNA",
-      "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "entry": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "previous": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-      "next": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-      "node_type": "instrument",
-      "source_of_truth": "Promptária/manifest.json",
-      "aliases": [
-        "reconstrução arquitetônica do Nocturna",
-        "reaproveitamento generativo do acervo Nocturna",
-        "desenvolvimento do novo eixo discursivo do Nocturna",
-        "engenharia reversa e reintegração do acervo Nocturna",
-        "prompt integral reconstrução arquitetônica"
-      ],
-      "capabilities": [
-        "seleção estrutural de coleções, publicações e postagens",
-        "reconfiguração funcional e reintegração relacional",
-        "objeções retóricas multicamadas e respostas causalmente encadeadas",
-        "preservação dos invariantes de origem, causalidade, teleologia e identidade sistêmica",
-        "economia funcional e suficiência generativa",
-        "ambiguidade produtiva e superposição conceitual",
-        "engenharia reversa, recursividade, correferência e indução fractal",
-        "distinção entre possibilidade, necessidade e incompatibilidade",
-        "desenvolvimento do novo eixo discursivo do Nocturna"
-      ],
-      "canonical_reference": {
-        "title": "PROMPT INTEGRAL — RECONSTRUÇÃO ARQUITETÔNICA, REAPROVEITAMENTO GENERATIVO E DESENVOLVIMENTO DO NOVO EIXO DISCURSIVO DO NOCTURNA",
-        "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-        "id": "instrumento-20"
-      },
-      "related_instruments": [
-        {
-          "id": "instrumento-17",
-          "title": "ADAPTAÇÃO E EXECUÇÃO EXTENSIVAS DOS INSTRUMENTOS PROMPTUAIS — PROMPT-MATRIZ DE ADAPTAÇÃO EXTENSIVA MULTIDIRETÓRIO",
-          "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-          "relation": "adaptação e execução de instrumentos relacionadas; identidade e conteúdo autônomos"
-        },
-        {
-          "id": "instrumento-19",
-          "title": "INSERÇÃO INTEGRAL DE PUBLICAÇÕES NO SITE: AUTONOMIA EDITORIAL, FIDELIDADE TEXTUAL E INTEGRAÇÃO SISTÊMICA",
-          "path": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
-          "relation": "integração editorial de publicações relacionada ao acervo; identidade e conteúdo autônomos"
-        },
-        {
-          "id": "instrumento-12",
-          "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
-          "path": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-          "relation": "acionamento e correferência de instrumentos relacionados; identidade e conteúdo autônomos"
-        }
-      ]
     }
   ],
   "navigation": {
@@ -612,11 +559,6 @@
     },
     {
       "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-      "to": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "type": "next"
-    },
-    {
-      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "to": "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
       "type": "previous"
     },
@@ -624,11 +566,6 @@
       "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "to": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "type": "next"
-    },
-    {
-      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
-      "to": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "type": "previous"
     },
     {
       "from": "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
@@ -706,27 +643,12 @@
       "type": "previous"
     },
     {
-      "from": "Promptária/Index.html",
-      "to": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "type": "entry"
-    },
-    {
-      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "to": "Promptária/Index.html",
-      "type": "return"
-    },
-    {
-      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
-      "to": "index.html",
-      "type": "main-interface"
-    },
-    {
-      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "from": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "to": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "type": "next"
     },
     {
-      "from": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "from": "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "to": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "type": "previous"
     }
