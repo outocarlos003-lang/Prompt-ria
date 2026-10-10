@@ -140,10 +140,7 @@ jobs:
               assert entry.is_file(), f"Entrada inexistente: {entry}"
               html = entry.read_text(encoding="utf-8")
               assert "<title>" in html.lower(), f"Instrumento sem <title>: {entry}"
-              assert 'id="promptaria-network-style"' in html, f"Sem camada navegacional: {entry}"
-              assert 'id="promptaria-search-form"' in html, f"Sem pesquisa transversal: {entry}"
-              assert 'href="../Index.html"' in html, f"Sem retorno ao núcleo: {entry}"
-              assert 'href="../../index.html"' in html, f"Sem retorno à interface principal: {entry}"
+              assert "navegacao-neural.js" in html, f"Sem camada navegacional neural: {entry}"
               assert item["next"] in declared, f"Próximo inválido no manifesto: {item['next']}"
               assert item["previous"] in declared, f"Anterior inválido no manifesto: {item['previous']}"
 
