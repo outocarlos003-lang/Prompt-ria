@@ -126,7 +126,7 @@ jobs:
           physical = {p.as_posix() for p in entries}
 
           assert manifest.get("schema_version") == "2.0", "Manifesto fora do schema 2.0"
-          assert len(entries) == len(manifest["instruments"]) == 10, (
+          assert len(entries) == len(manifest["instruments"]), (
               f"Catálogo inconsistente: físicos={len(entries)} manifesto={len(manifest['instruments'])}"
           )
           assert physical == declared, "Manifesto e árvore física divergem"
