@@ -61,7 +61,8 @@
         "acionamento coordenado de instrumentos promptuais",
         "correferência funcional automática",
         "arquitetura de acionamento recuperação e aplicação",
-        "arquitetura unificada"
+        "arquitetura unificada",
+        "coordenação"
       ],
       "capabilities": [
         "acionamento coordenado de múltiplos instrumentos",
