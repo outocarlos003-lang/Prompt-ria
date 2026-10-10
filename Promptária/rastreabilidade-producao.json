@@ -1,7 +1,7 @@
 {
   "schema_version": "2.3",
-  "operation": "incorporação do instrumento-17 e sincronização do catálogo, navegação e registros da Promptária",
-  "demand": "Registrar integralmente o instrumento promptual de execução editorial, integridade textual e arquitetura hierárquica fornecido pelo usuário, preservando o conteúdo e integrando a arquitetura existente.",
+  "operation": "incorporação do instrumento-20 e sincronização da arquitetura da Promptária",
+  "demand": "Registrar integralmente o PROMPT INTEGRAL — RECONSTRUÇÃO ARQUITETÔNICA, REAPROVEITAMENTO GENERATIVO E DESENVOLVIMENTO DO NOVO EIXO DISCURSIVO DO NOCTURNA, fornecido pelo usuário, preservando sua estrutura operacional e integrando-o ao catálogo existente.",
   "source": {
     "repository": "outocarlos003-lang/Prompt-ria",
     "branch": "main",
@@ -39,7 +39,14 @@
     "integração da camada navegacional neural",
     "registro do instrumento-17 no manifesto e sincronização do ciclo anterior/próximo",
     "atualização do sitemap e README",
-    "verificação pós-gravação de conteúdo, catálogo e referências"
+    "verificação pós-gravação de conteúdo, catálogo e referências",
+    "recepção do conteúdo integral do instrumento-20 e autorização expressa de inserção",
+    "criação de Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html com o texto operacional em bloco preformatado",
+    "integração do instrumento-20 à camada navegacional neural",
+    "registro do instrumento-20 na fonte única de verdade Promptária/manifest.json, com título, aliases, capacidades e referências relacionadas",
+    "sincronização das relações recíprocas anterior/próximo para incluir o instrumento-20 e reconectar o ciclo existente",
+    "atualização do sitemap e do README",
+    "verificação de título, treze seções, instrução conclusiva, caminho, catálogo, sitemap e camada navegacional"
   ],
   "destinations": [
     "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
@@ -51,30 +58,34 @@
     "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
     "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
     "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
-    "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html"
+    "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
+    "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html"
   ],
   "validation": {
     "source_of_truth": "Promptária/manifest.json",
-    "catalog_count": 6,
+    "catalog_count": 9,
     "catalog_paths": [
+      "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
       "Promptária/Arquitetura-Unificada-de-Acionamento-Correferencia-Recuperacao-e-Aplicacao-de-Instrumentos-Promptuais/Index.html",
       "Promptária/Acione-a-Promptaria-pelo-GitHub-para-Inserir-Recuperar-e-Aplicar-Demandas/Index.html",
       "Promptária/INSTRUMENTO-PROMPTUAL-Tudo-se-conecta-tudo-se-rastreia-e-tudo-se-integra/Index.html",
       "Promptária/Organizacao-Inteligente-de-ZIP-no-Diretorio-do-GitHub/Index.html",
       "Promptária/Diretriz-Fundamental-de-Execucao-Editorial-Integridade-Textual-e-Arquitetura-Hierarquica/Index.html",
-      "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html"
+      "Promptária/INSTRUMENTO-PROMPTUAL-Solicitacao-de-Incorporacao-de-Prompts/Index.html",
+      "Promptária/Insercao-Integral-de-Publicacoes-no-Site-Autonomia-Editorial-Fidelidade-Textual-e-Integracao-Sistemica/Index.html",
+      "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html"
     ],
-    "sitemap": "atualizado para incluir núcleo e todos os instrumentos catalogados",
-    "navigation": "entrada, retorno, interface principal e ciclo anterior/próximo sincronizados",
+    "sitemap": "sincronizado com o núcleo e todos os instrumentos catalogados; correspondência verificada via conector",
+    "navigation": "instrumento-20 conectado à navegação neural; ciclo anterior/próximo atualizado e verificado quanto à reciprocidade",
     "orphan_policy": "páginas físicas de instrumentos não catalogados devem falhar na verificação de integridade",
     "automated_integrity": "Promptária/verificador-integridade.mjs: aprovado; workflows auxiliares: falha em verificações legadas de contagem fixa e alias",
-    "result": "Instrumento-17 criado, catalogado, incluído no sitemap e README, e conectado à camada navegacional. Verificação estrutural manual dos caminhos e marcadores concluída; execução automatizada do workflow não confirmada.",
+    "result": "Instrumento-20 criado no diretório Promptária, registrado no manifesto, incluído no sitemap e README, e conectado à navegação neural. Verificação de marcadores, título, contagem de seções, caminhos, catálogo e sitemap realizada via conector; execução final automatizada do workflow não confirmada.",
     "new_instrument": {
-      "id": "instrumento-17",
-      "path": "Promptária/Adaptacao-e-Execucao-Extensiva-Multidiretorio/Index.html",
-      "commit": "aabbe47c5851c8392d687a6c2843735431899e75"
+      "id": "instrumento-20",
+      "path": "Promptária/Reconstituicao-Arquitetonica-Reaproveitamento-Generativo-Eixo-Discursivo-Nocturna/Index.html",
+      "commit": "588e31c4bd77c37875b84bc4bc303f9eb6325668"
     },
-    "status": "instrumento-17 criado e catalogado; verificação automatizada do workflow pendente"
+    "status": "instrumento-20 criado e catalogado; verificação automatizada do workflow pendente"
   },
   "production_chain": [
     "demanda e autorização expressa",
@@ -113,5 +124,5 @@
     "a pesquisa transversal alcança todos os instrumentos catalogados",
     "a navegação contém somente instrumentos catalogados e caminhos existentes"
   ],
-  "status": "instrumento-17 criado e catalogado; verificação automatizada do workflow pendente"
+  "status": "instrumento-20 criado e catalogado; verificação automatizada do workflow pendente"
 }
