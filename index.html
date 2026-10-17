@@ -17,6 +17,53 @@ a{color:inherit}button,input,textarea{font:inherit}.wrap{width:min(1120px,calc(1
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 @media(max-width:760px){.wrap{width:min(100% - 30px,560px)}.topbar{height:68px}.nav{gap:12px}.nav a:not(.github){display:none}.hero{padding:58px 0 35px;grid-template-columns:1fr;gap:20px}.hero-copy{text-align:left}.visual{min-height:290px;order:-1;transform:scale(.88);margin:-10px 0}.hero h1{font-size:clamp(2.8rem,13vw,4.3rem)}.lead{font-size:1rem}.cards{grid-template-columns:1fr}.section{padding:30px 0 50px}.section-head{display:block}.section-head p{margin-top:10px}.instruments{grid-template-columns:1fr}.cta{align-items:flex-start;flex-direction:column}.footer{flex-direction:column}}
 .hero{padding:52px 0 38px;grid-template-columns:1.05fr .95fr;gap:30px;min-height:410px}.hero-mark{display:flex;align-items:center;gap:10px;color:#8b9bb5;font:600 .68rem/1.4 ui-monospace,monospace;letter-spacing:.12em;margin-bottom:22px}.hero-mark-line{display:block;width:24px;height:1px;background:var(--cyan)}h1{font-size:clamp(2.7rem,5.3vw,4.7rem);margin:0 0 20px}.lead{font-size:1.02rem;max-width:430px;margin-bottom:24px}.hero-link{display:inline-flex;align-items:center;gap:14px;padding:10px 0;color:var(--cyan);font-size:.9rem;font-weight:650;text-decoration:none;border-bottom:1px solid #62f3e244}.hero-link span{font-size:1.15rem;transition:transform .2s}.hero-link:hover span{transform:translateY(3px)}.visual{min-height:330px;border:1px solid #ffffff0c;border-radius:28px;background:radial-gradient(ellipse at center,#141d35aa,transparent 68%);overflow:hidden}.orb{width:220px}.orbit{width:260px;height:150px}.orbit.two{width:290px;height:190px}.core{width:104px;height:104px;border-radius:28px;font-weight:800;letter-spacing:-.08em;background:linear-gradient(145deg,#1c2a41,#0e1423);font-size:2.6rem}.core span{color:#a69aff}.visual-caption{position:absolute;bottom:20px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:9px;color:#7889a5;font: .63rem ui-monospace,monospace;letter-spacing:.15em}.caption-dot{width:5px;height:5px;background:var(--cyan);border-radius:50%;box-shadow:0 0 10px var(--cyan)}.caption-divider{color:#3c4b65}.section{padding:32px 0 58px}.section-head{align-items:center;padding-bottom:16px;border-bottom:1px solid #ffffff0d}.section-head p{max-width:300px;font-size:.85rem}.searchbox{margin:18px 0 14px}.instrument{min-height:100px;padding:20px 22px;background:linear-gradient(125deg,#121d2eaa,#0d1321cc);border-color:#2b3950}.instrument strong{font-size:.94rem}.instrument small{display:block;margin-top:7px}.arrow{width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;border:1px solid #62f3e22b;border-radius:10px;background:#62f3e20a}.footer{padding-top:18px}.brand{font-size:1.15rem}.topbar{height:68px}@media(max-width:760px){.hero{padding:28px 0 20px;min-height:0;gap:8px}.hero-copy{padding:8px 2px 0}.hero-mark{font-size:.59rem;margin-bottom:16px}.hero h1{font-size:clamp(2.7rem,12vw,4rem)}.visual{min-height:235px;order:-1;transform:none;margin:0 0 18px;border-radius:22px}.orb{width:170px}.orbit{width:220px;height:125px}.orbit.two{width:245px;height:155px}.core{width:82px;height:82px;font-size:2.1rem;border-radius:23px}.visual-caption{bottom:12px}.section{padding:24px 0 38px}.section-head{padding-bottom:14px}.section-head p{margin-top:7px}.instrument{padding:17px;gap:12px}.footer{padding:16px 0 24px}}</style>
+<style>
+
+/* Refinamento desktop: hierarquia, respiro e alinhamento */
+@media (min-width: 761px) {
+  .wrap { width: min(1240px, calc(100% - 96px)); }
+  .topbar { height: 82px; }
+  .brand { font-size: 1.24rem; gap: 13px; }
+  .logo { width: 42px; height: 42px; border-radius: 14px; }
+  .hero {
+    min-height: 490px;
+    padding: 72px 0 66px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+    gap: clamp(48px, 7vw, 100px);
+    align-items: center;
+  }
+  .hero-copy { max-width: 650px; padding-left: clamp(0px, 2vw, 28px); }
+  .hero h1 { font-size: clamp(4rem, 5.3vw, 5.6rem); line-height: 1.02; letter-spacing: -.078em; }
+  .visual {
+    min-height: 420px;
+    border-radius: 32px;
+    border-color: #ffffff10;
+    background: radial-gradient(ellipse at 50% 46%, #192747a8, #10172744 52%, transparent 76%);
+  }
+  .orb { width: 270px; }
+  .orbit { width: 320px; height: 185px; }
+  .orbit.two { width: 355px; height: 235px; }
+  .core { width: 120px; height: 120px; border-radius: 32px; }
+  .section { padding: 28px 0 82px; }
+  .section-head { margin-bottom: 28px; padding-bottom: 22px; }
+  .section h2 { font-size: 2.25rem; }
+  .section-head p { max-width: 360px; line-height: 1.75; }
+  .searchbox { max-width: 620px; margin: 24px 0 18px; }
+  .searchbox input { min-height: 54px; padding: 15px 18px; }
+  .instruments { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .instrument { min-height: 112px; padding: 24px 28px; border-radius: 18px; }
+  .instrument strong { font-size: 1rem; }
+  .instrument small { margin-top: 9px; font-size: .8rem; }
+  .arrow { width: 38px; height: 38px; flex-basis: 38px; font-size: 1.2rem; }
+  .footer { padding: 24px 0 38px; }
+}
+@media (min-width: 1200px) {
+  .hero { padding-top: 82px; padding-bottom: 78px; }
+  .visual { min-height: 460px; }
+  .section { padding-bottom: 94px; }
+}
+
+</style>
 </head>
 <body>
 <header class="wrap topbar">
