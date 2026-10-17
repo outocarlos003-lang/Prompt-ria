@@ -336,5 +336,34 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertIn("link simbólico", proc.stderr)
 
 
+    def test_state_and_audit_permissions_are_restricted(self):
+        root, proc = self.run_executor(self.base())
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        state = root / ".promptaria"
+        audit = state / "audit.jsonl"
+        lock = state / "executor.lock"
+        self.assertEqual(state.stat().st_mode & 0o777, 0o700)
+        self.assertEqual(audit.stat().st_mode & 0o777, 0o600)
+        self.assertEqual(lock.stat().st_mode & 0o777, 0o600)
+
+    def test_rejects_lock_file_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            state = root / ".promptaria"
+            state.mkdir(mode=0o700)
+            external = root / "external-lock"
+            external.write_text("", encoding="utf-8")
+            (state / "executor.lock").symlink_to(external)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertEqual(external.read_text(encoding="utf-8"), "")
+
+
 if __name__ == "__main__":
     unittest.main()
