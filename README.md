@@ -23,7 +23,8 @@ O componente fixo obrigatório é **Acione a Promptária pelo GitHub para Inseri
 - Descoberta de todos os instrumentos Markdown com cabeçalho de título.
 - Correspondência por título normalizado, sem limite numérico codificado.
 - Inclusão do componente fixo quando o arquivo existe.
-- Validação de destino relativo e bloqueio de caminhos absolutos ou com `..`.
+- Validação estrita de destino relativo: bloqueia caminhos absolutos, segmentos `..`, segmentos vazios, `.`, `.git`, separadores Windows e caracteres de controle.
+- Validação estrita de `dry_run` e autorização explícita para qualquer pedido de modo não simulado.
 - Artefato JSON com correspondências e estados de rastreabilidade.
 
 ## Limites importantes
@@ -42,6 +43,6 @@ O arquivo de entrada deve conter JSON com `request` e, opcionalmente, `destinati
 
 O instrumento `instruments/protocolo-mestre-acionamento-automatico.md` preserva o modelo genérico com seus quatro elementos estruturais e serve como préconfiguração para demandas futuras. O resolvedor inclui automaticamente, em cada plano, os três componentes-base: a arquitetura coordenadora, o protocolo-mestre e o instrumento operacional do GitHub. Títulos adicionais mencionados são todos recuperados por correspondência normalizada.
 
-A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. A execução real continua dependente de um evento autorizado, permissões e integração apropriada. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
+A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. O resolvedor rejeita `dry_run` que não seja booleano JSON; o padrão é `true`. Um pedido `dry_run: false` exige `write_authorized: true` e `destination` explícito, mas ainda é recusado na prática até existir um executor de escrita integrado: essa versão apenas gera planos e não modifica o destino. A execução real continua dependente de um evento autorizado, permissões e integração apropriada. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
 
 Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` em uma issue. Para execução manual, abra Actions → “Promptária - correferência funcional por título” → Run workflow. O artefato JSON indica componentes obrigatórios ausentes, títulos reconhecidos e estados de rastreabilidade.
