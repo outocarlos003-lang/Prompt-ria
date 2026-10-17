@@ -197,7 +197,7 @@ class PromptariaExecutorTests(unittest.TestCase):
             second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
             self.assertNotEqual(second.returncode, 0)
             self.assertIn("reconciliação manual obrigatória", second.stderr)
-            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\\n")
+            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\n")
 
     def test_rejects_audit_log_symlink(self):
         with tempfile.TemporaryDirectory() as tmp:
