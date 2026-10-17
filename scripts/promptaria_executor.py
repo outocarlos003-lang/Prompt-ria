@@ -276,7 +276,12 @@ def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation
 
         result["executed"] = True
         result["status"] = "executed"
-        result["result_content_sha256"] = hashlib.sha256(target.read_bytes()).hexdigest()
+        verify_fd, verify_leaf = open_destination_parent(root, destination, create=False)
+        try:
+            result["result_content_sha256"] = inspect_destination(verify_fd, verify_leaf)
+        finally:
+            if verify_fd is not None:
+                os.close(verify_fd)
         if result["result_content_sha256"] != result["content_sha256"]:
             result["status"] = "result_validation_failed"
             fail("Validação pós-escrita falhou: hash do resultado divergente.")
