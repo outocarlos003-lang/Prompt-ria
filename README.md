@@ -37,3 +37,11 @@ A decisão semântica sobre função diversa não é reduzida a uma heurística 
 `python scripts/promptaria_resolver.py --request request.json --instruments instruments --output promptaria-result.json`
 
 O arquivo de entrada deve conter JSON com `request` e, opcionalmente, `destination` e `dry_run`.
+
+## Protocolo-mestre e préconfiguração padrão
+
+O instrumento `instruments/protocolo-mestre-acionamento-automatico.md` preserva o modelo genérico com seus quatro elementos estruturais e serve como préconfiguração para demandas futuras. O resolvedor inclui automaticamente, em cada plano, os três componentes-base: a arquitetura coordenadora, o protocolo-mestre e o instrumento operacional do GitHub. Títulos adicionais mencionados são todos recuperados por correspondência normalizada.
+
+A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. A execução real continua dependente de um evento autorizado, permissões e integração apropriada. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
+
+Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` em uma issue. Para execução manual, abra Actions → “Promptária - correferência funcional por título” → Run workflow. O artefato JSON indica componentes obrigatórios ausentes, títulos reconhecidos e estados de rastreabilidade.
