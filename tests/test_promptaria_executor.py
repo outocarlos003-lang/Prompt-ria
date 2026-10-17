@@ -168,5 +168,41 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual(records[1]["audit_prev_hash"], records[0]["audit_hash"])
 
 
+    def test_rejects_audit_log_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            external = root / "external-audit.jsonl"
+            external.write_text("", encoding="utf-8")
+            state = root / ".promptaria"
+            state.mkdir()
+            (state / "audit.jsonl").symlink_to(external)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("link simbólico", proc.stderr)
+            self.assertEqual(external.read_text(encoding="utf-8"), "")
+
+    def test_rejects_state_directory_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            external = root / "external-state"
+            external.mkdir()
+            (root / ".promptaria").symlink_to(external, target_is_directory=True)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("link simbólico", proc.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()
