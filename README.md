@@ -22,10 +22,11 @@ O componente fixo obrigatório é **Acione a Promptária pelo GitHub para Inseri
 - Recepção explícita de demanda por evento GitHub autorizado.
 - Descoberta de todos os instrumentos Markdown com cabeçalho de título.
 - Correspondência por título normalizado, sem limite numérico codificado.
-- Inclusão do componente fixo quando o arquivo existe.
+- Inclusão dos componentes-base obrigatórios quando os arquivos existem.
 - Validação estrita de destino relativo: bloqueia caminhos absolutos, segmentos `..`, segmentos vazios, `.`, `.git`, separadores Windows e caracteres de controle.
 - Validação estrita de `dry_run` e autorização explícita para qualquer pedido de modo não simulado.
 - Artefato JSON com correspondências e estados de rastreabilidade.
+- Testes de integridade do repositório para conteúdo Markdown não vazio, títulos únicos após normalização, presença dos três componentes-base e validade do contrato do resultado.
 
 ## Limites importantes
 
@@ -35,7 +36,10 @@ A decisão semântica sobre função diversa não é reduzida a uma heurística 
 
 ## Execução local
 
-`python scripts/promptaria_resolver.py --request request.json --instruments instruments --output promptaria-result.json`
+```bash
+python scripts/promptaria_resolver.py --request request.json --instruments instruments --output promptaria-result.json
+python -m unittest discover -s tests -v
+```
 
 O arquivo de entrada deve conter JSON com `request` e, opcionalmente, `destination` e `dry_run`.
 
@@ -47,16 +51,15 @@ A inclusão automática é uma préconfiguração de reconhecimento e planejamen
 
 Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` em uma issue. Para execução manual, abra Actions → “Promptária - correferência funcional por título” → Run workflow. O artefato JSON indica componentes obrigatórios ausentes, títulos reconhecidos e estados de rastreabilidade.
 
-
 ## Cadeia de integridade da auditoria
 
 Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir de JSON canônico. O executor verifica a cadeia disponível e bloqueia alterações detectáveis, reordenação, JSON inválido e última linha incompleta. **Uma cadeia local, isoladamente, não consegue detectar com garantia a remoção de um sufixo completo nem a substituição integral do arquivo.** Registros legados sem hash só podem aparecer antes do início da cadeia; o primeiro registro encadeado ancora os bytes do histórico anterior, mas não protege contra truncamento posterior sem uma âncora externa. Operações de escrita real agora registram `write_intent` antes da mutação e `executed` após a validação; se a conclusão desaparecer ou a execução for interrompida, a reutilização do mesmo `operation_id` falha fechada e exige reconciliação manual. Para detectar remoção de histórico, exporte periodicamente âncoras para armazenamento externo confiável, protegido contra alteração pela identidade do executor.
 
-## Validação de resultados e teste ponta a ponta
+## Validação de resultados e testes de regressão
 
 Após a resolução, `scripts/promptaria_validate_result.py` verifica o contrato do artefato: esquema esperado, presença dos três componentes obrigatórios, recuperação de conteúdo, estados que não alegam execução e indisponibilidade de escrita no resolvedor. A validação falha de forma explícita se faltar qualquer componente obrigatório ou se o JSON declarar uma execução que não ocorreu.
 
-O workflow `.github/workflows/promptaria-tests.yml` executa a suíte de regressão e um smoke test com os instrumentos reais do repositório: chama o resolvedor e valida o JSON resultante. Assim, a integração verifica não apenas testes com fixtures, mas também se a coleção efetiva de instrumentos satisfaz o contrato obrigatório.
+O workflow `.github/workflows/promptaria-tests.yml` executa a suíte de regressão e um smoke test com os instrumentos reais do repositório: chama o resolvedor e valida o JSON resultante. A suíte também verifica integridade da coleção real de instrumentos, unicidade dos títulos normalizados, presença dos componentes-base, recusa de correspondência por título parcial e o contrato que impede alegações falsas de execução. Assim, a integração verifica tanto fixtures de teste quanto os instrumentos versionados.
 
 ## Âncora externa da auditoria
 
@@ -100,7 +103,6 @@ Exemplo de solicitação de simulação:
 ```
 
 Execute com `python scripts/promptaria_executor.py --request request.json --repo-root .`. Para uma escrita real, altere explicitamente os dois campos de autorização no JSON e forneça `--confirm-operation relatorio-2026-001`. Use apenas após revisar o conteúdo e o destino. Testes: `python -m unittest discover -s tests -v`.
-
 
 **Limite do modelo de ameaça:** estas medidas protegem contra outros usuários locais e reduzem as corridas de substituição de caminhos; `flock` é consultivo e só serializa participantes cooperantes. Um processo hostil executando sob a mesma identidade/UID do executor pode, em geral, agir com os mesmos privilégios sobre esses arquivos e diretórios. Para resistência contra comprometimento da mesma identidade, execute o executor sob uma conta dedicada com permissões mínimas e mantenha a âncora de auditoria em um domínio de controle independente. A auditoria e a mutação do destino também não formam uma única transação atômica.
 
