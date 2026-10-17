@@ -64,6 +64,89 @@ a{color:inherit}button,input,textarea{font:inherit}.wrap{width:min(1120px,calc(1
 }
 
 </style>
+
+<style>
+/* Polimento visual: contraste, ritmo e estados de interação */
+@media (min-width: 761px) {
+  .topbar { border-bottom-color: #ffffff16; }
+  .brand { letter-spacing: -.045em; }
+  .hero { position: relative; }
+  .hero-copy { position: relative; }
+  .hero-copy::before {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 3px;
+    margin: 0 0 25px 3px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    box-shadow: 0 0 18px #62f3e22a;
+  }
+  .hero h1 { max-width: 680px; text-wrap: balance; }
+  .visual {
+    box-shadow: inset 0 1px 0 #ffffff08, 0 24px 70px #00000012;
+  }
+  .visual::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid #ffffff07;
+    border-radius: 22px;
+    pointer-events: none;
+  }
+  .section-head { align-items: end; }
+  .section-head > div { min-width: 0; }
+  .section-head p { padding-bottom: 3px; }
+  .searchbox { position: relative; }
+  .searchbox input {
+    min-height: 58px;
+    border-radius: 15px;
+    background: #0c1220d9;
+    box-shadow: inset 0 1px 0 #ffffff05;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+  }
+  .searchbox input:hover { border-color: #394964; }
+  .searchbox input:focus { background: #0e1626; }
+  .instrument {
+    position: relative;
+    min-height: 116px;
+    padding-right: 32px;
+    background: linear-gradient(105deg, #121d2eeb 0%, #0d1422eb 72%, #13152aeb 100%);
+    box-shadow: inset 0 1px 0 #ffffff05, 0 8px 28px #0000000b;
+  }
+  .instrument::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18px;
+    bottom: 18px;
+    width: 2px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--cyan), var(--violet));
+    opacity: .72;
+    transition: opacity .2s, top .2s, bottom .2s;
+  }
+  .instrument:hover::before { top: 12px; bottom: 12px; opacity: 1; }
+  .instrument strong { max-width: 760px; letter-spacing: -.012em; }
+  .instrument small { color: #a1b0c8; }
+  .arrow { transition: transform .2s, background .2s, border-color .2s; }
+  .instrument:hover .arrow {
+    transform: translate(2px, -2px);
+    background: #62f3e217;
+    border-color: #62f3e255;
+  }
+  .footer { border-top-color: #ffffff16; }
+}
+@media (max-width: 760px) {
+  .hero-copy::before { content: none; }
+  .visual::after { content: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .logo { transition: transform .2s, box-shadow .2s; }
+  .brand:hover .logo { transform: rotate(-5deg); box-shadow: 0 0 34px #64f3e244; }
+}
+</style>
+
 </head>
 <body>
 <header class="wrap topbar">
