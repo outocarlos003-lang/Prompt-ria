@@ -46,6 +46,23 @@ def append_audit(audit_path: Path, record: dict) -> None:
         stream.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
 
 
+def reject_replayed_operation(audit_path: Path, operation_id: str) -> None:
+    """Fail closed if this ID already completed a real write in this audit ledger."""
+    if not audit_path.exists():
+        return
+    try:
+        for line_number, line in enumerate(audit_path.read_text(encoding="utf-8").splitlines(), start=1):
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            if not isinstance(record, dict):
+                fail(f"Registro de auditoria inválido na linha {line_number}; operação bloqueada.")
+            if record.get("operation_id") == operation_id and record.get("status") == "executed":
+                fail("Operação recusada: este operation_id já concluiu uma escrita; use um ID novo.")
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f"Registro de auditoria ilegível; operação bloqueada por segurança: {exc}")
+
+
 def execute(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     operation_id = payload.get("operation_id")
@@ -57,6 +74,8 @@ def execute(payload: dict, repo_root: Path, registry: dict, confirmation_id: str
 
     if not isinstance(operation_id, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{2,127}", operation_id):
         fail("operation_id inválido.")
+    audit_path = repo_root / ".promptaria" / "audit.jsonl"
+    reject_replayed_operation(audit_path, operation_id)
     if operation != "write_text":
         fail("Operação recusada: somente write_text está implementada.")
     if not isinstance(dry_run, bool) or not isinstance(authorized, bool):
@@ -129,7 +148,6 @@ def execute(payload: dict, repo_root: Path, registry: dict, confirmation_id: str
             result["status"] = "result_validation_failed"
             fail("Validação pós-escrita falhou: hash do resultado divergente.")
 
-    audit_path = repo_root / ".promptaria" / "audit.jsonl"
     append_audit(audit_path, result)
     return result
 
