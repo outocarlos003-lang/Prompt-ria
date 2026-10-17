@@ -43,7 +43,7 @@ O arquivo de entrada deve conter JSON com `request` e, opcionalmente, `destinati
 
 O instrumento `instruments/protocolo-mestre-acionamento-automatico.md` preserva o modelo genérico com seus quatro elementos estruturais e serve como préconfiguração para demandas futuras. O resolvedor inclui automaticamente, em cada plano, os três componentes-base: a arquitetura coordenadora, o protocolo-mestre e o instrumento operacional do GitHub. Títulos adicionais mencionados são todos recuperados por correspondência normalizada.
 
-A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. O resolvedor rejeita `dry_run` que não seja booleano JSON; o padrão é `true`. Um pedido `dry_run: false` exige `write_authorized: true` e `destination` explícito, mas ainda é recusado na prática até existir um executor de escrita integrado: essa versão apenas gera planos e não modifica o destino. A execução real continua dependente de um evento autorizado, permissões e integração apropriada. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
+A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. O resolvedor rejeita `dry_run` que não seja booleano JSON; o padrão é `true`. A escrita é tratada por um executor separado e nunca é disparada apenas porque um título ou prompt foi recuperado. No workflow GitHub Actions, a integração do executor é deliberadamente restrita à simulação; escrita real não é autorizada pelo workflow. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
 
 Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` em uma issue. Para execução manual, abra Actions → “Promptária - correferência funcional por título” → Run workflow. O artefato JSON indica componentes obrigatórios ausentes, títulos reconhecidos e estados de rastreabilidade.
 
@@ -71,3 +71,23 @@ Exemplo de solicitação de simulação:
 ```
 
 Execute com `python scripts/promptaria_executor.py --request request.json --repo-root .`. Para uma escrita real, altere explicitamente os dois campos de autorização no JSON e forneça `--confirm-operation relatorio-2026-001`. Use apenas após revisar o conteúdo e o destino. Testes: `python -m unittest discover -s tests -v`.
+
+
+### Integração do executor no workflow
+
+No evento manual **Actions → Run workflow**, o campo opcional `executor_request_json` aceita um objeto JSON com `operation_id`, `operation`, `destination` e `content`. Quando fornecido, o workflow prepara a solicitação e chama `scripts/promptaria_executor.py`; os resultados de resolução e a auditoria da simulação são publicados como artefatos separados.
+
+**Proteção no CI:** o preparador força `dry_run: true` e `write_authorized: false`, ignorando qualquer tentativa de incluir flags de autorização no JSON de entrada. Comentários `/promptaria` continuam limitados à resolução. O workflow mantém permissões `contents: read` e não grava alterações no repositório. A execução real, quando necessária, deve ocorrer fora desse fluxo de CI e exigir a confirmação explícita prevista no executor.
+
+Exemplo para o campo `executor_request_json`:
+
+```json
+{
+  "operation_id": "relatorio-2026-001",
+  "operation": "write_text",
+  "destination": "artifacts/relatorio.txt",
+  "content": "Conteúdo a validar.\\n"
+}
+```
+
+O pedido acima será apenas simulado pelo workflow, mesmo se forem acrescentados `"dry_run": false` ou `"write_authorized": true`. Testes adicionais do preparador: `python -m unittest tests.test_promptaria_prepare_executor_request -v`.
