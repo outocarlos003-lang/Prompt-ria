@@ -8,7 +8,7 @@ import hashlib
 import json
 import os
 import re
-import tempfile
+import secrets
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -120,6 +120,65 @@ def reject_replayed_operation(audit_path: Path, operation_id: str) -> None:
         fail("Operação recusada: existe uma intenção de escrita sem conclusão auditada; reconciliação manual obrigatória.")
 
 
+
+def open_destination_parent(repo_root: Path, destination: str, *, create: bool) -> tuple[int | None, str]:
+    """Open a destination parent by directory descriptors without following symlinks."""
+    parts = destination.split("/")
+    flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        current_fd = os.open(repo_root, flags)
+    except OSError as exc:
+        fail(f"Raiz do repositório inacessível com segurança: {exc}")
+    try:
+        for component in parts[:-1]:
+            try:
+                next_fd = os.open(component, flags, dir_fd=current_fd)
+            except FileNotFoundError:
+                if not create:
+                    os.close(current_fd)
+                    return None, parts[-1]
+                try:
+                    os.mkdir(component, 0o700, dir_fd=current_fd)
+                except FileExistsError:
+                    pass
+                try:
+                    next_fd = os.open(component, flags, dir_fd=current_fd)
+                except OSError as exc:
+                    fail(f"Diretório de destino recusado: {exc}")
+            except OSError as exc:
+                fail(f"Componente de destino recusado (symlink ou diretório inválido): {exc}")
+            os.close(current_fd)
+            current_fd = next_fd
+        return current_fd, parts[-1]
+    except BaseException:
+        try:
+            os.close(current_fd)
+        except OSError:
+            pass
+        raise
+
+
+def inspect_destination(parent_fd: int | None, leaf: str) -> str | None:
+    """Validate destination leaf relative to an already-open parent directory."""
+    if parent_fd is None:
+        return None
+    try:
+        info = os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)
+    except FileNotFoundError:
+        return None
+    except OSError as exc:
+        fail(f"Não foi possível inspecionar o destino com segurança: {exc}")
+    if not __import__("stat").S_ISREG(info.st_mode):
+        fail("Destino recusado: o destino existente não é arquivo regular (ou é link simbólico).")
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        fd = os.open(leaf, flags, dir_fd=parent_fd)
+    except OSError as exc:
+        fail(f"Destino recusado ao abrir arquivo existente com segurança: {exc}")
+    with os.fdopen(fd, "rb") as stream:
+        return hashlib.sha256(stream.read()).hexdigest()
+
+
 def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     operation_id = payload.get("operation_id")
@@ -156,23 +215,14 @@ def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation
     if not dry_run and registry.get("execution_enabled") is not True:
         fail("Execução recusada: executor desabilitado no registro de permissões.")
 
-    target = (repo_root / destination)
-    # Reject symlinks in every existing destination component, not only the leaf.
-    cursor = root = repo_root.resolve()
-    for component in Path(destination).parts:
-        cursor = cursor / component
-        if cursor.is_symlink():
-            fail("Destino recusado: links simbólicos em componentes do caminho não são permitidos.")
-    # Resolve the parent to block escapes; path checks assume repository directories are not concurrently writable by an untrusted process.
-    parent = target.parent.resolve()
-    if parent != root and root not in parent.parents:
-        fail("Destino recusado: o caminho resolvido sai do repositório.")
-    if target.is_symlink():
-        fail("Destino recusado: o arquivo-alvo é um link simbólico.")
-    if target.exists() and not target.is_file():
-        fail("Destino recusado: o destino existente não é um arquivo regular.")
+    root = repo_root.resolve()
+    parent_fd, leaf = open_destination_parent(root, destination, create=False)
+    try:
+        existing_hash = inspect_destination(parent_fd, leaf)
+    finally:
+        if parent_fd is not None:
+            os.close(parent_fd)
 
-    existing_hash = hashlib.sha256(target.read_bytes()).hexdigest() if target.is_file() else None
     result = {
         "schema_version": 1,
         "operation_id": operation_id,
@@ -194,20 +244,35 @@ def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation
         intent["status"] = "write_intent"
         intent["executed"] = False
         append_audit(audit_path, intent)
-        # Write atomically in the destination directory and avoid following target symlinks.
-        target.parent.mkdir(parents=True, exist_ok=True)
-        fd, temp_name = tempfile.mkstemp(prefix=".promptaria-", dir=str(target.parent))
+        # Walk/create directories and write relative to a pinned parent directory descriptor.
+        parent_fd, leaf = open_destination_parent(root, destination, create=True)
+        if parent_fd is None:
+            fail("Não foi possível abrir o diretório-pai do destino.")
+        temp_name = ".promptaria-" + secrets.token_hex(12)
+        temp_fd = None
         try:
-            with os.fdopen(fd, "wb") as stream:
+            # Re-check the leaf through the pinned directory descriptor immediately before replacement.
+            inspect_destination(parent_fd, leaf)
+            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+            temp_fd = os.open(temp_name, flags, 0o600, dir_fd=parent_fd)
+            with os.fdopen(temp_fd, "wb") as stream:
+                temp_fd = None
                 stream.write(encoded)
                 stream.flush()
                 os.fsync(stream.fileno())
-            if target.is_symlink():
-                fail("Destino recusado: o arquivo-alvo tornou-se um link simbólico.")
-            os.replace(temp_name, target)
+            os.replace(temp_name, leaf, src_dir_fd=parent_fd, dst_dir_fd=parent_fd)
+            os.fsync(parent_fd)
+        except OSError as exc:
+            fail(f"Falha na escrita segura do destino: {exc}")
         finally:
-            if os.path.exists(temp_name):
-                os.unlink(temp_name)
+            if temp_fd is not None:
+                os.close(temp_fd)
+            try:
+                os.unlink(temp_name, dir_fd=parent_fd)
+            except FileNotFoundError:
+                pass
+            os.close(parent_fd)
+
         result["executed"] = True
         result["status"] = "executed"
         result["result_content_sha256"] = hashlib.sha256(target.read_bytes()).hexdigest()
