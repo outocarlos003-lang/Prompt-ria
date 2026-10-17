@@ -121,5 +121,50 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual(sum(1 for record in audit_records if record.get("status") == "executed"), 1)
 
 
+    def test_audit_hash_chain_detects_tampering_and_fails_closed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            command = [
+                sys.executable, str(EXECUTOR), "--request", str(request),
+                "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+            ]
+            first = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            audit = root / ".promptaria/audit.jsonl"
+            record = json.loads(audit.read_text(encoding="utf-8"))
+            self.assertIn("audit_hash", record)
+            self.assertEqual(record["audit_prev_hash"], "0" * 64)
+
+            record["destination"] = "artifacts/forged.txt"
+            audit.write_text(json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\\n", encoding="utf-8")
+            request.write_text(json.dumps(self.base(operation_id="test-op-002")), encoding="utf-8")
+            second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertNotEqual(second.returncode, 0)
+            self.assertIn("Integridade da cadeia", second.stderr)
+
+    def test_audit_hash_chain_links_sequential_records(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            command = [
+                sys.executable, str(EXECUTOR), "--request", str(request),
+                "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+            ]
+            request.write_text(json.dumps(self.base(operation_id="test-op-101")), encoding="utf-8")
+            first = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            request.write_text(json.dumps(self.base(operation_id="test-op-102")), encoding="utf-8")
+            second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(second.returncode, 0, second.stderr)
+            records = [
+                json.loads(line)
+                for line in (root / ".promptaria/audit.jsonl").read_text(encoding="utf-8").splitlines()
+            ]
+            self.assertEqual(len(records), 2)
+            self.assertEqual(records[1]["audit_prev_hash"], records[0]["audit_hash"])
+
+
 if __name__ == "__main__":
     unittest.main()
