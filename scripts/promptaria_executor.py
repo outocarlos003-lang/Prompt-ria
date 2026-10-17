@@ -41,27 +41,65 @@ def validate_relative_destination(value: object) -> str:
     return destination
 
 
+def canonical_audit_json(record: dict) -> bytes:
+    return json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+
+
+def read_and_verify_audit(audit_path: Path) -> tuple[list[dict], str]:
+    """Verify the append-only hash chain; legacy entries anchor it by their exact bytes."""
+    if not audit_path.exists():
+        return [], "0" * 64
+    try:
+        raw = audit_path.read_bytes()
+        if raw and not raw.endswith(b"\\n"):
+            fail("Registro de auditoria truncado (última linha sem quebra); operação bloqueada.")
+        lines = raw.splitlines(keepends=True)
+        records: list[dict] = []
+        previous_hash = "0" * 64
+        chain_started = False
+        for line_number, raw_line in enumerate(lines, start=1):
+            if not raw_line.strip():
+                fail(f"Registro de auditoria vazio na linha {line_number}; operação bloqueada.")
+            record = json.loads(raw_line.decode("utf-8"))
+            if not isinstance(record, dict):
+                fail(f"Registro de auditoria inválido na linha {line_number}; operação bloqueada.")
+            stored_hash = record.get("audit_hash")
+            if stored_hash is None:
+                if chain_started:
+                    fail(f"Registro legado após início da cadeia na linha {line_number}; operação bloqueada.")
+                previous_hash = hashlib.sha256(raw_line).hexdigest()
+            else:
+                chain_started = True
+                supplied_previous = record.get("audit_prev_hash")
+                body = {key: value for key, value in record.items() if key != "audit_hash"}
+                expected_hash = hashlib.sha256(canonical_audit_json(body)).hexdigest()
+                if supplied_previous != previous_hash or stored_hash != expected_hash:
+                    fail(f"Integridade da cadeia de auditoria inválida na linha {line_number}; operação bloqueada.")
+                previous_hash = stored_hash
+            records.append(record)
+        return records, previous_hash
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        fail(f"Registro de auditoria ilegível; operação bloqueada por segurança: {exc}")
+
+
 def append_audit(audit_path: Path, record: dict) -> None:
     audit_path.parent.mkdir(parents=True, exist_ok=True)
-    with audit_path.open("a", encoding="utf-8") as stream:
-        stream.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+    _, previous_hash = read_and_verify_audit(audit_path)
+    chained_record = dict(record)
+    chained_record["audit_prev_hash"] = previous_hash
+    chained_record["audit_hash"] = hashlib.sha256(canonical_audit_json(chained_record)).hexdigest()
+    with audit_path.open("ab") as stream:
+        stream.write(canonical_audit_json(chained_record) + b"\\n")
+        stream.flush()
+        os.fsync(stream.fileno())
 
 
 def reject_replayed_operation(audit_path: Path, operation_id: str) -> None:
-    """Fail closed if this ID already completed a real write in this audit ledger."""
-    if not audit_path.exists():
-        return
-    try:
-        for line_number, line in enumerate(audit_path.read_text(encoding="utf-8").splitlines(), start=1):
-            if not line.strip():
-                continue
-            record = json.loads(line)
-            if not isinstance(record, dict):
-                fail(f"Registro de auditoria inválido na linha {line_number}; operação bloqueada.")
-            if record.get("operation_id") == operation_id and record.get("status") == "executed":
-                fail("Operação recusada: este operation_id já concluiu uma escrita; use um ID novo.")
-    except (OSError, json.JSONDecodeError) as exc:
-        fail(f"Registro de auditoria ilegível; operação bloqueada por segurança: {exc}")
+    """Fail closed if the ledger is corrupt or this ID already completed a real write."""
+    records, _ = read_and_verify_audit(audit_path)
+    for record in records:
+        if record.get("operation_id") == operation_id and record.get("status") == "executed":
+            fail("Operação recusada: este operation_id já concluiu uma escrita; use um ID novo.")
 
 
 def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
