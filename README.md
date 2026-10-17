@@ -58,6 +58,24 @@ Após a resolução, `scripts/promptaria_validate_result.py` verifica o contrato
 
 O workflow `.github/workflows/promptaria-tests.yml` executa a suíte de regressão e um smoke test com os instrumentos reais do repositório: chama o resolvedor e valida o JSON resultante. Assim, a integração verifica não apenas testes com fixtures, mas também se a coleção efetiva de instrumentos satisfaz o contrato obrigatório.
 
+## Âncora externa da auditoria
+
+A cadeia local detecta alterações dentro do histórico disponível, mas não consegue provar que um sufixo completo não foi removido. O utilitário `scripts/promptaria_audit_anchor.py` permite criar e verificar um checkpoint do prefixo da cadeia. O arquivo de âncora deve ficar fora do repositório, em armazenamento com controles de acesso independentes e permissões que impeçam a identidade do executor de alterá-lo ou removê-lo. Apenas usar outra pasta no mesmo diretório ou no mesmo domínio de permissões **não** cria uma fronteira de confiança.
+
+```bash
+python scripts/promptaria_audit_anchor.py --mode create \
+  --audit .promptaria/audit.jsonl \
+  --anchor /caminho/externo-protegido/promptaria-anchor.json \
+  --repo-root .
+
+python scripts/promptaria_audit_anchor.py --mode verify \
+  --audit .promptaria/audit.jsonl \
+  --anchor /caminho/externo-protegido/promptaria-anchor.json \
+  --repo-root .
+```
+
+Crie âncoras em uma rotina confiável após operações ou em intervalos definidos, e verifique-as antes de aceitar o histórico. A verificação permite acréscimos posteriores, mas falha se o prefixo protegido estiver ausente ou divergente. A ferramenta não provisiona armazenamento externo nem administra credenciais; isso deve ser configurado operacionalmente.
+
 ## Executor especializado com permissões e auditoria
 
 O executor `scripts/promptaria_executor.py` é uma etapa separada do resolvedor: reconhecer um instrumento ou incluí-lo no plano nunca executa seu conteúdo. O executor aceita apenas a operação estruturada `write_text`; não interpreta prompts recuperados como comandos nem executa shell.
