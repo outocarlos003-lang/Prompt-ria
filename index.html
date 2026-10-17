@@ -37,26 +37,66 @@ a{color:inherit}button,input,textarea{font:inherit}.wrap{width:min(1120px,calc(1
 <section class="section" aria-labelledby="principios">
 <div class="section-head"><div><div class="kicker">Núcleo da plataforma</div><h2 id="principios">Menos ruído. Mais intenção.</h2></div><p>Uma interface direta para acessar os fundamentos do projeto sem perder contexto, transparência ou controle.</p></div>
 <div class="cards">
-<article class="card"><div class="iconbox" aria-hidden="true">⌘</div><h3>Arquitetura coordenada</h3><p>Componentes com responsabilidades claras, organizados para manter consistência entre solicitações e instrumentos.</p><a href="https://github.com/outocarlos003-lang/Prompt-ria/blob/main/instruments/arquitetura-unificada.md" target="_blank" rel="noopener">Ver arquitetura ↗</a></article>
+<article class="card"><div class="iconbox" aria-hidden="true">⌘</div><h3>Arquitetura coordenada</h3><p>Componentes com responsabilidades claras, organizados para manter consistência entre solicitações e instrumentos.</p><a href="#documento" data-doc="instruments/arquitetura-unificada.md">Ver arquitetura ↗</a></article>
 <article class="card"><div class="iconbox" aria-hidden="true">⟡</div><h3>Contexto recuperável</h3><p>Instrumentos identificados por título, com conteúdo preservado e reutilização explícita.</p><a href="#instrumentos">Explorar coleção ↓</a></article>
-<article class="card"><div class="iconbox" aria-hidden="true">⌁</div><h3>Execução verificável</h3><p>Planejamento, validação e trilhas de auditoria ajudam a distinguir o que foi reconhecido do que foi realmente executado.</p><a href="https://github.com/outocarlos003-lang/Prompt-ria/blob/main/README.md" target="_blank" rel="noopener">Ler documentação ↗</a></article>
+<article class="card"><div class="iconbox" aria-hidden="true">⌁</div><h3>Execução verificável</h3><p>Planejamento, validação e trilhas de auditoria ajudam a distinguir o que foi reconhecido do que foi realmente executado.</p><a href="#documento" data-doc="README.md">Ler documentação ↗</a></article>
 </div>
 </section>
 <section class="section" id="instrumentos" aria-labelledby="instrumentos-title">
-<div class="section-head"><div><div class="kicker">Biblioteca essencial</div><h2 id="instrumentos-title">Instrumentos da Promptária</h2></div><p>Encontre o documento certo e abra a versão mantida no repositório.</p></div>
+<div class="section-head"><div><div class="kicker">Biblioteca essencial</div><h2 id="instrumentos-title">Instrumentos da Promptária</h2></div><p>Encontre um instrumento, abra seu conteúdo aqui mesmo e copie o prompt quando quiser.</p></div>
 <div class="searchbox"><input id="filter" type="search" placeholder="Buscar por nome ou finalidade…" aria-label="Buscar instrumentos"></div>
 <div class="instruments" id="instrument-list">
-<a class="instrument" href="https://github.com/outocarlos003-lang/Prompt-ria/blob/main/instruments/parte-2-instrumento-promptual-fixo.md" target="_blank" rel="noopener"><span><strong>Instrumento promptual fixo</strong><small>Componente operacional reutilizável</small></span><span class="arrow" aria-hidden="true">↗</span></a>
+<a class="instrument" href="#documento" data-doc="instruments/parte-2-instrumento-promptual-fixo.md"><span><strong>Instrumento promptual fixo</strong><small>Toque para abrir o prompt completo e copiar</small></span><span class="arrow" aria-hidden="true">↗</span></a>
 </div>
 <p id="no-results" class="empty" hidden>Nenhum instrumento corresponde à busca.</p>
 </section>
 <section class="section">
-<div class="cta"><div><h2>Pronto para continuar?</h2><p>Consulte a documentação e os instrumentos públicos do projeto.</p></div><div class="actions"><a class="btn secondary" href="https://github.com/outocarlos003-lang/Prompt-ria" target="_blank" rel="noopener">Código-fonte ↗</a></div></div>
+<div class="cta"><div><h2>Pronto para continuar?</h2><p>Abra os instrumentos na própria Promptária ou visite o código-fonte quando desejar.</p></div><div class="actions"><a class="btn secondary" href="https://github.com/outocarlos003-lang/Prompt-ria" target="_blank" rel="noopener">Código-fonte ↗</a></div></div>
 </section>
 </main>
 <footer class="wrap footer"><span>© Promptária · Instrumentos promptuais reutilizáveis</span><span>Feita para clareza, precisão e rastreabilidade.</span></footer>
 <script>
 (function(){const input=document.getElementById('filter');const items=Array.from(document.querySelectorAll('.instrument'));const empty=document.getElementById('no-results');input.addEventListener('input',function(){const q=input.value.trim().toLocaleLowerCase('pt-BR');let count=0;items.forEach(function(item){const match=item.textContent.toLocaleLowerCase('pt-BR').includes(q);item.hidden=!match;if(match)count++});empty.hidden=count!==0;});})();
+</script>
+
+<style>
+.doc-overlay{position:fixed;inset:0;z-index:20;background:#030610d9;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px}.doc-overlay.open{display:flex}.doc-dialog{width:min(900px,100%);max-height:min(88vh,900px);display:flex;flex-direction:column;background:#101624;border:1px solid #34445f;border-radius:20px;box-shadow:0 30px 100px #0009;overflow:hidden}.doc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 20px;border-bottom:1px solid #ffffff18}.doc-head h2{font-size:1.05rem;margin:0}.doc-tools{display:flex;gap:8px;flex-wrap:wrap}.doc-body{padding:20px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;color:#dce6f8;font: .9rem/1.75 ui-monospace,SFMono-Regular,Consolas,monospace}.doc-status{font-size:.8rem;color:var(--cyan);padding:0 20px 14px}.doc-close{background:#ffffff08;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer}.instrument{cursor:pointer}.instrument:focus-visible,.card a:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+</style>
+<div class="doc-overlay" id="doc-overlay" role="dialog" aria-modal="true" aria-labelledby="doc-title">
+ <div class="doc-dialog"><div class="doc-head"><h2 id="doc-title">Instrumento</h2><div class="doc-tools"><button class="btn primary" id="copy-prompt" type="button">Copiar prompt</button><button class="doc-close" id="close-doc" type="button" aria-label="Fechar">Fechar ✕</button></div></div><div class="doc-body" id="doc-body">Carregando conteúdo…</div><div class="doc-status" id="doc-status" role="status" aria-live="polite"></div></div>
+</div>
+
+<script>
+(function(){
+ const overlay=document.getElementById('doc-overlay'),title=document.getElementById('doc-title'),body=document.getElementById('doc-body'),status=document.getElementById('doc-status'),copy=document.getElementById('copy-prompt'),close=document.getElementById('close-doc');
+ let currentText='';
+ const names={'instruments/parte-2-instrumento-promptual-fixo.md':'Instrumento promptual fixo','instruments/arquitetura-unificada.md':'Arquitetura coordenada','README.md':'Documentação da Promptária'};
+ async function openDoc(path){
+   if(!path)return;
+   overlay.classList.add('open');document.body.style.overflow='hidden';
+   title.textContent=names[path]||path.split('/').pop().replace(/\.md$/,'').replace(/[-_]/g,' ');
+   body.textContent='Carregando conteúdo…';status.textContent='';currentText='';
+   try{
+     const response=await fetch('https://raw.githubusercontent.com/outocarlos003-lang/Prompt-ria/main/'+path);
+     if(!response.ok)throw new Error('Não foi possível carregar o documento.');
+     currentText=await response.text();body.textContent=currentText;
+   }catch(e){body.textContent='Não foi possível carregar o conteúdo agora. Verifique sua conexão e tente novamente.';status.textContent='O conteúdo não foi carregado.';}
+ }
+ function closeDoc(){overlay.classList.remove('open');document.body.style.overflow='';}
+ document.addEventListener('click',function(e){
+   const link=e.target.closest('a[data-doc]');
+   if(link){e.preventDefault();openDoc(link.dataset.doc);return;}
+   const githubDoc=e.target.closest('a[href*="github.com/outocarlos003-lang/Prompt-ria/blob/main/"]');
+   if(githubDoc){const u=new URL(githubDoc.href);const marker='/blob/main/';const i=u.pathname.indexOf(marker);if(i>=0){e.preventDefault();openDoc(u.pathname.slice(i+marker.length));}}
+ });
+ copy.addEventListener('click',async function(){
+   if(!currentText){status.textContent='Nenhum prompt carregado para copiar.';return;}
+   try{await navigator.clipboard.writeText(currentText);status.textContent='Prompt copiado para a área de transferência.';}
+   catch(e){const area=document.createElement('textarea');area.value=currentText;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();status.textContent=ok?'Prompt copiado para a área de transferência.':'Não foi possível copiar automaticamente. Selecione e copie o texto.';}
+ });
+ close.addEventListener('click',closeDoc);overlay.addEventListener('click',e=>{if(e.target===overlay)closeDoc();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))closeDoc();});
+})();
 </script>
 </body>
 </html>
