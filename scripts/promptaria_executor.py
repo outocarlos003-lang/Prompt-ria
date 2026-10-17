@@ -9,6 +9,7 @@ import json
 import os
 import re
 import secrets
+import stat
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -168,7 +169,7 @@ def inspect_destination(parent_fd: int | None, leaf: str) -> str | None:
         return None
     except OSError as exc:
         fail(f"Não foi possível inspecionar o destino com segurança: {exc}")
-    if not __import__("stat").S_ISREG(info.st_mode):
+    if not stat.S_ISREG(info.st_mode):
         fail("Destino recusado: o destino existente não é arquivo regular (ou é link simbólico).")
     flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
     try:
