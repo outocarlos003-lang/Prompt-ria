@@ -26,7 +26,7 @@ O componente fixo obrigatório é **Acione a Promptária pelo GitHub para Inseri
 - Validação estrita de destino relativo: bloqueia caminhos absolutos, segmentos `..`, segmentos vazios, `.`, `.git`, separadores Windows e caracteres de controle.
 - Validação estrita de `dry_run` e autorização explícita para qualquer pedido de modo não simulado.
 - Artefato JSON com correspondências e estados de rastreabilidade.
-- Testes de integridade do repositório para conteúdo Markdown não vazio, títulos únicos após normalização, presença dos três componentes-base e validade do contrato do resultado.
+- Testes de integridade do repositório para conteúdo Markdown não vazio, títulos normalizáveis, caminhos distintos, preservação de instrumentos com títulos equivalentes, presença dos três componentes-base e validade do contrato do resultado.
 
 ## Limites importantes
 
@@ -59,7 +59,7 @@ Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir
 
 Após a resolução, `scripts/promptaria_validate_result.py` verifica o contrato do artefato: esquema esperado, presença dos três componentes obrigatórios, recuperação de conteúdo, estados que não alegam execução e indisponibilidade de escrita no resolvedor. A validação falha de forma explícita se faltar qualquer componente obrigatório ou se o JSON declarar uma execução que não ocorreu.
 
-O workflow `.github/workflows/promptaria-tests.yml` executa a suíte de regressão e um smoke test com os instrumentos reais do repositório: chama o resolvedor e valida o JSON resultante. A suíte também verifica integridade da coleção real de instrumentos, unicidade dos títulos normalizados, presença dos componentes-base, recusa de correspondência por título parcial e o contrato que impede alegações falsas de execução. Assim, a integração verifica tanto fixtures de teste quanto os instrumentos versionados.
+O workflow `.github/workflows/promptaria-tests.yml` executa a suíte de regressão e um smoke test com os instrumentos reais do repositório: chama o resolvedor e valida o JSON resultante. A suíte também verifica integridade da coleção real de instrumentos, caminhos distintos, preservação de instrumentos distintos que compartilham um título normalizado, presença dos componentes-base, recusa de correspondência por título parcial e o contrato que impede alegações falsas de execução. Assim, a integração verifica tanto fixtures de teste quanto os instrumentos versionados.
 
 ## Âncora externa da auditoria
 
