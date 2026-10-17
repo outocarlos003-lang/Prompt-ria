@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       destination:
-        description: "Destino opcional autorizado (caminho relativo no repositório)"
+        description: "Destino opcional proposto para a demanda (não grava por si só)"
         required: false
         type: string
         default: ""
@@ -17,6 +17,11 @@ on:
         required: true
         type: boolean
         default: true
+      executor_request_json:
+        description: "Opcional: JSON estruturado para validar uma operação write_text em simulação"
+        required: false
+        type: string
+        default: ""
   issue_comment:
     types: [created]
 
@@ -72,10 +77,30 @@ jobs:
           PY
       - name: Resolve all instrument titles and validate plan
         run: python scripts/promptaria_resolver.py --request request.json --instruments instruments --output promptaria-result.json
-      - name: Upload traceable result
+      - name: Validate resolution completeness and traceability
+        run: python scripts/promptaria_validate_result.py --result promptaria-result.json
+      - name: Prepare optional executor request (forced simulation)
+        id: prepare_executor
+        env:
+          EXECUTOR_REQUEST_JSON: ${{ inputs.executor_request_json }}
+        run: python scripts/promptaria_prepare_executor_request.py
+      - name: Validate structured operation with executor
+        if: steps.prepare_executor.outputs.enabled == 'true'
+        run: python scripts/promptaria_executor.py --request executor-request.json --repo-root . --output executor-result.json
+      - name: Upload traceable resolution result
         uses: actions/upload-artifact@v4
         with:
           name: promptaria-result-${{ github.run_id }}
           path: promptaria-result.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload executor simulation and audit
+        if: steps.prepare_executor.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: promptaria-executor-${{ github.run_id }}
+          path: |
+            executor-result.json
+            .promptaria/audit.jsonl
           if-no-files-found: error
           retention-days: 30
