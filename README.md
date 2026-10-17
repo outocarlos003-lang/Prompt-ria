@@ -43,6 +43,61 @@ O arquivo de entrada deve conter JSON com `request` e, opcionalmente, `destinati
 
 O instrumento `instruments/protocolo-mestre-acionamento-automatico.md` preserva o modelo genérico com seus quatro elementos estruturais e serve como préconfiguração para demandas futuras. O resolvedor inclui automaticamente, em cada plano, os três componentes-base: a arquitetura coordenadora, o protocolo-mestre e o instrumento operacional do GitHub. Títulos adicionais mencionados são todos recuperados por correspondência normalizada.
 
-A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. O resolvedor rejeita `dry_run` que não seja booleano JSON; o padrão é `true`. Um pedido `dry_run: false` exige `write_authorized: true` e `destination` explícito, mas ainda é recusado na prática até existir um executor de escrita integrado: essa versão apenas gera planos e não modifica o destino. A execução real continua dependente de um evento autorizado, permissões e integração apropriada. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
+A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. O resolvedor rejeita `dry_run` que não seja booleano JSON; o padrão é `true`. A escrita é tratada por um executor separado e nunca é disparada apenas porque um título ou prompt foi recuperado. No workflow GitHub Actions, a integração do executor é deliberadamente restrita à simulação; escrita real não é autorizada pelo workflow. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
 
 Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` em uma issue. Para execução manual, abra Actions → “Promptária - correferência funcional por título” → Run workflow. O artefato JSON indica componentes obrigatórios ausentes, títulos reconhecidos e estados de rastreabilidade.
+
+
+## Cadeia de integridade da auditoria
+
+Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir de JSON canônico. Antes de aceitar outra operação, o executor verifica a cadeia completa e bloqueia a operação se detectar alterações, remoções, reordenação, truncamento ou JSON inválido. Registros legados sem hash só podem aparecer antes do início da cadeia; o primeiro registro encadeado ancora os bytes do histórico anterior. A cadeia ajuda a detectar alterações posteriores, mas não é uma assinatura digital: para resistir à reescrita integral do arquivo, exporte âncoras para armazenamento externo confiável.
+
+## Validação de resultados e teste ponta a ponta
+
+Após a resolução, `scripts/promptaria_validate_result.py` verifica o contrato do artefato: esquema esperado, presença dos três componentes obrigatórios, recuperação de conteúdo, estados que não alegam execução e indisponibilidade de escrita no resolvedor. A validação falha de forma explícita se faltar qualquer componente obrigatório ou se o JSON declarar uma execução que não ocorreu.
+
+O workflow `.github/workflows/promptaria-tests.yml` executa a suíte de regressão e um smoke test com os instrumentos reais do repositório: chama o resolvedor e valida o JSON resultante. Assim, a integração verifica não apenas testes com fixtures, mas também se a coleção efetiva de instrumentos satisfaz o contrato obrigatório.
+
+## Executor especializado com permissões e auditoria
+
+O executor `scripts/promptaria_executor.py` é uma etapa separada do resolvedor: reconhecer um instrumento ou incluí-lo no plano nunca executa seu conteúdo. O executor aceita apenas a operação estruturada `write_text`; não interpreta prompts recuperados como comandos nem executa shell.
+
+- O padrão é `dry_run: true`; a simulação não grava o destino.
+- A execução real exige simultaneamente `dry_run: false`, `write_authorized: true` e `--confirm-operation` com o mesmo `operation_id` da solicitação.
+- `config/promptaria_permissions.json` limita a escrita a arquivos sob `artifacts/` e impõe limite de tamanho.
+- O destino é validado como caminho relativo POSIX, com proteção contra traversal, `.git`, caminhos absolutos, links simbólicos e arquivos não regulares.
+- A escrita autorizada é atômica e o executor compara o SHA-256 do conteúdo solicitado com o resultado gravado.
+- Cada operação aceita é registrada em `.promptaria/audit.jsonl`, com identificador, modo, destino, estado e hashes.
+
+Exemplo de solicitação de simulação:
+
+```json
+{
+  "operation_id": "relatorio-2026-001",
+  "operation": "write_text",
+  "destination": "artifacts/relatorio.txt",
+  "content": "Conteúdo a validar.\n"
+}
+```
+
+Execute com `python scripts/promptaria_executor.py --request request.json --repo-root .`. Para uma escrita real, altere explicitamente os dois campos de autorização no JSON e forneça `--confirm-operation relatorio-2026-001`. Use apenas após revisar o conteúdo e o destino. Testes: `python -m unittest discover -s tests -v`.
+
+
+### Integração do executor no workflow
+
+No evento manual **Actions → Run workflow**, o campo opcional `executor_request_json` aceita um objeto JSON com `operation_id`, `operation`, `destination` e `content`. Quando fornecido, o workflow prepara a solicitação e chama `scripts/promptaria_executor.py`; os resultados de resolução e a auditoria da simulação são publicados como artefatos separados.
+
+**Proteção no CI:** o preparador força `dry_run: true` e `write_authorized: false`, ignorando qualquer tentativa de incluir flags de autorização no JSON de entrada. Comentários `/promptaria` continuam limitados à resolução. O workflow mantém permissões `contents: read` e não grava alterações no repositório. A execução real, quando necessária, deve ocorrer fora desse fluxo de CI e exigir a confirmação explícita prevista no executor.
+
+Exemplo para o campo `executor_request_json`:
+
+```json
+{
+  "operation_id": "relatorio-2026-001",
+  "operation": "write_text",
+  "destination": "artifacts/relatorio.txt",
+  "content": "Conteúdo a validar.\\n"
+}
+```
+
+O pedido acima será apenas simulado pelo workflow, mesmo se forem acrescentados `"dry_run": false` ou `"write_authorized": true`. Testes adicionais do preparador: `python -m unittest tests.test_promptaria_prepare_executor_request -v`.

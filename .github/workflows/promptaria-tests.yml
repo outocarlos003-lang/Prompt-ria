@@ -1,0 +1,33 @@
+name: Promptária - testes de regressão
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
+      - name: End-to-end smoke test with repository instruments
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          Path('smoke-request.json').write_text(json.dumps({'request': 'Validar a integração da Promptária', 'dry_run': True}, ensure_ascii=False), encoding='utf-8')
+          PY
+          python scripts/promptaria_resolver.py --request smoke-request.json --instruments instruments --output smoke-result.json
+          python scripts/promptaria_validate_result.py --result smoke-result.json
