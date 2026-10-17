@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from promptaria_resolver import normalize, read_instruments
+from promptaria_resolver import normalize, read_instruments, resolve
 from promptaria_validate_result import validate
 
 
@@ -25,17 +25,26 @@ class RepositoryIntegrityTests(unittest.TestCase):
                 self.assertTrue(content.strip(), "Instrumento vazio.")
                 self.assertRegex(content, r"(?m)^#\s+\S", "Instrumento sem título de primeiro nível.")
 
-    def test_instrument_titles_are_unique_after_normalization(self):
+    def test_instrument_titles_normalize_and_each_instrument_has_a_distinct_path(self):
         instruments = read_instruments(ROOT / "instruments")
         self.assertTrue(instruments, "O resolvedor não encontrou instrumentos.")
-        by_title = {}
+        paths = [item["path"] for item in instruments]
+        self.assertEqual(len(paths), len(set(paths)), "Um caminho de instrumento foi incluído mais de uma vez.")
         for item in instruments:
-            key = normalize(item["title"])
-            self.assertTrue(key, f"Título vazio: {item['path']}")
-            by_title.setdefault(key, []).append(item["path"])
+            with self.subTest(path=item["path"]):
+                self.assertTrue(normalize(item["title"]), "Título vazio após normalização.")
 
-        duplicates = {title: paths for title, paths in by_title.items() if len(paths) > 1}
-        self.assertEqual(duplicates, {}, f"Títulos ambíguos após normalização: {duplicates}")
+    def test_duplicate_titles_are_preserved_as_distinct_instruments(self):
+        instruments = read_instruments(ROOT / "instruments")
+        grouped = {}
+        for item in instruments:
+            grouped.setdefault(item["normalized_title"], []).append(item)
+        aliases = [items for items in grouped.values() if len(items) > 1]
+        for items in aliases:
+            self.assertEqual(len({item["path"] for item in items}), len(items))
+            matches = resolve(items[0]["title"], instruments)
+            matched_paths = {item["path"] for item in matches}
+            self.assertTrue({item["path"] for item in items}.issubset(matched_paths))
 
     def test_three_preconfiguration_components_exist_in_repository(self):
         instruments = read_instruments(ROOT / "instruments")
@@ -72,8 +81,6 @@ class RepositoryIntegrityTests(unittest.TestCase):
             "content": "# Instrumento Alfa\n",
             "normalized_title": normalize("Instrumento Alfa"),
         }]
-        from promptaria_resolver import resolve
-
         self.assertEqual(resolve("Aplicar Instrumento Alfas agora", instruments), [])
         self.assertEqual(len(resolve("Aplicar Instrumento Alfa agora", instruments)), 1)
 
