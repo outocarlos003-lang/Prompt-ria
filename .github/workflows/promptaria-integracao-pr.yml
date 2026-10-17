@@ -43,13 +43,19 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.issue.number }}
         run: gh pr checks "$PR_NUMBER" --repo "$REPOSITORY" --watch
-      - name: Mark ready and request squash auto-merge
+      - name: Confirm head is unchanged, mark ready and merge
         env:
           GH_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.issue.number }}
+          EXPECTED_SHA: ${{ steps.validate.outputs.sha }}
         shell: bash
         run: |
           set -euo pipefail
+          current="$(gh api "repos/$REPOSITORY/pulls/$PR_NUMBER" --jq '.head.sha')"
+          if [[ "$current" != "$EXPECTED_SHA" ]]; then
+            echo "Recusado: a branch mudou enquanto os checks eram executados; solicite nova validação." >&2
+            exit 1
+          fi
           gh pr ready "$PR_NUMBER" --repo "$REPOSITORY"
-          gh pr merge "$PR_NUMBER" --repo "$REPOSITORY" --squash --auto
+          gh pr merge "$PR_NUMBER" --repo "$REPOSITORY" --squash
