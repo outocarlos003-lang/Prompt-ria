@@ -77,6 +77,8 @@ jobs:
           PY
       - name: Resolve all instrument titles and validate plan
         run: python scripts/promptaria_resolver.py --request request.json --instruments instruments --output promptaria-result.json
+      - name: Validate resolution completeness and traceability
+        run: python scripts/promptaria_validate_result.py --result promptaria-result.json
       - name: Prepare optional executor request (forced simulation)
         id: prepare_executor
         env:
