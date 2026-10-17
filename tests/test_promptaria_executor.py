@@ -97,5 +97,29 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), original)
 
 
+    def test_concurrent_replay_allows_only_one_successful_write(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base(dry_run=False, write_authorized=True)), encoding="utf-8")
+            command = [
+                sys.executable, str(EXECUTOR), "--request", str(request),
+                "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+                "--confirm-operation", "test-op-001",
+            ]
+            first = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8")
+            second = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8")
+            outcomes = [first.communicate(timeout=10) + (first.returncode,), second.communicate(timeout=10) + (second.returncode,)]
+            self.assertEqual(sum(1 for _, _, code in outcomes if code == 0), 1, outcomes)
+            self.assertEqual(sum(1 for _, stderr, code in outcomes if code != 0 and "já concluiu uma escrita" in stderr), 1, outcomes)
+            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\\n")
+            audit_records = [
+                json.loads(line)
+                for line in (root / ".promptaria/audit.jsonl").read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            self.assertEqual(sum(1 for record in audit_records if record.get("status") == "executed"), 1)
+
+
 if __name__ == "__main__":
     unittest.main()
