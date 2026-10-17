@@ -168,6 +168,37 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual(records[1]["audit_prev_hash"], records[0]["audit_hash"])
 
 
+
+    def test_write_intent_precedes_mutation_and_truncated_completion_fails_closed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base(dry_run=False, write_authorized=True)), encoding="utf-8")
+            command = [
+                sys.executable, str(EXECUTOR), "--request", str(request),
+                "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+                "--confirm-operation", "test-op-001",
+            ]
+            first = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            audit = root / ".promptaria/audit.jsonl"
+            lines = audit.read_bytes().splitlines(keepends=True)
+            self.assertEqual(len(lines), 2)
+            intent = json.loads(lines[0])
+            completed = json.loads(lines[1])
+            self.assertEqual(intent["status"], "write_intent")
+            self.assertFalse(intent["executed"])
+            self.assertEqual(completed["status"], "executed")
+            self.assertTrue(completed["executed"])
+
+            # Simulate loss of the final completion record. The remaining chain
+            # is syntactically valid, but the durable intent must block replay.
+            audit.write_bytes(lines[0])
+            second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertNotEqual(second.returncode, 0)
+            self.assertIn("reconciliação manual obrigatória", second.stderr)
+            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\\n")
+
     def test_rejects_audit_log_symlink(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
