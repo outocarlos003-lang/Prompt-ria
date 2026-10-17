@@ -132,7 +132,7 @@ def open_destination_parent(repo_root: Path, destination: str, *, create: bool) 
     try:
         current_fd = os.open(repo_root, flags)
     except OSError as exc:
-        fail(f"Raiz do repositório inacessível com segurança: {exc}")
+        fail(f"Raiz do repositório ou diretório de estado inacessível (link simbólico ou diretório inválido): {exc}")
     try:
         for component in parts[:-1]:
             try:
@@ -194,8 +194,7 @@ def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation
 
     if not isinstance(operation_id, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{2,127}", operation_id):
         fail("operation_id inválido.")
-    audit_path = repo_root / ".promptaria" / "audit.jsonl"
-    reject_replayed_operation(audit_path, operation_id)
+    reject_replayed_operation(state_fd, audit_fd, operation_id)
     if operation != "write_text":
         fail("Operação recusada: somente write_text está implementada.")
     if not isinstance(dry_run, bool) or not isinstance(authorized, bool):
@@ -330,7 +329,7 @@ def open_audit_file(state_fd: int) -> int:
     try:
         audit_fd = os.open("audit.jsonl", flags, 0o600, dir_fd=state_fd)
     except OSError as exc:
-        fail(f"Não foi possível abrir a auditoria com segurança: {exc}")
+        fail(f"Não foi possível abrir a auditoria com segurança (link simbólico ou arquivo inválido): {exc}")
     info = os.fstat(audit_fd)
     if not stat.S_ISREG(info.st_mode):
         os.close(audit_fd)
