@@ -65,7 +65,7 @@ def read_and_verify_audit_fd(state_fd: int, audit_fd: int) -> tuple[list[dict], 
     try:
         info = os.fstat(audit_fd)
         raw = os.pread(audit_fd, info.st_size, 0)
-        if raw and not raw.endswith(b"\\n"):
+        if raw and not raw.endswith(b"\n"):
             fail("Registro de auditoria truncado (última linha sem quebra); operação bloqueada.")
         lines = raw.splitlines(keepends=True)
         records: list[dict] = []
@@ -103,7 +103,7 @@ def append_audit(state_fd: int, audit_fd: int, record: dict) -> None:
     chained_record = dict(record)
     chained_record["audit_prev_hash"] = previous_hash
     chained_record["audit_hash"] = hashlib.sha256(canonical_audit_json(chained_record)).hexdigest()
-    payload = canonical_audit_json(chained_record) + b"\\n"
+    payload = canonical_audit_json(chained_record) + b"\n"
     _verify_audit_identity(state_fd, audit_fd)
     view = memoryview(payload)
     while view:
