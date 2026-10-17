@@ -302,13 +302,16 @@ def open_state_directory(repo_root: Path) -> int:
         fail(f"Raiz do repositório inacessível com segurança: {exc}")
     try:
         try:
-            state_fd = os.open(".promptaria", flags, dir_fd=root_fd)
-        except FileNotFoundError:
             try:
-                os.mkdir(".promptaria", 0o700, dir_fd=root_fd)
-            except FileExistsError:
-                pass
-            state_fd = os.open(".promptaria", flags, dir_fd=root_fd)
+                state_fd = os.open(".promptaria", flags, dir_fd=root_fd)
+            except FileNotFoundError:
+                try:
+                    os.mkdir(".promptaria", 0o700, dir_fd=root_fd)
+                except FileExistsError:
+                    pass
+                state_fd = os.open(".promptaria", flags, dir_fd=root_fd)
+        except OSError as exc:
+            fail(f"Diretório de estado recusado (link simbólico ou diretório inválido): {exc}")
         info = os.fstat(state_fd)
         if not stat.S_ISDIR(info.st_mode):
             os.close(state_fd)
