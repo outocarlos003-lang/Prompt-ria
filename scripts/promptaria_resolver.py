@@ -87,7 +87,9 @@ def main() -> None:
     a.output.parent.mkdir(parents=True, exist_ok=True)
     a.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f"Instrumentos encontrados: {len(matches)}")
-    print(f"Componente fixo disponível: {'sim' if fixed else 'não'}")
+    print(f"Componentes obrigatórios disponíveis: {len(mandatory_components)}/3")
+    if missing_defaults:
+        print('Componentes obrigatórios ausentes: ' + '; '.join(missing_defaults))
     print(f'Resultado: {a.output}')
 
 if __name__ == '__main__': main()
