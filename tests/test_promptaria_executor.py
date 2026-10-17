@@ -1,4 +1,5 @@
 import json
+import hashlib
 import subprocess
 import sys
 import tempfile
@@ -198,6 +199,36 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertNotEqual(second.returncode, 0)
             self.assertIn("reconciliação manual obrigatória", second.stderr)
             self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\n")
+
+
+    def test_rejects_symlink_in_intermediate_destination_component(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outside = root / "outside"
+            outside.mkdir()
+            (root / "artifacts").symlink_to(outside, target_is_directory=True)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertFalse((outside / "result.txt").exists())
+
+    def test_authorized_write_uses_pinned_directory_descriptor(self):
+        root, proc = self.run_executor(
+            self.base(dry_run=False, write_authorized=True),
+            "--confirm-operation", "test-op-001",
+        )
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        result = json.loads(proc.stdout)
+        self.assertEqual(result["status"], "executed")
+        self.assertEqual(
+            hashlib.sha256((root / "artifacts/result.txt").read_bytes()).hexdigest(),
+            result["result_content_sha256"],
+        )
 
     def test_rejects_audit_log_symlink(self):
         with tempfile.TemporaryDirectory() as tmp:
