@@ -109,11 +109,15 @@ def append_audit(audit_path: Path, record: dict) -> None:
 def reject_replayed_operation(audit_path: Path, operation_id: str) -> None:
     """Fail closed if the ledger is corrupt or this ID already completed a real write."""
     records, _ = read_and_verify_audit(audit_path)
-    for record in records:
-        if record.get("operation_id") == operation_id and record.get("status") == "executed":
-            fail("Operação recusada: este operation_id já concluiu uma escrita; use um ID novo.")
-        if record.get("operation_id") == operation_id and record.get("status") == "write_intent":
-            fail("Operação recusada: existe uma intenção de escrita sem conclusão auditada; reconciliação manual obrigatória.")
+    matching_statuses = {
+        record.get("status")
+        for record in records
+        if record.get("operation_id") == operation_id
+    }
+    if "executed" in matching_statuses:
+        fail("Operação recusada: este operation_id já concluiu uma escrita; use um ID novo.")
+    if "write_intent" in matching_statuses:
+        fail("Operação recusada: existe uma intenção de escrita sem conclusão auditada; reconciliação manual obrigatória.")
 
 
 def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
