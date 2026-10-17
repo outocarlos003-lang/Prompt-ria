@@ -230,6 +230,76 @@ class PromptariaExecutorTests(unittest.TestCase):
             result["result_content_sha256"],
         )
 
+
+    def test_external_audit_anchor_detects_truncation_and_allows_appends(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            root = base / "repo"
+            external = base / "external-store"
+            root.mkdir()
+            external.mkdir()
+            request = root / "request.json"
+            audit = root / ".promptaria/audit.jsonl"
+            anchor = external / "promptaria-anchor.json"
+            anchor_script = ROOT / "scripts" / "promptaria_audit_anchor.py"
+
+            def run_operation(operation_id):
+                request.write_text(json.dumps(self.base(operation_id=operation_id)), encoding="utf-8")
+                return subprocess.run(
+                    [sys.executable, str(EXECUTOR), "--request", str(request),
+                     "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                    capture_output=True, text=True, encoding="utf-8",
+                )
+
+            first = run_operation("anchor-op-001")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            create = subprocess.run(
+                [sys.executable, str(anchor_script), "--mode", "create",
+                 "--audit", str(audit), "--anchor", str(anchor), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(create.returncode, 0, create.stderr)
+            self.assertTrue(anchor.exists())
+
+            second = run_operation("anchor-op-002")
+            self.assertEqual(second.returncode, 0, second.stderr)
+            verify = subprocess.run(
+                [sys.executable, str(anchor_script), "--mode", "verify",
+                 "--audit", str(audit), "--anchor", str(anchor), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(verify.returncode, 0, verify.stderr)
+            self.assertTrue(json.loads(verify.stdout)["verified"])
+
+            audit.write_text("", encoding="utf-8")
+            truncated = subprocess.run(
+                [sys.executable, str(anchor_script), "--mode", "verify",
+                 "--audit", str(audit), "--anchor", str(anchor), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(truncated.returncode, 0)
+            self.assertIn("vazia", truncated.stderr)
+
+    def test_external_audit_anchor_must_be_outside_repository(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "promptaria_audit_anchor.py"),
+                 "--mode", "create", "--audit", str(root / ".promptaria/audit.jsonl"),
+                 "--anchor", str(root / "anchor.json"), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("fora do repositório", result.stderr)
+
     def test_rejects_audit_log_symlink(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
