@@ -78,5 +78,24 @@ class PromptariaExecutorTests(unittest.TestCase):
                 self.assertNotEqual(proc.returncode, 0)
 
 
+    def test_rejects_replay_after_successful_write(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base(dry_run=False, write_authorized=True)), encoding="utf-8")
+            command = [
+                sys.executable, str(EXECUTOR), "--request", str(request),
+                "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+                "--confirm-operation", "test-op-001",
+            ]
+            first = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            original = (root / "artifacts/result.txt").read_text(encoding="utf-8")
+            second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertNotEqual(second.returncode, 0)
+            self.assertIn("já concluiu uma escrita", second.stderr)
+            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), original)
+
+
 if __name__ == "__main__":
     unittest.main()
