@@ -65,7 +65,7 @@ O executor `scripts/promptaria_executor.py` é uma etapa separada do resolvedor:
 - O padrão é `dry_run: true`; a simulação não grava o destino.
 - A execução real exige simultaneamente `dry_run: false`, `write_authorized: true` e `--confirm-operation` com o mesmo `operation_id` da solicitação.
 - `config/promptaria_permissions.json` limita a escrita a arquivos sob `artifacts/` e impõe limite de tamanho.
-- O destino é validado como caminho relativo POSIX, com proteção contra traversal, `.git`, caminhos absolutos, links simbólicos e arquivos não regulares.
+- O destino é validado como caminho relativo POSIX, com proteção contra traversal, `.git`, caminhos absolutos, links simbólicos e arquivos não regulares. A travessia, a criação de diretórios, a substituição e a verificação do resultado usam descritores de diretório e operações relativas ao diretório-pai, com `O_NOFOLLOW` quando suportado.
 - A escrita autorizada é atômica e o executor compara o SHA-256 do conteúdo solicitado com o resultado gravado.
 - Cada operação aceita é registrada em `.promptaria/audit.jsonl`, com identificador, modo, destino, estado e hashes. Escritas reais registram intenção antes da mutação e conclusão depois; uma intenção sem conclusão bloqueia a repetição do mesmo identificador e exige reconciliação manual.
 
