@@ -21,7 +21,7 @@ def validate_destination(value: object) -> str:
     if not destination:
         return ""
     # Treat both POSIX and Windows separators as separators; reject ambiguous paths.
-    if "\\\\" in destination or destination.startswith("/") or re.match(r"^[A-Za-z]:", destination):
+    if "\\" in destination or destination.startswith("/") or re.match(r"^[A-Za-z]:", destination):
         raise SystemExit("Destino recusado: use caminho relativo POSIX dentro do repositório.")
     if any(ord(char) < 32 or ord(char) == 127 for char in destination):
         raise SystemExit("Destino recusado: caracteres de controle não são permitidos.")
