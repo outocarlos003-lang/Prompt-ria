@@ -89,7 +89,7 @@ def append_audit(audit_path: Path, record: dict) -> None:
     chained_record["audit_prev_hash"] = previous_hash
     chained_record["audit_hash"] = hashlib.sha256(canonical_audit_json(chained_record)).hexdigest()
     with audit_path.open("ab") as stream:
-        stream.write(canonical_audit_json(chained_record) + b"\\n")
+        stream.write(canonical_audit_json(chained_record) + b"\n")
         stream.flush()
         os.fsync(stream.fileno())
 
