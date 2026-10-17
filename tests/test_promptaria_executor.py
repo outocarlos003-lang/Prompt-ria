@@ -138,7 +138,7 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual(record["audit_prev_hash"], "0" * 64)
 
             record["destination"] = "artifacts/forged.txt"
-            audit.write_text(json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\\n", encoding="utf-8")
+            audit.write_text(json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8")
             request.write_text(json.dumps(self.base(operation_id="test-op-002")), encoding="utf-8")
             second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
             self.assertNotEqual(second.returncode, 0)
