@@ -133,12 +133,14 @@ class PromptariaExecutorTests(unittest.TestCase):
             first = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(first.returncode, 0, first.stderr)
             audit = root / ".promptaria/audit.jsonl"
-            record = json.loads(audit.read_text(encoding="utf-8"))
+            audit_bytes = audit.read_bytes()
+            self.assertTrue(audit_bytes.endswith(bytes([10])), "audit JSONL must end with an actual LF byte")
+            record = json.loads(audit_bytes.splitlines()[0].decode("utf-8"))
             self.assertIn("audit_hash", record)
             self.assertEqual(record["audit_prev_hash"], "0" * 64)
 
             record["destination"] = "artifacts/forged.txt"
-            audit.write_text(json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n", encoding="utf-8")
+            audit.write_bytes(json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8") + bytes([10]))
             request.write_text(json.dumps(self.base(operation_id="test-op-002")), encoding="utf-8")
             second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
             self.assertNotEqual(second.returncode, 0)
