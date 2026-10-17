@@ -50,7 +50,7 @@ Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` e
 
 ## Cadeia de integridade da auditoria
 
-Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir de JSON canônico. Antes de aceitar outra operação, o executor verifica a cadeia completa e bloqueia a operação se detectar alterações, remoções, reordenação, truncamento ou JSON inválido. Registros legados sem hash só podem aparecer antes do início da cadeia; o primeiro registro encadeado ancora os bytes do histórico anterior. A cadeia ajuda a detectar alterações posteriores, mas não é uma assinatura digital: para resistir à reescrita integral do arquivo, exporte âncoras para armazenamento externo confiável.
+Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir de JSON canônico. O executor verifica a cadeia disponível e bloqueia alterações detectáveis, reordenação, JSON inválido e última linha incompleta. **Uma cadeia local, isoladamente, não consegue detectar com garantia a remoção de um sufixo completo nem a substituição integral do arquivo.** Registros legados sem hash só podem aparecer antes do início da cadeia; o primeiro registro encadeado ancora os bytes do histórico anterior, mas não protege contra truncamento posterior sem uma âncora externa. Operações de escrita real agora registram `write_intent` antes da mutação e `executed` após a validação; se a conclusão desaparecer ou a execução for interrompida, a reutilização do mesmo `operation_id` falha fechada e exige reconciliação manual. Para detectar remoção de histórico, exporte periodicamente âncoras para armazenamento externo confiável, protegido contra alteração pela identidade do executor.
 
 ## Validação de resultados e teste ponta a ponta
 
@@ -67,7 +67,7 @@ O executor `scripts/promptaria_executor.py` é uma etapa separada do resolvedor:
 - `config/promptaria_permissions.json` limita a escrita a arquivos sob `artifacts/` e impõe limite de tamanho.
 - O destino é validado como caminho relativo POSIX, com proteção contra traversal, `.git`, caminhos absolutos, links simbólicos e arquivos não regulares.
 - A escrita autorizada é atômica e o executor compara o SHA-256 do conteúdo solicitado com o resultado gravado.
-- Cada operação aceita é registrada em `.promptaria/audit.jsonl`, com identificador, modo, destino, estado e hashes.
+- Cada operação aceita é registrada em `.promptaria/audit.jsonl`, com identificador, modo, destino, estado e hashes. Escritas reais registram intenção antes da mutação e conclusão depois; uma intenção sem conclusão bloqueia a repetição do mesmo identificador e exige reconciliação manual.
 
 Exemplo de solicitação de simulação:
 
