@@ -51,7 +51,7 @@ def read_and_verify_audit(audit_path: Path) -> tuple[list[dict], str]:
         return [], "0" * 64
     try:
         raw = audit_path.read_bytes()
-        if raw and not raw.endswith(b"\\n"):
+        if raw and not raw.endswith(b"\n"):
             fail("Registro de auditoria truncado (última linha sem quebra); operação bloqueada.")
         lines = raw.splitlines(keepends=True)
         records: list[dict] = []
