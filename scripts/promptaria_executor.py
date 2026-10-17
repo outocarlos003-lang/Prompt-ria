@@ -112,6 +112,8 @@ def reject_replayed_operation(audit_path: Path, operation_id: str) -> None:
     for record in records:
         if record.get("operation_id") == operation_id and record.get("status") == "executed":
             fail("Operação recusada: este operation_id já concluiu uma escrita; use um ID novo.")
+        if record.get("operation_id") == operation_id and record.get("status") == "write_intent":
+            fail("Operação recusada: existe uma intenção de escrita sem conclusão auditada; reconciliação manual obrigatória.")
 
 
 def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
@@ -183,6 +185,11 @@ def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation
     }
 
     if not dry_run:
+        # Persist intent before mutation. An interrupted operation remains pending and fails closed on replay.
+        intent = dict(result)
+        intent["status"] = "write_intent"
+        intent["executed"] = False
+        append_audit(audit_path, intent)
         # Write atomically in the destination directory and avoid following target symlinks.
         target.parent.mkdir(parents=True, exist_ok=True)
         fd, temp_name = tempfile.mkstemp(prefix=".promptaria-", dir=str(target.parent))
