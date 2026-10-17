@@ -50,13 +50,31 @@ Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` e
 
 ## Cadeia de integridade da auditoria
 
-Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir de JSON canônico. Antes de aceitar outra operação, o executor verifica a cadeia completa e bloqueia a operação se detectar alterações, remoções, reordenação, truncamento ou JSON inválido. Registros legados sem hash só podem aparecer antes do início da cadeia; o primeiro registro encadeado ancora os bytes do histórico anterior. A cadeia ajuda a detectar alterações posteriores, mas não é uma assinatura digital: para resistir à reescrita integral do arquivo, exporte âncoras para armazenamento externo confiável.
+Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir de JSON canônico. O executor verifica a cadeia disponível e bloqueia alterações detectáveis, reordenação, JSON inválido e última linha incompleta. **Uma cadeia local, isoladamente, não consegue detectar com garantia a remoção de um sufixo completo nem a substituição integral do arquivo.** Registros legados sem hash só podem aparecer antes do início da cadeia; o primeiro registro encadeado ancora os bytes do histórico anterior, mas não protege contra truncamento posterior sem uma âncora externa. Operações de escrita real agora registram `write_intent` antes da mutação e `executed` após a validação; se a conclusão desaparecer ou a execução for interrompida, a reutilização do mesmo `operation_id` falha fechada e exige reconciliação manual. Para detectar remoção de histórico, exporte periodicamente âncoras para armazenamento externo confiável, protegido contra alteração pela identidade do executor.
 
 ## Validação de resultados e teste ponta a ponta
 
 Após a resolução, `scripts/promptaria_validate_result.py` verifica o contrato do artefato: esquema esperado, presença dos três componentes obrigatórios, recuperação de conteúdo, estados que não alegam execução e indisponibilidade de escrita no resolvedor. A validação falha de forma explícita se faltar qualquer componente obrigatório ou se o JSON declarar uma execução que não ocorreu.
 
 O workflow `.github/workflows/promptaria-tests.yml` executa a suíte de regressão e um smoke test com os instrumentos reais do repositório: chama o resolvedor e valida o JSON resultante. Assim, a integração verifica não apenas testes com fixtures, mas também se a coleção efetiva de instrumentos satisfaz o contrato obrigatório.
+
+## Âncora externa da auditoria
+
+A cadeia local detecta alterações dentro do histórico disponível, mas não consegue provar que um sufixo completo não foi removido. O utilitário `scripts/promptaria_audit_anchor.py` permite criar e verificar um checkpoint do prefixo da cadeia. O arquivo de âncora deve ficar fora do repositório, em armazenamento com controles de acesso independentes e permissões que impeçam a identidade do executor de alterá-lo ou removê-lo. Apenas usar outra pasta no mesmo diretório ou no mesmo domínio de permissões **não** cria uma fronteira de confiança.
+
+```bash
+python scripts/promptaria_audit_anchor.py --mode create \
+  --audit .promptaria/audit.jsonl \
+  --anchor /caminho/externo-protegido/promptaria-anchor.json \
+  --repo-root .
+
+python scripts/promptaria_audit_anchor.py --mode verify \
+  --audit .promptaria/audit.jsonl \
+  --anchor /caminho/externo-protegido/promptaria-anchor.json \
+  --repo-root .
+```
+
+Crie âncoras em uma rotina confiável após operações ou em intervalos definidos, e verifique-as antes de aceitar o histórico. A verificação permite acréscimos posteriores, mas falha se o prefixo protegido estiver ausente ou divergente. A ferramenta não provisiona armazenamento externo nem administra credenciais; isso deve ser configurado operacionalmente.
 
 ## Executor especializado com permissões e auditoria
 
@@ -65,9 +83,10 @@ O executor `scripts/promptaria_executor.py` é uma etapa separada do resolvedor:
 - O padrão é `dry_run: true`; a simulação não grava o destino.
 - A execução real exige simultaneamente `dry_run: false`, `write_authorized: true` e `--confirm-operation` com o mesmo `operation_id` da solicitação.
 - `config/promptaria_permissions.json` limita a escrita a arquivos sob `artifacts/` e impõe limite de tamanho.
-- O destino é validado como caminho relativo POSIX, com proteção contra traversal, `.git`, caminhos absolutos, links simbólicos e arquivos não regulares.
+- O destino é validado como caminho relativo POSIX, com proteção contra traversal, `.git`, caminhos absolutos, links simbólicos e arquivos não regulares. A travessia, a criação de diretórios, a substituição e a verificação do resultado usam descritores de diretório e operações relativas ao diretório-pai, com `O_NOFOLLOW` quando suportado.
 - A escrita autorizada é atômica e o executor compara o SHA-256 do conteúdo solicitado com o resultado gravado.
-- Cada operação aceita é registrada em `.promptaria/audit.jsonl`, com identificador, modo, destino, estado e hashes.
+- Cada operação aceita é registrada em `.promptaria/audit.jsonl`, com identificador, modo, destino, estado e hashes. Escritas reais registram intenção antes da mutação e conclusão depois; uma intenção sem conclusão bloqueia a repetição do mesmo identificador e exige reconciliação manual.
+- O executor abre `.promptaria` relativamente a um descritor da raiz e mantém o descritor do diretório de estado aberto durante a operação. `audit.jsonl` e `executor.lock` são abertos relativamente a esse descritor, com `O_NOFOLLOW` quando disponível; a auditoria é lida e anexada pelo mesmo descritor fixado, com `flock`, verificação de identidade do inode e `fsync`. O diretório é restringido a `0700`, e os arquivos de estado a `0600`, apertando permissões legadas quando pertencem ao usuário executor.
 
 Exemplo de solicitação de simulação:
 
@@ -82,6 +101,8 @@ Exemplo de solicitação de simulação:
 
 Execute com `python scripts/promptaria_executor.py --request request.json --repo-root .`. Para uma escrita real, altere explicitamente os dois campos de autorização no JSON e forneça `--confirm-operation relatorio-2026-001`. Use apenas após revisar o conteúdo e o destino. Testes: `python -m unittest discover -s tests -v`.
 
+
+**Limite do modelo de ameaça:** estas medidas protegem contra outros usuários locais e reduzem as corridas de substituição de caminhos; `flock` é consultivo e só serializa participantes cooperantes. Um processo hostil executando sob a mesma identidade/UID do executor pode, em geral, agir com os mesmos privilégios sobre esses arquivos e diretórios. Para resistência contra comprometimento da mesma identidade, execute o executor sob uma conta dedicada com permissões mínimas e mantenha a âncora de auditoria em um domínio de controle independente. A auditoria e a mutação do destino também não formam uma única transação atômica.
 
 ### Integração do executor no workflow
 

@@ -1,4 +1,5 @@
 import json
+import hashlib
 import subprocess
 import sys
 import tempfile
@@ -166,6 +167,202 @@ class PromptariaExecutorTests(unittest.TestCase):
             ]
             self.assertEqual(len(records), 2)
             self.assertEqual(records[1]["audit_prev_hash"], records[0]["audit_hash"])
+
+
+
+    def test_write_intent_precedes_mutation_and_truncated_completion_fails_closed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base(dry_run=False, write_authorized=True)), encoding="utf-8")
+            command = [
+                sys.executable, str(EXECUTOR), "--request", str(request),
+                "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+                "--confirm-operation", "test-op-001",
+            ]
+            first = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            audit = root / ".promptaria/audit.jsonl"
+            lines = audit.read_bytes().splitlines(keepends=True)
+            self.assertEqual(len(lines), 2)
+            intent = json.loads(lines[0])
+            completed = json.loads(lines[1])
+            self.assertEqual(intent["status"], "write_intent")
+            self.assertFalse(intent["executed"])
+            self.assertEqual(completed["status"], "executed")
+            self.assertTrue(completed["executed"])
+
+            # Simulate loss of the final completion record. The remaining chain
+            # is syntactically valid, but the durable intent must block replay.
+            audit.write_bytes(lines[0])
+            second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
+            self.assertNotEqual(second.returncode, 0)
+            self.assertIn("reconciliação manual obrigatória", second.stderr)
+            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\n")
+
+
+    def test_rejects_symlink_in_intermediate_destination_component(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outside = root / "outside"
+            outside.mkdir()
+            (root / "artifacts").symlink_to(outside, target_is_directory=True)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertFalse((outside / "result.txt").exists())
+
+    def test_authorized_write_uses_pinned_directory_descriptor(self):
+        root, proc = self.run_executor(
+            self.base(dry_run=False, write_authorized=True),
+            "--confirm-operation", "test-op-001",
+        )
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        result = json.loads(proc.stdout)
+        self.assertEqual(result["status"], "executed")
+        self.assertEqual(
+            hashlib.sha256((root / "artifacts/result.txt").read_bytes()).hexdigest(),
+            result["result_content_sha256"],
+        )
+
+
+    def test_external_audit_anchor_detects_truncation_and_allows_appends(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            root = base / "repo"
+            external = base / "external-store"
+            root.mkdir()
+            external.mkdir()
+            request = root / "request.json"
+            audit = root / ".promptaria/audit.jsonl"
+            anchor = external / "promptaria-anchor.json"
+            anchor_script = ROOT / "scripts" / "promptaria_audit_anchor.py"
+
+            def run_operation(operation_id):
+                request.write_text(json.dumps(self.base(operation_id=operation_id)), encoding="utf-8")
+                return subprocess.run(
+                    [sys.executable, str(EXECUTOR), "--request", str(request),
+                     "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                    capture_output=True, text=True, encoding="utf-8",
+                )
+
+            first = run_operation("anchor-op-001")
+            self.assertEqual(first.returncode, 0, first.stderr)
+            create = subprocess.run(
+                [sys.executable, str(anchor_script), "--mode", "create",
+                 "--audit", str(audit), "--anchor", str(anchor), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(create.returncode, 0, create.stderr)
+            self.assertTrue(anchor.exists())
+
+            second = run_operation("anchor-op-002")
+            self.assertEqual(second.returncode, 0, second.stderr)
+            verify = subprocess.run(
+                [sys.executable, str(anchor_script), "--mode", "verify",
+                 "--audit", str(audit), "--anchor", str(anchor), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(verify.returncode, 0, verify.stderr)
+            self.assertTrue(json.loads(verify.stdout)["verified"])
+
+            audit.write_text("", encoding="utf-8")
+            truncated = subprocess.run(
+                [sys.executable, str(anchor_script), "--mode", "verify",
+                 "--audit", str(audit), "--anchor", str(anchor), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(truncated.returncode, 0)
+            self.assertIn("vazia", truncated.stderr)
+
+    def test_external_audit_anchor_must_be_outside_repository(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "scripts" / "promptaria_audit_anchor.py"),
+                 "--mode", "create", "--audit", str(root / ".promptaria/audit.jsonl"),
+                 "--anchor", str(root / "anchor.json"), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("fora do repositório", result.stderr)
+
+    def test_rejects_audit_log_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            external = root / "external-audit.jsonl"
+            external.write_text("", encoding="utf-8")
+            state = root / ".promptaria"
+            state.mkdir()
+            (state / "audit.jsonl").symlink_to(external)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("link simbólico", proc.stderr)
+            self.assertEqual(external.read_text(encoding="utf-8"), "")
+
+    def test_rejects_state_directory_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            external = root / "external-state"
+            external.mkdir()
+            (root / ".promptaria").symlink_to(external, target_is_directory=True)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("link simbólico", proc.stderr)
+
+
+    def test_state_and_audit_permissions_are_restricted(self):
+        root, proc = self.run_executor(self.base())
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        state = root / ".promptaria"
+        audit = state / "audit.jsonl"
+        lock = state / "executor.lock"
+        self.assertEqual(state.stat().st_mode & 0o777, 0o700)
+        self.assertEqual(audit.stat().st_mode & 0o777, 0o600)
+        self.assertEqual(lock.stat().st_mode & 0o777, 0o600)
+
+    def test_rejects_lock_file_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            state = root / ".promptaria"
+            state.mkdir(mode=0o700)
+            external = root / "external-lock"
+            external.write_text("", encoding="utf-8")
+            (state / "executor.lock").symlink_to(external)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base()), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertEqual(external.read_text(encoding="utf-8"), "")
 
 
 if __name__ == "__main__":
