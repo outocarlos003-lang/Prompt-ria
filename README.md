@@ -48,6 +48,10 @@ A inclusão automática é uma préconfiguração de reconhecimento e planejamen
 Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` em uma issue. Para execução manual, abra Actions → “Promptária - correferência funcional por título” → Run workflow. O artefato JSON indica componentes obrigatórios ausentes, títulos reconhecidos e estados de rastreabilidade.
 
 
+## Cadeia de integridade da auditoria
+
+Os novos registros incluem `audit_prev_hash` e `audit_hash`, calculados a partir de JSON canônico. Antes de aceitar outra operação, o executor verifica a cadeia completa e bloqueia a operação se detectar alterações, remoções, reordenação, truncamento ou JSON inválido. Registros legados sem hash só podem aparecer antes do início da cadeia; o primeiro registro encadeado ancora os bytes do histórico anterior. A cadeia ajuda a detectar alterações posteriores, mas não é uma assinatura digital: para resistir à reescrita integral do arquivo, exporte âncoras para armazenamento externo confiável.
+
 ## Validação de resultados e teste ponta a ponta
 
 Após a resolução, `scripts/promptaria_validate_result.py` verifica o contrato do artefato: esquema esperado, presença dos três componentes obrigatórios, recuperação de conteúdo, estados que não alegam execução e indisponibilidade de escrita no resolvedor. A validação falha de forma explícita se faltar qualquer componente obrigatório ou se o JSON declarar uma execução que não ocorreu.
