@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import json
 import os
@@ -63,7 +64,7 @@ def reject_replayed_operation(audit_path: Path, operation_id: str) -> None:
         fail(f"Registro de auditoria ilegível; operação bloqueada por segurança: {exc}")
 
 
-def execute(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
+def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     operation_id = payload.get("operation_id")
     operation = payload.get("operation")
@@ -150,6 +151,20 @@ def execute(payload: dict, repo_root: Path, registry: dict, confirmation_id: str
 
     append_audit(audit_path, result)
     return result
+
+
+
+def execute(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
+    """Serialize operations so replay checks and audit appends cannot race each other."""
+    state_dir = repo_root / ".promptaria"
+    state_dir.mkdir(parents=True, exist_ok=True)
+    lock_path = state_dir / "executor.lock"
+    with lock_path.open("a+", encoding="utf-8") as lock_stream:
+        fcntl.flock(lock_stream.fileno(), fcntl.LOCK_EX)
+        try:
+            return _execute_locked(payload, repo_root, registry, confirmation_id)
+        finally:
+            fcntl.flock(lock_stream.fileno(), fcntl.LOCK_UN)
 
 
 def main() -> None:
