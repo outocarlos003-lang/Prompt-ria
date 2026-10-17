@@ -2,7 +2,7 @@
 
 Estas regras são a configuração operacional comum do repositório. Devem ser lidas antes de executar qualquer tarefa aqui, independentemente do agente, interface ou ferramenta utilizada. Instruções específicas de plataforma complementam este arquivo; não o substituem nem podem ampliar o escopo do pedido do usuário.
 
-O modelo genérico de coordenação, acionamento, recuperação, aplicação cumulativa e verificação dos instrumentos está especificado em docs/PROTOCOLO-MESTRE-ACIONAMENTO-GENERICO-PROMPTARIA.md. Aplique-o em conjunto com estas regras universais e com os instrumentos integrais pertinentes; a referência documental não significa que ambientes externos que não carreguem estes arquivos sejam automaticamente configurados.
+O modelo genérico de coordenação, acionamento, recuperação, aplicação cumulativa e verificação dos instrumentos está especificado em instruments/protocolo-mestre-acionamento-automatico.md. Aplique-o em conjunto com estas regras universais e com os instrumentos integrais pertinentes; a referência documental não significa que ambientes externos que não carreguem estes arquivos sejam automaticamente configurados.
 
 ## Prioridade obrigatória
 
@@ -138,7 +138,7 @@ Para toda demanda identificável, além de recuperar e aplicar as instruções, 
 
 Sempre que uma demanda contiver @GitHub, citar um título/alias de instrumento Promptária ou pedir operação que dependa de instrumento armazenado, o agente deve resolver o destino documental antes de interpretar ou executar a tarefa. Esta regra vale para todos os instrumentos presentes e futuros, não apenas Nocturna.
 
-1. Consulte primeiro Promptária/manifest.json na branch vigente do repositório outocarlos003-lang-lang/Prompt-ria; trate-o como catálogo canônico de IDs, títulos, aliases e caminhos. Não dependa de GitHub Code Search como único mecanismo: se o índice de código estiver indisponível ou não indexado, use a árvore/Contents API e o manifesto.
+1. Consulte primeiro Promptária/manifest.json na branch vigente do repositório outocarlos003-lang/Prompt-ria; trate-o como catálogo canônico de IDs, títulos, aliases e caminhos. Não dependa de GitHub Code Search como único mecanismo: se o índice de código estiver indisponível ou não indexado, use a árvore/Contents API e o manifesto.
 2. Compare o título completo e os aliases após normalização sem acentos, caixa e pontuação. Prefira correspondência exata de título/alias; só use correspondência parcial se resultar em um único candidato. Se houver múltiplos candidatos, não escolha arbitrariamente.
 3. Confirme o registro do instrumento no manifesto e recupere o arquivo canônico integral no caminho declarado (incluindo Index.html quando esse for o caminho). Leia o conteúdo operacional, não apenas o título, o cartão, o excerto da pesquisa ou os metadados. Confirme a fonte e, quando disponível, a integridade/commit.
 4. Resolva todos os títulos/aliases explícitos da demanda cumulativamente. O instrumento coordenador e o instrumento operacional fixos são recuperados quando definidos no contexto/protocolo aplicável; instrumentos especializados adicionais são recuperados individualmente. Não confunda instrumentos relacionados com aliases nem funda identidades distintas.
