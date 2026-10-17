@@ -10,7 +10,7 @@ RESOLVER = REPO_ROOT / "scripts" / "promptaria_resolver.py"
 
 
 class PromptariaResolverTests(unittest.TestCase):
-    def run_resolver(self, request_text, instruments):
+    def run_resolver(self, request_text, instruments, extra_payload=None):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             instrument_dir = root / "instruments"
@@ -19,7 +19,9 @@ class PromptariaResolverTests(unittest.TestCase):
                 (instrument_dir / filename).write_text(f"# {title}\n\nConteúdo de teste.\n", encoding="utf-8")
             request_path = root / "request.json"
             output_path = root / "result.json"
-            request_path.write_text(json.dumps({"request": request_text}, ensure_ascii=False), encoding="utf-8")
+            payload = {"request": request_text}
+            payload.update(extra_payload or {})
+            request_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
             completed = subprocess.run(
                 [sys.executable, str(RESOLVER), "--request", str(request_path),
                  "--instruments", str(instrument_dir), "--output", str(output_path)],
@@ -57,6 +59,56 @@ class PromptariaResolverTests(unittest.TestCase):
         self.assertEqual(len(result["missing_mandatory_components"]), 3)
         self.assertEqual(result["mandatory_components"], [])
         self.assertIn("0/3", stdout)
+
+    def test_rejects_windows_and_parent_traversal_destinations(self):
+        instruments = [("one.md", "Instrumento Único")]
+        for destination in ("../outside.txt", "folder/../outside.txt", r"folder\outside.txt", ".git/config", "/tmp/out.txt", "C:/outside.txt"):
+            with self.subTest(destination=destination):
+                with tempfile.TemporaryDirectory() as tmp:
+                    root = Path(tmp)
+                    instrument_dir = root / "instruments"
+                    instrument_dir.mkdir()
+                    (instrument_dir / "one.md").write_text("# Instrumento Único\n", encoding="utf-8")
+                    request_path = root / "request.json"
+                    request_path.write_text(json.dumps({"request": "teste", "destination": destination}), encoding="utf-8")
+                    completed = subprocess.run(
+                        [sys.executable, str(RESOLVER), "--request", str(request_path),
+                         "--instruments", str(instrument_dir), "--output", str(root / "result.json")],
+                        capture_output=True, text=True, encoding="utf-8", check=False,
+                    )
+                    self.assertNotEqual(completed.returncode, 0, msg=destination)
+
+    def test_rejects_non_boolean_dry_run(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            instrument_dir = root / "instruments"
+            instrument_dir.mkdir()
+            (instrument_dir / "one.md").write_text("# Instrumento Único\n", encoding="utf-8")
+            request_path = root / "request.json"
+            request_path.write_text(json.dumps({"request": "teste", "dry_run": "false"}), encoding="utf-8")
+            completed = subprocess.run(
+                [sys.executable, str(RESOLVER), "--request", str(request_path),
+                 "--instruments", str(instrument_dir), "--output", str(root / "result.json")],
+                capture_output=True, text=True, encoding="utf-8", check=False,
+            )
+            self.assertNotEqual(completed.returncode, 0)
+            self.assertIn("dry_run inválido", completed.stderr.lower())
+
+    def test_non_dry_run_requires_explicit_authorization_and_destination(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            instrument_dir = root / "instruments"
+            instrument_dir.mkdir()
+            (instrument_dir / "one.md").write_text("# Instrumento Único\n", encoding="utf-8")
+            request_path = root / "request.json"
+            request_path.write_text(json.dumps({"request": "teste", "dry_run": False}), encoding="utf-8")
+            completed = subprocess.run(
+                [sys.executable, str(RESOLVER), "--request", str(request_path),
+                 "--instruments", str(instrument_dir), "--output", str(root / "result.json")],
+                capture_output=True, text=True, encoding="utf-8", check=False,
+            )
+            self.assertNotEqual(completed.returncode, 0)
+            self.assertIn("execução recusada", completed.stderr.lower())
 
     def test_rejects_empty_request(self):
         with tempfile.TemporaryDirectory() as tmp:
