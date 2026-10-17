@@ -112,7 +112,7 @@ class PromptariaExecutorTests(unittest.TestCase):
             outcomes = [first.communicate(timeout=10) + (first.returncode,), second.communicate(timeout=10) + (second.returncode,)]
             self.assertEqual(sum(1 for _, _, code in outcomes if code == 0), 1, outcomes)
             self.assertEqual(sum(1 for _, stderr, code in outcomes if code != 0 and "já concluiu uma escrita" in stderr), 1, outcomes)
-            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\\n")
+            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\n")
             audit_records = [
                 json.loads(line)
                 for line in (root / ".promptaria/audit.jsonl").read_text(encoding="utf-8").splitlines()
