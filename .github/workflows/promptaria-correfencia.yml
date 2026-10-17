@@ -1,0 +1,73 @@
+name: Promptária - correferência funcional por título
+
+on:
+  workflow_dispatch:
+    inputs:
+      request:
+        description: "Demanda completa a processar"
+        required: true
+        type: string
+      destination:
+        description: "Destino opcional autorizado (caminho relativo no repositório)"
+        required: false
+        type: string
+        default: ""
+      dry_run:
+        description: "Apenas validar e gerar plano, sem gravar resultado"
+        required: true
+        type: boolean
+        default: true
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: promptaria-correfencia-${{ github.event.issue.number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  resolve-and-validate:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request == null &&
+       contains(github.event.comment.body, '/promptaria'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Prepare request from event
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_REQUEST: ${{ inputs.request }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          INPUT_DESTINATION: ${{ inputs.destination }}
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          python - <<'PY'
+          import json, os
+          event = os.environ.get('EVENT_NAME', '')
+          request = os.environ.get('INPUT_REQUEST', '')
+          if event == 'issue_comment':
+              body = os.environ.get('COMMENT_BODY', '')
+              request = body.split('/promptaria', 1)[1].strip()
+          if not request.strip():
+              raise SystemExit('Demanda vazia.')
+          with open('request.json', 'w', encoding='utf-8') as f:
+              json.dump({'request': request, 'destination': os.environ.get('INPUT_DESTINATION', '').strip(), 'dry_run': os.environ.get('INPUT_DRY_RUN', 'true').lower() == 'true', 'source_event': event}, f, ensure_ascii=False, indent=2)
+          PY
+      - name: Resolve all instrument titles and validate plan
+        run: python scripts/promptaria_resolver.py --request request.json --instruments instruments --output promptaria-result.json
+      - name: Upload traceable result
+        uses: actions/upload-artifact@v4
+        with:
+          name: promptaria-result-${{ github.run_id }}
+          path: promptaria-result.json
+          if-no-files-found: error
+          retention-days: 30
