@@ -46,7 +46,11 @@ def canonical_audit_json(record: dict) -> bytes:
 
 
 def read_and_verify_audit(audit_path: Path) -> tuple[list[dict], str]:
-    """Verify the append-only hash chain; legacy entries anchor it by their exact bytes."""
+    """Verify the hash chain and refuse symlink/non-regular audit files."""
+    if audit_path.is_symlink():
+        fail("Registro de auditoria é link simbólico; operação bloqueada.")
+    if audit_path.exists() and not audit_path.is_file():
+        fail("Registro de auditoria não é arquivo regular; operação bloqueada.")
     if not audit_path.exists():
         return [], "0" * 64
     try:
@@ -88,7 +92,15 @@ def append_audit(audit_path: Path, record: dict) -> None:
     chained_record = dict(record)
     chained_record["audit_prev_hash"] = previous_hash
     chained_record["audit_hash"] = hashlib.sha256(canonical_audit_json(chained_record)).hexdigest()
-    with audit_path.open("ab") as stream:
+    # O_NOFOLLOW closes the final-component symlink race on platforms that support it.
+    flags = os.O_WRONLY | os.O_APPEND | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        fd = os.open(audit_path, flags, 0o600)
+    except OSError as exc:
+        fail(f"Não foi possível abrir o registro de auditoria com segurança: {exc}")
+    with os.fdopen(fd, "ab") as stream:
+        if not os.path.isfile(audit_path) or os.path.islink(audit_path):
+            fail("Registro de auditoria deixou de ser arquivo regular; operação bloqueada.")
         stream.write(canonical_audit_json(chained_record) + bytes([10]))
         stream.flush()
         os.fsync(stream.fileno())
@@ -139,9 +151,14 @@ def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation
         fail("Execução recusada: executor desabilitado no registro de permissões.")
 
     target = (repo_root / destination)
-    # Resolve the parent to block symlink escapes; reject a symlink at the target too.
+    # Reject symlinks in every existing destination component, not only the leaf.
+    cursor = root = repo_root.resolve()
+    for component in Path(destination).parts:
+        cursor = cursor / component
+        if cursor.is_symlink():
+            fail("Destino recusado: links simbólicos em componentes do caminho não são permitidos.")
+    # Resolve the parent to block escapes; path checks assume repository directories are not concurrently writable by an untrusted process.
     parent = target.parent.resolve()
-    root = repo_root.resolve()
     if parent != root and root not in parent.parents:
         fail("Destino recusado: o caminho resolvido sai do repositório.")
     if target.is_symlink():
@@ -195,9 +212,16 @@ def _execute_locked(payload: dict, repo_root: Path, registry: dict, confirmation
 def execute(payload: dict, repo_root: Path, registry: dict, confirmation_id: str | None) -> dict:
     """Serialize operations so replay checks and audit appends cannot race each other."""
     state_dir = repo_root / ".promptaria"
+    if state_dir.is_symlink():
+        fail("Diretório de estado é link simbólico; operação bloqueada.")
     state_dir.mkdir(parents=True, exist_ok=True)
+    if state_dir.is_symlink() or not state_dir.is_dir():
+        fail("Diretório de estado não é um diretório regular; operação bloqueada.")
     lock_path = state_dir / "executor.lock"
-    with lock_path.open("a+", encoding="utf-8") as lock_stream:
+    if lock_path.is_symlink():
+        fail("Arquivo de bloqueio é link simbólico; operação bloqueada.")
+    lock_fd = os.open(lock_path, os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0), 0o600)
+    with os.fdopen(lock_fd, "a+", encoding="utf-8") as lock_stream:
         fcntl.flock(lock_stream.fileno(), fcntl.LOCK_EX)
         try:
             return _execute_locked(payload, repo_root, registry, confirmation_id)
