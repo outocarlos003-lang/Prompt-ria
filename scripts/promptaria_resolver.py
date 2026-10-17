@@ -11,6 +11,25 @@ def normalize(value: str) -> str:
     value = re.sub(r'[^\w\s-]', ' ', value, flags=re.UNICODE)
     return re.sub(r'\s+', ' ', value).strip()
 
+def validate_destination(value: object) -> str:
+    """Validate a proposed repository-relative destination without writing to it."""
+    if value is None:
+        return ""
+    if not isinstance(value, str):
+        raise SystemExit("Destino inválido: informe um caminho relativo como texto.")
+    destination = value.strip()
+    if not destination:
+        return ""
+    # Treat both POSIX and Windows separators as separators; reject ambiguous paths.
+    if "\\\\" in destination or destination.startswith("/") or re.match(r"^[A-Za-z]:", destination):
+        raise SystemExit("Destino recusado: use caminho relativo POSIX dentro do repositório.")
+    if any(ord(char) < 32 or ord(char) == 127 for char in destination):
+        raise SystemExit("Destino recusado: caracteres de controle não são permitidos.")
+    parts = destination.split("/")
+    if any(part in ("", ".", "..") for part in parts) or any(part.casefold() == ".git" for part in parts):
+        raise SystemExit("Destino recusado: segmentos vazios, . , .. e .git não são permitidos.")
+    return destination
+
 def read_instruments(root: Path) -> list[dict]:
     items = []
     if not root.exists(): return items
@@ -63,17 +82,25 @@ def main() -> None:
             selected_paths.add(component['path'])
         mandatory_components.append({'required_title': required_title, 'found': True, 'path': component['path']})
 
-    destination = str(payload.get('destination', '')).strip()
-    if destination:
-        target = Path(destination)
-        if target.is_absolute() or '..' in target.parts: raise SystemExit('Destino recusado: use caminho relativo sem ..')
+    destination = validate_destination(payload.get('destination', ''))
+    dry_run_value = payload.get('dry_run', True)
+    if not isinstance(dry_run_value, bool):
+        raise SystemExit("dry_run inválido: use um valor booleano JSON (true/false).")
+    dry_run = dry_run_value
+    write_authorized = payload.get('write_authorized', False)
+    if not isinstance(write_authorized, bool):
+        raise SystemExit("write_authorized inválido: use um valor booleano JSON.")
+    # There is deliberately no write executor yet. Fail closed if a caller requests
+    # a non-dry run without an explicit authorization and destination.
+    if not dry_run and (write_authorized is not True or not destination):
+        raise SystemExit("Execução recusada: exige write_authorized=true e destination explícito; o executor de escrita ainda não está integrado.")
     result = {
         'schema_version': 2,
         'created_at': datetime.now(timezone.utc).isoformat(),
         'request': request,
         'source_event': payload.get('source_event'),
         'destination': destination or None,
-        'dry_run': bool(payload.get('dry_run', True)),
+        'dry_run': dry_run,\n        'write_authorized': write_authorized,\n        'write_execution_available': False,
         'matching_policy': {'case_insensitive': True, 'unicode_normalized': True, 'punctuation_insensitive': True, 'all_matches_retained': True, 'no_arbitrary_cardinality_limit': True, 'substring_only_matches': False},
         'preconfiguration': {'enabled': True, 'mode': 'generic_until_explicit_specialization', 'always_include_coordinator': True, 'always_include_master_protocol': True, 'always_include_github_operational_instrument': True, 'preserve_instrument_functions': True, 'ambiguous_function_override_requires_contextual_review': True},
         'instrument_count': len(instruments),
