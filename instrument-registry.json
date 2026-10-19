@@ -1,0 +1,666 @@
+{
+  "schema_version": 2,
+  "identity_contract": {
+    "required": [
+      "id",
+      "title",
+      "path",
+      "aliases",
+      "keywords",
+      "functions",
+      "files",
+      "relations",
+      "operations",
+      "ui",
+      "activation"
+    ],
+    "matching": "canonical title; only activation.enabled=true instruments are functionally resolvable",
+    "selection": "cumulative across enabled instruments; inventory alone never activates an instrument"
+  },
+  "template_id": "promptaria-instrument-template",
+  "instruments": [
+    {
+      "id": "github-operational",
+      "title": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
+      "path": "instruments/acione-a-promptaria-pelo-github.md",
+      "aliases": [
+        "github operacional",
+        "acionar a promptária pelo github",
+        "instrumento promptual fixo",
+        "parte 2",
+        "demanda estruturada",
+        "request_id",
+        "envelope",
+        "instrumento operacional fixo do protocolo-mestre",
+        "instrumento fixo de acionamento GitHub",
+        "envelope operacional de demanda",
+        "pré-configuração operacional padrão do GitHub",
+        "protocolo-mestre e pré-configuração padrão",
+        "instrumento operacional canônico intersegmentos",
+        "nó operacional interconectado github-operational"
+      ],
+      "keywords": [
+        "github",
+        "repositório",
+        "demanda",
+        "inserir",
+        "recuperar",
+        "aplicar",
+        "schema",
+        "request_id",
+        "envelope",
+        "demanda estruturada",
+        "correspondência por título",
+        "protocolo-mestre",
+        "pré-configuração padrão",
+        "correferência funcional",
+        "rastreabilidade intersegmentos",
+        "functional-correference-architecture",
+        "master-activation",
+        "instrument:github-operational",
+        "pré-configuração operacional padrão",
+        "identidade canônica intersegmentos",
+        "rastreabilidade bidirecional"
+      ],
+      "functions": [
+        "inspecionar repositório",
+        "localizar recursos",
+        "executar demanda autorizada",
+        "estruturar solicitação",
+        "preservar metadados",
+        "normalizar entrada",
+        "correlacionar por título usando identidade canônica",
+        "atuar como instrumento operacional fixo do protocolo-mestre",
+        "pré-configurar envelope estruturado da demanda",
+        "preservar correferência, aliases e rastreabilidade entre segmentos",
+        "operacionalizar as funções compartilhadas pela automação de correspondência por título e pelo protocolo-mestre sem substituir seus papéis próprios",
+        "interconectar o nó operacional canônico aos segmentos de correspondência, protocolo-mestre e pré-configuração padrão",
+        "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência"
+      ],
+      "files": [
+        "scripts/promptaria_preflight.py",
+        "scripts/promptaria_executor.py",
+        "instruments/acione-a-promptaria-pelo-github.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "tests/manifest.json",
+        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "instruments/protocolo-mestre-acionamento-automatico.md",
+        "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
+        "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
+        "config/instrument-execution-map.json",
+        "scripts/promptaria_context_router.py",
+        "scripts/promptaria_resolver.py",
+        "scripts/promptaria_specialized_executor.py"
+      ],
+      "relations": [
+        "request->github-operational",
+        "github-operational->repository-update",
+        "request-envelope->executor-request",
+        "demand->github-operational",
+        "github-operational->recovered-instrument",
+        "recovered-instrument->function",
+        "function->operation",
+        "operation->validated-result",
+        "github-operational->instrument:github-operational",
+        "instrument:github-operational->instrument-registry",
+        "instrument-registry->instrument-catalog",
+        "instrument-registry->tests-manifest",
+        "functional-correference-architecture->github-operational",
+        "github-operational->functional-correference-architecture",
+        "master-activation->github-operational",
+        "master-protocol-fixed-instrument->github-operational",
+        "master-preconfiguration->github-operational",
+        "title-correspondence-automation->instrument:github-operational",
+        "instrument:github-operational->title-correspondence-automation",
+        "standard-preconfiguration->instrument:github-operational",
+        "instrument:github-operational->standard-preconfiguration",
+        "instrument:github-operational->instrument:master-activation",
+        "instrument:github-operational->instrument:functional-correference-architecture",
+        "instrument-registry.github-operational->master-protocol-fixed-instrument",
+        "instrument-registry.github-operational->title-correspondence-automation",
+        "github-operational->master-activation",
+        "future-demand-preconfiguration->github-operational",
+        "github-operational->future-demand-preconfiguration",
+        "master-activation->instrument:github-operational",
+        "instrument-registry.github-operational->functional-correference-architecture",
+        "instrument-registry.github-operational->master-activation",
+        "instrument-registry.github-operational->standard-preconfiguration",
+        "functional-correference-architecture->master-activation",
+        "master-activation->functional-correference-architecture"
+      ],
+      "operations": [
+        "inspect",
+        "resolve",
+        "execute",
+        "validate",
+        "prepare",
+        "normalize",
+        "preserve",
+        "correfer",
+        "build-demand-envelope",
+        "route-by-canonical-title",
+        "trace-cross-segment",
+        "resolve-cross-segment-identity",
+        "preserve-functional-contract",
+        "audit-bidirectional-trace"
+      ],
+      "ui": {
+        "node_id": "instrument:github-operational",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active"
+      }
+    },
+    {
+      "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
+      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+      "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
+      "aliases": [
+        "Nocturna",
+        "arquitetura da necessidade",
+        "reconstrução recursiva da identidade sistêmica",
+        "princípio origem e fim",
+        "correferência multiescalar",
+        "indução fractal",
+        "Princípio Normativo de Correferência Fractal, Invariância Relacional e Potência Generativa do Logos"
+      ],
+      "keywords": [
+        "Nocturna",
+        "necessidade",
+        "identidade sistêmica",
+        "reconstrução recursiva",
+        "origem",
+        "causalidade",
+        "teleologia",
+        "correferência",
+        "indução fractal",
+        "Logos",
+        "ambiguidade estruturada",
+        "potência generativa",
+        "proveniência",
+        "acervos",
+        "coleções",
+        "publicações",
+        "não contradição",
+        "derivação",
+        "explícito",
+        "implícito"
+      ],
+      "functions": [
+        "reconstruir a arquitetura conceitual a partir dos acervos Nocturna",
+        "inventariar proveniência, dependências e correferências",
+        "selecionar fundamentos necessários e suficientes em potência generativa",
+        "encadear objeções retóricas e derivação causal",
+        "aplicar a norma representacional Logos preservando diferenças contextuais",
+        "distinguir necessidade, possibilidade, hipótese e lacuna documental",
+        "verificar não contradição e rastreabilidade das derivações"
+      ],
+      "files": [
+        "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "tests/manifest.json",
+        "scripts/promptaria_resolver.py"
+      ],
+      "relations": [
+        "title->nocturna-arquitetura-necessidade-identidade-sistemica",
+        "nocturna->source-collections-and-publications",
+        "source->provenance-and-dependencies",
+        "provenance->structural-reconstruction",
+        "structural-reconstruction->generative-derivation",
+        "Logos->contextual-correference",
+        "derivation->verification",
+        "instrument->interface-node",
+        "instrument->future-resolution-plan"
+      ],
+      "operations": [
+        "discover",
+        "inventory",
+        "correfer",
+        "reconstruct",
+        "derive",
+        "verify",
+        "trace",
+        "plan"
+      ],
+      "ui": {
+        "node_id": "instrument:nocturna-arquitetura-necessidade-identidade-sistemica",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active"
+      }
+    },
+    {
+      "id": "protocol-update-integrity",
+      "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
+      "path": "instruments/protocolo-operacional-atualizacao-integridade-acervo.md",
+      "aliases": [
+        "protocolo de atualização integral",
+        "preservação funcional do acervo",
+        "reintegração de instrumentos promptuais",
+        "atualização segura por título"
+      ],
+      "keywords": [
+        "atualização",
+        "reintegração",
+        "integridade",
+        "correferência",
+        "rastreio",
+        "conteúdo integral",
+        "fonte autoritativa",
+        "acervo",
+        "interface",
+        "validação"
+      ],
+      "functions": [
+        "atualizar versões integrais preservando identidade funcional",
+        "manter correferências e rastreabilidade",
+        "validar conteúdo e referências",
+        "integrar instrumentos ao catálogo e à interface"
+      ],
+      "files": [
+        "instruments/protocolo-operacional-atualizacao-integridade-acervo.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "scripts/generate_instrument_catalog.py"
+      ],
+      "relations": [
+        "title->protocol-update-integrity",
+        "protocol-update-integrity->instrument-registry",
+        "instrument-content->cross-references",
+        "instrument-registry->interface",
+        "updated-source->future-resolution"
+      ],
+      "operations": [
+        "identify",
+        "replace_content",
+        "preserve_identity",
+        "refresh_references",
+        "validate",
+        "publish"
+      ],
+      "ui": {
+        "node_id": "instrument:protocol-update-integrity",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active"
+      }
+    },
+    {
+      "id": "coordinator",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
+      "path": "instruments/arquitetura-unificada.md",
+      "aliases": [
+        "arquitetura unificada"
+      ],
+      "keywords": [
+        "arquitetura",
+        "coordenação",
+        "integração",
+        "correferência",
+        "instrumentos"
+      ],
+      "functions": [
+        "coordenar instrumentos",
+        "preservar relações",
+        "integrar fluxos"
+      ],
+      "files": [
+        "instruments/arquitetura-unificada.md"
+      ],
+      "relations": [
+        "coordinator->context-router",
+        "coordinator->resolver"
+      ],
+      "operations": [
+        "coordinate",
+        "integrate",
+        "validate"
+      ],
+      "ui": {
+        "node_id": "instrument:coordinator",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": false,
+        "status": "prepared_not_published"
+      }
+    },
+    {
+      "id": "master-activation",
+      "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
+      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+      "aliases": [
+        "protocolo mestre de acionamento",
+        "protocolo-mestre e pré-configuração padrão"
+      ],
+      "keywords": [
+        "protocolo mestre",
+        "acionamento",
+        "execução",
+        "ativar"
+      ],
+      "functions": [
+        "definir acionamento",
+        "ordenar instrumentos",
+        "preparar execução"
+      ],
+      "files": [
+        "instruments/protocolo-mestre-acionamento-automatico.md",
+        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "tests/manifest.json",
+        "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
+        "instruments/acione-a-promptaria-pelo-github.md"
+      ],
+      "relations": [
+        "master-activation->resolver",
+        "master-activation->executor",
+        "master-activation->functional-correference-architecture",
+        "functional-correference-architecture->master-activation",
+        "master-protocol-fixed-instrument->github-operational",
+        "master-preconfiguration->github-operational",
+        "master-activation->instrument:functional-correference-architecture"
+      ],
+      "operations": [
+        "prepare",
+        "activate",
+        "validate"
+      ],
+      "ui": {
+        "node_id": "instrument:master-activation",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": false,
+        "status": "prepared_not_published"
+      }
+    },
+    {
+      "id": "master-execution",
+      "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
+      "path": "instruments/protocolo-mestre-execucao-correta.md",
+      "aliases": [
+        "execução correta",
+        "primeira solicitação"
+      ],
+      "keywords": [
+        "execução correta",
+        "primeira solicitação",
+        "demanda",
+        "validação"
+      ],
+      "functions": [
+        "orientar execução",
+        "preservar contexto",
+        "validar conclusão"
+      ],
+      "files": [
+        "instruments/protocolo-mestre-execucao-correta.md"
+      ],
+      "relations": [
+        "request->master-execution",
+        "master-execution->validated-result"
+      ],
+      "operations": [
+        "execute",
+        "validate",
+        "report"
+      ],
+      "ui": {
+        "node_id": "instrument:master-execution",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": false,
+        "status": "prepared_not_published"
+      }
+    },
+    {
+      "id": "functional-correference-architecture",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
+      "aliases": [
+        "correferência funcional automática",
+        "correspondência por título",
+        "instrumento coordenador unificado",
+        "automação de correspondência por título",
+        "arquitetura coordenadora de múltiplos instrumentos"
+      ],
+      "keywords": [
+        "título",
+        "correferência",
+        "correspondência",
+        "menção genérica",
+        "múltiplos títulos",
+        "acionamento coordenado",
+        "recuperação integral",
+        "instrumento coordenador",
+        "instrumento fixo",
+        "protocolo-mestre",
+        "pré-configuração padrão",
+        "rastreabilidade intersegmentos",
+        "instrument:functional-correference-architecture",
+        "github-operational",
+        "master-activation"
+      ],
+      "functions": [
+        "resolver títulos",
+        "correferenciar funções",
+        "selecionar múltiplos instrumentos",
+        "coordenar recuperação e aplicação de instrumentos promptuais",
+        "preservar a função própria e a identidade individual de cada instrumento",
+        "articular o instrumento fixo com o protocolo-mestre e a pré-configuração padrão",
+        "processar cumulativamente múltiplos títulos sem limite numérico arbitrário",
+        "manter rastreabilidade entre título, ID, nó, fonte, função, operação e resultado",
+        "distinguir identificação, recuperação, acionamento, execução e validação"
+      ],
+      "files": [
+        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "tests/manifest.json",
+        "instruments/protocolo-mestre-acionamento-automatico.md",
+        "instruments/acione-a-promptaria-pelo-github.md",
+        "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
+        "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md"
+      ],
+      "relations": [
+        "title->instrument-id",
+        "instrument-id->function",
+        "instrument-id->file",
+        "functional-correference-architecture->github-operational",
+        "github-operational->functional-correference-architecture",
+        "functional-correference-architecture->master-activation",
+        "master-activation->functional-correference-architecture",
+        "title-correspondence-automation->functional-correference-architecture",
+        "functional-correference-architecture->title-correspondence-automation",
+        "functional-correference-architecture->standard-preconfiguration",
+        "standard-preconfiguration->functional-correference-architecture",
+        "instrument:functional-correference-architecture->instrument-registry",
+        "instrument-registry->instrument:functional-correference-architecture",
+        "instrument-registry.functional-correference-architecture->master-activation",
+        "instrument-registry.functional-correference-architecture->github-operational",
+        "functional-correference-architecture->instrument:github-operational",
+        "instrument:github-operational->functional-correference-architecture",
+        "functional-correference-architecture->canonical-full-text",
+        "canonical-full-text->master-activation",
+        "canonical-full-text->standard-preconfiguration"
+      ],
+      "operations": [
+        "match",
+        "resolve",
+        "coordinate",
+        "recover-full-content",
+        "preserve-instrument-identity",
+        "coordinate-cumulative-instruments",
+        "trace-cross-segment",
+        "validate-integrity"
+      ],
+      "ui": {
+        "node_id": "instrument:functional-correference-architecture",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": false,
+        "status": "prepared_not_published"
+      }
+    },
+    {
+      "id": "future-demand-preconfiguration",
+      "title": "PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
+      "aliases": [
+        "pré-configuração de demandas futuras",
+        "correspondência futura"
+      ],
+      "keywords": [
+        "pré-configuração",
+        "demandas futuras",
+        "sincronização",
+        "validação automática"
+      ],
+      "functions": [
+        "preconfigurar demandas",
+        "preservar request_id",
+        "validar cadeia"
+      ],
+      "files": [
+        "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md"
+      ],
+      "relations": [
+        "future-demand->context-router",
+        "future-demand->validation"
+      ],
+      "operations": [
+        "preconfigure",
+        "route",
+        "validate"
+      ],
+      "ui": {
+        "node_id": "instrument:future-demand-preconfiguration",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": false,
+        "status": "prepared_not_published"
+      }
+    },
+    {
+      "id": "catalog-sitemap-preconfiguration",
+      "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
+      "aliases": [
+        "sincronização catálogo sitemap",
+        "catálogo e sitemap"
+      ],
+      "keywords": [
+        "catálogo",
+        "sitemap",
+        "manifesto",
+        "navegação"
+      ],
+      "functions": [
+        "sincronizar catálogo",
+        "validar índice",
+        "manter descoberta"
+      ],
+      "files": [
+        "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md"
+      ],
+      "relations": [
+        "instrument-file->catalog-entry",
+        "catalog->interface"
+      ],
+      "operations": [
+        "generate",
+        "synchronize",
+        "validate"
+      ],
+      "ui": {
+        "node_id": "instrument:catalog-sitemap-preconfiguration",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": false,
+        "status": "prepared_not_published"
+      }
+    },
+    {
+      "id": "promptaria-instrument-template",
+      "title": "MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA",
+      "path": "instruments/modelo-instrumento-promptual-correferencia.md",
+      "aliases": [
+        "modelo de instrumento promptual",
+        "instrumento modelo",
+        "template promptual",
+        "modelo de correferência"
+      ],
+      "keywords": [
+        "modelo",
+        "template",
+        "correferência",
+        "identificação extensiva",
+        "título",
+        "prompt",
+        "função",
+        "arquivo",
+        "nó",
+        "relação"
+      ],
+      "functions": [
+        "servir de molde para novos instrumentos",
+        "declarar identidade extensiva",
+        "conectar título a função e arquivo",
+        "definir relações e operações verificáveis"
+      ],
+      "files": [
+        "instruments/modelo-instrumento-promptual-correferencia.md"
+      ],
+      "relations": [
+        "title->id",
+        "alias->id",
+        "keyword->function",
+        "function->file",
+        "file->operation",
+        "instrument->interface-node",
+        "instrument->related-instrument"
+      ],
+      "operations": [
+        "discover",
+        "match",
+        "resolve",
+        "coordinate",
+        "execute",
+        "validate",
+        "trace"
+      ],
+      "ui": {
+        "node_id": "instrument:promptaria-instrument-template",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": false,
+        "status": "prepared_not_published"
+      }
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "entrypoint": "index.html",
+  "policy": {
+    "every_visible_term": true,
+    "every_placeholder": true,
+    "every_actionable_control": true,
+    "every_visual_identity_node": true,
+    "unknown_relations": "unverified"
+  },
+  "elements": [
+    {
+      "id": "ui.brand.symbol",
+      "text": "P.",
+      "selector": ".logo",
+      "file": "index.html",
+      "function": "símbolo da identidade",
+      "destination": "#plataforma",
+      "status": "verified"
+    },
+    {
+      "id": "ui.brand.name",
+      "text": "Promptária",
+      "selector": ".brand",
+      "file": "index.html",
+      "function": "identidade e navegação para o início",
+      "destination": "#plataforma",
+      "status": "verified"
+    },
+    {
+      "id": "ui.hero.title.1",
+      "text": "Ideias claras.",
+      "selector": "#hero-title",
+      "file": "index.html",
+      "function": "mensagem principal",
+      "destination": "#plataforma",
+      "status": "verified"
+    },
+    {
+      "id": "ui.hero.title.2",
+      "text": "Execução precisa.",
+      "selector": "#hero-title span",
+      "file": "index.html",
+      "function": "mensagem principal",
+      "destination": "#plataforma",
+      "status": "verified"
+    },
+    {
+      "id": "ui.hero.lead",
+      "text": "Encontre, recupere e aplique instrumentos promptuais com clareza, contexto e rastreabilidade.",
+      "selector": ".lead",
+      "file": "index.html",
+      "function": "finalidade e rastreabilidade",
+      "destination": "#instrumentos",
+      "status": "verified"
+    },
+    {
+      "id": "ui.instrumentos.title",
+      "text": "Instrumentos promptuais",
+      "selector": "#instrumentos-title",
+      "file": "index.html",
+      "function": "identificação da área de descoberta",
+      "destination": "#instrumentos",
+      "status": "verified"
+    },
+    {
+      "id": "ui.search.placeholder",
+      "text": "Buscar por nome ou finalidade...",
+      "selector": "#instrument-search",
+      "file": "index.html",
+      "function": "pesquisa dos instrumentos promptuais",
+      "destination": "config/instrument-catalog.json",
+      "status": "pending_verification"
+    },
+    {
+      "id": "ui.visual.core",
+      "text": "P.",
+      "selector": ".core",
+      "file": "index.html",
+      "function": "símbolo visual central",
+      "destination": "#plataforma",
+      "status": "verified"
+    },
+    {
+      "id": "ui.footer",
+      "text": "© Promptária",
+      "selector": "footer.footer",
+      "file": "index.html",
+      "function": "identificação da aplicação",
+      "destination": "index.html",
+      "status": "verified"
+    },
+    {
+      "id": "ui.document.copy-prompt",
+      "text": "Copiar prompt",
+      "selector": "#copy-prompt",
+      "file": "index.html",
+      "function": "copia o conteúdo integral do instrumento ativo aberto",
+      "destination": "clipboard",
+      "status": "verified"
+    }
+  ]
+}

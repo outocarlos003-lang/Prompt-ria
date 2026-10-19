@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "ui.brand.symbol",
+      "type": "term",
+      "file": "index.html",
+      "function": "símbolo da identidade",
+      "destination": "#plataforma"
+    },
+    {
+      "id": "ui.brand.name",
+      "type": "term",
+      "file": "index.html",
+      "function": "identidade e navegação",
+      "destination": "#plataforma"
+    },
+    {
+      "id": "ui.hero.title.1",
+      "type": "term",
+      "file": "index.html",
+      "function": "mensagem principal",
+      "destination": "#plataforma"
+    },
+    {
+      "id": "ui.hero.title.2",
+      "type": "term",
+      "file": "index.html",
+      "function": "mensagem principal",
+      "destination": "#plataforma"
+    },
+    {
+      "id": "ui.hero.lead",
+      "type": "term",
+      "file": "index.html",
+      "function": "finalidade e rastreabilidade",
+      "destination": "#instrumentos"
+    },
+    {
+      "id": "ui.instrumentos.title",
+      "type": "term",
+      "file": "index.html",
+      "function": "área de descoberta",
+      "destination": "#instrumentos"
+    },
+    {
+      "id": "ui.search.placeholder",
+      "type": "action",
+      "file": "index.html",
+      "function": "pesquisa",
+      "destination": "config/instrument-catalog.json"
+    },
+    {
+      "id": "ui.visual.core",
+      "type": "visual_identity",
+      "file": "index.html",
+      "function": "símbolo visual central",
+      "destination": "#plataforma"
+    },
+    {
+      "id": "ui.footer",
+      "type": "term",
+      "file": "index.html",
+      "function": "identificação da aplicação",
+      "destination": "index.html"
+    },
+    {
+      "id": "catalog.instruments",
+      "type": "repository_node",
+      "file": "config/instrument-catalog.json",
+      "function": "fonte catalográfica",
+      "destination": "instruments/*.md"
+    },
+    {
+      "id": "instruments.sources",
+      "type": "repository_node",
+      "file": "instruments/*.md",
+      "function": "fontes canônicas dos instrumentos",
+      "destination": "consumidores"
+    },
+    {
+      "id": "ui.document.copy-prompt",
+      "type": "term",
+      "file": "index.html",
+      "function": "copia o conteúdo integral do instrumento ativo aberto",
+      "destination": "clipboard"
+    }
+  ],
+  "relations": [
+    {
+      "id": "brand-to-home",
+      "from": "ui.brand.name",
+      "to": "#plataforma",
+      "type": "navigation",
+      "function": "retorno ao núcleo",
+      "evidence": "index.html"
+    },
+    {
+      "id": "hero-to-section",
+      "from": "ui.hero.lead",
+      "to": "ui.instrumentos.title",
+      "type": "semantic",
+      "function": "liga finalidade à descoberta",
+      "evidence": "index.html"
+    },
+    {
+      "id": "title-to-search",
+      "from": "ui.instrumentos.title",
+      "to": "ui.search.placeholder",
+      "type": "label",
+      "function": "rotula o controle de pesquisa",
+      "evidence": "index.html aria-labelledby"
+    },
+    {
+      "id": "search-to-catalog",
+      "from": "ui.search.placeholder",
+      "to": "catalog.instruments",
+      "type": "functional",
+      "function": "define o universo documental da pesquisa",
+      "evidence": "config/instrument-catalog.json; relação dinâmica ainda pendente de implementação"
+    },
+    {
+      "id": "catalog-to-sources",
+      "from": "catalog.instruments",
+      "to": "instruments.sources",
+      "type": "production",
+      "function": "relaciona catálogo a fontes canônicas",
+      "evidence": "config/instrument-catalog.json"
+    },
+    {
+      "id": "visual-to-brand",
+      "from": "ui.visual.core",
+      "to": "ui.brand.symbol",
+      "type": "identity",
+      "function": "mantém símbolo central e marca coerentes",
+      "evidence": "index.html"
+    },
+    {
+      "id": "footer-to-entrypoint",
+      "from": "ui.footer",
+      "to": "index.html",
+      "type": "source",
+      "function": "vincula identificação ao entrypoint",
+      "evidence": "index.html"
+    }
+  ],
+  "policy": {
+    "every_node_requires_file_and_function": true,
+    "every_relation_requires_evidence": true,
+    "unverified_relations_must_not_be_declared_functional": true
+  }
+}
