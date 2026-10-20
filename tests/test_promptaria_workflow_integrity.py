@@ -25,6 +25,8 @@ class PullRequestIntegrationWorkflowTests(unittest.TestCase):
         self.assertIn('head_repo="$(jq -r \'.head.repo.full_name // ""\' <<< "$pr")"', self.source)
         self.assertIn('if [[ "$base" != "main" || "$head_repo" != "$REPOSITORY" || "$state" != "open" ]]; then', self.source)
         self.assertIn('gh pr ready "$PR_NUMBER" --repo "$REPOSITORY"', self.source)
+        self.assertIn('gh run rerun "$run_id" --repo "$REPOSITORY"', self.source)
+        self.assertIn("actions: write", self.source)
         self.assertNotIn("gh pr merge", self.source)
 
     def test_auto_merge_requires_explicit_owner_approval_for_exact_tested_sha(self):
@@ -49,6 +51,7 @@ class PullRequestIntegrationWorkflowTests(unittest.TestCase):
     def test_privileged_workflows_use_explicit_minimum_permissions(self):
         self.assertIn("contents: read", self.source)
         self.assertIn("pull-requests: write", self.source)
+        self.assertIn("actions: write", self.source)
         self.assertIn("contents: write", self.auto_merge_source)
         self.assertIn("pull-requests: write", self.auto_merge_source)
         self.assertIn("issues: read", self.auto_merge_source)
