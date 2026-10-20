@@ -90,13 +90,15 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
   }
 
   const candidates = [];
+  const normalizedText = normalizeWithOffsets(text);
   for (const term of index.terms) {
-    const words = term.value.split(/[\s-]+/).map(w => w.replace(/[.*+?^$\x7b\x7d()|[\]\\]/g, "\\$&"));
-    const pattern = words.join("[\\s-]+");
-    const re = new RegExp("(^|[^\\p{L}\\p{N}])(" + pattern + ")(?=$|[^\\p{L}\\p{N}])", "giu");
-    for (const m of text.matchAll(re)) {
-      const start = (m.index ?? 0) + m[1].length, end = start + m[2].length;
-      if (occupied.some(([a,b]) => start < b && end > a) || norm(m[2]) !== term.key) continue;
+    const re = new RegExp("(^| )(" + escapeRegex(term.key) + ")(?=$| )", "g");
+    for (const m of normalizedText.value.matchAll(re)) {
+      const normalizedStart = (m.index ?? 0) + m[1].length;
+      const normalizedEnd = normalizedStart + m[2].length;
+      const start = normalizedText.starts[normalizedStart];
+      const end = normalizedText.ends[normalizedEnd - 1];
+      if (start == null || end == null || occupied.some(([a,b]) => start < b && end > a)) continue;
       if (candidates.some(x => x.start === start && x.end === end && x.term.item.id === term.item.id)) continue;
       candidates.push({start,end,term});
     }
