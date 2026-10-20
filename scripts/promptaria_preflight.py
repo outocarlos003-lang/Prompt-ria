@@ -245,7 +245,7 @@ def main() -> None:
         "execution_performed": False,
         "status": "plan_ready" if matches else "no_instrument_match",
     }
-    output_path = specialized.validate_output_path(args.output, [args.request])
+    output_path = specialized.validate_output_path(args.output, [args.request, args.manifest, args.execution_map])
     specialized.atomic_json(output_path, result)
     print(f"Instrumentos identificados: {len(matches)}")
     print(f"Pré-autorização delimitada: {preauthorization['status']}")
