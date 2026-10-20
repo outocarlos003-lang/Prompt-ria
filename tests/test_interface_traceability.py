@@ -104,7 +104,10 @@ class InterfaceTraceabilityTests(unittest.TestCase):
         self.assertIn("overlay.classList.add('open')", self.html)
         self.assertIn("Referência não resolvida", self.html)
         self.assertIn("Referência ambígua: use o identificador ou caminho do instrumento.", self.html)
-        self.assertIn("Nenhum instrumento ativo corresponde exatamente à referência informada.", self.html)
+        self.assertIn("Nenhum instrumento ativo corresponde à referência informada.", self.html)
+        self.assertIn("if(filtered.length===1)", self.html)
+        self.assertIn("if(filtered.length>1)return", self.html)
+        self.assertIn("const terms=query.split(/\\s+/).filter(Boolean)", self.html)
 
     def test_old_catalog_card_assumptions_are_not_required(self):
         for removed in ["#filter", "#instrument-list", "#doc-overlay", "#copy-prompt", "renderCatalog"]:
