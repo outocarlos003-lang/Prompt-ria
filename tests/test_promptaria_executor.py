@@ -215,7 +215,7 @@ class PromptariaExecutorTests(unittest.TestCase):
             request.write_text(json.dumps(self.base(
                 dry_run=False, write_authorized=True
             )), encoding="utf-8")
-            injected_failure = """
+            injected_failure = r"""
 import sys
 from pathlib import Path
 sys.path.insert(0, sys.argv[3])
