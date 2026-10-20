@@ -208,6 +208,69 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual(remaining[0]["status"], "write_intent")
 
 
+    def test_replace_failure_preserves_destination_and_cleans_temporary_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            destination = root / "artifacts/result.txt"
+            destination.parent.mkdir(parents=True)
+            destination.write_text("conteúdo anterior\\n", encoding="utf-8")
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base(
+                dry_run=False, write_authorized=True
+            )), encoding="utf-8")
+            injected_failure = r"""
+import sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[3])
+import promptaria_executor as executor
+root = Path(sys.argv[1])
+registry = executor.load_json(Path(sys.argv[2]))
+payload = {
+    "operation_id": "test-op-001",
+    "operation": "write_text",
+    "destination": "artifacts/result.txt",
+    "content": "novo conteúdo\\n",
+    "dry_run": False,
+    "write_authorized": True,
+}
+def fail_replace(*args, **kwargs):
+    raise OSError("injected replace failure")
+executor.os.replace = fail_replace
+try:
+    executor.execute(payload, root, registry, "test-op-001")
+except SystemExit as exc:
+    if "Falha na escrita segura do destino" not in str(exc):
+        raise
+else:
+    raise SystemExit("expected injected replace failure")
+"""
+            interrupted = subprocess.run(
+                [sys.executable, "-c", injected_failure, str(root),
+                 str(PERMISSIONS), str(EXECUTOR.parent)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(interrupted.returncode, 0, interrupted.stderr)
+            self.assertEqual(destination.read_text(encoding="utf-8"), "conteúdo anterior\\n")
+            self.assertEqual(list(destination.parent.glob(".promptaria-*")), [])
+            audit = root / ".promptaria/audit.jsonl"
+            records = [json.loads(line) for line in audit.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual([record["status"] for record in records], ["write_intent"])
+
+            changed = self.base(
+                dry_run=False, write_authorized=True,
+                content="não substituir após falha\\n",
+            )
+            request.write_text(json.dumps(changed), encoding="utf-8")
+            replay = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+                 "--confirm-operation", "test-op-001"],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(replay.returncode, 0)
+            self.assertIn("reconciliação manual obrigatória", replay.stderr)
+            self.assertEqual(destination.read_text(encoding="utf-8"), "conteúdo anterior\\n")
+
     def test_completion_audit_failure_after_replace_blocks_replay(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
