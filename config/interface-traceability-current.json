@@ -70,7 +70,7 @@
       "file": "index.html",
       "function": "pesquisa e filtragem dos instrumentos ativos carregados do registro canônico",
       "destination": "config/instrument-registry.json",
-      "status": "source_reference_verified_runtime_pending"
+      "status": "pending_verification"
     },
     {
       "id": "ui.visual.core",
