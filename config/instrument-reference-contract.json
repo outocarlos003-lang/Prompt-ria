@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "contract_id": "promptaria-extended-instrument-identity",
+  "compatibility": {
+    "registry_schema_version": 2,
+    "template_id_source": "config/instrument-registry.json:template_id",
+    "required_existing_identity_fields": [
+      "id",
+      "title",
+      "path",
+      "aliases",
+      "keywords",
+      "functions",
+      "files",
+      "relations",
+      "operations",
+      "ui",
+      "activation"
+    ],
+    "migration_mode": "additive",
+    "unknown_fields": "preserve",
+    "legacy_catalog_fields": "do not rename or remove as part of this contract"
+  },
+  "optional_metadata": {
+    "slug": {
+      "type": "string",
+      "purpose": "stable URL-safe instrument identifier; must not replace id"
+    },
+    "prompt_markers": {
+      "type": "array",
+      "items": "string",
+      "purpose": "phrases that may provide contextual evidence for an instrument"
+    },
+    "consumers": {
+      "type": "array",
+      "items": "string",
+      "purpose": "registered runtime components that consume this instrument"
+    },
+    "inputs": {
+      "type": "array",
+      "items": "string",
+      "purpose": "declared input concepts or payload fields"
+    },
+    "outputs": {
+      "type": "array",
+      "items": "string",
+      "purpose": "declared output concepts or payload fields"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "draft",
+        "deprecated",
+        "disabled"
+      ],
+      "purpose": "descriptive lifecycle metadata; activation.enabled remains authoritative"
+    }
+  },
+  "identity_resolution": {
+    "authoritative_id": "id",
+    "canonical_name": "title",
+    "explicit_aliases": "aliases",
+    "activation_gate": "activation.enabled must be true for functional resolution",
+    "matching_policy": "exact normalized canonical title or exact registered alias with word boundaries",
+    "ambiguous_match": "fail closed; do not activate a candidate",
+    "partial_tokens": "never sufficient to establish instrument identity"
+  },
+  "migration_rules": [
+    "Do not change schema_version 2 or template_id in the existing registry.",
+    "Add optional metadata only when supported by repository evidence; do not infer consumers or inputs from filenames alone.",
+    "Keep aliases and prompt_markers distinct: aliases are accepted identity names; prompt_markers are contextual evidence and cannot independently override ambiguity.",
+    "Do not replace the current resolver, contextual router, specialized executor, catalog generator, or execution map wholesale.",
+    "Validate each incremental change against existing registry, resolver, router, execution-map, and traceability tests."
+  ]
+}
