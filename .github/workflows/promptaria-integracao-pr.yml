@@ -44,12 +44,12 @@ jobs:
             echo "PR marked ready; ready_for_review will run the required checks."
             exit 0
           fi
-          runs="$(gh run list --repo "$REPOSITORY" --workflow promptaria-tests.yml --branch "$head_ref" --json databaseId,headSha,status --limit 100)"
-          run_id="$(jq -r --arg sha "$head_sha" '[.[] | select(.headSha == $sha and .status == "completed")] | first | .databaseId // empty' <<< "$runs")"
+          runs="$(gh run list --repo "$REPOSITORY" --workflow promptaria-tests.yml --branch "$head_ref" --json databaseId,headSha,status,event --limit 100)"
+          run_id="$(jq -r --arg sha "$head_sha" '[.[] | select(.headSha == $sha and .status == "completed" and .event == "pull_request")] | first | .databaseId // empty' <<< "$runs")"
           if [[ -n "$run_id" ]]; then
             gh run rerun "$run_id" --repo "$REPOSITORY"
             echo "Re-ran checks for the explicitly approved exact SHA."
-          elif [[ "$(jq --arg sha "$head_sha" '[.[] | select(.headSha == $sha and .status != "completed")] | length' <<< "$runs")" -gt 0 ]]; then
+          elif [[ "$(jq --arg sha "$head_sha" '[.[] | select(.headSha == $sha and .status != "completed" and .event == "pull_request")] | length' <<< "$runs")" -gt 0 ]]; then
             echo "Checks for the approved SHA are already in progress; waiting for their result."
           else
             echo "No test run found for the approved SHA; refusing to trigger integration."
