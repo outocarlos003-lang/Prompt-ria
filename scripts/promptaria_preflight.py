@@ -16,6 +16,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / "scripts"))
+import promptaria_specialized_executor as specialized
 SEGMENT_POLICY = ROOT / "config" / "segment-integration-policy.json"
 
 
@@ -242,8 +245,8 @@ def main() -> None:
         "execution_performed": False,
         "status": "plan_ready" if matches else "no_instrument_match",
     }
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    output_path = specialized.validate_output_path(args.output, [args.request])
+    specialized.atomic_json(output_path, result)
     print(f"Instrumentos identificados: {len(matches)}")
     print(f"Pré-autorização delimitada: {preauthorization['status']}")
     print(f"Integração nos segmentos protegidos: {segment_integration['integration_instrument_ids']}")
