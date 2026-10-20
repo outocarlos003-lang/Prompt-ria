@@ -68,9 +68,9 @@
       "text": "Buscar por nome ou finalidade...",
       "selector": "#instrument-search",
       "file": "index.html",
-      "function": "pesquisa dos instrumentos promptuais",
-      "destination": "config/instrument-catalog.json",
-      "status": "pending_verification"
+      "function": "pesquisa e filtragem dos instrumentos ativos carregados do registro canônico",
+      "destination": "config/instrument-registry.json",
+      "status": "source_reference_verified_runtime_pending"
     },
     {
       "id": "ui.visual.core",
