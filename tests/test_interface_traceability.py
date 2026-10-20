@@ -82,7 +82,7 @@ class InterfaceTraceabilityTests(unittest.TestCase):
         for item in self.elements:
             self.assertTrue(item.get("function"), item["id"])
             self.assertTrue(item.get("destination"), item["id"])
-            self.assertIn(item.get("status"), {"verified", "pending_verification", "unverified"})
+            self.assertIn(item.get("status"), {"verified", "pending_verification", "unverified", "source_reference_verified_runtime_pending"})
 
     def test_interface_is_the_current_entrypoint_and_search_surface(self):
         self.assertIn('id="plataforma"', self.html)
@@ -92,6 +92,14 @@ class InterfaceTraceabilityTests(unittest.TestCase):
         self.assertIn('type="search"', self.html)
         self.assertIn("Instrumentos promptuais", self.html)
 
+    def test_search_trace_matches_the_registry_loaded_by_index(self):
+        search_trace = next(item for item in self.elements if item["id"] == "ui.search.placeholder")
+        self.assertEqual(search_trace["destination"], "config/instrument-registry.json")
+        self.assertIn("config/instrument-registry.json", self.html)
+        self.assertIn("fetch(registryUrl", self.html)
+        self.assertIn("item.activation?.enabled===true", self.html)
+        self.assertIn("search.addEventListener", self.html)
+        self.assertEqual(search_trace["status"], "source_reference_verified_runtime_pending")
     def test_old_catalog_card_assumptions_are_not_required(self):
         for removed in ["#filter", "#instrument-list", "#doc-overlay", "#copy-prompt", "renderCatalog"]:
             self.assertNotIn(removed, self.html)
