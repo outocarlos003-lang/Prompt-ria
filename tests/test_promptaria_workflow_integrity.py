@@ -26,6 +26,8 @@ class PullRequestIntegrationWorkflowTests(unittest.TestCase):
     def test_auto_merge_waits_for_every_check_and_exact_tested_sha(self):
         self.assertIn('workflows: ["Promptária PR Checks",', self.auto_merge_source)
         self.assertIn('commits/$TESTED_SHA/check-runs?per_page=100', self.auto_merge_source)
+        self.assertIn('returned_checks="$(jq \'.check_runs | length\' <<< "$checks")"', self.auto_merge_source)
+        self.assertIn('"$returned_checks" -ne "$total_checks"', self.auto_merge_source)
         self.assertIn('select(.status != "completed")', self.auto_merge_source)
         self.assertIn('select(.status == "completed" and .conclusion != "success"', self.auto_merge_source)
         self.assertIn('if [[ "$state" != "open" || "$base" != "main" || "$head_repo" != "$GH_REPO" || "$draft" != "false" ]]; then', self.auto_merge_source)
