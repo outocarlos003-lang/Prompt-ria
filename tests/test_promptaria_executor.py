@@ -195,10 +195,17 @@ class PromptariaExecutorTests(unittest.TestCase):
             # Simulate loss of the final completion record. The remaining chain
             # is syntactically valid, but the durable intent must block replay.
             audit.write_bytes(lines[0])
+            # A changed payload must not replay while completion is unrecorded.
+            changed_request = self.base(dry_run=False, write_authorized=True)
+            changed_request["content"] = "conteúdo diferente não deve ser gravado\\n"
+            request.write_text(json.dumps(changed_request), encoding="utf-8")
             second = subprocess.run(command, capture_output=True, text=True, encoding="utf-8")
             self.assertNotEqual(second.returncode, 0)
             self.assertIn("reconciliação manual obrigatória", second.stderr)
-            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\n")
+            self.assertEqual((root / "artifacts/result.txt").read_text(encoding="utf-8"), "resultado validável\\n")
+            remaining = [json.loads(line) for line in audit.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual(len(remaining), 1)
+            self.assertEqual(remaining[0]["status"], "write_intent")
 
 
     def test_rejects_symlink_in_intermediate_destination_component(self):
