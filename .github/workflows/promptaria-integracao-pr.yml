@@ -10,14 +10,15 @@ permissions:
 
 jobs:
   prepare-pull-request:
-    if: github.event.issue.pull_request != null && github.event.comment.author_association == 'OWNER' && github.event.comment.body == '/promptaria merge'
+    if: github.event.issue.pull_request != null && github.event.comment.author_association == 'OWNER' && startsWith(github.event.comment.body, '/promptaria merge ')
     runs-on: ubuntu-latest
     steps:
-      - name: Validate pull request and mark ready
+      - name: Validate explicit approval for exact head SHA and mark ready
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.issue.number }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
         shell: bash
         run: |
           set -euo pipefail
@@ -25,12 +26,18 @@ jobs:
           base="$(jq -r '.base.ref' <<< "$pr")"
           head_repo="$(jq -r '.head.repo.full_name // ""' <<< "$pr")"
           state="$(jq -r '.state' <<< "$pr")"
+          head_sha="$(jq -r '.head.sha' <<< "$pr")"
           if [[ "$base" != "main" || "$head_repo" != "$REPOSITORY" || "$state" != "open" ]]; then
             echo "PR rejected: expected an open same-repository PR targeting main."
+            exit 1
+          fi
+          expected="/promptaria merge $head_sha"
+          if [[ "$COMMENT_BODY" != "$expected" ]]; then
+            echo "Approval must name the exact current PR head SHA: $expected"
             exit 1
           fi
           draft="$(jq -r '.draft' <<< "$pr")"
           if [[ "$draft" == "true" ]]; then
             gh pr ready "$PR_NUMBER" --repo "$REPOSITORY"
           fi
-          echo "PR validated and marked ready when necessary. No merge is performed here."
+          echo "Exact-SHA approval recorded in the issue comment. This workflow never merges."
