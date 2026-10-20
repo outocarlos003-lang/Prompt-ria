@@ -1,0 +1,36 @@
+name: Promptária Integração por Comentário
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  prepare-pull-request:
+    if: github.event.issue.pull_request != null && github.event.comment.author_association == 'OWNER' && github.event.comment.body == '/promptaria merge'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate pull request and mark ready
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr="$(gh api "repos/$REPOSITORY/pulls/$PR_NUMBER")"
+          base="$(jq -r '.base.ref' <<< "$pr")"
+          head_repo="$(jq -r '.head.repo.full_name // ""' <<< "$pr")"
+          state="$(jq -r '.state' <<< "$pr")"
+          if [[ "$base" != "main" || "$head_repo" != "$REPOSITORY" || "$state" != "open" ]]; then
+            echo "PR rejected: expected an open same-repository PR targeting main."
+            exit 1
+          fi
+          draft="$(jq -r '.draft' <<< "$pr")"
+          if [[ "$draft" == "true" ]]; then
+            gh pr ready "$PR_NUMBER" --repo "$REPOSITORY"
+          fi
+          echo "PR validated and marked ready when necessary. No merge is performed here."
