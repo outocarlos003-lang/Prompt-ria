@@ -275,6 +275,17 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertEqual(details["mutations_performed"], [])
         self.assertIn("legacy_tree_available", details)
 
+    def test_output_path_guard_blocks_source_and_input_overwrites(self):
+        source = ROOT / self.manifest["instruments"][0]["path"]
+        with self.assertRaisesRegex(SystemExit, "artifacts/"):
+            specialized.validate_output_path(source, [])
+        with self.assertRaisesRegex(SystemExit, "não pode sobrescrever uma entrada"):
+            specialized.validate_output_path(Path("request.json"), [Path("request.json")])
+        self.assertEqual(
+            specialized.validate_output_path(ROOT / "artifacts" / "result.json", []),
+            ROOT / "artifacts" / "result.json",
+        )
+
     def test_preflight_with_mismatched_request_is_rejected(self):
         preflight = {
             "request": "Demanda diferente",
