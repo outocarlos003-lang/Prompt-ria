@@ -32,8 +32,10 @@ jobs:
             exit 1
           fi
           checks="$(gh api "repos/$GH_REPO/commits/$TESTED_SHA/check-runs?per_page=100")"
-          if [[ "$(jq -r '.total_count' <<< "$checks")" -lt 1 ]]; then
-            echo "No check-runs found for tested SHA."
+          total_checks="$(jq -r '.total_count' <<< "$checks")"
+          returned_checks="$(jq '.check_runs | length' <<< "$checks")"
+          if [[ "$total_checks" -lt 1 || "$returned_checks" -ne "$total_checks" ]]; then
+            echo "Check-run list is empty or incomplete; refusing to merge."
             exit 1
           fi
           if [[ "$(jq '[.check_runs[] | select(.status != "completed")] | length' <<< "$checks")" -ne 0 ]]; then
