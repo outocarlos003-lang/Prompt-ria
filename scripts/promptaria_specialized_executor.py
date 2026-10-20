@@ -516,16 +516,42 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
     }
 
 
+def validate_output_path(output: Path, input_paths: list[Path]) -> Path:
+    """Refuse output paths that overwrite inputs or repository source/config files."""
+    resolved = output.resolve()
+    for input_path in input_paths:
+        if input_path is not None and resolved == input_path.resolve():
+            raise SystemExit(f"Caminho de saída não pode sobrescrever uma entrada: {output}")
+
+    try:
+        relative = resolved.relative_to(ROOT.resolve())
+    except ValueError:
+        return resolved
+
+    # Repository-local generated artifacts must stay in designated output areas.
+    allowed_roots = {"artifacts", "build", "dist", "out"}
+    if not relative.parts or relative.parts[0] not in allowed_roots:
+        raise SystemExit(
+            "Caminho de saída dentro do repositório deve estar em artifacts/, build/, dist/ ou out/: "
+            f"{output}"
+        )
+    return resolved
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--request", required=True, type=Path, help="JSON object with request/demand and optional instrument_ids")
     parser.add_argument("--preflight", type=Path, help="Optional output from promptaria_preflight.py")
     parser.add_argument("--output", required=True, type=Path, help="Output JSON path")
     args = parser.parse_args()
+    output_path = validate_output_path(
+        args.output,
+        [args.request, *([args.preflight] if args.preflight else [])],
+    )
     payload = read_object(args.request)
     preflight = read_object(args.preflight) if args.preflight else None
     result = execute(payload, preflight)
-    atomic_json(args.output, result)
+    atomic_json(output_path, result)
     print(json.dumps({
         "status": result["execution_status"],
         "specialized_execution_count": result["specialized_execution_count"],
