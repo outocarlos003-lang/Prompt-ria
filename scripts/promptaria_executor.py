@@ -397,13 +397,19 @@ def main() -> None:
     parser.add_argument("--confirm-operation")
     args = parser.parse_args()
 
+    output_path = None
+    if args.output:
+        # Reuse the canonical guard: output must not alias request/permissions,
+        # and repository-local outputs are restricted to generated directories.
+        import promptaria_specialized_executor as specialized
+        output_path = specialized.validate_output_path(args.output, [args.request, args.permissions])
     payload = load_json(args.request)
     registry = load_json(args.permissions)
     result = execute(payload, args.repo_root.resolve(), registry, args.confirm_operation)
     serialized = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(serialized, encoding="utf-8")
+    if output_path:
+        import promptaria_specialized_executor as specialized
+        specialized.atomic_json(output_path, result)
     print(serialized, end="")
 
 
