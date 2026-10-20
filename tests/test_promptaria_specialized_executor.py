@@ -286,6 +286,24 @@ class SpecializedExecutorTests(unittest.TestCase):
             ROOT / "artifacts" / "result.json",
         )
 
+    def test_output_path_guard_blocks_symlink_aliases_to_inputs_and_sources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            request = root / "request.json"
+            request.write_text('{"request": "safe"}', encoding="utf-8")
+            request_alias = root / "request-alias.json"
+            request_alias.symlink_to(request)
+            with self.assertRaisesRegex(SystemExit, "não pode sobrescrever uma entrada"):
+                specialized.validate_output_path(request_alias, [request])
+
+        with tempfile.TemporaryDirectory(dir=ROOT / "artifacts") as directory:
+            source = ROOT / self.manifest["instruments"][0]["path"]
+            source_alias = Path(directory) / "source-alias.json"
+            source_alias.symlink_to(source)
+            with self.assertRaisesRegex(SystemExit, "artifacts/"):
+                specialized.validate_output_path(source_alias, [])
+
+
     def test_preflight_with_mismatched_request_is_rejected(self):
         preflight = {
             "request": "Demanda diferente",
