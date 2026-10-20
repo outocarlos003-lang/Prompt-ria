@@ -275,24 +275,27 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertEqual(details["mutations_performed"], [])
         self.assertIn("legacy_tree_available", details)
 
-    def test_preflight_without_matching_request_is_rejected(self):
-        preflight = {"matched_instruments": [{
-            "id": "master-execution", "identity_status": "resolved", "activation": True
-        }]}
+    def test_preflight_with_mismatched_request_is_rejected(self):
+        preflight = {
+            "request": "Demanda diferente",
+            "matched_instruments": [{
+                "id": "master-execution", "identity_status": "resolved", "activation": True
+            }],
+        }
         with self.assertRaisesRegex(SystemExit, "Pré-validação recusada: a demanda não corresponde"):
             specialized.execute({"request": "Execute checklist."}, preflight=preflight)
 
     def test_preflight_cannot_inject_a_different_active_instrument(self):
-        canonical = specialized.resolve_ids("Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas", specialized.load_catalog()[0])
-        self.assertTrue(canonical)
+        request = "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"
         preflight = {
-            "request": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
+            "request": request,
             "matched_instruments": [{
                 "id": "protocol-update-integrity", "identity_status": "resolved", "activation": True
             }],
         }
-        with self.assertRaisesRegex(SystemExit, "instrumentos não correspondem à resolução canônica"):
-            specialized.execute({"request": preflight["request"]}, preflight=preflight)
+        result = specialized.execute({"request": request}, preflight=preflight)
+        self.assertIn("github-operational", result["selected_instrument_ids"])
+        self.assertNotIn("protocol-update-integrity", result["selected_instrument_ids"])
 
     def test_explicit_id_cannot_bypass_registry_activation(self):
         with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: coordinator"):
