@@ -37,7 +37,10 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
         item.get("id")
         for item in matches
         if isinstance(item, dict)
-        and item.get("id") in contextual_ids
+        and (
+            item.get("id") in contextual_ids
+            or not contextual_ids
+        )
         and item.get("identity_status") not in (None, "resolved")
         and item.get("id") not in explicit_ids
     })
