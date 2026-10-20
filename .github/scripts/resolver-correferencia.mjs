@@ -6,7 +6,27 @@ export const FIXED_OPERATIONAL_INSTRUMENT = Object.freeze({
   path: "instruments/acione-a-promptaria-pelo-github.md",
   operations: ["inserir", "recuperar", "aplicar"]
 });
-const norm = s => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+const norm = s => String(s ?? "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+const escapeRegex = s => s.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\const norm = s => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();");
+function normalizeWithOffsets(text) {
+  let value = "";
+  const starts = [], ends = [];
+  let offset = 0;
+  for (const character of text) {
+    const start = offset;
+    offset += character.length;
+    const normalized = character.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase();
+    for (const ch of normalized) {
+      const out = /[a-z0-9]/.test(ch) ? ch : " ";
+      if (out === " " && (!value || value.endsWith(" "))) continue;
+      value += out;
+      starts.push(start);
+      ends.push(offset);
+    }
+  }
+  if (value.endsWith(" ")) { value = value.slice(0, -1); starts.pop(); ends.pop(); }
+  return { value, starts, ends };
+}
 const enabled = x => x && x.enabled !== false;
 const aliases = x => Array.isArray(x.aliases) ? x.aliases : [];
 const result = (x, extra = {}) => ({ instrument_id: x?.id ?? null, title: x?.title ?? "", path: x?.path ?? null, activation: false, function_status: "own", match_type: "unresolved", start: 0, end: 0, exception_scope: null, ...extra });
@@ -44,11 +64,13 @@ export function resolveReference(reference, catalog) {
     const key = norm(raw);
     list = index.terms.filter(t => t.key === key).map(t => t.item);
     const kinds = index.terms.filter(t => t.key === key);
-    matchType = kinds.some(t => t.kind === "canonical_title") ? "canonical_title" : "canonical_alias";
+    const hasTitle = kinds.some(t => t.kind === "canonical_title");
+    const hasAlias = kinds.some(t => t.kind === "canonical_alias");
+    matchType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "canonical_title" : "canonical_alias";
   }
   const active = [...new Map(list.filter(enabled).map(x => [x.id, x])).values()];
   if (active.length === 1) return result(active[0], { activation: true, match_type: matchType });
-  if (active.length > 1) return result(active[0], { function_status: "ambiguous", match_type: matchType === "explicit_id" ? "ambiguous_id" : matchType === "explicit_path" ? "ambiguous_path" : matchType === "canonical_title" ? "ambiguous_title" : "ambiguous_title_alias", candidates: active.map(x => x.id) });
+  if (active.length > 1) return result(active[0], { function_status: "ambiguous", match_type: matchType === "explicit_id" ? "ambiguous_id" : matchType === "explicit_path" ? "ambiguous_path" : matchType === "ambiguous_title_alias" ? "ambiguous_title_alias" : matchType === "canonical_title" ? "ambiguous_title" : "ambiguous_title_alias", candidates: active.map(x => x.id) });
   const disabled = list[0];
   return result(disabled, { match_type: disabled ? "disabled_reference" : matchType === "explicit_id" ? "unresolved_explicit_id" : matchType === "explicit_path" ? "unresolved_explicit_path" : "unresolved", candidates: list.map(x => x.id) });
 }
@@ -66,22 +88,42 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
     out.push({ ...r, start, end, function_status: r.activation ? "own" : r.function_status });
     occupied.push([start, end]);
   }
+  const normalizedText = normalizeWithOffsets(text);
+  const exceptionPattern = /função diferente|função diversa|papel diferente|papel diverso/gi;
+  const exceptionMatches = [...text.matchAll(exceptionPattern)].map(m => ({ start: m.index ?? 0, end: (m.index ?? 0) + m[0].length }));
   for (const term of index.terms) {
-    const words = term.value.split(/[\s-]+/).map(w => w.replace(/[.*+?^$\x7b\x7d()|[\]\\]/g, "\\$&"));
-    const pattern = words.join("[\\s-]+");
-    const re = new RegExp("(^|[^\\p{L}\\p{N}])(" + pattern + ")(?=$|[^\\p{L}\\p{N}])", "giu");
-    for (const m of text.matchAll(re)) {
-      const start = (m.index ?? 0) + m[1].length, end = start + m[2].length;
-      if (occupied.some(([a,b]) => start < b && end > a) || norm(m[2]) !== term.key) continue;
+    const pattern = new RegExp("(^| )(" + escapeRegex(term.key) + ")(?=$| )", "g");
+    for (const m of normalizedText.value.matchAll(pattern)) {
+      const normalizedStart = (m.index ?? 0) + m[1].length;
+      const normalizedEnd = normalizedStart + m[2].length;
+      const start = normalizedText.starts[normalizedStart];
+      const end = normalizedText.ends[normalizedEnd - 1];
+      if (start == null || end == null || occupied.some(([a,b]) => start < b && end > a)) continue;
       const collisions = index.terms.filter(t => t.key === term.key);
       const ids = [...new Set(collisions.map(t => t.item.id))];
       if (out.some(x => x.start === start && x.end === end && x.instrument_id === term.item.id)) continue;
-      const prefix = text.slice(Math.max(0, start - 90), start).split(/[.!?;\n]/).pop() ?? "";
-      const suffix = text.slice(end, end + 100).split(/[.!?;\n]/)[0] ?? "";
-      const exception = /função diferente|função diversa|papel diferente|papel diverso/i.test(suffix) ||
-        (/função diferente|função diversa|papel diferente|papel diverso/i.test(prefix) && !/preservar|manter|própria/i.test(suffix));
+
+      const clauseStart = Math.max(text.lastIndexOf(".", start - 1), text.lastIndexOf("!", start - 1), text.lastIndexOf("?", start - 1), text.lastIndexOf(";", start - 1), text.lastIndexOf("\\n", start - 1)) + 1;
+      const nextBoundaryCandidates = [text.indexOf(".", end), text.indexOf("!", end), text.indexOf("?", end), text.indexOf(";", end), text.indexOf("\\n", end)].filter(n => n >= 0);
+      const clauseEnd = nextBoundaryCandidates.length ? Math.min(...nextBoundaryCandidates) : text.length;
+      const clause = text.slice(clauseStart, clauseEnd);
+      const localExceptions = exceptionMatches.filter(e => e.start >= clauseStart && e.end <= clauseEnd);
+      const laterMentions = [];
+      for (const t of index.terms) {
+        const escaped = escapeRegex(t.key);
+        const r = new RegExp("(^|[^\\\\p{L}\\\\p{N}])(" + escaped.replace(/ /g, "[\\\\s-]+") + ")(?=$|[^\\\\p{L}\\\\p{N}])", "giu");
+        for (const mm of clause.matchAll(r)) laterMentions.push(clauseStart + (mm.index ?? 0) + mm[1].length);
+      }
+      const exception = localExceptions.some(e => {
+        if (e.start < end) return false;
+        const preceding = laterMentions.filter(pos => pos < e.start);
+        return preceding.length > 0 && Math.max(...preceding) === start;
+      });
       const ambiguous = ids.length > 1;
-      out.push(result(term.item, { start, end, activation: !ambiguous && !exception, function_status: ambiguous ? "ambiguous" : exception ? "diverse" : "own", match_type: ambiguous ? (collisions.some(t => t.kind === "canonical_title") ? "ambiguous_title" : "ambiguous_alias") : term.kind, ...(ambiguous ? { candidates: ids } : {}), exception_scope: exception ? { type: "local", start, end } : null }));
+      const hasTitle = collisions.some(t => t.kind === "canonical_title");
+      const hasAlias = collisions.some(t => t.kind === "canonical_alias");
+      const ambiguousType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "ambiguous_title" : "ambiguous_alias";
+      out.push(result(term.item, { start, end, activation: !ambiguous && !exception, function_status: ambiguous ? "ambiguous" : exception ? "diverse" : "own", match_type: ambiguous ? ambiguousType : term.kind, ...(ambiguous ? { candidates: ids } : {}), exception_scope: exception ? { type: "local", start, end } : null }));
     }
   }
   return out.sort((a,b) => a.start - b.start || a.end - b.end);
