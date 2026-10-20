@@ -100,6 +100,12 @@ class InterfaceTraceabilityTests(unittest.TestCase):
         self.assertIn("item.activation?.enabled===true", self.html)
         self.assertIn("search.addEventListener", self.html)
         self.assertEqual(search_trace["status"], "pending_verification")
+    def test_unresolved_and_ambiguous_references_show_visible_feedback(self):
+        self.assertIn("overlay.classList.add('open')", self.html)
+        self.assertIn("Referência não resolvida", self.html)
+        self.assertIn("Referência ambígua: use o identificador ou caminho do instrumento.", self.html)
+        self.assertIn("Nenhum instrumento ativo corresponde exatamente à referência informada.", self.html)
+
     def test_old_catalog_card_assumptions_are_not_required(self):
         for removed in ["#filter", "#instrument-list", "#doc-overlay", "#copy-prompt", "renderCatalog"]:
             self.assertNotIn(removed, self.html)
