@@ -2,12 +2,14 @@
 """Regression tests for automatic Promptária instrument preconfiguration."""
 from __future__ import annotations
 
+import importlib.util
 import json
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 SOURCE_SCRIPT = (
@@ -91,6 +93,37 @@ class PreconfigureNewInstrumentsTests(unittest.TestCase):
         self.assertEqual(len(self.read_json(self.manifest_path)["instruments"]), 1)
         entry = self.read_json(self.registry_path)["instruments"][0]
         self.assertFalse(entry["activation"]["enabled"])
+
+    def test_second_catalog_replace_failure_rolls_back_first_file(self) -> None:
+        source = self.root / "instruments" / "novo.md"
+        source.write_text("# Instrumento Novo\\n", encoding="utf-8")
+        original_registry = self.registry_path.read_bytes()
+        original_manifest = self.manifest_path.read_bytes()
+
+        spec = importlib.util.spec_from_file_location("preconfigure_under_test", SOURCE_SCRIPT)
+        self.assertIsNotNone(spec)
+        self.assertIsNotNone(spec.loader)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        real_replace = module.os.replace
+        calls = 0
+
+        def fail_second_replace(src, dst):
+            nonlocal calls
+            calls += 1
+            if calls == 2:
+                raise OSError("simulated manifest replacement failure")
+            return real_replace(src, dst)
+
+        with mock.patch.object(module.os, "replace", side_effect=fail_second_replace):
+            with self.assertRaisesRegex(OSError, "simulated manifest"):
+                module.write_json_pair(
+                    self.registry_path, '{"instruments": [{"id": "new"}]}\\n',
+                    self.manifest_path, '{"instruments": [{"id": "new"}]}\\n',
+                )
+
+        self.assertEqual(self.registry_path.read_bytes(), original_registry)
+        self.assertEqual(self.manifest_path.read_bytes(), original_manifest)
 
     def test_duplicate_canonical_title_blocks_registration(self) -> None:
         (self.root / "instruments" / "existente.md").write_text(
