@@ -226,7 +226,7 @@ payload = {
     "operation_id": "test-op-001",
     "operation": "write_text",
     "destination": "artifacts/result.txt",
-    "content": "resultado validável\\n",
+    "content": "resultado validável\n",
     "dry_run": False,
     "write_authorized": True,
 }
@@ -254,7 +254,7 @@ else:
             )
             self.assertEqual(interrupted.returncode, 0, interrupted.stderr)
             destination = root / "artifacts/result.txt"
-            self.assertEqual(destination.read_text(encoding="utf-8"), "resultado validável\\n")
+            self.assertEqual(destination.read_text(encoding="utf-8"), "resultado validável\n")
             audit = root / ".promptaria/audit.jsonl"
             records = [json.loads(line) for line in audit.read_text(encoding="utf-8").splitlines()]
             self.assertEqual([record["status"] for record in records], ["write_intent"])
@@ -262,7 +262,7 @@ else:
             # A normal retry with the same ID must not overwrite the durable result.
             changed = self.base(
                 dry_run=False, write_authorized=True,
-                content="novo conteúdo não autorizado por reconciliação\\n",
+                content="novo conteúdo não autorizado por reconciliação\n",
             )
             request.write_text(json.dumps(changed), encoding="utf-8")
             replay = subprocess.run(
@@ -273,7 +273,7 @@ else:
             )
             self.assertNotEqual(replay.returncode, 0)
             self.assertIn("reconciliação manual obrigatória", replay.stderr)
-            self.assertEqual(destination.read_text(encoding="utf-8"), "resultado validável\\n")
+            self.assertEqual(destination.read_text(encoding="utf-8"), "resultado validável\n")
             records_after = [json.loads(line) for line in audit.read_text(encoding="utf-8").splitlines()]
             self.assertEqual([record["status"] for record in records_after], ["write_intent"])
 
