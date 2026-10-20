@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
+import tempfile
 import unicodedata
 from pathlib import Path
 
@@ -27,6 +29,50 @@ def read_json(path: Path) -> dict:
     if not isinstance(value, dict) or not isinstance(value.get("instruments"), list):
         raise ValueError(f"Catálogo inválido em {path}: 'instruments' deve ser uma lista.")
     return value
+
+
+def write_json_pair(registry_path: Path, registry_text: str, manifest_path: Path, manifest_text: str) -> None:
+    """Stage both catalog files and roll back the first replacement if the second fails."""
+    targets = ((registry_path, registry_text), (manifest_path, manifest_text))
+    originals = {path: path.read_bytes() for path, _ in targets}
+    staged: dict[Path, Path] = {}
+    replaced: list[Path] = []
+    try:
+        for target, text in targets:
+            with tempfile.NamedTemporaryFile(
+                mode="w", encoding="utf-8", newline="\\n",
+                dir=target.parent, prefix=f".{target.name}.", suffix=".tmp",
+                delete=False,
+            ) as stream:
+                stream.write(text)
+                stream.flush()
+                os.fsync(stream.fileno())
+                staged[target] = Path(stream.name)
+        for target, _ in targets:
+            os.replace(staged[target], target)
+            replaced.append(target)
+    except OSError:
+        for target in reversed(replaced):
+            try:
+                with tempfile.NamedTemporaryFile(
+                    mode="wb", dir=target.parent, prefix=f".{target.name}.",
+                    suffix=".rollback", delete=False,
+                ) as stream:
+                    stream.write(originals[target])
+                    stream.flush()
+                    os.fsync(stream.fileno())
+                    rollback = Path(stream.name)
+                os.replace(rollback, target)
+            except OSError:
+                # Preserve the original exception; rollback artifacts remain available for recovery.
+                pass
+        raise
+    finally:
+        for temp_path in staged.values():
+            try:
+                temp_path.unlink(missing_ok=True)
+            except OSError:
+                pass
 
 
 def main() -> int:
@@ -95,8 +141,7 @@ def main() -> int:
             manifest_entries.append(manifest_item)
         serialized_registry = json.dumps(registry, ensure_ascii=False, indent=2) + "\n"
         serialized_manifest = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
-        registry_path.write_text(serialized_registry, encoding="utf-8")
-        manifest_path.write_text(serialized_manifest, encoding="utf-8")
+        write_json_pair(registry_path, serialized_registry, manifest_path, serialized_manifest)
         print(f"Pré-configurados {len(discovered)} instrumento(s); permanecem não executáveis até revisão explícita.")
         return 0
     except (OSError, ValueError) as exc:
