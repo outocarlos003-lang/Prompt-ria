@@ -82,7 +82,7 @@ class InterfaceTraceabilityTests(unittest.TestCase):
         for item in self.elements:
             self.assertTrue(item.get("function"), item["id"])
             self.assertTrue(item.get("destination"), item["id"])
-            self.assertIn(item.get("status"), {"verified", "pending_verification", "unverified", "source_reference_verified_runtime_pending"})
+            self.assertIn(item.get("status"), {"verified", "pending_verification", "unverified"})
 
     def test_interface_is_the_current_entrypoint_and_search_surface(self):
         self.assertIn('id="plataforma"', self.html)
@@ -99,7 +99,7 @@ class InterfaceTraceabilityTests(unittest.TestCase):
         self.assertIn("fetch(registryUrl", self.html)
         self.assertIn("item.activation?.enabled===true", self.html)
         self.assertIn("search.addEventListener", self.html)
-        self.assertEqual(search_trace["status"], "source_reference_verified_runtime_pending")
+        self.assertEqual(search_trace["status"], "pending_verification")
     def test_old_catalog_card_assumptions_are_not_required(self):
         for removed in ["#filter", "#instrument-list", "#doc-overlay", "#copy-prompt", "renderCatalog"]:
             self.assertNotIn(removed, self.html)
