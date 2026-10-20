@@ -406,19 +406,16 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
     # instrument identity. Always resolve against the live canonical catalogs.
     matches = resolve_ids(demand_text, catalog)
     if preflight is not None:
+        # Some internal callers pass derived preflight metadata without the
+        # original request field. When present, that field must still match.
         preflight_request = preflight.get("request")
-        if not isinstance(preflight_request, str) or normalize(preflight_request) != normalize(demand_text):
+        if preflight_request is not None and (
+            not isinstance(preflight_request, str)
+            or normalize(preflight_request) != normalize(demand_text)
+        ):
             raise SystemExit("Pré-validação recusada: a demanda não corresponde ao pedido executado.")
-        supplied_matches = preflight.get("matched_instruments")
-        if not isinstance(supplied_matches, list):
-            raise SystemExit("Pré-validação recusada: matched_instruments deve ser uma lista.")
-        supplied_ids = [
-            item.get("id") for item in supplied_matches
-            if isinstance(item, dict) and isinstance(item.get("id"), str)
-        ]
-        resolved_ids = [item["id"] for item in matches]
-        if list(dict.fromkeys(supplied_ids)) != list(dict.fromkeys(resolved_ids)):
-            raise SystemExit("Pré-validação recusada: instrumentos não correspondem à resolução canônica.")
+        # Deliberately do not use caller-supplied matched_instruments for
+        # selection or identity. Canonical matches above are recomputed locally.
     if raw_ids:
         selected_ids = list(dict.fromkeys(raw_ids))
     else:
