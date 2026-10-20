@@ -47,8 +47,8 @@
       "id": "ui.search.placeholder",
       "type": "action",
       "file": "index.html",
-      "function": "pesquisa",
-      "destination": "config/instrument-catalog.json"
+      "function": "pesquisa e filtragem dos instrumentos ativos carregados do registro canônico",
+      "destination": "config/instrument-registry.json"
     },
     {
       "id": "ui.visual.core",
@@ -84,6 +84,13 @@
       "file": "index.html",
       "function": "copia o conteúdo integral do instrumento ativo aberto",
       "destination": "clipboard"
+    },
+    {
+      "id": "registry.instruments",
+      "type": "repository_node",
+      "file": "config/instrument-registry.json",
+      "function": "registro canônico de identidade, metadados e ativação consumido pela interface",
+      "destination": "instruments/*.md"
     }
   ],
   "relations": [
@@ -112,12 +119,12 @@
       "evidence": "index.html aria-labelledby"
     },
     {
-      "id": "search-to-catalog",
+      "id": "search-to-registry",
       "from": "ui.search.placeholder",
-      "to": "catalog.instruments",
+      "to": "registry.instruments",
       "type": "functional",
-      "function": "define o universo documental da pesquisa",
-      "evidence": "config/instrument-catalog.json; relação dinâmica ainda pendente de implementação"
+      "function": "define o conjunto de instrumentos ativos carregados e filtrados pela interface",
+      "evidence": "index.html: registryUrl aponta para config/instrument-registry.json; fetch(registryUrl) popula registry; validação em navegador ainda pendente"
     },
     {
       "id": "catalog-to-sources",
@@ -142,6 +149,14 @@
       "type": "source",
       "function": "vincula identificação ao entrypoint",
       "evidence": "index.html"
+    },
+    {
+      "id": "registry-to-sources",
+      "from": "registry.instruments",
+      "to": "instruments.sources",
+      "type": "reference",
+      "function": "resolve os caminhos de origem dos instrumentos cadastrados",
+      "evidence": "config/instrument-registry.json: campo path; verificação estrutural dos 10 caminhos realizada na branch"
     }
   ],
   "policy": {
