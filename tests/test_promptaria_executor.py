@@ -280,6 +280,39 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertNotEqual(truncated.returncode, 0)
             self.assertIn("vazia", truncated.stderr)
 
+    def test_audit_anchor_tool_rejects_symlink_inputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            root = base / "repo"
+            external = base / "external-store"
+            root.mkdir()
+            external.mkdir()
+            script = ROOT / "scripts" / "promptaria_audit_anchor.py"
+            real_audit = external / "real-audit.jsonl"
+            real_audit.write_text("{}\\n", encoding="utf-8")
+            audit_link = root / "audit-link.jsonl"
+            audit_link.symlink_to(real_audit)
+            anchor = external / "anchor.json"
+            create = subprocess.run(
+                [sys.executable, str(script), "--mode", "create",
+                 "--audit", str(audit_link), "--anchor", str(anchor), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(create.returncode, 0)
+            self.assertFalse(anchor.exists())
+
+            anchor_target = external / "anchor-target.json"
+            anchor_target.write_text('{"schema_version": 1}', encoding="utf-8")
+            anchor_link = external / "anchor-link.json"
+            anchor_link.symlink_to(anchor_target)
+            verify = subprocess.run(
+                [sys.executable, str(script), "--mode", "verify",
+                 "--audit", str(real_audit), "--anchor", str(anchor_link), "--repo-root", str(root)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(verify.returncode, 0)
+            self.assertIn("link simbólico", verify.stderr)
+
     def test_external_audit_anchor_must_be_outside_repository(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
