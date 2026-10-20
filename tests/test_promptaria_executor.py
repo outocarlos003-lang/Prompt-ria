@@ -208,6 +208,75 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual(remaining[0]["status"], "write_intent")
 
 
+    def test_completion_audit_failure_after_replace_blocks_replay(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            request = root / "request.json"
+            request.write_text(json.dumps(self.base(
+                dry_run=False, write_authorized=True
+            )), encoding="utf-8")
+            injected_failure = """
+import sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[3])
+import promptaria_executor as executor
+root = Path(sys.argv[1])
+registry = executor.load_json(Path(sys.argv[2]))
+payload = {
+    "operation_id": "test-op-001",
+    "operation": "write_text",
+    "destination": "artifacts/result.txt",
+    "content": "resultado validável\\n",
+    "dry_run": False,
+    "write_authorized": True,
+}
+original = executor.append_audit
+calls = 0
+def fail_completion(state_fd, audit_fd, record):
+    global calls
+    calls += 1
+    if calls == 2:
+        raise OSError("injected completion-audit failure")
+    return original(state_fd, audit_fd, record)
+executor.append_audit = fail_completion
+try:
+    executor.execute(payload, root, registry, "test-op-001")
+except OSError as exc:
+    if "injected completion-audit failure" not in str(exc):
+        raise
+else:
+    raise SystemExit("expected injected failure")
+"""
+            interrupted = subprocess.run(
+                [sys.executable, "-c", injected_failure, str(root),
+                 str(PERMISSIONS), str(EXECUTOR.parent)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(interrupted.returncode, 0, interrupted.stderr)
+            destination = root / "artifacts/result.txt"
+            self.assertEqual(destination.read_text(encoding="utf-8"), "resultado validável\\n")
+            audit = root / ".promptaria/audit.jsonl"
+            records = [json.loads(line) for line in audit.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual([record["status"] for record in records], ["write_intent"])
+
+            # A normal retry with the same ID must not overwrite the durable result.
+            changed = self.base(
+                dry_run=False, write_authorized=True,
+                content="novo conteúdo não autorizado por reconciliação\\n",
+            )
+            request.write_text(json.dumps(changed), encoding="utf-8")
+            replay = subprocess.run(
+                [sys.executable, str(EXECUTOR), "--request", str(request),
+                 "--repo-root", str(root), "--permissions", str(PERMISSIONS),
+                 "--confirm-operation", "test-op-001"],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertNotEqual(replay.returncode, 0)
+            self.assertIn("reconciliação manual obrigatória", replay.stderr)
+            self.assertEqual(destination.read_text(encoding="utf-8"), "resultado validável\\n")
+            records_after = [json.loads(line) for line in audit.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual([record["status"] for record in records_after], ["write_intent"])
+
     def test_rejects_symlink_in_intermediate_destination_component(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
