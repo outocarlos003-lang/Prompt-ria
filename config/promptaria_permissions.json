@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "execution_enabled": true,
+  "allowed_operations": [
+    "write_text"
+  ],
+  "allowed_destination_prefixes": [
+    "artifacts/"
+  ],
+  "max_content_bytes": 1048576,
+  "notes": "Somente arquivos de texto em artifacts/. dry_run continua true por padrão; execução real exige autorização no payload e --confirm-operation com o operation_id exato."
+}
