@@ -15,7 +15,7 @@ function normalizeWithOffsets(text) {
   for (const character of text) {
     const start = offset;
     offset += character.length;
-    const normalized = character.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase();
+    const normalized = character.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     for (const ch of normalized) {
       const out = /[a-z0-9]/.test(ch) ? ch : " ";
       if (out === " " && (!value || value.endsWith(" "))) continue;
