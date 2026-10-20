@@ -16,7 +16,10 @@ def _fold_with_offsets(value: str) -> tuple[str, list[int]]:
                 continue
             if part in "\u200b\u200c\u200d\u200e\u200f\ufeff":
                 continue
-            chars.append(part.casefold())
+            normalized_part = part.casefold()
+            if not (normalized_part.isalnum() or normalized_part == "_" or normalized_part.isspace() or normalized_part == "-"):
+                normalized_part = " "
+            chars.append(normalized_part)
             offsets.append(index)
     return "".join(chars), offsets
 
