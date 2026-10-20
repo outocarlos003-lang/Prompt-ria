@@ -145,11 +145,14 @@ def main() -> None:
     parser.add_argument("--preflight", type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
+    output_path = specialized.validate_output_path(
+        args.output,
+        [args.request, *([args.preflight] if args.preflight else [])],
+    )
     payload = json.loads(args.request.read_text(encoding="utf-8"))
     preflight = json.loads(args.preflight.read_text(encoding="utf-8")) if args.preflight else None
     result = execute(payload, preflight)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    specialized.atomic_json(output_path, result)
     print(json.dumps({
         "status": result["execution_status"],
         "specialized_execution_count": result["specialized_execution_count"],
