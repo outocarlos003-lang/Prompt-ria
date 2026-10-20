@@ -21,12 +21,23 @@ def canonical(record: dict) -> bytes:
 
 
 def read_chain(audit_path: Path) -> tuple[list[dict], list[str]]:
-    if audit_path.is_symlink() or not audit_path.is_file():
-        fail("Registro de auditoria ausente, não regular ou link simbólico.")
+    # Open once with O_NOFOLLOW and validate the opened object, avoiding a
+    # check-then-open symlink race on the audit log.
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
     try:
-        raw = audit_path.read_bytes()
+        fd = os.open(audit_path, flags)
+        try:
+            info = os.fstat(fd)
+            if not stat.S_ISREG(info.st_mode):
+                fail("Registro de auditoria ausente ou não regular.")
+            with os.fdopen(fd, "rb") as stream:
+                fd = -1
+                raw = stream.read()
+        finally:
+            if fd >= 0:
+                os.close(fd)
     except OSError as exc:
-        fail(f"Não foi possível ler a auditoria: {exc}")
+        fail(f"Não foi possível abrir a auditoria com segurança: {exc}")
     if raw and not raw.endswith(b"\n"):
         fail("Registro de auditoria truncado: última linha incompleta.")
     records: list[dict] = []
@@ -95,12 +106,20 @@ def create_anchor(audit_path: Path, anchor_path: Path, repo_root: Path) -> dict:
 
 def verify_anchor(audit_path: Path, anchor_path: Path, repo_root: Path) -> dict:
     anchor_path = ensure_external(anchor_path, repo_root)
-    if not anchor_path.exists() or not anchor_path.is_file():
-        fail("Âncora externa ausente ou não regular.")
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
     try:
-        snapshot = json.loads(anchor_path.read_text(encoding="utf-8"))
+        fd = os.open(anchor_path, flags)
+        try:
+            if not stat.S_ISREG(os.fstat(fd).st_mode):
+                fail("Âncora externa ausente ou não regular.")
+            with os.fdopen(fd, "r", encoding="utf-8") as stream:
+                fd = -1
+                snapshot = json.load(stream)
+        finally:
+            if fd >= 0:
+                os.close(fd)
     except (OSError, json.JSONDecodeError) as exc:
-        fail(f"Âncora externa ilegível: {exc}")
+        fail(f"Âncora externa ilegível ou insegura: {exc}")
     if not isinstance(snapshot, dict) or snapshot.get("schema_version") != 1:
         fail("Formato de âncora externa inválido.")
     count = snapshot.get("record_count")
