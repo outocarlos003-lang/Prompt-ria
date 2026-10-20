@@ -208,6 +208,56 @@ class PromptariaExecutorTests(unittest.TestCase):
             self.assertEqual(remaining[0]["status"], "write_intent")
 
 
+    def test_temp_file_fsync_failure_preserves_destination_and_cleans_temp(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            destination = root / "artifacts/result.txt"
+            destination.parent.mkdir(parents=True)
+            destination.write_text("conteúdo anterior\\n", encoding="utf-8")
+            injected_failure = r"""
+import sys
+from pathlib import Path
+sys.path.insert(0, sys.argv[3])
+import promptaria_executor as executor
+root = Path(sys.argv[1])
+registry = executor.load_json(Path(sys.argv[2]))
+payload = {
+    "operation_id": "test-op-001",
+    "operation": "write_text",
+    "destination": "artifacts/result.txt",
+    "content": "novo conteúdo\\n",
+    "dry_run": False,
+    "write_authorized": True,
+}
+original_fsync = executor.os.fsync
+calls = 0
+def fail_temp_fsync(fd):
+    global calls
+    calls += 1
+    if calls == 2:
+        raise OSError("injected temp fsync failure")
+    return original_fsync(fd)
+executor.os.fsync = fail_temp_fsync
+try:
+    executor.execute(payload, root, registry, "test-op-001")
+except SystemExit as exc:
+    if "Falha na escrita segura do destino" not in str(exc):
+        raise
+else:
+    raise SystemExit("expected injected temp fsync failure")
+"""
+            interrupted = subprocess.run(
+                [sys.executable, "-c", injected_failure, str(root),
+                 str(PERMISSIONS), str(EXECUTOR.parent)],
+                capture_output=True, text=True, encoding="utf-8",
+            )
+            self.assertEqual(interrupted.returncode, 0, interrupted.stderr)
+            self.assertEqual(destination.read_text(encoding="utf-8"), "conteúdo anterior\\n")
+            self.assertEqual(list(destination.parent.glob(".promptaria-*")), [])
+            records = [json.loads(line) for line in
+                       (root / ".promptaria/audit.jsonl").read_text(encoding="utf-8").splitlines()]
+            self.assertEqual([record["status"] for record in records], ["write_intent"])
+
     def test_replace_failure_preserves_destination_and_cleans_temporary_file(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
