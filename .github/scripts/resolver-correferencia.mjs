@@ -134,6 +134,30 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
     const ambiguousType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "ambiguous_title" : "ambiguous_alias";
     out.push(result(term.item,{start,end,activation:!ambiguous&&!exception,function_status:ambiguous?"ambiguous":exception?"diverse":"own",match_type:ambiguous?ambiguousType:term.kind,...(ambiguous?{candidates:ids}:{}),exception_scope:exception?{type:"local",start,end}:null}));
   }
+  // Preserve shorter canonical identities nested inside a longer title mention.
+  for (const parent of [...out]) {
+    if (!parent.activation || parent.start == null || parent.end == null) continue;
+    const segment = text.slice(parent.start, parent.end);
+    const normalizedSegment = normalizeWithOffsets(segment);
+    for (const term of index.terms) {
+      if (term.item.id === parent.instrument_id) continue;
+      const pattern = new RegExp("(^| )(" + escapeRegex(term.key) + ")(?=$| )", "g");
+      for (const m of normalizedSegment.value.matchAll(pattern)) {
+        const ns = (m.index ?? 0) + m[1].length;
+        const ne = ns + m[2].length;
+        const start = normalizedSegment.starts[ns] + parent.start;
+        const end = normalizedSegment.ends[ne - 1] + parent.start;
+        if (out.some(x => x.start === start && x.end === end && x.instrument_id === term.item.id)) continue;
+        const collisions = index.terms.filter(t => t.key === term.key);
+        const ids = [...new Set(collisions.map(t => t.item.id))];
+        const ambiguous = ids.length > 1;
+        const hasTitle = collisions.some(t => t.kind === "canonical_title");
+        const hasAlias = collisions.some(t => t.kind === "canonical_alias");
+        const ambiguousType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "ambiguous_title" : "ambiguous_alias";
+        out.push(result(term.item, { start, end, activation: !ambiguous, function_status: ambiguous ? "ambiguous" : "own", match_type: ambiguous ? ambiguousType : term.kind, ...(ambiguous ? { candidates: ids } : {}) }));
+      }
+    }
+  }
   return out.sort((a,b)=>a.start-b.start||a.end-b.end);
 }
 
