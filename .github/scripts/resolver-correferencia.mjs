@@ -102,6 +102,13 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
     }
   }
   candidates.sort((a,b) => a.start - b.start || b.end - a.end);
+  // Prefer the longest canonical mention when a short alias is contained in its title.
+  const filteredCandidates = candidates.filter(candidate => !candidates.some(other =>
+    other !== candidate && other.start <= candidate.start && other.end >= candidate.end &&
+    (other.start < candidate.start || other.end > candidate.end)
+  ));
+  candidates.length = 0;
+  candidates.push(...filteredCandidates);
   const exceptionPattern = /função diferente|função diversa|papel diferente|papel diverso/gi;
   const exceptionMatches = [...text.matchAll(exceptionPattern)].map(m => ({start:m.index ?? 0,end:(m.index ?? 0)+m[0].length}));
   for (let i = 0; i < candidates.length; i++) {
