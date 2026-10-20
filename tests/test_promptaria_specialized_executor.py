@@ -297,9 +297,11 @@ class SpecializedExecutorTests(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, "não pode sobrescrever uma entrada"):
                 specialized.validate_output_path(request_alias, [request])
 
-        with tempfile.TemporaryDirectory(dir=ROOT / "artifacts") as directory:
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            artifacts = Path(directory) / "artifacts"
+            artifacts.mkdir()
             source = ROOT / self.manifest["instruments"][0]["path"]
-            source_alias = Path(directory) / "source-alias.json"
+            source_alias = artifacts / "source-alias.json"
             source_alias.symlink_to(source)
             with self.assertRaisesRegex(SystemExit, "artifacts/"):
                 specialized.validate_output_path(source_alias, [])
