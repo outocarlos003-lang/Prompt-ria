@@ -6,8 +6,8 @@ export const FIXED_OPERATIONAL_INSTRUMENT = Object.freeze({
   path: "instruments/acione-a-promptaria-pelo-github.md",
   operations: ["inserir", "recuperar", "aplicar"]
 });
-const norm = s => String(s ?? "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-const escapeRegex = s => s.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\const norm = s => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();");
+const norm = s => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+const escapeRegex = s => s.replace(/[.*+?^$\x7b\x7d()|[\]\\]/g, "\\$&");
 function normalizeWithOffsets(text) {
   let value = "";
   const starts = [], ends = [];
