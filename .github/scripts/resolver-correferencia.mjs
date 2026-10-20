@@ -92,7 +92,7 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
   const candidates = [];
   const normalizedText = normalizeWithOffsets(text);
   for (const term of index.terms) {
-    const re = new RegExp("(^| )(" + escapeRegex(term.key) + ")(?=$| )", "g");
+    const re = new RegExp("(^| )(" + term.key + ")(?=$| )", "g");
     for (const m of normalizedText.value.matchAll(re)) {
       const normalizedStart = (m.index ?? 0) + m[1].length;
       const normalizedEnd = normalizedStart + m[2].length;
