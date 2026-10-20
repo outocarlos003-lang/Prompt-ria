@@ -61,6 +61,22 @@ class CanonicalArtifactIntegrityTests(unittest.TestCase):
                     for field in ("title", "path"):
                         self.assertEqual(item.get(field), source.get(field), f"{instrument_id}: {field} diverge em {label}")
 
+    def test_canonical_paths_resolve_inside_repo_and_physical_titles_match(self):
+        root = ROOT.resolve()
+        for instrument_id, source in self.registry_by_id.items():
+            with self.subTest(instrument=instrument_id):
+                relative = source.get("path")
+                self.assertIsInstance(relative, str)
+                candidate = (ROOT / relative).resolve()
+                self.assertTrue(candidate.is_relative_to(root), "Caminho canônico escapa da raiz do repositório.")
+                self.assertTrue(candidate.is_file(), f"Fonte canônica ausente: {relative}")
+                content = candidate.read_text(encoding="utf-8")
+                physical_title = next(
+                    (line[2:].strip() for line in content.splitlines() if line.startswith("# ")),
+                    None,
+                )
+                self.assertEqual(physical_title, source.get("title"), "Título físico diverge do registro canônico.")
+
     def test_catalog_mirrors_activation_and_ui_visibility(self):
         for instrument_id, source in self.registry_by_id.items():
             catalog_item = self.catalog_by_id[instrument_id]
