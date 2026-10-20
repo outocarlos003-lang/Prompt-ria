@@ -15,6 +15,8 @@ def _is_active(item: Any) -> bool:
         return False
     if item.get("activation_status") == "recognized_ambiguous_not_activated":
         return False
+    if item.get("activation_status") == "recognized_not_executed" and "activation" not in item:
+        return True
     if "activation" in item:
         return item.get("activation") is True
     # Legacy plans encoded activation through a recognized execution mode.
