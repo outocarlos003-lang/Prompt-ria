@@ -5,7 +5,27 @@ from __future__ import annotations
 import json
 import os
 import sys
+import tempfile
 from pathlib import Path
+
+
+def atomic_json(path: Path, payload: dict) -> None:
+    """Write generated workflow data atomically in the destination directory."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as stream:
+            json.dump(payload, stream, ensure_ascii=False, indent=2)
+            stream.write("\\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        try:
+            temporary.unlink()
+        except FileNotFoundError:
+            pass
 
 
 def prepare(raw: str) -> dict | None:
