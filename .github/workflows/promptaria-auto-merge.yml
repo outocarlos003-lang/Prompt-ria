@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  issues: read
 
 jobs:
   merge-tested-pull-request:
@@ -16,9 +17,10 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      issues: read
       actions: read
     steps:
-      - name: Verify every check on the tested commit and merge only that commit
+      - name: Verify checks, exact approval, and tested commit before merge
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
@@ -58,6 +60,12 @@ jobs:
           fi
           if [[ "$head_sha" != "$TESTED_SHA" ]]; then
             echo "Current PR head differs from tested SHA."
+            exit 1
+          fi
+          approvals="$(gh api --paginate --slurp "repos/$GH_REPO/issues/$PR_NUMBER/comments?per_page=100")"
+          expected_approval="/promptaria merge $TESTED_SHA"
+          if ! jq -e --arg expected "$expected_approval" '[.[][] | select(.body == $expected and .author_association == "OWNER")] | length > 0' <<< "$approvals" >/dev/null; then
+            echo "Missing explicit OWNER approval for this exact tested SHA; refusing to merge."
             exit 1
           fi
           current="$(gh api "repos/$GH_REPO/pulls/$PR_NUMBER" --jq '.head.sha')"
