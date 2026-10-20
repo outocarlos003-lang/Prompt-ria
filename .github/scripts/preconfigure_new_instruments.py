@@ -40,7 +40,7 @@ def write_json_pair(registry_path: Path, registry_text: str, manifest_path: Path
     try:
         for target, text in targets:
             with tempfile.NamedTemporaryFile(
-                mode="w", encoding="utf-8", newline="\\n",
+                mode="w", encoding="utf-8", newline="",
                 dir=target.parent, prefix=f".{target.name}.", suffix=".tmp",
                 delete=False,
             ) as stream:
