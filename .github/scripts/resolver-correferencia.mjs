@@ -103,15 +103,15 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
       const ids = [...new Set(collisions.map(t => t.item.id))];
       if (out.some(x => x.start === start && x.end === end && x.instrument_id === term.item.id)) continue;
 
-      const clauseStart = Math.max(text.lastIndexOf(".", start - 1), text.lastIndexOf("!", start - 1), text.lastIndexOf("?", start - 1), text.lastIndexOf(";", start - 1), text.lastIndexOf("\\n", start - 1)) + 1;
-      const nextBoundaryCandidates = [text.indexOf(".", end), text.indexOf("!", end), text.indexOf("?", end), text.indexOf(";", end), text.indexOf("\\n", end)].filter(n => n >= 0);
+      const clauseStart = Math.max(text.lastIndexOf(".", start - 1), text.lastIndexOf("!", start - 1), text.lastIndexOf("?", start - 1), text.lastIndexOf(";", start - 1), text.lastIndexOf("\n", start - 1)) + 1;
+      const nextBoundaryCandidates = [text.indexOf(".", end), text.indexOf("!", end), text.indexOf("?", end), text.indexOf(";", end), text.indexOf("\n", end)].filter(n => n >= 0);
       const clauseEnd = nextBoundaryCandidates.length ? Math.min(...nextBoundaryCandidates) : text.length;
       const clause = text.slice(clauseStart, clauseEnd);
       const localExceptions = exceptionMatches.filter(e => e.start >= clauseStart && e.end <= clauseEnd);
       const laterMentions = [];
       for (const t of index.terms) {
         const escaped = escapeRegex(t.key);
-        const r = new RegExp("(^|[^\\\\p{L}\\\\p{N}])(" + escaped.replace(/ /g, "[\\\\s-]+") + ")(?=$|[^\\\\p{L}\\\\p{N}])", "giu");
+        const r = new RegExp("(^|[^\\p{L}\\p{N}])(" + escaped.replace(/ /g, "[\\s-]+") + ")(?=$|[^\\p{L}\\p{N}])", "giu");
         for (const mm of clause.matchAll(r)) laterMentions.push(clauseStart + (mm.index ?? 0) + mm[1].length);
       }
       const exception = localExceptions.some(e => {
