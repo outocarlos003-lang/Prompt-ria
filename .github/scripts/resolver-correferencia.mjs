@@ -80,7 +80,7 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
   if (!text.trim()) return [];
   const index = indexOf(suppliedIndex ?? instruments);
   const out = [];
-  const explicit = /instrument_(?:id|path):[^\s,;.!?]+/gi;
+  const explicit = /instrument_(?:id|path):[^\s,;]+/gi;
   const occupied = [];
   for (const m of text.matchAll(explicit)) {
     const start = m.index ?? 0, end = start + m[0].length;
@@ -88,45 +88,44 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
     out.push({ ...r, start, end, function_status: r.activation ? "own" : r.function_status });
     occupied.push([start, end]);
   }
-  const normalizedText = normalizeWithOffsets(text);
-  const exceptionPattern = /função diferente|função diversa|papel diferente|papel diverso/gi;
-  const exceptionMatches = [...text.matchAll(exceptionPattern)].map(m => ({ start: m.index ?? 0, end: (m.index ?? 0) + m[0].length }));
-  for (const term of index.terms) {
-    const pattern = new RegExp("(^| )(" + escapeRegex(term.key) + ")(?=$| )", "g");
-    for (const m of normalizedText.value.matchAll(pattern)) {
-      const normalizedStart = (m.index ?? 0) + m[1].length;
-      const normalizedEnd = normalizedStart + m[2].length;
-      const start = normalizedText.starts[normalizedStart];
-      const end = normalizedText.ends[normalizedEnd - 1];
-      if (start == null || end == null || occupied.some(([a,b]) => start < b && end > a)) continue;
-      const collisions = index.terms.filter(t => t.key === term.key);
-      const ids = [...new Set(collisions.map(t => t.item.id))];
-      if (out.some(x => x.start === start && x.end === end && x.instrument_id === term.item.id)) continue;
 
-      const clauseStart = Math.max(text.lastIndexOf(".", start - 1), text.lastIndexOf("!", start - 1), text.lastIndexOf("?", start - 1), text.lastIndexOf(";", start - 1), text.lastIndexOf("\n", start - 1)) + 1;
-      const nextBoundaryCandidates = [text.indexOf(".", end), text.indexOf("!", end), text.indexOf("?", end), text.indexOf(";", end), text.indexOf("\n", end)].filter(n => n >= 0);
-      const clauseEnd = nextBoundaryCandidates.length ? Math.min(...nextBoundaryCandidates) : text.length;
-      const clause = text.slice(clauseStart, clauseEnd);
-      const localExceptions = exceptionMatches.filter(e => e.start >= clauseStart && e.end <= clauseEnd);
-      const laterMentions = [];
-      for (const t of index.terms) {
-        const escaped = escapeRegex(t.key);
-        const r = new RegExp("(^|[^\\p{L}\\p{N}])(" + escaped.replace(/ /g, "[\\s-]+") + ")(?=$|[^\\p{L}\\p{N}])", "giu");
-        for (const mm of clause.matchAll(r)) laterMentions.push(clauseStart + (mm.index ?? 0) + mm[1].length);
-      }
-      const exception = localExceptions.some(e => {
-        if (e.start < end) return false;
-        const preceding = laterMentions.filter(pos => pos < e.start);
-        return preceding.length > 0 && Math.max(...preceding) === start;
-      });
-      const ambiguous = ids.length > 1;
-      const hasTitle = collisions.some(t => t.kind === "canonical_title");
-      const hasAlias = collisions.some(t => t.kind === "canonical_alias");
-      const ambiguousType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "ambiguous_title" : "ambiguous_alias";
-      out.push(result(term.item, { start, end, activation: !ambiguous && !exception, function_status: ambiguous ? "ambiguous" : exception ? "diverse" : "own", match_type: ambiguous ? ambiguousType : term.kind, ...(ambiguous ? { candidates: ids } : {}), exception_scope: exception ? { type: "local", start, end } : null }));
+  const candidates = [];
+  for (const term of index.terms) {
+    const words = term.value.split(/[\s-]+/).map(w => w.replace(/[.*+?^$\x7b\x7d()|[\]\\]/g, "\\$&"));
+    const pattern = words.join("[\\s-]+");
+    const re = new RegExp("(^|[^\\p{L}\\p{N}])(" + pattern + ")(?=$|[^\\p{L}\\p{N}])", "giu");
+    for (const m of text.matchAll(re)) {
+      const start = (m.index ?? 0) + m[1].length, end = start + m[2].length;
+      if (occupied.some(([a,b]) => start < b && end > a) || norm(m[2]) !== term.key) continue;
+      if (candidates.some(x => x.start === start && x.end === end && x.term.item.id === term.item.id)) continue;
+      candidates.push({start,end,term});
     }
   }
-  return out.sort((a,b) => a.start - b.start || a.end - b.end);
+  candidates.sort((a,b) => a.start - b.start || b.end - a.end);
+  const exceptionPattern = /função diferente|função diversa|papel diferente|papel diverso/gi;
+  const exceptionMatches = [...text.matchAll(exceptionPattern)].map(m => ({start:m.index ?? 0,end:(m.index ?? 0)+m[0].length}));
+  for (let i = 0; i < candidates.length; i++) {
+    const {start,end,term} = candidates[i];
+    if (out.some(x => x.start === start && x.end === end && x.instrument_id === term.item.id)) continue;
+    const collisions = index.terms.filter(t => t.key === term.key);
+    const ids = [...new Set(collisions.map(t => t.item.id))];
+    const clauseStart = Math.max(text.lastIndexOf(".",start-1),text.lastIndexOf("!",start-1),text.lastIndexOf("?",start-1),text.lastIndexOf(";",start-1),text.lastIndexOf("\n",start-1))+1;
+    const clauseEndCandidates = [text.indexOf(".",end),text.indexOf("!",end),text.indexOf("?",end),text.indexOf(";",end),text.indexOf("\n",end)].filter(n=>n>=0);
+    const clauseEnd = clauseEndCandidates.length ? Math.min(...clauseEndCandidates) : text.length;
+    const nextMention = candidates.slice(i+1).find(x=>x.start<clauseEnd)?.start ?? clauseEnd;
+    const prefix = text.slice(clauseStart,start);
+    const suffix = text.slice(end,nextMention);
+    const afterMarker = exceptionMatches.some(e=>e.start>=end && e.start<nextMention && e.end<=clauseEnd);
+    const beforeMarker = /função diferente|função diversa|papel diferente|papel diverso/i.test(prefix) &&
+      !/preservar|manter|própria/i.test(suffix);
+    const exception = afterMarker || beforeMarker;
+    const ambiguous = ids.length > 1;
+    const hasTitle = collisions.some(t=>t.kind==="canonical_title");
+    const hasAlias = collisions.some(t=>t.kind==="canonical_alias");
+    const ambiguousType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "ambiguous_title" : "ambiguous_alias";
+    out.push(result(term.item,{start,end,activation:!ambiguous&&!exception,function_status:ambiguous?"ambiguous":exception?"diverse":"own",match_type:ambiguous?ambiguousType:term.kind,...(ambiguous?{candidates:ids}:{}),exception_scope:exception?{type:"local",start,end}:null}));
+  }
+  return out.sort((a,b)=>a.start-b.start||a.end-b.end);
 }
 
 export function resolveRequest(request, instruments = []) {
