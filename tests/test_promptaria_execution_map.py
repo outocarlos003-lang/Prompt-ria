@@ -27,10 +27,9 @@ class PromptariaExecutionMapTests(unittest.TestCase):
     def test_every_instrument_maps_to_a_dedicated_specialized_handler(self):
         handlers = {
             "github-operational": "handler_github_operational",
-            "coordinator": "handler_coordinator",
             "master-activation": "handler_master_activation",
             "master-execution": "handler_master_execution",
-            "functional-correference-architecture": "handler_functional_correference",
+            "functional-correference-architecture": "handler_unified_architecture",
             "future-demand-preconfiguration": "handler_future_preconfiguration",
             "catalog-sitemap-preconfiguration": "handler_catalog_sitemap",
             "promptaria-instrument-template": "handler_promptaria_instrument_template",
@@ -40,6 +39,10 @@ class PromptariaExecutionMapTests(unittest.TestCase):
         specialized = ROOT / "scripts" / "promptaria_specialized_executor.py"
         self.assertTrue(specialized.is_file())
         self.assertEqual(set(handlers), {item["id"] for item in self.execution_map["instruments"]})
+        unified = next(item for item in self.execution_map["instruments"] if item["id"] == "functional-correference-architecture")
+        self.assertEqual(unified["legacy_ids"], ["coordinator"])
+        self.assertEqual(unified["phase_handlers"], ["phase_title_resolution", "phase_bundle_coordination"])
+        self.assertEqual(unified["coordination_node"], "coordination:functional-correference-architecture")
         for item in self.execution_map["instruments"]:
             with self.subTest(instrument=item["id"]):
                 self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")

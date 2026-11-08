@@ -330,8 +330,29 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertNotIn("protocol-update-integrity", result["selected_instrument_ids"])
 
     def test_explicit_id_cannot_bypass_registry_activation(self):
-        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: coordinator"):
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: functional-correference-architecture"):
             specialized.execute({"request": "Executar coordenador.", "instrument_ids": ["coordinator"]})
+
+
+    def test_legacy_coordinator_id_resolves_to_single_unified_instrument(self):
+        result = self.execute_with_all_instruments_activated({
+            "request": "Acionar a arquitetura coordenadora legada.",
+            "instrument_ids": ["coordinator"],
+        })
+        self.assertEqual(result["selected_instrument_ids"], ["functional-correference-architecture"])
+        phases = result["results"][0]["result"]["phases"]
+        self.assertEqual([phase["phase"] for phase in phases], ["title-resolution", "bundle-coordination"])
+        self.assertEqual(
+            result["results"][0]["result"]["coordination_node"]["id"],
+            "coordination:functional-correference-architecture",
+        )
+        legacy_title_result = self.execute_with_all_instruments_activated({
+            "request": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
+        })
+        self.assertEqual(
+            legacy_title_result["selected_instrument_ids"],
+            ["functional-correference-architecture"],
+        )
 
 
 if __name__ == "__main__":

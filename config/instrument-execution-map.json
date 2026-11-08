@@ -36,22 +36,6 @@
       "specialized_handler": "handler_github_operational"
     },
     {
-      "id": "coordinator",
-      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-      "path": "instruments/arquitetura-unificada.md",
-      "resolution_status": "recognized_planning_only",
-      "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Handler coordena o conjunto de instrumentos selecionados, preserva identidades e emite ordem e gates de validação.",
-      "specialized_handler": "handler_coordinator"
-    },
-    {
       "id": "master-activation",
       "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
       "path": "instruments/protocolo-mestre-acionamento-automatico.md",
@@ -96,8 +80,31 @@
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Handler gera relatório de correferência cumulativa e mantém colisões sem desambiguação como bloqueios.",
-      "specialized_handler": "handler_functional_correference"
+      "notes": "Handler único que compõe as fases internas de resolução/correferência por título e coordenação/compatibilização, articuladas pelo nó coordination:functional-correference-architecture. O ID legado coordinator é alias e não possui entrada ou handler separado.",
+      "specialized_handler": "handler_unified_architecture",
+      "aliases": [
+        "coordinator",
+        "arquitetura unificada",
+        "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS"
+      ],
+      "functions": [],
+      "operations": [],
+      "relations": [
+        "legacy-id:coordinator->functional-correference-architecture",
+        "instrument:coordinator->instrument:functional-correference-architecture",
+        "phase:title-resolution->coordination:functional-correference-architecture",
+        "coordination:functional-correference-architecture->phase:bundle-coordination",
+        "phase:bundle-coordination->coordination:functional-correference-architecture",
+        "coordination:functional-correference-architecture->phase:title-resolution"
+      ],
+      "phase_handlers": [
+        "phase_title_resolution",
+        "phase_bundle_coordination"
+      ],
+      "coordination_node": "coordination:functional-correference-architecture",
+      "legacy_ids": [
+        "coordinator"
+      ]
     },
     {
       "id": "future-demand-preconfiguration",

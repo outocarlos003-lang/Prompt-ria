@@ -261,7 +261,7 @@ def main() -> None:
     instruments = read_instruments(a.instruments)
     matches = resolve(request, instruments)
 
-    # Stable defaults: coordinator, master protocol, and GitHub operational instrument.
+    # Stable defaults: unified architecture, master protocol, and GitHub operational instrument.
     registry_path = a.instruments.parent / "config" / "instrument-registry.json"
     if registry_path.is_file():
         # In production, mandatory preloading follows the explicitly enabled set.
@@ -269,7 +269,7 @@ def main() -> None:
         default_titles = [(item["title"], "mandatory_active_instrument") for item in instruments if item.get("active", True)]
     else:
         default_titles = [
-            ('ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS', 'mandatory_coordinator'),
+            ('ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS', 'mandatory_functional_cross_reference_preconfiguration'),
             ('PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO', 'mandatory_master_protocol'),
             ('Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas', 'mandatory_fixed_component'),
         ]
@@ -415,7 +415,7 @@ def main() -> None:
         'preconfiguration': {
             'enabled': True,
             'mode': 'generic_until_explicit_specialization',
-            'always_include_coordinator': not registry_path.is_file() or normalize('ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS') in {item['normalized_title'] for item in instruments if item.get('active', True)},
+            'always_include_coordinator': not registry_path.is_file() or any(item.get('id') == 'functional-correference-architecture' and item.get('active', True) for item in instruments),
             'always_include_master_protocol': not registry_path.is_file() or normalize('PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO') in {item['normalized_title'] for item in instruments if item.get('active', True)},
             'always_include_github_operational_instrument': not registry_path.is_file() or normalize('Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas') in {item['normalized_title'] for item in instruments if item.get('active', True)},
             'preserve_instrument_functions': True,
