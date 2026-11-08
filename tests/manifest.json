@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "instruments": [
+    {
+      "id": "github-operational",
+      "title": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
+      "path": "instruments/acione-a-promptaria-pelo-github.md",
+      "aliases": [
+        "github operacional",
+        "acionar a promptária pelo github",
+        "instrumento promptual fixo",
+        "parte 2",
+        "demanda estruturada",
+        "request_id",
+        "envelope",
+        "instrumento operacional fixo do protocolo-mestre",
+        "instrumento fixo de acionamento GitHub",
+        "envelope operacional de demanda",
+        "pré-configuração operacional padrão do GitHub",
+        "automação de correspondência por título",
+        "protocolo-mestre e pré-configuração padrão",
+        "instrumento operacional canônico intersegmentos",
+        "nó operacional interconectado github-operational"
+      ]
+    },
+    {
+      "id": "coordinator",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
+      "path": "instruments/arquitetura-unificada.md",
+      "aliases": [
+        "arquitetura unificada"
+      ]
+    },
+    {
+      "id": "master-activation",
+      "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
+      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+      "aliases": [
+        "protocolo mestre de acionamento",
+        "protocolo-mestre e pré-configuração padrão"
+      ]
+    },
+    {
+      "id": "master-execution",
+      "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
+      "path": "instruments/protocolo-mestre-execucao-correta.md",
+      "aliases": [
+        "execução correta"
+      ]
+    },
+    {
+      "id": "functional-correference-architecture",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
+      "aliases": [
+        "correferência funcional automática",
+        "correspondência por título",
+        "instrumento coordenador unificado",
+        "automação de correspondência por título",
+        "arquitetura coordenadora de múltiplos instrumentos"
+      ]
+    },
+    {
+      "id": "future-demand-preconfiguration",
+      "title": "PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
+      "aliases": []
+    },
+    {
+      "id": "catalog-sitemap-preconfiguration",
+      "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
+      "aliases": []
+    },
+    {
+      "id": "promptaria-instrument-template",
+      "title": "MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA",
+      "path": "instruments/modelo-instrumento-promptual-correferencia.md",
+      "aliases": [
+        "modelo de instrumento promptual",
+        "instrumento modelo",
+        "template promptual",
+        "modelo de correferência"
+      ]
+    },
+    {
+      "id": "protocol-update-integrity",
+      "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
+      "path": "instruments/protocolo-operacional-atualizacao-integridade-acervo.md",
+      "aliases": [
+        "protocolo de atualização integral",
+        "preservação funcional do acervo"
+      ]
+    },
+    {
+      "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
+      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+      "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
+      "aliases": [
+        "Nocturna",
+        "arquitetura da necessidade",
+        "reconstrução recursiva da identidade sistêmica",
+        "princípio origem e fim",
+        "correferência multiescalar",
+        "indução fractal",
+        "Princípio Normativo de Correferência Fractal, Invariância Relacional e Potência Generativa do Logos"
+      ]
+    }
+  ]
+}

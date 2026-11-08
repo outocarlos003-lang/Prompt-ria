@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "purpose": "Controlar a integração automática de instrumentos promptuais nos três segmentos estruturais sem impedir o acionamento independente de qualquer instrumento habilitado.",
+  "protected_segments": [
+    {
+      "id": "master-activation",
+      "name": "Protocolo-mestre"
+    },
+    {
+      "id": "standard-preconfiguration",
+      "name": "Pré-configuração padrão"
+    },
+    {
+      "id": "title-correspondence-automation",
+      "name": "Automação de correferência por título"
+    }
+  ],
+  "default_integrated_instrument_ids": [
+    "github-operational",
+    "functional-correference-architecture"
+  ],
+  "integration_policy": {
+    "mode": "closed_by_default",
+    "new_instrument_integration": "blocked_without_specific_need_or_explicit_user_request",
+    "activation_policy": "any_enabled_instrument_may_be_resolved_and_activated_for_its_own_registered_function",
+    "selection_is_not_integration": true,
+    "inventory_is_not_integration": true,
+    "title_match_is_not_integration": true,
+    "explicit_request_field": "segment_integration_request",
+    "specific_need_field": "segment_integration_need",
+    "allowed_exception_values": ["instrument_id", "canonical_title", "path"],
+    "specific_need_requires": "instrument reference plus a non-empty reason explaining why participation in one or more protected segments is necessary for the current demand",
+    "default_behavior": "Do not add newly discovered, mentioned, enabled, or selected instruments to the protected segments. Keep them available for independent activation and execution according to their own content and registered capabilities."
+  },
+  "audit_fields": [
+    "protected_segments",
+    "default_integrated_instrument_ids",
+    "additional_integrated_instrument_ids",
+    "integration_evidence",
+    "blocked_automatic_integrations"
+  ]
+}

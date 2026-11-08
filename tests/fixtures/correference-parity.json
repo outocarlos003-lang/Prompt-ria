@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Shared behavioral contract for Python and JavaScript canonical-title resolvers",
+  "instruments": [
+    {
+      "id": "alpha",
+      "title": "Instrumento Alfa",
+      "path": "alpha.md"
+    },
+    {
+      "id": "beta",
+      "title": "Instrumento Beta",
+      "path": "beta.md"
+    },
+    {
+      "id": "accent",
+      "title": "Ação-Útil",
+      "path": "accent.md"
+    }
+  ],
+  "cases": [
+    {
+      "id": "canonical-title",
+      "request": "Aplicar Instrumento Alfa à demanda.",
+      "expected": [
+        {
+          "title": "Instrumento Alfa",
+          "activation": true,
+          "function_status": "own"
+        }
+      ]
+    },
+    {
+      "id": "local-exception-does-not-leak",
+      "request": "Instrumento Alfa deve atuar como uma função diferente, enquanto Instrumento Beta deve preservar sua função.",
+      "expected": [
+        {
+          "title": "Instrumento Alfa",
+          "activation": false,
+          "function_status": "diverse"
+        },
+        {
+          "title": "Instrumento Beta",
+          "activation": true,
+          "function_status": "own"
+        }
+      ]
+    },
+    {
+      "id": "repeated-mentions-have-independent-decisions",
+      "request": "Instrumento Alfa deve atuar como uma função diferente. Depois, Instrumento Alfa deve preservar sua função própria.",
+      "expected": [
+        {
+          "title": "Instrumento Alfa",
+          "activation": false,
+          "function_status": "diverse"
+        },
+        {
+          "title": "Instrumento Alfa",
+          "activation": true,
+          "function_status": "own"
+        }
+      ]
+    },
+    {
+      "id": "accent-and-hyphen-normalization",
+      "request": "Aplicar acao util e AÇÃO-ÚTIL.",
+      "expected": [
+        {
+          "title": "Ação-Útil",
+          "activation": true,
+          "function_status": "own"
+        },
+        {
+          "title": "Ação-Útil",
+          "activation": true,
+          "function_status": "own"
+        }
+      ]
+    },
+    {
+      "id": "word-boundary-does-not-match-substrings",
+      "request": "O texto contém Alfalfa, mas não contém um título canônico.",
+      "expected": []
+    },
+    {
+      "id": "overlapping-canonical-titles",
+      "instruments": [
+        {
+          "id": "alpha-full",
+          "title": "Instrumento Alfa",
+          "path": "a-full.md"
+        },
+        {
+          "id": "alpha-short",
+          "title": "Alfa",
+          "path": "z-short.md"
+        }
+      ],
+      "request": "Aplicar Instrumento Alfa.",
+      "expected": [
+        {
+          "title": "Instrumento Alfa",
+          "activation": true,
+          "function_status": "own"
+        },
+        {
+          "title": "Alfa",
+          "activation": true,
+          "function_status": "own"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-canonical-titles-remain-distinct",
+      "instruments": [
+        {
+          "id": "alpha-copy-a",
+          "title": "Instrumento Alfa",
+          "path": "a.md"
+        },
+        {
+          "id": "alpha-copy-b",
+          "title": "Instrumento Alfa",
+          "path": "b.md"
+        }
+      ],
+      "request": "Aplicar Instrumento Alfa.",
+      "expected": [
+        {
+          "title": "Instrumento Alfa",
+          "activation": false,
+          "function_status": "ambiguous"
+        },
+        {
+          "title": "Instrumento Alfa",
+          "activation": false,
+          "function_status": "ambiguous"
+        }
+      ]
+    }
+  ]
+}

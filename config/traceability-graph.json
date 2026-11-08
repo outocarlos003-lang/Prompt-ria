@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "purpose": "Grafo canônico para rastrear termos visíveis, nós, funções, arquivos, destinos, dependências e evidências da Promptária.",
+  "entrypoint": "index.html",
+  "policy": {
+    "visible_interface_terms_require_trace": true,
+    "actionable_nodes_require_trace": true,
+    "relations_require_source_and_target": true,
+    "functions_require_file_source": true,
+    "unknown_relationships": "unverified",
+    "future_changes_require_manifest_update": true
+  },
+  "nodes": [
+    {"id":"ui.brand","type":"term","label":"Promptária","file":"index.html","selector":"a.brand","function":"identidade e retorno ao início","destination":"#plataforma","status":"verified"},
+    {"id":"ui.hero.title","type":"term","label":"Ideias claras. Execução precisa.","file":"index.html","selector":"#hero-title","function":"mensagem principal","destination":"section#plataforma","status":"verified"},
+    {"id":"ui.hero.lead","type":"term","label":"Encontre, recupere e aplique instrumentos promptuais com clareza, contexto e rastreabilidade.","file":"index.html","selector":".lead","function":"explicar finalidade e rastreabilidade","destination":"section#instrumentos","status":"verified"},
+    {"id":"ui.instrumentos.title","type":"term","label":"Instrumentos promptuais","file":"index.html","selector":"#instrumentos-title","function":"identificar área de descoberta","destination":"#instrumentos","status":"verified"},
+    {"id":"ui.search","type":"action","label":"Buscar por nome ou finalidade...","file":"index.html","selector":"#instrument-search","function":"campo de pesquisa da área de instrumentos","destination":"catalogo de instrumentos","status":"verified"},
+    {"id":"ui.visual","type":"visual_node","label":"P.","file":"index.html","selector":".core","function":"símbolo visual central","destination":"section#plataforma","status":"verified"},
+    {"id":"ui.footer","type":"term","label":"© Promptária","file":"index.html","selector":"footer.footer","function":"identificação da aplicação","destination":"documento atual","status":"verified"},
+    {"id":"system.traceability","type":"policy","label":"rastreabilidade integral","file":"config/traceability-graph.json","function":"validar correspondência entre interface, função, arquivo, destino e evidência","destination":"CI e agentes","status":"verified"}
+  ],
+  "relations": [
+    {"id":"brand-to-home","from":"ui.brand","to":"ui.hero.title","type":"navigates_to","evidence":"index.html:href=#plataforma"},
+    {"id":"hero-to-discovery","from":"ui.hero.lead","to":"ui.instrumentos.title","type":"explains_and_points_to","evidence":"index.html:section#instrumentos"},
+    {"id":"title-to-search","from":"ui.instrumentos.title","to":"ui.search","type":"labels","evidence":"index.html:aria-labelledby=instrumentos-title"},
+    {"id":"search-to-catalog","from":"ui.search","to":"config/instrument-catalog.json","type":"search_scope","evidence":"repository catalog exists; runtime filtering is pending unless implemented"},
+    {"id":"catalog-to-instruments","from":"config/instrument-catalog.json","to":"instruments/*.md","type":"sources","evidence":"catalog entries reference Markdown instruments"},
+    {"id":"visual-to-identity","from":"ui.visual","to":"ui.brand","type":"shares_identity","evidence":"Promptária symbol P."},
+    {"id":"trace-policy-to-ui","from":"system.traceability","to":"index.html","type":"validates","evidence":"CI test reads graph and entrypoint"}
+  ],
+  "validation_contract": {
+    "before": ["identify_scope","resolve_files","resolve_destinations","record_unknowns"],
+    "during": ["preserve_identity","update_relations","track_transformations"],
+    "after": ["validate_references","validate_destinations","validate_result","record_evidence"],
+    "completion_states": ["identified","registered","executed","verified"]
+  }
+}

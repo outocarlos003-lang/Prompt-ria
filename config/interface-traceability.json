@@ -1,0 +1,42 @@
+{
+  "schema_version": 3,
+  "purpose": "Registro canônico dos termos, nós acionáveis, funções, arquivos, destinos e relações verificáveis da interface atual da Promptária.",
+  "site_entrypoint": "index.html",
+  "repository": "outocarlos003-lang/Prompt-ria",
+  "coverage_policy": {
+    "every_visible_text_term": true,
+    "every_actionable_control": true,
+    "every_placeholder": true,
+    "every_visual_identity_node": true,
+    "function_requires_file": true,
+    "relation_requires_source_target": true,
+    "unknown_relationships": "record_as_unverified",
+    "future_interface_changes_require_trace_update": true
+  },
+  "elements": [
+    {"trace_id":"ui.brand.symbol","kind":"visible_term","selector":".logo","text":"P.","source":"index.html","function":"símbolo da identidade da Promptária","destination":"#plataforma","status":"verified"},
+    {"trace_id":"ui.brand.name","kind":"visible_term_and_navigation","selector":".brand","text":"Promptária","source":"index.html","function":"identidade e retorno ao início","destination":"#plataforma","status":"verified"},
+    {"trace_id":"ui.hero.title.1","kind":"visible_term","selector":"#hero-title","text":"Ideias claras.","source":"index.html","function":"primeira parte da mensagem principal","destination":"section#plataforma","status":"verified"},
+    {"trace_id":"ui.hero.title.2","kind":"visible_term","selector":"#hero-title span","text":"Execução precisa.","source":"index.html","function":"segunda parte da mensagem principal","destination":"section#plataforma","status":"verified"},
+    {"trace_id":"ui.hero.lead","kind":"visible_term","selector":".lead","text":"Encontre, recupere e aplique instrumentos promptuais com clareza, contexto e rastreabilidade.","source":"index.html","function":"explicar finalidade, descoberta, aplicação e rastreabilidade","destination":"#instrumentos","status":"verified"},
+    {"trace_id":"ui.instrumentos.title","kind":"visible_term","selector":"#instrumentos-title","text":"Instrumentos promptuais","source":"index.html","function":"identificar a área de descoberta e pesquisa","destination":"#instrumentos","status":"verified"},
+    {"trace_id":"ui.search.placeholder","kind":"placeholder_and_action","selector":"#instrument-search","text":"Buscar por nome ou finalidade...","source":"index.html","function":"oferecer pesquisa dos instrumentos promptuais","destination":"catálogo de instrumentos","status":"verified"},
+    {"trace_id":"ui.visual.core","kind":"visual_identity_node","selector":".core","text":"P.","source":"index.html","function":"símbolo visual central da identidade","destination":"section#plataforma","status":"verified"},
+    {"trace_id":"ui.footer","kind":"visible_term","selector":"footer.footer","text":"© Promptária","source":"index.html","function":"identificação da aplicação","destination":"documento atual","status":"verified"}
+  ],
+  "repository_relations": [
+    {"relation_id":"brand-to-platform","from":"ui.brand.name","to":"#plataforma","type":"navigation","function":"retorno ao núcleo da página","source_file":"index.html","status":"verified"},
+    {"relation_id":"hero-to-discovery","from":"ui.hero.lead","to":"ui.instrumentos.title","type":"semantic_relation","function":"liga finalidade declarada à área de descoberta","source_file":"index.html","status":"verified"},
+    {"relation_id":"title-to-search","from":"ui.instrumentos.title","to":"ui.search.placeholder","type":"label_relation","function":"liga o título da área ao controle de pesquisa","source_file":"index.html","status":"verified"},
+    {"relation_id":"search-to-catalog","from":"ui.search.placeholder","to":"config/instrument-catalog.json","type":"functional_destination","function":"define o universo documental a ser pesquisado; implementação dinâmica deve permanecer explícita antes de ser declarada funcional","source_file":"index.html + config/instrument-catalog.json","status":"pending_verification"},
+    {"relation_id":"catalog-to-instruments","from":"config/instrument-catalog.json","to":"instruments/*.md","type":"production_source","function":"relaciona catálogo aos instrumentos canônicos","source_file":"config/instrument-catalog.json","status":"verified"},
+    {"relation_id":"visual-to-brand","from":"ui.visual.core","to":"ui.brand.symbol","type":"identity_relation","function":"mantém o símbolo visual coerente com a marca","source_file":"index.html","status":"verified"},
+    {"relation_id":"footer-to-application","from":"ui.footer","to":"index.html","type":"source_relation","function":"vincula identificação ao documento da aplicação","source_file":"index.html","status":"verified"}
+  ],
+  "completion_contract": {
+    "before": ["identify_scope","resolve_files","resolve_destinations","record_unverified_relations"],
+    "during": ["preserve_content","preserve_identity","update_relations","track_transformations"],
+    "after": ["validate_references","validate_destinations","validate_result","record_evidence"],
+    "states": ["identified","registered","executed","verified"]
+  }
+}

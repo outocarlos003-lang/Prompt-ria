@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "purpose": "Registro explícito de capacidades especializadas implementadas e verificadas por handler; título não concede autorização de escrita nem efeitos externos.",
+  "resolution_executor": "scripts/promptaria_resolver.py",
+  "generic_write_executor": {
+    "path": "scripts/promptaria_executor.py",
+    "operation": "write_text",
+    "allowed_destination_prefixes": [
+      "artifacts/"
+    ],
+    "requires": [
+      "write_authorized=true",
+      "dry_run=false",
+      "--confirm-operation igual a operation_id"
+    ],
+    "scope_note": "Executor genérico de escrita controlada; não executa a semântica especializada dos instrumentos."
+  },
+  "instruments": [
+    {
+      "id": "github-operational",
+      "title": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
+      "path": "instruments/acione-a-promptaria-pelo-github.md",
+      "resolution_status": "resolved_by_canonical_identity",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan",
+        "build_structured_demand_envelope",
+        "cross_segment_traceability",
+        "resolve_title_correspondence"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler canônico combina recuperação e verificação da fonte, envelope estruturado da demanda e rastreabilidade de identidade. Absorve as funções do antigo segmento parte 2 sem manter ID ou caminho concorrente; título não autoriza efeitos externos.",
+      "specialized_handler": "handler_github_operational"
+    },
+    {
+      "id": "coordinator",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
+      "path": "instruments/arquitetura-unificada.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler coordena o conjunto de instrumentos selecionados, preserva identidades e emite ordem e gates de validação.",
+      "specialized_handler": "handler_coordinator"
+    },
+    {
+      "id": "master-activation",
+      "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
+      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler constrói plano de ativação com componentes-base e gates explícitos; não realiza efeitos externos.",
+      "specialized_handler": "handler_master_activation"
+    },
+    {
+      "id": "master-execution",
+      "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
+      "path": "instruments/protocolo-mestre-execucao-correta.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler executa checklist operacional de primeira passagem e associa evidências de integridade às etapas.",
+      "specialized_handler": "handler_master_execution"
+    },
+    {
+      "id": "functional-correference-architecture",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler gera relatório de correferência cumulativa e mantém colisões sem desambiguação como bloqueios.",
+      "specialized_handler": "handler_functional_correference"
+    },
+    {
+      "id": "future-demand-preconfiguration",
+      "title": "PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler preserva o objeto estruturado completo, gera request_id determinístico se ausente e inclui contexto de operação.",
+      "specialized_handler": "handler_future_preconfiguration"
+    },
+    {
+      "id": "catalog-sitemap-preconfiguration",
+      "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler audita a fonte canônica e a presença dos artefatos legados; não cria catálogo paralelo nem gera sitemap sem contrato confirmado.",
+      "specialized_handler": "handler_catalog_sitemap"
+    },
+    {
+      "id": "promptaria-instrument-template",
+      "title": "MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA",
+      "path": "instruments/modelo-instrumento-promptual-correferencia.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Inspeciona o modelo como material preparado; não o ativa por mera existência.",
+      "specialized_handler": "handler_promptaria_instrument_template"
+    },
+    {
+      "id": "protocol-update-integrity",
+      "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
+      "path": "instruments/protocolo-operacional-atualizacao-integridade-acervo.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Produz plano de integridade e rastreabilidade sem mutações externas.",
+      "specialized_handler": "handler_protocol_update_integrity"
+    },
+    {
+      "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
+      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+      "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Recupera a fonte local e registra limites de proveniência; não presume acesso externo ao acervo Nocturna.",
+      "specialized_handler": "handler_nocturna_architecture"
+    }
+  ]
+}
