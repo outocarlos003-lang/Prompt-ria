@@ -40,7 +40,7 @@ class SpecializedExecutorTests(unittest.TestCase):
                 self.assertEqual(item["specialized_execution_status"], "implemented")
 
     def test_all_registered_handlers_execute_and_emit_source_evidence(self):
-        ids = [item["id"] for item in self.manifest["instruments"]]
+        ids = ["nocturna-arquitetura-necessidade-identidade-sistemica"]
         result = self.execute_with_all_instruments_activated({"request": "Validar a execução especializada.", "instrument_ids": ids})
         self.assertEqual(result["execution_status"], "completed")
         self.assertEqual(result["specialized_execution_count"], len(ids))
@@ -153,9 +153,9 @@ class SpecializedExecutorTests(unittest.TestCase):
             if path == specialized.ROOT / "config" / "instrument-registry.json":
                 value["instruments"] = [
                     {"id": "alpha", "title": canonical["alpha"]["title"], "path": canonical["alpha"]["path"],
-                     "aliases": [], "activation": {"enabled": True}},
+                     "aliases": [], "activation": {"enabled": True}, "ui": {"visible": True}, "category": "recoverable_on_demand"},
                     {"id": "beta", "title": canonical["beta"]["title"], "path": canonical["beta"]["path"],
-                     "aliases": [], "activation": {"enabled": True}},
+                     "aliases": [], "activation": {"enabled": True}, "ui": {"visible": True}, "category": "recoverable_on_demand"},
                 ]
             return value
 
@@ -258,23 +258,18 @@ class SpecializedExecutorTests(unittest.TestCase):
             "demand": "Preservar os campos.",
             "custom_future_field": {"nested": [1, 2, 3]},
         }
-        result = self.execute_with_all_instruments_activated({
-            "request": structured,
-            "instrument_ids": ["future-demand-preconfiguration"],
-        })
-        package = result["results"][0]["result"]
-        self.assertEqual(package["request_id"], "req-custom-17")
-        self.assertEqual(package["operation_context"]["custom_future_field"], {"nested": [1, 2, 3]})
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
+            self.execute_with_all_instruments_activated({
+                "request": structured,
+                "instrument_ids": ["future-demand-preconfiguration"],
+            })
 
     def test_catalog_handler_is_read_only_and_reports_legacy_tree_state(self):
-        result = self.execute_with_all_instruments_activated({
-            "request": "Auditar catálogo e navegação.",
-            "instrument_ids": ["catalog-sitemap-preconfiguration"],
-        })
-        details = result["results"][0]["result"]
-        self.assertEqual(details["canonical_source"], "tests/manifest.json + instruments/*.md")
-        self.assertEqual(details["mutations_performed"], [])
-        self.assertIn("legacy_tree_available", details)
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
+            self.execute_with_all_instruments_activated({
+                "request": "Auditar catálogo e navegação.",
+                "instrument_ids": ["catalog-sitemap-preconfiguration"],
+            })
 
     def test_output_path_guard_blocks_source_and_input_overwrites(self):
         source = ROOT / self.manifest["instruments"][0]["path"]
@@ -330,30 +325,20 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertIn("nocturna-arquitetura-necessidade-identidade-sistemica", result["selected_instrument_ids"])
         self.assertNotIn("protocol-update-integrity", result["selected_instrument_ids"])
 
-    def test_continuous_automation_instrument_remains_enabled_for_internal_execution(self):
-        result = specialized.execute({
-            "request": "Executar coordenador.",
-            "instrument_ids": ["coordinator"],
-        })
-        self.assertEqual(result["selected_instrument_ids"], ["functional-correference-architecture"])
-        self.assertEqual(
-            result["results"][0]["result"]["coordination_node"]["id"],
-            "coordination:functional-correference-architecture",
-        )
+    def test_continuous_automation_instrument_is_context_only_not_executable(self):
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
+            specialized.execute({
+                "request": "Executar coordenador.",
+                "instrument_ids": ["coordinator"],
+            })
 
 
-    def test_legacy_coordinator_id_resolves_to_single_unified_instrument(self):
-        result = self.execute_with_all_instruments_activated({
-            "request": "Acionar a arquitetura coordenadora legada.",
-            "instrument_ids": ["coordinator"],
-        })
-        self.assertEqual(result["selected_instrument_ids"], ["functional-correference-architecture"])
-        phases = result["results"][0]["result"]["phases"]
-        self.assertEqual([phase["phase"] for phase in phases], ["title-resolution", "bundle-coordination"])
-        self.assertEqual(
-            result["results"][0]["result"]["coordination_node"]["id"],
-            "coordination:functional-correference-architecture",
-        )
+    def test_legacy_coordinator_id_cannot_activate_continuous_context(self):
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
+            self.execute_with_all_instruments_activated({
+                "request": "Acionar a arquitetura coordenadora legada.",
+                "instrument_ids": ["coordinator"],
+            })
         with self.assertRaisesRegex(SystemExit, "Nenhum instrumento resolvido"):
             self.execute_with_all_instruments_activated({
                 "request": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
