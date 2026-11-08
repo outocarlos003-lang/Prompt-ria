@@ -30,7 +30,9 @@ def authorize_from_preflight(payload: dict, preflight: dict) -> dict:
     manifest = load_json(ROOT / "tests" / "manifest.json")
     execution_map = load_json(ROOT / "config" / "instrument-execution-map.json")
     canonical_matches = resolve_request(request, manifest, execution_map)
-    assessment = assess_preauthorization(request, canonical_matches, destination)
+    registry = load_json(ROOT / "config" / "instrument-registry.json")
+    continuous_ids = {item["id"] for item in registry.get("instruments", []) if item.get("activation", {}).get("enabled") is True and item.get("category") == "continuous_automation"}
+    assessment = assess_preauthorization(request, canonical_matches, destination, continuous_ids)
     if assessment.get("write_authorized") is not True or assessment.get("status") != "scoped_preauthorization_eligible":
         raise SystemExit("Pré-autorização recusada: a revalidação canônica não é elegível.")
     if payload.get("operation") != "write_text":
