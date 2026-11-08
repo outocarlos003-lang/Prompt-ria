@@ -33,7 +33,6 @@ class PromptariaExecutionMapTests(unittest.TestCase):
             "future-demand-preconfiguration": "handler_future_preconfiguration",
             "catalog-sitemap-preconfiguration": "handler_catalog_sitemap",
             "promptaria-instrument-template": "handler_promptaria_instrument_template",
-            "protocol-update-integrity": "handler_protocol_update_integrity",
             "nocturna-arquitetura-necessidade-identidade-sistemica": "handler_nocturna_architecture",
         }
         specialized = ROOT / "scripts" / "promptaria_specialized_executor.py"

@@ -419,8 +419,12 @@ HANDLERS = {
     "future-demand-preconfiguration": handler_future_preconfiguration,
     "catalog-sitemap-preconfiguration": handler_catalog_sitemap,
     "promptaria-instrument-template": handler_promptaria_instrument_template,
-    "protocol-update-integrity": handler_protocol_update_integrity,
     "nocturna-arquitetura-necessidade-identidade-sistemica": handler_nocturna_architecture,
+}
+
+# Auxiliary handlers are callable only through an explicit auxiliary ID.
+AUXILIARY_HANDLERS = {
+    "protocol-update-integrity": handler_protocol_update_integrity,
 }
 
 
@@ -542,7 +546,7 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
         executor_path = mapped_item.get("specialized_executor")
         if executor_path != "scripts/promptaria_specialized_executor.py" or mapped_item.get("specialized_execution_status") != "implemented":
             raise SystemExit(f"Executor especializado não está habilitado no mapa para {item_id}.")
-        handler = HANDLERS.get(item_id)
+        handler = HANDLERS.get(item_id) or AUXILIARY_HANDLERS.get(item_id)
         if handler is None or mapped_item.get("specialized_handler") != handler.__name__:
             raise SystemExit(f"Handler dedicado ausente ou divergente no mapa para {item_id}.")
         result = handler({**context, "current_instrument_id": item_id})

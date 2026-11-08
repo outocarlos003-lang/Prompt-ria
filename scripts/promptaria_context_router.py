@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_IDS = ["github-operational", "nocturna-arquitetura-necessidade-identidade-sistemica", "protocol-update-integrity"]
+BASE_IDS = ["github-operational", "nocturna-arquitetura-necessidade-identidade-sistemica"]
 MANIFEST = ROOT / "tests" / "manifest.json"
 REGISTRY = ROOT / "config" / "instrument-registry.json"
 SEGMENT_POLICY = ROOT / "config" / "segment-integration-policy.json"
