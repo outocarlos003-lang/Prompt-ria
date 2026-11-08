@@ -27,6 +27,7 @@ class PromptariaExecutionMapTests(unittest.TestCase):
     def test_every_instrument_maps_to_a_dedicated_specialized_handler(self):
         handlers = {
             "github-operational": "handler_github_operational",
+            "github-operational-recoverable": "handler_github_operational_recoverable",
             "master-activation": "handler_master_activation",
             "master-execution": "handler_master_execution",
             "functional-correference-architecture": "handler_unified_architecture",

@@ -402,6 +402,49 @@ def handler_protocol_update_integrity(context: dict[str, Any]) -> dict[str, Any]
     }
 
 
+
+def handler_github_operational_recoverable(context: dict[str, Any]) -> dict[str, Any]:
+    source = context["source"]
+    return {
+        "handler": "handler_github_operational_recoverable",
+        "result": "recoverable_phase_prepared",
+        "demand": context["demand"],
+        "source": source,
+        "integrity": {"sha256": context["source_sha256"], "bytes": len(source.encode("utf-8"))},
+        "canonical_identity": {
+            "instrument_id": "github-operational-recoverable",
+            "registry_path": "config/instrument-registry.json",
+            "node_id": "instrument:github-operational-recoverable",
+            "phase": "phase_2_demand_time_recovery",
+        },
+        "mirror_identity": {
+            "instrument_id": "github-operational",
+            "node_id": "instrument:github-operational",
+            "phase": "phase_1_continuous_preconfiguration",
+        },
+        "phase_contract": {
+            "instrument_ids_distinct": True,
+            "source_paths_distinct": True,
+            "functions_and_operations_independent": True,
+            "continuous_context_triggers_recoverable_execution": False,
+        },
+        "operations": [
+            "resolve_explicit_selection", "recover_full_source", "contextualize_demand",
+            "parameterize_application", "coordinate_selected_instruments", "validate_result",
+            "trace_cross_segment_operation",
+        ],
+        "execution_boundary": {
+            "explicit_selection_required": True,
+            "title_alone_authorizes_external_side_effects": False,
+            "external_side_effects": False,
+        },
+        "correlation": {
+            "mechanism": "deterministic_cross_segment_interconnection",
+            "canonical_ids_shared": False,
+        },
+    }
+
+
 def handler_nocturna_architecture(context: dict[str, Any]) -> dict[str, Any]:
     return {
         "handler": "recover-nocturna-architecture-source",
@@ -415,6 +458,7 @@ def handler_nocturna_architecture(context: dict[str, Any]) -> dict[str, Any]:
 
 HANDLERS = {
     "github-operational": handler_github_operational,
+    "github-operational-recoverable": handler_github_operational_recoverable,
     "master-activation": handler_master_activation,
     "master-execution": handler_master_execution,
     "functional-correference-architecture": handler_unified_architecture,

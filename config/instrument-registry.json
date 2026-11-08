@@ -137,7 +137,9 @@
         "continuous-preconfiguration->demand-routing",
         "demand-routing->recoverable-github-instrument",
         "github-operational-preconfiguration->nocturna-architecture",
-        "nocturna-architecture->github-operational-preconfiguration"
+        "nocturna-architecture->github-operational-preconfiguration",
+        "github-operational->github-operational-recoverable",
+        "github-operational-recoverable->github-operational"
       ],
       "operations": [
         "inspect",
@@ -620,6 +622,94 @@
         "mode": "continuous_preconfiguration"
       },
       "category": "continuous_automation"
+    },
+    {
+      "id": "github-operational-recoverable",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL — EXECUÇÃO SOB DEMANDA DE INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "path": "instruments/github-operational-recoverable.md",
+      "aliases": [
+        "acionamento recuperável de demandas",
+        "execução sob demanda da Promptária",
+        "fase recuperável GitHub operacional",
+        "aplicação recuperável de demandas pelo GitHub"
+      ],
+      "keywords": [
+        "github",
+        "promptária",
+        "demanda",
+        "inserir",
+        "recuperar",
+        "aplicar",
+        "seleção explícita",
+        "execução sob demanda",
+        "instrumento recuperável",
+        "rastreabilidade",
+        "validação",
+        "correferência",
+        "autorização",
+        "fonte integral"
+      ],
+      "functions": [
+        "recuperar instrumentos promptuais integrais para uma demanda explicitamente selecionada",
+        "contextualizar e parametrizar instrumentos conforme a demanda específica",
+        "coordenar instrumentos selecionados preservando identidades e funções individuais",
+        "executar operações solicitadas dentro das permissões e autorizações disponíveis",
+        "validar resultados e registrar evidências rastreáveis",
+        "complementar a pré-configuração contínua sem substituí-la",
+        "preservar separação entre seleção, execução e autorização de efeitos externos"
+      ],
+      "files": [
+        "instruments/github-operational-recoverable.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "config/instrument-execution-map.json",
+        "scripts/promptaria_specialized_executor.py",
+        "tests/manifest.json",
+        "tests/test_github_operational_pair.py",
+        "tests/test_promptaria_execution_map.py",
+        "tests/test_promptaria_preflight.py",
+        "config/traceability-graph-current.json"
+      ],
+      "relations": [
+        "github-operational->github-operational-recoverable",
+        "github-operational-recoverable->github-operational",
+        "instrument:github-operational->instrument:github-operational-recoverable",
+        "instrument:github-operational-recoverable->instrument:github-operational",
+        "continuous_preconfiguration->demand_routing",
+        "demand_routing->recoverable_execution",
+        "recoverable_execution->validated_result",
+        "github-operational-recoverable->instrument-registry",
+        "instrument-registry->instrument-catalog",
+        "instrument-registry->instrument-execution-map",
+        "instrument-execution-map->handler_github_operational_recoverable",
+        "demand->github-operational-recoverable",
+        "github-operational-recoverable->explicit_selection_gate",
+        "explicit_selection_gate->authorization_gate",
+        "authorization_gate->validated_result"
+      ],
+      "operations": [
+        "resolve-explicit-selection",
+        "recover-full-source",
+        "verify-canonical-identity",
+        "contextualize-demand",
+        "parameterize-application",
+        "coordinate-selected-instruments",
+        "execute-authorized-operation",
+        "validate-result",
+        "trace-cross-segment-operation"
+      ],
+      "ui": {
+        "node_id": "instrument:github-operational-recoverable",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "on_demand_title"
+      },
+      "category": "recoverable_on_demand",
+      "classification_basis": "default_title_rule"
     }
   ],
   "activation_policy": {

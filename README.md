@@ -191,10 +191,11 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 
 ## Inventário versionado — conferido com a árvore de main
 
-### Instrumentos operacionais (8)
+### Instrumentos operacionais (9)
 
 - `instruments/acione-a-promptaria-pelo-github.md`
 - `instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`
+- `instruments/github-operational-recoverable.md`
 - `instruments/modelo-instrumento-promptual-correferencia.md`
 - `instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md`
 - `instruments/preconfiguracao-correspondencia-futura-e-cadeia.md`
@@ -246,7 +247,7 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `docs/politica-classificacao-instrumentos-promptuais.md`
 - `docs/preconfiguracao-protocolo-mestre-e-correferencia.md`
 
-### Testes (41)
+### Testes (42)
 
 - `tests/fixtures/correference-parity.json`
 - `tests/manifest.json`
@@ -258,6 +259,7 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `tests/test_canonical_artifact_integrity.py`
 - `tests/test_context_router_activation_gate.py`
 - `tests/test_correfencia_execution_bundle.py`
+- `tests/test_github_operational_pair.py`
 - `tests/test_instrument_catalog.py`
 - `tests/test_instrument_reference_contract.py`
 - `tests/test_interface_traceability.py`
