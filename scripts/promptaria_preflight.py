@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / "scripts"))
 import promptaria_specialized_executor as specialized
+import promptaria_interconnection as interconnection
 SEGMENT_POLICY = ROOT / "config" / "segment-integration-policy.json"
 
 
@@ -243,6 +244,9 @@ def main() -> None:
         if item.get("activation", {}).get("enabled") is True
         and item.get("category") == "continuous_automation"
     )
+    interconnection_plan = interconnection.build(registry_data)
+    interconnection_path = ROOT / "config" / "instrument-interconnections.json"
+    interconnection_path.write_text(json.dumps({**interconnection_plan, "generated_by": "scripts/promptaria_interconnection.py"}, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
     preauthorization = assess_preauthorization(request, matches, payload.get("destination"), set(continuous_automation_ids))
     result = {
         "schema_version": 2,
@@ -256,6 +260,7 @@ def main() -> None:
             "instrument_ids": continuous_automation_ids,
             "execution_performed": False,
         },
+        "cross_category_interconnection": interconnection_plan,
         "preauthorization": preauthorization,
         "segment_integration": segment_integration,
         "execution_performed": False,
