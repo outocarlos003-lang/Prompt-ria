@@ -25,7 +25,7 @@ CATEGORY_TARGETS = {
 def title_for(path: Path) -> str:
     """Return the first canonical Markdown H1 for a source file."""
     import re
-    match = re.search(r"(?m)^#\\s+(.+?)\\s*$", path.read_text(encoding="utf-8"))
+    match = re.search(r"(?m)^#\s+(.+?)\s*$", path.read_text(encoding="utf-8"))
     if not match:
         raise ValueError(f"Missing canonical H1 in {path}")
     return match.group(1).strip()
@@ -37,8 +37,8 @@ def validate_registry() -> None:
     from scripts.promptaria_registry_audit import audit
     result = audit(REGISTRY, ROOT)
     if not result["valid"]:
-        details = "\\n".join(f"- {error}" for error in result["errors"])
-        raise SystemExit("registry audit failed; catalog generation aborted:\\n" + details)
+        details = "\n".join(f"- {error}" for error in result["errors"])
+        raise SystemExit("registry audit failed; catalog generation aborted:\n" + details)
 
 
 def project(item: dict) -> dict:
@@ -52,13 +52,14 @@ def project(item: dict) -> dict:
         "relations": item["relations"],
         "operations": item["operations"],
         "category": item.get("category"),
+        "classification_basis": item.get("classification_basis"),
         "ui": item["ui"],
         "activation": item["activation"],
     }
 
 
 def write_catalog(target: Path, catalog: dict) -> None:
-    target.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    target.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:
