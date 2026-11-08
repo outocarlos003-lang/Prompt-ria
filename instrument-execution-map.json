@@ -111,7 +111,9 @@
         "coordination:unified-architecture->phase:coordinated-architecture",
         "phase:coordinated-architecture->coordination:unified-architecture",
         "phase:title-functional-correference->phase:coordinated-architecture",
-        "phase:coordinated-architecture->phase:title-functional-correference"
+        "phase:coordinated-architecture->phase:title-functional-correference",
+        "functional-correference-architecture->context-router",
+        "functional-correference-architecture->resolver"
       ],
       "coordination_node_id": "coordination:unified-architecture",
       "phases": [
