@@ -12,7 +12,7 @@ class PreconfiguredExecutorAuthorizationTests(unittest.TestCase):
     def setUp(self):
         self.request_text = (
             "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO. "
-            "github-operational: crie o resultado solicitado."
+            "Nocturna: crie o resultado solicitado."
         )
         self.payload = {
             "operation_id": "preflight-write-001",
