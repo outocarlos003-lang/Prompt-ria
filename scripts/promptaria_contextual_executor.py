@@ -107,6 +107,7 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
             and isinstance(registry[item_id].get("activation"), dict)
             and registry[item_id]["activation"].get("enabled") is True
             and registry[item_id].get("category") in (None, "recoverable_on_demand")
+            and registry[item_id].get("ui", {}).get("visible") is True
         )
 
     unknown_explicit_ids = sorted(item_id for item_id in explicit_ids if item_id not in registry)
@@ -114,6 +115,18 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
         raise SystemExit(
             "IDs de instrumento ausentes do registro canônico: "
             + ", ".join(unknown_explicit_ids)
+        )
+    continuous_explicit_ids = sorted(
+        item_id for item_id in explicit_ids
+        if item_id in registry and (
+            registry[item_id].get("category") == "continuous_automation"
+            or registry[item_id].get("ui", {}).get("visible") is not True
+        )
+    )
+    if continuous_explicit_ids:
+        raise SystemExit(
+            "Instrumentos contínuos ou não visíveis são contexto interno e não podem ser selecionados individualmente: "
+            + ", ".join(continuous_explicit_ids)
         )
 
     active_contextual_ids = [
