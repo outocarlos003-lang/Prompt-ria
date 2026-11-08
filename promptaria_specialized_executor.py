@@ -335,7 +335,7 @@ def handler_catalog_sitemap(context: dict[str, Any]) -> dict[str, Any]:
     legacy_root = ROOT / "Promptária"
     legacy_paths = [legacy_root / "manifest.json", legacy_root / "sitemap.xml", legacy_root / "Index.html"]
     existing = [str(path.relative_to(ROOT)) for path in legacy_paths if path.is_file()]
-    canonical_files = sorted(str(p.relative_to(ROOT)) for p in (ROOT / "instruments").glob("*.md"))
+    canonical_files = sorted(str(path.relative_to(ROOT)) for path in ROOT.glob("*.md"))
     return {
         "handler": "audit-catalog-and-navigation",
         "result": "catalog_audit_completed",
