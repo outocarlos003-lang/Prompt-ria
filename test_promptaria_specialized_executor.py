@@ -35,7 +35,7 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertEqual(set(mapped), set(specialized.HANDLERS))
         for instrument_id, item in mapped.items():
             with self.subTest(instrument=instrument_id):
-                self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")
+                self.assertEqual(item["specialized_executor"], "promptaria_specialized_executor.py")
                 self.assertEqual(item["specialized_execution_status"], "implemented")
 
     def test_all_registered_handlers_execute_and_emit_source_evidence(self):
