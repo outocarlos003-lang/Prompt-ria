@@ -77,6 +77,22 @@ class PromptariaPreflightTests(unittest.TestCase):
         self.assertTrue(matches[0]["activation"])
         self.assertNotIn("fixed-prompt-instrument-part-2", {item["id"] for item in result["matched_instruments"]})
 
+    def test_cross_category_interconnection_preserves_independent_instruments_and_phases(self):
+        result = self.run_preflight(
+            "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas."
+        )
+        plan = result["cross_category_interconnection"]
+        self.assertEqual(plan["continuous_instrument_count"], 6)
+        self.assertEqual(plan["recoverable_instrument_count"], 2)
+        self.assertGreater(plan["interconnection_count"], 0)
+        for link in plan["interconnections"]:
+            self.assertNotEqual(link["continuous_instrument"]["id"], link["recoverable_instrument"]["id"])
+            self.assertTrue(link["preservation"]["instrument_count_unchanged"])
+            self.assertTrue(link["preservation"]["functions_and_operations_independent"])
+            self.assertEqual(link["continuous_instrument"]["phase"], "phase_1_continuous_preconfiguration")
+            self.assertEqual(link["recoverable_instrument"]["phase"], "phase_2_demand_time_recovery")
+            self.assertTrue(link["correlation_id"].startswith("corr-"))
+
     def test_colliding_title_can_be_resolved_by_explicit_id(self):
         result = self.run_preflight(
             "github-operational: Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas."
