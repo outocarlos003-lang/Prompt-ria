@@ -2,7 +2,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from scripts.promptaria_registry_audit import REQUIRED, audit, normalize
+from promptaria_registry_audit import REQUIRED, audit, normalize
 
 
 def registry_payload(entries):
