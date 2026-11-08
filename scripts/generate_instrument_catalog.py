@@ -58,6 +58,7 @@ def main() -> None:
                 "functions": item["functions"],
                 "relations": item["relations"],
                 "operations": item["operations"],
+                "category": item.get("category"),
                 "ui": item["ui"],
                 "activation": item["activation"],
             }

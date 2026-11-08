@@ -128,6 +128,7 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         item_id: item
         for item_id, item in registry_items.items()
         if item.get("activation", {}).get("enabled") is True
+        and item.get("category") in (None, "recoverable_on_demand")
     }
     candidates: dict[str, list[dict[str, Any]]] = {}
     for item_id, item in canonical.items():

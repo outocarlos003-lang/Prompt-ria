@@ -36,8 +36,10 @@ class ContextRouterActivationGateTests(unittest.TestCase):
             for candidate in result["task_candidates"]
             for instrument_id in candidate["blocked_inactive_instrument_ids"]
         }
-        self.assertTrue({"master-execution", "functional-correference-architecture", "catalog-sitemap-preconfiguration"}.issubset(blocked))
-        self.assertFalse(blocked.intersection(result["selected_instrument_ids"]))
+        continuous = set(result["continuous_preconfiguration"]["instrument_ids"])
+        self.assertTrue({"master-execution", "functional-correference-architecture", "catalog-sitemap-preconfiguration"}.issubset(continuous))
+        self.assertFalse(continuous.intersection(result["selected_instrument_ids"]))
+        self.assertFalse(blocked.intersection(continuous))
 
 
 if __name__ == "__main__":

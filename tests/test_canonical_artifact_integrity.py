@@ -85,7 +85,8 @@ class CanonicalArtifactIntegrityTests(unittest.TestCase):
                 self.assertEqual(catalog_item.get("ui"), source.get("ui"))
                 enabled = source.get("activation", {}).get("enabled") is True
                 visible = source.get("ui", {}).get("visible") is True
-                self.assertEqual(visible, enabled, "A visibilidade deve corresponder ao estado de ativação.")
+                expected_visible = enabled and source.get("category") == "recoverable_on_demand"
+                self.assertEqual(visible, expected_visible, "A visibilidade deve corresponder à categoria de catálogo, não apenas à ativação.")
 
     def test_active_instruments_have_implemented_handler_evidence(self):
         for instrument_id, source in self.registry_by_id.items():
@@ -107,11 +108,11 @@ class CanonicalArtifactIntegrityTests(unittest.TestCase):
                 source_code = executor_path.read_text(encoding="utf-8")
                 self.assertRegex(source_code, rf"(?m)^def\s+{re.escape(handler)}\s*\(", f"Handler não encontrado: {handler}")
 
-    def test_inactive_instruments_are_not_visible(self):
+    def test_only_recoverable_instruments_are_visible(self):
         for item in self.registry:
-            if item.get("activation", {}).get("enabled") is not True:
-                with self.subTest(instrument=item.get("id")):
-                    self.assertIsNot(item.get("ui", {}).get("visible"), True)
+            with self.subTest(instrument=item.get("id")):
+                expected = item.get("activation", {}).get("enabled") is True and item.get("category") == "recoverable_on_demand"
+                self.assertEqual(item.get("ui", {}).get("visible") is True, expected)
 
 
 if __name__ == "__main__":

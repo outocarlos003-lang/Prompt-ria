@@ -60,6 +60,7 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
             item_id in registry
             and isinstance(registry[item_id].get("activation"), dict)
             and registry[item_id]["activation"].get("enabled") is True
+            and registry[item_id].get("category") in (None, "recoverable_on_demand")
         )
 
     unknown_explicit_ids = sorted(item_id for item_id in explicit_ids if item_id not in registry)
@@ -74,7 +75,8 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
     ]
     active_explicit_ids = [item_id for item_id in explicit if registry_active(item_id)]
     blocked_explicit_ids = {
-        item_id for item_id in explicit if not registry_active(item_id)
+        item_id for item_id in explicit
+        if item_id in registry and registry[item_id].get("activation", {}).get("enabled") is not True
     }
     blocked_contextual_ids = set(contextual_ids) - set(active_contextual_ids)
     # The router now records inactive rule targets separately instead of
@@ -114,7 +116,7 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
         if isinstance(item, dict)
         and isinstance(item.get("id"), str)
         and item.get("id") in registry
-        and not registry_active(item["id"])
+        and registry[item["id"]].get("activation", {}).get("enabled") is not True
     }
     blocked_inactive_ids = sorted(blocked_contextual_ids | blocked_preflight_ids | blocked_explicit_ids)
 
@@ -129,12 +131,14 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
     ]
     result = specialized.execute({**payload, "instrument_ids": selected}, preflight=augmented)
     result["contextual_analysis"] = context
+    result["continuous_preconfiguration"] = context.get("continuous_preconfiguration", {"applies_to_every_request": True, "instrument_ids": [], "execution_performed": False})
     result["routing_evidence"] = {
         "task_candidates": context["task_candidates"],
         "evidence_chain": context["evidence_chain"],
         "selected_instrument_ids": selected,
         "blocked_inactive_instrument_ids": blocked_inactive_ids,
         "routing_status": "contextual_handlers_executed",
+        "continuous_preconfiguration": result["continuous_preconfiguration"],
     }
     return result
 
