@@ -18,8 +18,8 @@ class ContextRouterTests(unittest.TestCase):
   self.assertFalse(result["external_side_effects_authorized"])
  def test_registry_matching_requires_complete_title_or_registered_alias(self):
   registry={"instruments":[
-   {"id":"alpha","title":"Arquitetura Unificada de Execução Segura","path":"instruments/alpha.md","aliases":["execução segura"],"activation":{"enabled":True}},
-   {"id":"beta","title":"Arquitetura Unificada de Execução Semântica","path":"instruments/beta.md","aliases":["execução semântica"],"activation":{"enabled":True}}
+   {"id":"alpha","title":"Arquitetura Unificada de Execução Segura","path":"instruments/alpha.md","aliases":["execução segura"],"activation":{"enabled":True},"ui":{"visible":True},"category":"recoverable_on_demand"},
+   {"id":"beta","title":"Arquitetura Unificada de Execução Semântica","path":"instruments/beta.md","aliases":["execução semântica"],"activation":{"enabled":True},"ui":{"visible":True},"category":"recoverable_on_demand"}
   ]}
   exact=router.registry_matches("Aplicar execução segura agora.",registry)
   self.assertEqual([item["instrument_id"] for item in exact],["alpha"])
@@ -29,8 +29,8 @@ class ContextRouterTests(unittest.TestCase):
   self.assertEqual(embedded,[])
  def test_longer_canonical_title_shadows_embedded_short_title(self):
   registry={"instruments":[
-   {"id":"alpha","title":"Arquitetura Unificada","path":"instruments/alpha.md","aliases":[],"activation":{"enabled":True}},
-   {"id":"beta","title":"Arquitetura Unificada de Execução Semântica","path":"instruments/beta.md","aliases":[],"activation":{"enabled":True}}
+   {"id":"alpha","title":"Arquitetura Unificada","path":"instruments/alpha.md","aliases":[],"activation":{"enabled":True},"ui":{"visible":True},"category":"recoverable_on_demand"},
+   {"id":"beta","title":"Arquitetura Unificada de Execução Semântica","path":"instruments/beta.md","aliases":[],"activation":{"enabled":True},"ui":{"visible":True},"category":"recoverable_on_demand"}
   ]}
   self.assertEqual([item["instrument_id"] for item in router.registry_matches("Arquitetura Unificada de Execução Semântica",registry)],["beta"])
   both=router.registry_matches("Arquitetura Unificada; Arquitetura Unificada de Execução Semântica",registry)
@@ -38,8 +38,8 @@ class ContextRouterTests(unittest.TestCase):
 
  def test_registry_matching_fails_closed_on_duplicate_aliases_but_accepts_explicit_id(self):
   registry={"instruments":[
-   {"id":"alpha","title":"Instrumento Alfa","path":"instruments/alpha.md","aliases":["execução segura"],"activation":{"enabled":True}},
-   {"id":"beta","title":"Instrumento Beta","path":"instruments/beta.md","aliases":["execução segura"],"activation":{"enabled":True}}
+   {"id":"alpha","title":"Instrumento Alfa","path":"instruments/alpha.md","aliases":["execução segura"],"activation":{"enabled":True},"ui":{"visible":True},"category":"recoverable_on_demand"},
+   {"id":"beta","title":"Instrumento Beta","path":"instruments/beta.md","aliases":["execução segura"],"activation":{"enabled":True},"ui":{"visible":True},"category":"recoverable_on_demand"}
   ]}
   self.assertEqual(router.registry_matches("executar execução segura",registry),[])
   explicit=router.registry_matches("executar execução segura alpha",registry)
@@ -132,25 +132,20 @@ class ContextRouterTests(unittest.TestCase):
     )
 
  def test_contextual_preflight_cannot_activate_inactive_instrument(self):
-  result=contextual.execute(
-   {"request":"Uma demanda simples.","instrument_ids":["github-operational"]},
-   preflight={"matched_instruments":[
-    {"id":"master-execution","identity_status":"resolved","activation":True}
-   ]},
-  )
-  self.assertNotIn("master-execution",result["selected_instrument_ids"])
-  self.assertIn("master-execution",result["continuous_preconfiguration"]["instrument_ids"])
-  self.assertNotIn("master-execution",result["routing_evidence"]["blocked_inactive_instrument_ids"])
+  with self.assertRaisesRegex(SystemExit, "Instrumentos contínuos ou não visíveis"):
+   contextual.execute(
+    {"request":"Uma demanda simples.","instrument_ids":["github-operational"]},
+    preflight={"matched_instruments":[
+     {"id":"master-execution","identity_status":"resolved","activation":True}
+    ]},
+   )
 
  def test_explicit_instrument_id_cannot_bypass_registry_activation(self):
-  result=contextual.execute({
-   "request":"Uma demanda simples.",
-   "instrument_ids":["github-operational","master-execution"],
-  })
-  self.assertIn("github-operational",result["selected_instrument_ids"])
-  self.assertNotIn("master-execution",result["selected_instrument_ids"])
-  self.assertIn("master-execution",result["continuous_preconfiguration"]["instrument_ids"])
-  self.assertNotIn("master-execution",result["routing_evidence"]["blocked_inactive_instrument_ids"])
+  with self.assertRaisesRegex(SystemExit, "Instrumentos contínuos ou não visíveis"):
+   contextual.execute({
+    "request":"Uma demanda simples.",
+    "instrument_ids":["github-operational","master-execution"],
+   })
 
  def test_unknown_explicit_instrument_id_fails_closed(self):
   with self.assertRaisesRegex(SystemExit, "ausentes do registro canônico"):
