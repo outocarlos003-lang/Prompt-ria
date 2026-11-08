@@ -71,6 +71,31 @@ def read_instruments(root: Path) -> list[dict]:
                 "normalized_title": normalize(title),
                 "normalized_aliases": [normalize(alias) for alias in entry.get("aliases", []) if isinstance(alias, str) and normalize(alias)],
                 "active": active,
+                "auxiliary": False,
+            })
+    auxiliary_path = root.parent / "auxiliary-protocols" / "registry.json"
+    if auxiliary_path.is_file():
+        auxiliary_registry = json.loads(auxiliary_path.read_text(encoding="utf-8"))
+        for entry in auxiliary_registry.get("instruments", []):
+            if not isinstance(entry, dict) or entry.get("scope") != "auxiliary":
+                continue
+            source_path = root.parent / entry.get("path", "")
+            if not source_path.is_file():
+                continue
+            source_text = source_path.read_text(encoding="utf-8")
+            heading = re.search(r"(?m)^#\\s+(.+?)\\s*$", source_text)
+            if not heading:
+                continue
+            title = heading.group(1).strip()
+            aliases = entry.get("aliases", []) if isinstance(entry.get("aliases", []), list) else []
+            activation = entry.get("activation", {})
+            items.append({
+                "id": entry.get("id"), "title": title, "path": source_path.as_posix(),
+                "repository_path": entry.get("path"), "aliases": aliases, "content": source_text,
+                "normalized_title": normalize(title),
+                "normalized_aliases": [normalize(alias) for alias in aliases if isinstance(alias, str) and normalize(alias)],
+                "active": isinstance(activation, dict) and activation.get("enabled") is True,
+                "auxiliary": True,
             })
     return items
 
@@ -85,10 +110,15 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     matches = []
     all_by_id = {item.get("id"): item for item in instruments if item.get("id")}
     all_by_repo_path = {item.get("repository_path"): item for item in instruments if item.get("repository_path")}
-    active_catalog = [item for item in instruments if item.get("active", True) and item.get("normalized_title")]
+    active_catalog = [item for item in instruments if item.get("active", True) and not item.get("auxiliary") and item.get("normalized_title")]
 
     def make_match(item, identity, start, end, *, ambiguous=False, diverse=False, disabled=False):
-        if disabled:
+        if item.get("auxiliary"):
+            function_status = "auxiliary_explicit"
+            activation_status = "explicit_auxiliary_recovery"
+            exception_status = "auxiliary_explicit_only"
+            activation = True
+        elif disabled:
             function_status = "disabled"
             activation_status = "explicit_reference_to_disabled_instrument"
             exception_status = "disabled_registry_entry"
@@ -129,6 +159,17 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
         explicit_selectors.append(("id", match.group(1), "matched_by_id", match.start(), match.end()))
     for match in re.finditer(r"(?i)\binstrument_path\s*:\s*(instruments/[A-Za-z0-9._/-]+)", request):
         explicit_selectors.append(("path", match.group(1).rstrip(".,;:!?"), "matched_by_path", match.start(), match.end()))
+    # Auxiliary titles are addressable only through an explicit title selector;
+    # their ordinary title/alias mentions never enter automatic matching.
+    if "instrument title" in normalized_request:
+        for item in instruments:
+            if not item.get("auxiliary"):
+                continue
+            for term in [item.get("normalized_title", ""), *item.get("normalized_aliases", [])]:
+                if term and re.search(r"(?<!\\w)" + re.escape(term) + r"(?!\\w)", normalized_request):
+                    start = normalized_request.find(term)
+                    matches.append(make_match(item, "matched_by_explicit_auxiliary_title", start, start + len(term)))
+                    break
     explicit_item_ids = set()
     explicit_item_paths = set()
     for kind, value, identity, start, end in explicit_selectors:
@@ -266,7 +307,7 @@ def main() -> None:
     if registry_path.is_file():
         # In production, mandatory preloading follows the explicitly enabled set.
         # Temporary test fixtures without a registry retain the legacy contract.
-        default_titles = [(item["title"], "mandatory_active_instrument") for item in instruments if item.get("active", True)]
+        default_titles = [(item["title"], "mandatory_active_instrument") for item in instruments if item.get("active", True) and not item.get("auxiliary")]
     else:
         default_titles = [
             ('ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS', 'mandatory_functional_cross_reference_preconfiguration'),
