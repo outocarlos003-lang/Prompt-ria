@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+import re
 import unittest
 from pathlib import Path
 
@@ -88,6 +89,25 @@ class RepositoryIntegrityTests(unittest.TestCase):
         }]
         self.assertEqual(resolve("Aplicar Instrumento Alfas agora", instruments), [])
         self.assertEqual(len(resolve("Aplicar Instrumento Alfa agora", instruments)), 1)
+
+    def test_root_manifest_matches_the_canonical_test_manifest(self):
+        root_manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+        canonical_manifest = json.loads((ROOT / "tests" / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(root_manifest, canonical_manifest)
+        entries = root_manifest["instruments"]
+        ids = [item["id"] for item in entries]
+        self.assertEqual(len(ids), len(set(ids)), "IDs duplicados no manifesto raiz.")
+        self.assertNotIn("coordinator", ids, "O ID legado não pode voltar como instrumento independente.")
+        canonical = next(item for item in entries if item["id"] == "functional-correference-architecture")
+        self.assertEqual(canonical["path"], "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md")
+        for item in entries:
+            self.assertTrue((ROOT / item["path"]).is_file(), f"Caminho ausente: {item['path']}")
+
+    def test_readme_references_only_versioned_workflows(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        referenced = set(re.findall(r"\.github/workflows/[A-Za-z0-9._-]+\.yml", readme))
+        actual = {path.relative_to(ROOT).as_posix() for path in (ROOT / ".github" / "workflows").glob("*.yml")}
+        self.assertEqual(referenced, actual)
 
 
 if __name__ == "__main__":
