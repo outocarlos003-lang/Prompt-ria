@@ -74,7 +74,7 @@ def read_instruments(root: Path) -> list[dict]:
                 "normalized_aliases": [normalize(alias) for alias in entry.get("aliases", []) if isinstance(alias, str) and normalize(alias)],
                 "active": active,
                 "registry_enabled": isinstance(entry.get("activation"), dict) and entry["activation"].get("enabled") is True,
-                "ui_visible": isinstance(entry.get("ui"), dict) and entry["ui"].get("visible") is True,
+                "ui_visible": (isinstance(entry.get("ui"), dict) and entry["ui"].get("visible") is True) if entry else True,
                 "category": entry.get("category"),
             })
     return items
