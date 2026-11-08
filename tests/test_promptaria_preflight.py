@@ -65,7 +65,8 @@ class PromptariaPreflightTests(unittest.TestCase):
         )
         ids = {item["id"] for item in result["matched_instruments"]}
         self.assertIn("github-operational", ids)
-        self.assertIn("master-activation", ids)
+        self.assertNotIn("master-activation", ids)
+        self.assertIn("master-activation", result["continuous_preconfiguration"]["instrument_ids"])
 
     def test_unified_canonical_title_resolves_without_duplicate_identity(self):
         title = "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"
