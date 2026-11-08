@@ -90,7 +90,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     matches = []
     all_by_id = {item.get("id"): item for item in instruments if item.get("id")}
     all_by_repo_path = {item.get("repository_path"): item for item in instruments if item.get("repository_path")}
-    active_catalog = [item for item in instruments if item.get("active", True) and item.get("ui_visible") is True and item.get("normalized_title") and item.get("category") in (None, "recoverable_on_demand")]
+    active_catalog = [item for item in instruments if item.get("active", True) and item.get("ui_visible", True) is True and item.get("normalized_title") and item.get("category") in (None, "recoverable_on_demand")]
 
     def make_match(item, identity, start, end, *, ambiguous=False, diverse=False, disabled=False):
         if disabled:
