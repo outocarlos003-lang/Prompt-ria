@@ -151,16 +151,12 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
   registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
  policy = load_segment_policy()
  default_integrated = list(policy["default_integrated_instrument_ids"])
- all_enabled_ids = {
-  item.get("id") for item in registry.get("instruments", [])
-  if isinstance(item, dict) and isinstance(item.get("id"), str)
-  and item.get("activation", {}).get("enabled") is True
- }
  enabled_ids = {
   item.get("id") for item in registry.get("instruments", [])
   if isinstance(item, dict) and isinstance(item.get("id"), str)
   and item.get("activation", {}).get("enabled") is True
   and item.get("category") in (None, "recoverable_on_demand")
+  and item.get("ui", {}).get("visible") is True
  }
  fields = flatten(request)
  request_text = "\n".join(path + ": " + value for path, value in fields)
