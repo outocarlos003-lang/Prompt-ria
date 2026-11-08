@@ -2,17 +2,16 @@
 
 ## Contrato
 
-Cada ID do `tests/manifest.json` tem um handler próprio registrado em `scripts/promptaria_specialized_executor.py` e mapeado em `config/instrument-execution-map.json`. O dispatcher valida o manifesto e o mapa, recupera cada fonte Markdown, confirma que o primeiro heading coincide com o título canônico e calcula SHA-256 antes de executar a função específica.
+Cada ID do `manifest.json` tem um handler próprio registrado em `promptaria_specialized_executor.py` e mapeado em `instrument-execution-map.json`. O dispatcher valida o manifesto e o mapa, recupera cada fonte Markdown, confirma que o primeiro heading coincide com o título canônico e calcula SHA-256 antes de executar a função específica.
 
 ## Handlers
 
 | ID | Função executada |
 | --- | --- |
 | `github-operational` | Recupera e verifica a fonte e emite evidência de integridade. |
-| `coordinator` | Coordena instrumentos selecionados, ordem e gates de validação. |
 | `master-activation` | Constrói plano de ativação com componentes-base e gates explícitos. |
 | `master-execution` | Executa checklist estruturado de interpretação, recuperação, planejamento e validação. |
-| `functional-correference-architecture` | Emite relatório de correspondências cumulativas e colisões bloqueadas. |
+| `functional-correference-architecture` | Handler integrado: Fase I resolve correspondências cumulativas e colisões; Fase II coordena instrumentos, ordem, dependências e gates de validação pelo nó `coordination:unified-architecture`. |
 | `fixed-prompt-instrument-part-2` | Constrói envelope que separa demanda, fontes e estado da operação. |
 | `future-demand-preconfiguration` | Preserva todos os campos do pedido estruturado e gera/preserva `request_id`. |
 | `catalog-sitemap-preconfiguration` | Audita fonte canônica e existência de arquivos legados sem criar uma fonte paralela. |
@@ -24,14 +23,14 @@ Prepare um JSON de demanda:
 ```json
 {
   "request": "Validar a cadeia de execução da Promptária",
-  "instrument_ids": ["master-execution", "coordinator"]
+  "instrument_ids": ["master-execution", "functional-correference-architecture"]
 }
 ```
 
 Execute:
 
 ```sh
-python scripts/promptaria_preflight.py --request request.json --output artifacts/preflight.json
+python promptaria_preflight.py --request request.json --output artifacts/preflight.json
 python scripts/promptaria_specialized_executor.py --request request.json --preflight artifacts/preflight.json --output artifacts/specialized-execution.json
 python -m unittest discover -s tests -v
 ```
