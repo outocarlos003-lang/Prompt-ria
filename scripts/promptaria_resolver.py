@@ -157,7 +157,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     explicit_selectors = []
     for match in re.finditer(r"(?i)\binstrument_id\s*:\s*([a-z0-9][a-z0-9._-]*)", request):
         explicit_selectors.append(("id", match.group(1), "matched_by_id", match.start(), match.end()))
-    for match in re.finditer(r"(?i)\binstrument_path\s*:\s*(instruments/[A-Za-z0-9._/-]+)", request):
+    for match in re.finditer(r"(?i)\binstrument_path\s*:\s*((?:instruments|auxiliary-protocols)/[A-Za-z0-9._/-]+)", request):
         explicit_selectors.append(("path", match.group(1).rstrip(".,;:!?"), "matched_by_path", match.start(), match.end()))
     # Auxiliary titles are addressable only through an explicit title selector;
     # their ordinary title/alias mentions never enter automatic matching.
@@ -166,7 +166,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
             if not item.get("auxiliary"):
                 continue
             for term in [item.get("normalized_title", ""), *item.get("normalized_aliases", [])]:
-                if term and re.search(r"(?<!\\w)" + re.escape(term) + r"(?!\\w)", normalized_request):
+                if term and re.search(r"(?<!\w)" + re.escape(term) + r"(?!\w)", normalized_request):
                     start = normalized_request.find(term)
                     matches.append(make_match(item, "matched_by_explicit_auxiliary_title", start, start + len(term)))
                     break
