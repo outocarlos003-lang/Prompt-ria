@@ -68,8 +68,8 @@
       "text": "Buscar por nome ou finalidade...",
       "selector": "#instrument-search",
       "file": "index.html",
-      "function": "pesquisa e filtragem dos instrumentos ativos carregados do registro canônico",
-      "destination": "config/instrument-registry.json",
+      "function": "pesquisa, filtragem e recuperação explícita por título/ID a partir dos registros canônicos operacional e auxiliar",
+      "destination": "instrument-registry.json + auxiliary-protocols/registry.json",
       "status": "pending_verification"
     },
     {
