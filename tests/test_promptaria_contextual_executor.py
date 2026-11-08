@@ -70,6 +70,19 @@ class ContextRouterTests(unittest.TestCase):
   self.assertNotIn("future-demand-preconfiguration",result["routing_evidence"]["blocked_inactive_instrument_ids"])
   self.assertTrue(result["contextual_analysis"]["evidence_chain"])
   self.assertFalse(result["external_side_effects_performed"])
+  continuous_components=result["continuous_preconfiguration"]["components"]
+  self.assertTrue(continuous_components)
+  self.assertEqual(
+   {item["id"] for item in continuous_components},
+   set(result["continuous_preconfiguration"]["instrument_ids"]),
+  )
+  for component in continuous_components:
+   self.assertTrue(component["content"].startswith("# "))
+   self.assertEqual(component["category"],"continuous_automation")
+   self.assertTrue(component["loaded_as_context"])
+   self.assertFalse(component["title_resolvable"])
+   self.assertFalse(component["execution_performed"])
+  self.assertTrue(result["continuous_preconfiguration"]["content_loaded"])
 
  def test_contextual_executor_builds_runtime_cross_category_interconnections(self):
   result=contextual.execute({
