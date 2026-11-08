@@ -60,6 +60,7 @@ def main() -> int:
     registry = json.loads(args.registry.read_text(encoding="utf-8"))
     active_hits = []
     inactive_hits = []
+    continuous_hits = []
     active_ids = []
     continuous_automation_ids = sorted(
         item.get("id") for item in registry.get("instruments", [])
@@ -70,11 +71,12 @@ def main() -> int:
     for item in registry.get("instruments", []):
         if not isinstance(item, dict):
             continue
-        enabled = (item.get("activation", {}).get("enabled") is True and item.get("category") in (None, "recoverable_on_demand"))
+        enabled = (item.get("activation", {}).get("enabled") is True and item.get("category") in (None, "recoverable_on_demand") and item.get("ui", {}).get("visible") is True)
+        continuous = (item.get("activation", {}).get("enabled") is True and item.get("category") == "continuous_automation")
         terms = [item.get("title", ""), *item.get("aliases", [])]
         hits = [term for term in terms if isinstance(term, str) and contains_phrase(normalized_request, term)]
         if hits:
-            target = active_hits if enabled else inactive_hits
+            target = active_hits if enabled else continuous_hits if continuous else inactive_hits
             target.append({"id": item.get("id"), "title": item.get("title"), "matched_terms": hits})
             if enabled:
                 active_ids.append(item.get("id"))
@@ -103,6 +105,7 @@ def main() -> int:
         "rationale": rationale,
         "active_title_matches": active_hits,
         "inactive_title_matches": inactive_hits,
+        "continuous_context_matches": continuous_hits,
         "automation_preconfiguration_intent": automation_intent,
         "allowed_coreference_ids": sorted(set(active_ids)),
         "continuous_automation_ids": continuous_automation_ids,
