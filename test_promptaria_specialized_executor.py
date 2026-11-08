@@ -185,6 +185,25 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertIn("demand_envelope", result["results"][0]["result"])
         self.assertEqual(result["results"][0]["result"]["demand_envelope"]["goal"], title)
 
+    def test_unified_architecture_executes_both_phases_through_one_handler(self):
+        result = self.execute_with_all_instruments_activated({
+            "request": "Aplicar a arquitetura unificada.",
+            "instrument_ids": ["functional-correference-architecture"],
+        })
+        self.assertEqual(result["selected_instrument_ids"], ["functional-correference-architecture"])
+        self.assertEqual(result["specialized_execution_count"], 1)
+        unified = result["results"][0]["result"]
+        self.assertEqual(unified["handler"], "unified-two-phase-architecture")
+        self.assertEqual(unified["canonical_identity"], "functional-correference-architecture")
+        self.assertEqual(unified["coordination_node"]["id"], "coordination:unified-architecture")
+        phases = {phase["id"]: phase for phase in unified["phases"]}
+        self.assertIn("phase:title-functional-correference", phases)
+        self.assertIn("phase:coordinated-architecture", phases)
+        self.assertEqual(phases["phase:title-functional-correference"]["result"]["result"], "correference_report_generated")
+        self.assertEqual(phases["phase:coordinated-architecture"]["result"]["result"], "bundle_coordinated")
+        self.assertTrue(phases["phase:coordinated-architecture"]["result"]["correference_handoff"]["source_evidence"])
+        self.assertEqual(unified["joint_validation"]["status"], "passed")
+
     def test_unknown_id_is_rejected(self):
         with self.assertRaisesRegex(SystemExit, "IDs de instrumento desconhecidos"):
             specialized.execute({"request": "do work", "instrument_ids": ["not-a-real-instrument"]})
