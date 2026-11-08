@@ -1,5 +1,12 @@
 # Promptária
 
+
+## Fusão canônica da arquitetura coordenadora e da correferência funcional
+
+A arquitetura coordenadora anteriormente registrada como `coordinator` e a arquitetura de correferência funcional foram consolidadas em uma única identidade: `functional-correference-architecture`. A **Fase I** resolve títulos, aliases, correspondências cumulativas e ambiguidades; a **Fase II** coordena dependências, compatibilização, sequência, aplicação e validação. O nó `coordination:unified-architecture` conecta as duas fases bidirecionalmente. `coordinator` permanece somente como alias histórico; não há entrada independente no manifesto, registro, catálogo ou mapa de execução.
+
+O layout físico atual mantém fontes e arquivos de suporte na raiz do repositório. Caminhos históricos como `instruments/`, `config/`, `tests/` e `scripts/` não devem ser presumidos como diretórios físicos sem confirmação na árvore vigente.
+
 Repositório de instrumentos promptuais reutilizáveis, identificados por título e preservados como unidades independentes.
 
 ## Automação de correferência por título
@@ -146,7 +153,7 @@ Os IDs do manifesto e seus handlers especializados são mapeados em `config/inst
 
 ## Análise contextual cumulativa e seleção funcional de tarefas
 
-A execução especializada agora possui uma camada aditiva de análise contextual em `scripts/promptaria_context_router.py` e `scripts/promptaria_contextual_executor.py`. Ela preserva a arquitetura vigente, os três componentes-base e os nove handlers canônicos após a consolidação em um handler de duas fases, sem substituir ou fundir os instrumentos existentes.
+A execução especializada agora possui uma camada aditiva de análise contextual em `scripts/promptaria_context_router.py` e `scripts/promptaria_contextual_executor.py`. Ela preserva a arquitetura vigente, os três componentes-base e os nove handlers canônicos após a consolidação em um handler de duas fases, sem fundir instrumentos independentes; a arquitetura coordenadora e a correferência funcional agora compõem uma única identidade em duas fases.
 
 Os elementos-base do protocolo-mestre fornecem a estrutura comum; as personalizações de cada demanda fornecem evidências circunstanciais concatenadas — incluindo ações, objeto, finalidade, títulos, IDs, caminhos e campos estruturados. A análise avalia as evidências em conjunto, registra a proveniência dos campos e seleciona cumulativamente todos os handlers sustentados pelo contexto, em vez de encerrar na primeira correspondência. O relatório expõe a cadeia base → personalização → interpretação contextual → seleção de handlers.
 
