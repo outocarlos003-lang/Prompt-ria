@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import promptaria_context_router as router
 import promptaria_specialized_executor as specialized
+import promptaria_cross_segment as cross_segment
 
 
 def execute(payload: dict, preflight: dict | None = None) -> dict:
@@ -50,8 +51,9 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
             "para desambiguar: " + ", ".join(unresolved_selected)
         )
 
+    registry_source = specialized.read_object(ROOT / "config" / "instrument-registry.json")
     registry = specialized.index_catalog_entries(
-        specialized.read_object(ROOT / "config" / "instrument-registry.json"),
+        registry_source,
         "config/instrument-registry.json",
     )
 
@@ -120,6 +122,13 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
     }
     blocked_inactive_ids = sorted(blocked_contextual_ids | blocked_preflight_ids | blocked_explicit_ids)
 
+    request_id = payload.get("request_id")
+    if request_id is None and isinstance(request, dict):
+        request_id = request.get("request_id")
+    context["cross_segment_interconnection"] = cross_segment.build_interconnection(
+        registry_source, selected_on_demand_ids=selected, request_id=request_id
+    )
+
     augmented = dict(preflight or {})
     augmented["matched_instruments"] = [
         {"id": item_id, "identity_status": "resolved", "activation": True}
@@ -139,6 +148,7 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
         "blocked_inactive_instrument_ids": blocked_inactive_ids,
         "routing_status": "contextual_handlers_executed",
         "continuous_preconfiguration": result["continuous_preconfiguration"],
+        "cross_segment_interconnection": context["cross_segment_interconnection"],
     }
     return result
 
