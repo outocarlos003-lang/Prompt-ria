@@ -11,16 +11,9 @@ permissions:
 
 jobs:
   enable-new-promptual-instruments:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.author_association == 'OWNER'
     runs-on: ubuntu-latest
     steps:
-      # Load the trusted automation from the target branch, never from PR code.
-      - name: Check out trusted base automation
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.sha }}
-          path: trusted
-          fetch-depth: 0
       - name: Check out pull request branch
         uses: actions/checkout@v4
         with:
@@ -35,7 +28,7 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           set -euo pipefail
-          python ../trusted/scripts/auto_enable_new_promptual_instruments.py --base-sha "$BASE_SHA" --root .
+          python scripts/auto_enable_new_promptual_instruments.py --base-sha "$BASE_SHA" --root .
           if git diff --quiet; then
             echo "No new named promptual instrument requires activation."
             exit 0
