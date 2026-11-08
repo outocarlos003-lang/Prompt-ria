@@ -78,20 +78,20 @@
         "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência"
       ],
       "files": [
-        "scripts/promptaria_preflight.py",
-        "scripts/promptaria_executor.py",
+        "promptaria_preflight.py",
+        "promptaria_executor.py",
         "acione-a-promptaria-pelo-github.md",
         "instrument-registry.json",
         "instrument-catalog.json",
         "manifest.json",
-        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "arquitetura-unificada-correferencia-funcional-automatica.md",
         "protocolo-mestre-acionamento-automatico.md",
         "preconfiguracao-correspondencia-futura-e-cadeia.md",
         "preconfiguracao-protocolo-mestre-e-correferencia.md",
-        "config/instrument-execution-map.json",
-        "scripts/promptaria_context_router.py",
-        "scripts/promptaria_resolver.py",
-        "scripts/promptaria_specialized_executor.py"
+        "instrument-execution-map.json",
+        "promptaria_context_router.py",
+        "promptaria_resolver.py",
+        "promptaria_specialized_executor.py"
       ],
       "relations": [
         "request->github-operational",
@@ -204,7 +204,7 @@
         "instrument-registry.json",
         "instrument-catalog.json",
         "manifest.json",
-        "scripts/promptaria_resolver.py"
+        "promptaria_resolver.py"
       ],
       "relations": [
         "title->nocturna-arquitetura-necessidade-identidade-sistemica",
@@ -269,7 +269,7 @@
         "protocolo-operacional-atualizacao-integridade-acervo.md",
         "instrument-registry.json",
         "instrument-catalog.json",
-        "scripts/generate_instrument_catalog.py"
+        "generate_instrument_catalog.py"
       ],
       "relations": [
         "title->protocol-update-integrity",
@@ -317,7 +317,7 @@
       ],
       "files": [
         "protocolo-mestre-acionamento-automatico.md",
-        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "arquitetura-unificada-correferencia-funcional-automatica.md",
         "instrument-registry.json",
         "instrument-catalog.json",
         "manifest.json",
