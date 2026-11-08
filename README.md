@@ -155,11 +155,11 @@ O workflow **Promptária — execução especializada** usa o executor contextua
 Validação local adicional: `python -m unittest tests.test_promptaria_contextual_executor -v`.
 
 
-## Protocolo de atualização integral e preservação funcional
+## Protocolo auxiliar de atualização integral e preservação funcional
 
-O instrumento `instruments/protocolo-operacional-atualizacao-integridade-acervo.md` formaliza a atualização de versões integrais sem perder identidade, rastreabilidade, correferências ou relações entre arquivos. Ele está registrado em `config/instrument-registry.json`, publicado no catálogo `config/instrument-catalog.json` e visível na interface que carrega o registro canônico.
+O instrumento `protocol-update-integrity` foi realocado integralmente para `auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md`, com índice próprio em `auxiliary-protocols/registry.json`. Sua ativação original permanece `enabled: true` e `status: "active"`, mas seu escopo é auxiliar: não integra o registro, o catálogo, o manifesto nem a enumeração operacional.
 
-O resolvedor inclui esse protocolo automaticamente nos planos futuros com a identidade `mandatory_update_integrity_preconfiguration`. A inclusão significa recuperação e planejamento, não execução implícita. A política vigente de simulação, autorização explícita, executor separado e validação continua ativa. A automação reconhece títulos e recupera o conteúdo completo dos arquivos Markdown; a verificação final do conteúdo e das operações depende dos testes e evidências de execução correspondentes.
+A recuperação permanece disponível por endereço explícito — `instrument_id: protocol-update-integrity` ou `instrument_title: [título canônico]` — e pelo executor especializado com ID explícito. Menções comuns não o pré-carregam nem o incluem na seleção automática. A pasta auxiliar não é varrida pelos geradores e contadores do catálogo operacional.
 
 ## Instrumento Nocturna: arquitetura da necessidade e identidade sistêmica
 
@@ -185,7 +185,7 @@ O resolvedor por título continua recuperando todas as ocorrências com normaliz
 
 ## Ativação funcional explícita e inclusão futura
 
-A existência de um Markdown no repositório, no manifesto ou no catálogo **não ativa** sua correferência funcional. O registro mantém um estado explícito em `activation.enabled`: somente entradas habilitadas podem ser resolvidas pelo título canônico e exibidas no site. O estado inicial preserva ativos apenas `github-operational`, `nocturna-arquitetura-necessidade-identidade-sistemica` e `protocol-update-integrity`; os demais ficam preparados, mas inativos.
+A existência de um Markdown no repositório, no manifesto ou no catálogo **não ativa** sua correferência funcional. O registro mantém um estado explícito em `activation.enabled`: somente entradas habilitadas podem ser resolvidas pelo título canônico e exibidas no site. O conjunto operacional mantém ativos apenas `github-operational` e `nocturna-arquitetura-necessidade-identidade-sistemica`; protocolos auxiliares habilitados são armazenados separadamente e não integram esse conjunto.
 
 Quando um instrumento preparado for efetivamente publicado no site, habilite-o pelo ID já registrado:
 
@@ -201,11 +201,10 @@ Para um instrumento novo, primeiro crie o Markdown e complete sua entrada no reg
 
 ## Ativação controlada e pré-configuração futura
 
-A interface e o resolvedor funcional usam exclusivamente os instrumentos com `activation.enabled: true` em `config/instrument-registry.json`. Os três instrumentos-base atualmente habilitados são:
+A interface e o resolvedor funcional usam exclusivamente os instrumentos com `activation.enabled: true` em `config/instrument-registry.json`. Os dois instrumentos-base atualmente habilitados são:
 
 - `github-operational`
 - `nocturna-arquitetura-necessidade-identidade-sistemica`
-- `protocol-update-integrity`
 
 Os outros instrumentos que já existem permanecem inventariados, mas desativados. Estar em `instruments/`, no manifesto ou no catálogo não basta para habilitar um instrumento existente.
 
@@ -289,8 +288,6 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
   - Revisão editorial sugerida para: dependências.
 - **master-execution — Protocolo-mestre de execução correta desde a primeira solicitação** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 3; operações: 3; relações: 2.
   - Revisão editorial sugerida para: exemplos/uso.
-- **protocol-update-integrity — PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA** (active): 6/8 indicadores documentais; funções registradas: 4; operações: 6; relações: 5.
-  - Revisão editorial sugerida para: saídas/resultados, exemplos/uso.
 
 ### Inventário versionado
 
@@ -304,7 +301,6 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 - instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md
 - instruments/protocolo-mestre-acionamento-automatico.md
 - instruments/protocolo-mestre-execucao-correta.md
-- instruments/protocolo-operacional-atualizacao-integridade-acervo.md
 
 #### Scripts operacionais (18)
 
