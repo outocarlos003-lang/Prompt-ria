@@ -22,6 +22,20 @@ class GitHubOperationalPairTests(unittest.TestCase):
         cls.entries = {item["id"]: item for item in cls.registry["instruments"]}
         cls.mapped = {item["id"]: item for item in cls.execution_map["instruments"]}
 
+    def test_category_catalogs_keep_the_two_github_phases_separate(self):
+        continuous = json.loads((ROOT / "config" / "continuous-automation-catalog.json").read_text(encoding="utf-8"))
+        recoverable = json.loads((ROOT / "config" / "recoverable-on-demand-catalog.json").read_text(encoding="utf-8"))
+        continuous_ids = {item["id"] for item in continuous["instruments"]}
+        recoverable_ids = {item["id"] for item in recoverable["instruments"]}
+        self.assertIn(CONTINUOUS_ID, continuous_ids)
+        self.assertNotIn(CONTINUOUS_ID, recoverable_ids)
+        self.assertIn(RECOVERABLE_ID, recoverable_ids)
+        self.assertNotIn(RECOVERABLE_ID, continuous_ids)
+        self.assertEqual(continuous["catalog_type"], "continuous_automation")
+        self.assertEqual(recoverable["catalog_type"], "recoverable_on_demand")
+        self.assertEqual(self.entries[CONTINUOUS_ID]["category"], "continuous_automation")
+        self.assertEqual(self.entries[RECOVERABLE_ID]["category"], "recoverable_on_demand")
+
     def test_continuous_mirror_remains_internal(self):
         item = self.entries[CONTINUOUS_ID]
         self.assertEqual(item["path"], "instruments/acione-a-promptaria-pelo-github.md")

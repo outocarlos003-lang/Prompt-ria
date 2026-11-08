@@ -1,6 +1,11 @@
 {
   "schema_version": 2,
   "generated_by": "scripts/generate_instrument_catalog.py",
+  "catalog_role": "complete_inventory_not_public_selection_catalog",
+  "category_catalogs": {
+    "continuous_automation": "continuous-automation-catalog.json",
+    "recoverable_on_demand": "recoverable-on-demand-catalog.json"
+  },
   "source_glob": "instruments/*.md",
   "registry": "config/instrument-registry.json",
   "repository": "outocarlos003-lang/Prompt-ria",
@@ -61,7 +66,11 @@
         "preservar correferência, aliases e rastreabilidade entre segmentos",
         "operacionalizar as funções compartilhadas pela automação de correspondência por título e pelo protocolo-mestre sem substituir seus papéis próprios",
         "interconectar o nó operacional canônico aos segmentos de correspondência, protocolo-mestre e pré-configuração padrão",
-        "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência"
+        "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência",
+        "pré-configurar continuamente a interface entre demanda, instrumentos e GitHub",
+        "carregar o contrato operacional como contexto interno em toda demanda",
+        "preparar a fase recuperável complementar sem ocupar seu lugar no catálogo público",
+        "manter interconexão entre pré-configuração contínua e futuro instrumento recuperável de mesmo título"
       ],
       "relations": [
         "request->github-operational",
@@ -97,7 +106,15 @@
         "instrument-registry.github-operational->master-activation",
         "instrument-registry.github-operational->standard-preconfiguration",
         "functional-correference-architecture->master-activation",
-        "master-activation->functional-correference-architecture"
+        "master-activation->functional-correference-architecture",
+        "github-operational-preconfiguration->github-operational-recoverable",
+        "github-operational-recoverable->github-operational-preconfiguration",
+        "continuous-preconfiguration->demand-routing",
+        "demand-routing->recoverable-github-instrument",
+        "github-operational-preconfiguration->nocturna-architecture",
+        "nocturna-architecture->github-operational-preconfiguration",
+        "github-operational->github-operational-recoverable",
+        "github-operational-recoverable->github-operational"
       ],
       "operations": [
         "inspect",
@@ -113,9 +130,13 @@
         "trace-cross-segment",
         "resolve-cross-segment-identity",
         "preserve-functional-contract",
-        "audit-bidirectional-trace"
+        "audit-bidirectional-trace",
+        "load-as-continuous-context",
+        "prepare-recoverable-counterpart",
+        "coordinate-complementary-phases"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:github-operational",
         "visible": false,
@@ -219,6 +240,7 @@
         "validate-integrity"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
@@ -358,6 +380,7 @@
         "trace"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:promptaria-instrument-template",
         "visible": false,
@@ -435,6 +458,7 @@
         "plan"
       ],
       "category": "recoverable_on_demand",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:nocturna-arquitetura-necessidade-identidade-sistemica",
         "visible": true,
@@ -475,6 +499,7 @@
         "validate"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:future-demand-preconfiguration",
         "visible": false,
@@ -515,6 +540,7 @@
         "validate"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:catalog-sitemap-preconfiguration",
         "visible": false,
@@ -560,6 +586,7 @@
         "validate"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-activation",
         "visible": false,
@@ -600,6 +627,7 @@
         "report"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-execution",
         "visible": false,

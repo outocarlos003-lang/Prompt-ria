@@ -292,8 +292,9 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `tests/teste-cadeia-navegacional.mjs`
 - `tests/teste-registro-instrumentos.py`
 
-### Configurações JSON (12)
+### Configurações JSON (14)
 
+- `config/continuous-automation-catalog.json`
 - `config/cross-segment-interconnection.json`
 - `config/instrument-catalog.json`
 - `config/instrument-execution-map.json`
@@ -303,11 +304,22 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `config/interface-traceability-current.json`
 - `config/interface-traceability.json`
 - `config/promptaria_permissions.json`
+- `config/recoverable-on-demand-catalog.json`
 - `config/segment-integration-policy.json`
 - `config/traceability-graph-current.json`
 - `config/traceability-graph.json`
 
 <!-- PROMPTARIA-README-AUTO:END -->
+
+
+## Catálogos separados por modalidade
+
+O registro canônico mantém as duas fases como identidades distintas. O inventário agregado `config/instrument-catalog.json` reúne todas as entradas apenas para auditoria e cobertura documental; ele não é o catálogo público de seleção. Os catálogos operacionais são separados e gerados por `scripts/generate_instrument_catalog.py`:
+
+- `config/continuous-automation-catalog.json` e `continuous-automation-catalog.json`: instrumentos da categoria `continuous_automation`, incluindo `github-operational`.
+- `config/recoverable-on-demand-catalog.json` e `recoverable-on-demand-catalog.json`: instrumentos da categoria `recoverable_on_demand`, incluindo `github-operational-recoverable`, sem listar o instrumento contínuo.
+
+A interface pública carrega exclusivamente `recoverable-on-demand-catalog.json`. Assim, o instrumento antigo permanece na automação funcional contínua, enquanto somente o novo instrumento aparece na recuperação sob demanda.
 
 ## Workflows ativos
 

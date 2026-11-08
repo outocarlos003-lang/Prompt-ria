@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/generate_instrument_catalog.py",
+  "catalog_type": "recoverable_on_demand",
+  "registry": "config/instrument-registry.json",
+  "repository": "outocarlos003-lang/Prompt-ria",
+  "instruments": [
+    {
+      "id": "github-operational-recoverable",
+      "path": "instruments/github-operational-recoverable.md",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL — EXECUÇÃO SOB DEMANDA DE INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "aliases": [
+        "acionamento recuperável de demandas",
+        "execução sob demanda da Promptária",
+        "fase recuperável GitHub operacional",
+        "aplicação recuperável de demandas pelo GitHub"
+      ],
+      "keywords": [
+        "github",
+        "promptária",
+        "demanda",
+        "inserir",
+        "recuperar",
+        "aplicar",
+        "seleção explícita",
+        "execução sob demanda",
+        "instrumento recuperável",
+        "rastreabilidade",
+        "validação",
+        "correferência",
+        "autorização",
+        "fonte integral"
+      ],
+      "functions": [
+        "recuperar instrumentos promptuais integrais para uma demanda explicitamente selecionada",
+        "contextualizar e parametrizar instrumentos conforme a demanda específica",
+        "coordenar instrumentos selecionados preservando identidades e funções individuais",
+        "executar operações solicitadas dentro das permissões e autorizações disponíveis",
+        "validar resultados e registrar evidências rastreáveis",
+        "complementar a pré-configuração contínua sem substituí-la",
+        "preservar separação entre seleção, execução e autorização de efeitos externos"
+      ],
+      "relations": [
+        "github-operational->github-operational-recoverable",
+        "github-operational-recoverable->github-operational",
+        "instrument:github-operational->instrument:github-operational-recoverable",
+        "instrument:github-operational-recoverable->instrument:github-operational",
+        "continuous_preconfiguration->demand_routing",
+        "demand_routing->recoverable_execution",
+        "recoverable_execution->validated_result",
+        "github-operational-recoverable->instrument-registry",
+        "instrument-registry->instrument-catalog",
+        "instrument-registry->instrument-execution-map",
+        "instrument-execution-map->handler_github_operational_recoverable",
+        "demand->github-operational-recoverable",
+        "github-operational-recoverable->explicit_selection_gate",
+        "explicit_selection_gate->authorization_gate",
+        "authorization_gate->validated_result"
+      ],
+      "operations": [
+        "resolve-explicit-selection",
+        "recover-full-source",
+        "verify-canonical-identity",
+        "contextualize-demand",
+        "parameterize-application",
+        "coordinate-selected-instruments",
+        "execute-authorized-operation",
+        "validate-result",
+        "trace-cross-segment-operation"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "default_title_rule",
+      "ui": {
+        "node_id": "instrument:github-operational-recoverable",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "on_demand_title"
+      }
+    },
+    {
+      "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
+      "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
+      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+      "aliases": [
+        "Nocturna",
+        "arquitetura da necessidade",
+        "reconstrução recursiva da identidade sistêmica",
+        "princípio origem e fim",
+        "correferência multiescalar",
+        "indução fractal",
+        "Princípio Normativo de Correferência Fractal, Invariância Relacional e Potência Generativa do Logos"
+      ],
+      "keywords": [
+        "Nocturna",
+        "necessidade",
+        "identidade sistêmica",
+        "reconstrução recursiva",
+        "origem",
+        "causalidade",
+        "teleologia",
+        "correferência",
+        "indução fractal",
+        "Logos",
+        "ambiguidade estruturada",
+        "potência generativa",
+        "proveniência",
+        "acervos",
+        "coleções",
+        "publicações",
+        "não contradição",
+        "derivação",
+        "explícito",
+        "implícito"
+      ],
+      "functions": [
+        "reconstruir a arquitetura conceitual a partir dos acervos Nocturna",
+        "inventariar proveniência, dependências e correferências",
+        "selecionar fundamentos necessários e suficientes em potência generativa",
+        "encadear objeções retóricas e derivação causal",
+        "aplicar a norma representacional Logos preservando diferenças contextuais",
+        "distinguir necessidade, possibilidade, hipótese e lacuna documental",
+        "verificar não contradição e rastreabilidade das derivações"
+      ],
+      "relations": [
+        "title->nocturna-arquitetura-necessidade-identidade-sistemica",
+        "nocturna->source-collections-and-publications",
+        "source->provenance-and-dependencies",
+        "provenance->structural-reconstruction",
+        "structural-reconstruction->generative-derivation",
+        "Logos->contextual-correference",
+        "derivation->verification",
+        "instrument->interface-node",
+        "instrument->future-resolution-plan"
+      ],
+      "operations": [
+        "discover",
+        "inventory",
+        "correfer",
+        "reconstruct",
+        "derive",
+        "verify",
+        "trace",
+        "plan"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": null,
+      "ui": {
+        "node_id": "instrument:nocturna-arquitetura-necessidade-identidade-sistemica",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "on_demand_title"
+      }
+    }
+  ]
+}
