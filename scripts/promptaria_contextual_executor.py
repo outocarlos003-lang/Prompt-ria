@@ -14,6 +14,50 @@ import promptaria_specialized_executor as specialized
 import promptaria_interconnection as interconnection
 
 
+def load_continuous_preconfiguration(registry_data: dict) -> list[dict]:
+    """Load enabled continuous instruments as inert context, never as handlers."""
+    entries = registry_data.get("instruments", [])
+    if not isinstance(entries, list):
+        raise SystemExit("Registro canônico inválido: instruments deve ser uma lista.")
+    loaded = []
+    for entry in entries:
+        if not isinstance(entry, dict) or entry.get("category") != "continuous_automation":
+            continue
+        activation = entry.get("activation")
+        if not isinstance(activation, dict) or activation.get("enabled") is not True:
+            continue
+        instrument_id = entry.get("id")
+        relative = entry.get("path")
+        title = entry.get("title")
+        if not all(isinstance(value, str) and value.strip() for value in (instrument_id, relative, title)):
+            raise SystemExit("Pré-configuração contínua inválida: ID, título e caminho são obrigatórios.")
+        candidate = Path(relative)
+        if candidate.is_absolute() or any(part in ("", ".", "..") for part in candidate.parts):
+            raise SystemExit(f"Caminho inválido na pré-configuração contínua: {relative}")
+        source_path = (ROOT / candidate).resolve()
+        try:
+            source_path.relative_to(ROOT.resolve())
+        except ValueError as exc:
+            raise SystemExit(f"Caminho contínuo escapa do repositório: {relative}") from exc
+        if not source_path.is_file():
+            raise SystemExit(f"Fonte contínua ausente: {relative}")
+        content = source_path.read_text(encoding="utf-8")
+        first_heading = next((line[2:].strip() for line in content.splitlines() if line.startswith("# ")), None)
+        if first_heading != title:
+            raise SystemExit(f"Título H1 divergente na pré-configuração contínua: {relative}")
+        loaded.append({
+            "id": instrument_id,
+            "title": title,
+            "path": relative,
+            "category": "continuous_automation",
+            "content": content,
+            "loaded_as_context": True,
+            "title_resolvable": False,
+            "execution_performed": False,
+        })
+    return loaded
+
+
 def execute(payload: dict, preflight: dict | None = None) -> dict:
     request = payload.get("request", payload.get("demand", payload))
     context = router.analyze(request)
@@ -133,7 +177,16 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
     ]
     result = specialized.execute({**payload, "instrument_ids": selected}, preflight=augmented)
     result["contextual_analysis"] = context
-    result["continuous_preconfiguration"] = context.get("continuous_preconfiguration", {"applies_to_every_request": True, "instrument_ids": [], "execution_performed": False})
+    continuous_preconfiguration = dict(context.get("continuous_preconfiguration", {
+        "applies_to_every_request": True,
+        "instrument_ids": [],
+        "execution_performed": False,
+    }))
+    continuous_components = load_continuous_preconfiguration(registry_data)
+    continuous_preconfiguration["components"] = continuous_components
+    continuous_preconfiguration["content_loaded"] = True
+    continuous_preconfiguration["execution_performed"] = False
+    result["continuous_preconfiguration"] = continuous_preconfiguration
     request_id = payload.get("request_id")
     if not isinstance(request_id, str) or not request_id.strip():
         request_id = request.get("request_id") if isinstance(request, dict) else None
