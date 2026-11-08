@@ -61,6 +61,24 @@ class RepositoryIntegrityTests(unittest.TestCase):
         }
         self.assertTrue(required.issubset(titles | aliases), f"Componentes-base ausentes: {sorted(required - titles - aliases)}")
 
+    def test_root_manifest_matches_the_canonical_test_manifest(self):
+        import json
+
+        root_manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
+        canonical_manifest = json.loads((ROOT / "tests" / "manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(root_manifest, canonical_manifest)
+        entries = root_manifest["instruments"]
+        ids = [item["id"] for item in entries]
+        self.assertEqual(len(ids), len(set(ids)), "IDs duplicados no manifesto raiz.")
+        self.assertNotIn("coordinator", ids, "O ID legado não pode voltar como instrumento independente.")
+        canonical = next(item for item in entries if item["id"] == "functional-correference-architecture")
+        self.assertEqual(
+            canonical["path"],
+            "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
+        )
+        for item in entries:
+            self.assertTrue((ROOT / item["path"]).is_file(), f"Caminho ausente: {item['path']}")
+
     def test_resolver_output_contract_rejects_false_execution_claims(self):
         valid = {
             "schema_version": 2,
