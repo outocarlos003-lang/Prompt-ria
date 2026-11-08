@@ -309,6 +309,16 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 
 <!-- PROMPTARIA-README-AUTO:END -->
 
+
+## Catálogos separados por modalidade
+
+O registro canônico mantém as duas fases como identidades distintas. O inventário agregado `config/instrument-catalog.json` reúne todas as entradas apenas para auditoria e cobertura documental; ele não é o catálogo público de seleção. Os catálogos operacionais são separados e gerados por `scripts/generate_instrument_catalog.py`:
+
+- `config/continuous-automation-catalog.json` e `continuous-automation-catalog.json`: instrumentos da categoria `continuous_automation`, incluindo `github-operational`.
+- `config/recoverable-on-demand-catalog.json` e `recoverable-on-demand-catalog.json`: instrumentos da categoria `recoverable_on_demand`, incluindo `github-operational-recoverable`, sem listar o instrumento contínuo.
+
+A interface pública carrega exclusivamente `recoverable-on-demand-catalog.json`. Assim, o instrumento antigo permanece na automação funcional contínua, enquanto somente o novo instrumento aparece na recuperação sob demanda.
+
 ## Workflows ativos
 
 A árvore atual contém cinco workflows versionados:
