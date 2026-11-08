@@ -244,11 +244,23 @@ def main() -> None:
         if item.get("activation", {}).get("enabled") is True
         and item.get("category") == "continuous_automation"
     )
-    interconnection_plan = interconnection.build(registry_data)
+    request_id = payload.get("request_id")
+    if not isinstance(request_id, str) or not request_id.strip():
+        request_id = None
+    selected_on_demand_ids = [
+        item["id"] for item in matches
+        if item.get("identity_status") == "resolved" and item.get("activation") is True
+    ]
+    interconnection_plan = interconnection.build(
+        registry_data,
+        selected_on_demand_ids=selected_on_demand_ids,
+        request_id=request_id,
+    )
     preauthorization = assess_preauthorization(request, matches, payload.get("destination"), set(continuous_automation_ids))
     result = {
         "schema_version": 2,
         "created_at": datetime.now(timezone.utc).isoformat(),
+        "request_id": request_id,
         "request": request,
         "destination": payload.get("destination"),
         "matched_instruments": matches,
