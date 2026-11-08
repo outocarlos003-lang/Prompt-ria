@@ -20,6 +20,10 @@ class PromptariaResolverTests(unittest.TestCase):
             if registry_entries is not None:
                 config_dir = root / "config"
                 config_dir.mkdir()
+                registry_entries = [
+                    {**item, "ui": item.get("ui", {"visible": True})}
+                    for item in registry_entries
+                ]
                 (config_dir / "instrument-registry.json").write_text(
                     json.dumps({"schema_version": 2, "instruments": registry_entries}, ensure_ascii=False),
                     encoding="utf-8",
