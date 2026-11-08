@@ -238,47 +238,6 @@
       }
     },
     {
-      "id": "coordinator",
-      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-      "path": "instruments/arquitetura-unificada.md",
-      "aliases": [
-        "arquitetura unificada"
-      ],
-      "keywords": [
-        "arquitetura",
-        "coordenação",
-        "integração",
-        "correferência",
-        "instrumentos"
-      ],
-      "functions": [
-        "coordenar instrumentos",
-        "preservar relações",
-        "integrar fluxos"
-      ],
-      "files": [
-        "instruments/arquitetura-unificada.md"
-      ],
-      "relations": [
-        "coordinator->context-router",
-        "coordinator->resolver"
-      ],
-      "operations": [
-        "coordinate",
-        "integrate",
-        "validate"
-      ],
-      "ui": {
-        "node_id": "instrument:coordinator",
-        "visible": false,
-        "featured": false
-      },
-      "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
-    },
-    {
       "id": "master-activation",
       "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
       "path": "instruments/protocolo-mestre-acionamento-automatico.md",
@@ -380,7 +339,10 @@
         "correspondência por título",
         "instrumento coordenador unificado",
         "automação de correspondência por título",
-        "arquitetura coordenadora de múltiplos instrumentos"
+        "arquitetura coordenadora de múltiplos instrumentos",
+        "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
+        "coordinator",
+        "arquitetura unificada"
       ],
       "keywords": [
         "título",
@@ -408,7 +370,10 @@
         "articular o instrumento fixo com o protocolo-mestre e a pré-configuração padrão",
         "processar cumulativamente múltiplos títulos sem limite numérico arbitrário",
         "manter rastreabilidade entre título, ID, nó, fonte, função, operação e resultado",
-        "distinguir identificação, recuperação, acionamento, execução e validação"
+        "distinguir identificação, recuperação, acionamento, execução e validação",
+        "coordenar instrumentos",
+        "preservar relações",
+        "integrar fluxos"
       ],
       "files": [
         "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
@@ -440,7 +405,11 @@
         "instrument:github-operational->functional-correference-architecture",
         "functional-correference-architecture->canonical-full-text",
         "canonical-full-text->master-activation",
-        "canonical-full-text->standard-preconfiguration"
+        "canonical-full-text->standard-preconfiguration",
+        "functional-correference-architecture->context-router",
+        "functional-correference-architecture->resolver",
+        "legacy-id:coordinator->functional-correference-architecture",
+        "instrument:coordinator->instrument:functional-correference-architecture"
       ],
       "operations": [
         "match",
@@ -450,7 +419,9 @@
         "preserve-instrument-identity",
         "coordinate-cumulative-instruments",
         "trace-cross-segment",
-        "validate-integrity"
+        "validate-integrity",
+        "integrate",
+        "validate"
       ],
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
