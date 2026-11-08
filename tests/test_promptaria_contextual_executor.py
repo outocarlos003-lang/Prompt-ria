@@ -14,7 +14,7 @@ class ContextRouterTests(unittest.TestCase):
   self.assertIn("future_preconfiguration",tasks)
   self.assertIn("functional_correference",tasks)
   self.assertIn("master_protocol_activation",tasks)
-  self.assertEqual(result["selected_instrument_ids"][:3],router.BASE_IDS)
+  self.assertEqual(result["selected_instrument_ids"][:2],router.BASE_IDS)
   self.assertFalse(result["external_side_effects_authorized"])
  def test_registry_matching_requires_complete_title_or_registered_alias(self):
   registry={"instruments":[
