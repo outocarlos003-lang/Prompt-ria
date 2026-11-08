@@ -115,6 +115,7 @@
         "preserve-functional-contract",
         "audit-bidirectional-trace"
       ],
+      "category": "recoverable_on_demand",
       "ui": {
         "node_id": "instrument:github-operational",
         "visible": true,
@@ -122,7 +123,8 @@
       },
       "activation": {
         "enabled": true,
-        "status": "active"
+        "status": "active",
+        "mode": "on_demand_title"
       }
     },
     {
@@ -216,6 +218,7 @@
         "trace-cross-segment",
         "validate-integrity"
       ],
+      "category": "continuous_automation",
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
@@ -227,8 +230,9 @@
         ]
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
       }
     },
     {
@@ -277,14 +281,16 @@
         "validate",
         "trace"
       ],
+      "category": "continuous_automation",
       "ui": {
         "node_id": "instrument:promptaria-instrument-template",
         "visible": false,
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
       }
     },
     {
@@ -352,6 +358,7 @@
         "trace",
         "plan"
       ],
+      "category": "recoverable_on_demand",
       "ui": {
         "node_id": "instrument:nocturna-arquitetura-necessidade-identidade-sistemica",
         "visible": true,
@@ -359,7 +366,8 @@
       },
       "activation": {
         "enabled": true,
-        "status": "active"
+        "status": "active",
+        "mode": "on_demand_title"
       }
     },
     {
@@ -390,14 +398,16 @@
         "route",
         "validate"
       ],
+      "category": "continuous_automation",
       "ui": {
         "node_id": "instrument:future-demand-preconfiguration",
         "visible": false,
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
       }
     },
     {
@@ -428,14 +438,16 @@
         "synchronize",
         "validate"
       ],
+      "category": "continuous_automation",
       "ui": {
         "node_id": "instrument:catalog-sitemap-preconfiguration",
         "visible": false,
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
       }
     },
     {
@@ -471,14 +483,16 @@
         "activate",
         "validate"
       ],
+      "category": "continuous_automation",
       "ui": {
         "node_id": "instrument:master-activation",
         "visible": false,
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
       }
     },
     {
@@ -509,14 +523,16 @@
         "validate",
         "report"
       ],
+      "category": "continuous_automation",
       "ui": {
         "node_id": "instrument:master-execution",
         "visible": false,
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
       }
     }
   ]
