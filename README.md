@@ -141,7 +141,7 @@ A configuração trata números de catálogo, caminhos, estados e auditorias inc
 
 ## Execução especializada dos instrumentos
 
-Os IDs do manifesto e seus handlers especializados são mapeados em `config/instrument-execution-map.json`; o novo protocolo de atualização é uma pré-configuração de planejamento e não declara um handler especializado inexistente. O dispatcher verifica títulos canônicos e hashes das fontes antes de executar as rotinas específicas. Para executar via GitHub Actions, use **Promptária — execução especializada**; os resultados JSON são publicados como artefatos. Títulos que colidem após normalização exigem `instrument_ids` explícitos. Os handlers atuais produzem resultados locais auditáveis e não fazem escritas externas nem executam código arbitrário contido nos instrumentos. Consulte `docs/execucao-especializada-instrumentos.md` para contratos e exemplos.
+Os IDs do manifesto e seus handlers especializados são mapeados em `instrument-execution-map.json`; o novo protocolo de atualização é uma pré-configuração de planejamento e não declara um handler especializado inexistente. O dispatcher verifica títulos canônicos e hashes das fontes antes de executar as rotinas específicas. Para executar via GitHub Actions, use **Promptária — execução especializada**; os resultados JSON são publicados como artefatos. Títulos que colidem após normalização exigem `instrument_ids` explícitos. Os handlers atuais produzem resultados locais auditáveis e não fazem escritas externas nem executam código arbitrário contido nos instrumentos. Consulte `docs/execucao-especializada-instrumentos.md` para contratos e exemplos.
 
 
 ## Análise contextual cumulativa e seleção funcional de tarefas
@@ -157,7 +157,7 @@ Validação local adicional: `python -m unittest tests.test_promptaria_contextua
 
 ## Protocolo de atualização integral e preservação funcional
 
-O instrumento `instruments/protocolo-operacional-atualizacao-integridade-acervo.md` formaliza a atualização de versões integrais sem perder identidade, rastreabilidade, correferências ou relações entre arquivos. Ele está registrado em `config/instrument-registry.json`, publicado no catálogo `config/instrument-catalog.json` e visível na interface que carrega o registro canônico.
+O instrumento `instruments/protocolo-operacional-atualizacao-integridade-acervo.md` formaliza a atualização de versões integrais sem perder identidade, rastreabilidade, correferências ou relações entre arquivos. Ele está registrado em `instrument-registry.json`, publicado no catálogo `instrument-catalog.json` e visível na interface que carrega o registro canônico.
 
 O resolvedor inclui esse protocolo automaticamente nos planos futuros com a identidade `mandatory_update_integrity_preconfiguration`. A inclusão significa recuperação e planejamento, não execução implícita. A política vigente de simulação, autorização explícita, executor separado e validação continua ativa. A automação reconhece títulos e recupera o conteúdo completo dos arquivos Markdown; a verificação final do conteúdo e das operações depende dos testes e evidências de execução correspondentes.
 
@@ -171,7 +171,7 @@ O resolvedor inclui o instrumento em planos futuros como `mandatory_nocturna_arc
 
 O workflow `.github/workflows/promptaria-tests.yml` executa agora `.github/scripts/validate_instrument_traceability.py` em cada pull request e push para `main`. A verificação cruza os arquivos Markdown de `instruments/*.md` com o registro canônico, o catálogo publicado e o manifesto de testes. Uma inclusão ou alteração não pode passar pela validação se faltar uma entrada, houver caminho obsoleto, divergência de título, ID duplicado ou metadados essenciais incompletos.
 
-Para cada instrumento novo, preserve o primeiro cabeçalho Markdown como título canônico e registre no `config/instrument-registry.json`: ID único, caminho, aliases, palavras-chave, funções, relações explícitas no formato `origem->destino`, operações e nó de interface. Atualize também `tests/manifest.json` e regenere `config/instrument-catalog.json` com:
+Para cada instrumento novo, preserve o primeiro cabeçalho Markdown como título canônico e registre no `instrument-registry.json`: ID único, caminho, aliases, palavras-chave, funções, relações explícitas no formato `origem->destino`, operações e nó de interface. Atualize também `manifest.json` e regenere `instrument-catalog.json` com:
 
 ```bash
 python scripts/generate_instrument_catalog.py
@@ -201,7 +201,7 @@ Para um instrumento novo, primeiro crie o Markdown e complete sua entrada no reg
 
 ## Ativação controlada e pré-configuração futura
 
-A interface e o resolvedor funcional usam exclusivamente os instrumentos com `activation.enabled: true` em `config/instrument-registry.json`. Os três instrumentos-base atualmente habilitados são:
+A interface e o resolvedor funcional usam exclusivamente os instrumentos com `activation.enabled: true` em `instrument-registry.json`. Os três instrumentos-base atualmente habilitados são:
 
 - `github-operational`
 - `nocturna-arquitetura-necessidade-identidade-sistemica`
@@ -218,7 +218,7 @@ A automação pré-configura identidade e reconhecimento; ela não executa o con
 
 Antes de resolver títulos, o workflow executa `scripts/promptaria_route_request.py` e grava `request-routing.json` como artefato auditável. A classificação escolhe uma rota separada:
 
-- `title_coreference`: a demanda cita explicitamente um título de instrumento habilitado em `config/instrument-registry.json`; somente então o resolvedor de títulos é executado.
+- `title_coreference`: a demanda cita explicitamente um título de instrumento habilitado em `instrument-registry.json`; somente então o resolvedor de títulos é executado.
 - `automation_preconfiguration`: a demanda pede criação, ajuste, sincronização ou pré-configuração de automação sem citar um título ativo. O workflow entrega apenas o plano de roteamento e **não** executa a correferência.
 - `mixed_coreference_and_automation_preconfiguration`: ambas as intenções aparecem; a resolução de títulos ativos é executada e a intenção de automação fica identificada separadamente.
 - `inactive_or_unregistered_reference`: uma referência reconhecida aponta para instrumento desativado; a correferência é bloqueada.
@@ -258,8 +258,8 @@ Esta seção é sincronizada com a árvore versionada do repositório. O invent�
 - Instruções comuns para agentes: AGENTS.md e AI_AGENT_GUIDE.md.
 - Instruções de automação: .github/AUTOPILOT.md e .github/copilot-instructions.md.
 - Resolução e roteamento: scripts/promptaria_resolver.py, scripts/promptaria_route_request.py e scripts/promptaria_context_router.py.
-- Execução e salvaguardas: scripts/promptaria_executor.py, scripts/promptaria_specialized_executor.py e config/promptaria_permissions.json.
-- Fonte de identidade: config/instrument-registry.json; catálogo em config/instrument-catalog.json; manifesto em tests/manifest.json.
+- Execução e salvaguardas: scripts/promptaria_executor.py, promptaria_specialized_executor.py e config/promptaria_permissions.json.
+- Fonte de identidade: instrument-registry.json; catálogo em instrument-catalog.json; manifesto em manifest.json.
 - Testes Python: python -m unittest discover -s tests -v.
 - Testes JavaScript: node --test tests/*.test.mjs.
 
@@ -322,7 +322,7 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 - scripts/promptaria_registry_audit.py
 - scripts/promptaria_resolver.py
 - scripts/promptaria_route_request.py
-- scripts/promptaria_specialized_executor.py
+- promptaria_specialized_executor.py
 - scripts/promptaria_validate_result.py
 - scripts/validate_instrument_reference_contract.py
 - scripts/validate_instrument_registry.py
@@ -391,10 +391,10 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 
 #### Configurações JSON (10)
 
-- config/instrument-catalog.json
-- config/instrument-execution-map.json
+- instrument-catalog.json
+- instrument-execution-map.json
 - config/instrument-reference-contract.json
-- config/instrument-registry.json
+- instrument-registry.json
 - config/interface-traceability-current.json
 - config/interface-traceability.json
 - config/promptaria_permissions.json
