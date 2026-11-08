@@ -1,5 +1,61 @@
 # ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS
 
+
+## Identidade canônica e contrato de fusão em duas fases
+
+**ID canônico único:** `functional-correference-architecture`.
+**Nó instrumental único:** `instrument:functional-correference-architecture`.
+**ID legado absorvido:** `coordinator` (mantido apenas como alias de compatibilidade; não constitui instrumento, handler ou registro independente).
+**Fonte canônica única:** `arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`.
+
+A identidade resultante contém duas fases funcionalmente autônomas, porém coordenadas, de um mesmo instrumento. A preservação de autonomia significa conservar a função, os critérios, os dados de entrada e o resultado próprio de cada fase; não significa manter dois instrumentos selecionáveis ou duas identidades residuais.
+
+### Fase I — resolução dos títulos e correferência funcional
+
+Responsabilidade: reconhecer todos os títulos canônicos mencionados; normalizar apenas para comparação; distinguir título canônico, alias, palavra-chave e pista contextual; resolver correspondências exatas sem seleção parcial arbitrária; bloquear colisões ambíguas; recuperar a fonte integral; preservar identidade, função, proveniência e exceções específicas; distinguir reconhecimento, recuperação, inclusão em plano, acionamento, tentativa, execução confirmada e resultado validado. Aliases e palavras-chave não se tornam títulos canônicos nem autorizam ativação por mera semelhança.
+
+### Fase II — coordenação arquitetural e aplicação
+
+Responsabilidade: coordenar a demanda e os instrumentos efetivamente resolvidos; compatibilizar dependências, complementaridades, sobreposições e conflitos; determinar ordem sequencial ou paralela conforme dependências reais; contextualizar, parametrizar e adaptar sem descaracterização; preservar responsabilidades; coordenar resultados intermediários, origem, destino, materialização e validação. O coordenador organiza a operação, mas não inventa nem absorve funções especializadas.
+
+### Nó novo de correferência de coordenação
+
+O nó `coordination:unified-architecture` liga simultaneamente as duas fases, sem confundir sua relação com a correferência funcional entre títulos e instrumentos. Suas arestas são:
+
+- `coordination:unified-architecture->phase:title-functional-correference`
+- `phase:title-functional-correference->coordination:unified-architecture`
+- `coordination:unified-architecture->phase:coordinated-architecture`
+- `phase:coordinated-architecture->coordination:unified-architecture`
+- `phase:title-functional-correference->phase:coordinated-architecture`
+- `phase:coordinated-architecture->phase:title-functional-correference`
+- `instrument:functional-correference-architecture->coordination:unified-architecture`
+- `coordination:unified-architecture->instrument:functional-correference-architecture`
+
+A correferência de coordenação é uma relação interna de composição: garante que a saída resolvida da Fase I seja recebida pela Fase II e que os resultados, bloqueios e evidências da Fase II retornem ao mesmo nó de coordenação. Ela não é uma nova correferência de conteúdo, não seleciona instrumentos adicionais e não modifica a função dos instrumentos participantes.
+
+### Contrato de entrada, saída e preservação
+
+A Fase I fornece títulos reconhecidos, IDs canônicos, aliases correspondentes, proveniência, fontes recuperadas, hashes, ambiguidades e exceções. A Fase II recebe esse conjunto sem reidentificar por heurística, coordena os participantes e devolve ordem, dependências, gates de validação, estado e evidências. Nenhuma fase pode descartar silenciosamente a saída da outra. A operação integrada só é concluída quando ambas reportam seus estados e a validação conjunta confirma a integridade.
+
+### Compatibilidade dos identificadores e dos vínculos históricos
+
+As referências históricas a `coordinator`, ao nó `instrument:coordinator`, ao handler `handler_coordinator` e ao caminho antigo são resolvidas para a identidade canônica e para a respectiva fase interna. Esses identificadores não permanecem como entradas independentes no manifesto, registro, catálogo ou mapa de execução. Os vínculos históricos são preservados como aliases e relações de migração, sem manter um instrumento residual.
+
+### Contratos adicionais absorvidos da pré-configuração de correferência
+
+- Preservar a distinção entre aliases aceitos para identidade e palavras-chave/pistas que apenas auxiliam descoberta; não permitir que pista contextual isolada supere ambiguidade.
+- Preservar validação de destino como caminho relativo POSIX e as proteções contra caminho absoluto, traversal, segmentos ambíguos, `.git`, separadores Windows e caracteres de controle.
+- Simulação/planejamento permanecem padrão; escrita real exige executor separado, destino permitido e autorização explícita. Reconhecimento de título nunca concede permissão de escrita.
+- Preservar os componentes-base do protocolo-mestre e do instrumento operacional GitHub, bem como os contratos de resultado, auditoria, integridade e reconciliação.
+- A implementação estende a arquitetura Python e seus executores/contratos existentes; não cria runtime paralelo em Node.js nem presume diretórios inexistentes.
+- Falhas de recuperação, colisões, divergências de identidade e validações malsucedidas fecham a operação dependente, com registro preciso do estado e sem alegação de sucesso.
+
+### Matriz de absorção da arquitetura coordenadora anterior
+
+As seções de identidade e finalidade, arquitetura obrigatória, cadeia operacional, correferência por título, preservação e recuperação, coordenação múltipla, demanda e contexto, origem/destino/materialização, validação e limite técnico permanecem vigentes como contratos da Fase II ou como contratos compartilhados. Seus requisitos não constituem uma segunda fonte nem uma segunda identidade; passam a ser executados pelo handler integrado.
+
+**Invariante de unidade:** uma identidade canônica → duas fases preservadas → um nó de coordenação bidirecional → um handler operacional integrado → um registro/catálogo/manifesto/mapa coerentes.
+
 Este instrumento promptual deverá ser acionado pelo próprio título “ARQUITETURA
 UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE
 INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS
