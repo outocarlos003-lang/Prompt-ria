@@ -9,9 +9,9 @@ Quando o título canônico (primeiro cabeçalho H1) contiver a expressão **“I
 - `category: recoverable_on_demand`
 - `classification_basis: default_title_rule`
 - `activation.mode: on_demand_title`
-- `activation.enabled: false` e `activation.status: prepared_no_executor`
+- `activation.enabled: true`, `activation.status: active`, `activation.mode: on_demand_title` e `ui.visible: true`
 
-Assim, o instrumento entra no catálogo de recuperáveis sob demanda, mas não é ativado nem executado automaticamente. A classificação não concede autorização para efeitos colaterais.
+Assim, o instrumento fica efetivamente recuperável por título explícito e visível no catálogo correspondente. Isso habilita somente a recuperação sob demanda: não instala executor, não o inclui na automação contínua e não autoriza efeitos colaterais.
 
 ## Exceção expressa
 
@@ -19,7 +19,7 @@ Somente quando houver manifestação expressa em sentido contrário, o arquivo-f
 
 `<!-- promptaria: continuous_automation: explicit -->`
 
-Nesse caso, o registro recebe `category: continuous_automation` e `classification_basis: explicit_source_declaration`. A declaração é evidência da exceção de classificação; não habilita execução nem substitui permissões, validação ou autorização operacional.
+Nesse caso, o registro recebe `category: continuous_automation` e `classification_basis: explicit_source_declaration`; permanece desativado até que a arquitetura de automação e suas permissões próprias o habilitem. A declaração é evidência da exceção de classificação, não uma autorização de execução.
 
 ## Escopo e preservação
 
