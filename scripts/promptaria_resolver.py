@@ -52,6 +52,7 @@ def read_instruments(root: Path) -> list[dict]:
             item.get("path") for item in registry_entries
             if isinstance(item, dict) and isinstance(item.get("activation"), dict)
             and item["activation"].get("enabled") is True
+            and item.get("category") == "recoverable_on_demand"
         }
     for path in sorted(root.rglob("*.md")):
         repo_path = path.relative_to(root.parent).as_posix()
@@ -71,6 +72,7 @@ def read_instruments(root: Path) -> list[dict]:
                 "normalized_title": normalize(title),
                 "normalized_aliases": [normalize(alias) for alias in entry.get("aliases", []) if isinstance(alias, str) and normalize(alias)],
                 "active": active,
+                "category": entry.get("category"),
             })
     return items
 
@@ -85,7 +87,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     matches = []
     all_by_id = {item.get("id"): item for item in instruments if item.get("id")}
     all_by_repo_path = {item.get("repository_path"): item for item in instruments if item.get("repository_path")}
-    active_catalog = [item for item in instruments if item.get("active", True) and item.get("normalized_title")]
+    active_catalog = [item for item in instruments if item.get("active", True) and item.get("normalized_title") and item.get("category") == "recoverable_on_demand"]
 
     def make_match(item, identity, start, end, *, ambiguous=False, diverse=False, disabled=False):
         if disabled:
