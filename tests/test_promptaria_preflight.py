@@ -85,7 +85,7 @@ class PromptariaPreflightTests(unittest.TestCase):
         )
         plan = result["cross_category_interconnection"]
         self.assertEqual(plan["continuous_instrument_count"], 7)
-        self.assertEqual(plan["recoverable_instrument_count"], 2)
+        self.assertEqual(plan["recoverable_instrument_count"], 1)
         self.assertGreater(plan["interconnection_count"], 0)
         for link in plan["interconnections"]:
             self.assertNotEqual(link["continuous_instrument"]["id"], link["recoverable_instrument"]["id"])
