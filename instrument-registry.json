@@ -467,8 +467,6 @@
         "functional-correference-architecture->canonical-full-text",
         "canonical-full-text->master-activation",
         "canonical-full-text->standard-preconfiguration",
-        "coordinator->context-router",
-        "coordinator->resolver",
         "coordinator->functional-correference-architecture",
         "instrument:coordinator->instrument:functional-correference-architecture",
         "instrument:functional-correference-architecture->instrument:coordinator",
@@ -477,7 +475,9 @@
         "coordination:unified-architecture->phase:coordinated-architecture",
         "phase:coordinated-architecture->coordination:unified-architecture",
         "phase:title-functional-correference->phase:coordinated-architecture",
-        "phase:coordinated-architecture->phase:title-functional-correference"
+        "phase:coordinated-architecture->phase:title-functional-correference",
+        "functional-correference-architecture->context-router",
+        "functional-correference-architecture->resolver"
       ],
       "operations": [
         "match",
