@@ -152,8 +152,10 @@
       },
       "activation": {
         "enabled": true,
-        "status": "active"
-      }
+        "status": "active",
+        "mode": "on_demand_title"
+      },
+      "category": "recoverable_on_demand"
     },
     {
       "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
@@ -234,8 +236,10 @@
       },
       "activation": {
         "enabled": true,
-        "status": "active"
-      }
+        "status": "active",
+        "mode": "on_demand_title"
+      },
+      "category": "recoverable_on_demand"
     },
     {
       "id": "master-activation",
@@ -285,9 +289,11 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      },
+      "category": "continuous_automation"
     },
     {
       "id": "master-execution",
@@ -326,9 +332,11 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      },
+      "category": "continuous_automation"
     },
     {
       "id": "functional-correference-architecture",
@@ -447,9 +455,11 @@
         ]
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      },
+      "category": "continuous_automation"
     },
     {
       "id": "future-demand-preconfiguration",
@@ -488,9 +498,11 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      },
+      "category": "continuous_automation"
     },
     {
       "id": "catalog-sitemap-preconfiguration",
@@ -529,9 +541,11 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      },
+      "category": "continuous_automation"
     },
     {
       "id": "promptaria-instrument-template",
@@ -588,9 +602,18 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      },
+      "category": "continuous_automation"
     }
-  ]
+  ],
+  "activation_policy": {
+    "mode": "two_class_activation",
+    "principle": "All registered instruments are enabled, but activation mode determines participation.",
+    "on_demand_title_resolution": "Only recoverable_on_demand instruments with ui.visible=true are recovered by explicit title or alias reference.",
+    "continuous_preconfiguration": "continuous_automation instruments are included by the request router in every demand's preconfiguration context; they are not listed in the public site catalog and are not independently recovered by title.",
+    "safety": "Activation and preconfiguration do not authorize external side effects or repository writes."
+  }
 }
