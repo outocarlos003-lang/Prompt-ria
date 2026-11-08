@@ -33,15 +33,15 @@
       ],
       "files": [
         "auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md",
-        "config/instrument-registry.json",
-        "config/instrument-catalog.json",
-        "scripts/generate_instrument_catalog.py"
+        "auxiliary-protocols/registry.json",
+        "scripts/resolve_auxiliary_protocol.py",
+        "scripts/promptaria_specialized_executor.py"
       ],
       "relations": [
         "title->protocol-update-integrity",
-        "protocol-update-integrity->instrument-registry",
+        "protocol-update-integrity->auxiliary-protocol-registry",
         "instrument-content->cross-references",
-        "instrument-registry->interface",
+        "auxiliary-protocol-registry->explicit-title-or-id-resolver",
         "updated-source->future-resolution"
       ],
       "operations": [
@@ -67,5 +67,6 @@
       "specialized_execution_status": "implemented",
       "specialized_handler": "handler_protocol_update_integrity"
     }
-  ]
+  ],
+  "resolution_policy": "explicit_only_by_exact_canonical_title_or_id"
 }
