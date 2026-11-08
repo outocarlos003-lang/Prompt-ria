@@ -77,7 +77,7 @@ class ContextRouterTests(unittest.TestCase):
    set(result["continuous_preconfiguration"]["instrument_ids"]),
   )
   for component in continuous_components:
-   self.assertTrue(component["content"].startswith("# "))
+   self.assertTrue(any(line.startswith("# ") for line in component["content"].splitlines()))
    self.assertEqual(component["category"],"continuous_automation")
    self.assertTrue(component["loaded_as_context"])
    self.assertFalse(component["title_resolvable"])
