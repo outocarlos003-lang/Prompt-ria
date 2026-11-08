@@ -1,0 +1,60 @@
+name: Promptária — receber e resolver demanda
+
+on:
+  workflow_dispatch:
+    inputs:
+      request_json:
+        description: "Objeto JSON com request (texto ou objeto) e instrument_ids opcional"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  contextual-demand:
+    name: Contextual resolution and specialized handlers
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate and prepare demand
+        env:
+          REQUEST_JSON: ${{ inputs.request_json }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          value = json.loads(os.environ["REQUEST_JSON"])
+          if not isinstance(value, dict):
+              raise SystemExit("request_json deve ser um objeto JSON.")
+          request = value.get("request", value.get("demand"))
+          if not isinstance(request, (str, dict)) or (isinstance(request, str) and not request.strip()):
+              raise SystemExit("Informe request ou demand como texto não vazio ou objeto.")
+          ids = value.get("instrument_ids", [])
+          if isinstance(ids, str):
+              ids = [ids]
+          if not isinstance(ids, list) or any(not isinstance(item, str) or not item.strip() for item in ids):
+              raise SystemExit("instrument_ids deve ser uma lista de IDs textuais.")
+          value["instrument_ids"] = ids
+          Path("request.json").write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+          PY
+      - name: Run contextual resolver and selected specialized handlers
+        run: |
+          mkdir -p artifacts
+          python scripts/promptaria_contextual_executor.py \
+            --request request.json \
+            --output artifacts/contextual-demand-result.json
+      - name: Publish auditable result
+        uses: actions/upload-artifact@v4
+        with:
+          name: promptaria-contextual-demand-result
+          path: artifacts/contextual-demand-result.json
+          if-no-files-found: error
+          retention-days: 14
