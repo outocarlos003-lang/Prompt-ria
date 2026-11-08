@@ -151,6 +151,11 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
   registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
  policy = load_segment_policy()
  default_integrated = list(policy["default_integrated_instrument_ids"])
+ all_enabled_ids = {
+  item.get("id") for item in registry.get("instruments", [])
+  if isinstance(item, dict) and isinstance(item.get("id"), str)
+  and item.get("activation", {}).get("enabled") is True
+ }
  enabled_ids = {
   item.get("id") for item in registry.get("instruments", [])
   if isinstance(item, dict) and isinstance(item.get("id"), str)
@@ -205,7 +210,7 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
  additional_integrated = [item_id for item_id in exception_ids if item_id not in default_integrated]
  catalog_ids = {item.get("id") for item in manifest.get("instruments", []) if isinstance(item, dict)}
  if evidence:
-  selected = [item_id for item_id in BASE_IDS if item_id in enabled_ids] + selected
+  selected = [item_id for item_id in BASE_IDS if item_id in all_enabled_ids] + selected
  selected = list(dict.fromkeys(selected))
  unknown = [item_id for item_id in selected if item_id not in catalog_ids]
  if unknown:
