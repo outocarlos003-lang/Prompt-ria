@@ -114,6 +114,20 @@ def load_catalog() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]
     mapped = index_catalog_entries(execution_map, "config/instrument-execution-map.json")
     registered = index_catalog_entries(registry, "config/instrument-registry.json")
     validate_catalog_identity(canonical, mapped, registered)
+    # Auxiliary protocols are loaded only as explicit-addressable handlers;
+    # they are never added to the operational manifest or registry.
+    auxiliary = read_object(ROOT / "auxiliary-protocols" / "registry.json")
+    auxiliary_items = index_catalog_entries(auxiliary, "auxiliary-protocols/registry.json")
+    for item_id, item in auxiliary_items.items():
+        if item_id in canonical or item_id in mapped or item_id in registered:
+            raise SystemExit(f"Auxiliary identity collides with operational identity: {item_id}")
+        canonical[item_id] = item
+        mapped[item_id] = {
+            **item,
+            "specialized_handler": "handler_protocol_update_integrity",
+            "specialized_execution_status": "implemented",
+            "side_effects_authorized_by_title": False,
+        }
     return canonical, mapped
 
 
@@ -130,9 +144,12 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
     }
     candidates: dict[str, list[dict[str, Any]]] = {}
     for item_id, item in canonical.items():
-        if item_id not in active_items:
+        auxiliary = item_id not in active_items and item.get("scope") == "auxiliary"
+        if item_id not in active_items and not auxiliary:
             continue
-        registry_item = active_items[item_id]
+        registry_item = item if auxiliary else active_items[item_id]
+        if auxiliary and not re.search(r"(?i)\\b(?:instrument_id\\s*:\\s*protocol-update-integrity|auxiliary_protocol\\s*:\\s*protocol-update-integrity|instrument_title\\s*:) ", normalized_request):
+            continue
         terms = [("title", item.get("title", ""))]
         terms.extend(("alias", alias) for alias in registry_item.get("aliases", []) if isinstance(alias, str))
         matched_terms = []
@@ -467,6 +484,11 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
         read_object(ROOT / "config" / "instrument-registry.json"),
         "config/instrument-registry.json",
     )
+    auxiliary = index_catalog_entries(
+        read_object(ROOT / "auxiliary-protocols" / "registry.json"),
+        "auxiliary-protocols/registry.json",
+    )
+    registry.update(auxiliary)
     disabled = sorted(
         item_id for item_id in selected_ids
         if not isinstance(registry[item_id].get("activation"), dict)
