@@ -72,6 +72,8 @@ def read_instruments(root: Path) -> list[dict]:
                 "normalized_title": normalize(title),
                 "normalized_aliases": [normalize(alias) for alias in entry.get("aliases", []) if isinstance(alias, str) and normalize(alias)],
                 "active": active,
+                "registry_enabled": isinstance(entry.get("activation"), dict) and entry["activation"].get("enabled") is True,
+                "ui_visible": isinstance(entry.get("ui"), dict) and entry["ui"].get("visible") is True,
                 "category": entry.get("category"),
             })
     return items
@@ -263,31 +265,173 @@ def main() -> None:
     instruments = read_instruments(a.instruments)
     matches = resolve(request, instruments)
 
-    # Stable defaults: unified architecture, master protocol, and GitHub operational instrument.
+    # The three fixed components are identified by canonical registry IDs and paths.
+    # Continuous components are loaded as context, never promoted into title recovery.
     registry_path = a.instruments.parent / "config" / "instrument-registry.json"
+    registry_data = None
+    preconfiguration_context = []
+    fixed_operational_component = None
+    mandatory_components = []
+    missing_defaults = []
+    default_count = 3
+    selected_paths = {x["path"] for x in matches if x.get("path")}
+
     if registry_path.is_file():
-        # In production, mandatory preloading follows the explicitly enabled set.
-        # Temporary test fixtures without a registry retain the legacy contract.
-        default_titles = [(item["title"], "mandatory_active_instrument") for item in instruments if item.get("active", True)]
+        registry_data = json.loads(registry_path.read_text(encoding="utf-8"))
+        registry_entries = registry_data.get("instruments", [])
+        registry_by_id = {
+            item.get("id"): item for item in registry_entries
+            if isinstance(item, dict) and isinstance(item.get("id"), str)
+        }
+        instruments_by_path = {
+            item.get("repository_path"): item for item in instruments
+            if isinstance(item.get("repository_path"), str)
+        }
+
+        # Load every enabled continuous instrument into a distinct context channel.
+        # Its category remains continuous_automation and it is not title-resolvable.
+        for entry in registry_entries:
+            if not isinstance(entry, dict) or entry.get("category") != "continuous_automation":
+                continue
+            activation = entry.get("activation")
+            if not isinstance(activation, dict) or activation.get("enabled") is not True:
+                continue
+            instrument_id = entry.get("id")
+            repo_path = entry.get("path")
+            component = instruments_by_path.get(repo_path)
+            if (
+                not isinstance(instrument_id, str)
+                or not isinstance(repo_path, str)
+                or component is None
+                or component.get("id") != instrument_id
+                or normalize(component.get("title", "")) != normalize(entry.get("title", ""))
+            ):
+                missing_defaults.append(
+                    f"continuous_context:{instrument_id or '<sem-id>'}:{repo_path or '<sem-caminho>'}"
+                )
+                continue
+            preconfiguration_context.append({
+                "id": instrument_id,
+                "title": component["title"],
+                "path": repo_path,
+                "category": "continuous_automation",
+                "content": component["content"],
+                "loaded_as_context": True,
+                "title_resolvable": False,
+                "execution_performed": False,
+            })
+
+        mandatory_specs = [
+            {
+                "id": "functional-correference-architecture",
+                "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
+                "category": "continuous_automation",
+                "identity": "mandatory_functional_cross_reference_preconfiguration",
+                "participation": "continuous_preconfiguration_context",
+            },
+            {
+                "id": "master-activation",
+                "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+                "category": "continuous_automation",
+                "identity": "mandatory_master_protocol",
+                "participation": "continuous_preconfiguration_context",
+            },
+            {
+                "id": "github-operational",
+                "path": "instruments/acione-a-promptaria-pelo-github.md",
+                "category": "recoverable_on_demand",
+                "identity": "mandatory_fixed_component",
+                "participation": "fixed_operational_component",
+            },
+        ]
+
+        for spec in mandatory_specs:
+            entry = registry_by_id.get(spec["id"])
+            problem = None
+            if entry is None:
+                problem = "ID ausente do registro canônico"
+            elif entry.get("path") != spec["path"]:
+                problem = f"caminho divergente (esperado {spec['path']})"
+            elif entry.get("category") != spec["category"]:
+                problem = f"categoria divergente (esperado {spec['category']})"
+            elif not isinstance(entry.get("activation"), dict) or entry["activation"].get("enabled") is not True:
+                problem = "instrumento desativado no registro canônico"
+            elif spec["category"] == "recoverable_on_demand" and (
+                not isinstance(entry.get("ui"), dict) or entry["ui"].get("visible") is not True
+            ):
+                problem = "instrumento recuperável não está visível para resolução"
+
+            component = instruments_by_path.get(spec["path"])
+            if problem is None and (
+                component is None
+                or component.get("id") != spec["id"]
+                or normalize(component.get("title", "")) != normalize(entry.get("title", ""))
+            ):
+                problem = "arquivo ausente ou título H1 divergente do registro"
+
+            if problem is not None:
+                missing_defaults.append(f"{spec['id']}: {problem}")
+                continue
+
+            mandatory_components.append({
+                "id": spec["id"],
+                "required_title": entry["title"],
+                "found": True,
+                "path": spec["path"],
+                "category": spec["category"],
+                "participation": spec["participation"],
+            })
+            if spec["id"] == "github-operational":
+                fixed_operational_component = {
+                    "id": spec["id"],
+                    "title": component["title"],
+                    "path": spec["path"],
+                    "category": spec["category"],
+                    "content": component["content"],
+                    "execution_performed": False,
+                }
+
+            if spec["path"] not in selected_paths:
+                matches.append({
+                    "id": spec["id"],
+                    "title": component["title"],
+                    "path": component["path"],
+                    "repository_path": component["repository_path"],
+                    "category": spec["category"],
+                    "identity": spec["identity"],
+                    "mandatory_component": True,
+                    "content_recovered": True,
+                    "function_status": "content_available_for_review",
+                    "activation_status": "included_in_plan_not_executed",
+                    "exception_status": "requires_contextual_review",
+                })
+                selected_paths.add(spec["path"])
     else:
+        # Temporary fixtures without the canonical registry retain the legacy
+        # three-title contract; production always uses the ID/path checks above.
         default_titles = [
             ('ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS', 'mandatory_functional_cross_reference_preconfiguration'),
             ('PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO', 'mandatory_master_protocol'),
             ('Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas', 'mandatory_fixed_component'),
         ]
-    selected_paths = {x['path'] for x in matches if x.get('path')}
-    mandatory_components = []
-    missing_defaults = []
-    for required_title, identity in default_titles:
-        required_norm = normalize(required_title)
-        component = next((x for x in instruments if x['normalized_title'] == required_norm), None)
-        if component is None:
-            missing_defaults.append(required_title)
-            continue
-        if component['path'] not in selected_paths:
-            matches.append({'title': component['title'], 'path': component['path'], 'identity': identity, 'content_recovered': True, 'function_status': 'content_available_for_review', 'activation_status': 'included_in_plan_not_executed', 'exception_status': 'requires_contextual_review'})
-            selected_paths.add(component['path'])
-        mandatory_components.append({'required_title': required_title, 'found': True, 'path': component['path']})
+        for required_title, identity in default_titles:
+            required_norm = normalize(required_title)
+            component = next((x for x in instruments if x['normalized_title'] == required_norm), None)
+            if component is None:
+                missing_defaults.append(required_title)
+                continue
+            if component['path'] not in selected_paths:
+                matches.append({
+                    'title': component['title'],
+                    'path': component['path'],
+                    'identity': identity,
+                    'content_recovered': True,
+                    'function_status': 'content_available_for_review',
+                    'activation_status': 'included_in_plan_not_executed',
+                    'exception_status': 'requires_contextual_review'
+                })
+                selected_paths.add(component['path'])
+            mandatory_components.append({'required_title': required_title, 'found': True, 'path': component['repository_path']})
 
     # Additional default preconfiguration: preserve the repository's existing
     # architecture while making catalog/sitemap synchronization guidance available
@@ -399,10 +543,17 @@ def main() -> None:
         'preconfiguration': {
             'enabled': True,
             'mode': 'generic_until_explicit_specialization',
-            'always_include_coordinator': not registry_path.is_file() or any(item.get('id') == 'functional-correference-architecture' and item.get('active', True) for item in instruments),
-            'always_include_master_protocol': not registry_path.is_file() or normalize('PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO') in {item['normalized_title'] for item in instruments if item.get('active', True)},
-            'always_include_github_operational_instrument': not registry_path.is_file() or normalize('Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas') in {item['normalized_title'] for item in instruments if item.get('active', True)},
+            'complete': not missing_defaults,
+            'mandatory_component_ids': [item.get('id') for item in mandatory_components if item.get('id')],
+            'continuous_context_ids': [item['id'] for item in preconfiguration_context],
+            'continuous_context': preconfiguration_context,
+            'continuous_context_complete': not any(item.startswith('continuous_context:') for item in missing_defaults),
+            'fixed_operational_component': fixed_operational_component,
+            'always_include_coordinator': not registry_path.is_file() or any(item.get('id') == 'functional-correference-architecture' for item in mandatory_components),
+            'always_include_master_protocol': not registry_path.is_file() or any(item.get('id') == 'master-activation' for item in mandatory_components),
+            'always_include_github_operational_instrument': not registry_path.is_file() or any(item.get('id') == 'github-operational' for item in mandatory_components),
             'preserve_instrument_functions': True,
+            'continuous_automation_is_context_not_title_recovery': True,
             'ambiguous_function_override_requires_contextual_review': True,
         },
         'instrument_count': len(instruments),
@@ -410,13 +561,13 @@ def main() -> None:
         'unmatched_title_note': 'Nenhum título adicional correspondente foi encontrado; os componentes fixos continuam incluídos.' if not resolve(request, instruments) else None,
         'mandatory_components': mandatory_components,
         'missing_mandatory_components': missing_defaults,
-        'status': 'plan_created_needs_execution_integration',
+        'status': 'plan_created_needs_execution_integration' if not missing_defaults else 'plan_incomplete_missing_preconfiguration_components',
         'limitations': ['Só processa demandas transmitidas por workflow_dispatch ou comentário /promptaria.', 'Identificar ou incluir um título no plano não comprova execução da função especializada.', 'A função diversa exige interpretação contextual; o script sinaliza revisão.', 'Não escreve resultados nem acessa automaticamente conversas do ChatGPT.'] + ([f'Componente obrigatório ausente: {title}.' for title in missing_defaults])
     }
     a.output.parent.mkdir(parents=True, exist_ok=True)
     a.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f"Instrumentos encontrados: {len(matches)}")
-    print(f"Componentes obrigatórios disponíveis: {len(mandatory_components)}/{len(default_titles)}")
+    print(f"Componentes obrigatórios disponíveis: {len(mandatory_components)}/{default_count}")
     if missing_defaults:
         print('Componentes obrigatórios ausentes: ' + '; '.join(missing_defaults))
     print(f'Resultado: {a.output}')
