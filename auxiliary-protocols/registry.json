@@ -58,8 +58,8 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "inactive"
+        "enabled": true,
+        "status": "active"
       }
     }
   ]
