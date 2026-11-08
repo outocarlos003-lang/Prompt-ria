@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Enable only newly introduced Promptária instruments named INSTRUMENTO PROMPTUAL.
+"""Classify newly introduced Promptária instruments conservatively.
 
-The base-branch registry is the historical boundary: disabled instruments already
-present there are never changed by this automation.
+A new title containing "Instrumento promptual" is recoverable on demand by
+default. Continuous automation is only classified when the source Markdown
+contains the exact explicit override declaration; that exception remains
+inactive and non-executable until separately configured.
 """
 from __future__ import annotations
 
@@ -14,12 +16,14 @@ import unicodedata
 from pathlib import Path
 from typing import Any
 
-PHRASE = "instrumento promptual"
+PROMPTUAL_MARKER = "instrumento promptual"
+CONTINUOUS_OVERRIDE = "<!-- promptaria: continuous_automation: explicit -->"
 MIRRORS = (
-    "config/instrument-registry.json",
     "instrument-registry.json",
     "config/instrument-catalog.json",
     "instrument-catalog.json",
+    "manifest.json",
+    "tests/manifest.json",
 )
 
 
@@ -40,70 +44,116 @@ def load_base_registry(root: Path, base_sha: str) -> dict[str, Any]:
     return data
 
 
-def is_named_promptual_instrument(item: dict[str, Any], root: Path) -> bool:
-    title = item.get("title", "")
-    if isinstance(title, str) and PHRASE in normalize(title):
-        return True
+def source_metadata(item: dict[str, Any], root: Path) -> tuple[str, str] | None:
+    title = item.get("title")
     source = item.get("path")
-    if not isinstance(source, str) or not source.startswith("instruments/"):
-        return False
-    path = root / source
+    if not isinstance(title, str) or not isinstance(source, str) or not source.startswith("instruments/"):
+        return None
+    relative = Path(source)
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ValueError(f"Caminho de instrumento inseguro: {source}")
+    path = root / relative
     if not path.is_file():
-        return False
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if line.startswith("# "):
-            return PHRASE in normalize(line[2:].strip())
-    return False
+        raise ValueError(f"Fonte do novo instrumento inacessível: {source}")
+    source_text = path.read_text(encoding="utf-8")
+    match = re.search(r"(?m)^#\s+(.+?)\s*$", source_text)
+    if not match:
+        raise ValueError(f"Instrumento sem título H1 canônico: {source}")
+    canonical_title = match.group(1).strip()
+    if normalize(canonical_title) != normalize(title):
+        raise ValueError(f"Título do registro diverge do H1 em {source}")
+    if PROMPTUAL_MARKER not in normalize(canonical_title):
+        return None
+    category = "continuous_automation" if CONTINUOUS_OVERRIDE in source_text else "recoverable_on_demand"
+    basis = "explicit_source_declaration" if category == "continuous_automation" else "default_title_rule"
+    return category, basis
+
+
+def apply_classification(item: dict[str, Any], category: str, basis: str) -> None:
+    item["category"] = category
+    item["classification_basis"] = basis
+    activation = item.get("activation")
+    if not isinstance(activation, dict):
+        activation = {}
+        item["activation"] = activation
+    ui = item.get("ui")
+    if not isinstance(ui, dict):
+        ui = {}
+        item["ui"] = ui
+    if category == "recoverable_on_demand":
+        activation.update({"enabled": True, "status": "active", "mode": "on_demand_title"})
+        ui["visible"] = True
+    else:
+        activation.update({"enabled": False, "status": "prepared_no_executor"})
+        activation.pop("mode", None)
+        ui["visible"] = False
+    ui.setdefault("featured", False)
+
+
+def write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def activate_new_entries(root: Path, base_registry: dict[str, Any]) -> list[str]:
     registry_path = root / "config/instrument-registry.json"
     current = json.loads(registry_path.read_text(encoding="utf-8"))
+    entries = current.get("instruments")
+    if not isinstance(entries, list):
+        raise ValueError("Registro atual não contém instruments[] válido.")
     base_ids = {
         item.get("id") for item in base_registry.get("instruments", [])
         if isinstance(item, dict) and isinstance(item.get("id"), str)
     }
-    new_matches = [
-        item for item in current.get("instruments", [])
-        if isinstance(item, dict)
-        and isinstance(item.get("id"), str)
-        and item["id"] not in base_ids
-        and is_named_promptual_instrument(item, root)
-    ]
-    if not new_matches:
+    classified: dict[str, tuple[str, str]] = {}
+    by_id: dict[str, dict[str, Any]] = {}
+    for item in entries:
+        if not isinstance(item, dict) or not isinstance(item.get("id"), str) or item["id"] in base_ids:
+            continue
+        metadata = source_metadata(item, root)
+        if metadata is None:
+            continue
+        category, basis = metadata
+        apply_classification(item, category, basis)
+        classified[item["id"]] = metadata
+        by_id[item["id"]] = item
+    if not classified:
         return []
 
-    activated_ids: list[str] = []
-    for item in new_matches:
-        activation = item.get("activation")
-        if not isinstance(activation, dict):
-            activation = {}
-            item["activation"] = activation
-        activation["enabled"] = True
-        activation["status"] = "active"
-        activated_ids.append(item["id"])
-
+    write_json(registry_path, current)
     for relative in MIRRORS:
         path = root / relative
-        data = json.loads(path.read_text(encoding="utf-8"))
-        by_id = {
-            item.get("id"): item for item in data.get("instruments", [])
-            if isinstance(item, dict)
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ValueError(f"Espelho ausente ou inválido ({relative}): {exc}") from exc
+        mirror_entries = payload.get("instruments")
+        if not isinstance(mirror_entries, list):
+            raise ValueError(f"{relative} não contém instruments[] válido.")
+        mirror_by_id = {
+            item.get("id"): item for item in mirror_entries
+            if isinstance(item, dict) and isinstance(item.get("id"), str)
         }
-        for ident in activated_ids:
-            mirror_item = by_id.get(ident)
+        is_manifest = relative.endswith("manifest.json")
+        for ident, (category, basis) in classified.items():
+            mirror_item = mirror_by_id.get(ident)
             if mirror_item is None:
-                if relative.endswith("instrument-registry.json"):
-                    raise ValueError(f"Espelho de registro não contém novo instrumento: {ident}")
-                continue
-            activation = mirror_item.get("activation")
-            if not isinstance(activation, dict):
-                activation = {}
-                mirror_item["activation"] = activation
-            activation["enabled"] = True
-            activation["status"] = "active"
-        path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return sorted(activated_ids)
+                if not is_manifest:
+                    raise ValueError(f"Espelho {relative} não contém o novo instrumento {ident}.")
+                source_item = by_id[ident]
+                mirror_item = {
+                    "id": ident,
+                    "title": source_item["title"],
+                    "path": source_item["path"],
+                    "aliases": source_item.get("aliases", []),
+                    "capabilities": [],
+                }
+                mirror_entries.append(mirror_item)
+            mirror_item["category"] = category
+            mirror_item["classification_basis"] = basis
+            if not is_manifest:
+                apply_classification(mirror_item, category, basis)
+        write_json(path, payload)
+    return sorted(classified)
 
 
 def main() -> int:
@@ -113,8 +163,8 @@ def main() -> int:
     args = parser.parse_args()
     root = args.root.resolve()
     base = load_base_registry(root, args.base_sha)
-    activated = activate_new_entries(root, base)
-    print(json.dumps({"automatically_activated_new_promptual_instruments": activated}, ensure_ascii=False))
+    classified = activate_new_entries(root, base)
+    print(json.dumps({"classified_new_promptual_instruments": classified}, ensure_ascii=False))
     return 0
 
 
