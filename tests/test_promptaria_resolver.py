@@ -59,9 +59,9 @@ class PromptariaResolverTests(unittest.TestCase):
 
     def test_includes_all_three_mandatory_components(self):
         instruments = [
-            ("unified-architecture.md", "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS"),
-            ("master.md", "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO"),
-            ("github.md", "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"),
+            ("unified-arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS"),
+            ("protocolo-mestre-acionamento-automatico.md", "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO"),
+            ("acione-a-promptaria-pelo-github.md", "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"),
         ]
         result, stdout = self.run_resolver("Demanda genérica de teste.", instruments)
         self.assertEqual(result["schema_version"], 2)
@@ -72,21 +72,21 @@ class PromptariaResolverTests(unittest.TestCase):
 
     def test_registry_separates_continuous_context_from_recoverable_base_component(self):
         instruments = [
-            ("architecture.md", "Arquitetura Unificada"),
-            ("master.md", "Protocolo-Mestre"),
-            ("github.md", "GitHub Operacional"),
+            ("arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", "Arquitetura Unificada"),
+            ("protocolo-mestre-acionamento-automatico.md", "Protocolo-Mestre"),
+            ("acione-a-promptaria-pelo-github.md", "GitHub Operacional"),
         ]
         registry = [
             {"id": "functional-correference-architecture", "title": "Arquitetura Unificada",
-             "path": "instruments/architecture.md", "aliases": ["arquitetura"],
+             "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", "aliases": ["arquitetura"],
              "activation": {"enabled": True}, "category": "continuous_automation",
              "ui": {"visible": False}},
             {"id": "master-activation", "title": "Protocolo-Mestre",
-             "path": "instruments/master.md", "aliases": ["protocolo"],
+             "path": "instruments/protocolo-mestre-acionamento-automatico.md", "aliases": ["protocolo"],
              "activation": {"enabled": True}, "category": "continuous_automation",
              "ui": {"visible": False}},
             {"id": "github-operational", "title": "GitHub Operacional",
-             "path": "instruments/github.md", "aliases": ["github fixo"],
+             "path": "instruments/acione-a-promptaria-pelo-github.md", "aliases": ["github fixo"],
              "activation": {"enabled": True}, "category": "recoverable_on_demand",
              "ui": {"visible": True}},
         ]
@@ -119,21 +119,21 @@ class PromptariaResolverTests(unittest.TestCase):
 
     def test_disabled_or_divergent_base_component_fails_closed(self):
         instruments = [
-            ("architecture.md", "Arquitetura Unificada"),
-            ("master.md", "Protocolo-Mestre"),
-            ("github.md", "GitHub Operacional"),
+            ("arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", "Arquitetura Unificada"),
+            ("protocolo-mestre-acionamento-automatico.md", "Protocolo-Mestre"),
+            ("acione-a-promptaria-pelo-github.md", "GitHub Operacional"),
         ]
         base_registry = [
             {"id": "functional-correference-architecture", "title": "Arquitetura Unificada",
-             "path": "instruments/architecture.md", "aliases": ["arquitetura"],
+             "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", "aliases": ["arquitetura"],
              "activation": {"enabled": True}, "category": "continuous_automation",
              "ui": {"visible": False}},
             {"id": "master-activation", "title": "Protocolo-Mestre",
-             "path": "instruments/master.md", "aliases": ["protocolo"],
+             "path": "instruments/protocolo-mestre-acionamento-automatico.md", "aliases": ["protocolo"],
              "activation": {"enabled": True}, "category": "continuous_automation",
              "ui": {"visible": False}},
             {"id": "github-operational", "title": "GitHub Operacional",
-             "path": "instruments/github.md", "aliases": ["github fixo"],
+             "path": "instruments/acione-a-promptaria-pelo-github.md", "aliases": ["github fixo"],
              "activation": {"enabled": True}, "category": "recoverable_on_demand",
              "ui": {"visible": True}},
         ]
@@ -145,7 +145,7 @@ class PromptariaResolverTests(unittest.TestCase):
         self.assertTrue(any("master-activation" in item for item in result["missing_mandatory_components"]))
 
         divergent = json.loads(json.dumps(base_registry))
-        divergent[0]["path"] = "instruments/renamed-architecture.md"
+        divergent[0]["path"] = "instruments/renamed-arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md"
         result, _ = self.run_resolver("Demanda genérica.", instruments, registry_entries=divergent)
         self.assertFalse(result["preconfiguration"]["complete"])
         self.assertTrue(any("functional-correference-architecture" in item for item in result["missing_mandatory_components"]))
@@ -334,9 +334,9 @@ class PromptariaResolverTests(unittest.TestCase):
 
     def test_accepts_structured_schema_request_and_preserves_operation_context(self):
         instruments = [
-            ("unified-architecture.md", "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS"),
-            ("master.md", "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO"),
-            ("github.md", "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"),
+            ("unified-arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS"),
+            ("protocolo-mestre-acionamento-automatico.md", "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO"),
+            ("acione-a-promptaria-pelo-github.md", "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"),
             ("alpha.md", "Instrumento Alfa"),
         ]
         structured = {
