@@ -15,8 +15,8 @@ import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-SEGMENT_POLICY = ROOT / "config" / "segment-integration-policy.json"
+ROOT = Path(__file__).resolve().parent
+SEGMENT_POLICY = ROOT / "segment-integration-policy.json"
 
 
 def normalize(value: str) -> str:
@@ -171,7 +171,7 @@ def build_segment_integration(payload: dict, matches: list[dict], manifest: dict
         "blocked_automatic_integrations": blocked,
         "activation_remains_independent": True,
         "selection_is_not_integration": True,
-        "policy_source": "config/segment-integration-policy.json",
+        "policy_source": "segment-integration-policy.json",
     }
 
 
@@ -217,8 +217,8 @@ def assess_preauthorization(request: str, matches: list[dict], destination: str 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--request", required=True, type=Path, help="JSON object with request and optional destination")
-    parser.add_argument("--manifest", type=Path, default=ROOT / "tests" / "manifest.json")
-    parser.add_argument("--execution-map", type=Path, default=ROOT / "config" / "instrument-execution-map.json")
+    parser.add_argument("--manifest", type=Path, default=ROOT / "manifest.json")
+    parser.add_argument("--execution-map", type=Path, default=ROOT / "instrument-execution-map.json")
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     payload = load_object(args.request)
