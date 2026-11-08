@@ -38,8 +38,8 @@ class PromptariaPreflightTests(unittest.TestCase):
             "github-operational: crie o resultado solicitado.",
             "artifacts/resultado.txt",
         )
-        self.assertTrue(result["preauthorization"]["write_authorized"])
-        self.assertEqual(result["preauthorization"]["status"], "scoped_preauthorization_eligible")
+        self.assertFalse(result["preauthorization"]["write_authorized"])
+        self.assertEqual(result["preauthorization"]["status"], "not_authorized")
         self.assertFalse(result["execution_performed"])
 
     def test_title_mention_alone_never_authorizes_write(self):
@@ -66,17 +66,17 @@ class PromptariaPreflightTests(unittest.TestCase):
             "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO."
         )
         ids = {item["id"] for item in result["matched_instruments"]}
-        self.assertIn("github-operational", ids)
+        self.assertNotIn("github-operational", ids)
         self.assertNotIn("master-activation", ids)
         self.assertIn("master-activation", result["continuous_preconfiguration"]["instrument_ids"])
+        self.assertIn("github-operational", result["continuous_preconfiguration"]["instrument_ids"])
 
     def test_unified_canonical_title_resolves_without_duplicate_identity(self):
         title = "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"
         result = self.run_preflight(title)
         matches = [item for item in result["matched_instruments"] if item["id"] == "github-operational"]
-        self.assertEqual(len(matches), 1)
-        self.assertEqual(matches[0]["identity_status"], "resolved")
-        self.assertTrue(matches[0]["activation"])
+        self.assertEqual(matches, [])
+        self.assertIn("github-operational", result["continuous_preconfiguration"]["instrument_ids"])
         self.assertNotIn("fixed-prompt-instrument-part-2", {item["id"] for item in result["matched_instruments"]})
 
     def test_cross_category_interconnection_preserves_independent_instruments_and_phases(self):
@@ -84,8 +84,8 @@ class PromptariaPreflightTests(unittest.TestCase):
             "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas."
         )
         plan = result["cross_category_interconnection"]
-        self.assertEqual(plan["continuous_instrument_count"], 6)
-        self.assertEqual(plan["recoverable_instrument_count"], 2)
+        self.assertEqual(plan["continuous_instrument_count"], 7)
+        self.assertEqual(plan["recoverable_instrument_count"], 1)
         self.assertGreater(plan["interconnection_count"], 0)
         for link in plan["interconnections"]:
             self.assertNotEqual(link["continuous_instrument"]["id"], link["recoverable_instrument"]["id"])
@@ -111,8 +111,8 @@ class PromptariaPreflightTests(unittest.TestCase):
             "github-operational: Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas."
         )
         selected = [item for item in result["matched_instruments"] if item["id"] == "github-operational"]
-        self.assertTrue(selected)
-        self.assertEqual(selected[0]["identity_status"], "resolved")
+        self.assertEqual(selected, [])
+        self.assertIn("github-operational", result["continuous_preconfiguration"]["instrument_ids"])
 
 
 if __name__ == "__main__":

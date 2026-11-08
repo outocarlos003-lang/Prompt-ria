@@ -129,6 +129,7 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         for item_id, item in registry_items.items()
         if item.get("activation", {}).get("enabled") is True
         and item.get("category") in (None, "recoverable_on_demand")
+        and item.get("ui", {}).get("visible") is True
     }
     candidates: dict[str, list[dict[str, Any]]] = {}
     for item_id, item in canonical.items():
@@ -493,7 +494,8 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
         item_id for item_id in selected_ids
         if (item_id not in registry and item_id not in auxiliary) or
         not isinstance((registry.get(item_id) or auxiliary.get(item_id)).get("activation"), dict) or
-        (registry.get(item_id) or auxiliary.get(item_id))["activation"].get("enabled") is not True
+        (registry.get(item_id) or auxiliary.get(item_id))["activation"].get("enabled") is not True or
+        (item_id in registry and (registry[item_id].get("category") not in (None, "recoverable_on_demand") or registry[item_id].get("ui", {}).get("visible") is not True))
     )
     if disabled:
         raise SystemExit("Instrumentos não ativados no registro: " + ", ".join(disabled))

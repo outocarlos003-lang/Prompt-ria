@@ -53,6 +53,7 @@ def read_instruments(root: Path) -> list[dict]:
             if isinstance(item, dict) and isinstance(item.get("activation"), dict)
             and item["activation"].get("enabled") is True
             and item.get("category") in (None, "recoverable_on_demand")
+            and item.get("ui", {}).get("visible") is True
         }
     for path in sorted(root.rglob("*.md")):
         repo_path = path.relative_to(root.parent).as_posix()
@@ -73,7 +74,7 @@ def read_instruments(root: Path) -> list[dict]:
                 "normalized_aliases": [normalize(alias) for alias in entry.get("aliases", []) if isinstance(alias, str) and normalize(alias)],
                 "active": active,
                 "registry_enabled": isinstance(entry.get("activation"), dict) and entry["activation"].get("enabled") is True,
-                "ui_visible": isinstance(entry.get("ui"), dict) and entry["ui"].get("visible") is True,
+                "ui_visible": (isinstance(entry.get("ui"), dict) and entry["ui"].get("visible") is True) if entry else True,
                 "category": entry.get("category"),
             })
     return items
@@ -89,7 +90,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     matches = []
     all_by_id = {item.get("id"): item for item in instruments if item.get("id")}
     all_by_repo_path = {item.get("repository_path"): item for item in instruments if item.get("repository_path")}
-    active_catalog = [item for item in instruments if item.get("active", True) and item.get("normalized_title") and item.get("category") in (None, "recoverable_on_demand")]
+    active_catalog = [item for item in instruments if item.get("active", True) and item.get("ui_visible", True) is True and item.get("normalized_title") and item.get("category") in (None, "recoverable_on_demand")]
 
     def make_match(item, identity, start, end, *, ambiguous=False, diverse=False, disabled=False):
         if disabled:
@@ -340,9 +341,9 @@ def main() -> None:
             {
                 "id": "github-operational",
                 "path": "instruments/acione-a-promptaria-pelo-github.md",
-                "category": "recoverable_on_demand",
-                "identity": "mandatory_fixed_component",
-                "participation": "fixed_operational_component",
+                "category": "continuous_automation",
+                "identity": "mandatory_github_operational_preconfiguration",
+                "participation": "continuous_preconfiguration_context",
             },
         ]
 

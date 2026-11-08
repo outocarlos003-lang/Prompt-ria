@@ -26,8 +26,9 @@ class PromptariaRequestRoutingTests(unittest.TestCase):
 
     def test_explicit_enabled_title_routes_to_coreference(self):
         result = self.classify("Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas.")
-        self.assertEqual(result["route"], "title_coreference")
-        self.assertIn("github-operational", result["allowed_coreference_ids"])
+        self.assertEqual(result["route"], "unclassified_requires_review")
+        self.assertEqual(result["allowed_coreference_ids"], [])
+        self.assertEqual(result["continuous_context_matches"][0]["id"], "github-operational")
 
     def test_automation_preconfiguration_does_not_trigger_coreference(self):
         result = self.classify(
@@ -42,17 +43,19 @@ class PromptariaRequestRoutingTests(unittest.TestCase):
         result = self.classify(
             "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS"
         )
-        self.assertEqual(result["route"], "inactive_or_unregistered_reference")
+        self.assertEqual(result["route"], "unclassified_requires_review")
         self.assertEqual(result["active_title_matches"], [])
-        self.assertEqual(result["inactive_title_matches"][0]["id"], "functional-correference-architecture")
+        self.assertEqual(result["inactive_title_matches"], [])
+        self.assertEqual(result["continuous_context_matches"][0]["id"], "functional-correference-architecture")
         self.assertNotIn("coordinator", result["allowed_coreference_ids"])
 
     def test_explicit_active_title_plus_automation_intent_routes_as_mixed(self):
         result = self.classify(
             "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas e pré-configure o workflow."
         )
-        self.assertEqual(result["route"], "mixed_coreference_and_automation_preconfiguration")
-        self.assertIn("github-operational", result["allowed_coreference_ids"])
+        self.assertEqual(result["route"], "automation_preconfiguration")
+        self.assertEqual(result["allowed_coreference_ids"], [])
+        self.assertEqual(result["continuous_context_matches"][0]["id"], "github-operational")
 
     def test_unclassified_request_fails_closed(self):
         result = self.classify("Analise isso.")

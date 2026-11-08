@@ -115,16 +115,16 @@
         "preserve-functional-contract",
         "audit-bidirectional-trace"
       ],
-      "category": "recoverable_on_demand",
+      "category": "continuous_automation",
       "ui": {
         "node_id": "instrument:github-operational",
-        "visible": true,
+        "visible": false,
         "featured": false
       },
       "activation": {
         "enabled": true,
         "status": "active",
-        "mode": "on_demand_title"
+        "mode": "continuous_preconfiguration"
       }
     },
     {

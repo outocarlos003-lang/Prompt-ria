@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_IDS = ["github-operational", "nocturna-arquitetura-necessidade-identidade-sistemica"]
+BASE_IDS = ["nocturna-arquitetura-necessidade-identidade-sistemica"]
 MANIFEST = ROOT / "tests" / "manifest.json"
 REGISTRY = ROOT / "config" / "instrument-registry.json"
 SEGMENT_POLICY = ROOT / "config" / "segment-integration-policy.json"
@@ -54,7 +54,7 @@ def registry_matches(request_text: str, registry: dict) -> list[dict]:
  normalized_request = normalize(request_text)
  matches = []
  for item in registry.get("instruments", []):
-  if item.get("activation", {}).get("enabled") is not True or item.get("category") == "continuous_automation":
+  if item.get("activation", {}).get("enabled") is not True or item.get("category") == "continuous_automation" or item.get("ui", {}).get("visible") is not True:
    continue
   candidates = [("title", item.get("title", ""))]
   candidates.extend(("alias", value) for value in item.get("aliases", []))
@@ -156,6 +156,7 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
   if isinstance(item, dict) and isinstance(item.get("id"), str)
   and item.get("activation", {}).get("enabled") is True
   and item.get("category") in (None, "recoverable_on_demand")
+  and item.get("ui", {}).get("visible") is True
  }
  fields = flatten(request)
  request_text = "\n".join(path + ": " + value for path, value in fields)
