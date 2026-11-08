@@ -83,7 +83,7 @@ def read_instruments(root: Path) -> list[dict]:
             if not source_path.is_file():
                 continue
             source_text = source_path.read_text(encoding="utf-8")
-            heading = re.search(r"(?m)^#\\s+(.+?)\\s*$", source_text)
+            heading = re.search(r"(?m)^#\s+(.+?)\s*$", source_text)
             if not heading:
                 continue
             title = heading.group(1).strip()
