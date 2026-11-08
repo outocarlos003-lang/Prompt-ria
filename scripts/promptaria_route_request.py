@@ -61,10 +61,16 @@ def main() -> int:
     active_hits = []
     inactive_hits = []
     active_ids = []
+    continuous_automation_ids = sorted(
+        item.get("id") for item in registry.get("instruments", [])
+        if isinstance(item, dict)
+        and item.get("activation", {}).get("enabled") is True
+        and item.get("category") == "continuous_automation"
+    )
     for item in registry.get("instruments", []):
         if not isinstance(item, dict):
             continue
-        enabled = item.get("activation", {}).get("enabled") is True
+        enabled = (item.get("activation", {}).get("enabled") is True and item.get("category") == "recoverable_on_demand")
         terms = [item.get("title", ""), *item.get("aliases", [])]
         hits = [term for term in terms if isinstance(term, str) and contains_phrase(normalized_request, term)]
         if hits:
@@ -99,6 +105,8 @@ def main() -> int:
         "inactive_title_matches": inactive_hits,
         "automation_preconfiguration_intent": automation_intent,
         "allowed_coreference_ids": sorted(set(active_ids)),
+        "continuous_automation_ids": continuous_automation_ids,
+        "continuous_preconfiguration": {"applies_to_every_request": True, "instrument_ids": continuous_automation_ids, "execution_performed": False, "purpose": "Always-on preconfiguration context supplied to downstream request planning."},
         "policy": {
             "registry_is_authoritative": True,
             "only_activation_enabled_true_can_resolve_by_title": True,
