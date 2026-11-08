@@ -44,7 +44,7 @@ O instrumento `instruments/protocolo-mestre-acionamento-automatico.md` preserva 
 
 A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. O resolvedor rejeita `dry_run` que não seja booleano JSON; o padrão é `true`. A escrita é tratada por um executor separado e nunca é disparada apenas porque um título ou prompt foi recuperado. No workflow GitHub Actions, a integração do executor é deliberadamente restrita à simulação; escrita real não é autorizada pelo workflow. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
 
-Para acionar uma demanda por comentário, use `/promptaria <demanda completa>` em uma issue. Para execução manual, abra Actions → “Promptária - correferência funcional por título” → Run workflow. O artefato JSON indica componentes obrigatórios ausentes, títulos reconhecidos e estados de rastreabilidade.
+Não há acionamento geral de demandas por comentário nem workflow manual de resolução de demandas. O comando `/promptaria merge <SHA>` é exclusivo para aprovação explícita de integração de uma pull request própria destinada a `main`; ele não executa a demanda nem aciona instrumentos. Para resolver uma demanda, use localmente o comando do resolvedor Python mostrado na seção anterior e valide o artefato com a suíte de testes.
 
 ## Pré-configuração de sincronização do catálogo e sitemap
 
