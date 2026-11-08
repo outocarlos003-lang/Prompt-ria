@@ -18,6 +18,7 @@ A resolução canônica é implementada por scripts/promptaria_resolver.py e pel
 
 ## O que está automatizado
 
+- **Recepção e resolução contextual de demandas:** .github/workflows/promptaria-receber-demanda.yml recebe `request_json`, carrega a pré-configuração contínua integral, executa o roteamento contextual e os handlers selecionados e publica um artefato auditável, sem permissões de escrita.
 - **Verificação de pull requests:** .github/workflows/promptaria-tests.yml executa o contrato JavaScript, as salvaguardas dos workflows privilegiados e a suíte Python.
 - **Classificação de novos instrumentos:** .github/workflows/auto-enable-new-promptual-instruments.yml chama scripts/auto_enable_new_promptual_instruments.py. Títulos novos contendo “Instrumento promptual” são classificados como recuperáveis sob demanda por padrão; automação contínua exige a declaração expressa prevista na política.
 - **Integração controlada:** .github/workflows/promptaria-integracao-pr.yml valida o comentário exato /promptaria merge <SHA> em uma pull request própria, aberta e destinada a main; não faz o merge.
@@ -226,11 +227,12 @@ Não há atualmente um workflow ou script versionado de sincronização automát
 - `scripts/validate_instrument_reference_contract.py`
 - `scripts/validate_instrument_registry.py`
 
-### Workflows do GitHub Actions (4)
+### Workflows do GitHub Actions (5)
 
 - `.github/workflows/auto-enable-new-promptual-instruments.yml`
 - `.github/workflows/promptaria-auto-merge.yml`
 - `.github/workflows/promptaria-integracao-pr.yml`
+- `.github/workflows/promptaria-receber-demanda.yml`
 - `.github/workflows/promptaria-tests.yml`
 
 ### Documentação (7)
@@ -307,14 +309,15 @@ O inventário descreve arquivos efetivamente versionados; presença no repositó
 
 ## Workflows ativos
 
-A árvore atual contém quatro workflows versionados:
+A árvore atual contém cinco workflows versionados:
 
 - .github/workflows/promptaria-tests.yml: executa os testes de contrato JS, as salvaguardas dos workflows privilegiados e os testes Python em pull requests.
+- .github/workflows/promptaria-receber-demanda.yml: recebe demandas JSON por workflow_dispatch, executa o executor contextual e os handlers selecionados e publica o resultado como artefato; mantém contents: read.
 - .github/workflows/auto-enable-new-promptual-instruments.yml: aplica a política de classificação de instrumentos novos, com comparação ao SHA-base.
 - .github/workflows/promptaria-integracao-pr.yml: recebe comentários de aprovação em pull requests e valida o SHA exato; para PR em rascunho, pode marcá-la como pronta, e para PR não rascunho pode repetir ou aguardar os checks daquele SHA.
 - .github/workflows/promptaria-auto-merge.yml: só considera execuções bem-sucedidas de Promptária PR Checks originadas por pull request e exige aprovação OWNER exata antes do merge.
 
-Não existe workflow manual de pré-configuração do protocolo-mestre, workflow de execução especializada nem workflow de comentário para enviar demandas gerais.
+O workflow de recepção é manual por `workflow_dispatch`; não há acionamento genérico por comentário. A execução especializada é feita pelo executor contextual dentro desse fluxo, e não por um segundo workflow separado. A pré-configuração contínua é carregada como contexto inerte, não como handler.
 
 ## Integração automática de pull requests
 
