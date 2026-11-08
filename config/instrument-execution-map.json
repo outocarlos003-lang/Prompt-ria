@@ -155,22 +155,6 @@
       "specialized_handler": "handler_promptaria_instrument_template"
     },
     {
-      "id": "protocol-update-integrity",
-      "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
-      "path": "instruments/protocolo-operacional-atualizacao-integridade-acervo.md",
-      "resolution_status": "recognized_planning_only",
-      "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Produz plano de integridade e rastreabilidade sem mutações externas.",
-      "specialized_handler": "handler_protocol_update_integrity"
-    },
-    {
       "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
       "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
       "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
