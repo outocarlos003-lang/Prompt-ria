@@ -340,9 +340,9 @@ def main() -> None:
             {
                 "id": "github-operational",
                 "path": "instruments/acione-a-promptaria-pelo-github.md",
-                "category": "recoverable_on_demand",
-                "identity": "mandatory_fixed_component",
-                "participation": "fixed_operational_component",
+                "category": "continuous_automation",
+                "identity": "mandatory_github_operational_preconfiguration",
+                "participation": "continuous_preconfiguration_context",
             },
         ]
 
