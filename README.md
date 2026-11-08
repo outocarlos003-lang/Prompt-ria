@@ -6,7 +6,7 @@ Repositório de instrumentos promptuais reutilizáveis, identificados por títul
 
 A resolução canônica é implementada por scripts/promptaria_resolver.py e pelo contrato JavaScript em .github/scripts/resolver-correferencia.mjs. O resolvedor consulta o registro operacional config/instrument-registry.json, recupera os arquivos em instruments/*.md e usa o primeiro cabeçalho H1 como título canônico. A correspondência preserva identidades distintas e não encerra a busca na primeira ocorrência.
 
-**Limite de acionamento pelo GitHub:** não existe um workflow versionado de recepção de demandas gerais nem um comando de comentário /promptaria <demanda> para executar demandas. O workflow de comentários existente é restrito à aprovação explícita de integração de pull requests, descrita abaixo. Para resolver uma demanda localmente, use o resolvedor Python e valide o artefato com o validador correspondente.
+**Acionamento pelo GitHub:** o workflow manual **Promptária — receber e resolver demanda** recebe um objeto JSON em `request_json`, executa a análise contextual e os handlers especializados selecionados e publica o resultado como artefato. O workflow usa somente `contents: read`: não grava no repositório nem autoriza efeitos externos. O comando de comentário `/promptaria merge <SHA>` continua restrito à aprovação explícita de integração de pull requests, descrita abaixo.
 
 ### Adicionar um instrumento
 
@@ -18,6 +18,7 @@ A resolução canônica é implementada por scripts/promptaria_resolver.py e pel
 
 ## O que está automatizado
 
+- **Recepção e resolução contextual de demandas:** .github/workflows/promptaria-receber-demanda.yml recebe `request_json`, carrega a pré-configuração contínua integral, executa o roteamento contextual e os handlers selecionados e publica um artefato auditável, sem permissões de escrita.
 - **Verificação de pull requests:** .github/workflows/promptaria-tests.yml executa o contrato JavaScript, as salvaguardas dos workflows privilegiados e a suíte Python.
 - **Classificação de novos instrumentos:** .github/workflows/auto-enable-new-promptual-instruments.yml chama scripts/auto_enable_new_promptual_instruments.py. Títulos novos contendo “Instrumento promptual” são classificados como recuperáveis sob demanda por padrão; automação contínua exige a declaração expressa prevista na política.
 - **Integração controlada:** .github/workflows/promptaria-integracao-pr.yml valida o comentário exato /promptaria merge <SHA> em uma pull request própria, aberta e destinada a main; não faz o merge.
@@ -186,7 +187,7 @@ O registry é a autoridade para acionamento por título. A classificação semâ
 
 ## Manutenção da documentação
 
-Não há atualmente um workflow ou script versionado de sincronização automática do README. As descrições e o inventário abaixo foram reconciliados manualmente com a árvore atual do repositório. Ao adicionar ou remover arquivos, atualize esta documentação na mesma alteração e valide as referências de caminho.
+O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seções de inventário do README com os diretórios versionados. O workflow de classificação de novos instrumentos executa essa sincronização antes de publicar alterações de metadados e inclui o README no mesmo commit. Para outras alterações estruturais, execute `python scripts/sync_readme_inventory.py`; use `--check` para verificar se o inventário está atualizado sem conservar alterações.
 
 ## Inventário versionado — conferido com a árvore de main
 
@@ -201,7 +202,7 @@ Não há atualmente um workflow ou script versionado de sincronização automát
 - `instruments/protocolo-mestre-acionamento-automatico.md`
 - `instruments/protocolo-mestre-execucao-correta.md`
 
-### Scripts Python (22)
+### Scripts Python (23)
 
 - `scripts/activate_instrument.py`
 - `scripts/auto_enable_new_promptual_instruments.py`
@@ -223,14 +224,16 @@ Não há atualmente um workflow ou script versionado de sincronização automát
 - `scripts/promptaria_specialized_executor.py`
 - `scripts/promptaria_validate_result.py`
 - `scripts/resolve_auxiliary_protocol.py`
+- `scripts/sync_readme_inventory.py`
 - `scripts/validate_instrument_reference_contract.py`
 - `scripts/validate_instrument_registry.py`
 
-### Workflows do GitHub Actions (4)
+### Workflows do GitHub Actions (5)
 
 - `.github/workflows/auto-enable-new-promptual-instruments.yml`
 - `.github/workflows/promptaria-auto-merge.yml`
 - `.github/workflows/promptaria-integracao-pr.yml`
+- `.github/workflows/promptaria-receber-demanda.yml`
 - `.github/workflows/promptaria-tests.yml`
 
 ### Documentação (7)
@@ -243,12 +246,14 @@ Não há atualmente um workflow ou script versionado de sincronização automát
 - `docs/politica-classificacao-instrumentos-promptuais.md`
 - `docs/preconfiguracao-protocolo-mestre-e-correferencia.md`
 
-### Testes (39)
+### Testes (41)
 
+- `tests/fixtures/correference-parity.json`
 - `tests/manifest.json`
 - `tests/resolver-correferencia.test.mjs`
 - `tests/test_activation_executor_evidence.py`
 - `tests/test_auto_enable_new_promptual_instruments.py`
+- `tests/test_auxiliary_interface.py`
 - `tests/test_auxiliary_protocols.py`
 - `tests/test_canonical_artifact_integrity.py`
 - `tests/test_context_router_activation_gate.py`
@@ -300,21 +305,19 @@ Não há atualmente um workflow ou script versionado de sincronização automát
 - `config/traceability-graph-current.json`
 - `config/traceability-graph.json`
 
-O inventário descreve arquivos efetivamente versionados; presença no repositório não comprova execução ou publicação.
-
-
 <!-- PROMPTARIA-README-AUTO:END -->
 
 ## Workflows ativos
 
-A árvore atual contém quatro workflows versionados:
+A árvore atual contém cinco workflows versionados:
 
 - .github/workflows/promptaria-tests.yml: executa os testes de contrato JS, as salvaguardas dos workflows privilegiados e os testes Python em pull requests.
+- .github/workflows/promptaria-receber-demanda.yml: recebe demandas JSON por workflow_dispatch, executa o executor contextual e os handlers selecionados e publica o resultado como artefato; mantém contents: read.
 - .github/workflows/auto-enable-new-promptual-instruments.yml: aplica a política de classificação de instrumentos novos, com comparação ao SHA-base.
 - .github/workflows/promptaria-integracao-pr.yml: recebe comentários de aprovação em pull requests e valida o SHA exato; para PR em rascunho, pode marcá-la como pronta, e para PR não rascunho pode repetir ou aguardar os checks daquele SHA.
 - .github/workflows/promptaria-auto-merge.yml: só considera execuções bem-sucedidas de Promptária PR Checks originadas por pull request e exige aprovação OWNER exata antes do merge.
 
-Não existe workflow manual de pré-configuração do protocolo-mestre, workflow de execução especializada nem workflow de comentário para enviar demandas gerais.
+O workflow de recepção é manual por `workflow_dispatch`; não há acionamento genérico por comentário. A execução especializada é feita pelo executor contextual dentro desse fluxo, e não por um segundo workflow separado. A pré-configuração contínua é carregada como contexto inerte, não como handler.
 
 ## Integração automática de pull requests
 
