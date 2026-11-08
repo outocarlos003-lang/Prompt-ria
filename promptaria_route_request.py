@@ -47,7 +47,7 @@ AUTOMATION_PATTERNS = (
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--request", required=True, type=Path)
-    parser.add_argument("--registry", type=Path, default=Path("config/instrument-registry.json"))
+    parser.add_argument("--registry", type=Path, default=Path("instrument-registry.json"))
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
 
