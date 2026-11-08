@@ -35,12 +35,16 @@ def main() -> None:
     validate_registry()
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     entries = registry["instruments"]
-    physical = {path.relative_to(ROOT).as_posix() for path in SOURCE.glob("*.md")}
     registered = {item["path"] for item in entries}
-    if physical != registered:
-        missing = sorted(physical - registered)
-        stale = sorted(registered - physical)
-        raise SystemExit(f"registry/catalog mismatch; missing={missing}; stale={stale}")
+    missing = sorted(path for path in registered if not (ROOT / path).is_file())
+    if missing:
+        raise SystemExit(f"registry/catalog mismatch; registered source files missing={missing}")
+    mismatched = sorted(
+        item["path"] for item in entries
+        if title_for(ROOT / item["path"]) != item["title"]
+    )
+    if mismatched:
+        raise SystemExit(f"registry/catalog mismatch; canonical H1 differs for={mismatched}")
 
     catalog = {
         "schema_version": 2,
