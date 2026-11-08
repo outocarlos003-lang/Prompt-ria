@@ -6,7 +6,7 @@ Repositório de instrumentos promptuais reutilizáveis, identificados por títul
 
 A resolução canônica é implementada por scripts/promptaria_resolver.py e pelo contrato JavaScript em .github/scripts/resolver-correferencia.mjs. O resolvedor consulta o registro operacional config/instrument-registry.json, recupera os arquivos em instruments/*.md e usa o primeiro cabeçalho H1 como título canônico. A correspondência preserva identidades distintas e não encerra a busca na primeira ocorrência.
 
-**Limite de acionamento pelo GitHub:** não existe um workflow versionado de recepção de demandas gerais nem um comando de comentário /promptaria <demanda> para executar demandas. O workflow de comentários existente é restrito à aprovação explícita de integração de pull requests, descrita abaixo. Para resolver uma demanda localmente, use o resolvedor Python e valide o artefato com o validador correspondente.
+**Acionamento pelo GitHub:** o workflow manual **Promptária — receber e resolver demanda** recebe um objeto JSON em `request_json`, executa a análise contextual e os handlers especializados selecionados e publica o resultado como artefato. O workflow usa somente `contents: read`: não grava no repositório nem autoriza efeitos externos. O comando de comentário `/promptaria merge <SHA>` continua restrito à aprovação explícita de integração de pull requests, descrita abaixo.
 
 ### Adicionar um instrumento
 
