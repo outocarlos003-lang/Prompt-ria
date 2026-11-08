@@ -1,5 +1,94 @@
 # ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS
 
+## Identidade canônica e fusão funcional das duas fases
+
+Este é o único instrumento resultante da fusão dos antigos registros `coordinator` e `functional-correference-architecture`. Sua identidade operacional canônica é `functional-correference-architecture`, seu nó principal permanece `instrument:functional-correference-architecture` e o antigo ID `coordinator` é preservado exclusivamente como alias legado de resolução. Não existe mais um segundo instrumento, fonte autônoma, handler independente ou fase residual publicada sob aquele ID.
+
+A fusão não apaga as funções que antes estavam distribuídas entre os dois instrumentos. Elas passam a constituir duas fases internas, autônomas quanto à responsabilidade funcional e inseparáveis quanto à identidade operacional:
+
+1. **Fase I — resolução de títulos e correferência funcional:** identifica todos os títulos e aliases válidos, resolve as correspondências cumulativamente, recupera as fontes integrais, confirma identidade e proveniência e preserva a função própria de cada instrumento. Correspondência parcial arbitrária não é aceita; colisões não resolvidas permanecem bloqueadas.
+2. **Fase II — coordenação, compatibilização e validação:** organiza os instrumentos recuperados, suas dependências, complementaridades, sobreposições, conflitos, sequência ou paralelismo, contexto, parâmetros, origem, destino, resultados intermediários e critérios de conclusão, sem absorver nem descaracterizar a lógica própria de qualquer participante.
+
+A simultaneidade da correferência significa que as duas fases são reconhecidas e coordenadas como partes do mesmo instrumento durante uma única operação. Não significa que todas as tarefas devam ser executadas em paralelo: a ordem concreta continua subordinada às dependências reais, às permissões e aos critérios de segurança.
+
+### Nó novo de correferência de coordenação entre fases
+
+O nó `coordination:functional-correference-architecture` é o ponto único de articulação entre as duas fases. Ele não representa a correferência semântica ou funcional entre os instrumentos adicionais mencionados pela demanda; representa exclusivamente a relação de coordenação interna entre as fases deste instrumento unificado.
+
+Relações obrigatórias:
+
+- `phase:title-resolution->coordination:functional-correference-architecture`
+- `coordination:functional-correference-architecture->phase:bundle-coordination`
+- `phase:bundle-coordination->coordination:functional-correference-architecture`
+- `coordination:functional-correference-architecture->phase:title-resolution`
+- `legacy-id:coordinator->functional-correference-architecture`
+- `instrument:coordinator->instrument:functional-correference-architecture`
+
+O nó recebe a saída verificada da Fase I, transmite identidades e proveniência à Fase II e recebe desta os estados de compatibilização e validação. O retorno à Fase I permite reexaminar uma correspondência quando a coordenação detectar colisão, dependência não resolvida ou incompatibilidade de identidade. O ciclo não cria um terceiro instrumento nem uma terceira fonte canônica.
+
+### Identidade, aliases e compatibilidade
+
+- ID canônico único: `functional-correference-architecture`.
+- ID legado aceito como alias: `coordinator`.
+- Nó canônico único: `instrument:functional-correference-architecture`.
+- Nó de coordenação entre fases: `coordination:functional-correference-architecture`.
+- Fonte integral única: `arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`.
+- Handler único: `handler_unified_architecture`.
+- As funções internas de resolução e coordenação permanecem separadas como funções de fase, chamadas pelo handler unificado.
+- Manifesto, registro, catálogo, mapa de execução, testes e referências contêm uma única entrada operacional para a arquitetura fundida. O alias legado não pode reaparecer como entrada independente.
+
+### Contrato incorporado da fase coordenadora
+
+**Identidade e finalidade.** O instrumento identifica, recupera, articula e valida instrumentos promptuais independentes. O título identifica; o conteúdo efetivamente recuperado fundamenta a aplicação. Coordenar relaciona unidades, não as funde.
+
+**Arquitetura obrigatória.** A composição inclui este instrumento unificado, o instrumento operacional fixo `github-operational`, o protocolo-mestre `master-activation` quando aplicável e zero, um ou tantos instrumentos adicionais quantos forem indicados. Não há limite numérico arbitrário.
+
+**Cadeia operacional.** Título → identificação → recuperação → confirmação do conteúdo → reconhecimento funcional → coordenação → contextualização → parametrização → adaptação → execução → validação → rastreabilidade.
+
+**Correferência por título.** Menção genérica a título existente identifica o instrumento e conserva sua função própria, salvo atribuição específica e inequívoca de função diversa. Silêncio, ausência de explicitação ou ambiguidade não constituem, por si sós, função diversa. A exceção é examinada individualmente para cada título.
+
+**Preservação e recuperação.** Cada conteúdo efetivo deve ser recuperado antes de se afirmar sua função. Não inventar conteúdo, substituir unidade ausente ou declarar execução não confirmada. Distinguir identificação, recuperação, acionamento, tentativa, execução confirmada e resultado validado.
+
+**Coordenação múltipla.** Processar todos os títulos; preservar identidade, função, origem e responsabilidade; detectar dependências, complementaridades, sobreposições e conflitos; escolher execução sequencial ou paralela conforme dependências reais. Reconhecimento simultâneo não impõe paralelismo.
+
+**Demanda e contexto.** A demanda define o objetivo; o contexto descreve circunstâncias; a parametrização estabelece condições variáveis; a adaptação ajusta sem descaracterizar; a execução concretiza as instruções recuperadas. Essas categorias não são intercambiáveis.
+
+**Origem, destino e materialização.** Origem e destino são parâmetros distintos. Destino explícito prevalece; contexto inequívoco pode determiná-lo; ambiguidade suspende a escrita dependente. Nocturna não é destino padrão. Escrita exige destino definido, autorização e capacidade técnica; não declarar escrita sem confirmação.
+
+**Validação.** Verificar identidades, conteúdos recuperados, todos os títulos, preservação das funções, exceções individuais, dependências, origem, destino, permissões, resultados intermediários, integridade e rastreabilidade. Relatar limitações sem alegar conclusão integral.
+
+**Limite técnico.** GitHub Actions processa somente demandas efetivamente transmitidas por evento ou integração autorizada; este instrumento não lê automaticamente conversas arbitrárias do ChatGPT.
+
+### Contrato de correspondência, recuperação e segurança incorporado
+
+1. **Fonte canônica:** os documentos Markdown e os metadados efetivamente presentes no repositório são a fonte; não presumir diretórios, manifestos ou árvores paralelas inexistentes.
+2. **Identidade por título:** preservar título original e caminho de origem; normalizar Unicode, caixa, espaços e pontuação apenas para comparação.
+3. **Correspondência:** título completo ou normalizado pode identificar. Não usar correspondência parcial arbitrária.
+4. **Aliases e pistas:** aliases e palavras-chave auxiliam a recuperação; não substituem a identidade canônica nem criam instrumentos adicionais.
+5. **Recuperação integral:** recuperar o conteúdo integral de cada instrumento identificado. Não resumir ou reescrever instruções quando a operação exigir preservação integral.
+6. **Exceção funcional:** somente atribuição específica e inequívoca afasta a função própria. Exceção ambígua fica pendente, sem decisão por heurística lexical.
+7. **Múltiplos títulos:** reconhecer todas as correspondências cumulativamente; não parar na primeira nem impor cardinalidade fixa.
+8. **Componentes-base:** preservar o instrumento operacional fixo, o protocolo-mestre e a arquitetura unificada, cada qual com sua responsabilidade; os IDs e funções desses componentes não se confundem.
+9. **Pré-configuração futura:** incluir a arquitetura unificada no plano das demandas pertinentes sem duplicar caminhos; inclusão no plano não significa execução automática.
+10. **Destino e segurança:** validar caminhos relativos POSIX e preservar proteções contra caminhos absolutos, traversal, segmentos ambíguos, `.git`, separadores Windows e caracteres de controle.
+11. **Autorização:** planejamento é o padrão. Escrita exige executor separado, destino permitido e autorização explícita. Reconhecimento de título nunca autoriza escrita.
+12. **Estados:** distinguir identificação, recuperação, inclusão no plano, revisão, tentativa, execução confirmada, materialização e resultado validado.
+13. **Auditoria:** preservar IDs, caminhos, estados, resultados, integridade e reconciliação; não remover nem enfraquecer controles.
+14. **Compatibilidade:** estender a arquitetura Python e seus contratos existentes; não introduzir implementação paralela baseada em Node.js ou diretórios presumidos.
+15. **Falhas fechadas:** componente ausente, título ambíguo, recuperação falha ou validação reprovada devem produzir estado explícito de bloqueio ou pendência, nunca sucesso presumido.
+16. **Regressão:** testar título canônico, normalização, alias, ID legado, título desconhecido, múltiplas correspondências, preservação funcional, ausência de duplicação, componentes obrigatórios e ausência de falsas alegações de execução.
+17. **Limite de integração:** workflows só processam eventos e payloads recebidos; não observam conversas externas nem concedem permissões.
+18. **Interconexão operacional:** o instrumento `github-operational` mantém a função de inspecionar/localizar recursos, recuperar fonte integral, preservar metadados e envelope de demanda e fornecer evidências. As relações com este instrumento são bidirecionais quando declaradas, sem absorção de papéis.
+19. **Protocolo-mestre:** `master-activation` coordena a demanda, dependências, componentes-base e critérios de satisfação verificável; não substitui as fases internas desta arquitetura.
+20. **Pré-configuração padrão:** conserva contexto, parâmetros, origem, destino, autorização, dependências e estados; plano, acionamento, tentativa e execução confirmada permanecem distintos.
+21. **Rastreabilidade intersegmentos:** demanda/origem → título ou pista → ID canônico → nó → fonte integral → função → operação autorizada → evidência → validação.
+22. **Integridade da escrita:** existência de arquivo não comprova validade, integração ou conclusão; resultados intermediários preservam origem, responsável, etapa, destino, dependências e relação com o resultado final.
+
+### Preservação de responsabilidades e ausência de redundância
+
+A Fase I não executa a função de compatibilização da Fase II; a Fase II não reinterpreta livremente os títulos nem substitui a resolução da Fase I. O nó de coordenação conecta os resultados sem duplicar regras, fontes, IDs ou handlers. A arquitetura fica una como instrumento e plural em suas funções internas e nos instrumentos externos que coordena.
+
+
 Este instrumento promptual deverá ser acionado pelo próprio título “ARQUITETURA
 UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE
 INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS
@@ -1295,7 +1384,7 @@ Esta seção complementa o conteúdo integral anterior sem substituir, resumir o
 
 1. Receber a demanda e todos os títulos fornecidos no payload autorizado.
 2. Incluir o coordenador e o instrumento fixo como componentes-base, sem exigir que seus títulos sejam repetidos.
-3. Resolver individualmente todos os títulos adicionais contra o registro e os arquivos efetivos em `instruments/`.
+3. Resolver individualmente todos os títulos adicionais contra o registro e os arquivos efetivos em ``.
 4. Recuperar o conteúdo real de cada correspondência; registrar ausência, colisão ou ambiguidade sem fabricar conteúdo.
 5. Preservar função, identidade, ordem de entrada e proveniência de cada unidade.
 6. Gerar plano rastreável com contexto, parâmetros, origem, destino, dependências, estados e critérios de validação.
