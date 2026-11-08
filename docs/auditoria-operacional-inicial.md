@@ -24,8 +24,10 @@ Critério aplicado: a descoberta por título e a inclusão em um plano não prov
 | Protocolo-mestre de acionamento automático | `instruments/protocolo-mestre-acionamento-automatico.md` | Parcialmente automatizado | Incluído como componente-base e usado como regra operacional documental | O protocolo não instala gatilhos universais; depende da integração que carrega e aplica seu conteúdo |
 | Protocolo-mestre de execução correta | `instruments/protocolo-mestre-execucao-correta.md` | Parcialmente automatizado | Existe como instrução versionada | Não foi identificado executor específico que transforme todas as etapas do protocolo em ações verificáveis |
 | Modelo de instrumento promptual | `instruments/modelo-instrumento-promptual-correferencia.md` | Parcialmente automatizado | Modelo versionado e validado pelo registro | É um template preparado, não uma ativação funcional por si só |
-| Protocolo de atualização e integridade | `instruments/protocolo-operacional-atualizacao-integridade-acervo.md` | Parcialmente automatizado | Registra preservação funcional e rastreabilidade | A publicação e habilitação funcional dependem da flag explícita de ativação |
 | Nocturna — arquitetura da necessidade | `instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md` | Parcialmente automatizado | Fonte local recuperável e título canônico rastreado | A existência local não comprova acesso ou análise dos acervos externos Nocturna |
+
+
+O protocolo `protocol-update-integrity` foi classificado separadamente do conjunto operacional e realocado para `auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md`. Permanece habilitado e recuperável explicitamente; não integra a enumeração, o manifesto ou a contagem dos instrumentos operacionais.
 
 ## Inventário de mecanismos de execução
 
