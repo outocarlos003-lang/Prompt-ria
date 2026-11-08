@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT))
 from scripts.resolve_auxiliary_protocol import resolve
 from scripts.promptaria_registry_audit import audit
 from scripts.promptaria_context_router import BASE_IDS
+from scripts.promptaria_resolver import read_instruments, resolve as resolve_operational
 
 IDENT = "protocol-update-integrity"
 TITLE = "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA"
@@ -62,6 +63,12 @@ class AuxiliaryProtocolTests(unittest.TestCase):
         self.assertEqual(result["instrument_count"], 8)
         self.assertEqual(result["auxiliary_protocol_count"], 1)
         self.assertTrue(result["auxiliary_protocols_checked"])
+
+    def test_auxiliary_protocol_is_not_preloaded_or_auto_selected_operationally(self) -> None:
+        operational = read_instruments(ROOT / "instruments")
+        self.assertNotIn(IDENT, {item.get("id") for item in operational})
+        self.assertNotIn(TITLE, {item.get("title") for item in operational})
+        self.assertFalse(resolve_operational(TITLE, operational))
 
     def test_source_is_not_under_operational_instruments_directory(self) -> None:
         self.assertTrue((ROOT / SOURCE).is_file())
