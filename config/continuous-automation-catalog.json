@@ -131,6 +131,7 @@
         "coordinate-complementary-phases"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:github-operational",
         "visible": false,
@@ -234,6 +235,7 @@
         "validate-integrity"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
@@ -297,6 +299,7 @@
         "trace"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:promptaria-instrument-template",
         "visible": false,
@@ -337,6 +340,7 @@
         "validate"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:future-demand-preconfiguration",
         "visible": false,
@@ -377,6 +381,7 @@
         "validate"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:catalog-sitemap-preconfiguration",
         "visible": false,
@@ -422,6 +427,7 @@
         "validate"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-activation",
         "visible": false,
@@ -462,6 +468,7 @@
         "report"
       ],
       "category": "continuous_automation",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-execution",
         "visible": false,
