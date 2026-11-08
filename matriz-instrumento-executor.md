@@ -9,14 +9,14 @@ Esta matriz distingue quatro coisas que não devem ser confundidas:
 3. **Execução integral do prompt:** seguir toda a semântica operacional de um instrumento em uma demanda real; a presença de um handler, por si só, não comprova que todas as instruções do documento foram executadas.
 4. **Efeito externo:** gravar conteúdo, alterar configurações, publicar, abrir/mesclar PRs ou operar serviços. Nenhum título concede essa autorização.
 
-O mapa de máquina é `config/instrument-execution-map.json`. A implementação está em `scripts/promptaria_specialized_executor.py`; a cobertura positiva/negativa está em `tests/test_promptaria_specialized_executor.py` e a integridade de evidência de ativação em `tests/test_activation_executor_evidence.py`.
+O mapa de máquina é `instrument-execution-map.json`. A implementação está em `promptaria_specialized_executor.py`; a cobertura positiva/negativa está em `test_promptaria_specialized_executor.py` e a integridade de evidência de ativação em `test_activation_executor_evidence.py`.
 
 ## Capacidades compartilhadas
 
-- **Resolver e preflight:** `scripts/promptaria_resolver.py` e `scripts/promptaria_preflight.py` identificam referências e validam correspondências.
+- **Resolver e preflight:** `promptaria_resolver.py` e `promptaria_preflight.py` identificam referências e validam correspondências.
 - **Executor especializado local:** `scripts/promptaria_specialized_executor.py` despacha por ID canônico para um handler registrado, valida a identidade entre manifesto, mapa e registry, recupera a fonte e emite SHA-256 e resultado estruturado.
 - **Evidência:** cada resultado especializado registra o ID/caminho da fonte, o hash, o estado da execução e a lista de efeitos colaterais; os testes confirmam a cobertura de todos os IDs do manifesto e a ausência de efeitos externos nesses handlers.
-- **Executor genérico de escrita:** `scripts/promptaria_executor.py` implementa apenas `write_text`, sujeito a `config/promptaria_permissions.json`, destinos sob `artifacts/`, autorização explícita, `dry_run=false`, confirmação exata do `operation_id` e trilha de auditoria.
+- **Executor genérico de escrita:** `promptaria_executor.py` implementa apenas `write_text`, sujeito a `promptaria_permissions.json`, destinos sob `artifacts/`, autorização explícita, `dry_run=false`, confirmação exata do `operation_id` e trilha de auditoria.
 - **Workflow manual:** `.github/workflows/promptaria-specialized-execution.yml` executa preflight/análise/handlers e publica JSON como artefato. A permissão de conteúdo é somente leitura; o workflow não autoriza escrita externa.
 
 ## Matriz por instrumento
@@ -24,10 +24,9 @@ O mapa de máquina é `config/instrument-execution-map.json`. A implementação 
 | ID canônico | Handler | Capacidade local implementada | Limite importante |
 |---|---|---|---|
 | `github-operational` | `handler_github_operational` | Recupera e verifica a fonte, constrói envelope de demanda e registra relações de identidade | Não executa operações externas do GitHub |
-| `coordinator` | `handler_coordinator` | Coordena IDs selecionados, ordem de execução, fontes/hash e gates de validação | Não substitui a execução dos handlers selecionados |
 | `master-activation` | `handler_master_activation` | Constrói plano de ativação com gates explícitos | Não ativa permissões nem efeitos externos |
 | `master-execution` | `handler_master_execution` | Executa checklist local de primeira passagem e associa hashes | Checklist não prova, sozinho, execução integral do prompt |
-| `functional-correference-architecture` | `handler_functional_correference` | Emite relatório de correspondências e bloqueia identidades ambíguas | Não escolhe arbitrariamente entre títulos colidentes |
+| `functional-correference-architecture` | `handler_unified_architecture` | Compõe `handler_functional_correference` (Fase I) e `handler_coordinator` (Fase II) pelo nó `coordination:unified-architecture` | Um ID e um handler externo; as duas fases preservam suas funções internas |
 | `future-demand-preconfiguration` | `handler_future_preconfiguration` | Preserva o objeto estruturado, gera ID determinístico quando ausente e mantém os campos originais | Não dispara a operação descrita no objeto |
 | `catalog-sitemap-preconfiguration` | `handler_catalog_sitemap` | Audita instrumentos Markdown e presença de artefatos legados | Não cria catálogo/sitemap nem publica conteúdo |
 | `promptaria-instrument-template` | `handler_promptaria_instrument_template` | Inspeciona a fonte do modelo e registra sua integridade | A presença do modelo não o ativa |
