@@ -81,13 +81,13 @@
         "scripts/promptaria_preflight.py",
         "scripts/promptaria_executor.py",
         "acione-a-promptaria-pelo-github.md",
-        "config/instrument-registry.json",
-        "config/instrument-catalog.json",
-        "tests/manifest.json",
+        "instrument-registry.json",
+        "instrument-catalog.json",
+        "manifest.json",
         "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
         "protocolo-mestre-acionamento-automatico.md",
         "preconfiguracao-correspondencia-futura-e-cadeia.md",
-        "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
+        "preconfiguracao-protocolo-mestre-e-correferencia.md",
         "config/instrument-execution-map.json",
         "scripts/promptaria_context_router.py",
         "scripts/promptaria_resolver.py",
@@ -201,9 +201,9 @@
       ],
       "files": [
         "nocturna-arquitetura-necessidade-identidade-sistemica.md",
-        "config/instrument-registry.json",
-        "config/instrument-catalog.json",
-        "tests/manifest.json",
+        "instrument-registry.json",
+        "instrument-catalog.json",
+        "manifest.json",
         "scripts/promptaria_resolver.py"
       ],
       "relations": [
@@ -267,8 +267,8 @@
       ],
       "files": [
         "protocolo-operacional-atualizacao-integridade-acervo.md",
-        "config/instrument-registry.json",
-        "config/instrument-catalog.json",
+        "instrument-registry.json",
+        "instrument-catalog.json",
         "scripts/generate_instrument_catalog.py"
       ],
       "relations": [
@@ -318,10 +318,10 @@
       "files": [
         "protocolo-mestre-acionamento-automatico.md",
         "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
-        "config/instrument-registry.json",
-        "config/instrument-catalog.json",
-        "tests/manifest.json",
-        "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
+        "instrument-registry.json",
+        "instrument-catalog.json",
+        "manifest.json",
+        "preconfiguracao-protocolo-mestre-e-correferencia.md",
         "acione-a-promptaria-pelo-github.md"
       ],
       "relations": [
@@ -436,12 +436,12 @@
         "ordenar dependências e validar resultados"
       ],
       "files": [
-        "config/instrument-registry.json",
-        "config/instrument-catalog.json",
-        "tests/manifest.json",
+        "instrument-registry.json",
+        "instrument-catalog.json",
+        "manifest.json",
         "protocolo-mestre-acionamento-automatico.md",
         "acione-a-promptaria-pelo-github.md",
-        "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
+        "preconfiguracao-protocolo-mestre-e-correferencia.md",
         "arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
         "arquitetura-unificada.md",
         "arquitetura-unificada-correferencia-funcional-automatica.md"
