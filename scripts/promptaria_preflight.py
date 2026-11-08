@@ -238,6 +238,12 @@ def main() -> None:
     matches = resolve_request(request, manifest, execution_map)
     preauthorization = assess_preauthorization(request, matches, payload.get("destination"))
     segment_integration = build_segment_integration(payload, matches, manifest)
+    registry_data = load_object(ROOT / "config" / "instrument-registry.json")
+    continuous_automation_ids = sorted(
+        item["id"] for item in registry_data.get("instruments", [])
+        if item.get("activation", {}).get("enabled") is True
+        and item.get("category") == "continuous_automation"
+    )
     result = {
         "schema_version": 2,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -245,6 +251,11 @@ def main() -> None:
         "destination": payload.get("destination"),
         "matched_instruments": matches,
         "matched_instrument_count": len(matches),
+        "continuous_preconfiguration": {
+            "applies_to_every_request": True,
+            "instrument_ids": continuous_automation_ids,
+            "execution_performed": False,
+        },
         "preauthorization": preauthorization,
         "segment_integration": segment_integration,
         "execution_performed": False,
