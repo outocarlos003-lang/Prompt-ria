@@ -51,8 +51,13 @@ def occurrences(text: str, phrase: str) -> list[tuple[int, int]]:
 def resolve_request(request: str, manifest: dict, execution_map: dict) -> list[dict]:
     normalized_request = normalize(request)
     mapped = {item["id"]: item for item in execution_map.get("instruments", [])}
+    registry_data = load_object(ROOT / "config" / "instrument-registry.json")
+    registry_by_id = {item["id"]: item for item in registry_data.get("instruments", [])}
     catalog = []
     for item in manifest.get("instruments", []):
+        registry_item = registry_by_id.get(item.get("id"), {}) if isinstance(item, dict) else {}
+        if registry_item.get("category") != "recoverable_on_demand" or registry_item.get("activation", {}).get("enabled") is not True:
+            continue
         if not isinstance(item, dict) or not all(k in item for k in ("id", "title", "path")):
             continue
         terms = [item["title"], *item.get("aliases", []), item["id"], item["path"]]
