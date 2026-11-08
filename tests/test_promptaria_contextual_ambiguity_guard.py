@@ -41,7 +41,7 @@ class ContextualAmbiguityGuardTests(unittest.TestCase):
              patch.object(
                  contextual.specialized,
                  "index_catalog_entries",
-                 return_value={"alpha": {"activation": {"enabled": True}}},
+                 return_value={"alpha": {"activation": {"enabled": True}, "category": "recoverable_on_demand", "ui": {"visible": True}}},
              ), \
              patch.object(contextual.specialized, "execute", return_value=expected) as execute:
             result = contextual.execute(
