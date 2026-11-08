@@ -70,6 +70,108 @@ class PromptariaResolverTests(unittest.TestCase):
         self.assertEqual(len(result["matched_instruments"]), 3)
         self.assertIn("3/3", stdout)
 
+    def test_registry_separates_continuous_context_from_recoverable_base_component(self):
+        instruments = [
+            ("architecture.md", "Arquitetura Unificada"),
+            ("master.md", "Protocolo-Mestre"),
+            ("github.md", "GitHub Operacional"),
+        ]
+        registry = [
+            {"id": "functional-correference-architecture", "title": "Arquitetura Unificada",
+             "path": "instruments/architecture.md", "aliases": ["arquitetura"],
+             "activation": {"enabled": True}, "category": "continuous_automation",
+             "ui": {"visible": False}},
+            {"id": "master-activation", "title": "Protocolo-Mestre",
+             "path": "instruments/master.md", "aliases": ["protocolo"],
+             "activation": {"enabled": True}, "category": "continuous_automation",
+             "ui": {"visible": False}},
+            {"id": "github-operational", "title": "GitHub Operacional",
+             "path": "instruments/github.md", "aliases": ["github fixo"],
+             "activation": {"enabled": True}, "category": "recoverable_on_demand",
+             "ui": {"visible": True}},
+        ]
+        result, _ = self.run_resolver(
+            "Demanda genérica sem menção aos componentes-base.",
+            instruments,
+            registry_entries=registry,
+        )
+        self.assertEqual(
+            {item["id"] for item in result["mandatory_components"]},
+            {"functional-correference-architecture", "master-activation", "github-operational"},
+        )
+        context = result["preconfiguration"]
+        self.assertEqual(
+            set(context["continuous_context_ids"]),
+            {"functional-correference-architecture", "master-activation"},
+        )
+        self.assertTrue(all(item["loaded_as_context"] for item in context["continuous_context"]))
+        self.assertTrue(all(item["title_resolvable"] is False for item in context["continuous_context"]))
+        self.assertTrue(all(item["execution_performed"] is False for item in context["continuous_context"]))
+        self.assertEqual(context["fixed_operational_component"]["id"], "github-operational")
+        self.assertTrue(context["complete"])
+        self.assertEqual(result["status"], "plan_created_needs_execution_integration")
+        self.assertFalse(any(
+            item.get("identity") in {"matched_by_title", "matched_by_alias"}
+            and item.get("category") == "continuous_automation"
+            for item in result["matched_instruments"]
+        ))
+
+    def test_disabled_or_divergent_base_component_fails_closed(self):
+        instruments = [
+            ("architecture.md", "Arquitetura Unificada"),
+            ("master.md", "Protocolo-Mestre"),
+            ("github.md", "GitHub Operacional"),
+        ]
+        base_registry = [
+            {"id": "functional-correference-architecture", "title": "Arquitetura Unificada",
+             "path": "instruments/architecture.md", "aliases": ["arquitetura"],
+             "activation": {"enabled": True}, "category": "continuous_automation",
+             "ui": {"visible": False}},
+            {"id": "master-activation", "title": "Protocolo-Mestre",
+             "path": "instruments/master.md", "aliases": ["protocolo"],
+             "activation": {"enabled": True}, "category": "continuous_automation",
+             "ui": {"visible": False}},
+            {"id": "github-operational", "title": "GitHub Operacional",
+             "path": "instruments/github.md", "aliases": ["github fixo"],
+             "activation": {"enabled": True}, "category": "recoverable_on_demand",
+             "ui": {"visible": True}},
+        ]
+        disabled = json.loads(json.dumps(base_registry))
+        disabled[1]["activation"]["enabled"] = False
+        result, _ = self.run_resolver("Demanda genérica.", instruments, registry_entries=disabled)
+        self.assertFalse(result["preconfiguration"]["complete"])
+        self.assertEqual(result["status"], "plan_incomplete_missing_preconfiguration_components")
+        self.assertTrue(any("master-activation" in item for item in result["missing_mandatory_components"]))
+
+        divergent = json.loads(json.dumps(base_registry))
+        divergent[0]["path"] = "instruments/renamed-architecture.md"
+        result, _ = self.run_resolver("Demanda genérica.", instruments, registry_entries=divergent)
+        self.assertFalse(result["preconfiguration"]["complete"])
+        self.assertTrue(any("functional-correference-architecture" in item for item in result["missing_mandatory_components"]))
+
+    def test_production_registry_preloads_exactly_three_base_components(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            request_path = Path(tmp) / "request.json"
+            output_path = Path(tmp) / "result.json"
+            request_path.write_text(json.dumps({"request": "Demanda genérica de produção."}), encoding="utf-8")
+            completed = subprocess.run(
+                [sys.executable, str(RESOLVER), "--request", str(request_path),
+                 "--instruments", str(REPO_ROOT / "instruments"), "--output", str(output_path)],
+                capture_output=True, text=True, encoding="utf-8", check=False,
+            )
+            self.assertEqual(completed.returncode, 0, msg=completed.stderr)
+            result = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(len(result["mandatory_components"]), 3)
+            self.assertEqual(
+                {item["id"] for item in result["mandatory_components"]},
+                {"functional-correference-architecture", "master-activation", "github-operational"},
+            )
+            self.assertTrue(result["preconfiguration"]["complete"])
+            self.assertTrue(result["preconfiguration"]["continuous_context"])
+            self.assertTrue(result["preconfiguration"]["fixed_operational_component"]["content"])
+            self.assertEqual(result["missing_mandatory_components"], [])
+            self.assertEqual(result["status"], "plan_created_needs_execution_integration")
+
     def test_preserves_every_explicit_title_match(self):
         instruments = [
             ("alpha.md", "Instrumento Alfa"),
