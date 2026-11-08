@@ -38,7 +38,7 @@ A decisão semântica sobre função diversa não é reduzida a uma heurística 
 
 ```bash
 python scripts/promptaria_resolver.py --request request.json --instruments instruments --output promptaria-result.json
-python -m unittest discover -s tests -v
+python -m unittest discover -s . -p 'test_*.py' -v
 ```
 
 O arquivo de entrada deve conter JSON com `request` e, opcionalmente, `destination` e `dry_run`.
@@ -146,7 +146,7 @@ Os IDs do manifesto e seus handlers especializados são mapeados em `config/inst
 
 ## Análise contextual cumulativa e seleção funcional de tarefas
 
-A execução especializada agora possui uma camada aditiva de análise contextual em `scripts/promptaria_context_router.py` e `scripts/promptaria_contextual_executor.py`. Ela preserva a arquitetura vigente, os três componentes-base e os oito handlers canônicos, sem substituir ou fundir os instrumentos existentes.
+A execução especializada agora possui uma camada aditiva de análise contextual em `scripts/promptaria_context_router.py` e `scripts/promptaria_contextual_executor.py`. Ela preserva a arquitetura vigente, os três componentes-base e os oito handlers canônicos, com a fusão funcional de `coordinator` e `functional-correference-architecture` em uma identidade canônica e duas fases internas.
 
 Os elementos-base do protocolo-mestre fornecem a estrutura comum; as personalizações de cada demanda fornecem evidências circunstanciais concatenadas — incluindo ações, objeto, finalidade, títulos, IDs, caminhos e campos estruturados. A análise avalia as evidências em conjunto, registra a proveniência dos campos e seleciona cumulativamente todos os handlers sustentados pelo contexto, em vez de encerrar na primeira correspondência. O relatório expõe a cadeia base → personalização → interpretação contextual → seleção de handlers.
 
@@ -275,7 +275,7 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
   - Revisão editorial sugerida para: exemplos/uso.
 - **functional-correference-architecture — ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 9; operações: 8; relações: 20.
   - Revisão editorial sugerida para: exemplos/uso.
-- **coordinator — ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 3; operações: 3; relações: 2.
+**Alias legado:** `coordinator` resolve para `functional-correference-architecture`; não constitui instrumento, nó ou handler independente. A arquitetura fundida contém duas fases internas e o nó `coordination:functional-correference-architecture`.
   - Revisão editorial sugerida para: exemplos/uso.
 - **promptaria-instrument-template — MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA** (prepared_not_published): 6/8 indicadores documentais; funções registradas: 4; operações: 7; relações: 7.
   - Revisão editorial sugerida para: exemplos/uso, permissões/segurança.
@@ -298,7 +298,6 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 
 - instruments/acione-a-promptaria-pelo-github.md
 - instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md
-- instruments/arquitetura-unificada.md
 - instruments/modelo-instrumento-promptual-correferencia.md
 - instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md
 - instruments/preconfiguracao-correspondencia-futura-e-cadeia.md
@@ -355,7 +354,6 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 - docs/auditoria-operacional-reproduzivel.md
 - docs/execucao-especializada-instrumentos.md
 - docs/integridade-sistemica-e-rastreabilidade-interface.md
-- docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md
 - docs/matriz-instrumento-executor.md
 - docs/preconfiguracao-protocolo-mestre-e-correferencia.md
 - docs/registry-disambiguation.md
