@@ -54,7 +54,7 @@ def registry_matches(request_text: str, registry: dict) -> list[dict]:
  normalized_request = normalize(request_text)
  matches = []
  for item in registry.get("instruments", []):
-  if item.get("activation", {}).get("enabled") is not True:
+  if item.get("activation", {}).get("enabled") is not True or item.get("category") == "continuous_automation":
    continue
   candidates = [("title", item.get("title", ""))]
   candidates.extend(("alias", value) for value in item.get("aliases", []))
@@ -155,6 +155,7 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
   item.get("id") for item in registry.get("instruments", [])
   if isinstance(item, dict) and isinstance(item.get("id"), str)
   and item.get("activation", {}).get("enabled") is True
+  and item.get("category") in (None, "recoverable_on_demand")
  }
  fields = flatten(request)
  request_text = "\n".join(path + ": " + value for path, value in fields)
@@ -174,12 +175,17 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
   if hits:
    configured_ids = list(rule["instrument_ids"])
    enabled_rule_ids = [item_id for item_id in configured_ids if item_id in enabled_ids]
-   blocked_inactive_ids = [item_id for item_id in configured_ids if item_id not in enabled_ids]
+   continuous_rule_ids = [item_id for item_id in configured_ids if any(
+    entry.get("id") == item_id and entry.get("activation", {}).get("enabled") is True and entry.get("category") == "continuous_automation"
+    for entry in registry.get("instruments", []) if isinstance(entry, dict)
+   )]
+   blocked_inactive_ids = [item_id for item_id in configured_ids if item_id not in enabled_ids and item_id not in continuous_rule_ids]
    evidence.append({
     "task":rule["task"],
     "description":rule["description"],
     "evidence":hits,
     "selected_instrument_ids":enabled_rule_ids,
+    "continuous_preconfiguration_instrument_ids":continuous_rule_ids,
     "blocked_inactive_instrument_ids":blocked_inactive_ids,
     "status":"contextual_candidate" if enabled_rule_ids else "blocked_inactive_registry"
    })
@@ -214,6 +220,7 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
   "schema_version":3,"analysis_mode":"cumulative_contextual_evidence_plus_canonical_registry","request_context_preserved":True,
   "context_fields":[{"path":path,"value":value} for path,value in fields],
   "base_instrument_ids":default_integrated,"task_candidates":evidence,"selected_instrument_ids":selected,
+  "continuous_preconfiguration": {"applies_to_every_request": True, "instrument_ids": sorted(item.get("id") for item in registry.get("instruments", []) if isinstance(item, dict) and item.get("activation", {}).get("enabled") is True and item.get("category") == "continuous_automation"), "execution_performed": False},
   "segment_integration":{
    "mode":policy["integration_policy"]["mode"],
    "protected_segments":policy["protected_segments"],
