@@ -19,7 +19,7 @@ class ContextualExecutorEndToEndTests(unittest.TestCase):
             result_path = work / "execution.json"
             request = {
                 "request": "Validar o fluxo integrado de execução especializada da Promptária.",
-                "instrument_ids": ["github-operational"],
+                "instrument_ids": ["nocturna-arquitetura-necessidade-identidade-sistemica"],
                 "dry_run": True,
             }
             request_path.write_text(
@@ -72,7 +72,8 @@ class ContextualExecutorEndToEndTests(unittest.TestCase):
             result = json.loads(result_path.read_text(encoding="utf-8"))
 
             self.assertEqual(result["execution_status"], "completed")
-            self.assertIn("github-operational", result["selected_instrument_ids"])
+            self.assertIn("nocturna-arquitetura-necessidade-identidade-sistemica", result["selected_instrument_ids"])
+            self.assertIn("github-operational", result["continuous_preconfiguration"]["instrument_ids"])
             self.assertGreaterEqual(result["specialized_execution_count"], 1)
             self.assertFalse(result["external_side_effects_performed"])
             self.assertEqual(
@@ -82,7 +83,7 @@ class ContextualExecutorEndToEndTests(unittest.TestCase):
 
             matching = [
                 item for item in result["results"]
-                if item.get("instrument_id") == "github-operational"
+                if item.get("instrument_id") == "nocturna-arquitetura-necessidade-identidade-sistemica"
             ]
             self.assertEqual(len(matching), 1)
             evidence = matching[0]
