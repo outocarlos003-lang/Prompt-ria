@@ -30,7 +30,8 @@
 <footer class="wrap footer"><span>© Promptária</span></footer>
 <div class="doc-overlay" id="doc-overlay" role="dialog" aria-modal="true" aria-label="Leitor de instrumento promptual"><div class="doc-panel"><div class="doc-head"><h3 id="doc-title"></h3><div class="doc-tools"><button class="copy-prompt" id="copy-prompt" type="button">Copiar prompt</button></div></div><div class="doc-body" id="doc-body"></div><div class="status" id="doc-status" aria-live="polite"></div></div></div>
 <script>
-const registryUrl='./config/instrument-registry.json?v=20261018-functional-correference-1';
+const registryUrl='./instrument-registry.json?v=20261108-registry-fix';
+const auxiliaryRegistryUrl='./auxiliary-protocols/registry.json?v=20261108-auxiliary-ui';
 const list=document.getElementById('instrument-list');
 const search=document.getElementById('instrument-search');
 const overlay=document.getElementById('doc-overlay');
@@ -42,6 +43,20 @@ const docBody=document.getElementById('doc-body');
 const closeDoc=()=>overlay.classList.remove('open');
 function normalize(value){return String(value||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\s-]/g,' ').toLowerCase().replace(/[\s-]+/g,' ').trim();}
 function haystack(item){return normalize([item.title,...(item.aliases||[]),...(item.keywords||[]),...(item.functions||[]),...(item.relations||[]),...(item.operations||[])].join(' '));}
+function resolveAuxiliaryProtocolReference(reference){
+ const normalized=normalize(reference);
+ if(!normalized)return {status:'empty',match:null};
+ const matches=auxiliaryProtocols.filter(item=>
+  (normalize(item.id)===normalized || normalize(item.title)===normalized) &&
+  item.operational_membership===false &&
+  item.activation?.enabled===true &&
+  typeof item.path==='string' &&
+  item.path.startsWith('auxiliary-protocols/') &&
+  !item.path.split('/').includes('..')
+ );
+ if(matches.length!==1)return {status:matches.length?'ambiguous':'unresolved',match:null};
+ return {status:'resolved',match:matches[0]};
+}
 function resolveInstrumentReference(reference){
  const normalized=normalize(reference);
  if(!normalized)return {status:'empty',matches:[],trace:null};
@@ -76,10 +91,18 @@ async function openDoc(path,title,source='ui',trace=null){
 copyPrompt.addEventListener('click',async()=>{if(!currentPrompt)return;try{await navigator.clipboard.writeText(currentPrompt);docStatus.textContent='Prompt copiado.';}catch(error){const area=document.createElement('textarea');area.value=currentPrompt;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const copied=document.execCommand('copy');area.remove();docStatus.textContent=copied?'Prompt copiado.':'Não foi possível copiar automaticamente. Selecione e copie o texto manualmente.';}});
 overlay.addEventListener('click',event=>{if(event.target===overlay)closeDoc();});document.addEventListener('keydown',event=>{if(event.key==='Escape')closeDoc();});
 let registry=[];
-fetch(registryUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}).then(data=>{registry=(data.instruments||[]).filter(item=>item.activation?.enabled===true && item.category==='recoverable_on_demand' && item.ui?.visible===true);render(registry);}).catch(error=>{list.innerHTML=`<div class="empty">Catálogo indisponível. A interface não presumirá instrumentos que não puder recuperar. ${escapeHtml(error.message)}</div>`;});
-search.addEventListener('keydown',event=>{if(event.key!=='Enter')return;const resolved=resolveInstrumentReference(search.value);if(resolved.status==='resolved'){openDoc(resolved.trace.path,resolved.trace.title,'reference',resolved.trace);return;}if(resolved.status==='ambiguous'){overlay.classList.add('open');docTitle.textContent='Referência ambígua';docBody.textContent='';currentPrompt='';copyPrompt.disabled=true;docStatus.textContent='Referência ambígua: use o identificador ou caminho do instrumento.';return;}const query=normalize(search.value);const terms=query.split(/\s+/).filter(Boolean);const filtered=registry.filter(item=>{const text=haystack(item);return terms.every(term=>text.includes(term));});if(filtered.length===1){openDoc(filtered[0].path,filtered[0].title,'ui');return;}if(filtered.length>1)return;overlay.classList.add('open');docTitle.textContent='Referência não resolvida';docBody.textContent='';currentPrompt='';copyPrompt.disabled=true;docStatus.textContent='Nenhum instrumento ativo corresponde à referência informada.'; });
+let auxiliaryProtocols=[];
+Promise.all([
+ fetch(registryUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`Catálogo operacional HTTP ${response.status}`);return response.json();}),
+ fetch(auxiliaryRegistryUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`Registro auxiliar HTTP ${response.status}`);return response.json();})
+]).then(([data,auxiliaryData])=>{
+ registry=(data.instruments||[]).filter(item=>item.activation?.enabled===true && item.category==='recoverable_on_demand' && item.ui?.visible===true);
+ auxiliaryProtocols=Array.isArray(auxiliaryData.protocols)?auxiliaryData.protocols:[];
+ render(registry);
+}).catch(error=>{list.innerHTML=`<div class="empty">Não foi possível carregar os registros da Promptária. ${escapeHtml(error.message)}</div>`;});
+search.addEventListener('keydown',event=>{if(event.key!=='Enter')return;const resolved=resolveInstrumentReference(search.value);if(resolved.status==='resolved'){openDoc(resolved.trace.path,resolved.trace.title,'reference',resolved.trace);return;}const auxiliary=resolveAuxiliaryProtocolReference(search.value);if(auxiliary.status==='resolved'){const item=auxiliary.match;openDoc(item.path,item.title,'auxiliary',{id:item.id,match_kind:'título/ID auxiliar'});return;}if(auxiliary.status==='ambiguous'){overlay.classList.add('open');docTitle.textContent='Referência auxiliar ambígua';docBody.textContent='';currentPrompt='';copyPrompt.disabled=true;docStatus.textContent='Mais de um protocolo auxiliar corresponde à referência.';return;}if(resolved.status==='ambiguous'){overlay.classList.add('open');docTitle.textContent='Referência ambígua';docBody.textContent='';currentPrompt='';copyPrompt.disabled=true;docStatus.textContent='Referência ambígua: use o identificador ou caminho do instrumento.';return;}const query=normalize(search.value);const terms=query.split(/\s+/).filter(Boolean);const filtered=registry.filter(item=>{const text=haystack(item);return terms.every(term=>text.includes(term));});if(filtered.length===1){openDoc(filtered[0].path,filtered[0].title,'ui');return;}if(filtered.length>1)return;overlay.classList.add('open');docTitle.textContent='Referência não resolvida';docBody.textContent='';currentPrompt='';copyPrompt.disabled=true;docStatus.textContent='Nenhum instrumento ativo corresponde à referência informada.'; });
 search.addEventListener('input',()=>{const query=normalize(search.value).trim();if(!query){render(registry);return;}const terms=query.split(/\s+/).filter(Boolean);render(registry.filter(item=>{const text=haystack(item);return terms.every(term=>text.includes(term));}));});
-window.Promptaria = Object.freeze({resolveInstrumentReference});
+window.Promptaria = Object.freeze({resolveInstrumentReference,resolveAuxiliaryProtocolReference});
 </script>
 </body>
 </html>

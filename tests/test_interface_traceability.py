@@ -94,8 +94,9 @@ class InterfaceTraceabilityTests(unittest.TestCase):
 
     def test_search_trace_matches_the_registry_loaded_by_index(self):
         search_trace = next(item for item in self.elements if item["id"] == "ui.search.placeholder")
-        self.assertEqual(search_trace["destination"], "config/instrument-registry.json")
-        self.assertIn("config/instrument-registry.json", self.html)
+        self.assertEqual(search_trace["destination"], "instrument-registry.json + auxiliary-protocols/registry.json")
+        self.assertIn("instrument-registry.json", self.html)
+        self.assertIn("auxiliary-protocols/registry.json", self.html)
         self.assertIn("fetch(registryUrl", self.html)
         self.assertIn("item.activation?.enabled===true", self.html)
         self.assertIn("search.addEventListener", self.html)
