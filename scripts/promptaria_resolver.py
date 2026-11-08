@@ -125,6 +125,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
             "function_status": function_status,
             "activation_status": activation_status,
             "exception_status": exception_status,
+            "category": item.get("category"),
         }
 
     # Explicit selectors are validated against registry identity, not guessed.
