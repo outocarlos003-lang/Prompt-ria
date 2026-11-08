@@ -2,9 +2,9 @@ import json
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "tests" / "manifest.json"
-EXECUTION_MAP = ROOT / "config" / "instrument-execution-map.json"
+ROOT = Path(__file__).resolve().parent
+MANIFEST = ROOT / "manifest.json"
+EXECUTION_MAP = ROOT / "instrument-execution-map.json"
 
 
 class PromptariaExecutionMapTests(unittest.TestCase):
@@ -27,22 +27,22 @@ class PromptariaExecutionMapTests(unittest.TestCase):
     def test_every_instrument_maps_to_a_dedicated_specialized_handler(self):
         handlers = {
             "github-operational": "handler_github_operational",
-            "coordinator": "handler_coordinator",
+            
             "master-activation": "handler_master_activation",
             "master-execution": "handler_master_execution",
-            "functional-correference-architecture": "handler_functional_correference",
+            "functional-correference-architecture": "handler_unified_architecture",
             "future-demand-preconfiguration": "handler_future_preconfiguration",
             "catalog-sitemap-preconfiguration": "handler_catalog_sitemap",
             "promptaria-instrument-template": "handler_promptaria_instrument_template",
             "protocol-update-integrity": "handler_protocol_update_integrity",
             "nocturna-arquitetura-necessidade-identidade-sistemica": "handler_nocturna_architecture",
         }
-        specialized = ROOT / "scripts" / "promptaria_specialized_executor.py"
+        specialized = ROOT / "promptaria_specialized_executor.py"
         self.assertTrue(specialized.is_file())
         self.assertEqual(set(handlers), {item["id"] for item in self.execution_map["instruments"]})
         for item in self.execution_map["instruments"]:
             with self.subTest(instrument=item["id"]):
-                self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")
+                self.assertEqual(item["specialized_executor"], "promptaria_specialized_executor.py")
                 self.assertEqual(item["specialized_execution_status"], "implemented")
                 self.assertEqual(item["specialized_handler"], handlers[item["id"]])
                 self.assertIs(item["side_effects_authorized_by_title"], False)
