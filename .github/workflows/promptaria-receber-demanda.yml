@@ -43,7 +43,7 @@ jobs:
           if not isinstance(ids, list) or any(not isinstance(item, str) or not item.strip() for item in ids):
               raise SystemExit("instrument_ids deve ser uma lista de IDs textuais.")
           value["instrument_ids"] = ids
-          Path("request.json").write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+          Path("request.json").write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           PY
       - name: Run contextual resolver and selected specialized handlers
         run: |
