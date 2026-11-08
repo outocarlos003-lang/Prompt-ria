@@ -16,6 +16,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "tests" / "manifest.json"
 MAP_PATH = ROOT / "config" / "instrument-execution-map.json"
+AUXILIARY_REGISTRY_PATH = ROOT / "auxiliary-protocols" / "registry.json"
 
 LEGACY_ID_ALIASES = {"coordinator": "functional-correference-architecture"}
 
@@ -439,6 +440,22 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
     if not isinstance(raw_ids, list) or any(not isinstance(item, str) for item in raw_ids):
         raise SystemExit("instrument_ids deve ser uma lista de IDs textuais.")
     raw_ids = [canonicalize_instrument_id(item) for item in raw_ids]
+    auxiliary_data = read_object(AUXILIARY_REGISTRY_PATH)
+    auxiliary = index_catalog_entries({"instruments": auxiliary_data.get("protocols", [])}, "auxiliary-protocols/registry.json")
+    # Auxiliary protocols are never selected by automatic title resolution.
+    # They are available here only when the caller supplies the exact ID.
+    for item_id in raw_ids:
+        if item_id in auxiliary:
+            item = auxiliary[item_id]
+            if item.get("operational_membership") is not False:
+                raise SystemExit("Protocolo auxiliar não está isolado do catálogo operacional: " + item_id)
+            if item.get("activation", {}).get("enabled") is not True:
+                raise SystemExit("Protocolo auxiliar não está habilitado: " + item_id)
+            catalog[item_id] = item
+            mapped[item_id] = {"id": item_id, "title": item["title"], "path": item["path"],
+                               "specialized_executor": item.get("specialized_executor"),
+                               "specialized_execution_status": item.get("specialized_execution_status"),
+                               "specialized_handler": item.get("specialized_handler")}
     # A supplied preflight file is caller-controlled input, not an authority for
     # instrument identity. Always resolve against the live canonical catalogs.
     matches = resolve_ids(demand_text, catalog)
@@ -469,8 +486,9 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
     )
     disabled = sorted(
         item_id for item_id in selected_ids
-        if not isinstance(registry[item_id].get("activation"), dict)
-        or registry[item_id]["activation"].get("enabled") is not True
+        if (item_id not in registry and item_id not in auxiliary) or
+        not isinstance((registry.get(item_id) or auxiliary.get(item_id)).get("activation"), dict) or
+        (registry.get(item_id) or auxiliary.get(item_id))["activation"].get("enabled") is not True
     )
     if disabled:
         raise SystemExit("Instrumentos não ativados no registro: " + ", ".join(disabled))
