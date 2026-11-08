@@ -148,7 +148,7 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         if item_id not in active_items and not auxiliary:
             continue
         registry_item = item if auxiliary else active_items[item_id]
-        if auxiliary and not re.search(r"(?i)\\b(?:instrument_id\\s*:\\s*protocol-update-integrity|auxiliary_protocol\\s*:\\s*protocol-update-integrity|instrument_title\\s*:) ", normalized_request):
+        if auxiliary and not any(marker in normalized_request for marker in ("instrument id protocol update integrity", "auxiliary protocol protocol update integrity", "instrument title")):
             continue
         terms = [("title", item.get("title", ""))]
         terms.extend(("alias", alias) for alias in registry_item.get("aliases", []) if isinstance(alias, str))
