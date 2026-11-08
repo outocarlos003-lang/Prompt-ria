@@ -183,10 +183,10 @@ def build_segment_integration(payload: dict, matches: list[dict], manifest: dict
     }
 
 
-def assess_preauthorization(request: str, matches: list[dict], destination: str | None) -> dict:
+def assess_preauthorization(request: str, matches: list[dict], destination: str | None, continuous_ids: set[str] | None = None) -> dict:
     normalized_request = normalize(request)
     master_ids = {"master-activation", "master-execution"}
-    master_present = any(m["id"] in master_ids and m["activation"] for m in matches)
+    master_present = any(m["id"] in master_ids and m["activation"] for m in matches) or bool((continuous_ids or set()) & master_ids)
     target_matches = [m for m in matches if m["id"] not in master_ids and m["activation"]]
     explicit_write_intent = re.search(
         r"\b(escrev[ae]|grav[ae]|crie|criar|atualiz[ae]|substitu[ae]|salv[ae]|insir[ae]|incorpor[ae]|write|create|update|save)\b",
@@ -236,7 +236,6 @@ def main() -> None:
     manifest = load_object(args.manifest)
     execution_map = load_object(args.execution_map)
     matches = resolve_request(request, manifest, execution_map)
-    preauthorization = assess_preauthorization(request, matches, payload.get("destination"))
     segment_integration = build_segment_integration(payload, matches, manifest)
     registry_data = load_object(ROOT / "config" / "instrument-registry.json")
     continuous_automation_ids = sorted(
@@ -244,6 +243,7 @@ def main() -> None:
         if item.get("activation", {}).get("enabled") is True
         and item.get("category") == "continuous_automation"
     )
+    preauthorization = assess_preauthorization(request, matches, payload.get("destination"), set(continuous_automation_ids))
     result = {
         "schema_version": 2,
         "created_at": datetime.now(timezone.utc).isoformat(),
