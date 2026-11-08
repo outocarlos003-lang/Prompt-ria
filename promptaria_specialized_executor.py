@@ -11,9 +11,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[1]
-MANIFEST_PATH = ROOT / "tests" / "manifest.json"
-MAP_PATH = ROOT / "config" / "instrument-execution-map.json"
+ROOT = Path(__file__).resolve().parent
+MANIFEST_PATH = ROOT / "manifest.json"
+MAP_PATH = ROOT / "instrument-execution-map.json"
+
+LEGACY_ID_ALIASES = {"coordinator": "functional-correference-architecture"}
+
+def canonicalize_instrument_id(value: str) -> str:
+    return LEGACY_ID_ALIASES.get(value, value)
 
 
 def normalize(value: str) -> str:
@@ -80,10 +85,10 @@ def validate_catalog_identity(
 def load_catalog() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
     manifest = read_object(MANIFEST_PATH)
     execution_map = read_object(MAP_PATH)
-    registry = read_object(ROOT / "config" / "instrument-registry.json")
-    canonical = index_catalog_entries(manifest, "tests/manifest.json")
-    mapped = index_catalog_entries(execution_map, "config/instrument-execution-map.json")
-    registered = index_catalog_entries(registry, "config/instrument-registry.json")
+    registry = read_object(ROOT / "instrument-registry.json")
+    canonical = index_catalog_entries(manifest, "manifest.json")
+    mapped = index_catalog_entries(execution_map, "instrument-execution-map.json")
+    registered = index_catalog_entries(registry, "instrument-registry.json")
     validate_catalog_identity(canonical, mapped, registered)
     return canonical, mapped
 
@@ -91,9 +96,9 @@ def load_catalog() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]
 def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     """Resolve complete normalized titles or registered aliases; collisions remain blocked."""
     normalized_request = normalize(request_text)
-    registry_path = ROOT / "config" / "instrument-registry.json"
+    registry_path = ROOT / "instrument-registry.json"
     registry = read_object(registry_path)
-    registry_items = index_catalog_entries(registry, "config/instrument-registry.json")
+    registry_items = index_catalog_entries(registry, "instrument-registry.json")
     active_items = {
         item_id: item
         for item_id, item in registry_items.items()
@@ -196,7 +201,7 @@ def handler_github_operational(context: dict[str, Any]) -> dict[str, Any]:
         "next_step": "handoff_verified_source_to_coordinator",
         "canonical_identity": {
             "instrument_id": "github-operational",
-            "registry_path": "config/instrument-registry.json",
+            "registry_path": "instrument-registry.json",
             "node_id": "instrument:github-operational",
             "roles": ["title_correspondence", "master_protocol_fixed_instrument", "standard_preconfiguration", "demand_envelope"],
         },
@@ -209,13 +214,13 @@ def handler_github_operational(context: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def handler_coordinator(context: dict[str, Any]) -> dict[str, Any]:
+def phase_bundle_coordination(context: dict[str, Any]) -> dict[str, Any]:
     ids = context["selected_ids"]
     return {
-        "handler": "coordinate-instrument-bundle",
+        "phase": "bundle-coordination",
         "result": "bundle_coordinated",
         "demand": context["demand"],
-        "execution_order": list(dict.fromkeys(["coordinator", "github-operational", *ids])),
+        "execution_order": list(dict.fromkeys(["functional-correference-architecture", "github-operational", *ids])),
         "instrument_sources": [
             {"id": item_id, "path": context["catalog"][item_id]["path"], "sha256": context["source_hashes"][item_id]}
             for item_id in ids
@@ -229,7 +234,7 @@ def handler_master_activation(context: dict[str, Any]) -> dict[str, Any]:
         "handler": "activate-master-protocol",
         "result": "activation_plan_built",
         "demand": context["demand"],
-        "base_instruments": ["coordinator", "master-activation", "github-operational"],
+        "base_instruments": ["functional-correference-architecture", "master-activation", "github-operational"],
         "selected_instruments": context["selected_ids"],
         "gates": ["demand_present", "instrument_identity_resolved", "source_verified", "capability_available"],
         "automatic_external_side_effects": False,
@@ -253,15 +258,46 @@ def handler_master_execution(context: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def handler_functional_correference(context: dict[str, Any]) -> dict[str, Any]:
+def phase_title_resolution(context: dict[str, Any]) -> dict[str, Any]:
     matches = context["matches"]
     return {
-        "handler": "resolve-all-functional-references",
+        "phase": "title-resolution",
         "result": "correference_report_generated",
         "demand": context["demand"],
         "matches": matches,
-        "blocked_ambiguous_ids": [m["id"] for m in matches if not m["activation"]],
+        "blocked_ambiguous_ids": [m["id"] for m in matches if m.get("identity_status") != "resolved"],
         "matching_policy": "full-normalized-title-or-explicit-id-or-path; no arbitrary partial-title matching",
+    }
+
+
+def handler_unified_architecture(context: dict[str, Any]) -> dict[str, Any]:
+    title_phase = phase_title_resolution(context)
+    coordination_phase = phase_bundle_coordination(context)
+    return {
+        "handler": "unified-title-resolution-and-bundle-coordination",
+        "result": "unified_architecture_coordinated",
+        "canonical_identity": {
+            "instrument_id": "functional-correference-architecture",
+            "legacy_ids": ["coordinator"],
+            "node_id": "instrument:functional-correference-architecture",
+            "coordination_node": "coordination:functional-correference-architecture",
+        },
+        "demand": context["demand"],
+        "phases": [title_phase, coordination_phase],
+        "coordination_node": {
+            "id": "coordination:functional-correference-architecture",
+            "kind": "cross_phase_coordination",
+            "simultaneous_reference": True,
+            "edges": [
+                "phase:title-resolution->coordination:functional-correference-architecture",
+                "coordination:functional-correference-architecture->phase:bundle-coordination",
+                "phase:bundle-coordination->coordination:functional-correference-architecture",
+                "coordination:functional-correference-architecture->phase:title-resolution",
+            ],
+            "execution_policy": "sequence-or-parallel-according-to-verified-dependencies",
+        },
+        "validation_gates": coordination_phase["validation_gates"],
+        "legacy_id_resolution": {"coordinator": "functional-correference-architecture"},
     }
 
 
@@ -303,7 +339,7 @@ def handler_catalog_sitemap(context: dict[str, Any]) -> dict[str, Any]:
     return {
         "handler": "audit-catalog-and-navigation",
         "result": "catalog_audit_completed",
-        "canonical_source": "tests/manifest.json + instruments/*.md",
+        "canonical_source": "manifest.json + *.md",
         "canonical_instrument_count": len(context["catalog"]),
         "markdown_files": canonical_files,
         "legacy_catalog_files_found": existing,
@@ -351,10 +387,9 @@ def handler_nocturna_architecture(context: dict[str, Any]) -> dict[str, Any]:
 
 HANDLERS = {
     "github-operational": handler_github_operational,
-    "coordinator": handler_coordinator,
     "master-activation": handler_master_activation,
     "master-execution": handler_master_execution,
-    "functional-correference-architecture": handler_functional_correference,
+    "functional-correference-architecture": handler_unified_architecture,
     "future-demand-preconfiguration": handler_future_preconfiguration,
     "catalog-sitemap-preconfiguration": handler_catalog_sitemap,
     "promptaria-instrument-template": handler_promptaria_instrument_template,
@@ -378,9 +413,22 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
         raw_ids = [raw_ids]
     if not isinstance(raw_ids, list) or any(not isinstance(item, str) for item in raw_ids):
         raise SystemExit("instrument_ids deve ser uma lista de IDs textuais.")
+    raw_ids = [canonicalize_instrument_id(item) for item in raw_ids]
     matches = (preflight or {}).get("matched_instruments")
     if not isinstance(matches, list):
         matches = resolve_ids(demand_text, catalog)
+    else:
+        normalized_matches = []
+        seen_match_ids = set()
+        for match in matches:
+            if not isinstance(match, dict):
+                continue
+            normalized_match = dict(match)
+            normalized_match["id"] = canonicalize_instrument_id(str(normalized_match.get("id", "")))
+            if normalized_match["id"] not in seen_match_ids:
+                normalized_matches.append(normalized_match)
+                seen_match_ids.add(normalized_match["id"])
+        matches = normalized_matches
     if raw_ids:
         selected_ids = list(dict.fromkeys(raw_ids))
     else:
@@ -392,8 +440,8 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
         raise SystemExit("IDs de instrumento desconhecidos: " + ", ".join(unknown))
 
     registry = index_catalog_entries(
-        read_object(ROOT / "config" / "instrument-registry.json"),
-        "config/instrument-registry.json",
+        read_object(ROOT / "instrument-registry.json"),
+        "instrument-registry.json",
     )
     disabled = sorted(
         item_id for item_id in selected_ids
@@ -450,7 +498,7 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
     for item_id in selected_ids:
         mapped_item = mapped[item_id]
         executor_path = mapped_item.get("specialized_executor")
-        if executor_path != "scripts/promptaria_specialized_executor.py" or mapped_item.get("specialized_execution_status") != "implemented":
+        if executor_path != "promptaria_specialized_executor.py" or mapped_item.get("specialized_execution_status") != "implemented":
             raise SystemExit(f"Executor especializado não está habilitado no mapa para {item_id}.")
         handler = HANDLERS.get(item_id)
         if handler is None or mapped_item.get("specialized_handler") != handler.__name__:
