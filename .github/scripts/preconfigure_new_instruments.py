@@ -137,10 +137,14 @@ def main() -> int:
                 "files": [relpath],
                 "relations": [],
                 "operations": [],
-                "ui": {"node_id": f"instrument:{instrument_id}", "visible": False, "featured": False},
+                "ui": {
+                    "node_id": f"instrument:{instrument_id}",
+                    "visible": category == "recoverable_on_demand",
+                    "featured": False,
+                },
                 "activation": {
-                    "enabled": False,
-                    "status": "prepared_no_executor",
+                    "enabled": category == "recoverable_on_demand",
+                    "status": "active" if category == "recoverable_on_demand" else "prepared_no_executor",
                     **({"mode": "on_demand_title"} if category == "recoverable_on_demand" else {}),
                 },
             }
