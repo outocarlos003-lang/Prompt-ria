@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "purpose": "Handlers preservados para recuperação e utilização explicitamente solicitadas de protocolos auxiliares; não integra seleção nem contagem operacional.",
+  "membership": "outside_operational_instrument_catalog",
+  "resolution_policy": "explicit_only",
+  "instruments": [
+    {
+      "id": "protocol-update-integrity",
+      "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
+      "path": "auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md",
+      "resolution_status": "explicit_reference_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Produz plano de integridade e rastreabilidade sem mutações externas.",
+      "specialized_handler": "handler_protocol_update_integrity",
+      "selection_policy": "explicit_only"
+    }
+  ]
+}
