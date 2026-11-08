@@ -202,7 +202,7 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `instruments/protocolo-mestre-acionamento-automatico.md`
 - `instruments/protocolo-mestre-execucao-correta.md`
 
-### Scripts Python (22)
+### Scripts Python (23)
 
 - `scripts/activate_instrument.py`
 - `scripts/auto_enable_new_promptual_instruments.py`
@@ -224,6 +224,7 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `scripts/promptaria_specialized_executor.py`
 - `scripts/promptaria_validate_result.py`
 - `scripts/resolve_auxiliary_protocol.py`
+- `scripts/sync_readme_inventory.py`
 - `scripts/validate_instrument_reference_contract.py`
 - `scripts/validate_instrument_registry.py`
 
@@ -245,12 +246,14 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `docs/politica-classificacao-instrumentos-promptuais.md`
 - `docs/preconfiguracao-protocolo-mestre-e-correferencia.md`
 
-### Testes (39)
+### Testes (41)
 
+- `tests/fixtures/correference-parity.json`
 - `tests/manifest.json`
 - `tests/resolver-correferencia.test.mjs`
 - `tests/test_activation_executor_evidence.py`
 - `tests/test_auto_enable_new_promptual_instruments.py`
+- `tests/test_auxiliary_interface.py`
 - `tests/test_auxiliary_protocols.py`
 - `tests/test_canonical_artifact_integrity.py`
 - `tests/test_context_router_activation_gate.py`
@@ -301,9 +304,6 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `config/segment-integration-policy.json`
 - `config/traceability-graph-current.json`
 - `config/traceability-graph.json`
-
-O inventário descreve arquivos efetivamente versionados; presença no repositório não comprova execução ou publicação.
-
 
 <!-- PROMPTARIA-README-AUTO:END -->
 
