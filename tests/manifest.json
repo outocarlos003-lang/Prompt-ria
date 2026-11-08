@@ -24,23 +24,6 @@
       ]
     },
     {
-      "id": "master-activation",
-      "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
-      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
-      "aliases": [
-        "protocolo mestre de acionamento",
-        "protocolo-mestre e pré-configuração padrão"
-      ]
-    },
-    {
-      "id": "master-execution",
-      "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
-      "path": "instruments/protocolo-mestre-execucao-correta.md",
-      "aliases": [
-        "execução correta"
-      ]
-    },
-    {
       "id": "functional-correference-architecture",
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
@@ -55,16 +38,17 @@
       ]
     },
     {
-      "id": "future-demand-preconfiguration",
-      "title": "PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
-      "path": "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
-      "aliases": []
-    },
-    {
-      "id": "catalog-sitemap-preconfiguration",
-      "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
-      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
-      "aliases": []
+      "id": "github-operational-recoverable",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL — EXECUÇÃO SOB DEMANDA DE INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "path": "instruments/github-operational-recoverable.md",
+      "aliases": [
+        "acionamento recuperável de demandas",
+        "execução sob demanda da Promptária",
+        "fase recuperável GitHub operacional",
+        "aplicação recuperável de demandas pelo GitHub"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "explicit_architectural_pairing"
     },
     {
       "id": "promptaria-instrument-template",
@@ -89,6 +73,35 @@
         "correferência multiescalar",
         "indução fractal",
         "Princípio Normativo de Correferência Fractal, Invariância Relacional e Potência Generativa do Logos"
+      ]
+    },
+    {
+      "id": "future-demand-preconfiguration",
+      "title": "PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
+      "aliases": []
+    },
+    {
+      "id": "catalog-sitemap-preconfiguration",
+      "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
+      "aliases": []
+    },
+    {
+      "id": "master-activation",
+      "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
+      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+      "aliases": [
+        "protocolo mestre de acionamento",
+        "protocolo-mestre e pré-configuração padrão"
+      ]
+    },
+    {
+      "id": "master-execution",
+      "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
+      "path": "instruments/protocolo-mestre-execucao-correta.md",
+      "aliases": [
+        "execução correta"
       ]
     }
   ]

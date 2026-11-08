@@ -171,6 +171,26 @@
       "side_effects_authorized_by_title": false,
       "notes": "Recupera a fonte local e registra limites de proveniência; não presume acesso externo ao acervo Nocturna.",
       "specialized_handler": "handler_nocturna_architecture"
+    },
+    {
+      "id": "github-operational-recoverable",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL — EXECUÇÃO SOB DEMANDA DE INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "path": "instruments/github-operational-recoverable.md",
+      "resolution_status": "resolved_by_canonical_identity",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan",
+        "explicit_demand_selection",
+        "contextualize_and_parameterize_demand",
+        "cross_segment_traceability",
+        "validate_result"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Fase recuperável independente e visível para seleção explícita. Complementa github-operational, que permanece pré-configuração contínua interna e não selecionável. O handler verifica a fonte e prepara a fase sem conceder autorização implícita para efeitos externos.",
+      "specialized_handler": "handler_github_operational_recoverable"
     }
   ]
 }

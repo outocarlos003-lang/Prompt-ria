@@ -91,6 +91,20 @@
       "file": "config/instrument-registry.json",
       "function": "registro canônico de identidade, metadados e ativação consumido pela interface",
       "destination": "instruments/*.md"
+    },
+    {
+      "id": "instrument.github-operational.continuous",
+      "type": "instrument",
+      "file": "instruments/acione-a-promptaria-pelo-github.md",
+      "function": "pré-configuração interna contínua, orientação, envelope e encaminhamento",
+      "destination": "instruments/github-operational-recoverable.md"
+    },
+    {
+      "id": "instrument.github-operational.recoverable",
+      "type": "instrument",
+      "file": "instruments/github-operational-recoverable.md",
+      "function": "recuperação e aplicação selecionadas explicitamente por demanda",
+      "destination": "config/instrument-registry.json"
     }
   ],
   "relations": [
@@ -157,6 +171,22 @@
       "type": "reference",
       "function": "resolve os caminhos de origem dos instrumentos cadastrados",
       "evidence": "config/instrument-registry.json: campo path; verificação estrutural dos 10 caminhos realizada na branch"
+    },
+    {
+      "id": "github-operational-to-recoverable",
+      "from": "instrument.github-operational.continuous",
+      "to": "instrument.github-operational.recoverable",
+      "type": "phase_complementarity",
+      "function": "transfere contexto e referências sem fundir identidades ou executar automaticamente a fase recuperável",
+      "evidence": "config/instrument-registry.json; config/instrument-execution-map.json"
+    },
+    {
+      "id": "github-operational-recoverable-to-continuous",
+      "from": "instrument.github-operational.recoverable",
+      "to": "instrument.github-operational.continuous",
+      "type": "reciprocal_traceability",
+      "function": "mantém referência recíproca ao espelho contínuo e preserva a distinção de fases",
+      "evidence": "config/instrument-registry.json; config/instrument-execution-map.json"
     }
   ],
   "policy": {
