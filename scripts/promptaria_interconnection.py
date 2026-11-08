@@ -25,7 +25,7 @@ CONCEPTS = {
 def normalize(text: str) -> str:
     text = unicodedata.normalize("NFKD", text.casefold())
     text = "".join(c for c in text if not unicodedata.combining(c))
-    return re.sub(r"[^\\w\\s-]", " ", text, flags=re.UNICODE).replace("-", " ").strip()
+    return re.sub(r"[^\w\s-]", " ", text, flags=re.UNICODE).replace("-", " ").strip()
 
 
 def _values(item: dict, field: str) -> set[str]:
