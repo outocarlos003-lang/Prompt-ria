@@ -60,11 +60,12 @@ class ContextRouterTests(unittest.TestCase):
  def test_contextual_executor_never_implicitly_runs_inactive_instruments(self):
   result=contextual.execute({"request":"Adicione uma préconfiguração de automação ao repositório Promptária."})
   selected=set(result["selected_instrument_ids"])
-  self.assertIn("github-operational",selected)
+  self.assertNotIn("github-operational",selected)
   self.assertTrue(selected)
   self.assertNotIn("future-demand-preconfiguration",selected)
   self.assertNotIn("master-execution",selected)
   continuous=set(result["continuous_preconfiguration"]["instrument_ids"])
+  self.assertIn("github-operational",continuous)
   self.assertIn("future-demand-preconfiguration",continuous)
   self.assertIn("master-execution",continuous)
   self.assertNotIn("future-demand-preconfiguration",result["routing_evidence"]["blocked_inactive_instrument_ids"])
