@@ -91,7 +91,7 @@ def audit(registry_path: Path, root: Path) -> dict:
             errors.append(f"{prefix}: invalid path.")
         else:
             p = Path(path)
-            if p.is_absolute() or ".." in p.parts or "\\" in path or len(p.parts) != 1:
+            if p.is_absolute() or ".." in p.parts or "\\" in path or not (len(p.parts) == 1 or (len(p.parts) == 2 and p.parts[0] == "instruments")):
                 errors.append(f"{prefix}: unsafe/non-instrument path {path!r}.")
             if path in paths:
                 errors.append(f"{prefix}: duplicate path {path!r}.")
@@ -184,11 +184,15 @@ def audit(registry_path: Path, root: Path) -> dict:
         else:
             warnings.append("Normalized title/alias collision includes disabled entries: " + term)
 
-    # In this flat repository, root-level Markdown includes both instrument
-    # sources and ordinary documentation. The registry is therefore the
-    # authoritative instrument inventory; verify every registered source
-    # directly and do not misclassify unrelated documentation as instruments.
+    # When a dedicated instruments/ directory exists, it is an explicit
+    # source inventory and orphan detection remains enforceable. In the
+    # flattened repository layout, root Markdown also contains documentation;
+    # there the registry-listed source paths are checked individually.
     registered_paths = {p for p in paths if isinstance(p, str)}
+    if (root / "instruments").is_dir():
+        physical = {p.relative_to(root).as_posix() for p in (root / "instruments").glob("*.md")}
+        for orphan in sorted(physical - registered_paths):
+            errors.append(f"Unregistered instrument definition: {orphan}")
     for registered_path in sorted(registered_paths):
         if not (root / registered_path).is_file():
             warnings.append(f"Registered instrument has no physical definition: {registered_path}")
