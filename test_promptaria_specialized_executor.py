@@ -5,19 +5,19 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
 import promptaria_specialized_executor as specialized
 
 
 class SpecializedExecutorTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.manifest = json.loads((ROOT / "tests" / "manifest.json").read_text(encoding="utf-8"))
+        cls.manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
 
     def execute_with_all_instruments_activated(self, payload, preflight=None):
         original_read_object = specialized.read_object
-        registry_path = specialized.ROOT / "config" / "instrument-registry.json"
+        registry_path = specialized.ROOT / "instrument-registry.json"
 
         def activated_registry(path):
             value = original_read_object(path)
@@ -68,7 +68,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             return value
 
         with patch.object(specialized, "read_object", side_effect=duplicated_manifest):
-            with self.assertRaisesRegex(SystemExit, "ID duplicado em tests/manifest.json"):
+            with self.assertRaisesRegex(SystemExit, "ID duplicado em manifest.json"):
                 specialized.load_catalog()
 
     def test_duplicate_execution_map_id_fails_closed(self):
@@ -81,7 +81,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             return value
 
         with patch.object(specialized, "read_object", side_effect=duplicated_map):
-            with self.assertRaisesRegex(SystemExit, "ID duplicado em config/instrument-execution-map.json"):
+            with self.assertRaisesRegex(SystemExit, "ID duplicado em instrument-execution-map.json"):
                 specialized.load_catalog()
 
     def test_duplicate_registry_id_fails_closed_during_resolution(self):
@@ -95,7 +95,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             return value
 
         with patch.object(specialized, "read_object", side_effect=duplicated_registry):
-            with self.assertRaisesRegex(SystemExit, "ID duplicado em config/instrument-registry.json"):
+            with self.assertRaisesRegex(SystemExit, "ID duplicado em instrument-registry.json"):
                 specialized.resolve_ids("github operational", canonical)
 
     def test_registered_alias_resolves_but_partial_alias_does_not(self):
@@ -271,7 +271,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             "instrument_ids": ["catalog-sitemap-preconfiguration"],
         })
         details = result["results"][0]["result"]
-        self.assertEqual(details["canonical_source"], "tests/manifest.json + instruments/*.md")
+        self.assertEqual(details["canonical_source"], "manifest.json + root-level Markdown sources")
         self.assertEqual(details["mutations_performed"], [])
         self.assertIn("legacy_tree_available", details)
 
@@ -284,7 +284,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             specialized.execute({"request": "Execute checklist."}, preflight=preflight)
 
     def test_explicit_id_cannot_bypass_registry_activation(self):
-        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: coordinator"):
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: functional-correference-architecture"):
             specialized.execute({"request": "Executar coordenador.", "instrument_ids": ["coordinator"]})
 
 
