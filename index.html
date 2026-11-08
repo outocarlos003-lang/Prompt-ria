@@ -30,7 +30,7 @@
 <footer class="wrap footer"><span>© Promptária</span></footer>
 <div class="doc-overlay" id="doc-overlay" role="dialog" aria-modal="true" aria-label="Leitor de instrumento promptual"><div class="doc-panel"><div class="doc-head"><h3 id="doc-title"></h3><div class="doc-tools"><button class="copy-prompt" id="copy-prompt" type="button">Copiar prompt</button></div></div><div class="doc-body" id="doc-body"></div><div class="status" id="doc-status" aria-live="polite"></div></div></div>
 <script>
-const registryUrl='./instrument-registry.json?v=20261108-visible-recoverable';
+const recoverableCatalogUrl='./recoverable-on-demand-catalog.json?v=20261108-separated-catalogs';
 const auxiliaryRegistryUrl='./auxiliary-protocols/registry.json?v=20261108-auxiliary-ui';
 const list=document.getElementById('instrument-list');
 const search=document.getElementById('instrument-search');
@@ -93,10 +93,10 @@ overlay.addEventListener('click',event=>{if(event.target===overlay)closeDoc();})
 let registry=[];
 let auxiliaryProtocols=[];
 Promise.all([
- fetch(registryUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`Catálogo operacional HTTP ${response.status}`);return response.json();}),
+ fetch(recoverableCatalogUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`Catálogo de recuperação sob demanda HTTP ${response.status}`);return response.json();}),
  fetch(auxiliaryRegistryUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`Registro auxiliar HTTP ${response.status}`);return response.json();})
 ]).then(([data,auxiliaryData])=>{
- registry=(data.instruments||[]).filter(item=>item.activation?.enabled===true && item.category==='recoverable_on_demand' && item.ui?.visible===true);
+ registry=(data.instruments||[]).filter(item=>item.category==='recoverable_on_demand' && item.activation?.enabled===true && item.ui?.visible===true);
  auxiliaryProtocols=Array.isArray(auxiliaryData.protocols)?auxiliaryData.protocols:[];
  render(registry);
 }).catch(error=>{list.innerHTML=`<div class="empty">Não foi possível carregar os registros da Promptária. ${escapeHtml(error.message)}</div>`;});
