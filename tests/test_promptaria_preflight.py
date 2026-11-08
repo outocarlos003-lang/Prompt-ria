@@ -12,12 +12,14 @@ EXECUTION_MAP = ROOT / "config" / "instrument-execution-map.json"
 
 
 class PromptariaPreflightTests(unittest.TestCase):
-    def run_preflight(self, request, destination=None):
+    def run_preflight(self, request, destination=None, request_id=None):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             request_path = root / "request.json"
             output_path = root / "plan.json"
             payload = {"request": request}
+            if request_id is not None:
+                payload["request_id"] = request_id
             if destination is not None:
                 payload["destination"] = destination
             request_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
@@ -76,6 +78,33 @@ class PromptariaPreflightTests(unittest.TestCase):
         self.assertEqual(matches[0]["identity_status"], "resolved")
         self.assertTrue(matches[0]["activation"])
         self.assertNotIn("fixed-prompt-instrument-part-2", {item["id"] for item in result["matched_instruments"]})
+
+    def test_cross_category_interconnection_preserves_independent_instruments_and_phases(self):
+        result = self.run_preflight(
+            "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas."
+        )
+        plan = result["cross_category_interconnection"]
+        self.assertEqual(plan["continuous_instrument_count"], 6)
+        self.assertEqual(plan["recoverable_instrument_count"], 2)
+        self.assertGreater(plan["interconnection_count"], 0)
+        for link in plan["interconnections"]:
+            self.assertNotEqual(link["continuous_instrument"]["id"], link["recoverable_instrument"]["id"])
+            self.assertTrue(link["preservation"]["instrument_count_unchanged"])
+            self.assertTrue(link["preservation"]["functions_and_operations_independent"])
+            self.assertEqual(link["continuous_instrument"]["phase"], "phase_1_continuous_preconfiguration")
+            self.assertEqual(link["recoverable_instrument"]["phase"], "phase_2_demand_time_recovery")
+            self.assertTrue(link["correlation_id"].startswith("corr-"))
+
+    def test_request_id_reaches_cross_category_traceability(self):
+        result = self.run_preflight(
+            "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas.",
+            request_id="req-preflight-001",
+        )
+        self.assertEqual(result["request_id"], "req-preflight-001")
+        plan = result["cross_category_interconnection"]
+        self.assertEqual(plan["request_id"], "req-preflight-001")
+        for link in plan["interconnections"]:
+            self.assertEqual(link["request_id"], "req-preflight-001")
 
     def test_colliding_title_can_be_resolved_by_explicit_id(self):
         result = self.run_preflight(

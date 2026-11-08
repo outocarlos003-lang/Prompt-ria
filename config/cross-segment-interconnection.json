@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "id": "cross-segment-functional-interconnection",
+  "title": "Interconexão funcional entre Automação funcional contínua e Recuperáveis sob demanda",
+  "segments": {
+    "continuous": "continuous_automation",
+    "on_demand": "recoverable_on_demand"
+  },
+  "matching": {
+    "normalization": "NFKD_casefold_accent_insensitive_punctuation_insensitive",
+    "evidence_rules": [
+      "one_exact_shared_function",
+      "one_exact_shared_operation",
+      "two_or_more_exact_shared_keywords",
+      "one_shared_semantic_concept"
+    ],
+    "weights": {
+      "function": 3,
+      "operation": 3,
+      "keyword": 1,
+      "semantic_concept": 2
+    },
+    "all_matches_retained": true,
+    "similarity_is_not_identity": true,
+    "ranking": "descending_evidence_score_then_stable_pair_id"
+  },
+  "preservation": {
+    "instrument_count_unchanged": true,
+    "canonical_ids_unchanged": true,
+    "canonical_paths_unchanged": true,
+    "canonical_nodes_unchanged": true,
+    "functions_remain_independent": true,
+    "operations_remain_independent": true,
+    "activation_remains_independent": true,
+    "no_instrument_merge_or_clone": true
+  },
+  "phases": [
+    {
+      "id": "continuous_preconfiguration",
+      "segment": "continuous_automation",
+      "order": 1,
+      "role": "prepare_context_and_procedure",
+      "execution_by_matching": false
+    },
+    {
+      "id": "on_demand_recovery",
+      "segment": "recoverable_on_demand",
+      "order": 2,
+      "role": "recover_and_apply_selected_instrument_function",
+      "requires_selection": true
+    },
+    {
+      "id": "cross_instrument_trace_reconciliation",
+      "order": 3,
+      "role": "reconcile_evidence_without_merging_results",
+      "execution_by_matching": false
+    }
+  ],
+  "shared_traceability": {
+    "pair_id_pattern": "cross-segment:{continuous_id}:{on_demand_id}",
+    "correlation_id_pattern": "corr-{sha256(pair_id)[0:16]}",
+    "shared_node_id_pattern": "coordination:cross-segment:{continuous_id}:{on_demand_id}",
+    "request_id_propagation": true,
+    "source_paths_and_evidence_required": true,
+    "relations": [
+      "continuous_to_on_demand",
+      "on_demand_to_continuous",
+      "phase_1_precedes_phase_2",
+      "preserves_independent_identity"
+    ]
+  },
+  "safety": {
+    "matching_does_not_authorize_side_effects": true,
+    "matching_does_not_activate_instruments": true,
+    "ambiguous_identity_remains_blocked": true,
+    "shared_ids_are_not_instrument_ids": true
+  }
+}

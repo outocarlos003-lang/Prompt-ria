@@ -132,6 +132,7 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
     result = specialized.execute({**payload, "instrument_ids": selected}, preflight=augmented)
     result["contextual_analysis"] = context
     result["continuous_preconfiguration"] = context.get("continuous_preconfiguration", {"applies_to_every_request": True, "instrument_ids": [], "execution_performed": False})
+    result["cross_category_interconnection"] = (preflight or {}).get("cross_category_interconnection", {"interconnection_count": 0, "interconnections": []})
     result["routing_evidence"] = {
         "task_candidates": context["task_candidates"],
         "evidence_chain": context["evidence_chain"],
@@ -139,6 +140,7 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
         "blocked_inactive_instrument_ids": blocked_inactive_ids,
         "routing_status": "contextual_handlers_executed",
         "continuous_preconfiguration": result["continuous_preconfiguration"],
+        "cross_category_interconnection": result["cross_category_interconnection"],
     }
     return result
 
