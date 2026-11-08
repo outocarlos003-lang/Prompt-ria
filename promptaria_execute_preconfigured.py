@@ -14,7 +14,7 @@ from promptaria_executor import execute, load_json
 from promptaria_preflight import assess_preauthorization, resolve_request
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parent
 
 
 def authorize_from_preflight(payload: dict, preflight: dict) -> dict:
@@ -27,8 +27,8 @@ def authorize_from_preflight(payload: dict, preflight: dict) -> dict:
     reported_assessment = preflight.get("preauthorization", {})
     if reported_assessment.get("write_authorized") is not True or reported_assessment.get("status") != "scoped_preauthorization_eligible":
         raise SystemExit("Pré-autorização recusada: o plano fornecido não está elegível.")
-    manifest = load_json(ROOT / "tests" / "manifest.json")
-    execution_map = load_json(ROOT / "config" / "instrument-execution-map.json")
+    manifest = load_json(ROOT / "manifest.json")
+    execution_map = load_json(ROOT / "instrument-execution-map.json")
     canonical_matches = resolve_request(request, manifest, execution_map)
     assessment = assess_preauthorization(request, canonical_matches, destination)
     if assessment.get("write_authorized") is not True or assessment.get("status") != "scoped_preauthorization_eligible":
@@ -50,7 +50,7 @@ def main() -> None:
     parser.add_argument("--request", required=True, type=Path, help="Pedido do executor em JSON")
     parser.add_argument("--preflight", required=True, type=Path, help="Plano gerado por promptaria_preflight.py")
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
-    parser.add_argument("--permissions", type=Path, default=Path(__file__).resolve().parents[1] / "config" / "promptaria_permissions.json")
+    parser.add_argument("--permissions", type=Path, default=Path(__file__).resolve().parent / "promptaria_permissions.json")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--confirm-operation", required=True)
     args = parser.parse_args()
