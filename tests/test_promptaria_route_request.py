@@ -44,7 +44,7 @@ class PromptariaRequestRoutingTests(unittest.TestCase):
         )
         self.assertEqual(result["route"], "inactive_or_unregistered_reference")
         self.assertEqual(result["active_title_matches"], [])
-        self.assertEqual(result["inactive_title_matches"][0]["id"], "coordinator")
+        self.assertEqual(result["inactive_title_matches"][0]["id"], "functional-correference-architecture")
         self.assertNotIn("coordinator", result["allowed_coreference_ids"])
 
     def test_explicit_active_title_plus_automation_intent_routes_as_mixed(self):

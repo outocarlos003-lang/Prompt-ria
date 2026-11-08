@@ -68,7 +68,7 @@ Esta pré-configuração usa a mesma identidade operacional referenciada pelo pr
 - **Nó:** `instrument:github-operational`.
 - **Registro autoritativo:** `config/instrument-registry.json`.
 - **Fonte integral:** `instruments/acione-a-promptaria-pelo-github.md`.
-- **Automação de correspondência por título:** `functional-correference-architecture`, arquivo `instruments/arquitetura-unificada-correferencia-funcional-automatica.md`.
+- **Automação de correspondência por título:** `functional-correference-architecture`, arquivo `instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`.
 - **Protocolo-mestre:** `master-activation`, arquivo `instruments/protocolo-mestre-acionamento-automatico.md`.
 
 ### Papéis complementares
@@ -90,14 +90,14 @@ A validação pós-alteração deve confirmar que `config/instrument-registry.js
 
 A pré-configuração padrão reconhece a arquitetura unificada como unidade documental própria, sem confundi-la com o instrumento operacional fixo nem com o protocolo-mestre.
 
-- **Arquitetura unificada/correspondência por título:** ID `functional-correference-architecture`, nó `instrument:functional-correference-architecture`, fonte `instruments/arquitetura-unificada-correferencia-funcional-automatica.md`.
+- **Arquitetura unificada/correspondência por título:** ID `functional-correference-architecture`, nó `instrument:functional-correference-architecture`, fonte `instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`.
 - **Protocolo-mestre:** ID `master-activation`, nó `instrument:master-activation`, fonte `instruments/protocolo-mestre-acionamento-automatico.md`.
 - **Instrumento fixo:** ID `github-operational`, nó `instrument:github-operational`, fonte `instruments/acione-a-promptaria-pelo-github.md`.
 - **Registro autoritativo:** `config/instrument-registry.json`.
 - **Catálogo sincronizado:** `config/instrument-catalog.json`.
 - **Manifesto de testes:** `tests/manifest.json`.
 
-A arquitetura unificada coordena a identificação e a aplicação cumulativa dos instrumentos; a correspondência por título resolve as referências; o protocolo-mestre organiza dependências e satisfação da demanda; o instrumento fixo recupera conteúdo e mantém o envelope operacional; a pré-configuração preserva contexto, parâmetros, origem, destino, autorização e estados. Esses papéis são complementares, não intercambiáveis.
+A arquitetura unificada, agora sob um único ID canônico com o antigo ID `coordinator` preservado como alias, coordena a identificação e a aplicação cumulativa dos instrumentos; suas fases de resolução por título e de coordenação são articuladas pelo nó `coordination:functional-correference-architecture`; a correspondência por título resolve as referências; o protocolo-mestre organiza dependências e satisfação da demanda; o instrumento fixo recupera conteúdo e mantém o envelope operacional; a pré-configuração preserva contexto, parâmetros, origem, destino, autorização e estados. Esses papéis são complementares, não intercambiáveis.
 
 Relações canônicas incluem `functional-correference-architecture->master-activation`, `master-activation->functional-correference-architecture`, `functional-correference-architecture->github-operational`, `github-operational->functional-correference-architecture`, `master-preconfiguration->github-operational` e `standard-preconfiguration->functional-correference-architecture`.
 

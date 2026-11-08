@@ -17,6 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "tests" / "manifest.json"
 MAP_PATH = ROOT / "config" / "instrument-execution-map.json"
 
+LEGACY_ID_ALIASES = {"coordinator": "functional-correference-architecture"}
+
+def canonicalize_instrument_id(value: str) -> str:
+    return LEGACY_ID_ALIASES.get(value, value)
+
 
 def normalize(value: str) -> str:
     value = unicodedata.normalize("NFKD", value)
@@ -217,7 +222,7 @@ def handler_github_operational(context: dict[str, Any]) -> dict[str, Any]:
         "demand": context["demand"],
         "source": context["source"],
         "integrity": {"sha256": context["source_sha256"], "bytes": len(context["source"].encode("utf-8"))},
-        "next_step": "handoff_verified_source_to_coordinator",
+        "next_step": "handoff_verified_source_to_unified_architecture",
         "canonical_identity": {
             "instrument_id": "github-operational",
             "registry_path": "config/instrument-registry.json",
@@ -233,13 +238,13 @@ def handler_github_operational(context: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def handler_coordinator(context: dict[str, Any]) -> dict[str, Any]:
+def phase_bundle_coordination(context: dict[str, Any]) -> dict[str, Any]:
     ids = context["selected_ids"]
     return {
-        "handler": "coordinate-instrument-bundle",
+        "phase": "bundle-coordination",
         "result": "bundle_coordinated",
         "demand": context["demand"],
-        "execution_order": list(dict.fromkeys(["coordinator", "github-operational", *ids])),
+        "execution_order": list(dict.fromkeys(["functional-correference-architecture", "github-operational", *ids])),
         "instrument_sources": [
             {"id": item_id, "path": context["catalog"][item_id]["path"], "sha256": context["source_hashes"][item_id]}
             for item_id in ids
@@ -253,7 +258,7 @@ def handler_master_activation(context: dict[str, Any]) -> dict[str, Any]:
         "handler": "activate-master-protocol",
         "result": "activation_plan_built",
         "demand": context["demand"],
-        "base_instruments": ["coordinator", "master-activation", "github-operational"],
+        "base_instruments": ["functional-correference-architecture", "master-activation", "github-operational"],
         "selected_instruments": context["selected_ids"],
         "gates": ["demand_present", "instrument_identity_resolved", "source_verified", "capability_available"],
         "automatic_external_side_effects": False,
@@ -277,15 +282,47 @@ def handler_master_execution(context: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def handler_functional_correference(context: dict[str, Any]) -> dict[str, Any]:
+def phase_title_resolution(context: dict[str, Any]) -> dict[str, Any]:
     matches = context["matches"]
     return {
-        "handler": "resolve-all-functional-references",
+        "phase": "title-resolution",
         "result": "correference_report_generated",
         "demand": context["demand"],
         "matches": matches,
-        "blocked_ambiguous_ids": [m["id"] for m in matches if not m["activation"]],
+        "blocked_ambiguous_ids": [m["id"] for m in matches if m.get("identity_status") != "resolved"],
+        "blocked_disabled_ids": [m["id"] for m in matches if m.get("identity_status") == "resolved" and m.get("activation") is False],
         "matching_policy": "full-normalized-title-or-explicit-id-or-path; no arbitrary partial-title matching",
+    }
+
+
+def handler_unified_architecture(context: dict[str, Any]) -> dict[str, Any]:
+    title_phase = phase_title_resolution(context)
+    coordination_phase = phase_bundle_coordination(context)
+    return {
+        "handler": "unified-title-resolution-and-bundle-coordination",
+        "result": "unified_architecture_coordinated",
+        "canonical_identity": {
+            "instrument_id": "functional-correference-architecture",
+            "legacy_ids": ["coordinator"],
+            "node_id": "instrument:functional-correference-architecture",
+            "coordination_node": "coordination:functional-correference-architecture",
+        },
+        "demand": context["demand"],
+        "phases": [title_phase, coordination_phase],
+        "coordination_node": {
+            "id": "coordination:functional-correference-architecture",
+            "kind": "cross_phase_coordination",
+            "simultaneous_reference": True,
+            "edges": [
+                "phase:title-resolution->coordination:functional-correference-architecture",
+                "coordination:functional-correference-architecture->phase:bundle-coordination",
+                "phase:bundle-coordination->coordination:functional-correference-architecture",
+                "coordination:functional-correference-architecture->phase:title-resolution",
+            ],
+            "execution_policy": "sequence-or-parallel-according-to-verified-dependencies",
+        },
+        "validation_gates": coordination_phase["validation_gates"],
+        "legacy_id_resolution": {"coordinator": "functional-correference-architecture"},
     }
 
 
@@ -375,10 +412,9 @@ def handler_nocturna_architecture(context: dict[str, Any]) -> dict[str, Any]:
 
 HANDLERS = {
     "github-operational": handler_github_operational,
-    "coordinator": handler_coordinator,
     "master-activation": handler_master_activation,
     "master-execution": handler_master_execution,
-    "functional-correference-architecture": handler_functional_correference,
+    "functional-correference-architecture": handler_unified_architecture,
     "future-demand-preconfiguration": handler_future_preconfiguration,
     "catalog-sitemap-preconfiguration": handler_catalog_sitemap,
     "promptaria-instrument-template": handler_promptaria_instrument_template,
@@ -402,6 +438,7 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
         raw_ids = [raw_ids]
     if not isinstance(raw_ids, list) or any(not isinstance(item, str) for item in raw_ids):
         raise SystemExit("instrument_ids deve ser uma lista de IDs textuais.")
+    raw_ids = [canonicalize_instrument_id(item) for item in raw_ids]
     # A supplied preflight file is caller-controlled input, not an authority for
     # instrument identity. Always resolve against the live canonical catalogs.
     matches = resolve_ids(demand_text, catalog)
