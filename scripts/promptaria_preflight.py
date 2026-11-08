@@ -245,8 +245,6 @@ def main() -> None:
         and item.get("category") == "continuous_automation"
     )
     interconnection_plan = interconnection.build(registry_data)
-    interconnection_path = ROOT / "config" / "instrument-interconnections.json"
-    interconnection_path.write_text(json.dumps({**interconnection_plan, "generated_by": "scripts/promptaria_interconnection.py"}, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
     preauthorization = assess_preauthorization(request, matches, payload.get("destination"), set(continuous_automation_ids))
     result = {
         "schema_version": 2,
