@@ -1,42 +1,36 @@
-# Checklist de reconstrução segura dos workflows
+# Checklist de integridade dos workflows versionados
 
-**Estado:** auditoria documental; nenhum workflow foi criado ou executado nesta etapa.
+**Estado:** inventário reconciliado com a árvore atual de main. Este documento descreve os workflows existentes; não presume a existência de automações antigas que não estão versionadas.
 
-## Arquivos referenciados pelos testes
+## Workflows presentes
 
-- `.github/workflows/promptaria-integracao-pr.yml`
-- `.github/workflows/promptaria-auto-merge.yml`
-- `.github/workflows/promptaria-tests.yml`
-- `.github/workflows/promptaria-correfencia.yml`
+1. .github/workflows/promptaria-tests.yml
+   - Dispara em pull requests para main.
+   - Executa sintaxe e testes do resolvedor JavaScript, testes das salvaguardas de workflows privilegiados e a suíte Python.
+   - Permissões de conteúdo somente para leitura.
 
-O diretório `.github/workflows/` está ausente na branch auditada. O teste `tests/test_promptaria_workflow_integrity.py` lê pelo menos os dois primeiros caminhos diretamente, portanto a ausência é uma falha estrutural provável antes mesmo de validar o conteúdo.
+2. .github/workflows/auto-enable-new-promptual-instruments.yml
+   - Dispara em pull requests próprias criadas pelo proprietário.
+   - Compara a branch do PR ao SHA-base e classifica somente instrumentos novos.
+   - O padrão é recoverable_on_demand; a categoria continuous_automation exige declaração expressa no Markdown e permanece desabilitada.
 
-## Requisitos para integração via comentário
+3. .github/workflows/promptaria-integracao-pr.yml
+   - Responde a comentários em pull requests, não a comentários em issues.
+   - Exige comentário OWNER exatamente igual a /promptaria merge <HEAD-SHA-atual>.
+   - Não executa o merge; valida e prepara/reexecuta os checks para o SHA exato.
 
-- Aceitar somente comentário exato `/promptaria merge`.
-- Validar associação do autor como `OWNER`.
-- Confirmar que o PR está aberto, tem base `main` e vem do mesmo repositório.
-- Marcar o PR como pronto quando aplicável.
-- Não executar `gh pr merge` nesse workflow.
-- Permissões mínimas explícitas; não expor tokens em logs.
+4. .github/workflows/promptaria-auto-merge.yml
+   - Reage somente à conclusão bem-sucedida de Promptária PR Checks em evento pull_request.
+   - Confere completude e sucesso de todos os check-runs, estado/origem/base da PR, HEAD exato e aprovação OWNER.
+   - Usa squash merge fixado ao SHA testado.
 
-## Requisitos para auto-merge
+## Referências que não devem ser tratadas como workflows ativos
 
-- Aguardar o workflow de verificações denominado `Promptária PR Checks`.
-- Consultar todas as verificações do SHA exato testado.
-- Prosseguir somente quando todas estiverem concluídas com sucesso.
-- Confirmar base `main`, origem no mesmo repositório, PR não rascunho e HEAD atual igual ao SHA testado.
-- Fixar a operação ao SHA validado usando `--match-head-commit "$TESTED_SHA"` e estratégia `--squash`.
-- Declarar apenas as permissões estritamente necessárias.
+Não existem na árvore atual, entre outros, promptaria-correfencia.yml, promptaria-protocolo-mestre.yml, promptaria-pr-checks.yml, promptaria-readme-sync.yml ou promptaria-specialized-execution.yml. O README não deve atribuir a esses caminhos eventos, comandos ou permissões.
 
-## Sequência de validação recomendada
+## Validação
 
-1. Restaurar primeiro o workflow de testes sem privilégios de escrita.
-2. Recriar os workflows de integração e auto-merge separadamente, seguindo cada requisito acima.
-3. Executar `python -m pytest tests/test_promptaria_workflow_integrity.py -q`.
-4. Revisar permissões, filtros de evento, confiança em contribuições externas e correspondência do SHA antes de habilitar auto-merge.
-5. Não abrir PR nem afirmar que os workflows estão seguros até haver conteúdo revisado e execução dos testes.
-
-## Limite da evidência
-
-Os requisitos acima foram transcritos da leitura estática dos testes e da auditoria da branch. Não são prova de que workflows estejam instalados, executáveis ou aprovados.
+- Conferir que cada caminho citado no README existe em .github/workflows/.
+- Executar python -m unittest tests/test_promptaria_workflow_integrity.py.
+- Executar a suíte completa por python -m unittest discover -s tests -p 'test_*.py'.
+- Não declarar um workflow operacional apenas porque seu arquivo existe; exigir uma execução real com conclusão observável.
