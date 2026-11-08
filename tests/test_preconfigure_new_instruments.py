@@ -80,6 +80,40 @@ class PreconfigureNewInstrumentsTests(unittest.TestCase):
         self.assertEqual(manifest[0]["id"], registry[0]["id"])
         self.assertEqual(manifest[0]["title"], registry[0]["title"])
 
+    def test_promptual_title_defaults_to_recoverable_on_demand(self) -> None:
+        source = self.root / "instruments" / "instrumento-promptual-novo.md"
+        source.write_text("# Novo Instrumento Promptual de Análise\n\nConteúdo.\n", encoding="utf-8")
+
+        result = self.run_preconfigure()
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        entry = self.read_json(self.registry_path)["instruments"][0]
+        manifest_entry = self.read_json(self.manifest_path)["instruments"][0]
+        self.assertEqual(entry["category"], "recoverable_on_demand")
+        self.assertEqual(entry["classification_basis"], "default_title_rule")
+        self.assertEqual(entry["activation"]["mode"], "on_demand_title")
+        self.assertTrue(entry["activation"]["enabled"])
+        self.assertEqual(entry["activation"]["status"], "active")
+        self.assertTrue(entry["ui"]["visible"])
+        self.assertEqual(manifest_entry["category"], "recoverable_on_demand")
+        self.assertEqual(manifest_entry["classification_basis"], "default_title_rule")
+
+    def test_explicit_source_declaration_allows_continuous_automation_exception(self) -> None:
+        source = self.root / "instruments" / "instrumento-promptual-continuo.md"
+        source.write_text(
+            "# Instrumento Promptual de Automação Contínua\n\n"
+            "<!-- promptaria: continuous_automation: explicit -->\n",
+            encoding="utf-8",
+        )
+
+        result = self.run_preconfigure()
+
+        self.assertEqual(result.returncode, 0, result.stderr)
+        entry = self.read_json(self.registry_path)["instruments"][0]
+        self.assertEqual(entry["category"], "continuous_automation")
+        self.assertEqual(entry["classification_basis"], "explicit_source_declaration")
+        self.assertFalse(entry["activation"]["enabled"])
+
     def test_second_run_is_idempotent(self) -> None:
         source = self.root / "instruments" / "novo-instrumento.md"
         source.write_text("# Instrumento Novo\n", encoding="utf-8")
@@ -96,7 +130,7 @@ class PreconfigureNewInstrumentsTests(unittest.TestCase):
 
     def test_second_catalog_replace_failure_rolls_back_first_file(self) -> None:
         source = self.root / "instruments" / "novo.md"
-        source.write_text("# Instrumento Novo\\n", encoding="utf-8")
+        source.write_text("# Instrumento Novo\n", encoding="utf-8")
         original_registry = self.registry_path.read_bytes()
         original_manifest = self.manifest_path.read_bytes()
 
@@ -118,8 +152,8 @@ class PreconfigureNewInstrumentsTests(unittest.TestCase):
         with mock.patch.object(module.os, "replace", side_effect=fail_second_replace):
             with self.assertRaisesRegex(OSError, "simulated manifest"):
                 module.write_json_pair(
-                    self.registry_path, '{"instruments": [{"id": "new"}]}\\n',
-                    self.manifest_path, '{"instruments": [{"id": "new"}]}\\n',
+                    self.registry_path, '{"instruments": [{"id": "new"}]}\n',
+                    self.manifest_path, '{"instruments": [{"id": "new"}]}\n',
                 )
 
         self.assertEqual(self.registry_path.read_bytes(), original_registry)
