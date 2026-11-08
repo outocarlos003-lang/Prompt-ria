@@ -137,3 +137,17 @@ A implementação executável dessa política está em `config/segment-integrati
 ## Fonte integral canônica da arquitetura
 
 A fonte integral da arquitetura coordenadora está em [arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md](../instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md). A pré-configuração continua sendo documento complementar, com função própria e distinta.
+
+
+## Estado vigente: pareamento do acionamento GitHub em duas fases
+
+Esta seção prevalece sobre passagens anteriores deste documento que descreviam `github-operational` como componente recuperável. A identidade e a classificação atuais são:
+
+| Fase | ID canônico | Fonte | Categoria | Visibilidade |
+|---|---|---|---|---|
+| Contínua | `github-operational` | `instruments/acione-a-promptaria-pelo-github.md` | `continuous_automation` | Interna, não selecionável |
+| Recuperável | `github-operational-recoverable` | `instruments/github-operational-recoverable.md` | `recoverable_on_demand` | Pública, seleção explícita |
+
+A fase contínua conserva seu arquivo, ID, nó, ativação e funções de pré-configuração. A contraparte recuperável possui arquivo, ID, nó, ativação e handler próprios. As referências recíprocas do registro e o mecanismo de interconexão produzem correlação por demanda sem compartilhar IDs canônicos.
+
+A presença do instrumento contínuo no contexto não aciona a fase recuperável. A seleção da fase recuperável não concede autorização implícita para escrita ou efeitos externos. Registro, catálogo, manifesto, mapa de execução, handler e grafo de rastreabilidade devem preservar essa separação.
