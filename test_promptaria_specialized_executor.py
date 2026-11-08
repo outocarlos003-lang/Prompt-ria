@@ -274,6 +274,7 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertEqual(details["canonical_source"], "manifest.json + *.md")
         self.assertEqual(details["mutations_performed"], [])
         self.assertIn("legacy_tree_available", details)
+        self.assertIn("arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", details["markdown_files"])
 
     def test_preflight_cannot_override_registry_activation(self):
         selected = "master-execution"
