@@ -581,8 +581,8 @@
         "featured": false
       },
       "activation": {
-        "enabled": true,
-        "status": "active"
+        "enabled": false,
+        "status": "inactive"
       }
     }
   ]
