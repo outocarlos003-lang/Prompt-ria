@@ -292,8 +292,9 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `tests/teste-cadeia-navegacional.mjs`
 - `tests/teste-registro-instrumentos.py`
 
-### Configurações JSON (12)
+### Configurações JSON (14)
 
+- `config/continuous-automation-catalog.json`
 - `config/cross-segment-interconnection.json`
 - `config/instrument-catalog.json`
 - `config/instrument-execution-map.json`
@@ -303,6 +304,7 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 - `config/interface-traceability-current.json`
 - `config/interface-traceability.json`
 - `config/promptaria_permissions.json`
+- `config/recoverable-on-demand-catalog.json`
 - `config/segment-integration-policy.json`
 - `config/traceability-graph-current.json`
 - `config/traceability-graph.json`
