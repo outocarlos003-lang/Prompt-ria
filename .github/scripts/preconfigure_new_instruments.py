@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Safely register newly added instruments as inactive, non-executable entries."""
+"""Safely register newly added instruments with conservative category defaults."""
 from __future__ import annotations
 
 import json
@@ -10,6 +10,10 @@ import tempfile
 import unicodedata
 from pathlib import Path
 
+# An explicit source-file declaration is the only opt-out from the title rule.
+CONTINUOUS_OVERRIDE = "<!-- promptaria: continuous_automation: explicit -->"
+PROMPTUAL_TITLE_MARKER = "instrumento promptual"
+
 
 def normalize(value: str) -> str:
     value = unicodedata.normalize("NFKD", value)
@@ -19,6 +23,15 @@ def normalize(value: str) -> str:
 
 def slugify(value: str) -> str:
     return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", normalize(value))).strip("-")
+
+
+def classify_new_instrument(title: str, source_text: str) -> tuple[str | None, str | None]:
+    """Apply the mandatory on-demand default to new 'Instrumento promptual' titles."""
+    if PROMPTUAL_TITLE_MARKER not in normalize(title):
+        return None, None
+    if CONTINUOUS_OVERRIDE in source_text:
+        return "continuous_automation", "explicit_source_declaration"
+    return "recoverable_on_demand", "default_title_rule"
 
 
 def read_json(path: Path) -> dict:
@@ -64,7 +77,6 @@ def write_json_pair(registry_path: Path, registry_text: str, manifest_path: Path
                     rollback = Path(stream.name)
                 os.replace(rollback, target)
             except OSError:
-                # Preserve the original exception; rollback artifacts remain available for recovery.
                 pass
         raise
     finally:
@@ -91,7 +103,6 @@ def main() -> int:
         if any(not isinstance(x, dict) for x in registry_entries + manifest_entries):
             raise ValueError("Catálogos contêm entradas que não são objetos.")
         by_path = {x.get("path"): x for x in registry_entries if isinstance(x.get("path"), str)}
-        manifest_by_path = {x.get("path"): x for x in manifest_entries if isinstance(x.get("path"), str)}
         existing_titles = {}
         for item in registry_entries:
             title = item.get("title")
@@ -99,8 +110,8 @@ def main() -> int:
                 existing_titles.setdefault(normalize(title), []).append(item)
         discovered = []
         for path in sorted(instruments_dir.glob("*.md")):
-            text = path.read_text(encoding="utf-8")
-            match = re.search(r"(?m)^#\s+(.+?)\s*$", text)
+            source_text = path.read_text(encoding="utf-8")
+            match = re.search(r"(?m)^#\s+(.+?)\s*$", source_text)
             if not match:
                 continue
             title = match.group(1).strip()
@@ -115,7 +126,8 @@ def main() -> int:
             if any(item.get("id") == instrument_id for item in registry_entries):
                 print(f"ID gerado duplicado: {instrument_id}", file=sys.stderr)
                 return 1
-            discovered.append({
+            category, classification_basis = classify_new_instrument(title, source_text)
+            entry = {
                 "id": instrument_id,
                 "title": title,
                 "path": relpath,
@@ -126,23 +138,37 @@ def main() -> int:
                 "relations": [],
                 "operations": [],
                 "ui": {"node_id": f"instrument:{instrument_id}", "visible": False, "featured": False},
-                "activation": {"enabled": False, "status": "prepared_no_executor"},
-            })
+                "activation": {
+                    "enabled": False,
+                    "status": "prepared_no_executor",
+                    **({"mode": "on_demand_title"} if category == "recoverable_on_demand" else {}),
+                },
+            }
+            if category:
+                entry["category"] = category
+                entry["classification_basis"] = classification_basis
+            discovered.append(entry)
         if not discovered:
             print("Nenhum instrumento novo; catálogos já estão sincronizados.")
             return 0
-        # Validate all collisions before touching either file.
         registry["instruments"] = registry_entries + discovered
         for item in discovered:
             manifest_item = {
                 "id": item["id"], "title": item["title"], "path": item["path"],
                 "aliases": [], "capabilities": [],
             }
+            for field in ("category", "classification_basis"):
+                if field in item:
+                    manifest_item[field] = item[field]
             manifest_entries.append(manifest_item)
         serialized_registry = json.dumps(registry, ensure_ascii=False, indent=2) + "\n"
         serialized_manifest = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
         write_json_pair(registry_path, serialized_registry, manifest_path, serialized_manifest)
-        print(f"Pré-configurados {len(discovered)} instrumento(s); permanecem não executáveis até revisão explícita.")
+        print(
+            f"Pré-configurados {len(discovered)} instrumento(s); permanecem não executáveis "
+            "até revisão explícita. Títulos com 'Instrumento promptual' foram classificados "
+            "como recuperáveis sob demanda, salvo declaração expressa no próprio arquivo."
+        )
         return 0
     except (OSError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
