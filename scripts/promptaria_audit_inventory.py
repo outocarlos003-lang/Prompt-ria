@@ -61,7 +61,7 @@ def audit(instruments_dir: Path, manifest_path: Path, registry_path: Path) -> di
     registry_entries = entries_by_path(registry, "registry", errors)
 
     files = []
-    for path in sorted(instruments_dir.rglob("*.md")):
+    for path in sorted(instruments_dir.glob("*.md")):
         relative = path.relative_to(instruments_dir.parent).as_posix()
         content = path.read_text(encoding="utf-8")
         match = re.search(r"(?m)^#\s+(.+?)\s*$", content)
