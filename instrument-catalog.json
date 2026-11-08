@@ -7,7 +7,7 @@
   "instruments": [
     {
       "id": "github-operational",
-      "path": "instruments/acione-a-promptaria-pelo-github.md",
+      "path": "acione-a-promptaria-pelo-github.md",
       "title": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
       "aliases": [
         "github operacional",
@@ -127,14 +127,17 @@
     },
     {
       "id": "functional-correference-architecture",
-      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
+      "path": "arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "aliases": [
         "correferência funcional automática",
         "correspondência por título",
         "instrumento coordenador unificado",
         "automação de correspondência por título",
-        "arquitetura coordenadora de múltiplos instrumentos"
+        "arquitetura coordenadora de múltiplos instrumentos",
+        "arquitetura unificada",
+        "coordinator",
+        "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS"
       ],
       "keywords": [
         "título",
@@ -162,7 +165,11 @@
         "articular o instrumento fixo com o protocolo-mestre e a pré-configuração padrão",
         "processar cumulativamente múltiplos títulos sem limite numérico arbitrário",
         "manter rastreabilidade entre título, ID, nó, fonte, função, operação e resultado",
-        "distinguir identificação, recuperação, acionamento, execução e validação"
+        "distinguir identificação, recuperação, acionamento, execução e validação",
+        "coordenar instrumentos",
+        "preservar relações",
+        "integrar fluxos",
+        "ordenar dependências e validar resultados"
       ],
       "relations": [
         "title->instrument-id",
@@ -184,7 +191,18 @@
         "instrument:github-operational->functional-correference-architecture",
         "functional-correference-architecture->canonical-full-text",
         "canonical-full-text->master-activation",
-        "canonical-full-text->standard-preconfiguration"
+        "canonical-full-text->standard-preconfiguration",
+        "coordinator->context-router",
+        "coordinator->resolver",
+        "coordinator->functional-correference-architecture",
+        "instrument:coordinator->instrument:functional-correference-architecture",
+        "instrument:functional-correference-architecture->instrument:coordinator",
+        "coordination:unified-architecture->phase:title-functional-correference",
+        "phase:title-functional-correference->coordination:unified-architecture",
+        "coordination:unified-architecture->phase:coordinated-architecture",
+        "phase:coordinated-architecture->coordination:unified-architecture",
+        "phase:title-functional-correference->phase:coordinated-architecture",
+        "phase:coordinated-architecture->phase:title-functional-correference"
       ],
       "operations": [
         "match",
@@ -194,59 +212,36 @@
         "preserve-instrument-identity",
         "coordinate-cumulative-instruments",
         "trace-cross-segment",
-        "validate-integrity"
+        "validate-integrity",
+        "integrate",
+        "validate",
+        "cross_phase_correference",
+        "validate_joint_result"
       ],
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
-        "featured": false
+        "featured": false,
+        "coordination_node_id": "coordination:unified-architecture",
+        "phase_nodes": [
+          "phase:title-functional-correference",
+          "phase:coordinated-architecture"
+        ]
       },
       "activation": {
         "enabled": false,
         "status": "prepared_not_published"
-      }
-    },
-    {
-      "id": "coordinator",
-      "path": "instruments/arquitetura-unificada.md",
-      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-      "aliases": [
-        "arquitetura unificada"
-      ],
-      "keywords": [
-        "arquitetura",
-        "coordenação",
-        "integração",
-        "correferência",
-        "instrumentos"
-      ],
-      "functions": [
-        "coordenar instrumentos",
-        "preservar relações",
-        "integrar fluxos"
-      ],
-      "relations": [
-        "coordinator->context-router",
-        "coordinator->resolver"
-      ],
-      "operations": [
-        "coordinate",
-        "integrate",
-        "validate"
-      ],
-      "ui": {
-        "node_id": "instrument:coordinator",
-        "visible": false,
-        "featured": false
       },
-      "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
+      "legacy_ids": [
+        "coordinator"
+      ],
+      "legacy_node_ids": [
+        "instrument:coordinator"
+      ]
     },
     {
       "id": "promptaria-instrument-template",
-      "path": "instruments/modelo-instrumento-promptual-correferencia.md",
+      "path": "modelo-instrumento-promptual-correferencia.md",
       "title": "MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA",
       "aliases": [
         "modelo de instrumento promptual",
@@ -302,7 +297,7 @@
     },
     {
       "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
-      "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
+      "path": "nocturna-arquitetura-necessidade-identidade-sistemica.md",
       "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
       "aliases": [
         "Nocturna",
@@ -377,7 +372,7 @@
     },
     {
       "id": "future-demand-preconfiguration",
-      "path": "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
+      "path": "preconfiguracao-correspondencia-futura-e-cadeia.md",
       "title": "PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
       "aliases": [
         "pré-configuração de demandas futuras",
@@ -415,7 +410,7 @@
     },
     {
       "id": "catalog-sitemap-preconfiguration",
-      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
+      "path": "preconfiguracao-sincronizacao-catalogo-sitemap.md",
       "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
       "aliases": [
         "sincronização catálogo sitemap",
@@ -453,7 +448,7 @@
     },
     {
       "id": "master-activation",
-      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+      "path": "protocolo-mestre-acionamento-automatico.md",
       "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
       "aliases": [
         "protocolo mestre de acionamento",
@@ -496,7 +491,7 @@
     },
     {
       "id": "master-execution",
-      "path": "instruments/protocolo-mestre-execucao-correta.md",
+      "path": "protocolo-mestre-execucao-correta.md",
       "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
       "aliases": [
         "execução correta",
@@ -534,7 +529,7 @@
     },
     {
       "id": "protocol-update-integrity",
-      "path": "instruments/protocolo-operacional-atualizacao-integridade-acervo.md",
+      "path": "protocolo-operacional-atualizacao-integridade-acervo.md",
       "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
       "aliases": [
         "protocolo de atualização integral",
