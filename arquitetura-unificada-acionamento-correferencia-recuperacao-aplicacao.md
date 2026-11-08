@@ -39,25 +39,45 @@ O nó recebe a saída verificada da Fase I, transmite identidades e proveniênci
 
 ### Contrato incorporado da fase coordenadora
 
-**Identidade e finalidade.** O instrumento identifica, recupera, articula e valida instrumentos promptuais independentes. O título identifica; o conteúdo efetivamente recuperado fundamenta a aplicação. Coordenar relaciona unidades, não as funde.
+#### Identidade e finalidade
 
-**Arquitetura obrigatória.** A composição inclui este instrumento unificado, o instrumento operacional fixo `github-operational`, o protocolo-mestre `master-activation` quando aplicável e zero, um ou tantos instrumentos adicionais quantos forem indicados. Não há limite numérico arbitrário.
+O instrumento identifica, recupera, articula e valida instrumentos promptuais independentes. O título identifica; o conteúdo efetivamente recuperado fundamenta a aplicação. Coordenar relaciona unidades, não as funde.
 
-**Cadeia operacional.** Título → identificação → recuperação → confirmação do conteúdo → reconhecimento funcional → coordenação → contextualização → parametrização → adaptação → execução → validação → rastreabilidade.
+#### Arquitetura obrigatória
 
-**Correferência por título.** Menção genérica a título existente identifica o instrumento e conserva sua função própria, salvo atribuição específica e inequívoca de função diversa. Silêncio, ausência de explicitação ou ambiguidade não constituem, por si sós, função diversa. A exceção é examinada individualmente para cada título.
+A composição inclui este instrumento unificado, o instrumento operacional fixo `github-operational`, o protocolo-mestre `master-activation` quando aplicável e zero, um ou tantos instrumentos adicionais quantos forem indicados. Não há limite numérico arbitrário.
 
-**Preservação e recuperação.** Cada conteúdo efetivo deve ser recuperado antes de se afirmar sua função. Não inventar conteúdo, substituir unidade ausente ou declarar execução não confirmada. Distinguir identificação, recuperação, acionamento, tentativa, execução confirmada e resultado validado.
+#### Cadeia operacional
 
-**Coordenação múltipla.** Processar todos os títulos; preservar identidade, função, origem e responsabilidade; detectar dependências, complementaridades, sobreposições e conflitos; escolher execução sequencial ou paralela conforme dependências reais. Reconhecimento simultâneo não impõe paralelismo.
+Título → identificação → recuperação → confirmação do conteúdo → reconhecimento funcional → coordenação → contextualização → parametrização → adaptação → execução → validação → rastreabilidade.
 
-**Demanda e contexto.** A demanda define o objetivo; o contexto descreve circunstâncias; a parametrização estabelece condições variáveis; a adaptação ajusta sem descaracterizar; a execução concretiza as instruções recuperadas. Essas categorias não são intercambiáveis.
+#### Correferência por título
 
-**Origem, destino e materialização.** Origem e destino são parâmetros distintos. Destino explícito prevalece; contexto inequívoco pode determiná-lo; ambiguidade suspende a escrita dependente. Nocturna não é destino padrão. Escrita exige destino definido, autorização e capacidade técnica; não declarar escrita sem confirmação.
+Menção genérica a título existente identifica o instrumento e conserva sua função própria, salvo atribuição específica e inequívoca de função diversa. Silêncio, ausência de explicitação ou ambiguidade não constituem, por si sós, função diversa. A exceção é examinada individualmente para cada título.
 
-**Validação.** Verificar identidades, conteúdos recuperados, todos os títulos, preservação das funções, exceções individuais, dependências, origem, destino, permissões, resultados intermediários, integridade e rastreabilidade. Relatar limitações sem alegar conclusão integral.
+#### Preservação e recuperação
 
-**Limite técnico.** GitHub Actions processa somente demandas efetivamente transmitidas por evento ou integração autorizada; este instrumento não lê automaticamente conversas arbitrárias do ChatGPT.
+Cada conteúdo efetivo deve ser recuperado antes de se afirmar sua função. Não inventar conteúdo, substituir unidade ausente ou declarar execução não confirmada. Distinguir identificação, recuperação, acionamento, tentativa, execução confirmada e resultado validado.
+
+#### Coordenação múltipla
+
+Processar todos os títulos; preservar identidade, função, origem e responsabilidade; detectar dependências, complementaridades, sobreposições e conflitos; escolher execução sequencial ou paralela conforme dependências reais. Reconhecimento simultâneo não impõe paralelismo.
+
+#### Demanda e contexto
+
+A demanda define o objetivo; o contexto descreve circunstâncias; a parametrização estabelece condições variáveis; a adaptação ajusta sem descaracterizar; a execução concretiza as instruções recuperadas. Essas categorias não são intercambiáveis.
+
+#### Origem, destino e materialização
+
+Origem e destino são parâmetros distintos. Destino explícito prevalece; contexto inequívoco pode determiná-lo; ambiguidade suspende a escrita dependente. Nocturna não é destino padrão. Escrita exige destino definido, autorização e capacidade técnica; não declarar escrita sem confirmação.
+
+#### Validação
+
+Verificar identidades, conteúdos recuperados, todos os títulos, preservação das funções, exceções individuais, dependências, origem, destino, permissões, resultados intermediários, integridade e rastreabilidade. Relatar limitações sem alegar conclusão integral.
+
+#### Limite técnico
+
+GitHub Actions processa somente demandas efetivamente transmitidas por evento ou integração autorizada; este instrumento não lê automaticamente conversas arbitrárias do ChatGPT.
 
 ### Contrato de correspondência, recuperação e segurança incorporado
 
