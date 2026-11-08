@@ -196,7 +196,7 @@ class SpecializedExecutorTests(unittest.TestCase):
         source_path = ROOT / catalog[instrument_id]["path"]
         original_read_bytes = Path.read_bytes
         exact_bytes = (
-            ("# " + catalog[instrument_id]["title"] + "\\r\\nConteúdo de teste com finais de linha CRLF.\\r\\n").encode("utf-8")
+            ("# " + catalog[instrument_id]["title"] + "\r\nConteúdo de teste com finais de linha CRLF.\r\n").encode("utf-8")
         )
 
         def read_bytes_with_crlf(path):
