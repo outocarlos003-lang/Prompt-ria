@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/promptaria_interconnection.py",
+  "source_registry": "config/instrument-registry.json",
+  "policy": "Semantic cross-category links preserve instrument independence and source paths.",
+  "interconnections": []
+}
