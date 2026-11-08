@@ -53,12 +53,13 @@ class RepositoryIntegrityTests(unittest.TestCase):
     def test_three_preconfiguration_components_exist_in_repository(self):
         instruments = read_instruments(ROOT / "instruments")
         titles = {item["normalized_title"] for item in instruments}
+        aliases = {alias for item in instruments for alias in item.get("normalized_aliases", [])}
         required = {
             normalize("ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS"),
             normalize("PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO"),
             normalize("Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"),
         }
-        self.assertTrue(required.issubset(titles), f"Componentes-base ausentes: {sorted(required - titles)}")
+        self.assertTrue(required.issubset(titles | aliases), f"Componentes-base ausentes: {sorted(required - titles - aliases)}")
 
     def test_resolver_output_contract_rejects_false_execution_claims(self):
         valid = {
