@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import promptaria_context_router as router
 import promptaria_specialized_executor as specialized
+import promptaria_interconnection as interconnection
 
 
 def execute(payload: dict, preflight: dict | None = None) -> dict:
@@ -50,8 +51,9 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
             "para desambiguar: " + ", ".join(unresolved_selected)
         )
 
+    registry_data = specialized.read_object(ROOT / "config" / "instrument-registry.json")
     registry = specialized.index_catalog_entries(
-        specialized.read_object(ROOT / "config" / "instrument-registry.json"),
+        registry_data,
         "config/instrument-registry.json",
     )
 
@@ -132,7 +134,17 @@ def execute(payload: dict, preflight: dict | None = None) -> dict:
     result = specialized.execute({**payload, "instrument_ids": selected}, preflight=augmented)
     result["contextual_analysis"] = context
     result["continuous_preconfiguration"] = context.get("continuous_preconfiguration", {"applies_to_every_request": True, "instrument_ids": [], "execution_performed": False})
-    result["cross_category_interconnection"] = (preflight or {}).get("cross_category_interconnection", {"interconnection_count": 0, "interconnections": []})
+    request_id = payload.get("request_id")
+    if not isinstance(request_id, str) or not request_id.strip():
+        request_id = request.get("request_id") if isinstance(request, dict) else None
+    if not isinstance(request_id, str) or not request_id.strip():
+        demand = payload.get("demand")
+        request_id = demand.get("request_id") if isinstance(demand, dict) else None
+    result["cross_category_interconnection"] = interconnection.build(
+        registry_data,
+        selected_on_demand_ids=selected,
+        request_id=request_id if isinstance(request_id, str) and request_id.strip() else None,
+    )
     result["routing_evidence"] = {
         "task_candidates": context["task_candidates"],
         "evidence_chain": context["evidence_chain"],

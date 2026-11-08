@@ -71,6 +71,22 @@ class ContextRouterTests(unittest.TestCase):
   self.assertTrue(result["contextual_analysis"]["evidence_chain"])
   self.assertFalse(result["external_side_effects_performed"])
 
+ def test_contextual_executor_builds_runtime_cross_category_interconnections(self):
+  result=contextual.execute({
+   "request_id":"req-cross-category-001",
+   "request":"Adicione uma préconfiguração de automação funcional ao repositório Promptária para correferência automática por título."
+  })
+  links=result["cross_category_interconnection"]
+  self.assertGreater(links["interconnection_count"],0)
+  self.assertGreater(links["selected_interconnection_count"],0)
+  self.assertEqual(links["request_id"],"req-cross-category-001")
+  selected_links=[item for item in links["interconnections"] if item["interconnection_status"]=="interconnected_for_request"]
+  self.assertTrue(selected_links)
+  self.assertTrue(all(item["identity_merge"] is False for item in selected_links))
+  self.assertTrue(all(item["instrument_count_delta"]==0 for item in selected_links))
+  self.assertFalse(links["side_effects_authorized"])
+  self.assertEqual(result["routing_evidence"]["cross_category_interconnection"],links)
+
  def test_preflight_activation_flag_cannot_bypass_ambiguous_identity(self):
   empty_context = {
    "selected_instrument_ids": [],
