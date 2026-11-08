@@ -14,8 +14,8 @@
       "ui",
       "activation"
     ],
-    "matching": "canonical title; only activation.enabled=true instruments are functionally resolvable",
-    "selection": "cumulative across enabled instruments; inventory alone never activates an instrument"
+    "matching": "Only category=recoverable_on_demand with activation.enabled=true and ui.visible=true is functionally resolvable by explicit title; category=continuous_automation is applied as default preconfiguration context, not individually resolved by title.",
+    "selection": "Cumulative across explicitly referenced recoverable_on_demand instruments; continuous_automation instruments are included in every request's preconfiguration context; inventory alone never authorizes side effects."
   },
   "template_id": "promptaria-instrument-template",
   "instruments": [
