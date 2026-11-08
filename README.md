@@ -4,29 +4,24 @@ Repositório de instrumentos promptuais reutilizáveis, identificados por títul
 
 ## Automação de correferência por título
 
-O workflow `.github/workflows/promptaria-correfencia.yml` permite enviar uma demanda em Actions → Run workflow ou por comentário em uma issue usando `/promptaria <demanda completa com os títulos dos instrumentos>`.
+A resolução canônica é implementada por scripts/promptaria_resolver.py e pelo contrato JavaScript em .github/scripts/resolver-correferencia.mjs. O resolvedor consulta o registro operacional config/instrument-registry.json, recupera os arquivos em instruments/*.md e usa o primeiro cabeçalho H1 como título canônico. A correspondência preserva identidades distintas e não encerra a busca na primeira ocorrência.
 
-O workflow procura arquivos Markdown em `instruments/`. O primeiro cabeçalho Markdown (`# Título do instrumento`) é o título canônico. A comparação normaliza maiúsculas/minúsculas, Unicode e pontuação e conserva todas as correspondências, sem parar na primeira.
+**Limite de acionamento pelo GitHub:** não existe um workflow .github/workflows/promptaria-correfencia.yml nem um comando de comentário /promptaria <demanda> para executar demandas. O workflow de comentários existente é restrito à aprovação explícita de integração de pull requests, descrita abaixo. Para resolver uma demanda localmente, use o resolvedor Python e valide o artefato com o validador correspondente.
 
 ### Adicionar um instrumento
 
-1. Crie um arquivo `.md` em `instruments/`.
-2. Coloque o título oficial no primeiro cabeçalho.
-3. Preserve o conteúdo integral e as instruções próprias nesse arquivo.
-4. Mencione o título na demanda enviada ao workflow.
-
-O componente fixo obrigatório é **Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas**. Se não existir como arquivo Markdown em `instruments/`, o relatório registra a falha em vez de inventar conteúdo.
+1. Crie um arquivo Markdown em instruments/.
+2. Use o título oficial no primeiro cabeçalho H1.
+3. Preserve integralmente o conteúdo e as instruções próprias.
+4. Atualize o registro, os catálogos e os manifestos correspondentes.
+5. Execute os testes e validadores antes de integrar a alteração.
 
 ## O que está automatizado
 
-- Recepção explícita de demanda por evento GitHub autorizado.
-- Descoberta de todos os instrumentos Markdown com cabeçalho de título.
-- Correspondência por título normalizado, sem limite numérico codificado.
-- Inclusão dos componentes-base obrigatórios quando os arquivos existem.
-- Validação estrita de destino relativo: bloqueia caminhos absolutos, segmentos `..`, segmentos vazios, `.`, `.git`, separadores Windows e caracteres de controle.
-- Validação estrita de `dry_run` e autorização explícita para qualquer pedido de modo não simulado.
-- Artefato JSON com correspondências e estados de rastreabilidade.
-- Testes de integridade do repositório para conteúdo Markdown não vazio, títulos normalizáveis, caminhos distintos, preservação de instrumentos com títulos equivalentes, presença dos três componentes-base e validade do contrato do resultado.
+- **Verificação de pull requests:** .github/workflows/promptaria-tests.yml executa o contrato JavaScript, as salvaguardas dos workflows privilegiados e a suíte Python.
+- **Classificação de novos instrumentos:** .github/workflows/auto-enable-new-promptual-instruments.yml chama scripts/auto_enable_new_promptual_instruments.py. Títulos novos contendo “Instrumento promptual” são classificados como recuperáveis sob demanda por padrão; automação contínua exige a declaração expressa prevista na política.
+- **Integração controlada:** .github/workflows/promptaria-integracao-pr.yml valida o comentário exato /promptaria merge <SHA> em uma pull request própria, aberta e destinada a main; não faz o merge.
+- **Auto-merge protegido:** .github/workflows/promptaria-auto-merge.yml só integra o SHA testado após checks concluídos com sucesso e aprovação explícita do proprietário para aquele SHA exato.
 
 ## Limites importantes
 
@@ -141,25 +136,19 @@ A configuração trata números de catálogo, caminhos, estados e auditorias inc
 
 ## Execução especializada dos instrumentos
 
-Os IDs do manifesto e seus handlers especializados são mapeados em `config/instrument-execution-map.json`; o novo protocolo de atualização é uma pré-configuração de planejamento e não declara um handler especializado inexistente. O dispatcher verifica títulos canônicos e hashes das fontes antes de executar as rotinas específicas. Para executar via GitHub Actions, use **Promptária — execução especializada**; os resultados JSON são publicados como artefatos. Títulos que colidem após normalização exigem `instrument_ids` explícitos. Os handlers atuais produzem resultados locais auditáveis e não fazem escritas externas nem executam código arbitrário contido nos instrumentos. Consulte `docs/execucao-especializada-instrumentos.md` para contratos e exemplos.
-
+Os IDs do manifesto e seus handlers especializados são mapeados em config/instrument-execution-map.json. A execução especializada é uma etapa local separada da resolução por título: recuperar um instrumento ou incluí-lo num plano não executa seu conteúdo. Use os scripts em scripts/ conforme os contratos descritos em docs/execucao-especializada-instrumentos.md; não há atualmente um workflow GitHub Actions de execução especializada. Títulos que colidem após normalização exigem desambiguação por ID. Os handlers não executam código arbitrário contido nos instrumentos.
 
 ## Análise contextual cumulativa e seleção funcional de tarefas
 
-A execução especializada agora possui uma camada aditiva de análise contextual em `scripts/promptaria_context_router.py` e `scripts/promptaria_contextual_executor.py`. Ela preserva a arquitetura vigente, os três componentes-base e os nove handlers canônicos, sem substituir ou fundir os instrumentos existentes.
+A camada de análise contextual é implementada por scripts/promptaria_context_router.py e scripts/promptaria_contextual_executor.py. Ela combina os elementos-base com as evidências circunstanciais da demanda — ações, objeto, finalidade, títulos, IDs, caminhos e campos estruturados — e registra a proveniência da seleção.
 
-Os elementos-base do protocolo-mestre fornecem a estrutura comum; as personalizações de cada demanda fornecem evidências circunstanciais concatenadas — incluindo ações, objeto, finalidade, títulos, IDs, caminhos e campos estruturados. A análise avalia as evidências em conjunto, registra a proveniência dos campos e seleciona cumulativamente todos os handlers sustentados pelo contexto, em vez de encerrar na primeira correspondência. O relatório expõe a cadeia base → personalização → interpretação contextual → seleção de handlers.
-
-O workflow **Promptária — execução especializada** usa o executor contextual e publica três artefatos: plano de préflight, análise contextual e execução especializada. A correspondência por título permanece cumulativa; colisões de identidade continuam sujeitas às regras de desambiguação. A seleção contextual não concede autorização de escrita nem autoriza efeitos externos. Os handlers executam transformações locais determinísticas, e qualquer escrita real permanece sujeita ao executor genérico, às permissões e à confirmação já existentes.
-
-Validação local adicional: `python -m unittest tests.test_promptaria_contextual_executor -v`.
-
+A seleção contextual é cumulativa, mas não funde identidades nem concede autorização de escrita. A execução é local e depende do executor especializado, das permissões e das validações correspondentes; não existe um workflow GitHub Actions ativo que execute essa etapa.
 
 ## Protocolo de atualização integral e preservação funcional
 
-O instrumento `instruments/protocolo-operacional-atualizacao-integridade-acervo.md` formaliza a atualização de versões integrais sem perder identidade, rastreabilidade, correferências ou relações entre arquivos. Ele está registrado em `config/instrument-registry.json`, publicado no catálogo `config/instrument-catalog.json` e visível na interface que carrega o registro canônico.
+O protocolo de atualização e preservação foi separado do conjunto operacional e está arquivado em auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md, com registro em auxiliary-protocols/registry.json. Ele não integra o manifesto, o catálogo operacional nem a seleção automática.
 
-O resolvedor inclui esse protocolo automaticamente nos planos futuros com a identidade `mandatory_update_integrity_preconfiguration`. A inclusão significa recuperação e planejamento, não execução implícita. A política vigente de simulação, autorização explícita, executor separado e validação continua ativa. A automação reconhece títulos e recupera o conteúdo completo dos arquivos Markdown; a verificação final do conteúdo e das operações depende dos testes e evidências de execução correspondentes.
+A recuperação é explícita, por ID ou título, usando python scripts/resolve_auxiliary_protocol.py --id protocol-update-integrity ou --title "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA". O protocolo auxiliar permanece habilitado em seu próprio registro, sem se tornar membro operacional nem ser pré-carregado em todos os planos.
 
 ## Instrumento Nocturna: arquitetura da necessidade e identidade sistêmica
 
@@ -169,280 +158,168 @@ O resolvedor inclui o instrumento em planos futuros como `mandatory_nocturna_arc
 
 ## Pré-configuração obrigatória de rastreabilidade para novos instrumentos
 
-O workflow `.github/workflows/promptaria-tests.yml` executa agora `.github/scripts/validate_instrument_traceability.py` em cada pull request e push para `main`. A verificação cruza os arquivos Markdown de `instruments/*.md` com o registro canônico, o catálogo publicado e o manifesto de testes. Uma inclusão ou alteração não pode passar pela validação se faltar uma entrada, houver caminho obsoleto, divergência de título, ID duplicado ou metadados essenciais incompletos.
+O workflow .github/workflows/promptaria-tests.yml verifica pull requests com testes de contrato JavaScript, salvaguardas de integração privilegiada e a suíte Python completa. A validação de identidade e caminhos também possui utilitários locais em scripts/validate_instrument_registry.py e scripts/validate_instrument_reference_contract.py.
 
-Para cada instrumento novo, preserve o primeiro cabeçalho Markdown como título canônico e registre no `config/instrument-registry.json`: ID único, caminho, aliases, palavras-chave, funções, relações explícitas no formato `origem->destino`, operações e nó de interface. Atualize também `tests/manifest.json` e regenere `config/instrument-catalog.json` com:
-
-```bash
-python scripts/generate_instrument_catalog.py
-python .github/scripts/validate_instrument_traceability.py
-python -m unittest discover -s tests -v
-```
-
-O resolvedor por título continua recuperando todas as ocorrências com normalização de caixa, acentos e pontuação. Títulos canônicos equivalentes não são fundidos nem descartados: representam identidades distintas e exigem desambiguação por ID quando necessário. O gate de rastreabilidade valida referências e metadados; não executa o conteúdo dos instrumentos, não concede permissões de escrita e não transforma uma correspondência lexical em prova de equivalência semântica.
-
-
+Para cada instrumento, preserve o primeiro H1 como título canônico e mantenha ID, caminho, aliases, funções, relações, operações e nó de interface coerentes no registro. O manifesto raiz manifest.json e o manifesto de testes tests/manifest.json devem representar a mesma identidade e os mesmos caminhos. A validação estrutural não executa o conteúdo dos instrumentos nem autoriza escrita.
 
 ## Ativação funcional explícita e inclusão futura
 
-A existência de um Markdown no repositório, no manifesto ou no catálogo **não ativa** sua correferência funcional. O registro mantém um estado explícito em `activation.enabled`: somente entradas habilitadas podem ser resolvidas pelo título canônico e exibidas no site. O estado inicial preserva ativos apenas `github-operational`, `nocturna-arquitetura-necessidade-identidade-sistemica` e `protocol-update-integrity`; os demais ficam preparados, mas inativos.
-
-Quando um instrumento preparado for efetivamente publicado no site, habilite-o pelo ID já registrado:
-
-```bash
-python scripts/activate_instrument.py --id ID-DO-INSTRUMENTO
-python scripts/generate_instrument_catalog.py
-python .github/scripts/validate_instrument_traceability.py
-python -m unittest discover -s tests -v
-```
-
-Para um instrumento novo, primeiro crie o Markdown e complete sua entrada no registro com ID único, título idêntico ao primeiro H1, aliases, palavras-chave, funções, relações, operações e nó UI. Inclua-o no manifesto de inventário. Só depois de sua incorporação deliberada ao site execute o ativador. A validação impede que a mera presença de um arquivo amplie o conjunto ativo. A interface e o resolvedor consomem a mesma flag, evitando catálogo visual e correferência funcional divergentes.
-
+O registro operacional config/instrument-registry.json é a fonte de verdade para a ativação por título. Na árvore atual ele contém oito instrumentos operacionais; a recuperação do protocolo de integridade permanece separada no registro auxiliar. A flag activation.enabled controla a resolução funcional e a visibilidade operacional. Presença no diretório ou no manifesto, isoladamente, não concede autorização para executar efeitos externos.
 
 ## Ativação controlada e pré-configuração futura
 
-A interface e o resolvedor funcional usam exclusivamente os instrumentos com `activation.enabled: true` em `config/instrument-registry.json`. Os três instrumentos-base atualmente habilitados são:
+O workflow .github/workflows/auto-enable-new-promptual-instruments.yml chama scripts/auto_enable_new_promptual_instruments.py para classificar apenas entradas novas em relação ao SHA-base do pull request. A regra vigente é:
 
-- `github-operational`
-- `nocturna-arquitetura-necessidade-identidade-sistemica`
-- `protocol-update-integrity`
+- Título canônico novo contendo “Instrumento promptual”: category recoverable_on_demand, classification_basis default_title_rule, activation.mode on_demand_title, habilitado e visível para recuperação explícita por título.
+- Exceção: somente a declaração exata <!-- promptaria: continuous_automation: explicit --> no arquivo-fonte classifica o instrumento como continuous_automation; ele permanece desabilitado e sem executor até configuração e autorização separadas.
+- Instrumentos já existentes na branch-base não são recategorizados nem reativados por essa rotina.
 
-Os outros instrumentos que já existem permanecem inventariados, mas desativados. Estar em `instruments/`, no manifesto ou no catálogo não basta para habilitar um instrumento existente.
-
-Quando um novo arquivo Markdown é adicionado diretamente a `instruments/` na branch `main`, o workflow `.github/workflows/promptaria-auto-preconfigure.yml` executa primeiro os testes de regressão e, se passarem, chama `.github/scripts/preconfigure_new_instruments.py` para gerar metadados mínimos e sincronizar registro, catálogo e manifesto por meio de um pull request. **O instrumento novo permanece desativado e invisível** (`activation.enabled: false`, `ui.visible: false`, `ui.featured: false`) com estado `prepared_no_executor`. A presença de um título e de um arquivo Markdown não comprova a existência de um executor. A ativação funcional exige revisão e um fluxo explícito posterior, depois que executor, permissões e pré-condições forem verificados. Títulos canônicos duplicados e IDs colidentes bloqueiam o registro automático.
-
-A automação pré-configura identidade e reconhecimento; ela não executa o conteúdo do prompt, não ativa automaticamente o instrumento nem concede permissão de escrita. Para títulos ambíguos, o fluxo falha de forma explícita em vez de escolher silenciosamente um instrumento. O workflow de regressão separado está documentado em `docs/preconfiguration-regression-ci.md`.
-
+A rotina sincroniza a classificação e sua proveniência nos registros, catálogos e manifestos espelhados. Recuperabilidade sob demanda não significa execução automática nem autorização de efeitos colaterais. Consulte docs/politica-classificacao-instrumentos-promptuais.md.
 
 ## Classificação prévia da demanda: correferência ou automação distinta
 
-Antes de resolver títulos, o workflow executa `scripts/promptaria_route_request.py` e grava `request-routing.json` como artefato auditável. A classificação escolhe uma rota separada:
+O roteador contextual local scripts/promptaria_route_request.py distingue referências a instrumentos, pedidos de pré-configuração, intenções mistas, referências inativas ou não registradas e demandas que exigem revisão contextual. Essa classificação não é executada por um workflow GitHub Actions de recepção de demandas. Ela não substitui o resolvedor, não ativa instrumentos e não autoriza mutações.
 
-- `title_coreference`: a demanda cita explicitamente um título de instrumento habilitado em `config/instrument-registry.json`; somente então o resolvedor de títulos é executado.
-- `automation_preconfiguration`: a demanda pede criação, ajuste, sincronização ou pré-configuração de automação sem citar um título ativo. O workflow entrega apenas o plano de roteamento e **não** executa a correferência.
-- `mixed_coreference_and_automation_preconfiguration`: ambas as intenções aparecem; a resolução de títulos ativos é executada e a intenção de automação fica identificada separadamente.
-- `inactive_or_unregistered_reference`: uma referência reconhecida aponta para instrumento desativado; a correferência é bloqueada.
-- `unclassified_requires_review`: a intenção não é suficientemente clara; a operação fica pendente de classificação contextual.
+O registry é a autoridade para acionamento por título. A classificação semântica deve preservar a distinção entre correferência funcional, automação distinta e atribuição explícita de função diversa.
 
-O registry é a autoridade para acionamento por título. Os oito instrumentos preexistentes desativados, bem como arquivos que não tenham entrada habilitada no registry, não se tornam acionáveis por aparecerem no catálogo, no diretório ou no texto da demanda. Suas funções de automação distintas continuam preservadas como conteúdo e configuração, mas não são confundidas com correferência por título.
+## Manutenção da documentação
 
-A classificação é conservadora e não executa mutações. Menção de título, presença de arquivo ou geração de plano não equivalem a autorização de escrita. Os testes de roteamento cobrem as rotas de correferência, automação distinta, referência inativa, intenção mista e demanda sem classificação segura.
+Não há atualmente um workflow ou script versionado de sincronização automática do README. As descrições e o inventário abaixo foram reconciliados manualmente com a árvore atual do repositório. Ao adicionar ou remover arquivos, atualize esta documentação na mesma alteração e valide as referências de caminho.
 
+## Inventário versionado — conferido com a árvore de main
 
-## Atualização aditiva e autônoma da documentação
+### Instrumentos operacionais (8)
 
-O workflow `.github/workflows/promptaria-readme-sync.yml` mantém o README alinhado à árvore real do repositório. Ele é acionado por alterações funcionais na branch `main`, pode ser executado manualmente em **Actions** e realiza uma auditoria semanal de reconciliação. O script `.github/scripts/sync_readme_inventory.py` registra os principais pontos de entrada e gera inventários de instrumentos, scripts, workflows, documentação, testes e configurações.
+- `instruments/acione-a-promptaria-pelo-github.md`
+- `instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`
+- `instruments/modelo-instrumento-promptual-correferencia.md`
+- `instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md`
+- `instruments/preconfiguracao-correspondencia-futura-e-cadeia.md`
+- `instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md`
+- `instruments/protocolo-mestre-acionamento-automatico.md`
+- `instruments/protocolo-mestre-execucao-correta.md`
 
-A seção gerada é delimitada pelos marcadores `PROMPTARIA-README-AUTO:START` e `PROMPTARIA-README-AUTO:END`. O conteúdo editorial existente fora desses marcadores é preservado; apenas a seção gerenciada é regenerada, evitando sobrescrever manualmente o restante do README. A automação faz commit somente quando detecta diferença e usa concorrência controlada para evitar execuções simultâneas.
+### Scripts Python (22)
 
-### Critérios e limites
+- `scripts/activate_instrument.py`
+- `scripts/auto_enable_new_promptual_instruments.py`
+- `scripts/generate_instrument_catalog.py`
+- `scripts/promptaria_audit_anchor.py`
+- `scripts/promptaria_audit_inventory.py`
+- `scripts/promptaria_context_router.py`
+- `scripts/promptaria_contextual_executor.py`
+- `scripts/promptaria_execute_preconfigured.py`
+- `scripts/promptaria_executor.py`
+- `scripts/promptaria_interconnection.py`
+- `scripts/promptaria_operation_guard.py`
+- `scripts/promptaria_operational_audit.py`
+- `scripts/promptaria_preflight.py`
+- `scripts/promptaria_prepare_executor_request.py`
+- `scripts/promptaria_registry_audit.py`
+- `scripts/promptaria_resolver.py`
+- `scripts/promptaria_route_request.py`
+- `scripts/promptaria_specialized_executor.py`
+- `scripts/promptaria_validate_result.py`
+- `scripts/resolve_auxiliary_protocol.py`
+- `scripts/validate_instrument_reference_contract.py`
+- `scripts/validate_instrument_registry.py`
 
-- A atualização inicial é aditiva: não remove nem reescreve as seções documentais anteriores.
-- Mudanças em instrumentos, scripts, testes, documentos, configurações, workflows e arquivos centrais de instrução disparam a sincronização após chegarem à branch `main`.
-- A rotina semanal reconcilia o inventário mesmo quando não houve um evento de push elegível.
-- O workflow tem permissão de conteúdo para publicar apenas o commit do README; não executa prompts, não altera código funcional e não concede permissões a agentes externos.
-- O inventário é evidência estrutural, não substitui revisão semântica humana nem garante que todo comportamento do software esteja descrito com precisão. Novas funcionalidades devem continuar incluindo suas explicações de uso, propósito, limites e validação nas seções editoriais apropriadas.
-- A automação depende de GitHub Actions habilitado e de permissões do repositório que permitam ao workflow enviar commits para `main`. Proteções de branch podem exigir ajuste administrativo compatível com a política do projeto.
+### Workflows do GitHub Actions (4)
 
-Para conferir ou disparar a rotina: **Actions → “Promptária - manter README atualizado” → Run workflow**.
+- `.github/workflows/auto-enable-new-promptual-instruments.yml`
+- `.github/workflows/promptaria-auto-merge.yml`
+- `.github/workflows/promptaria-integracao-pr.yml`
+- `.github/workflows/promptaria-tests.yml`
 
-<!-- PROMPTARIA-README-AUTO:START -->
-## Inventário funcional mantido automaticamente
+### Documentação (7)
 
-<!-- Esta seção é regenerada pelo workflow; mantenha conteúdo editorial fora dos marcadores. -->
+- `docs/auditoria-operacional-inicial.md`
+- `docs/checklist-reconstrucao-workflows.md`
+- `docs/contrato-resolvedor-correferencia-js.md`
+- `docs/execucao-especializada-instrumentos.md`
+- `docs/interconexao-funcional-entre-segmentos.md`
+- `docs/politica-classificacao-instrumentos-promptuais.md`
+- `docs/preconfiguracao-protocolo-mestre-e-correferencia.md`
 
-Esta seção é sincronizada com a árvore versionada do repositório. O inventário comprova presença estrutural, não execução em produção. A auditoria verifica identidade canônica e referências entre índices; não substitui testes comportamentais nem revisão semântica de propósito, entradas, saídas, dependências e limites.
+### Testes (39)
 
-### Arquitetura e pontos de entrada
+- `tests/manifest.json`
+- `tests/resolver-correferencia.test.mjs`
+- `tests/test_activation_executor_evidence.py`
+- `tests/test_auto_enable_new_promptual_instruments.py`
+- `tests/test_auxiliary_protocols.py`
+- `tests/test_canonical_artifact_integrity.py`
+- `tests/test_context_router_activation_gate.py`
+- `tests/test_correfencia_execution_bundle.py`
+- `tests/test_instrument_catalog.py`
+- `tests/test_instrument_reference_contract.py`
+- `tests/test_interface_traceability.py`
+- `tests/test_preconfigure_new_instruments.py`
+- `tests/test_promptaria_audit_report.py`
+- `tests/test_promptaria_contextual_ambiguity_guard.py`
+- `tests/test_promptaria_contextual_e2e.py`
+- `tests/test_promptaria_contextual_executor.py`
+- `tests/test_promptaria_corref.py`
+- `tests/test_promptaria_execute_preconfigured.py`
+- `tests/test_promptaria_execution_map.py`
+- `tests/test_promptaria_executor.py`
+- `tests/test_promptaria_functional_preconfiguration.py`
+- `tests/test_promptaria_interconnection.py`
+- `tests/test_promptaria_inventory_audit.py`
+- `tests/test_promptaria_operational_audit.py`
+- `tests/test_promptaria_operational_audit_integrity.py`
+- `tests/test_promptaria_preflight.py`
+- `tests/test_promptaria_prepare_executor_request.py`
+- `tests/test_promptaria_registry_audit.py`
+- `tests/test_promptaria_repository_integrity.py`
+- `tests/test_promptaria_resolver.py`
+- `tests/test_promptaria_route_request.py`
+- `tests/test_promptaria_specialized_executor.py`
+- `tests/test_promptaria_validate_result.py`
+- `tests/test_promptaria_workflow_integrity.py`
+- `tests/test_resolver_contract.py`
+- `tests/test_traceability_context_router.py`
+- `tests/test_traceability_preconfiguration.py`
+- `tests/teste-cadeia-navegacional.mjs`
+- `tests/teste-registro-instrumentos.py`
 
-- Instruções comuns para agentes: AGENTS.md e AI_AGENT_GUIDE.md.
-- Instruções de automação: .github/AUTOPILOT.md e .github/copilot-instructions.md.
-- Resolução e roteamento: scripts/promptaria_resolver.py, scripts/promptaria_route_request.py e scripts/promptaria_context_router.py.
-- Execução e salvaguardas: scripts/promptaria_executor.py, scripts/promptaria_specialized_executor.py e config/promptaria_permissions.json.
-- Fonte de identidade: config/instrument-registry.json; catálogo em config/instrument-catalog.json; manifesto em tests/manifest.json.
-- Testes Python: python -m unittest discover -s tests -v.
-- Testes JavaScript: node --test tests/*.test.mjs.
+### Configurações JSON (12)
 
-### Resultado da auditoria estrutural
+- `config/cross-segment-interconnection.json`
+- `config/instrument-catalog.json`
+- `config/instrument-execution-map.json`
+- `config/instrument-interconnections.json`
+- `config/instrument-reference-contract.json`
+- `config/instrument-registry.json`
+- `config/interface-traceability-current.json`
+- `config/interface-traceability.json`
+- `config/promptaria_permissions.json`
+- `config/segment-integration-policy.json`
+- `config/traceability-graph-current.json`
+- `config/traceability-graph.json`
 
-- Auditoria estrutural e de identidade: PASSOU — H1, registro, catálogo, manifesto, aliases ativos e mapa de execução reconciliados.
+O inventário descreve arquivos efetivamente versionados; presença no repositório não comprova execução ou publicação.
 
-### Cobertura semântica documental (indicadores heurísticos)
-
-A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais de propósito, entradas, saídas, dependências, exemplos, limites, permissões e validação. Ela ajuda a localizar lacunas editoriais, mas não comprova que o comportamento descrito está correto; essa confirmação exige leitura e testes específicos.
-
-- **github-operational — Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas** (active): 7/8 indicadores documentais; funções registradas: 13; operações: 14; relações: 34.
-  - Revisão editorial sugerida para: exemplos/uso.
-- **functional-correference-architecture — ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 12; operações: 10; relações: 28.
-  - Revisão editorial sugerida para: exemplos/uso.
-**Alias legado:** `coordinator` resolve para `functional-correference-architecture`; não constitui instrumento, nó ou handler independente. As duas fases internas são articuladas pelo nó `coordination:functional-correference-architecture`.
-  - Revisão editorial sugerida para: exemplos/uso.
-- **promptaria-instrument-template — MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA** (prepared_not_published): 6/8 indicadores documentais; funções registradas: 4; operações: 7; relações: 7.
-  - Revisão editorial sugerida para: exemplos/uso, permissões/segurança.
-- **nocturna-arquitetura-necessidade-identidade-sistemica — Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.** (active): 7/8 indicadores documentais; funções registradas: 7; operações: 8; relações: 9.
-  - Revisão editorial sugerida para: exemplos/uso.
-- **future-demand-preconfiguration — PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 3; operações: 3; relações: 2.
-  - Revisão editorial sugerida para: exemplos/uso.
-- **catalog-sitemap-preconfiguration — PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 3; operações: 3; relações: 2.
-  - Revisão editorial sugerida para: exemplos/uso.
-- **master-activation — PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 3; operações: 3; relações: 7.
-  - Revisão editorial sugerida para: dependências.
-- **master-execution — Protocolo-mestre de execução correta desde a primeira solicitação** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 3; operações: 3; relações: 2.
-  - Revisão editorial sugerida para: exemplos/uso.
-- **protocol-update-integrity — PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA** (active): 6/8 indicadores documentais; funções registradas: 4; operações: 6; relações: 5.
-  - Revisão editorial sugerida para: saídas/resultados, exemplos/uso.
-
-### Inventário versionado
-
-#### Instrumentos promptuais (9)
-
-- instruments/acione-a-promptaria-pelo-github.md
-- instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md
-- instruments/modelo-instrumento-promptual-correferencia.md
-- instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md
-- instruments/preconfiguracao-correspondencia-futura-e-cadeia.md
-- instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md
-- instruments/protocolo-mestre-acionamento-automatico.md
-- instruments/protocolo-mestre-execucao-correta.md
-- instruments/protocolo-operacional-atualizacao-integridade-acervo.md
-
-#### Scripts operacionais (18)
-
-- scripts/activate_instrument.py
-- scripts/generate_instrument_catalog.py
-- scripts/promptaria_audit_anchor.py
-- scripts/promptaria_context_router.py
-- scripts/promptaria_contextual_executor.py
-- scripts/promptaria_execute_preconfigured.py
-- scripts/promptaria_executor.py
-- scripts/promptaria_operation_guard.py
-- scripts/promptaria_operational_audit.py
-- scripts/promptaria_preflight.py
-- scripts/promptaria_prepare_executor_request.py
-- scripts/promptaria_registry_audit.py
-- scripts/promptaria_resolver.py
-- scripts/promptaria_route_request.py
-- scripts/promptaria_specialized_executor.py
-- scripts/promptaria_validate_result.py
-- scripts/validate_instrument_reference_contract.py
-- scripts/validate_instrument_registry.py
-
-#### Workflows do GitHub Actions (17)
-
-- .github/workflows/promptaria-auto-merge.yml
-- .github/workflows/promptaria-auto-preconfigure.yml
-- .github/workflows/promptaria-correfencia.yml
-- .github/workflows/promptaria-instrument-registry.yml
-- .github/workflows/promptaria-integracao-pr.yml
-- .github/workflows/promptaria-operation-guard.yml
-- .github/workflows/promptaria-pages.yml
-- .github/workflows/promptaria-pr-checks.yml
-- .github/workflows/promptaria-preconfig-validation.yml
-- .github/workflows/promptaria-preflight.yml
-- .github/workflows/promptaria-readme-sync.yml
-- .github/workflows/promptaria-registry-audit.yml
-- .github/workflows/promptaria-resolvedor-js.yml
-- .github/workflows/promptaria-specialized-execution.yml
-- .github/workflows/promptaria-tests.yml
-- .github/workflows/remove-interface-text.yml
-- .github/workflows/testes-resolvedor.yml
-
-#### Documentação (9)
-
-- docs/analise-contextual-evidencias.md
-- docs/auditoria-operacional-inicial.md
-- docs/auditoria-operacional-reproduzivel.md
-- docs/execucao-especializada-instrumentos.md
-- docs/integridade-sistemica-e-rastreabilidade-interface.md
-- docs/matriz-instrumento-executor.md
-- docs/preconfiguracao-protocolo-mestre-e-correferencia.md
-- docs/registry-disambiguation.md
-
-#### Testes automatizados (28)
-
-- tests/test_correfencia_execution_bundle.py
-- tests/test_correfencia_funcional.md
-- tests/test_instrument_catalog.py
-- tests/test_instrument_reference_contract.py
-- tests/test_interface_traceability.py
-- tests/test_preconfigure_new_instruments.py
-- tests/test_promptaria_audit_report.py
-- tests/test_promptaria_contextual_executor.py
-- tests/test_promptaria_corref.py
-- tests/test_promptaria_execute_preconfigured.py
-- tests/test_promptaria_execution_map.py
-- tests/test_promptaria_executor.py
-- tests/test_promptaria_functional_preconfiguration.py
-- tests/test_promptaria_operational_audit.py
-- tests/test_promptaria_preflight.py
-- tests/test_promptaria_prepare_executor_request.py
-- tests/test_promptaria_registry_audit.py
-- tests/test_promptaria_repository_integrity.py
-- tests/test_promptaria_resolver.py
-- tests/test_promptaria_route_request.py
-- tests/test_promptaria_specialized_executor.py
-- tests/test_promptaria_validate_result.py
-- tests/test_promptaria_workflow_integrity.py
-- tests/test_resolver_contract.py
-- tests/test_traceability_context_router.py
-- tests/test_traceability_preconfiguration.py
-- tests/teste-cadeia-navegacional.mjs
-- tests/teste-registro-instrumentos.py
-
-#### Configurações JSON (10)
-
-- config/instrument-catalog.json
-- config/instrument-execution-map.json
-- config/instrument-reference-contract.json
-- config/instrument-registry.json
-- config/interface-traceability-current.json
-- config/interface-traceability.json
-- config/promptaria_permissions.json
-- config/segment-integration-policy.json
-- config/traceability-graph-current.json
-- config/traceability-graph.json
 
 <!-- PROMPTARIA-README-AUTO:END -->
 
-## Workflow de pré-configuração do protocolo-mestre
+## Workflows ativos
 
-O workflow `.github/workflows/promptaria-protocolo-mestre.yml` permite iniciar manualmente uma pré-configuração por **Actions → Promptária — protocolo-mestre e pré-configuração funcional → Run workflow**.
+A árvore atual contém quatro workflows versionados:
 
-Entradas:
-- `request` (obrigatória): a demanda concreta a processar.
-- `instrument_titles` (opcional): títulos adicionais, um por linha; todos são encaminhados ao resolvedor.
-- `destination` (opcional): destino proposto para constar no plano. Informar um destino não concede autorização de escrita.
+- .github/workflows/promptaria-tests.yml: executa os testes de contrato JS, as salvaguardas dos workflows privilegiados e os testes Python em pull requests.
+- .github/workflows/auto-enable-new-promptual-instruments.yml: aplica a política de classificação de instrumentos novos, com comparação ao SHA-base.
+- .github/workflows/promptaria-integracao-pr.yml: recebe comentários de aprovação em pull requests e valida o SHA exato; para PR em rascunho, pode marcá-la como pronta, e para PR não rascunho pode repetir ou aguardar os checks daquele SHA.
+- .github/workflows/promptaria-auto-merge.yml: só considera execuções bem-sucedidas de Promptária PR Checks originadas por pull request e exige aprovação OWNER exata antes do merge.
 
-O workflow constrói um payload estruturado, executa `scripts/promptaria_preflight.py`, resolve títulos com `scripts/promptaria_resolver.py`, valida o resultado com `scripts/promptaria_validate_result.py` e publica os arquivos de evidência como artefato do GitHub Actions por 30 dias.
-
-### Limites e validação
-
-Este workflow opera em modo de planejamento (`plan_only`, `dry_run: true`) e usa permissões de conteúdo somente para leitura. Não escreve automaticamente no repositório nem em Nocturna. Uma correspondência encontrada não prova que o conteúdo foi recuperado, aplicado ou executado; cada estado exige evidência própria. Escritas reais dependem de um executor separado, destino permitido, permissões e confirmação explícita.
-
-Para executar, abra o workflow na aba **Actions**, escolha **Run workflow**, preencha a demanda e, se necessário, os títulos adicionais, e inicie a execução. Consulte o resumo e baixe o artefato para revisar o plano e a rastreabilidade. O workflow deve ser testado antes de ser considerado operacionalmente aprovado.
+Não existe workflow manual de pré-configuração do protocolo-mestre, workflow de execução especializada nem workflow de comentário para enviar demandas gerais.
 
 ## Integração automática de pull requests
 
-O workflow `.github/workflows/promptaria-auto-merge.yml` reduz etapas manuais de integração. Quando `Promptária PR Checks` termina com sucesso para uma pull request, a automação pode mesclá-la em `main` sem exigir a caixa de seleção de opt-in no texto da PR nem o comentário manual `/promptaria merge`.
+O auto-merge não é irrestrito nem automático apenas porque os checks passaram. A pull request deve estar aberta, destinada a main, originar-se do próprio repositório e não estar em rascunho. Todos os check-runs do SHA testado devem estar concluídos com sucesso, e o proprietário deve publicar o comentário exato /promptaria merge <SHA-testado>. O workflow confere novamente que o HEAD da PR continua igual ao SHA testado e usa merge squash fixado nesse commit.
 
-A automação só considera pull requests abertas, não marcadas como rascunho, originadas no próprio repositório e destinadas a `main`. Ela confirma que o commit atual corresponde exatamente à revisão testada e repete a conferência imediatamente antes do merge. Se o HEAD mudar, se os checks falharem ou se a PR não cumprir os critérios, a integração automática não ocorre.
+O workflow de integração por comentário não faz merge: ele valida a aprovação exata e prepara ou reexecuta os checks. Não contorne essa exigência por uma chamada manual de merge.
 
-A mesclagem usa squash e continua sujeita às regras de proteção e às verificações obrigatórias configuradas no GitHub. Esta automação elimina passos manuais redundantes; não remove testes, aprovações obrigatórias nem outras políticas de proteção. O tempo de execução dos próprios testes permanece dependente dos workflows e dos runners.
+## Processo de integração
 
-
-## Fluxo de integração simplificado na main
-
-O fluxo padrão de pull requests é **branch → PR → checks automáticos → merge squash**. O workflow `.github/workflows/promptaria-pr-checks.yml` valida sintaxe Python/JSON, rastreabilidade dos instrumentos, testes de regressão e o smoke test funcional. Checks antigos da mesma PR são cancelados quando chega uma nova revisão, evitando gastar runners em commits obsoletos.
-
-O workflow `.github/workflows/promptaria-auto-merge.yml` pode mesclar automaticamente PRs próprias, abertas, não marcadas como rascunho e destinadas a `main`, depois que `Promptária PR Checks` termina com sucesso. O SHA é conferido contra a revisão testada e novamente antes do merge. O comentário opcional `/promptaria merge` apenas prepara uma PR em rascunho; não contorna os checks.
-
-A automação não apaga dados nem desativa auditoria, revisões obrigatórias, checks obrigatórios ou proteções de branch. Essas políticas administrativas continuam prevalecendo. Antes de adicionar novos checklists ou workflows, reutilize os existentes quando a cobertura for equivalente. Consulte `.github/PR_AUTOMATION_POLICY.md` e `.github/AUTOPILOT.md` para a regra operacional persistente.
-
-
-## Fluxo de integração simplificado na main
-
-O fluxo padrão de pull requests é **branch → PR → checks automáticos → merge squash**. O workflow `.github/workflows/promptaria-pr-checks.yml` valida sintaxe Python/JSON, rastreabilidade dos instrumentos, testes de regressão e o smoke test funcional. Checks antigos da mesma PR são cancelados quando chega uma nova revisão, evitando gastar runners em commits obsoletos.
-
-O workflow `.github/workflows/promptaria-auto-merge.yml` pode mesclar automaticamente PRs próprias, abertas, não marcadas como rascunho e destinadas a `main`, depois que `Promptária PR Checks` termina com sucesso. O SHA é conferido contra a revisão testada e novamente antes do merge. O comentário opcional `/promptaria merge` apenas prepara uma PR em rascunho; não contorna os checks.
-
-A automação não apaga dados nem desativa auditoria, revisões obrigatórias, checks obrigatórios ou proteções de branch. Essas políticas administrativas continuam prevalecendo. Antes de adicionar novos checklists ou workflows, reutilize os existentes quando a cobertura for equivalente. Consulte `.github/PR_AUTOMATION_POLICY.md` e `.github/AUTOPILOT.md` para a regra operacional persistente.
+O fluxo de integração é branch → pull request → checks → aprovação explícita do SHA → merge squash. O SHA aprovado deve ser exatamente o mesmo que passou pelos checks. Alterações posteriores invalidam a aprovação anterior e exigem nova validação e novo comentário. As proteções e permissões do GitHub continuam prevalecendo.
