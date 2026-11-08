@@ -69,6 +69,7 @@
         "trace-cross-segment-operation"
       ],
       "category": "recoverable_on_demand",
+      "classification_basis": "default_title_rule",
       "ui": {
         "node_id": "instrument:github-operational-recoverable",
         "visible": true,
@@ -146,6 +147,7 @@
         "plan"
       ],
       "category": "recoverable_on_demand",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:nocturna-arquitetura-necessidade-identidade-sistemica",
         "visible": true,
