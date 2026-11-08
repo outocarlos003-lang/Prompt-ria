@@ -213,7 +213,7 @@ class SpecializedExecutorTests(unittest.TestCase):
         expected_hash = hashlib.sha256(exact_bytes).hexdigest()
         self.assertEqual(result["results"][0]["source_sha256"], expected_hash)
         self.assertEqual(
-            result["results"][0]["result"]["integrity"]["sha256"],
+            result["results"][0]["result"]["source_sha256"],
             expected_hash,
         )
 
