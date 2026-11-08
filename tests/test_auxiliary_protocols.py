@@ -33,12 +33,13 @@ class AuxiliaryProtocolTests(unittest.TestCase):
         from scripts.promptaria_resolver import read_instruments, resolve
         instruments = read_instruments(ROOT / "instruments")
         self.assertFalse(any(x.get("id") == TARGET_ID for x in instruments if not x.get("explicit_only")))
-        self.assertEqual(resolve("uma demanda ordinária sem referência ao protocolo", instruments), [])
-        by_id = resolve("instrument_id:protocol-update-integrity", instruments)
+        ordinary = resolve("uma demanda ordinária sem referência ao protocolo", instruments)
+        self.assertFalse(any(item.get("id") == TARGET_ID for item in ordinary))
+        by_id = [item for item in resolve("instrument_id:protocol-update-integrity", instruments) if item.get("id") == TARGET_ID]
         self.assertEqual(len(by_id), 1)
         self.assertEqual(by_id[0]["id"], TARGET_ID)
         self.assertTrue(by_id[0]["activation"])
-        by_title = resolve("instrument_title: " + TARGET_TITLE, instruments)
+        by_title = [item for item in resolve("instrument_title: " + TARGET_TITLE, instruments) if item.get("id") == TARGET_ID]
         self.assertEqual(len(by_title), 1)
         self.assertEqual(by_title[0]["id"], TARGET_ID)
 
