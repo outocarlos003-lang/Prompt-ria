@@ -10,10 +10,10 @@ import sys
 import unicodedata
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-REGISTRY = ROOT / "config" / "instrument-registry.json"
-CATALOG = ROOT / "config" / "instrument-catalog.json"
-EXECUTION_MAP = ROOT / "config" / "instrument-execution-map.json"
+ROOT = Path(__file__).resolve().parent
+REGISTRY = ROOT / "instrument-registry.json"
+CATALOG = ROOT / "instrument-catalog.json"
+EXECUTION_MAP = ROOT / "instrument-execution-map.json"
 
 
 def normalize(value: str) -> str:
@@ -24,7 +24,7 @@ def normalize(value: str) -> str:
 
 def validate_executor_evidence(item: dict, root: Path = ROOT) -> list[str]:
     """Require a matching, implemented specialized handler before activation."""
-    map_path = root / "config" / "instrument-execution-map.json"
+    map_path = root / "instrument-execution-map.json"
     try:
         data = json.loads(map_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -100,7 +100,7 @@ def main() -> int:
     item["activation"] = {"enabled": True, "status": "active"}
     item.setdefault("ui", {})["visible"] = True
     REGISTRY.write_text(json.dumps(registry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    subprocess.run([sys.executable, str(ROOT / "scripts" / "generate_instrument_catalog.py")], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, str(ROOT / "generate_instrument_catalog.py")], cwd=ROOT, check=True)
     print(f"Instrumento habilitado para o site e correferência por título: {item['id']}")
     print("A alteração deve ser validada e publicada por commit/pull request; a ativação não autoriza execução externa.")
     return 0
