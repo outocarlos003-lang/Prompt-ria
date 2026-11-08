@@ -91,7 +91,7 @@ def audit(registry_path: Path, root: Path) -> dict:
             errors.append(f"{prefix}: invalid path.")
         else:
             p = Path(path)
-            if p.is_absolute() or ".." in p.parts or "\\" in path or not path.startswith("instruments/"):
+            if p.is_absolute() or ".." in p.parts or "\\" in path or len(p.parts) != 1:
                 errors.append(f"{prefix}: unsafe/non-instrument path {path!r}.")
             if path in paths:
                 errors.append(f"{prefix}: duplicate path {path!r}.")
@@ -187,8 +187,8 @@ def audit(registry_path: Path, root: Path) -> dict:
     # Physical inventory is authoritative for preventing orphaned definitions.
     physical = {
         p.relative_to(root).as_posix()
-        for p in (root / "instruments").glob("*.md")
-    } if (root / "instruments").is_dir() else set()
+        for p in root.glob("*.md")
+    }
     registered_paths = {p for p in paths if isinstance(p, str)}
     for orphan in sorted(physical - registered_paths):
         errors.append(f"Unregistered instrument definition: {orphan}")
@@ -196,7 +196,7 @@ def audit(registry_path: Path, root: Path) -> dict:
         warnings.append(f"Registered instrument has no physical definition: {stale}")
 
     # Optional generated maps are checked when present, so registry identity cannot silently diverge.
-    execution_map_path = root / "config" / "instrument-execution-map.json"
+    execution_map_path = root / "instrument-execution-map.json"
     execution_map_checked = False
     if execution_map_path.is_file():
         execution_map_checked = True
@@ -240,7 +240,7 @@ def audit(registry_path: Path, root: Path) -> dict:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--registry", type=Path, default=Path("config/instrument-registry.json"))
+    parser.add_argument("--registry", type=Path, default=Path("instrument-registry.json"))
     parser.add_argument("--root", type=Path, default=Path("."))
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
