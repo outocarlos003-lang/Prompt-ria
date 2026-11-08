@@ -70,7 +70,7 @@ def main() -> int:
     for item in registry.get("instruments", []):
         if not isinstance(item, dict):
             continue
-        enabled = (item.get("activation", {}).get("enabled") is True and item.get("category") == "recoverable_on_demand")
+        enabled = (item.get("activation", {}).get("enabled") is True and item.get("category") in (None, "recoverable_on_demand"))
         terms = [item.get("title", ""), *item.get("aliases", [])]
         hits = [term for term in terms if isinstance(term, str) and contains_phrase(normalized_request, term)]
         if hits:
