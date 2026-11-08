@@ -138,8 +138,8 @@ class PromptariaResolverTests(unittest.TestCase):
              "ui": {"visible": False}},
             {"id": "github-operational", "title": "GitHub Operacional",
              "path": "instruments/acione-a-promptaria-pelo-github.md", "aliases": ["github fixo"],
-             "activation": {"enabled": True}, "category": "recoverable_on_demand",
-             "ui": {"visible": True}},
+             "activation": {"enabled": True}, "category": "continuous_automation",
+             "ui": {"visible": False}},
         ]
         disabled = json.loads(json.dumps(base_registry))
         disabled[1]["activation"]["enabled"] = False
