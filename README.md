@@ -146,7 +146,7 @@ Os IDs do manifesto e seus handlers especializados são mapeados em `config/inst
 
 ## Análise contextual cumulativa e seleção funcional de tarefas
 
-A execução especializada agora possui uma camada aditiva de análise contextual em `scripts/promptaria_context_router.py` e `scripts/promptaria_contextual_executor.py`. Ela preserva a arquitetura vigente, os três componentes-base e os oito handlers canônicos, com a fusão funcional de `coordinator` e `functional-correference-architecture` em uma identidade canônica e duas fases internas.
+A execução especializada agora possui uma camada aditiva de análise contextual em `scripts/promptaria_context_router.py` e `scripts/promptaria_contextual_executor.py`. Ela preserva a arquitetura vigente, os três componentes-base e os nove handlers canônicos, com a fusão funcional de `coordinator` e `functional-correference-architecture` em uma identidade canônica e duas fases internas.
 
 Os elementos-base do protocolo-mestre fornecem a estrutura comum; as personalizações de cada demanda fornecem evidências circunstanciais concatenadas — incluindo ações, objeto, finalidade, títulos, IDs, caminhos e campos estruturados. A análise avalia as evidências em conjunto, registra a proveniência dos campos e seleciona cumulativamente todos os handlers sustentados pelo contexto, em vez de encerrar na primeira correspondência. O relatório expõe a cadeia base → personalização → interpretação contextual → seleção de handlers.
 
@@ -273,7 +273,7 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 
 - **github-operational — Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas** (active): 7/8 indicadores documentais; funções registradas: 13; operações: 14; relações: 34.
   - Revisão editorial sugerida para: exemplos/uso.
-- **functional-correference-architecture — ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 9; operações: 8; relações: 20.
+- **functional-correference-architecture — ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS** (prepared_not_published): 7/8 indicadores documentais; funções registradas: 12; operações: 10; relações: 28.
   - Revisão editorial sugerida para: exemplos/uso.
 **Alias legado:** `coordinator` resolve para `functional-correference-architecture`; não constitui instrumento, nó ou handler independente. A arquitetura fundida contém duas fases internas e o nó `coordination:functional-correference-architecture`.
   - Revisão editorial sugerida para: exemplos/uso.
@@ -296,15 +296,15 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 
 #### Instrumentos promptuais (10)
 
-- instruments/acione-a-promptaria-pelo-github.md
-- instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md
-- instruments/modelo-instrumento-promptual-correferencia.md
-- instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md
-- instruments/preconfiguracao-correspondencia-futura-e-cadeia.md
-- instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md
-- instruments/protocolo-mestre-acionamento-automatico.md
-- instruments/protocolo-mestre-execucao-correta.md
-- instruments/protocolo-operacional-atualizacao-integridade-acervo.md
+- acione-a-promptaria-pelo-github.md
+- arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md
+- modelo-instrumento-promptual-correferencia.md
+- nocturna-arquitetura-necessidade-identidade-sistemica.md
+- preconfiguracao-correspondencia-futura-e-cadeia.md
+- preconfiguracao-sincronizacao-catalogo-sitemap.md
+- protocolo-mestre-acionamento-automatico.md
+- protocolo-mestre-execucao-correta.md
+- protocolo-operacional-atualizacao-integridade-acervo.md
 
 #### Scripts operacionais (18)
 
