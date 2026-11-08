@@ -14,7 +14,7 @@ O mapa de máquina é `instrument-execution-map.json`. A implementação está e
 ## Capacidades compartilhadas
 
 - **Resolver e preflight:** `promptaria_resolver.py` e `promptaria_preflight.py` identificam referências e validam correspondências.
-- **Executor especializado local:** `scripts/promptaria_specialized_executor.py` despacha por ID canônico para um handler registrado, valida a identidade entre manifesto, mapa e registry, recupera a fonte e emite SHA-256 e resultado estruturado.
+- **Executor especializado local:** `promptaria_specialized_executor.py` despacha por ID canônico para um handler registrado, valida a identidade entre manifesto, mapa e registry, recupera a fonte e emite SHA-256 e resultado estruturado.
 - **Evidência:** cada resultado especializado registra o ID/caminho da fonte, o hash, o estado da execução e a lista de efeitos colaterais; os testes confirmam a cobertura de todos os IDs do manifesto e a ausência de efeitos externos nesses handlers.
 - **Executor genérico de escrita:** `promptaria_executor.py` implementa apenas `write_text`, sujeito a `promptaria_permissions.json`, destinos sob `artifacts/`, autorização explícita, `dry_run=false`, confirmação exata do `operation_id` e trilha de auditoria.
 - **Workflow manual:** `.github/workflows/promptaria-specialized-execution.yml` executa preflight/análise/handlers e publica JSON como artefato. A permissão de conteúdo é somente leitura; o workflow não autoriza escrita externa.
