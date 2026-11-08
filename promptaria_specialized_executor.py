@@ -298,7 +298,8 @@ def handler_unified_architecture(context: dict[str, Any]) -> dict[str, Any]:
         },
         "joint_validation": {
             "required": ["phase_one_completed", "phase_two_completed", "coordination_node_bidirectional", "source_integrity", "scope", "dependencies", "result_contract"],
-            "status": "passed",
+            "status": "blocked" if phase_one["blocked_ambiguous_ids"] else "passed",
+            "blocked_ambiguous_ids": phase_one["blocked_ambiguous_ids"],
         },
         "execution_order": phase_two["execution_order"],
     }
@@ -338,18 +339,18 @@ def handler_catalog_sitemap(context: dict[str, Any]) -> dict[str, Any]:
     legacy_root = ROOT / "Promptária"
     legacy_paths = [legacy_root / "manifest.json", legacy_root / "sitemap.xml", legacy_root / "Index.html"]
     existing = [str(path.relative_to(ROOT)) for path in legacy_paths if path.is_file()]
-    canonical_files = sorted(str(p.relative_to(ROOT)) for p in (ROOT / "instruments").glob("*.md"))
+    canonical_files = sorted(str(p.relative_to(ROOT)) for p in ROOT.glob("*.md"))
     return {
         "handler": "audit-catalog-and-navigation",
         "result": "catalog_audit_completed",
-        "canonical_source": "tests/manifest.json + instruments/*.md",
+        "canonical_source": "manifest.json + root-level Markdown sources",
         "canonical_instrument_count": len(context["catalog"]),
         "markdown_files": canonical_files,
         "legacy_catalog_files_found": existing,
         "legacy_tree_available": len(existing) == len(legacy_paths),
         "sitemap_generation": "not_applicable_without_confirmed_legacy_tree_and_url_contract",
         "mutations_performed": [],
-        "next_step": "validate_manifest_against_markdown_headings_before_any_catalog_write",
+        "next_step": "validate_root_manifest_against_markdown_headings_before_any_catalog_write",
     }
 
 
