@@ -49,7 +49,10 @@ class AutoEnableNewPromptualInstrumentTests(unittest.TestCase):
         data = json.loads((self.root / "config/instrument-registry.json").read_text(encoding="utf-8"))
         data["instruments"][0]["title"] = "INSTRUMENTO PROMPTUAL antigo"
         (self.root / "config/instrument-registry.json").write_text(json.dumps(data), encoding="utf-8")
-        self.assertEqual(activate_new_entries(self.root, self.base), [])
+        self.assertEqual(activate_new_entries(self.root, self.base), ["new-promptual"])
+        after = json.loads((self.root / "config/instrument-registry.json").read_text(encoding="utf-8"))
+        legacy = next(x for x in after["instruments"] if x["id"] == "legacy-disabled")
+        self.assertEqual(legacy["activation"], {"enabled": False, "status": "inactive"})
 
     def test_second_run_is_idempotent(self):
         self.assertEqual(activate_new_entries(self.root, self.base), ["new-promptual"])
