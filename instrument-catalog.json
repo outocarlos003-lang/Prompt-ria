@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "generated_by": "scripts/generate_instrument_catalog.py",
+  "generated_by": "generate_instrument_catalog.py",
   "source_glob": "*.md",
-  "registry": "config/instrument-registry.json",
+  "registry": "instrument-registry.json",
   "repository": "outocarlos003-lang/Prompt-ria",
   "instruments": [
     {
