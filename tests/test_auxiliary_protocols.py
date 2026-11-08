@@ -50,7 +50,7 @@ class AuxiliaryProtocolTests(unittest.TestCase):
         self.assertFalse(recovered["operational_membership"])
         for path in ("config/instrument-registry.json", "config/instrument-catalog.json",
                      "config/instrument-execution-map.json", "tests/manifest.json",
-                     "instrument-registry.json", "instrument-catalog.json", "instrument-execution-map.json"):
+                     "instrument-registry.json", "instrument-catalog.json", "instrument-execution-map.json", "manifest.json"):
             data = json.loads((root / path).read_text(encoding="utf-8"))
             self.assertNotIn("protocol-update-integrity", {item["id"] for item in data["instruments"]})
         result = execute({"request": "Solicitação explícita de integridade",
