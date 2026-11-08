@@ -114,6 +114,22 @@ def load_catalog() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]
     mapped = index_catalog_entries(execution_map, "config/instrument-execution-map.json")
     registered = index_catalog_entries(registry, "config/instrument-registry.json")
     validate_catalog_identity(canonical, mapped, registered)
+    auxiliary_registry = read_object(ROOT / "auxiliary-protocols" / "registry.json")
+    auxiliary_map = read_object(ROOT / "auxiliary-protocols" / "execution-map.json")
+    auxiliary_entries = index_catalog_entries(auxiliary_registry, "auxiliary-protocols/registry.json")
+    auxiliary_handlers = index_catalog_entries(auxiliary_map, "auxiliary-protocols/execution-map.json")
+    for item_id, item in auxiliary_entries.items():
+        handler = auxiliary_handlers.get(item_id)
+        if item_id in canonical or item.get("membership") != "auxiliary" or item.get("resolution_policy") != "explicit_only":
+            raise SystemExit(f"Identidade auxiliar inválida ou duplicada: {item_id}.")
+        if not isinstance(handler, dict) or handler.get("selection_policy") != "explicit_only":
+            raise SystemExit(f"Handler auxiliar não está marcado para recuperação explícita: {item_id}.")
+        if item.get("activation", {}).get("enabled") is not True:
+            raise SystemExit(f"Protocolo auxiliar não está habilitado: {item_id}.")
+        if item.get("title") != handler.get("title") or item.get("path") != handler.get("path"):
+            raise SystemExit(f"Identidade divergente no registro auxiliar: {item_id}.")
+        canonical[item_id] = item
+        mapped[item_id] = handler
     return canonical, mapped
 
 
@@ -453,6 +469,20 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
             raise SystemExit("Pré-validação recusada: a demanda não corresponde ao pedido executado.")
         # Deliberately do not use caller-supplied matched_instruments for
         # selection or identity. Canonical matches above are recomputed locally.
+    auxiliary_registry = index_catalog_entries(
+        read_object(ROOT / "auxiliary-protocols" / "registry.json"),
+        "auxiliary-protocols/registry.json",
+    )
+    if not raw_ids:
+        explicit_id = re.search(r"(?i)\binstrument_id\s*:\s*([a-z0-9][a-z0-9._-]*)", demand_text)
+        explicit_title = re.search(r"(?im)^\s*instrument_title\s*:\s*(.+?)\s*$", demand_text)
+        if explicit_id and explicit_id.group(1) in auxiliary_registry:
+            raw_ids = [explicit_id.group(1)]
+        elif explicit_title:
+            wanted = normalize(explicit_title.group(1))
+            exact_auxiliary = [item_id for item_id, item in auxiliary_registry.items() if normalize(item.get("title", "")) == wanted]
+            if len(exact_auxiliary) == 1:
+                raw_ids = exact_auxiliary
     if raw_ids:
         selected_ids = list(dict.fromkeys(raw_ids))
     else:
@@ -467,6 +497,7 @@ def execute(payload: dict[str, Any], preflight: dict[str, Any] | None = None) ->
         read_object(ROOT / "config" / "instrument-registry.json"),
         "config/instrument-registry.json",
     )
+    registry.update(auxiliary_registry)
     disabled = sorted(
         item_id for item_id in selected_ids
         if not isinstance(registry[item_id].get("activation"), dict)
