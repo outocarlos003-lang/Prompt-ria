@@ -215,11 +215,58 @@ def audit(registry_path: Path, root: Path) -> dict:
         except (OSError, json.JSONDecodeError) as exc:
             errors.append(f"Execution map unreadable/invalid JSON: {exc}")
 
+    auxiliary_protocol_count = 0
+    auxiliary_protocols_checked = False
+    auxiliary_path = root / "auxiliary-protocols" / "registry.json"
+    if auxiliary_path.is_file():
+        auxiliary_protocols_checked = True
+        try:
+            auxiliary = json.loads(auxiliary_path.read_text(encoding="utf-8"))
+            policy = auxiliary.get("membership_policy", {}) if isinstance(auxiliary, dict) else {}
+            if not isinstance(auxiliary, dict) or auxiliary.get("scope") != "auxiliary_protocols":
+                errors.append("Auxiliary registry must declare scope='auxiliary_protocols'.")
+            if policy.get("operational_member") is not False or policy.get("automatic_selection") is not False or policy.get("operational_counted") is not False:
+                errors.append("Auxiliary registry must explicitly exclude its entries from operational membership, selection and counts.")
+            auxiliary_entries = auxiliary.get("instruments", []) if isinstance(auxiliary, dict) else []
+            if not isinstance(auxiliary_entries, list):
+                errors.append("Auxiliary registry instruments must be an array.")
+                auxiliary_entries = []
+            seen_auxiliary_ids = set()
+            for index, item in enumerate(auxiliary_entries):
+                prefix = f"auxiliary-protocols/registry.json instruments[{index}]"
+                if not isinstance(item, dict):
+                    errors.append(f"{prefix}: entry must be an object.")
+                    continue
+                ident, title, relative = item.get("id"), item.get("title"), item.get("path")
+                if not isinstance(ident, str) or not ident.strip() or ident in seen_auxiliary_ids:
+                    errors.append(f"{prefix}: missing or duplicate auxiliary ID.")
+                seen_auxiliary_ids.add(ident)
+                if ident in ids:
+                    errors.append(f"{prefix}: auxiliary ID {ident!r} is also present in the operational registry.")
+                if not isinstance(relative, str) or not relative.startswith("auxiliary-protocols/") or Path(relative).is_absolute() or ".." in Path(relative).parts:
+                    errors.append(f"{prefix}: unsafe auxiliary source path.")
+                    continue
+                source = root / relative
+                if not source.is_file():
+                    errors.append(f"{prefix}: source file missing: {relative}")
+                else:
+                    canonical = canonical_title(source)
+                    if not canonical or normalize(canonical) != normalize(str(title or "")):
+                        errors.append(f"{prefix}: canonical title diverges from auxiliary source.")
+                activation = item.get("activation")
+                if not isinstance(activation, dict) or activation.get("enabled") is not True:
+                    errors.append(f"{prefix}: auxiliary protocol must preserve enabled activation.")
+                auxiliary_protocol_count += 1
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append(f"Auxiliary registry unreadable/invalid JSON: {exc}")
+
     return {
         "valid": not errors,
         "registry": str(registry_path),
         "schema_version": registry.get("schema_version"),
         "instrument_count": len(instruments),
+        "auxiliary_protocol_count": auxiliary_protocol_count,
+        "auxiliary_protocols_checked": auxiliary_protocols_checked,
         "enabled_count": sum(i["enabled"] for i in instruments),
         "normalized_title_collisions": collisions,
         "execution_map_checked": execution_map_checked,
@@ -234,7 +281,7 @@ def audit(registry_path: Path, root: Path) -> dict:
             "trace_fields": ["id", "title", "path", "matched_term", "match_kind", "normalized_term"],
             "disabled_rule": "disabled entries never become active through title matching",
         },
-        "policy": "Registry identity is canonical; validation must pass before publication/catalog generation.",
+        "policy": "Registry identity is canonical for operational instruments only; auxiliary protocols are separately validated and never enter operational counts or catalog generation.",
     }
 
 

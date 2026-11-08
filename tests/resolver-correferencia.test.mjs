@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import {
-  buildReferenceIndex, resolveMentions, resolveReference, resolveRequest,
+  buildReferenceIndex, resolveMentions, resolveReference, resolveRequest, resolveAuxiliaryReference,
   FIXED_OPERATIONAL_INSTRUMENT, FIXED_COORDINATOR_TITLE, FUNCTION_STATUS
 } from "../.github/scripts/resolver-correferencia.mjs";
 
@@ -239,4 +239,27 @@ test("títulos do manifesto resolvem somente quando a identidade é única", () 
       assert.equal(normalized.path, instrument.path, `variação normalizada encaminhada ao caminho incorreto: ${instrument.title}`);
     }
   }
+});
+
+test("protocolo auxiliar habilitado só é recuperado por referência explícita", () => {
+  const auxiliaryRegistry = {
+    scope: "auxiliary_protocols",
+    membership_policy: { operational_member: false, automatic_selection: false, operational_counted: false },
+    instruments: [{
+      id: "protocol-update-integrity",
+      title: "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
+      path: "auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md",
+      aliases: ["preservação funcional do acervo"],
+      activation: { enabled: true, status: "active" }
+    }]
+  };
+  const byTitle = resolveAuxiliaryReference(auxiliaryRegistry.instruments[0].title, auxiliaryRegistry);
+  const byId = resolveAuxiliaryReference("instrument_id:protocol-update-integrity", auxiliaryRegistry);
+  assert.equal(byTitle.instrument_id, "protocol-update-integrity");
+  assert.equal(byTitle.activation, true);
+  assert.equal(byTitle.membership, "auxiliary");
+  assert.equal(byTitle.operational_member, false);
+  assert.equal(byId.instrument_id, "protocol-update-integrity");
+  assert.equal(byId.explicit_recovery, true);
+  assert.equal(resolveReference(auxiliaryRegistry.instruments[0].title, instruments).activation, false);
 });

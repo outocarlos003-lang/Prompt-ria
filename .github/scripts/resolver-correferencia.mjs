@@ -75,6 +75,43 @@ export function resolveReference(reference, catalog) {
   return result(disabled, { match_type: disabled ? "disabled_reference" : matchType === "explicit_id" ? "unresolved_explicit_id" : matchType === "explicit_path" ? "unresolved_explicit_path" : "unresolved", candidates: list.map(x => x.id) });
 }
 
+// Auxiliary protocols are deliberately resolved through a separate explicit-only API.
+export function resolveAuxiliaryReference(reference, auxiliaryRegistry) {
+  const raw = String(reference ?? "").trim();
+  if (!raw || auxiliaryRegistry?.scope !== "auxiliary_protocols" ||
+      auxiliaryRegistry?.membership_policy?.operational_member !== false ||
+      auxiliaryRegistry?.membership_policy?.automatic_selection !== false ||
+      auxiliaryRegistry?.membership_policy?.operational_counted !== false) {
+    return result(null, { match_type: "unresolved_auxiliary_reference", membership: "auxiliary", operational_member: false });
+  }
+  let field = null, key = raw, matchType = "explicit_auxiliary_title_or_alias";
+  let match = raw.match(/^instrument_id:(.+)$/i);
+  if (match) { field = "id"; key = match[1].trim(); matchType = "explicit_auxiliary_id"; }
+  else if ((match = raw.match(/^instrument_path:(.+)$/i))) { field = "path"; key = match[1].trim(); matchType = "explicit_auxiliary_path"; }
+  const normalized = norm(key);
+  const entries = Array.isArray(auxiliaryRegistry.instruments) ? auxiliaryRegistry.instruments : [];
+  const candidates = entries.filter(item => item && item.activation?.enabled === true &&
+    (field ? norm(item[field]) === normalized : [item.id, item.title, item.path, ...aliases(item)].some(value => norm(value) === normalized)));
+  const unique = [...new Map(candidates.map(item => [item.id, item])).values()];
+  if (unique.length !== 1) return result(unique[0], {
+    activation: false,
+    function_status: unique.length ? "ambiguous" : "unresolved",
+    match_type: unique.length ? "ambiguous_auxiliary_reference" : "unresolved_auxiliary_reference",
+    candidates: unique.map(item => item.id),
+    membership: "auxiliary",
+    operational_member: false
+  });
+  return result(unique[0], {
+    activation: true,
+    function_status: "own",
+    match_type: matchType,
+    membership: "auxiliary",
+    operational_member: false,
+    operational_counted: false,
+    explicit_recovery: true
+  });
+}
+
 export function resolveMentions(request, instruments = [], suppliedIndex) {
   const text = String(request ?? "");
   if (!text.trim()) return [];

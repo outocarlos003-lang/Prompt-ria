@@ -518,59 +518,7 @@
         "enabled": false,
         "status": "prepared_not_published"
       }
-    },
-    {
-      "id": "protocol-update-integrity",
-      "path": "instruments/protocolo-operacional-atualizacao-integridade-acervo.md",
-      "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
-      "aliases": [
-        "protocolo de atualização integral",
-        "preservação funcional do acervo",
-        "reintegração de instrumentos promptuais",
-        "atualização segura por título"
-      ],
-      "keywords": [
-        "atualização",
-        "reintegração",
-        "integridade",
-        "correferência",
-        "rastreio",
-        "conteúdo integral",
-        "fonte autoritativa",
-        "acervo",
-        "interface",
-        "validação"
-      ],
-      "functions": [
-        "atualizar versões integrais preservando identidade funcional",
-        "manter correferências e rastreabilidade",
-        "validar conteúdo e referências",
-        "integrar instrumentos ao catálogo e à interface"
-      ],
-      "relations": [
-        "title->protocol-update-integrity",
-        "protocol-update-integrity->instrument-registry",
-        "instrument-content->cross-references",
-        "instrument-registry->interface",
-        "updated-source->future-resolution"
-      ],
-      "operations": [
-        "identify",
-        "replace_content",
-        "preserve_identity",
-        "refresh_references",
-        "validate",
-        "publish"
-      ],
-      "ui": {
-        "node_id": "instrument:protocol-update-integrity",
-        "visible": true,
-        "featured": false
-      },
-      "activation": {
-        "enabled": false,
-        "status": "inactive"
-      }
     }
-  ]
+  ],
+  "operational_membership_policy": "Only entries in config/instrument-registry.json belong to the operational instrument set; auxiliary-protocols/ is excluded from operational counts and automatic selection."
 }

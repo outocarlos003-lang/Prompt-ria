@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "scope": "auxiliary_protocols",
+  "membership_policy": {
+    "operational_member": false,
+    "automatic_selection": false,
+    "operational_counted": false,
+    "explicit_resolution": true,
+    "activation_is_independent": true
+  },
+  "resolution": {
+    "source_of_truth": "auxiliary-protocols/registry.json",
+    "match_fields": [
+      "id",
+      "title",
+      "aliases"
+    ],
+    "mode": "explicit_only"
+  },
+  "instruments": [
+    {
+      "id": "protocol-update-integrity",
+      "title": "PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA",
+      "path": "auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md",
+      "aliases": [
+        "protocolo de atualização integral",
+        "preservação funcional do acervo",
+        "reintegração de instrumentos promptuais",
+        "atualização segura por título"
+      ],
+      "keywords": [
+        "atualização",
+        "reintegração",
+        "integridade",
+        "correferência",
+        "rastreio",
+        "conteúdo integral",
+        "fonte autoritativa",
+        "acervo",
+        "interface",
+        "validação"
+      ],
+      "functions": [
+        "atualizar versões integrais preservando identidade funcional",
+        "manter correferências e rastreabilidade",
+        "validar conteúdo e referências",
+        "integrar instrumentos ao catálogo e à interface"
+      ],
+      "files": [
+        "auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md",
+        "auxiliary-protocols/registry.json",
+        "auxiliary-protocols/registry.json",
+        "scripts/resolve_auxiliary_protocol.py"
+      ],
+      "relations": [
+        "title->protocol-update-integrity",
+        "protocol-update-integrity->auxiliary-protocol-registry",
+        "instrument-content->cross-references",
+        "auxiliary-protocol-registry->explicit-interface-recovery",
+        "updated-source->future-resolution"
+      ],
+      "operations": [
+        "identify",
+        "replace_content",
+        "preserve_identity",
+        "refresh_references",
+        "validate",
+        "publish"
+      ],
+      "ui": {
+        "node_id": "instrument:protocol-update-integrity",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active"
+      }
+    }
+  ]
+}
