@@ -329,9 +329,16 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertIn("github-operational", result["selected_instrument_ids"])
         self.assertNotIn("protocol-update-integrity", result["selected_instrument_ids"])
 
-    def test_explicit_id_cannot_bypass_registry_activation(self):
-        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: functional-correference-architecture"):
-            specialized.execute({"request": "Executar coordenador.", "instrument_ids": ["coordinator"]})
+    def test_continuous_automation_instrument_remains_enabled_for_internal_execution(self):
+        result = specialized.execute({
+            "request": "Executar coordenador.",
+            "instrument_ids": ["coordinator"],
+        })
+        self.assertEqual(result["selected_instrument_ids"], ["functional-correference-architecture"])
+        self.assertEqual(
+            result["results"][0]["result"]["coordination_node"]["id"],
+            "coordination:functional-correference-architecture",
+        )
 
 
     def test_legacy_coordinator_id_resolves_to_single_unified_instrument(self):
