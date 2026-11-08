@@ -1,0 +1,44 @@
+name: Promptária — Ativação automática de novos instrumentos promptuais
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  enable-new-promptual-instruments:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.author_association == 'OWNER'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull request branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          repository: ${{ github.repository }}
+          path: work
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Enable only newly added named instruments
+        working-directory: work
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          python scripts/auto_enable_new_promptual_instruments.py --base-sha "$BASE_SHA" --root .
+          if git diff --quiet; then
+            echo "No new named promptual instrument requires activation."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config/instrument-registry.json instrument-registry.json config/instrument-catalog.json instrument-catalog.json
+          if git diff --cached --quiet; then
+            echo "No activation metadata changes to commit."
+            exit 0
+          fi
+          git commit -m "Automatically enable newly added promptual instruments"
+          git push origin "HEAD:refs/heads/${{ github.event.pull_request.head.ref }}"
