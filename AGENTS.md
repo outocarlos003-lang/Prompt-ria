@@ -2,7 +2,7 @@
 
 Estas regras são a configuração operacional comum do repositório. Devem ser lidas antes de executar qualquer tarefa aqui, independentemente do agente, interface ou ferramenta utilizada. Instruções específicas de plataforma complementam este arquivo; não o substituem nem podem ampliar o escopo do pedido do usuário.
 
-O modelo genérico de coordenação, acionamento, recuperação, aplicação cumulativa e verificação dos instrumentos está especificado em instruments/protocolo-mestre-acionamento-automatico.md. Aplique-o em conjunto com estas regras universais e com os instrumentos integrais pertinentes; a referência documental não significa que ambientes externos que não carreguem estes arquivos sejam automaticamente configurados.
+O modelo genérico de coordenação, acionamento, recuperação, aplicação cumulativa e verificação dos instrumentos está especificado em protocolo-mestre-acionamento-automatico.md. Aplique-o em conjunto com estas regras universais e com os instrumentos integrais pertinentes; a referência documental não significa que ambientes externos que não carreguem estes arquivos sejam automaticamente configurados.
 
 ## Prioridade obrigatória
 
