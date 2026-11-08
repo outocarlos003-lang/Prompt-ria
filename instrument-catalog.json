@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "generated_by": "generate_instrument_catalog.py",
-  "source_glob": "*.md",
+  "source_glob": "registry-listed root-level Markdown sources",
   "registry": "instrument-registry.json",
   "repository": "outocarlos003-lang/Prompt-ria",
   "instruments": [
