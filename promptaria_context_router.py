@@ -228,7 +228,7 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
   "selection_policy":"union of evidence-supported task rules and exact normalized canonical-title or registered-alias matches; any enabled instrument may be activated for its own registered function, while protected-segment integration is closed by default",
   "integration_policy":"Only github-operational and functional-correference-architecture are integrated automatically into the three protected segments. Other instruments remain independently activatable and are integrated into those segments only when segment_integration_need contains an instrument reference plus a reason, or segment_integration_request explicitly names the instrument.",
   "evidence_chain":[
-   {"stage":"protected_segment_base","basis":"config/segment-integration-policy.json","instrument_ids":default_integrated},
+   {"stage":"protected_segment_base","basis":"segment-integration-policy.json","instrument_ids":default_integrated},
    {"stage":"request_customization","basis":"complete request and structured-field values with their source paths","field_count":len(fields)},
    {"stage":"contextual_interpretation","basis":"all matching task rules retained cumulatively","task_count":len(evidence)},
    {"stage":"canonical_identity","basis":"instrument-registry.json title, aliases and keywords","registry_match_count":sum(1 for item in evidence if item["task"] == "canonical_instrument_match")},
