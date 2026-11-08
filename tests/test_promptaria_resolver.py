@@ -53,9 +53,11 @@ class PromptariaResolverTests(unittest.TestCase):
             )
             self.assertEqual(completed.returncode, 0, msg=completed.stderr)
             result = json.loads(output_path.read_text(encoding="utf-8"))
-            titles = {item["title"] for item in result["matched_instruments"]}
-            self.assertNotIn(active_title, titles)
-            self.assertNotIn(inactive_title, titles)
+            active_entries = [item for item in result["matched_instruments"] if item.get("title") == active_title]
+            self.assertTrue(active_entries)
+            self.assertTrue(all(item.get("category") == "continuous_automation" for item in active_entries))
+            self.assertFalse(any(item.get("identity") in {"matched_by_title", "matched_by_alias"} for item in active_entries))
+            self.assertNotIn(inactive_title, {item["title"] for item in result["matched_instruments"]})
             self.assertIn("github-operational", result["preconfiguration"]["continuous_context_ids"])
 
     def test_includes_all_three_mandatory_components(self):
