@@ -54,8 +54,9 @@ class PromptariaResolverTests(unittest.TestCase):
             self.assertEqual(completed.returncode, 0, msg=completed.stderr)
             result = json.loads(output_path.read_text(encoding="utf-8"))
             titles = {item["title"] for item in result["matched_instruments"]}
-            self.assertIn(active_title, titles)
+            self.assertNotIn(active_title, titles)
             self.assertNotIn(inactive_title, titles)
+            self.assertIn("github-operational", result["preconfiguration"]["continuous_context_ids"])
 
     def test_includes_all_three_mandatory_components(self):
         instruments = [
@@ -70,7 +71,7 @@ class PromptariaResolverTests(unittest.TestCase):
         self.assertEqual(len(result["matched_instruments"]), 3)
         self.assertIn("3/3", stdout)
 
-    def test_registry_separates_continuous_context_from_recoverable_base_component(self):
+    def test_registry_loads_github_operational_as_continuous_context_not_recoverable_base(self):
         instruments = [
             ("arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md", "Arquitetura Unificada"),
             ("protocolo-mestre-acionamento-automatico.md", "Protocolo-Mestre"),
@@ -87,8 +88,8 @@ class PromptariaResolverTests(unittest.TestCase):
              "ui": {"visible": False}},
             {"id": "github-operational", "title": "GitHub Operacional",
              "path": "instruments/acione-a-promptaria-pelo-github.md", "aliases": ["github fixo"],
-             "activation": {"enabled": True}, "category": "recoverable_on_demand",
-             "ui": {"visible": True}},
+             "activation": {"enabled": True}, "category": "continuous_automation",
+             "ui": {"visible": False}},
         ]
         result, _ = self.run_resolver(
             "Demanda genérica sem menção aos componentes-base.",
@@ -103,12 +104,13 @@ class PromptariaResolverTests(unittest.TestCase):
         context = result["preconfiguration"]
         self.assertEqual(
             set(context["continuous_context_ids"]),
-            {"functional-correference-architecture", "master-activation"},
+            {"functional-correference-architecture", "master-activation", "github-operational"},
         )
         self.assertTrue(all(item["loaded_as_context"] for item in context["continuous_context"]))
         self.assertTrue(all(item["title_resolvable"] is False for item in context["continuous_context"]))
         self.assertTrue(all(item["execution_performed"] is False for item in context["continuous_context"]))
         self.assertEqual(context["fixed_operational_component"]["id"], "github-operational")
+        self.assertEqual(context["fixed_operational_component"]["category"], "continuous_automation")
         self.assertTrue(context["complete"])
         self.assertEqual(result["status"], "plan_created_needs_execution_integration")
         self.assertFalse(any(
@@ -170,6 +172,7 @@ class PromptariaResolverTests(unittest.TestCase):
             self.assertTrue(result["preconfiguration"]["complete"])
             self.assertTrue(result["preconfiguration"]["continuous_context"])
             self.assertTrue(result["preconfiguration"]["fixed_operational_component"]["content"])
+            self.assertEqual(result["preconfiguration"]["fixed_operational_component"]["category"], "continuous_automation")
             self.assertEqual(result["missing_mandatory_components"], [])
             self.assertEqual(result["status"], "plan_created_needs_execution_integration")
 
