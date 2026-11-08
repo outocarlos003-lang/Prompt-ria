@@ -130,11 +130,14 @@
       "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "aliases": [
+        "arquitetura unificada",
+        "coordinator",
         "correferência funcional automática",
         "correspondência por título",
         "instrumento coordenador unificado",
         "automação de correspondência por título",
-        "arquitetura coordenadora de múltiplos instrumentos"
+        "arquitetura coordenadora de múltiplos instrumentos",
+        "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS"
       ],
       "keywords": [
         "título",
@@ -151,9 +154,16 @@
         "rastreabilidade intersegmentos",
         "instrument:functional-correference-architecture",
         "github-operational",
-        "master-activation"
+        "master-activation",
+        "arquitetura",
+        "coordenação",
+        "integração",
+        "instrumentos"
       ],
       "functions": [
+        "coordenar instrumentos",
+        "preservar relações",
+        "integrar fluxos",
         "resolver títulos",
         "correferenciar funções",
         "selecionar múltiplos instrumentos",
@@ -165,6 +175,8 @@
         "distinguir identificação, recuperação, acionamento, execução e validação"
       ],
       "relations": [
+        "functional-correference-architecture->context-router",
+        "functional-correference-architecture->resolver",
         "title->instrument-id",
         "instrument-id->function",
         "instrument-id->file",
@@ -184,12 +196,20 @@
         "instrument:github-operational->functional-correference-architecture",
         "functional-correference-architecture->canonical-full-text",
         "canonical-full-text->master-activation",
-        "canonical-full-text->standard-preconfiguration"
+        "canonical-full-text->standard-preconfiguration",
+        "legacy-id:coordinator->functional-correference-architecture",
+        "instrument:coordinator->instrument:functional-correference-architecture",
+        "phase:title-resolution->coordination:functional-correference-architecture",
+        "coordination:functional-correference-architecture->phase:bundle-coordination",
+        "phase:bundle-coordination->coordination:functional-correference-architecture",
+        "coordination:functional-correference-architecture->phase:title-resolution"
       ],
       "operations": [
+        "coordinate",
+        "integrate",
+        "validate",
         "match",
         "resolve",
-        "coordinate",
         "recover-full-content",
         "preserve-instrument-identity",
         "coordinate-cumulative-instruments",
@@ -199,45 +219,12 @@
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
-        "featured": false
-      },
-      "activation": {
-        "enabled": false,
-        "status": "prepared_not_published"
-      }
-    },
-    {
-      "id": "coordinator",
-      "path": "instruments/arquitetura-unificada.md",
-      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-      "aliases": [
-        "arquitetura unificada"
-      ],
-      "keywords": [
-        "arquitetura",
-        "coordenação",
-        "integração",
-        "correferência",
-        "instrumentos"
-      ],
-      "functions": [
-        "coordenar instrumentos",
-        "preservar relações",
-        "integrar fluxos"
-      ],
-      "relations": [
-        "coordinator->context-router",
-        "coordinator->resolver"
-      ],
-      "operations": [
-        "coordinate",
-        "integrate",
-        "validate"
-      ],
-      "ui": {
-        "node_id": "instrument:coordinator",
-        "visible": false,
-        "featured": false
+        "featured": false,
+        "phase_nodes": [
+          "phase:title-resolution",
+          "coordination:functional-correference-architecture",
+          "phase:bundle-coordination"
+        ]
       },
       "activation": {
         "enabled": false,
