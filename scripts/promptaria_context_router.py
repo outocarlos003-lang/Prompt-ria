@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_IDS = ["github-operational", "nocturna-arquitetura-necessidade-identidade-sistemica"]
+BASE_IDS = ["nocturna-arquitetura-necessidade-identidade-sistemica"]
 MANIFEST = ROOT / "tests" / "manifest.json"
 REGISTRY = ROOT / "config" / "instrument-registry.json"
 SEGMENT_POLICY = ROOT / "config" / "segment-integration-policy.json"
@@ -54,7 +54,7 @@ def registry_matches(request_text: str, registry: dict) -> list[dict]:
  normalized_request = normalize(request_text)
  matches = []
  for item in registry.get("instruments", []):
-  if item.get("activation", {}).get("enabled") is not True or item.get("category") == "continuous_automation":
+  if item.get("activation", {}).get("enabled") is not True or item.get("category") == "continuous_automation" or item.get("ui", {}).get("visible") is not True:
    continue
   candidates = [("title", item.get("title", ""))]
   candidates.extend(("alias", value) for value in item.get("aliases", []))
@@ -210,7 +210,7 @@ def analyze(request: Any, manifest: dict | None = None, registry: dict | None = 
  additional_integrated = [item_id for item_id in exception_ids if item_id not in default_integrated]
  catalog_ids = {item.get("id") for item in manifest.get("instruments", []) if isinstance(item, dict)}
  if evidence:
-  selected = [item_id for item_id in BASE_IDS if item_id in all_enabled_ids] + selected
+  selected = [item_id for item_id in BASE_IDS if item_id in enabled_ids] + selected
  selected = list(dict.fromkeys(selected))
  unknown = [item_id for item_id in selected if item_id not in catalog_ids]
  if unknown:
