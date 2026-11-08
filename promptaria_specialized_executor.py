@@ -221,6 +221,10 @@ def handler_coordinator(context: dict[str, Any]) -> dict[str, Any]:
             for item_id in ids
         ],
         "validation_gates": ["identity", "source_integrity", "scope", "dependencies", "result_contract"],
+        "correference_handoff": {
+            "resolved_matches": context.get("phase_one_resolution", {}).get("matches", []),
+            "source_evidence": context.get("phase_one_resolution", {}).get("source_evidence", []),
+        },
     }
 
 
@@ -261,6 +265,10 @@ def handler_functional_correference(context: dict[str, Any]) -> dict[str, Any]:
         "demand": context["demand"],
         "matches": matches,
         "blocked_ambiguous_ids": [m["id"] for m in matches if not m["activation"]],
+        "source_evidence": [
+            {"id": item_id, "path": context["catalog"][item_id]["path"], "sha256": context["source_hashes"][item_id]}
+            for item_id in context["selected_ids"] if item_id in context["catalog"]
+        ],
         "matching_policy": "full-normalized-title-or-explicit-id-or-path; no arbitrary partial-title matching",
     }
 
@@ -269,7 +277,8 @@ def handler_unified_architecture(context: dict[str, Any]) -> dict[str, Any]:
     """Compose both preserved phases under one canonical instrument and one coordination node."""
     phase_context = {**context, "selected_ids": [i for i in context["selected_ids"] if i != "coordinator"]}
     phase_one = handler_functional_correference(phase_context)
-    phase_two = handler_coordinator(phase_context)
+    phase_two_context = {**phase_context, "phase_one_resolution": phase_one}
+    phase_two = handler_coordinator(phase_two_context)
     node = "coordination:unified-architecture"
     phase_one_id = "phase:title-functional-correference"
     phase_two_id = "phase:coordinated-architecture"
