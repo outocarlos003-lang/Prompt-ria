@@ -53,6 +53,10 @@ Exemplo de `request_json`:
 
 O conteúdo contínuo é incluído no campo `continuous_preconfiguration.components`, com `loaded_as_context=true`, `title_resolvable=false` e `execution_performed=false`. A inclusão como contexto não transforma esses instrumentos em handlers nem os promove à recuperação individual por título.
 
+## Sincronização do inventário documental
+
+O script `scripts/sync_readme_inventory.py` reconstrói as seções de inventário do README a partir das árvores reais de instrumentos, scripts, workflows, documentação, testes e configurações. O workflow de classificação de novos instrumentos executa essa sincronização e inclui `README.md` no mesmo commit das atualizações de metadados. Para alterações estruturais feitas por outros fluxos, execute `python scripts/sync_readme_inventory.py`; `--check` detecta divergências sem manter a alteração gerada.
+
 ## Limites declarados
 
 O status `completed` significa que o handler especializado selecionado foi executado e produziu o resultado documentado. Não significa que ocorreu uma escrita no repositório, uma publicação, uma chamada a serviço externo ou a execução arbitrária das instruções textuais do Markdown. Os handlers atuais são transformações locais determinísticas e de leitura; `side_effects` permanece vazio. Escritas reais continuam sujeitas ao executor genérico, à allowlist `artifacts/`, à autorização, ao `dry_run=false` e à confirmação exata da operação.
