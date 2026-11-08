@@ -55,6 +55,15 @@ function resolveInstrumentReference(reference){
   else if((item.aliases||[]).some(alias=>exact(item,alias)))candidates.push({item,kind:'alias'});
  }
  const unique=[...new Map(candidates.map(x=>[x.item.id,x])).values()];
+ if(unique.length!==1 && auxiliary.length){
+  const explicitAuxReference=normalized.replace(/^instrument_(?:id|title):\s*/,'');
+  const auxiliaryMatches=auxiliary.filter(item=>normalize(item.id)===explicitAuxReference||normalize(item.title)===explicitAuxReference);
+  if(auxiliaryMatches.length===1){
+   const item=auxiliaryMatches[0];
+   return {status:'resolved',matches:[item],trace:{id:item.id,title:item.title,path:item.path,matched_term:reference,match_kind:'explicit_auxiliary_reference',normalized_term:explicitAuxReference,membership:'auxiliary'}};
+  }
+  if(auxiliaryMatches.length>1)return {status:'ambiguous',matches:auxiliaryMatches,trace:null};
+ }
  if(unique.length!==1)return {status:unique.length?'ambiguous':'unresolved',matches:unique.map(x=>x.item),trace:null};
  const match=unique[0];
  const trace={id:match.item.id,title:match.item.title,path:match.item.path,matched_term:reference,match_kind:match.kind,normalized_term:normalized};
@@ -76,6 +85,8 @@ async function openDoc(path,title,source='ui',trace=null){
 copyPrompt.addEventListener('click',async()=>{if(!currentPrompt)return;try{await navigator.clipboard.writeText(currentPrompt);docStatus.textContent='Prompt copiado.';}catch(error){const area=document.createElement('textarea');area.value=currentPrompt;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const copied=document.execCommand('copy');area.remove();docStatus.textContent=copied?'Prompt copiado.':'Não foi possível copiar automaticamente. Selecione e copie o texto manualmente.';}});
 overlay.addEventListener('click',event=>{if(event.target===overlay)closeDoc();});document.addEventListener('keydown',event=>{if(event.key==='Escape')closeDoc();});
 let registry=[];
+let auxiliary=[];
+fetch('./auxiliary-protocols/registry.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}).then(data=>{auxiliary=(data.instruments||[]).filter(item=>item.membership==='auxiliary'&&item.resolution_policy==='explicit_only'&&item.activation?.enabled===true);}).catch(()=>{auxiliary=[];});
 fetch(registryUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}).then(data=>{registry=(data.instruments||[]).filter(item=>item.activation?.enabled===true);render(registry);}).catch(error=>{list.innerHTML=`<div class="empty">Catálogo indisponível. A interface não presumirá instrumentos que não puder recuperar. ${escapeHtml(error.message)}</div>`;});
 search.addEventListener('keydown',event=>{if(event.key!=='Enter')return;const resolved=resolveInstrumentReference(search.value);if(resolved.status==='resolved'){openDoc(resolved.trace.path,resolved.trace.title,'reference',resolved.trace);return;}if(resolved.status==='ambiguous'){overlay.classList.add('open');docTitle.textContent='Referência ambígua';docBody.textContent='';currentPrompt='';copyPrompt.disabled=true;docStatus.textContent='Referência ambígua: use o identificador ou caminho do instrumento.';return;}const query=normalize(search.value);const terms=query.split(/\s+/).filter(Boolean);const filtered=registry.filter(item=>{const text=haystack(item);return terms.every(term=>text.includes(term));});if(filtered.length===1){openDoc(filtered[0].path,filtered[0].title,'ui');return;}if(filtered.length>1)return;overlay.classList.add('open');docTitle.textContent='Referência não resolvida';docBody.textContent='';currentPrompt='';copyPrompt.disabled=true;docStatus.textContent='Nenhum instrumento ativo corresponde à referência informada.'; });
 search.addEventListener('input',()=>{const query=normalize(search.value).trim();if(!query){render(registry);return;}const terms=query.split(/\s+/).filter(Boolean);render(registry.filter(item=>{const text=haystack(item);return terms.every(term=>text.includes(term));}));});
