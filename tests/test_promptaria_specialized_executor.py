@@ -112,33 +112,34 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertEqual(embedded_matches, [])
 
     def test_duplicate_registered_alias_fails_closed(self):
-        canonical, _ = specialized.load_catalog()
+        canonical = {
+            "alpha": {"id": "alpha", "title": "Instrumento Alfa", "path": "instruments/alpha.md"},
+            "beta": {"id": "beta", "title": "Instrumento Beta", "path": "instruments/beta.md"},
+        }
         original_read_object = specialized.read_object
 
         def duplicated_aliases(path):
             value = original_read_object(path)
             if path == specialized.ROOT / "config" / "instrument-registry.json":
-                first = next(item for item in value["instruments"] if item["id"] == "github-operational")
-                second = next(item for item in value["instruments"] if item["id"] == "nocturna-arquitetura-necessidade-identidade-sistemica")
-                first["aliases"] = list(first.get("aliases", [])) + ["github operacional"]
-                second["aliases"] = list(second.get("aliases", [])) + ["github operacional"]
+                value["instruments"] = [
+                    {"id": "alpha", "title": "Instrumento Alfa", "path": "instruments/alpha.md",
+                     "aliases": ["github operacional"], "activation": {"enabled": True},
+                     "ui": {"visible": True}, "category": "recoverable_on_demand"},
+                    {"id": "beta", "title": "Instrumento Beta", "path": "instruments/beta.md",
+                     "aliases": ["github operacional"], "activation": {"enabled": True},
+                     "ui": {"visible": True}, "category": "recoverable_on_demand"},
+                ]
             return value
 
         with patch.object(specialized, "read_object", side_effect=duplicated_aliases):
             matches = specialized.resolve_ids("github operacional", canonical)
-            embedded_id_matches = specialized.resolve_ids("github operacional github-operationalx", canonical)
 
-        self.assertEqual(
-            {item["identity_status"] for item in embedded_id_matches},
-            {"ambiguous_registered_term_collision"},
-        )
-        active = {item["id"]: item for item in matches}
-        self.assertFalse(active["github-operational"]["activation"])
-        self.assertFalse(active["nocturna-arquitetura-necessidade-identidade-sistemica"]["activation"])
+        self.assertEqual({item["id"] for item in matches}, {"alpha", "beta"})
         self.assertEqual(
             {item["identity_status"] for item in matches},
             {"ambiguous_registered_term_collision"},
         )
+        self.assertFalse(any(item["activation"] for item in matches))
 
     def test_longer_title_does_not_select_embedded_short_title(self):
         canonical = {
@@ -167,24 +168,23 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertEqual([item["id"] for item in only_long], ["beta"])
         self.assertEqual({item["id"] for item in both}, {"alpha", "beta"})
 
-    def test_title_resolution_only_activates_registered_instruments(self):
+    def test_continuous_github_title_is_context_only_not_resolvable(self):
         canonical, _ = specialized.load_catalog()
         title = canonical["github-operational"]["title"]
-        matches = specialized.resolve_ids(title, canonical)
-        self.assertEqual({item["id"] for item in matches}, {"github-operational"})
-        self.assertTrue(all(item["activation"] for item in matches))
-        result = specialized.execute({"request": title})
-        self.assertEqual(result["selected_instrument_ids"], ["github-operational"])
+        self.assertEqual(specialized.resolve_ids(title, canonical), [])
+        with self.assertRaisesRegex(SystemExit, "Nenhum instrumento resolvido"):
+            specialized.execute({"request": title})
 
-    def test_explicit_id_disambiguates_colliding_title(self):
-        canonical, _ = specialized.load_catalog()
-        title = canonical["github-operational"]["title"]
-        result = specialized.execute({"request": title, "instrument_ids": ["github-operational"]})
-        self.assertEqual(result["selected_instrument_ids"], ["github-operational"])
-        self.assertEqual(result["results"][0]["result"]["handler"], "recover-and-verify-source")
-        self.assertEqual(result["results"][0]["result"]["canonical_identity"]["instrument_id"], "github-operational")
-        self.assertIn("demand_envelope", result["results"][0]["result"])
-        self.assertEqual(result["results"][0]["result"]["demand_envelope"]["goal"], title)
+    def test_explicit_continuous_github_id_cannot_activate_specialized_handler(self):
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
+            specialized.execute({"request": "demanda", "instrument_ids": ["github-operational"]})
+
+    def test_explicit_id_disambiguates_only_recoverable_instrument(self):
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
+            specialized.execute({
+                "request": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
+                "instrument_ids": ["github-operational"],
+            })
 
     def test_unknown_id_is_rejected(self):
         with self.assertRaisesRegex(SystemExit, "IDs de instrumento desconhecidos"):
@@ -318,7 +318,8 @@ class SpecializedExecutorTests(unittest.TestCase):
             specialized.execute({"request": "Execute checklist."}, preflight=preflight)
 
     def test_preflight_cannot_inject_a_different_active_instrument(self):
-        request = "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas"
+        canonical, _ = specialized.load_catalog()
+        request = canonical["nocturna-arquitetura-necessidade-identidade-sistemica"]["title"]
         preflight = {
             "request": request,
             "matched_instruments": [{
@@ -326,7 +327,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             }],
         }
         result = specialized.execute({"request": request}, preflight=preflight)
-        self.assertIn("github-operational", result["selected_instrument_ids"])
+        self.assertIn("nocturna-arquitetura-necessidade-identidade-sistemica", result["selected_instrument_ids"])
         self.assertNotIn("protocol-update-integrity", result["selected_instrument_ids"])
 
     def test_continuous_automation_instrument_remains_enabled_for_internal_execution(self):
