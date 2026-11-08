@@ -191,13 +191,12 @@ class SpecializedExecutorTests(unittest.TestCase):
             specialized.execute({"request": "do work", "instrument_ids": ["not-a-real-instrument"]})
 
     def test_hash_uses_exact_source_bytes_including_crlf(self):
-        instrument_id = "github-operational"
+        instrument_id = "nocturna-arquitetura-necessidade-identidade-sistemica"
         catalog, _ = specialized.load_catalog()
         source_path = ROOT / catalog[instrument_id]["path"]
         original_read_bytes = Path.read_bytes
         exact_bytes = (
-            b"# Acione a Prompt\xc3\xa1ria pelo GitHub para Inserir, Recuperar e Aplicar Demandas\r\n"
-            b"Conte\xc3\xbado de teste com finais de linha CRLF.\r\n"
+            ("# " + catalog[instrument_id]["title"] + "\\r\\nConteúdo de teste com finais de linha CRLF.\\r\\n").encode("utf-8")
         )
 
         def read_bytes_with_crlf(path):
@@ -218,6 +217,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             expected_hash,
         )
 
+
     def test_manifest_title_mismatch_with_other_catalogs_fails_closed(self):
         original_read_object = specialized.read_object
 
@@ -233,23 +233,23 @@ class SpecializedExecutorTests(unittest.TestCase):
 
     def test_manifest_path_escape_fails_closed(self):
         original_read_object = specialized.read_object
+        target_id = "nocturna-arquitetura-necessidade-identidade-sistemica"
 
         def altered_manifest(path):
             value = original_read_object(path)
-            if path == specialized.MANIFEST_PATH:
-                value["instruments"][0]["path"] = "../outside.md"
-            elif path == specialized.ROOT / "config" / "instrument-registry.json":
-                value["instruments"][0]["path"] = "../outside.md"
-            elif path == specialized.MAP_PATH:
-                value["instruments"][0]["path"] = "../outside.md"
+            if path in (specialized.MANIFEST_PATH, specialized.ROOT / "config" / "instrument-registry.json", specialized.MAP_PATH):
+                for item in value["instruments"]:
+                    if item.get("id") == target_id:
+                        item["path"] = "../outside.md"
             return value
 
         with patch.object(specialized, "read_object", side_effect=altered_manifest):
             with self.assertRaisesRegex(SystemExit, "Caminho de fonte escapa do repositório"):
                 specialized.execute({
                     "request": "Verificar contenção do caminho.",
-                    "instrument_ids": [self.manifest["instruments"][0]["id"]],
+                    "instrument_ids": [target_id],
                 })
+
 
     def test_future_demand_handler_preserves_unknown_structured_fields(self):
         structured = {
