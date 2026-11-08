@@ -92,8 +92,9 @@ class PreconfigureNewInstrumentsTests(unittest.TestCase):
         self.assertEqual(entry["category"], "recoverable_on_demand")
         self.assertEqual(entry["classification_basis"], "default_title_rule")
         self.assertEqual(entry["activation"]["mode"], "on_demand_title")
-        self.assertFalse(entry["activation"]["enabled"])
-        self.assertFalse(entry["ui"]["visible"])
+        self.assertTrue(entry["activation"]["enabled"])
+        self.assertEqual(entry["activation"]["status"], "active")
+        self.assertTrue(entry["ui"]["visible"])
         self.assertEqual(manifest_entry["category"], "recoverable_on_demand")
         self.assertEqual(manifest_entry["classification_basis"], "default_title_rule")
 
