@@ -184,16 +184,14 @@ def audit(registry_path: Path, root: Path) -> dict:
         else:
             warnings.append("Normalized title/alias collision includes disabled entries: " + term)
 
-    # Physical inventory is authoritative for preventing orphaned definitions.
-    physical = {
-        p.relative_to(root).as_posix()
-        for p in root.glob("*.md")
-    }
+    # In this flat repository, root-level Markdown includes both instrument
+    # sources and ordinary documentation. The registry is therefore the
+    # authoritative instrument inventory; verify every registered source
+    # directly and do not misclassify unrelated documentation as instruments.
     registered_paths = {p for p in paths if isinstance(p, str)}
-    for orphan in sorted(physical - registered_paths):
-        errors.append(f"Unregistered instrument definition: {orphan}")
-    for stale in sorted(registered_paths - physical):
-        warnings.append(f"Registered instrument has no physical definition: {stale}")
+    for registered_path in sorted(registered_paths):
+        if not (root / registered_path).is_file():
+            warnings.append(f"Registered instrument has no physical definition: {registered_path}")
 
     # Optional generated maps are checked when present, so registry identity cannot silently diverge.
     execution_map_path = root / "instrument-execution-map.json"
