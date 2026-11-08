@@ -5,19 +5,19 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
 import promptaria_specialized_executor as specialized
 
 
 class SpecializedExecutorTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.manifest = json.loads((ROOT / "tests" / "manifest.json").read_text(encoding="utf-8"))
+        cls.manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
 
     def execute_with_all_instruments_activated(self, payload, preflight=None):
         original_read_object = specialized.read_object
-        registry_path = specialized.ROOT / "config" / "instrument-registry.json"
+        registry_path = specialized.ROOT / "instrument-registry.json"
 
         def activated_registry(path):
             value = original_read_object(path)
@@ -35,7 +35,7 @@ class SpecializedExecutorTests(unittest.TestCase):
         self.assertEqual(set(mapped), set(specialized.HANDLERS))
         for instrument_id, item in mapped.items():
             with self.subTest(instrument=instrument_id):
-                self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")
+                self.assertEqual(item["specialized_executor"], "promptaria_specialized_executor.py")
                 self.assertEqual(item["specialized_execution_status"], "implemented")
 
     def test_all_registered_handlers_execute_and_emit_source_evidence(self):
@@ -90,7 +90,7 @@ class SpecializedExecutorTests(unittest.TestCase):
 
         def duplicated_registry(path):
             value = original_read_object(path)
-            if path == specialized.ROOT / "config" / "instrument-registry.json":
+            if path == specialized.ROOT / "instrument-registry.json":
                 value["instruments"].append(dict(value["instruments"][0]))
             return value
 
@@ -116,7 +116,7 @@ class SpecializedExecutorTests(unittest.TestCase):
 
         def duplicated_aliases(path):
             value = original_read_object(path)
-            if path == specialized.ROOT / "config" / "instrument-registry.json":
+            if path == specialized.ROOT / "instrument-registry.json":
                 first = next(item for item in value["instruments"] if item["id"] == "github-operational")
                 second = next(item for item in value["instruments"] if item["id"] == "nocturna-arquitetura-necessidade-identidade-sistemica")
                 first["aliases"] = list(first.get("aliases", [])) + ["github operacional"]
@@ -148,7 +148,7 @@ class SpecializedExecutorTests(unittest.TestCase):
 
         def registry_with_nested_titles(path):
             value = original_read_object(path)
-            if path == specialized.ROOT / "config" / "instrument-registry.json":
+            if path == specialized.ROOT / "instrument-registry.json":
                 value["instruments"] = [
                     {"id": "alpha", "title": canonical["alpha"]["title"], "path": canonical["alpha"]["path"],
                      "aliases": [], "activation": {"enabled": True}},
@@ -237,7 +237,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             value = original_read_object(path)
             if path == specialized.MANIFEST_PATH:
                 value["instruments"][0]["path"] = "../outside.md"
-            elif path == specialized.ROOT / "config" / "instrument-registry.json":
+            elif path == specialized.ROOT / "instrument-registry.json":
                 value["instruments"][0]["path"] = "../outside.md"
             elif path == specialized.MAP_PATH:
                 value["instruments"][0]["path"] = "../outside.md"
@@ -271,7 +271,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             "instrument_ids": ["catalog-sitemap-preconfiguration"],
         })
         details = result["results"][0]["result"]
-        self.assertEqual(details["canonical_source"], "tests/manifest.json + instruments/*.md")
+        self.assertEqual(details["canonical_source"], "manifest.json + *.md")
         self.assertEqual(details["mutations_performed"], [])
         self.assertIn("legacy_tree_available", details)
 
@@ -284,8 +284,22 @@ class SpecializedExecutorTests(unittest.TestCase):
             specialized.execute({"request": "Execute checklist."}, preflight=preflight)
 
     def test_explicit_id_cannot_bypass_registry_activation(self):
-        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: coordinator"):
+        with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro: functional-correference-architecture"):
             specialized.execute({"request": "Executar coordenador.", "instrument_ids": ["coordinator"]})
+
+
+    def test_legacy_coordinator_id_resolves_to_single_unified_instrument(self):
+        result = self.execute_with_all_instruments_activated({
+            "request": "Acionar a arquitetura coordenadora legada.",
+            "instrument_ids": ["coordinator"],
+        })
+        self.assertEqual(result["selected_instrument_ids"], ["functional-correference-architecture"])
+        phases = result["results"][0]["result"]["phases"]
+        self.assertEqual([phase["phase"] for phase in phases], ["title-resolution", "bundle-coordination"])
+        self.assertEqual(
+            result["results"][0]["result"]["coordination_node"]["id"],
+            "coordination:functional-correference-architecture",
+        )
 
 
 if __name__ == "__main__":
