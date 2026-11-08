@@ -1,6 +1,6 @@
 # Integridade de identidade no executor especializado
 
-Antes de executar handlers, o executor compara o conjunto de IDs e os campos canônicos `title` e `path` entre o manifesto (`tests/manifest.json`), o mapa de execução (`config/instrument-execution-map.json`) e o registro (`config/instrument-registry.json`). Divergências bloqueiam a execução em vez de permitir que fontes conflitantes sejam usadas como se fossem uma identidade única.
+Antes de executar handlers, o executor compara o conjunto de IDs e os campos canônicos `title` e `path` entre o manifesto (`manifest.json`), o mapa de execução (`instrument-execution-map.json`) e o registro (`instrument-registry.json`). Divergências bloqueiam a execução em vez de permitir que fontes conflitantes sejam usadas como se fossem uma identidade única.
 
 Os caminhos de fonte também são resolvidos e precisam permanecer dentro da raiz do repositório. Caminhos absolutos ou que escapem da raiz, inclusive por meio de resolução de diretórios, são rejeitados antes da leitura.
 
