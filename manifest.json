@@ -48,7 +48,7 @@
         "aplicação recuperável de demandas pelo GitHub"
       ],
       "category": "recoverable_on_demand",
-      "classification_basis": "explicit_architectural_pairing"
+      "classification_basis": "default_title_rule"
     },
     {
       "id": "promptaria-instrument-template",

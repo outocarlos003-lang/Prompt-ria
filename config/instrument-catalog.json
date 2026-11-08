@@ -299,7 +299,7 @@
         "trace-cross-segment-operation"
       ],
       "category": "recoverable_on_demand",
-      "classification_basis": "explicit_architectural_pairing",
+      "classification_basis": "default_title_rule",
       "ui": {
         "node_id": "instrument:github-operational-recoverable",
         "visible": true,
