@@ -201,7 +201,7 @@ Para um instrumento novo, primeiro crie o Markdown e complete sua entrada no reg
 
 ## Ativação controlada e pré-configuração futura
 
-A interface e o resolvedor funcional usam exclusivamente os instrumentos com `activation.enabled: true` em `config/instrument-registry.json`. Os dois instrumentos-base atualmente habilitados são:
+A interface e a seleção automática usam exclusivamente os instrumentos com `activation.enabled: true` em `config/instrument-registry.json`; protocolos auxiliares são resolvidos somente por endereço explícito e não são publicados no catálogo operacional. Os dois instrumentos-base atualmente habilitados são:
 
 - `github-operational`
 - `nocturna-arquitetura-necessidade-identidade-sistemica`
@@ -291,7 +291,7 @@ A lista abaixo compara o conteúdo de cada instrumento com indicadores textuais 
 
 ### Inventário versionado
 
-#### Instrumentos promptuais (9)
+#### Instrumentos promptuais operacionais (8)
 
 - instruments/acione-a-promptaria-pelo-github.md
 - instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md
