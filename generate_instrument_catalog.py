@@ -6,10 +6,10 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "instruments"
-REGISTRY = ROOT / "config" / "instrument-registry.json"
-TARGET = ROOT / "config" / "instrument-catalog.json"
+ROOT = Path(__file__).resolve().parent
+SOURCE = ROOT
+REGISTRY = ROOT / "instrument-registry.json"
+TARGET = ROOT / "instrument-catalog.json"
 
 
 def title_for(path: Path) -> str:
@@ -24,7 +24,7 @@ def title_for(path: Path) -> str:
 def validate_registry() -> None:
     """Fail closed unless registry identity is internally consistent."""
     sys.path.insert(0, str(ROOT))
-    from scripts.promptaria_registry_audit import audit
+    from promptaria_registry_audit import audit
     result = audit(REGISTRY, ROOT)
     if not result["valid"]:
         details = "\n".join(f"- {error}" for error in result["errors"])
