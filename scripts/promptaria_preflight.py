@@ -56,7 +56,7 @@ def resolve_request(request: str, manifest: dict, execution_map: dict) -> list[d
     catalog = []
     for item in manifest.get("instruments", []):
         registry_item = registry_by_id.get(item.get("id"), {}) if isinstance(item, dict) else {}
-        if registry_item.get("category") != "recoverable_on_demand" or registry_item.get("activation", {}).get("enabled") is not True:
+        if registry_item.get("category") not in (None, "recoverable_on_demand") or registry_item.get("activation", {}).get("enabled") is not True:
             continue
         if not isinstance(item, dict) or not all(k in item for k in ("id", "title", "path")):
             continue
