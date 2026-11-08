@@ -38,7 +38,8 @@ def read_instruments(root: Path) -> list[dict]:
     items = []
     if not root.exists():
         return items
-    registry_path = root.parent / "config" / "instrument-registry.json"
+    repository_root = root if (root / "instrument-registry.json").is_file() else root.parent
+    registry_path = repository_root / "instrument-registry.json"
     enabled_paths = None
     registry_by_path = {}
     if registry_path.is_file():
@@ -54,7 +55,7 @@ def read_instruments(root: Path) -> list[dict]:
             and item["activation"].get("enabled") is True
         }
     for path in sorted(root.rglob("*.md")):
-        repo_path = path.relative_to(root.parent).as_posix()
+        repo_path = path.relative_to(repository_root).as_posix()
         entry = registry_by_path.get(repo_path, {})
         active = enabled_paths is None or repo_path in enabled_paths
         text = path.read_text(encoding="utf-8")
@@ -127,7 +128,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     explicit_selectors = []
     for match in re.finditer(r"(?i)\binstrument_id\s*:\s*([a-z0-9][a-z0-9._-]*)", request):
         explicit_selectors.append(("id", match.group(1), "matched_by_id", match.start(), match.end()))
-    for match in re.finditer(r"(?i)\binstrument_path\s*:\s*(instruments/[A-Za-z0-9._/-]+)", request):
+    for match in re.finditer(r"(?i)\binstrument_path\s*:\s*([A-Za-z0-9._/-]+)", request):
         explicit_selectors.append(("path", match.group(1).rstrip(".,;:!?"), "matched_by_path", match.start(), match.end()))
     explicit_item_ids = set()
     explicit_item_paths = set()
