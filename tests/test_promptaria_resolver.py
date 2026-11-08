@@ -98,6 +98,7 @@ class PromptariaResolverTests(unittest.TestCase):
         self.assertEqual(
             {item["id"] for item in result["mandatory_components"]},
             {"functional-correference-architecture", "master-activation", "github-operational"},
+            msg=json.dumps(result, ensure_ascii=False, indent=2),
         )
         context = result["preconfiguration"]
         self.assertEqual(
