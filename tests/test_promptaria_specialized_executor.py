@@ -353,13 +353,10 @@ class SpecializedExecutorTests(unittest.TestCase):
             result["results"][0]["result"]["coordination_node"]["id"],
             "coordination:functional-correference-architecture",
         )
-        legacy_title_result = self.execute_with_all_instruments_activated({
-            "request": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-        })
-        self.assertEqual(
-            legacy_title_result["selected_instrument_ids"],
-            ["functional-correference-architecture"],
-        )
+        with self.assertRaisesRegex(SystemExit, "Nenhum instrumento resolvido"):
+            self.execute_with_all_instruments_activated({
+                "request": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
+            })
 
 
 if __name__ == "__main__":
