@@ -64,8 +64,10 @@ class ContextRouterTests(unittest.TestCase):
   self.assertTrue(selected)
   self.assertNotIn("future-demand-preconfiguration",selected)
   self.assertNotIn("master-execution",selected)
-  self.assertIn("future-demand-preconfiguration",result["routing_evidence"]["blocked_inactive_instrument_ids"])
-  self.assertIn("master-execution",result["routing_evidence"]["blocked_inactive_instrument_ids"])
+  continuous=set(result["continuous_preconfiguration"]["instrument_ids"])
+  self.assertIn("future-demand-preconfiguration",continuous)
+  self.assertIn("master-execution",continuous)
+  self.assertNotIn("future-demand-preconfiguration",result["routing_evidence"]["blocked_inactive_instrument_ids"])
   self.assertTrue(result["contextual_analysis"]["evidence_chain"])
   self.assertFalse(result["external_side_effects_performed"])
 
@@ -107,7 +109,8 @@ class ContextRouterTests(unittest.TestCase):
    ]},
   )
   self.assertNotIn("master-execution",result["selected_instrument_ids"])
-  self.assertIn("master-execution",result["routing_evidence"]["blocked_inactive_instrument_ids"])
+  self.assertIn("master-execution",result["continuous_preconfiguration"]["instrument_ids"])
+  self.assertNotIn("master-execution",result["routing_evidence"]["blocked_inactive_instrument_ids"])
 
  def test_explicit_instrument_id_cannot_bypass_registry_activation(self):
   result=contextual.execute({
@@ -116,7 +119,8 @@ class ContextRouterTests(unittest.TestCase):
   })
   self.assertIn("github-operational",result["selected_instrument_ids"])
   self.assertNotIn("master-execution",result["selected_instrument_ids"])
-  self.assertIn("master-execution",result["routing_evidence"]["blocked_inactive_instrument_ids"])
+  self.assertIn("master-execution",result["continuous_preconfiguration"]["instrument_ids"])
+  self.assertNotIn("master-execution",result["routing_evidence"]["blocked_inactive_instrument_ids"])
 
  def test_unknown_explicit_instrument_id_fails_closed(self):
   with self.assertRaisesRegex(SystemExit, "ausentes do registro canônico"):
