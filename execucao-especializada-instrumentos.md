@@ -31,7 +31,7 @@ Execute:
 
 ```sh
 python promptaria_preflight.py --request request.json --output artifacts/preflight.json
-python scripts/promptaria_specialized_executor.py --request request.json --preflight artifacts/preflight.json --output artifacts/specialized-execution.json
+python promptaria_specialized_executor.py --request request.json --preflight artifacts/preflight.json --output artifacts/specialized-execution.json
 python -m unittest discover -s tests -v
 ```
 
