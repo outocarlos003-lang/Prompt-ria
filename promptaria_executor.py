@@ -392,7 +392,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--request", required=True, type=Path)
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
-    parser.add_argument("--permissions", type=Path, default=Path(__file__).resolve().parents[1] / "config" / "promptaria_permissions.json")
+    parser.add_argument("--permissions", type=Path, default=Path(__file__).resolve().parent / "promptaria_permissions.json")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--confirm-operation")
     args = parser.parse_args()
