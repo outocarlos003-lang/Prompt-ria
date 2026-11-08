@@ -44,9 +44,9 @@ def main() -> None:
 
     catalog = {
         "schema_version": 2,
-        "generated_by": "scripts/generate_instrument_catalog.py",
-        "source_glob": "instruments/*.md",
-        "registry": "config/instrument-registry.json",
+        "generated_by": "generate_instrument_catalog.py",
+        "source_glob": "*.md",
+        "registry": "instrument-registry.json",
         "repository": "outocarlos003-lang/Prompt-ria",
         "instruments": [
             {
