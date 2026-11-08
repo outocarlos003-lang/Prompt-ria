@@ -3,7 +3,7 @@
   "contract_id": "promptaria-extended-instrument-identity",
   "compatibility": {
     "registry_schema_version": 2,
-    "template_id_source": "config/instrument-registry.json:template_id",
+    "template_id_source": "instrument-registry.json:template_id",
     "required_existing_identity_fields": [
       "id",
       "title",
