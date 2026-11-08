@@ -49,8 +49,10 @@
       "files": [
         "auxiliary-protocols/protocolo-operacional-atualizacao-integridade-acervo.md",
         "auxiliary-protocols/registry.json",
-        "auxiliary-protocols/registry.json",
-        "scripts/resolve_auxiliary_protocol.py"
+        "scripts/resolve_auxiliary_protocol.py",
+        ".github/scripts/resolver-correferencia.mjs",
+        "index.html",
+        "tests/test_auxiliary_protocols.py"
       ],
       "relations": [
         "title->protocol-update-integrity",
