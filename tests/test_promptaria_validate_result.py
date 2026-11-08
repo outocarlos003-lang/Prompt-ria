@@ -7,8 +7,41 @@ class PromptariaResultValidationTests(unittest.TestCase):
     def valid_result(self):
         return {
             "schema_version": 2,
-            "mandatory_components": [{"found": True}, {"found": True}, {"found": True}],
+            "mandatory_components": [
+                {"id": "functional-correference-architecture", "found": True,
+                 "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
+                 "category": "continuous_automation"},
+                {"id": "master-activation", "found": True,
+                 "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+                 "category": "continuous_automation"},
+                {"id": "github-operational", "found": True,
+                 "path": "instruments/acione-a-promptaria-pelo-github.md",
+                 "category": "recoverable_on_demand"},
+            ],
             "missing_mandatory_components": [],
+            "preconfiguration": {
+                "complete": True,
+                "mandatory_component_ids": [
+                    "functional-correference-architecture", "master-activation", "github-operational"
+                ],
+                "continuous_context_ids": [
+                    "functional-correference-architecture", "master-activation"
+                ],
+                "continuous_context": [
+                    {"id": "functional-correference-architecture", "category": "continuous_automation",
+                     "loaded_as_context": True, "title_resolvable": False, "execution_performed": False,
+                     "content": "# Arquitetura\n"},
+                    {"id": "master-activation", "category": "continuous_automation",
+                     "loaded_as_context": True, "title_resolvable": False, "execution_performed": False,
+                     "content": "# Protocolo\n"},
+                ],
+                "continuous_context_complete": True,
+                "fixed_operational_component": {
+                    "id": "github-operational", "category": "recoverable_on_demand",
+                    "path": "instruments/acione-a-promptaria-pelo-github.md",
+                    "execution_performed": False, "content": "# GitHub\n"
+                },
+            },
             "matched_instruments": [
                 {"content_recovered": True, "activation_status": "recognized_not_executed"},
                 {"content_recovered": True, "activation_status": "included_in_plan_not_executed"},

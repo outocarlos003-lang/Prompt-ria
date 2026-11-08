@@ -16,6 +16,22 @@ python scripts/promptaria_preflight.py \
 
 O JSON de entrada usa `request` como texto da demanda e pode incluir `destination`. O plano inclui todos os instrumentos encontrados, evidências da correspondência, colisões, status de pré-autorização e declaração explícita de que nenhuma operação foi executada.
 
+## Contrato executável dos três componentes-base
+
+O resolvedor de produção usa os IDs e caminhos canônicos de config/instrument-registry.json; não deriva os componentes-base do conjunto de instrumentos recuperáveis por título. A composição obrigatória é:
+
+| ID | Caminho | Categoria | Participação |
+|---|---|---|---|
+| functional-correference-architecture | instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md | continuous_automation | Contexto contínuo |
+| master-activation | instruments/protocolo-mestre-acionamento-automatico.md | continuous_automation | Contexto contínuo |
+| github-operational | instruments/acione-a-promptaria-pelo-github.md | recoverable_on_demand | Componente operacional fixo |
+
+Os dois primeiros são carregados em preconfiguration.continuous_context, com conteúdo integral, identidade, caminho, categoria e marcação explícita de que não são resolvidos por título nem executados. O terceiro é carregado em preconfiguration.fixed_operational_component; sua presença fixa no plano não altera sua categoria recuperável nem autoriza execução.
+
+O resolvedor verifica, antes de declarar a pré-configuração completa: ID registrado, caminho canônico exato, categoria esperada, activation.enabled=true, visibilidade exigida para o componente recuperável, existência do arquivo e correspondência do H1 com o título canônico. Todos os instrumentos habilitados em continuous_automation também precisam estar presentes e coerentes para compor o contexto contínuo.
+
+Qualquer ausência, desativação, divergência de caminho ou divergência entre H1 e registro é reportada em missing_mandatory_components; nesse caso, preconfiguration.complete=false e o resultado recebe estado incompleto. O validador rejeita esse artefato. A recuperação adicional continua cumulativa e restrita a recoverable_on_demand; carregar contexto contínuo não transforma um instrumento em recuperável por título. Nenhuma inclusão no plano executa o conteúdo nem autoriza efeitos colaterais.
+
 ## Regra de pré-autorização
 
 A presença conjunta de um protocolo-mestre e de pelo menos um instrumento inequivocamente identificado pode participar da pré-autorização **somente** quando a solicitação também contém intenção explícita de escrita e um destino relativo dentro de `artifacts/`. Uma menção isolada não é autorização. Colisões de identidade, caminhos fora do escopo e operações sem destino válido bloqueiam a pré-autorização.
