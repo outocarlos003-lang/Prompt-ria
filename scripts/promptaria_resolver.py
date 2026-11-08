@@ -53,7 +53,7 @@ def read_instruments(root: Path) -> list[dict]:
             if isinstance(item, dict) and isinstance(item.get("activation"), dict)
             and item["activation"].get("enabled") is True
         }
-    for path in sorted(root.rglob("*.md")):
+    for path in sorted(root.glob("*.md")):
         repo_path = path.relative_to(root.parent).as_posix()
         entry = registry_by_path.get(repo_path, {})
         active = enabled_paths is None or repo_path in enabled_paths
@@ -72,6 +72,30 @@ def read_instruments(root: Path) -> list[dict]:
                 "normalized_aliases": [normalize(alias) for alias in entry.get("aliases", []) if isinstance(alias, str) and normalize(alias)],
                 "active": active,
             })
+    auxiliary_registry_path = root.parent / "auxiliary-protocols" / "registry.json"
+    if auxiliary_registry_path.is_file():
+        auxiliary_registry = json.loads(auxiliary_registry_path.read_text(encoding="utf-8"))
+        for entry in auxiliary_registry.get("instruments", []):
+            if not isinstance(entry, dict) or not isinstance(entry.get("path"), str):
+                continue
+            auxiliary_path = root.parent / entry["path"]
+            if not auxiliary_path.is_file():
+                continue
+            text = auxiliary_path.read_text(encoding="utf-8")
+            match = re.search(r"(?m)^#\s+(.+?)\s*$", text)
+            if not match:
+                continue
+            title = match.group(1).strip()
+            aliases = entry.get("aliases", []) if isinstance(entry.get("aliases", []), list) else []
+            items.append({
+                "id": entry.get("id"), "title": title,
+                "path": auxiliary_path.as_posix(), "repository_path": entry["path"],
+                "aliases": aliases, "content": text,
+                "normalized_title": normalize(title),
+                "normalized_aliases": [normalize(alias) for alias in aliases if isinstance(alias, str) and normalize(alias)],
+                "active": entry.get("activation", {}).get("enabled") is True,
+                "explicit_only": True, "membership": "auxiliary",
+            })
     return items
 
 def resolve(request: str, instruments: list[dict]) -> list[dict]:
@@ -85,7 +109,7 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     matches = []
     all_by_id = {item.get("id"): item for item in instruments if item.get("id")}
     all_by_repo_path = {item.get("repository_path"): item for item in instruments if item.get("repository_path")}
-    active_catalog = [item for item in instruments if item.get("active", True) and item.get("normalized_title")]
+    active_catalog = [item for item in instruments if item.get("active", True) and not item.get("explicit_only", False) and item.get("normalized_title")]
 
     def make_match(item, identity, start, end, *, ambiguous=False, diverse=False, disabled=False):
         if disabled:
@@ -127,12 +151,21 @@ def resolve(request: str, instruments: list[dict]) -> list[dict]:
     explicit_selectors = []
     for match in re.finditer(r"(?i)\binstrument_id\s*:\s*([a-z0-9][a-z0-9._-]*)", request):
         explicit_selectors.append(("id", match.group(1), "matched_by_id", match.start(), match.end()))
-    for match in re.finditer(r"(?i)\binstrument_path\s*:\s*(instruments/[A-Za-z0-9._/-]+)", request):
+    for match in re.finditer(r"(?i)\binstrument_path\s*:\s*((?:instruments|auxiliary-protocols)/[A-Za-z0-9._/-]+)", request):
         explicit_selectors.append(("path", match.group(1).rstrip(".,;:!?"), "matched_by_path", match.start(), match.end()))
+    for match in re.finditer(r"(?im)^\s*instrument_title\s*:\s*(.+?)\s*$", request):
+        explicit_selectors.append(("title", match.group(1).strip(), "matched_by_explicit_title", match.start(), match.end()))
+    if normalize(request) and any(item.get("explicit_only") and normalize(request) == item.get("normalized_title") for item in instruments):
+        explicit_selectors.append(("title", request.strip(), "matched_by_explicit_title", 0, len(request)))
     explicit_item_ids = set()
     explicit_item_paths = set()
     for kind, value, identity, start, end in explicit_selectors:
-        item = all_by_id.get(value) if kind == "id" else all_by_repo_path.get(value)
+        if kind == "id":
+            item = all_by_id.get(value)
+        elif kind == "path":
+            item = all_by_repo_path.get(value)
+        else:
+            item = next((candidate for candidate in instruments if candidate.get("explicit_only") and normalize(candidate.get("title", "")) == normalize(value)), None)
         if item is None:
             matches.append({
                 "id": value if kind == "id" else None,
@@ -323,24 +356,6 @@ def main() -> None:
         })
         selected_paths.add(correferencia['path'])
 
-    # Always preload the update-integrity protocol for future demands. It is
-    # included as a planning dependency, not executed implicitly, and does not
-    # alter the three legacy mandatory components or their result contract.
-    update_protocol_title = 'PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA'
-    update_protocol_norm = normalize(update_protocol_title)
-    update_protocol = next((x for x in instruments if x['normalized_title'] == update_protocol_norm), None)
-    if update_protocol is not None and update_protocol.get('active', True) and update_protocol['path'] not in selected_paths:
-        matches.append({
-            'title': update_protocol['title'],
-            'path': update_protocol['path'],
-            'identity': 'mandatory_update_integrity_preconfiguration',
-            'content_recovered': True,
-            'function_status': 'content_available_for_review',
-            'activation_status': 'included_in_plan_not_executed',
-            'exception_status': 'requires_contextual_review'
-        })
-        selected_paths.add(update_protocol['path'])
-
     # Always include the Nocturna instrument as a future-plan dependency.
     # This is discovery/planning only: it does not claim access to the external
     # Nocturna repository and does not execute the instrument.
@@ -407,7 +422,7 @@ def main() -> None:
             'no_arbitrary_cardinality_limit': True,
             'substring_only_matches': False,
             'identity_precedence': ['explicit_instrument_id', 'explicit_repository_path', 'unique_normalized_title', 'unique_normalized_alias'],
-            'explicit_selectors': ['instrument_id', 'instrument_path'],
+            'explicit_selectors': ['instrument_id', 'instrument_path', 'instrument_title'],
             'aliases_resolve_only_when_unique': True,
             'ambiguous_title_or_alias': 'do_not_activate',
             'disabled_instruments': 'never_auto_enabled',
