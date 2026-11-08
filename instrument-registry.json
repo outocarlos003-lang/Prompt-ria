@@ -14,8 +14,8 @@
       "ui",
       "activation"
     ],
-    "matching": "Canonical title; only category=recoverable_on_demand with activation.enabled=true and ui.visible=true is functionally resolvable by explicit title; category=continuous_automation is applied as default preconfiguration context.",
-    "selection": "Cumulative across explicitly referenced recoverable_on_demand instruments; continuous_automation instruments are included in every request's preconfiguration context; inventory alone never authorizes side effects."
+    "matching": "Only category=recoverable_on_demand with activation.enabled=true and ui.visible=true is individually resolvable by explicit title. Enabled continuous_automation instruments are loaded as internal preconfiguration context and are not individually listed in the public catalog.",
+    "selection": "Cumulative across explicitly referenced recoverable_on_demand instruments; all enabled continuous_automation instruments are included in every request's preconfiguration context; paired phases with distinct IDs may share a conceptual title only when the continuous phase is excluded from title resolution; inventory alone never authorizes side effects."
   },
   "template_id": "promptaria-instrument-template",
   "instruments": [
@@ -75,7 +75,11 @@
         "preservar correferência, aliases e rastreabilidade entre segmentos",
         "operacionalizar as funções compartilhadas pela automação de correspondência por título e pelo protocolo-mestre sem substituir seus papéis próprios",
         "interconectar o nó operacional canônico aos segmentos de correspondência, protocolo-mestre e pré-configuração padrão",
-        "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência"
+        "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência",
+        "pré-configurar continuamente a interface entre demanda, instrumentos e GitHub",
+        "carregar o contrato operacional como contexto interno em toda demanda",
+        "preparar a fase recuperável complementar sem ocupar seu lugar no catálogo público",
+        "manter interconexão entre pré-configuração contínua e futuro instrumento recuperável de mesmo título"
       ],
       "files": [
         "scripts/promptaria_preflight.py",
@@ -84,7 +88,7 @@
         "config/instrument-registry.json",
         "config/instrument-catalog.json",
         "tests/manifest.json",
-        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
         "instruments/protocolo-mestre-acionamento-automatico.md",
         "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
         "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
@@ -127,7 +131,13 @@
         "instrument-registry.github-operational->master-activation",
         "instrument-registry.github-operational->standard-preconfiguration",
         "functional-correference-architecture->master-activation",
-        "master-activation->functional-correference-architecture"
+        "master-activation->functional-correference-architecture",
+        "github-operational-preconfiguration->github-operational-recoverable",
+        "github-operational-recoverable->github-operational-preconfiguration",
+        "continuous-preconfiguration->demand-routing",
+        "demand-routing->recoverable-github-instrument",
+        "github-operational-preconfiguration->nocturna-architecture",
+        "nocturna-architecture->github-operational-preconfiguration"
       ],
       "operations": [
         "inspect",
@@ -143,19 +153,22 @@
         "trace-cross-segment",
         "resolve-cross-segment-identity",
         "preserve-functional-contract",
-        "audit-bidirectional-trace"
+        "audit-bidirectional-trace",
+        "load-as-continuous-context",
+        "prepare-recoverable-counterpart",
+        "coordinate-complementary-phases"
       ],
       "ui": {
         "node_id": "instrument:github-operational",
-        "visible": true,
+        "visible": false,
         "featured": false
       },
       "activation": {
         "enabled": true,
         "status": "active",
-        "mode": "on_demand_title"
+        "mode": "continuous_preconfiguration"
       },
-      "category": "recoverable_on_demand"
+      "category": "continuous_automation"
     },
     {
       "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
@@ -262,7 +275,7 @@
       ],
       "files": [
         "instruments/protocolo-mestre-acionamento-automatico.md",
-        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
         "config/instrument-registry.json",
         "config/instrument-catalog.json",
         "tests/manifest.json",
@@ -289,8 +302,8 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published",
+        "enabled": true,
+        "status": "active",
         "mode": "continuous_preconfiguration"
       },
       "category": "continuous_automation"
@@ -332,8 +345,8 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published",
+        "enabled": true,
+        "status": "active",
         "mode": "continuous_preconfiguration"
       },
       "category": "continuous_automation"
@@ -343,14 +356,14 @@
       "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
       "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
       "aliases": [
+        "arquitetura unificada",
+        "coordinator",
         "correferência funcional automática",
         "correspondência por título",
         "instrumento coordenador unificado",
         "automação de correspondência por título",
         "arquitetura coordenadora de múltiplos instrumentos",
-        "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS",
-        "coordinator",
-        "arquitetura unificada"
+        "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS"
       ],
       "keywords": [
         "título",
@@ -367,9 +380,16 @@
         "rastreabilidade intersegmentos",
         "instrument:functional-correference-architecture",
         "github-operational",
-        "master-activation"
+        "master-activation",
+        "arquitetura",
+        "coordenação",
+        "integração",
+        "instrumentos"
       ],
       "functions": [
+        "coordenar instrumentos",
+        "preservar relações",
+        "integrar fluxos",
         "resolver títulos",
         "correferenciar funções",
         "selecionar múltiplos instrumentos",
@@ -378,22 +398,26 @@
         "articular o instrumento fixo com o protocolo-mestre e a pré-configuração padrão",
         "processar cumulativamente múltiplos títulos sem limite numérico arbitrário",
         "manter rastreabilidade entre título, ID, nó, fonte, função, operação e resultado",
-        "distinguir identificação, recuperação, acionamento, execução e validação",
-        "coordenar instrumentos",
-        "preservar relações",
-        "integrar fluxos"
+        "distinguir identificação, recuperação, acionamento, execução e validação"
       ],
       "files": [
-        "docs/legacy/arquitetura-unificada-correferencia-funcional-automatica.md",
+        "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md",
         "config/instrument-registry.json",
         "config/instrument-catalog.json",
         "tests/manifest.json",
         "instruments/protocolo-mestre-acionamento-automatico.md",
         "instruments/acione-a-promptaria-pelo-github.md",
         "docs/preconfiguracao-protocolo-mestre-e-correferencia.md",
-        "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md"
+        "config/instrument-execution-map.json",
+        "scripts/promptaria_specialized_executor.py",
+        "tests/test_promptaria_specialized_executor.py",
+        "tests/test_promptaria_execution_map.py",
+        "scripts/promptaria_context_router.py",
+        "scripts/promptaria_resolver.py"
       ],
       "relations": [
+        "functional-correference-architecture->context-router",
+        "functional-correference-architecture->resolver",
         "title->instrument-id",
         "instrument-id->function",
         "instrument-id->file",
@@ -414,31 +438,38 @@
         "functional-correference-architecture->canonical-full-text",
         "canonical-full-text->master-activation",
         "canonical-full-text->standard-preconfiguration",
-        "functional-correference-architecture->context-router",
-        "functional-correference-architecture->resolver",
         "legacy-id:coordinator->functional-correference-architecture",
-        "instrument:coordinator->instrument:functional-correference-architecture"
+        "instrument:coordinator->instrument:functional-correference-architecture",
+        "phase:title-resolution->coordination:functional-correference-architecture",
+        "coordination:functional-correference-architecture->phase:bundle-coordination",
+        "phase:bundle-coordination->coordination:functional-correference-architecture",
+        "coordination:functional-correference-architecture->phase:title-resolution"
       ],
       "operations": [
+        "coordinate",
+        "integrate",
+        "validate",
         "match",
         "resolve",
-        "coordinate",
         "recover-full-content",
         "preserve-instrument-identity",
         "coordinate-cumulative-instruments",
         "trace-cross-segment",
-        "validate-integrity",
-        "integrate",
-        "validate"
+        "validate-integrity"
       ],
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
-        "featured": false
+        "featured": false,
+        "phase_nodes": [
+          "phase:title-resolution",
+          "coordination:functional-correference-architecture",
+          "phase:bundle-coordination"
+        ]
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published",
+        "enabled": true,
+        "status": "active",
         "mode": "continuous_preconfiguration"
       },
       "category": "continuous_automation"
@@ -480,8 +511,8 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published",
+        "enabled": true,
+        "status": "active",
         "mode": "continuous_preconfiguration"
       },
       "category": "continuous_automation"
@@ -523,8 +554,8 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published",
+        "enabled": true,
+        "status": "active",
         "mode": "continuous_preconfiguration"
       },
       "category": "continuous_automation"
@@ -584,11 +615,18 @@
         "featured": false
       },
       "activation": {
-        "enabled": false,
-        "status": "prepared_not_published",
+        "enabled": true,
+        "status": "active",
         "mode": "continuous_preconfiguration"
       },
       "category": "continuous_automation"
     }
-  ]
+  ],
+  "activation_policy": {
+    "mode": "two_class_activation",
+    "principle": "All registered instruments are enabled, but activation mode determines participation.",
+    "on_demand_title_resolution": "Only recoverable_on_demand instruments with ui.visible=true are recovered by explicit title or alias reference.",
+    "continuous_preconfiguration": "continuous_automation instruments are included by the request router in every demand's preconfiguration context; they are not listed in the public site catalog and are not independently recovered by title.",
+    "safety": "Activation and preconfiguration do not authorize external side effects or repository writes."
+  }
 }
