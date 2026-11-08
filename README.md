@@ -187,7 +187,7 @@ O registry é a autoridade para acionamento por título. A classificação semâ
 
 ## Manutenção da documentação
 
-Não há atualmente um workflow ou script versionado de sincronização automática do README. As descrições e o inventário abaixo foram reconciliados manualmente com a árvore atual do repositório. Ao adicionar ou remover arquivos, atualize esta documentação na mesma alteração e valide as referências de caminho.
+O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seções de inventário do README com os diretórios versionados. O workflow de classificação de novos instrumentos executa essa sincronização antes de publicar alterações de metadados e inclui o README no mesmo commit. Para outras alterações estruturais, execute `python scripts/sync_readme_inventory.py`; use `--check` para verificar se o inventário está atualizado sem conservar alterações.
 
 ## Inventário versionado — conferido com a árvore de main
 
