@@ -323,23 +323,8 @@ def main() -> None:
         })
         selected_paths.add(correferencia['path'])
 
-    # Always preload the update-integrity protocol for future demands. It is
-    # included as a planning dependency, not executed implicitly, and does not
-    # alter the three legacy mandatory components or their result contract.
-    update_protocol_title = 'PROTOCOLO OPERACIONAL DE ATUALIZAÇÃO, REINTEGRAÇÃO E PRESERVAÇÃO FUNCIONAL DO ACERVO DE INSTRUMENTOS PROMPTUAIS DO PROMPTÁRIA'
-    update_protocol_norm = normalize(update_protocol_title)
-    update_protocol = next((x for x in instruments if x['normalized_title'] == update_protocol_norm), None)
-    if update_protocol is not None and update_protocol.get('active', True) and update_protocol['path'] not in selected_paths:
-        matches.append({
-            'title': update_protocol['title'],
-            'path': update_protocol['path'],
-            'identity': 'mandatory_update_integrity_preconfiguration',
-            'content_recovered': True,
-            'function_status': 'content_available_for_review',
-            'activation_status': 'included_in_plan_not_executed',
-            'exception_status': 'requires_contextual_review'
-        })
-        selected_paths.add(update_protocol['path'])
+    # Auxiliary protocols are never preloaded into operational plans.
+    # Recover them only through scripts/resolve_auxiliary_protocol.py.
 
     # Always include the Nocturna instrument as a future-plan dependency.
     # This is discovery/planning only: it does not claim access to the external
