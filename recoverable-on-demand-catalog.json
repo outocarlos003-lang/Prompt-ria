@@ -140,6 +140,7 @@
         "plan"
       ],
       "category": "recoverable_on_demand",
+      "classification_basis": null,
       "ui": {
         "node_id": "instrument:nocturna-arquitetura-necessidade-identidade-sistemica",
         "visible": true,
