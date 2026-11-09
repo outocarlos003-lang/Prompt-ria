@@ -195,9 +195,10 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 
 ## Inventário versionado — conferido com a árvore de main
 
-### Instrumentos operacionais (11)
+### Instrumentos operacionais (12)
 
 - `instruments/acione-a-promptaria-pelo-github.md`
+- `instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao-espelho.md`
 - `instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`
 - `instruments/github-operational-demand-mirror.md`
 - `instruments/github-operational-demand.md`
