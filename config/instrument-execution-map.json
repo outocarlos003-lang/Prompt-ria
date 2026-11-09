@@ -227,6 +227,27 @@
       "side_effects_authorized_by_title": false,
       "notes": "Contraparte independente selecionável exclusivamente sob demanda; recupera fontes, prepara aplicação contextual e valida o resultado. Não autoriza efeitos externos.",
       "specialized_handler": "handler_github_operational_demand"
+    },
+    {
+      "id": "functional-correference-architecture-recoverable",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao-espelho.md",
+      "resolution_status": "resolved_by_canonical_identity",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan",
+        "coordinate_instruments",
+        "contextualize_demand",
+        "parameterize_application",
+        "resolve_origin_and_destination",
+        "validate_result",
+        "trace_operation"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "planning_only",
+      "side_effects_authorized_by_title": false,
+      "notes": "Contraparte recuperável sob demanda da arquitetura contínua functional-correference-architecture. Mantém título conceitual compartilhado, mas é a única fase visível e resolvível pelo catálogo público. Não substitui nem funde o coordenador contínuo; o título não autoriza efeitos externos."
     }
   ]
 }

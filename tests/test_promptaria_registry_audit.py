@@ -45,6 +45,44 @@ class RegistryAuditTests(unittest.TestCase):
             self.assertEqual(result["instruments"][0]["classification"], "partially_automated")
             self.assertEqual(result["instruments"][1]["classification"], "without_active_executor")
 
+
+    def test_allows_same_title_for_hidden_continuous_and_visible_recoverable_phases(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "config").mkdir()
+            (root / "instruments").mkdir()
+            title = "Arquitetura Unificada de Acionamento"
+            (root / "instruments/continuous.md").write_text(f"# {title}\\n", encoding="utf-8")
+            (root / "instruments/recoverable.md").write_text(f"# {title}\\n", encoding="utf-8")
+            entries = []
+            for ident, path, category, visible in (
+                ("continuous-phase", "instruments/continuous.md", "continuous_automation", False),
+                ("recoverable-phase", "instruments/recoverable.md", "recoverable_on_demand", True),
+            ):
+                entries.append({
+                    "id": ident, "title": title, "path": path, "aliases": [],
+                    "keywords": [], "functions": ["coordinate"], "files": [path],
+                    "relations": [], "operations": ["resolve"],
+                    "ui": {"node_id": f"instrument:{ident}", "visible": visible},
+                    "activation": {"enabled": True, "status": "active"},
+                    "category": category,
+                })
+            p = root / "config/instrument-registry.json"
+            p.write_text(json.dumps(registry_payload(entries)), encoding="utf-8")
+            result = audit(p, root)
+            self.assertTrue(result["valid"], result["errors"])
+            collision = next(
+                item for item in result["normalized_title_collisions"]
+                if item["normalized_term"] == normalize(title)
+            )
+            self.assertEqual(collision["severity"], "informational")
+            self.assertEqual(collision["public_enabled_match_ids"], ["recoverable-phase"])
+            self.assertEqual(collision["internal_enabled_match_ids"], ["continuous-phase"])
+            self.assertEqual(
+                collision["resolution"],
+                "unique_public_recoverable_match_internal_phase_excluded",
+            )
+
     def test_rejects_duplicate_ids_and_unsafe_paths(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); (root / "config").mkdir()
@@ -77,7 +115,7 @@ class RegistryAuditTests(unittest.TestCase):
             for ident, title in (("a", "Instrumento Alfa"), ("b", "Instrumento Beta")):
                 entries.append({"id":ident,"title":title,"path":f"instruments/{ident}.md",
                                 "aliases":["mesmo alias"],"keywords":[],"functions":["x"],"files":[],
-                                "relations":[],"operations":["resolve"],"ui":{"node_id":f"instrument:{ident}"},
+                                "relations":[],"operations":["resolve"],"ui":{"node_id":f"instrument:{ident}","visible":True},
                                 "activation":{"enabled":True,"status":"active"}})
             p = root / "config/instrument-registry.json"
             p.write_text(json.dumps(registry_payload(entries)), encoding="utf-8")

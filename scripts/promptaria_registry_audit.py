@@ -164,25 +164,50 @@ def audit(registry_path: Path, root: Path) -> dict:
             "classification": "partially_automated" if enabled else "without_active_executor",
         })
 
-    enabled_by_id = {item["id"]: item["enabled"] for item in instruments}
+    registry_by_id = {
+        item.get("id"): item for item in registry["instruments"]
+        if isinstance(item, dict) and isinstance(item.get("id"), str)
+    }
     collisions = []
     for term, matches in sorted(terms.items()):
         unique_ids = {m["id"] for m in matches if m.get("id")}
         if len(unique_ids) <= 1:
             continue
-        enabled_matches = sorted(ident for ident in unique_ids if enabled_by_id.get(ident, False))
+        enabled_matches = sorted(ident for ident in unique_ids if next(
+            (row["enabled"] for row in instruments if row["id"] == ident), False
+        ))
+        public_enabled_matches = sorted(
+            ident for ident in enabled_matches
+            if registry_by_id.get(ident, {}).get("category") in (None, "recoverable_on_demand")
+            and registry_by_id.get(ident, {}).get("ui", {}).get("visible", True) is True
+        )
+        internal_enabled_matches = sorted(set(enabled_matches) - set(public_enabled_matches))
+        if len(public_enabled_matches) > 1:
+            severity = "blocking"
+            resolution = "explicit_id_or_path_required"
+        elif len(public_enabled_matches) == 1 and internal_enabled_matches:
+            severity = "informational"
+            resolution = "unique_public_recoverable_match_internal_phase_excluded"
+        elif len(public_enabled_matches) == 1:
+            severity = "warning"
+            resolution = "unique_public_recoverable_match"
+        else:
+            severity = "warning"
+            resolution = "no_unique_public_recoverable_match"
         collision = {
             "normalized_term": term,
             "matches": matches,
             "enabled_match_ids": enabled_matches,
-            "severity": "blocking" if len(enabled_matches) > 1 else "warning",
-            "resolution": "explicit_id_or_path_required" if len(enabled_matches) > 1 else "unique_enabled_match_only",
+            "public_enabled_match_ids": public_enabled_matches,
+            "internal_enabled_match_ids": internal_enabled_matches,
+            "severity": severity,
+            "resolution": resolution,
         }
         collisions.append(collision)
-        if collision["severity"] == "blocking":
-            errors.append("Ambiguous normalized title/alias among enabled instruments: " + term)
-        else:
-            warnings.append("Normalized title/alias collision includes disabled entries: " + term)
+        if severity == "blocking":
+            errors.append("Ambiguous normalized title/alias among public enabled instruments: " + term)
+        elif severity == "warning":
+            warnings.append("Normalized title/alias collision has no unique public recoverable match: " + term)
 
     # Physical inventory is authoritative for preventing orphaned definitions.
     physical = {
@@ -229,8 +254,8 @@ def audit(registry_path: Path, root: Path) -> dict:
         "resolution_index": {
             "precedence": ["explicit_instrument_id", "explicit_repository_path", "unique_normalized_title", "unique_normalized_alias"],
             "normalization": "case-insensitive; accents and punctuation folded; whitespace and hyphens normalized",
-            "title_rule": "a canonical title resolves to exactly one enabled instrument or resolution is blocked",
-            "collision_rule": "two enabled instruments sharing a normalized title/alias are never auto-activated",
+            "title_rule": "a canonical title resolves only among enabled visible recoverable_on_demand entries; internal continuous phases are excluded",
+            "collision_rule": "two public enabled recoverable instruments sharing a normalized title/alias block resolution; a hidden continuous phase may share the conceptual title with exactly one visible recoverable counterpart",
             "trace_fields": ["id", "title", "path", "matched_term", "match_kind", "normalized_term"],
             "disabled_rule": "disabled entries never become active through title matching",
         },
