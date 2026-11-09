@@ -155,9 +155,13 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         )
         terms = [("title", item.get("title", ""))]
         terms.extend(("alias", alias) for alias in registry_item.get("aliases", []) if isinstance(alias, str))
+        paired_recoverable = (
+            registry_item.get("category") == "recoverable_on_demand"
+            and registry_item.get("classification_basis") == "paired_phase_recoverable_counterpart"
+        )
         terms = [
             (kind, value) for kind, value in terms
-            if normalize(value) not in continuous_terms
+            if normalize(value) not in continuous_terms or paired_recoverable
         ]
         matched_terms = []
         for kind, value in terms:
