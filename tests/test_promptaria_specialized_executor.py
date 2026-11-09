@@ -386,7 +386,7 @@ class SpecializedExecutorTests(unittest.TestCase):
             "functional-correference-architecture-recoverable"
         ])
         self.assertEqual(specialized.resolve_ids(
-            canonical["functional-correference-architecture"]["title"], canonical
+            "functional-correference-architecture", canonical
         ), [])
 
     def test_continuous_automation_instrument_is_context_only_not_executable(self):
