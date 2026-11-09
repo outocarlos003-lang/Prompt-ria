@@ -205,7 +205,7 @@
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
       "notes": "Instância preexistente transferida efetivamente para continuous_automation; não é resolvida por título nem exibida no catálogo recuperável. Encaminha sem acionar automaticamente a contraparte.",
-      "specialized_handler": "handler_github_operational_demand_mirror_continuous"
+      "specialized_handler": "handler_github_operational_demand_mirror"
     },
     {
       "id": "github-operational-demand",
