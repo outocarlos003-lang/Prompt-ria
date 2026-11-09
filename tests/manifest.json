@@ -126,7 +126,7 @@
         "fase recuperável de inserção recuperação e aplicação"
       ],
       "category": "recoverable_on_demand",
-      "classification_basis": "explicit_new_counterpart"
+      "classification_basis": "default_title_rule"
     }
   ]
 }
