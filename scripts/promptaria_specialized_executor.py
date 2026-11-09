@@ -145,7 +145,14 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         if item_id not in active_items:
             continue
         registry_item = active_items[item_id]
-        explicit = item_id in explicit_ids
+        explicit = any(
+            re.search(
+                r"(?<![\\w-])" + re.escape(value) + r"(?![\\w-])",
+                request_text,
+                flags=re.IGNORECASE | re.UNICODE,
+            )
+            for value in (item_id, item["path"])
+        )
         terms = [("title", item.get("title", ""))]
         terms.extend(("alias", alias) for alias in registry_item.get("aliases", []) if isinstance(alias, str))
         terms = [
