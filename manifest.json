@@ -115,6 +115,18 @@
       ],
       "category": "recoverable_on_demand",
       "classification_basis": "default_title_rule"
+    },
+    {
+      "id": "github-operational-demand",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — ACIONAMENTO, RECUPERAÇÃO, PERSONALIZAÇÃO E EXECUÇÃO DA PROMPTÁRIA PELO GITHUB",
+      "path": "instruments/github-operational-demand.md",
+      "aliases": [
+        "acionamento recuperável da Promptária pelo GitHub",
+        "aplicação sob demanda pelo GitHub",
+        "fase recuperável de inserção recuperação e aplicação"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "default_title_rule"
     }
   ]
 }
