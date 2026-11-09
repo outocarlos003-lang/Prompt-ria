@@ -131,13 +131,27 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         and item.get("category") in (None, "recoverable_on_demand")
         and item.get("ui", {}).get("visible") is True
     }
+    continuous_terms = {
+        normalize(term)
+        for item in registry_items.values()
+        if item.get("activation", {}).get("enabled") is True
+        and item.get("category") == "continuous_automation"
+        for term in [item.get("title", ""), *item.get("aliases", [])]
+        if isinstance(term, str) and normalize(term)
+    }
     candidates: dict[str, list[dict[str, Any]]] = {}
+    explicit_ids: set[str] = set()
     for item_id, item in canonical.items():
         if item_id not in active_items:
             continue
         registry_item = active_items[item_id]
+        explicit = item_id in explicit_ids
         terms = [("title", item.get("title", ""))]
         terms.extend(("alias", alias) for alias in registry_item.get("aliases", []) if isinstance(alias, str))
+        terms = [
+            (kind, value) for kind, value in terms
+            if normalize(value) not in continuous_terms
+        ]
         matched_terms = []
         for kind, value in terms:
             term = normalize(value) if isinstance(value, str) else ""
@@ -153,8 +167,10 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
             ]
             if spans:
                 matched_terms.append({"kind": kind, "normalized": term, "spans": spans})
-        if matched_terms:
+        if matched_terms or explicit:
             candidates[item_id] = matched_terms
+            if explicit:
+                explicit_ids.add(item_id)
 
     # A shorter title or alias must not independently select an instrument
     # when every occurrence is contained in another instrument's longer term.
@@ -180,7 +196,7 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
             )
             if not shadowed:
                 retained.append(term)
-        if retained:
+        if retained or item_id in explicit_ids:
             filtered[item_id] = retained
 
     matches = []
