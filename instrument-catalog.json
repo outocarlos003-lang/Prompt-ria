@@ -555,6 +555,92 @@
       }
     },
     {
+      "id": "instrumento-promptual-musica-reitera-origem",
+      "path": "instruments/instrumento-promptual-a-musica-reitera-origem.md",
+      "title": "Instrumento promptual — A música reitera o que a origem contém, mas ainda não revelou",
+      "aliases": [
+        "A música reitera o que a origem contém",
+        "PROMPT-MESTRE de composição musical Nocturna",
+        "instrumento promptual de derivação lírico-musical",
+        "composição musical a partir da arquitetura da necessidade"
+      ],
+      "keywords": [
+        "composição musical",
+        "Nocturna",
+        "Lírica",
+        "prompt-mestre",
+        "derivação lírico-musical",
+        "arquitetura recursiva",
+        "necessidade",
+        "proveniência",
+        "correferência",
+        "indução fractal",
+        "ambiguidade estruturada",
+        "hermetismo",
+        "polissemia",
+        "surrealismo",
+        "emo core confessional",
+        "alternative rock",
+        "slowcore",
+        "pop punk",
+        "emo melódico",
+        "dark romanticism",
+        "duas guitarras estéreo",
+        "progressão emocional",
+        "catarse",
+        "letra completa",
+        "arranjo musical"
+      ],
+      "functions": [
+        "reconstruir a necessidade que vincula as fontes documentais indicadas na demanda",
+        "distinguir manifestação explícita, inferência legítima, hipótese admissível e possibilidade aberta",
+        "inventariar proveniência, dependências, referências e correferências sem inventar fontes inacessíveis",
+        "selecionar fundamentos necessários e suficientes com potência generativa",
+        "transformar capacidades estruturais em expressão lírica e musical original",
+        "encadear objeções retóricas em progressão causal e emocional",
+        "integrar hermetismo, ambiguidade, polissemia e deslocamento surrealista com inteligibilidade",
+        "especificar identidade sonora, instrumentação, arranjo, dinâmica, voz e produção",
+        "entregar síntese arquitetônica, letra completa e indicações musicais em documento reutilizável no chat",
+        "preservar a distinção entre fontes de análise e destino de criação explicitamente determinado"
+      ],
+      "relations": [
+        "demand->instrumento-promptual-musica-reitera-origem",
+        "source-materials->provenance-and-structural-reconstruction",
+        "structural-reconstruction->generative-selection",
+        "generative-selection->lyrical-musical-derivation",
+        "causal-objections->emotional-progression",
+        "musical-motifs->transformed-recurrence",
+        "recoverable-on-demand->explicit-title-resolution",
+        "chat->composition-delivery"
+      ],
+      "operations": [
+        "resolve-title",
+        "recover-full-source",
+        "inventory",
+        "reconstruct",
+        "correfer",
+        "select-foundations",
+        "derive-lyrics",
+        "compose",
+        "arrange",
+        "specify-production",
+        "validate-provenance",
+        "deliver-reusable-document"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "default_title_rule",
+      "ui": {
+        "node_id": "instrument:instrumento-promptual-musica-reitera-origem",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "on_demand_title"
+      }
+    },
+    {
       "id": "promptaria-instrument-template",
       "path": "instruments/modelo-instrumento-promptual-correferencia.md",
       "title": "MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA",
