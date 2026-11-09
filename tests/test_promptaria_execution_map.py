@@ -40,7 +40,10 @@ class PromptariaExecutionMapTests(unittest.TestCase):
         }
         specialized = ROOT / "scripts" / "promptaria_specialized_executor.py"
         self.assertTrue(specialized.is_file())
-        self.assertEqual(set(handlers), {item["id"] for item in self.execution_map["instruments"]})
+        mapped = {item["id"]: item for item in self.execution_map["instruments"]}
+        planning_only = {item_id for item_id, item in mapped.items() if item.get("specialized_execution_status") == "planning_only"}
+        self.assertEqual(set(mapped), set(handlers) | planning_only)
+        self.assertEqual(planning_only, {"functional-correference-architecture-recoverable"})
         unified = next(item for item in self.execution_map["instruments"] if item["id"] == "functional-correference-architecture")
         self.assertEqual(unified["legacy_ids"], ["coordinator"])
         self.assertEqual(unified["phase_handlers"], ["phase_title_resolution", "phase_bundle_coordination"])
@@ -48,9 +51,13 @@ class PromptariaExecutionMapTests(unittest.TestCase):
         for item in self.execution_map["instruments"]:
             with self.subTest(instrument=item["id"]):
                 self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")
+                self.assertIs(item["side_effects_authorized_by_title"], False)
+                if item["specialized_execution_status"] == "planning_only":
+                    self.assertEqual(item["id"], "functional-correference-architecture-recoverable")
+                    self.assertNotIn("specialized_handler", item)
+                    continue
                 self.assertEqual(item["specialized_execution_status"], "implemented")
                 self.assertEqual(item["specialized_handler"], handlers[item["id"]])
-                self.assertIs(item["side_effects_authorized_by_title"], False)
 
     def test_shared_executors_exist_and_generic_writer_is_narrowly_scoped(self):
         resolver = ROOT / self.execution_map["resolution_executor"]
