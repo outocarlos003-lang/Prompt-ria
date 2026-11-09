@@ -391,7 +391,7 @@
         "trace-continuous-reference"
       ],
       "category": "recoverable_on_demand",
-      "classification_basis": "explicit_new_counterpart",
+      "classification_basis": "default_title_rule",
       "ui": {
         "node_id": "instrument:github-operational-demand",
         "visible": true,
