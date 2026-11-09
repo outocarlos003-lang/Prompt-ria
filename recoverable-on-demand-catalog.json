@@ -6,6 +6,73 @@
   "repository": "outocarlos003-lang/Prompt-ria",
   "instruments": [
     {
+      "id": "github-operational-demand-mirror",
+      "path": "instruments/github-operational-demand-mirror.md",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — APLICAÇÃO OPERACIONAL DA PROMPTÁRIA PELO GITHUB",
+      "aliases": [
+        "aplicação recuperável da Promptária pelo GitHub",
+        "espelho recuperável do acionamento GitHub",
+        "fase recuperável sob demanda da Promptária"
+      ],
+      "keywords": [
+        "GitHub",
+        "Promptária",
+        "recuperação sob demanda",
+        "aplicação contextual",
+        "versão espelho",
+        "demanda específica",
+        "seleção explícita",
+        "rastreabilidade",
+        "validação",
+        "correferência funcional",
+        "catálogo recuperável"
+      ],
+      "functions": [
+        "recuperar fontes integrais de instrumentos promptuais",
+        "aplicar instrumentos à demanda específica",
+        "contextualizar e parametrizar a aplicação",
+        "coordenar instrumentos preservando identidades individuais",
+        "interconectar a fase recuperável à referência contínua sem fundir configurações",
+        "validar resultados e registrar evidências",
+        "preservar autorização explícita para efeitos externos"
+      ],
+      "relations": [
+        "github-operational->github-operational-demand-mirror",
+        "github-operational-demand-mirror->github-operational",
+        "instrument:github-operational->instrument:github-operational-demand-mirror",
+        "instrument:github-operational-demand-mirror->instrument:github-operational",
+        "continuous_automation->recoverable_on_demand",
+        "explicit_selection->github-operational-demand-mirror",
+        "github-operational-demand-mirror->recover-full-source",
+        "recover-full-source->contextualized-application",
+        "contextualized-application->validated-result",
+        "authorization_gate->external_side_effects"
+      ],
+      "operations": [
+        "resolve-explicit-selection",
+        "recover-full-source",
+        "verify-source-integrity",
+        "contextualize-demand",
+        "parameterize-application",
+        "coordinate-selected-instruments",
+        "preserve-functional-differences",
+        "trace-cross-segment-operation",
+        "validate-result"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "explicit_independent_mirror_instance",
+      "ui": {
+        "node_id": "instrument:github-operational-demand-mirror",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "on_demand_title"
+      }
+    },
+    {
       "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
       "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
       "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
