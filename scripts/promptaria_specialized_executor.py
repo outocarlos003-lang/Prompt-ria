@@ -147,7 +147,7 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         registry_item = active_items[item_id]
         explicit = any(
             re.search(
-                r"(?<![\\w-])" + re.escape(value) + r"(?![\\w-])",
+                r"(?<![\w-])" + re.escape(value) + r"(?![\w-])",
                 request_text,
                 flags=re.IGNORECASE | re.UNICODE,
             )
