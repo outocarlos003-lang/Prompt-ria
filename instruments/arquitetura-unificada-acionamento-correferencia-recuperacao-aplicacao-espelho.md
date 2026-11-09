@@ -1394,4 +1394,4 @@ própria não é arbitrariamente substituída.
 
 Princípio conclusivo: recuperar corretamente, preservar a função,
 determinar o destino, executar conforme as permissões, validar o
-resultado e conservar a rastreabilidade.\n
+resultado e conservar a rastreabilidade.
