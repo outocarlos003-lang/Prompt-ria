@@ -47,7 +47,7 @@ class SpecializedExecutorTests(unittest.TestCase):
                     self.assertEqual(item["specialized_handler"], specialized.HANDLERS[instrument_id].__name__)
 
     def test_all_registered_handlers_execute_and_emit_source_evidence(self):
-        ids = ["nocturna-arquitetura-necessidade-identidade-sistemica"]
+        ids = ["nocturna-arquitetura-necessidade-identidade-sistemica", "instrumento-promptual-musica-reitera-origem"]
         result = self.execute_with_all_instruments_activated({"request": "Validar a execução especializada.", "instrument_ids": ids})
         self.assertEqual(result["execution_status"], "completed")
         self.assertEqual(result["specialized_execution_count"], len(ids))
