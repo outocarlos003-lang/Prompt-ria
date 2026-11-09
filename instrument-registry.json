@@ -790,7 +790,7 @@
         "mode": "on_demand_title"
       },
       "category": "recoverable_on_demand",
-      "classification_basis": "explicit_independent_mirror_instance"
+      "classification_basis": "default_title_rule"
     }
   ],
   "activation_policy": {

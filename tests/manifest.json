@@ -112,7 +112,9 @@
         "aplicação recuperável da Promptária pelo GitHub",
         "espelho recuperável do acionamento GitHub",
         "fase recuperável sob demanda da Promptária"
-      ]
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "default_title_rule"
     }
   ]
 }

@@ -310,7 +310,7 @@
         "validate-result"
       ],
       "category": "recoverable_on_demand",
-      "classification_basis": "explicit_independent_mirror_instance",
+      "classification_basis": "default_title_rule",
       "ui": {
         "node_id": "instrument:github-operational-demand-mirror",
         "visible": true,
