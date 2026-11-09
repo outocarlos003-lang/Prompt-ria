@@ -971,4 +971,4 @@
     "continuous_preconfiguration": "continuous_automation instruments are included by the request router in every demand's preconfiguration context; they are not listed in the public site catalog and are not independently recovered by title.",
     "safety": "Activation and preconfiguration do not authorize external side effects or repository writes."
   }
-}\n
+}
