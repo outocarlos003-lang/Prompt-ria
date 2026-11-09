@@ -47,8 +47,8 @@
       "id": "ui.search.placeholder",
       "type": "action",
       "file": "index.html",
-      "function": "pesquisa",
-      "destination": "config/instrument-catalog.json"
+      "function": "pesquisa e filtragem dos instrumentos ativos carregados do registro canônico",
+      "destination": "config/instrument-registry.json"
     },
     {
       "id": "ui.visual.core",
@@ -84,6 +84,34 @@
       "file": "index.html",
       "function": "copia o conteúdo integral do instrumento ativo aberto",
       "destination": "clipboard"
+    },
+    {
+      "id": "registry.instruments",
+      "type": "repository_node",
+      "file": "config/instrument-registry.json",
+      "function": "registro canônico de identidade, metadados e ativação consumido pela interface",
+      "destination": "instruments/*.md"
+    },
+    {
+      "id": "instrument.github-operational.continuous",
+      "type": "instrument",
+      "file": "instruments/acione-a-promptaria-pelo-github.md",
+      "function": "pré-configuração interna contínua, orientação, envelope e encaminhamento",
+      "destination": "instruments/github-operational-recoverable.md"
+    },
+    {
+      "id": "instrument.github-operational.continuous-support",
+      "type": "instrument",
+      "file": "instruments/github-operational-recoverable.md",
+      "function": "pré-configuração contínua complementar, carregada internamente e não selecionável",
+      "destination": "instrument.github-operational.continuous"
+    },
+    {
+      "id": "instrument.github-operational.demand-mirror",
+      "type": "instrument",
+      "file": "instruments/github-operational-demand-mirror.md",
+      "function": "versão espelho independente, selecionável exclusivamente sob demanda",
+      "destination": "config/recoverable-on-demand-catalog.json"
     }
   ],
   "relations": [
@@ -112,12 +140,12 @@
       "evidence": "index.html aria-labelledby"
     },
     {
-      "id": "search-to-catalog",
+      "id": "search-to-registry",
       "from": "ui.search.placeholder",
-      "to": "catalog.instruments",
+      "to": "registry.instruments",
       "type": "functional",
-      "function": "define o universo documental da pesquisa",
-      "evidence": "config/instrument-catalog.json; relação dinâmica ainda pendente de implementação"
+      "function": "define o conjunto de instrumentos ativos carregados e filtrados pela interface",
+      "evidence": "index.html: registryUrl aponta para config/instrument-registry.json; fetch(registryUrl) popula registry; validação em navegador ainda pendente"
     },
     {
       "id": "catalog-to-sources",
@@ -142,6 +170,38 @@
       "type": "source",
       "function": "vincula identificação ao entrypoint",
       "evidence": "index.html"
+    },
+    {
+      "id": "registry-to-sources",
+      "from": "registry.instruments",
+      "to": "instruments.sources",
+      "type": "reference",
+      "function": "resolve os caminhos de origem dos instrumentos cadastrados",
+      "evidence": "config/instrument-registry.json: campo path; verificação estrutural dos 10 caminhos realizada na branch"
+    },
+    {
+      "id": "github-operational-to-recoverable",
+      "from": "instrument.github-operational.continuous",
+      "to": "instrument.github-operational.demand-mirror",
+      "type": "phase_complementarity",
+      "function": "interconecta a fase contínua e a versão espelho sem fundir identidades ou acionar automaticamente a fase recuperável",
+      "evidence": "config/instrument-registry.json; config/recoverable-on-demand-catalog.json; config/instrument-execution-map.json"
+    },
+    {
+      "id": "github-operational-demand-mirror-to-continuous",
+      "from": "instrument.github-operational.demand-mirror",
+      "to": "instrument.github-operational.continuous",
+      "type": "reciprocal_traceability",
+      "function": "mantém referência recíproca ao instrumento contínuo e preserva pertencimentos exclusivos",
+      "evidence": "config/instrument-registry.json; config/recoverable-on-demand-catalog.json; config/instrument-execution-map.json"
+    },
+    {
+      "id": "continuous-support-to-demand-mirror",
+      "from": "instrument.github-operational.continuous-support",
+      "to": "instrument.github-operational.demand-mirror",
+      "type": "procedural_complementarity",
+      "function": "a preparação contínua pode encaminhar a seleção explícita da versão espelho sem incluí-la no contexto contínuo",
+      "evidence": "config/instrument-registry.json; config/instrument-execution-map.json"
     }
   ],
   "policy": {
