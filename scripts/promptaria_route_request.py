@@ -68,6 +68,15 @@ def main() -> int:
         and item.get("activation", {}).get("enabled") is True
         and item.get("category") == "continuous_automation"
     )
+    continuous_terms = {
+        normalize(term)
+        for item in registry.get("instruments", [])
+        if isinstance(item, dict)
+        and item.get("activation", {}).get("enabled") is True
+        and item.get("category") == "continuous_automation"
+        for term in [item.get("title", ""), *item.get("aliases", [])]
+        if isinstance(term, str) and normalize(term)
+    }
     for item in registry.get("instruments", []):
         if not isinstance(item, dict):
             continue
@@ -76,9 +85,14 @@ def main() -> int:
         terms = [item.get("title", ""), *item.get("aliases", [])]
         hits = [term for term in terms if isinstance(term, str) and contains_phrase(normalized_request, term)]
         if hits:
-            target = active_hits if enabled else continuous_hits if continuous else inactive_hits
-            target.append({"id": item.get("id"), "title": item.get("title"), "matched_terms": hits})
-            if enabled:
+            # A title shared with a continuous-context instrument is not a
+            # unique recoverable identity. Keep it as inert context rather
+            # than activating the recoverable counterpart by the same phrase.
+            contested = enabled and any(normalize(term) in continuous_terms for term in hits)
+            target = active_hits if enabled and not contested else continuous_hits if continuous else inactive_hits
+            if not contested:
+                target.append({"id": item.get("id"), "title": item.get("title"), "matched_terms": hits})
+            if enabled and not contested:
                 active_ids.append(item.get("id"))
 
     automation_intent = any(re.search(pattern, normalized_request) for pattern in AUTOMATION_PATTERNS)
