@@ -134,7 +134,6 @@
         "coordinate-complementary-phases"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:github-operational",
         "visible": false,
@@ -238,7 +237,6 @@
         "validate-integrity"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
@@ -258,11 +256,10 @@
     {
       "id": "github-operational-demand-mirror",
       "path": "instruments/github-operational-demand-mirror.md",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — APLICAÇÃO OPERACIONAL DA PROMPTÁRIA PELO GITHUB",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO FUNCIONAL CONTÍNUA — PREPARAÇÃO, CORRELAÇÃO E ENCAMINHAMENTO DA PROMPTÁRIA PELO GITHUB",
       "aliases": [
-        "aplicação recuperável da Promptária pelo GitHub",
-        "espelho recuperável do acionamento GitHub",
-        "fase recuperável sob demanda da Promptária"
+        "pré-configuração contínua GitHub transferida",
+        "fase contínua de preparação e encaminhamento da Promptária"
       ],
       "keywords": [
         "GitHub",
@@ -275,7 +272,11 @@
         "rastreabilidade",
         "validação",
         "correferência funcional",
-        "catálogo recuperável"
+        "catálogo recuperável",
+        "automação funcional contínua",
+        "pré-configuração interna",
+        "encaminhamento contínuo",
+        "transferência controlada"
       ],
       "functions": [
         "recuperar fontes integrais de instrumentos promptuais",
@@ -284,7 +285,10 @@
         "coordenar instrumentos preservando identidades individuais",
         "interconectar a fase recuperável à referência contínua sem fundir configurações",
         "validar resultados e registrar evidências",
-        "preservar autorização explícita para efeitos externos"
+        "preservar autorização explícita para efeitos externos",
+        "carregar continuamente a preparação, correlação e encaminhamento da demanda",
+        "permanecer como contexto interno sem seleção individual recuperável",
+        "não ativar automaticamente instrumentos especializados nem efeitos externos"
       ],
       "relations": [
         "github-operational->github-operational-demand-mirror",
@@ -296,7 +300,10 @@
         "github-operational-demand-mirror->recover-full-source",
         "recover-full-source->contextualized-application",
         "contextualized-application->validated-result",
-        "authorization_gate->external_side_effects"
+        "authorization_gate->external_side_effects",
+        "github-operational-demand-mirror->github-operational-demand",
+        "instrument:github-operational-demand-mirror->instrument:github-operational-demand",
+        "continuous_preconfiguration->recoverable_demand_selection_gate"
       ],
       "operations": [
         "resolve-explicit-selection",
@@ -307,12 +314,84 @@
         "coordinate-selected-instruments",
         "preserve-functional-differences",
         "trace-cross-segment-operation",
-        "validate-result"
+        "validate-result",
+        "load-as-continuous-context",
+        "prepare-demand-routing",
+        "preserve-explicit-recoverable-activation"
       ],
-      "category": "recoverable_on_demand",
-      "classification_basis": "default_title_rule",
+      "category": "continuous_automation",
+      "classification_basis": "explicit_controlled_transfer",
       "ui": {
         "node_id": "instrument:github-operational-demand-mirror",
+        "visible": false,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      }
+    },
+    {
+      "id": "github-operational-demand",
+      "path": "instruments/github-operational-demand.md",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — ACIONAMENTO, RECUPERAÇÃO, PERSONALIZAÇÃO E EXECUÇÃO DA PROMPTÁRIA PELO GITHUB",
+      "aliases": [
+        "acionamento recuperável da Promptária pelo GitHub",
+        "aplicação sob demanda pelo GitHub",
+        "fase recuperável de inserção recuperação e aplicação"
+      ],
+      "keywords": [
+        "GitHub",
+        "Promptária",
+        "demanda específica",
+        "recuperação sob demanda",
+        "inserção",
+        "aplicação personalizada",
+        "execução validada",
+        "seleção explícita",
+        "rastreabilidade",
+        "correlação contínua",
+        "catálogo recuperável"
+      ],
+      "functions": [
+        "identificar a demanda específica e os títulos dos instrumentos indicados",
+        "localizar e recuperar conteúdos integrais no GitHub autorizado",
+        "contextualizar, parametrizar e adaptar os instrumentos recuperados",
+        "coordenar contribuições preservando identidades e funções individuais",
+        "inserir demandas quando houver autorização e mecanismo disponível",
+        "executar operações compatíveis com permissões e recursos disponíveis",
+        "validar resultados e distinguir execução integral, parcial, pendente ou impossibilitada",
+        "manter correlação rastreável com a fase contínua sem compartilhar identidade ou pertencimento"
+      ],
+      "relations": [
+        "github-operational-demand-mirror->github-operational-demand",
+        "github-operational-demand->github-operational-demand-mirror",
+        "instrument:github-operational-demand-mirror->instrument:github-operational-demand",
+        "instrument:github-operational-demand->instrument:github-operational-demand-mirror",
+        "explicit_selection->github-operational-demand",
+        "github-operational-demand->recover-full-source",
+        "recover-full-source->contextualized-application",
+        "contextualized-application->validated-result",
+        "authorization_gate->external_side_effects"
+      ],
+      "operations": [
+        "resolve-explicit-selection",
+        "identify-demand",
+        "recover-full-source",
+        "verify-source-integrity",
+        "contextualize-demand",
+        "parameterize-application",
+        "coordinate-selected-instruments",
+        "insert-demand-if-authorized",
+        "execute-permitted-operation",
+        "validate-result",
+        "trace-continuous-reference"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "explicit_new_counterpart",
+      "ui": {
+        "node_id": "instrument:github-operational-demand",
         "visible": true,
         "featured": false
       },
@@ -448,7 +527,6 @@
         "trace"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:promptaria-instrument-template",
         "visible": false,
@@ -526,7 +604,6 @@
         "plan"
       ],
       "category": "recoverable_on_demand",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:nocturna-arquitetura-necessidade-identidade-sistemica",
         "visible": true,
@@ -567,7 +644,6 @@
         "validate"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:future-demand-preconfiguration",
         "visible": false,
@@ -608,7 +684,6 @@
         "validate"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:catalog-sitemap-preconfiguration",
         "visible": false,
@@ -654,7 +729,6 @@
         "validate"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-activation",
         "visible": false,
@@ -695,7 +769,6 @@
         "report"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-execution",
         "visible": false,
