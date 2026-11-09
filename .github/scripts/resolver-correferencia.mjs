@@ -71,7 +71,7 @@ export function resolveReference(reference, catalog) {
   }
   const active = [...new Map(list.filter(enabled).map(x => [x.id, x])).values()];
   if (active.length === 1) return result(active[0], { activation: true, match_type: matchType });
-  if (active.length > 1) return result(active[0], { function_status: "ambiguous", match_type: matchType === "explicit_id" ? "ambiguous_id" : matchType === "explicit_path" ? "ambiguous_path" : matchType === "ambiguous_title_alias" ? "ambiguous_title_alias" : matchType === "canonical_title" ? "ambiguous_title" : "ambiguous_title_alias", candidates: active.map(x => x.id) });
+  if (active.length > 1) return result(active[0], { function_status: "ambiguous", match_type: matchType === "explicit_id" ? "ambiguous_id" : matchType === "explicit_path" ? "ambiguous_path" : matchType === "ambiguous_title" ? "ambiguous_title" : matchType === "ambiguous_title_alias" ? "ambiguous_title_alias" : matchType === "canonical_title" ? "ambiguous_title" : "ambiguous_title_alias", candidates: active.map(x => x.id) });
   const disabled = list[0];
   return result(disabled, { match_type: disabled ? "disabled_reference" : matchType === "explicit_id" ? "unresolved_explicit_id" : matchType === "explicit_path" ? "unresolved_explicit_path" : "unresolved", candidates: list.map(x => x.id) });
 }
