@@ -14,8 +14,8 @@
       "ui",
       "activation"
     ],
-    "matching": "Only category=recoverable_on_demand with activation.enabled=true and ui.visible=true is individually resolvable by explicit title. Enabled continuous_automation instruments are loaded as internal preconfiguration context and are not individually listed in the public catalog. Cross-phase references never create catalog membership.",
-    "selection": "Cumulative across explicitly referenced recoverable_on_demand instruments; all enabled continuous_automation instruments are included in every request's preconfiguration context; paired phases with distinct IDs may share a conceptual title only when the continuous phase is excluded from title resolution; inventory alone never authorizes side effects."
+    "matching": "Only category=recoverable_on_demand with activation.enabled=true and ui.visible=true is individually resolvable by explicit title. Enabled continuous_automation instruments are internal preconfiguration context and are never candidates for public title resolution, even when a paired recoverable phase shares the same conceptual title.",
+    "selection": "Cumulative across explicitly referenced recoverable_on_demand instruments; all enabled continuous_automation instruments are included in every request's internal preconfiguration context; a paired continuous/recoverable identity may share a conceptual title only when the continuous phase is excluded from public title resolution and the recoverable phase is the sole visible title candidate; inventory alone never authorizes side effects."
   },
   "template_id": "promptaria-instrument-template",
   "instruments": [
@@ -888,6 +888,80 @@
       },
       "category": "recoverable_on_demand",
       "classification_basis": "default_title_rule"
+    },
+    {
+      "id": "functional-correference-architecture-recoverable",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao-espelho.md",
+      "aliases": [],
+      "keywords": [
+        "arquitetura unificada",
+        "acionamento coordenado",
+        "correferência funcional automática",
+        "recuperação integral",
+        "aplicação de instrumentos promptuais",
+        "múltiplos títulos",
+        "origem e destino",
+        "operação multidiretório",
+        "Nocturna",
+        "rastreabilidade",
+        "validação"
+      ],
+      "functions": [
+        "recuperar sob demanda o conteúdo integral da arquitetura promptual",
+        "coordenar instrumentos promptuais preservando identidade, finalidade e lógica próprias",
+        "reconhecer correferências funcionais por títulos e preservar a função própria",
+        "processar cumulativamente múltiplos títulos sem limite numérico arbitrário",
+        "contextualizar, parametrizar e adaptar a aplicação sem descaracterização",
+        "determinar origem, destino e responsabilidades em operações multidiretório",
+        "coordenar resultados intermediários, materialização, validação e rastreabilidade",
+        "distinguir identificação, recuperação, acionamento, tentativa, execução confirmada e resultado validado",
+        "preservar a distinção entre menção genérica e atribuição inequívoca de função diversa"
+      ],
+      "files": [
+        "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao-espelho.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "config/recoverable-on-demand-catalog.json",
+        "config/instrument-execution-map.json",
+        "tests/manifest.json",
+        "scripts/promptaria_registry_audit.py",
+        "tests/test_promptaria_registry_audit.py",
+        "scripts/promptaria_resolver.py"
+      ],
+      "relations": [
+        "functional-correference-architecture->functional-correference-architecture-recoverable",
+        "functional-correference-architecture-recoverable->functional-correference-architecture",
+        "continuous_automation->recoverable_on_demand",
+        "explicit_title_selection->functional-correference-architecture-recoverable",
+        "functional-correference-architecture-recoverable->recover-full-source",
+        "recover-full-source->contextualized-coordination",
+        "contextualized-coordination->validated-result"
+      ],
+      "operations": [
+        "resolve-title",
+        "recover-full-source",
+        "preserve-functional-identity",
+        "coordinate-instruments",
+        "contextualize-demand",
+        "parameterize-application",
+        "resolve-origin-and-destination",
+        "adapt-without-function-drift",
+        "validate-result",
+        "trace-operation"
+      ],
+      "category": "recoverable_on_demand",
+      "classification_basis": "paired_phase_recoverable_counterpart",
+      "ui": {
+        "node_id": "instrument:functional-correference-architecture-recoverable",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "on_demand_title"
+      }
     }
   ],
   "activation_policy": {
