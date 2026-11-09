@@ -179,7 +179,7 @@ def audit(registry_path: Path, root: Path) -> dict:
         public_enabled_matches = sorted(
             ident for ident in enabled_matches
             if registry_by_id.get(ident, {}).get("category") in (None, "recoverable_on_demand")
-            and registry_by_id.get(ident, {}).get("ui", {}).get("visible") is True
+            and registry_by_id.get(ident, {}).get("ui", {}).get("visible", True) is True
         )
         internal_enabled_matches = sorted(set(enabled_matches) - set(public_enabled_matches))
         if len(public_enabled_matches) > 1:
