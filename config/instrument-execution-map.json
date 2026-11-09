@@ -34,7 +34,7 @@
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Handler canônico combina recuperação e verificação da fonte, envelope estruturado da demanda e rastreabilidade de identidade. Classificado como pré-configuração contínua interna; não é resolvido individualmente por título nem exibido no catálogo público. A futura fase recuperável deverá ter ID e arquivo próprios, conservar o mesmo título conceitual e complementar este handler sem duplicar suas funções. Título não autoriza efeitos externos.",
+      "notes": "Handler canônico combina recuperação e verificação da fonte, envelope estruturado da demanda e rastreabilidade de identidade. Classificado como pré-configuração contínua interna; não é resolvido individualmente por título nem exibido no catálogo público. A fase recuperável independente github-operational-demand-mirror está registrada com ID e arquivo próprios, é selecionável somente sob demanda e complementa este handler sem duplicar identidade ou configuração. Título não autoriza efeitos externos.",
       "specialized_handler": "handler_github_operational"
     },
     {
