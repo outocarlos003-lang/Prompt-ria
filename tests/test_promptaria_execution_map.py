@@ -29,6 +29,7 @@ class PromptariaExecutionMapTests(unittest.TestCase):
             "github-operational": "handler_github_operational",
             "github-operational-recoverable": "handler_github_operational_recoverable",
             "github-operational-demand-mirror": "handler_github_operational_demand_mirror",
+            "github-operational-demand": "handler_github_operational_demand",
             "master-activation": "handler_master_activation",
             "master-execution": "handler_master_execution",
             "functional-correference-architecture": "handler_unified_architecture",
