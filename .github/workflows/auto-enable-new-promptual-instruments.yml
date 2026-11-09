@@ -30,6 +30,7 @@ jobs:
           set -euo pipefail
           python scripts/auto_enable_new_promptual_instruments.py --base-sha "$BASE_SHA" --root .
           python scripts/sync_readme_inventory.py --root .
+          python scripts/generate_instrument_catalog.py
           if git diff --quiet; then
             echo "No new named promptual instrument requires activation."
             exit 0
