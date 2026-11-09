@@ -2,6 +2,73 @@
   "schema_version": 1,
   "generated_by": "scripts/promptaria_interconnection.py",
   "source_registry": "config/instrument-registry.json",
-  "policy": "Semantic cross-category links preserve instrument independence and source paths.",
-  "interconnections": []
+  "policy": "Cross-category references preserve canonical identities, exclusive catalogue membership, independent source paths and explicit activation boundaries.",
+  "continuous_instrument_count": 9,
+  "recoverable_instrument_count": 2,
+  "interconnection_count": 1,
+  "selected_interconnection_count": 0,
+  "independent_instrument_count_preserved": true,
+  "independent_ids_and_paths_preserved": true,
+  "independent_functions_preserved": true,
+  "side_effects_authorized": false,
+  "matching_activates_instruments": false,
+  "interconnections": [
+    {
+      "link_id": "cross-segment:github-operational-demand-mirror:github-operational-demand",
+      "pair_id": "cross-segment:github-operational-demand-mirror:github-operational-demand",
+      "correlation_id": "corr-609b462c9ac32f26",
+      "shared_node_id": "coordination:cross-segment:github-operational-demand-mirror:github-operational-demand",
+      "request_id": null,
+      "continuous_instrument": {
+        "id": "github-operational-demand-mirror",
+        "node_id": "instrument:github-operational-demand-mirror",
+        "path": "instruments/github-operational-demand-mirror.md",
+        "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO FUNCIONAL CONTÍNUA — PREPARAÇÃO, CORRELAÇÃO E ENCAMINHAMENTO DA PROMPTÁRIA PELO GITHUB",
+        "phase": "phase_1_continuous_preconfiguration"
+      },
+      "recoverable_instrument": {
+        "id": "github-operational-demand",
+        "node_id": "instrument:github-operational-demand",
+        "path": "instruments/github-operational-demand.md",
+        "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — ACIONAMENTO, RECUPERAÇÃO, PERSONALIZAÇÃO E EXECUÇÃO DA PROMPTÁRIA PELO GITHUB",
+        "phase": "phase_2_demand_time_recovery"
+      },
+      "relations": [
+        {
+          "from": "instrument:github-operational-demand-mirror",
+          "to": "instrument:github-operational-demand",
+          "type": "continuous_to_on_demand"
+        },
+        {
+          "from": "instrument:github-operational-demand",
+          "to": "instrument:github-operational-demand-mirror",
+          "type": "on_demand_to_continuous"
+        },
+        {
+          "from": "phase:continuous_preconfiguration",
+          "to": "phase:on_demand_recovery",
+          "type": "phase_1_precedes_phase_2"
+        },
+        {
+          "from": "instrument:github-operational-demand-mirror",
+          "to": "instrument:github-operational-demand",
+          "type": "preserves_independent_identity"
+        }
+      ],
+      "phase_status": {
+        "continuous_preconfiguration": "context_preconfigured_not_executed",
+        "on_demand_recovery": "candidate_not_selected"
+      },
+      "interconnection_status": "catalogue_relation_only",
+      "preservation": {
+        "instrument_count_unchanged": true,
+        "identities_and_ids_independent": true,
+        "functions_and_operations_independent": true,
+        "source_paths_unchanged": true,
+        "execution_phase_separated": true
+      },
+      "identity_merge": false,
+      "instrument_count_delta": 0
+    }
+  ]
 }
