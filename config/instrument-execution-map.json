@@ -197,9 +197,10 @@
         "emit_traceable_plan"
       ],
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "planning_only",
+      "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Recuperação da fonte Markdown e emissão de plano rastreável sob demanda. Não há handler musical especializado implementado; a seleção não declara execução semântica nem efeitos externos."
+      "notes": "Handler dedicado recupera e verifica a fonte musical, prepara um brief rastreável de composição e arranjo e preserva a proveniência. Não renderiza áudio, não publica conteúdo e não presume acesso a fontes externas.",
+      "specialized_handler": "handler_promptual_music_origin"
     },
     {
       "id": "master-activation",
