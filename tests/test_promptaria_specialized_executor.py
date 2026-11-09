@@ -32,12 +32,19 @@ class SpecializedExecutorTests(unittest.TestCase):
 
     def test_every_manifest_instrument_has_a_dedicated_handler_and_map_entry(self):
         catalog, mapped = specialized.load_catalog()
-        self.assertEqual(set(catalog), set(specialized.HANDLERS))
-        self.assertEqual(set(mapped), set(specialized.HANDLERS))
+        self.assertEqual(set(catalog), set(mapped))
+        implemented = {instrument_id for instrument_id, item in mapped.items() if item.get("specialized_execution_status") == "implemented"}
+        planning_only = {instrument_id for instrument_id, item in mapped.items() if item.get("specialized_execution_status") == "planning_only"}
+        self.assertEqual(implemented, set(specialized.HANDLERS))
+        self.assertEqual(planning_only, {"functional-correference-architecture-recoverable"})
         for instrument_id, item in mapped.items():
             with self.subTest(instrument=instrument_id):
                 self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")
-                self.assertEqual(item["specialized_execution_status"], "implemented")
+                self.assertIn(item["specialized_execution_status"], {"implemented", "planning_only"})
+                if item["specialized_execution_status"] == "planning_only":
+                    self.assertFalse(item.get("specialized_handler"))
+                else:
+                    self.assertEqual(item["specialized_handler"], specialized.HANDLERS[instrument_id].__name__)
 
     def test_all_registered_handlers_execute_and_emit_source_evidence(self):
         ids = ["nocturna-arquitetura-necessidade-identidade-sistemica"]
