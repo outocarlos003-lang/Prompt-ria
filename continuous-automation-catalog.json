@@ -129,7 +129,6 @@
         "coordinate-complementary-phases"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:github-operational",
         "visible": false,
@@ -233,7 +232,6 @@
         "validate-integrity"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:functional-correference-architecture",
         "visible": false,
@@ -243,6 +241,85 @@
           "coordination:functional-correference-architecture",
           "phase:bundle-coordination"
         ]
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "continuous_preconfiguration"
+      }
+    },
+    {
+      "id": "github-operational-demand-mirror",
+      "path": "instruments/github-operational-demand-mirror.md",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO FUNCIONAL CONTÍNUA — PREPARAÇÃO, CORRELAÇÃO E ENCAMINHAMENTO DA PROMPTÁRIA PELO GITHUB",
+      "aliases": [
+        "pré-configuração contínua GitHub transferida",
+        "fase contínua de preparação e encaminhamento da Promptária"
+      ],
+      "keywords": [
+        "GitHub",
+        "Promptária",
+        "recuperação sob demanda",
+        "aplicação contextual",
+        "versão espelho",
+        "demanda específica",
+        "seleção explícita",
+        "rastreabilidade",
+        "validação",
+        "correferência funcional",
+        "catálogo recuperável",
+        "automação funcional contínua",
+        "pré-configuração interna",
+        "encaminhamento contínuo",
+        "transferência controlada"
+      ],
+      "functions": [
+        "recuperar fontes integrais de instrumentos promptuais",
+        "aplicar instrumentos à demanda específica",
+        "contextualizar e parametrizar a aplicação",
+        "coordenar instrumentos preservando identidades individuais",
+        "interconectar a fase recuperável à referência contínua sem fundir configurações",
+        "validar resultados e registrar evidências",
+        "preservar autorização explícita para efeitos externos",
+        "carregar continuamente a preparação, correlação e encaminhamento da demanda",
+        "permanecer como contexto interno sem seleção individual recuperável",
+        "não ativar automaticamente instrumentos especializados nem efeitos externos"
+      ],
+      "relations": [
+        "github-operational->github-operational-demand-mirror",
+        "github-operational-demand-mirror->github-operational",
+        "instrument:github-operational->instrument:github-operational-demand-mirror",
+        "instrument:github-operational-demand-mirror->instrument:github-operational",
+        "continuous_automation->recoverable_on_demand",
+        "explicit_selection->github-operational-demand-mirror",
+        "github-operational-demand-mirror->recover-full-source",
+        "recover-full-source->contextualized-application",
+        "contextualized-application->validated-result",
+        "authorization_gate->external_side_effects",
+        "github-operational-demand-mirror->github-operational-demand",
+        "instrument:github-operational-demand-mirror->instrument:github-operational-demand",
+        "continuous_preconfiguration->recoverable_demand_selection_gate"
+      ],
+      "operations": [
+        "resolve-explicit-selection",
+        "recover-full-source",
+        "verify-source-integrity",
+        "contextualize-demand",
+        "parameterize-application",
+        "coordinate-selected-instruments",
+        "preserve-functional-differences",
+        "trace-cross-segment-operation",
+        "validate-result",
+        "load-as-continuous-context",
+        "prepare-demand-routing",
+        "preserve-explicit-recoverable-activation"
+      ],
+      "category": "continuous_automation",
+      "classification_basis": "explicit_controlled_transfer",
+      "ui": {
+        "node_id": "instrument:github-operational-demand-mirror",
+        "visible": false,
+        "featured": false
       },
       "activation": {
         "enabled": true,
@@ -376,7 +453,6 @@
         "trace"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:promptaria-instrument-template",
         "visible": false,
@@ -417,7 +493,6 @@
         "validate"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:future-demand-preconfiguration",
         "visible": false,
@@ -458,7 +533,6 @@
         "validate"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:catalog-sitemap-preconfiguration",
         "visible": false,
@@ -504,7 +578,6 @@
         "validate"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-activation",
         "visible": false,
@@ -545,7 +618,6 @@
         "report"
       ],
       "category": "continuous_automation",
-      "classification_basis": null,
       "ui": {
         "node_id": "instrument:master-execution",
         "visible": false,
