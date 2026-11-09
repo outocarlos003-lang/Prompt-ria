@@ -38,6 +38,7 @@ class PromptariaExecutionMapTests(unittest.TestCase):
             "catalog-sitemap-preconfiguration": "handler_catalog_sitemap",
             "promptaria-instrument-template": "handler_promptaria_instrument_template",
             "nocturna-arquitetura-necessidade-identidade-sistemica": "handler_nocturna_architecture",
+            "instrumento-promptual-musica-reitera-origem": "handler_promptual_music_origin",
         }
         specialized = ROOT / "scripts" / "promptaria_specialized_executor.py"
         self.assertTrue(specialized.is_file())

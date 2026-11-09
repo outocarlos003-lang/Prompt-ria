@@ -483,6 +483,34 @@ def handler_nocturna_architecture(context: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def handler_promptual_music_origin(context: dict[str, Any]) -> dict[str, Any]:
+    item_id = context["current_instrument_id"]
+    source = context["source"]
+    return {
+        "handler": "handler_promptual_music_origin",
+        "result": "musical_composition_brief_prepared",
+        "demand": context["demand"],
+        "source_path": context["catalog"][item_id]["path"],
+        "source_sha256": context["source_hashes"][item_id],
+        "source_integrity": "verified_from_canonical_markdown",
+        "workflow": [
+            "recover_and_verify_source",
+            "inventory_user_indicated_materials",
+            "reconstruct_documented_structural_need",
+            "separate_evidence_inference_and_hypothesis",
+            "derive_lyrical_and_musical_foundations",
+            "prepare_composition_and_arrangement_brief",
+            "validate_provenance_and_output_contract",
+        ],
+        "execution_boundary": {
+            "composition_requested_by_this_call": bool(context["demand"]),
+            "external_side_effects": False,
+            "audio_rendering_or_publication": False,
+            "unavailable_sources_are_not_invented": True,
+        },
+        "source_bytes": len(source.encode("utf-8")),
+    }
+
 
 def handler_github_operational_demand_mirror(context: dict[str, Any]) -> dict[str, Any]:
     item_id = context["current_instrument_id"]
@@ -645,6 +673,7 @@ HANDLERS = {
     "catalog-sitemap-preconfiguration": handler_catalog_sitemap,
     "promptaria-instrument-template": handler_promptaria_instrument_template,
     "nocturna-arquitetura-necessidade-identidade-sistemica": handler_nocturna_architecture,
+    "instrumento-promptual-musica-reitera-origem": handler_promptual_music_origin,
 }
 
 # Auxiliary handlers are callable only through an explicit auxiliary ID.

@@ -17,30 +17,9 @@
   },
   "instruments": [
     {
-      "id": "github-operational",
-      "title": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
-      "path": "instruments/acione-a-promptaria-pelo-github.md",
-      "resolution_status": "resolved_by_canonical_identity",
-      "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan",
-        "build_structured_demand_envelope",
-        "cross_segment_traceability",
-        "resolve_title_correspondence",
-        "load_as_continuous_preconfiguration",
-        "coordinate_future_recoverable_counterpart"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Handler canônico combina recuperação e verificação da fonte, envelope estruturado da demanda e rastreabilidade de identidade. Classificado como pré-configuração contínua interna; não é resolvido individualmente por título nem exibido no catálogo público. A fase recuperável independente github-operational-demand-mirror está registrada com ID e arquivo próprios, é selecionável somente sob demanda e complementa este handler sem duplicar identidade ou configuração. Título não autoriza efeitos externos.",
-      "specialized_handler": "handler_github_operational"
-    },
-    {
-      "id": "master-activation",
-      "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
-      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+      "id": "catalog-sitemap-preconfiguration",
+      "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
+      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
       "resolution_status": "recognized_planning_only",
       "planning_capabilities": [
         "match_unambiguous_title",
@@ -50,24 +29,8 @@
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Handler constrói plano de ativação com componentes-base e gates explícitos; não realiza efeitos externos.",
-      "specialized_handler": "handler_master_activation"
-    },
-    {
-      "id": "master-execution",
-      "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
-      "path": "instruments/protocolo-mestre-execucao-correta.md",
-      "resolution_status": "recognized_planning_only",
-      "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Handler executa checklist operacional de primeira passagem e associa evidências de integridade às etapas.",
-      "specialized_handler": "handler_master_execution"
+      "notes": "Handler audita a fonte canônica e a presença dos artefatos legados; não cria catálogo paralelo nem gera sitemap sem contrato confirmado.",
+      "specialized_handler": "handler_catalog_sitemap"
     },
     {
       "id": "functional-correference-architecture",
@@ -109,6 +72,28 @@
       ]
     },
     {
+      "id": "functional-correference-architecture-recoverable",
+      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
+      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao-espelho.md",
+      "resolution_status": "resolved_by_canonical_identity",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan",
+        "coordinate_instruments",
+        "contextualize_demand",
+        "parameterize_application",
+        "resolve_origin_and_destination",
+        "validate_result",
+        "trace_operation"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Contraparte recuperável sob demanda da arquitetura contínua functional-correference-architecture. Handler dedicado recupera e verifica todas as fontes selecionadas, coordena cumulativamente suas identidades e funções, preserva demanda e parâmetros explícitos, registra origem/destino sem inferência e emite pacote validado e rastreável. Não substitui nem funde o coordenador contínuo; não realiza mutações externas e o título não concede autorização.",
+      "specialized_handler": "handler_recoverable_unified_architecture"
+    },
+    {
       "id": "future-demand-preconfiguration",
       "title": "PRÉ-CONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
       "path": "instruments/preconfiguracao-correspondencia-futura-e-cadeia.md",
@@ -125,87 +110,25 @@
       "specialized_handler": "handler_future_preconfiguration"
     },
     {
-      "id": "catalog-sitemap-preconfiguration",
-      "title": "PRÉCONFIGURAÇÃO DE SINCRONIZAÇÃO, CORREFERÊNCIA E VALIDAÇÃO AUTOMÁTICA DA PROMPTÁRIA",
-      "path": "instruments/preconfiguracao-sincronizacao-catalogo-sitemap.md",
-      "resolution_status": "recognized_planning_only",
+      "id": "github-operational",
+      "title": "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas",
+      "path": "instruments/acione-a-promptaria-pelo-github.md",
+      "resolution_status": "resolved_by_canonical_identity",
       "planning_capabilities": [
         "match_unambiguous_title",
         "recover_markdown_source",
-        "emit_traceable_plan"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Handler audita a fonte canônica e a presença dos artefatos legados; não cria catálogo paralelo nem gera sitemap sem contrato confirmado.",
-      "specialized_handler": "handler_catalog_sitemap"
-    },
-    {
-      "id": "promptaria-instrument-template",
-      "title": "MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA",
-      "path": "instruments/modelo-instrumento-promptual-correferencia.md",
-      "resolution_status": "recognized_planning_only",
-      "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Inspeciona o modelo como material preparado; não o ativa por mera existência.",
-      "specialized_handler": "handler_promptaria_instrument_template"
-    },
-    {
-      "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
-      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
-      "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
-      "resolution_status": "recognized_planning_only",
-      "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Recupera a fonte local e registra limites de proveniência; não presume acesso externo ao acervo Nocturna.",
-      "specialized_handler": "handler_nocturna_architecture"
-    },
-    {
-      "id": "github-operational-recoverable",
-      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO CONTÍNUA — INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
-      "path": "instruments/github-operational-recoverable.md",
-      "resolution_status": "loaded_as_continuous_preconfiguration",
-      "planning_capabilities": [
-        "load_as_continuous_context",
-        "resolve_canonical_identity",
-        "recover_full_source",
-        "contextualize_and_parameterize_demand",
+        "emit_traceable_plan",
+        "build_structured_demand_envelope",
         "cross_segment_traceability",
-        "validate_result"
+        "resolve_title_correspondence",
+        "load_as_continuous_preconfiguration",
+        "coordinate_future_recoverable_counterpart"
       ],
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Unidade carregada continuamente como contexto interno em toda demanda; não é selecionável individualmente nem exibida no catálogo público. A preparação contínua não autoriza efeitos externos.",
-      "specialized_handler": "handler_github_operational_recoverable"
-    },
-    {
-      "id": "github-operational-demand-mirror",
-      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO FUNCIONAL CONTÍNUA — PREPARAÇÃO, CORRELAÇÃO E ENCAMINHAMENTO DA PROMPTÁRIA PELO GITHUB",
-      "path": "instruments/github-operational-demand-mirror.md",
-      "resolution_status": "loaded_as_continuous_preconfiguration",
-      "planning_capabilities": [
-        "load_as_continuous_context",
-        "prepare_demand_routing",
-        "preserve_cross_phase_traceability"
-      ],
-      "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "implemented",
-      "side_effects_authorized_by_title": false,
-      "notes": "Instância preexistente transferida efetivamente para continuous_automation; não é resolvida por título nem exibida no catálogo recuperável. Encaminha sem acionar automaticamente a contraparte.",
-      "specialized_handler": "handler_github_operational_demand_mirror"
+      "notes": "Handler canônico combina recuperação e verificação da fonte, envelope estruturado da demanda e rastreabilidade de identidade. Classificado como pré-configuração contínua interna; não é resolvido individualmente por título nem exibido no catálogo público. A fase recuperável independente github-operational-demand-mirror está registrada com ID e arquivo próprios, é selecionável somente sob demanda e complementa este handler sem duplicar identidade ou configuração. Título não autoriza efeitos externos.",
+      "specialized_handler": "handler_github_operational"
     },
     {
       "id": "github-operational-demand",
@@ -229,26 +152,119 @@
       "specialized_handler": "handler_github_operational_demand"
     },
     {
-      "id": "functional-correference-architecture-recoverable",
-      "title": "ARQUITETURA UNIFICADA DE ACIONAMENTO, CORREFERÊNCIA, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS: ACIONAMENTO COORDENADO DE INSTRUMENTOS PROMPTUAIS E ARQUITETURA DE ACIONAMENTO, RECUPERAÇÃO E APLICAÇÃO DE INSTRUMENTOS PROMPTUAIS, COM CORREFERÊNCIA FUNCIONAL AUTOMÁTICA POR TÍTULOS DOS INSTRUMENTOS PROMPTUAIS, NA QUAL A MENÇÃO GENÉRICA IDENTIFICA O INSTRUMENTO, PRESERVA SUA FUNÇÃO PRÓPRIA E ACIONA SUA EXECUÇÃO, SALVO ATRIBUIÇÃO ESPECÍFICA E INEQUÍVOCA DE FUNÇÃO DIVERSA, COM RECONHECIMENTO MÚTUO, CUMULATIVO, COORDENADO E SIMULTÂNEO DE MÚLTIPLOS TÍTULOS",
-      "path": "instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao-espelho.md",
-      "resolution_status": "resolved_by_canonical_identity",
+      "id": "github-operational-demand-mirror",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO FUNCIONAL CONTÍNUA — PREPARAÇÃO, CORRELAÇÃO E ENCAMINHAMENTO DA PROMPTÁRIA PELO GITHUB",
+      "path": "instruments/github-operational-demand-mirror.md",
+      "resolution_status": "loaded_as_continuous_preconfiguration",
       "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan",
-        "coordinate_instruments",
-        "contextualize_demand",
-        "parameterize_application",
-        "resolve_origin_and_destination",
-        "validate_result",
-        "trace_operation"
+        "load_as_continuous_context",
+        "prepare_demand_routing",
+        "preserve_cross_phase_traceability"
       ],
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Contraparte recuperável sob demanda da arquitetura contínua functional-correference-architecture. Handler dedicado recupera e verifica todas as fontes selecionadas, coordena cumulativamente suas identidades e funções, preserva demanda e parâmetros explícitos, registra origem/destino sem inferência e emite pacote validado e rastreável. Não substitui nem funde o coordenador contínuo; não realiza mutações externas e o título não concede autorização.",
-      "specialized_handler": "handler_recoverable_unified_architecture"
+      "notes": "Instância preexistente transferida efetivamente para continuous_automation; não é resolvida por título nem exibida no catálogo recuperável. Encaminha sem acionar automaticamente a contraparte.",
+      "specialized_handler": "handler_github_operational_demand_mirror"
+    },
+    {
+      "id": "github-operational-recoverable",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO CONTÍNUA — INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "path": "instruments/github-operational-recoverable.md",
+      "resolution_status": "loaded_as_continuous_preconfiguration",
+      "planning_capabilities": [
+        "load_as_continuous_context",
+        "resolve_canonical_identity",
+        "recover_full_source",
+        "contextualize_and_parameterize_demand",
+        "cross_segment_traceability",
+        "validate_result"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Unidade carregada continuamente como contexto interno em toda demanda; não é selecionável individualmente nem exibida no catálogo público. A preparação contínua não autoriza efeitos externos.",
+      "specialized_handler": "handler_github_operational_recoverable"
+    },
+    {
+      "id": "instrumento-promptual-musica-reitera-origem",
+      "title": "Instrumento promptual — A música reitera o que a origem contém, mas ainda não revelou",
+      "path": "instruments/instrumento-promptual-a-musica-reitera-origem.md",
+      "resolution_status": "resolved_by_canonical_identity",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler dedicado recupera e verifica a fonte musical, prepara um brief rastreável de composição e arranjo e preserva a proveniência. Não renderiza áudio, não publica conteúdo e não presume acesso a fontes externas.",
+      "specialized_handler": "handler_promptual_music_origin"
+    },
+    {
+      "id": "master-activation",
+      "title": "PROTOCOLO-MESTRE DE ACIONAMENTO DE INSTRUMENTOS PROMPTUAIS PRONTO PARA EXECUÇÃO",
+      "path": "instruments/protocolo-mestre-acionamento-automatico.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler constrói plano de ativação com componentes-base e gates explícitos; não realiza efeitos externos.",
+      "specialized_handler": "handler_master_activation"
+    },
+    {
+      "id": "master-execution",
+      "title": "Protocolo-mestre de execução correta desde a primeira solicitação",
+      "path": "instruments/protocolo-mestre-execucao-correta.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Handler executa checklist operacional de primeira passagem e associa evidências de integridade às etapas.",
+      "specialized_handler": "handler_master_execution"
+    },
+    {
+      "id": "nocturna-arquitetura-necessidade-identidade-sistemica",
+      "title": "Nocturna — Arquitetura da Necessidade e Reconstrução Recursiva da Identidade Sistêmica: Princípio, Origem e Fim na Unidade Fractal entre o Explícito e o Implícito, o Físico e o Metafísico, o Universal e o Particular, mediante a Integração Documental, a Correferência Multiescalar, a Indução Causal, a Verificação das Derivações e o Fechamento Arquitetônico da Totalidade — Conservar o Fundamento, Transformar a Função, Reconstruir a Necessidade, Revelar o Todo em Cada Parte e Reconhecer na Origem a Presença Integral de Todas as Consequências Legítimas.",
+      "path": "instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Recupera a fonte local e registra limites de proveniência; não presume acesso externo ao acervo Nocturna.",
+      "specialized_handler": "handler_nocturna_architecture"
+    },
+    {
+      "id": "promptaria-instrument-template",
+      "title": "MODELO FICTÍCIO — INSTRUMENTO PROMPTUAL DE CORREFERÊNCIA EXTENSIVA",
+      "path": "instruments/modelo-instrumento-promptual-correferencia.md",
+      "resolution_status": "recognized_planning_only",
+      "planning_capabilities": [
+        "match_unambiguous_title",
+        "recover_markdown_source",
+        "emit_traceable_plan"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Inspeciona o modelo como material preparado; não o ativa por mera existência.",
+      "specialized_handler": "handler_promptaria_instrument_template"
     }
   ]
 }
