@@ -95,7 +95,8 @@
         "config/instrument-execution-map.json",
         "scripts/promptaria_context_router.py",
         "scripts/promptaria_resolver.py",
-        "scripts/promptaria_specialized_executor.py"
+        "scripts/promptaria_specialized_executor.py",
+        "instruments/github-operational-demand-mirror.md"
       ],
       "relations": [
         "request->github-operational",
@@ -135,7 +136,9 @@
         "continuous-preconfiguration->demand-routing",
         "demand-routing->recoverable-github-instrument",
         "github-operational-preconfiguration->nocturna-architecture",
-        "nocturna-architecture->github-operational-preconfiguration"
+        "nocturna-architecture->github-operational-preconfiguration",
+        "github-operational->github-operational-demand-mirror",
+        "instrument:github-operational->instrument:github-operational-demand-mirror"
       ],
       "operations": [
         "inspect",
