@@ -245,9 +245,10 @@
         "trace_operation"
       ],
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
-      "specialized_execution_status": "planning_only",
+      "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Contraparte recuperável sob demanda da arquitetura contínua functional-correference-architecture. Mantém título conceitual compartilhado, mas é a única fase visível e resolvível pelo catálogo público. Não substitui nem funde o coordenador contínuo; o título não autoriza efeitos externos."
+      "notes": "Contraparte recuperável sob demanda da arquitetura contínua functional-correference-architecture. Handler dedicado recupera e verifica todas as fontes selecionadas, coordena cumulativamente suas identidades e funções, preserva demanda e parâmetros explícitos, registra origem/destino sem inferência e emite pacote validado e rastreável. Não substitui nem funde o coordenador contínuo; não realiza mutações externas e o título não concede autorização.",
+      "specialized_handler": "handler_recoverable_unified_architecture"
     }
   ]
 }

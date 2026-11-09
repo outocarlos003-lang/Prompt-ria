@@ -36,7 +36,7 @@ class SpecializedExecutorTests(unittest.TestCase):
         implemented = {instrument_id for instrument_id, item in mapped.items() if item.get("specialized_execution_status") == "implemented"}
         planning_only = {instrument_id for instrument_id, item in mapped.items() if item.get("specialized_execution_status") == "planning_only"}
         self.assertEqual(implemented, set(specialized.HANDLERS))
-        self.assertEqual(planning_only, {"functional-correference-architecture-recoverable"})
+        self.assertEqual(planning_only, set())
         for instrument_id, item in mapped.items():
             with self.subTest(instrument=instrument_id):
                 self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")
@@ -344,6 +344,50 @@ class SpecializedExecutorTests(unittest.TestCase):
         result = specialized.execute({"request": request}, preflight=preflight)
         self.assertIn("nocturna-arquitetura-necessidade-identidade-sistemica", result["selected_instrument_ids"])
         self.assertNotIn("protocol-update-integrity", result["selected_instrument_ids"])
+
+    def test_recoverable_unified_architecture_executes_dedicated_handler(self):
+        canonical, mapped = specialized.load_catalog()
+        item_id = "functional-correference-architecture-recoverable"
+        title = canonical[item_id]["title"]
+        payload = {
+            "request": title,
+            "request_id": "req-architecture-01",
+            "origin": "repo/source",
+            "destination": "repo/output",
+            "parameters": {"mode": "validate", "preserve": True},
+        }
+        result = specialized.execute(payload)
+        self.assertIn(item_id, result["selected_instrument_ids"])
+        execution = next(item for item in result["results"] if item["instrument_id"] == item_id)
+        self.assertEqual(execution["handler"], "handler_recoverable_unified_architecture")
+        detail = execution["result"]
+        self.assertEqual(detail["result"], "recoverable_architecture_coordinated")
+        self.assertTrue(detail["source_integrity"]["full_source_recovered"])
+        self.assertTrue(detail["validation"]["all_selected_sources_recovered"])
+        self.assertEqual(detail["application_context"]["origin"], "repo/source")
+        self.assertEqual(detail["application_context"]["destination"], "repo/output")
+        self.assertEqual(detail["application_context"]["parameters"], payload["parameters"])
+        self.assertFalse(detail["execution_boundary"]["external_side_effects_performed"])
+        self.assertFalse(detail["execution_boundary"]["title_alone_authorizes_external_side_effects"])
+        self.assertEqual(mapped[item_id]["specialized_execution_status"], "implemented")
+
+    def test_recoverable_architecture_rejects_non_object_parameters(self):
+        with self.assertRaisesRegex(SystemExit, "parameters.*objeto JSON"):
+            specialized.execute({
+                "request": "functional-correference-architecture-recoverable",
+                "parameters": ["not", "an", "object"],
+            })
+
+    def test_shared_title_resolves_recoverable_phase_not_continuous_phase(self):
+        canonical, _ = specialized.load_catalog()
+        shared_title = canonical["functional-correference-architecture-recoverable"]["title"]
+        matches = specialized.resolve_ids(shared_title, canonical)
+        self.assertEqual([item["id"] for item in matches if item["activation"]], [
+            "functional-correference-architecture-recoverable"
+        ])
+        self.assertEqual(specialized.resolve_ids(
+            "functional-correference-architecture", canonical
+        ), [])
 
     def test_continuous_automation_instrument_is_context_only_not_executable(self):
         with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):

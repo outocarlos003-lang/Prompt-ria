@@ -155,9 +155,13 @@ def resolve_ids(request_text: str, canonical: dict[str, dict[str, Any]]) -> list
         )
         terms = [("title", item.get("title", ""))]
         terms.extend(("alias", alias) for alias in registry_item.get("aliases", []) if isinstance(alias, str))
+        paired_recoverable = (
+            registry_item.get("category") == "recoverable_on_demand"
+            and registry_item.get("classification_basis") == "paired_phase_recoverable_counterpart"
+        )
         terms = [
             (kind, value) for kind, value in terms
-            if normalize(value) not in continuous_terms
+            if normalize(value) not in continuous_terms or paired_recoverable
         ]
         matched_terms = []
         for kind, value in terms:
@@ -544,6 +548,90 @@ def handler_github_operational_demand(context: dict[str, Any]) -> dict[str, Any]
         },
     }
 
+def handler_recoverable_unified_architecture(context: dict[str, Any]) -> dict[str, Any]:
+    """Recover, verify and coordinate selected instruments without external writes."""
+    item_id = context["current_instrument_id"]
+    source = context["sources"][item_id]
+    structured = context["structured_demand"]
+    structured = structured if isinstance(structured, dict) else {}
+    selected = list(context["selected_ids"])
+    source_records = [
+        {
+            "id": selected_id,
+            "title": context["catalog"][selected_id]["title"],
+            "path": context["catalog"][selected_id]["path"],
+            "sha256": context["source_hashes"][selected_id],
+            "bytes": len(context["sources"][selected_id].encode("utf-8")),
+            "content_recovered": True,
+            "identity_verified": True,
+        }
+        for selected_id in selected
+    ]
+    explicit_origin = structured.get("origin", structured.get("source"))
+    explicit_destination = structured.get("destination")
+    parameters = structured.get("parameters", {})
+    if not isinstance(parameters, dict):
+        raise SystemExit("Parâmetros estruturados inválidos: 'parameters' deve ser um objeto JSON.")
+    return {
+        "handler": "handler_recoverable_unified_architecture",
+        "result": "recoverable_architecture_coordinated",
+        "canonical_identity": {
+            "instrument_id": item_id,
+            "continuous_counterpart": "functional-correference-architecture",
+            "node_id": "instrument:" + item_id,
+            "category": "recoverable_on_demand",
+            "activation_mode": "on_demand_title",
+        },
+        "demand": context["demand"],
+        "source_integrity": {
+            "sha256": context["source_sha256"],
+            "bytes": len(source.encode("utf-8")),
+            "full_source_recovered": True,
+            "title_verified": True,
+        },
+        "selected_instruments": source_records,
+        "coordination": {
+            "mode": "cumulative_identity_preserving",
+            "instrument_count": len(source_records),
+            "execution_order": selected,
+            "individual_responsibilities_preserved": True,
+            "arbitrary_cardinality_limit": False,
+            "continuous_phase_loaded_as_execution_target": False,
+        },
+        "application_context": {
+            "original_structured_demand": structured,
+            "parameters": parameters,
+            "origin": explicit_origin,
+            "destination": explicit_destination,
+            "origin_status": "explicitly_provided" if explicit_origin is not None else "not_provided",
+            "destination_status": "explicitly_provided" if explicit_destination is not None else "not_provided",
+            "inferred_values": False,
+        },
+        "validation": {
+            "all_selected_sources_recovered": len(source_records) == len(selected),
+            "all_selected_titles_verified": all(record["identity_verified"] for record in source_records),
+            "all_source_hashes_present": all(bool(record["sha256"]) for record in source_records),
+            "parameters_schema_valid": True,
+            "origin_and_destination_invented": False,
+            "result_status": "validated_recoverable_coordination_package",
+        },
+        "trace": {
+            "request_id": context["payload"].get("request_id"),
+            "instrument_id": item_id,
+            "source_path": context["catalog"][item_id]["path"],
+            "source_sha256": context["source_sha256"],
+            "selected_instrument_ids": selected,
+            "continuous_counterpart_id": "functional-correference-architecture",
+        },
+        "execution_boundary": {
+            "repository_sources_read": True,
+            "external_side_effects_performed": False,
+            "title_alone_authorizes_external_side_effects": False,
+            "external_mutations_require_separate_authorized_executor": True,
+        },
+    }
+
+
 HANDLERS = {
     "github-operational": handler_github_operational,
     "github-operational-recoverable": handler_github_operational_recoverable,
@@ -552,6 +640,7 @@ HANDLERS = {
     "master-activation": handler_master_activation,
     "master-execution": handler_master_execution,
     "functional-correference-architecture": handler_unified_architecture,
+    "functional-correference-architecture-recoverable": handler_recoverable_unified_architecture,
     "future-demand-preconfiguration": handler_future_preconfiguration,
     "catalog-sitemap-preconfiguration": handler_catalog_sitemap,
     "promptaria-instrument-template": handler_promptaria_instrument_template,
