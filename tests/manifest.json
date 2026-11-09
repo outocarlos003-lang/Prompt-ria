@@ -103,6 +103,16 @@
       "aliases": [
         "execução correta"
       ]
+    },
+    {
+      "id": "github-operational-demand-mirror",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — APLICAÇÃO OPERACIONAL DA PROMPTÁRIA PELO GITHUB",
+      "path": "instruments/github-operational-demand-mirror.md",
+      "aliases": [
+        "aplicação recuperável da Promptária pelo GitHub",
+        "espelho recuperável do acionamento GitHub",
+        "fase recuperável sob demanda da Promptária"
+      ]
     }
   ]
 }
