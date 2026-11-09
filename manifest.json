@@ -135,6 +135,17 @@
       "aliases": [],
       "category": "recoverable_on_demand",
       "classification_basis": "paired_phase_recoverable_counterpart"
+    },
+    {
+      "id": "instrumento-promptual-musica-reitera-origem",
+      "title": "Instrumento promptual — A música reitera o que a origem contém, mas ainda não revelou",
+      "path": "instruments/instrumento-promptual-a-musica-reitera-origem.md",
+      "aliases": [
+        "A música reitera o que a origem contém",
+        "PROMPT-MESTRE de composição musical Nocturna",
+        "instrumento promptual de derivação lírico-musical",
+        "composição musical a partir da arquitetura da necessidade"
+      ]
     }
   ]
 }
