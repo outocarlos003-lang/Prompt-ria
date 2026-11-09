@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "instruments"
 REGISTRY = ROOT / "config" / "instrument-registry.json"
 AGGREGATE_TARGETS = [ROOT / "config" / "instrument-catalog.json", ROOT / "instrument-catalog.json"]
-CATEGORY_TARGETS = {
+PUBLIC_REGISTRY_TARGET = ROOT / "instrument-registry.json"\nCATEGORY_TARGETS = {
     "continuous_automation": [
         ROOT / "config" / "continuous-automation-catalog.json",
         ROOT / "continuous-automation-catalog.json",
