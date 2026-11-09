@@ -16,6 +16,10 @@ A resolução canônica é implementada por scripts/promptaria_resolver.py e pel
 4. Atualize o registro, os catálogos e os manifestos correspondentes.
 5. Execute os testes e validadores antes de integrar a alteração.
 
+### Fases contínua e recuperável da arquitetura unificada
+
+A arquitetura unificada possui duas unidades relacionadas, mas não fundidas: `functional-correference-architecture` permanece como pré-configuração interna em `continuous_automation`; `functional-correference-architecture-recoverable` é sua contraparte independente em `recoverable_on_demand`, visível no catálogo público e recuperável pelo título. As duas fases podem compartilhar o título conceitual, mas somente a fase recuperável participa da resolução pública por título. A fase contínua permanece contexto interno e não é substituída.
+
 ## O que está automatizado
 
 - **Recepção e resolução contextual de demandas:** .github/workflows/promptaria-receber-demanda.yml recebe `request_json`, carrega a pré-configuração contínua integral, executa o roteamento contextual e os handlers selecionados e publica um artefato auditável, sem permissões de escrita.
