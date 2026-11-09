@@ -175,6 +175,19 @@ class SpecializedExecutorTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "Nenhum instrumento resolvido"):
             specialized.execute({"request": title})
 
+    def test_explicit_recoverable_id_or_path_resolves_shared_title(self):
+        canonical, _ = specialized.load_catalog()
+        item = canonical["github-operational-demand"]
+        title = canonical["github-operational"]["title"]
+
+        by_id = specialized.resolve_ids(f"{title}; {item['id']}", canonical)
+        by_path = specialized.resolve_ids(f"{title}; {item['path']}", canonical)
+
+        self.assertEqual([match["id"] for match in by_id], ["github-operational-demand"])
+        self.assertTrue(by_id[0]["activation"])
+        self.assertEqual([match["id"] for match in by_path], ["github-operational-demand"])
+        self.assertTrue(by_path[0]["activation"])
+
     def test_explicit_continuous_github_id_cannot_activate_specialized_handler(self):
         with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
             specialized.execute({"request": "demanda", "instrument_ids": ["github-operational"]})
