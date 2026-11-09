@@ -100,11 +100,18 @@
       "destination": "instruments/github-operational-recoverable.md"
     },
     {
-      "id": "instrument.github-operational.recoverable",
+      "id": "instrument.github-operational.continuous-support",
       "type": "instrument",
       "file": "instruments/github-operational-recoverable.md",
-      "function": "recuperação e aplicação selecionadas explicitamente por demanda",
-      "destination": "config/instrument-registry.json"
+      "function": "pré-configuração contínua complementar, carregada internamente e não selecionável",
+      "destination": "instrument.github-operational.continuous"
+    },
+    {
+      "id": "instrument.github-operational.demand-mirror",
+      "type": "instrument",
+      "file": "instruments/github-operational-demand-mirror.md",
+      "function": "versão espelho independente, selecionável exclusivamente sob demanda",
+      "destination": "config/recoverable-on-demand-catalog.json"
     }
   ],
   "relations": [
@@ -175,17 +182,25 @@
     {
       "id": "github-operational-to-recoverable",
       "from": "instrument.github-operational.continuous",
-      "to": "instrument.github-operational.recoverable",
+      "to": "instrument.github-operational.demand-mirror",
       "type": "phase_complementarity",
-      "function": "transfere contexto e referências sem fundir identidades ou executar automaticamente a fase recuperável",
-      "evidence": "config/instrument-registry.json; config/instrument-execution-map.json"
+      "function": "interconecta a fase contínua e a versão espelho sem fundir identidades ou acionar automaticamente a fase recuperável",
+      "evidence": "config/instrument-registry.json; config/recoverable-on-demand-catalog.json; config/instrument-execution-map.json"
     },
     {
-      "id": "github-operational-recoverable-to-continuous",
-      "from": "instrument.github-operational.recoverable",
+      "id": "github-operational-demand-mirror-to-continuous",
+      "from": "instrument.github-operational.demand-mirror",
       "to": "instrument.github-operational.continuous",
       "type": "reciprocal_traceability",
-      "function": "mantém referência recíproca ao espelho contínuo e preserva a distinção de fases",
+      "function": "mantém referência recíproca ao instrumento contínuo e preserva pertencimentos exclusivos",
+      "evidence": "config/instrument-registry.json; config/recoverable-on-demand-catalog.json; config/instrument-execution-map.json"
+    },
+    {
+      "id": "continuous-support-to-demand-mirror",
+      "from": "instrument.github-operational.continuous-support",
+      "to": "instrument.github-operational.demand-mirror",
+      "type": "procedural_complementarity",
+      "function": "a preparação contínua pode encaminhar a seleção explícita da versão espelho sem incluí-la no contexto contínuo",
       "evidence": "config/instrument-registry.json; config/instrument-execution-map.json"
     }
   ],
