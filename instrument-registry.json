@@ -709,6 +709,85 @@
       },
       "category": "continuous_automation",
       "classification_basis": "explicit_operational_reclassification"
+    },
+    {
+      "id": "github-operational-demand-mirror",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — APLICAÇÃO OPERACIONAL DA PROMPTÁRIA PELO GITHUB",
+      "path": "instruments/github-operational-demand-mirror.md",
+      "aliases": [
+        "aplicação recuperável da Promptária pelo GitHub",
+        "espelho recuperável do acionamento GitHub",
+        "fase recuperável sob demanda da Promptária"
+      ],
+      "keywords": [
+        "GitHub",
+        "Promptária",
+        "recuperação sob demanda",
+        "aplicação contextual",
+        "versão espelho",
+        "demanda específica",
+        "seleção explícita",
+        "rastreabilidade",
+        "validação",
+        "correferência funcional",
+        "catálogo recuperável"
+      ],
+      "functions": [
+        "recuperar fontes integrais de instrumentos promptuais",
+        "aplicar instrumentos à demanda específica",
+        "contextualizar e parametrizar a aplicação",
+        "coordenar instrumentos preservando identidades individuais",
+        "interconectar a fase recuperável à referência contínua sem fundir configurações",
+        "validar resultados e registrar evidências",
+        "preservar autorização explícita para efeitos externos"
+      ],
+      "files": [
+        "instruments/github-operational-demand-mirror.md",
+        "config/instrument-registry.json",
+        "config/instrument-catalog.json",
+        "config/recoverable-on-demand-catalog.json",
+        "config/instrument-execution-map.json",
+        "tests/manifest.json",
+        "scripts/promptaria_specialized_executor.py",
+        "tests/test_github_operational_pair.py",
+        "tests/test_promptaria_execution_map.py",
+        "config/traceability-graph-current.json"
+      ],
+      "relations": [
+        "github-operational->github-operational-demand-mirror",
+        "github-operational-demand-mirror->github-operational",
+        "instrument:github-operational->instrument:github-operational-demand-mirror",
+        "instrument:github-operational-demand-mirror->instrument:github-operational",
+        "continuous_automation->recoverable_on_demand",
+        "explicit_selection->github-operational-demand-mirror",
+        "github-operational-demand-mirror->recover-full-source",
+        "recover-full-source->contextualized-application",
+        "contextualized-application->validated-result",
+        "authorization_gate->external_side_effects"
+      ],
+      "operations": [
+        "resolve-explicit-selection",
+        "recover-full-source",
+        "verify-source-integrity",
+        "contextualize-demand",
+        "parameterize-application",
+        "coordinate-selected-instruments",
+        "preserve-functional-differences",
+        "trace-cross-segment-operation",
+        "validate-result"
+      ],
+      "ui": {
+        "node_id": "instrument:github-operational-demand-mirror",
+        "visible": true,
+        "featured": false
+      },
+      "activation": {
+        "enabled": true,
+        "status": "active",
+        "mode": "on_demand_title"
+      },
+      "category": "recoverable_on_demand",
+      "classification_basis": "explicit_independent_mirror_instance"
     }
   ],
   "activation_policy": {
