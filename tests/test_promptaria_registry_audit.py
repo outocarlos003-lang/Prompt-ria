@@ -115,7 +115,7 @@ class RegistryAuditTests(unittest.TestCase):
             for ident, title in (("a", "Instrumento Alfa"), ("b", "Instrumento Beta")):
                 entries.append({"id":ident,"title":title,"path":f"instruments/{ident}.md",
                                 "aliases":["mesmo alias"],"keywords":[],"functions":["x"],"files":[],
-                                "relations":[],"operations":["resolve"],"ui":{"node_id":f"instrument:{ident}"},
+                                "relations":[],"operations":["resolve"],"ui":{"node_id":f"instrument:{ident}","visible":True},
                                 "activation":{"enabled":True,"status":"active"}})
             p = root / "config/instrument-registry.json"
             p.write_text(json.dumps(registry_payload(entries)), encoding="utf-8")
