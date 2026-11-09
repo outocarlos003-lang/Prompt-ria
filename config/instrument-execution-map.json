@@ -174,14 +174,13 @@
     },
     {
       "id": "github-operational-recoverable",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL — EXECUÇÃO SOB DEMANDA DE INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO CONTÍNUA — INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
       "path": "instruments/github-operational-recoverable.md",
-      "resolution_status": "resolved_by_canonical_identity",
+      "resolution_status": "loaded_as_continuous_preconfiguration",
       "planning_capabilities": [
-        "match_unambiguous_title",
-        "recover_markdown_source",
-        "emit_traceable_plan",
-        "explicit_demand_selection",
+        "load_as_continuous_context",
+        "resolve_canonical_identity",
+        "recover_full_source",
         "contextualize_and_parameterize_demand",
         "cross_segment_traceability",
         "validate_result"
@@ -189,7 +188,7 @@
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Fase recuperável independente e visível para seleção explícita. Complementa github-operational, que permanece pré-configuração contínua interna e não selecionável. O handler verifica a fonte e prepara a fase sem conceder autorização implícita para efeitos externos.",
+      "notes": "Unidade carregada continuamente como contexto interno em toda demanda; não é selecionável individualmente nem exibida no catálogo público. A preparação contínua não autoriza efeitos externos.",
       "specialized_handler": "handler_github_operational_recoverable"
     }
   ]
