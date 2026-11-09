@@ -39,7 +39,7 @@
     },
     {
       "id": "github-operational-recoverable",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL — EXECUÇÃO SOB DEMANDA DE INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO CONTÍNUA — INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
       "path": "instruments/github-operational-recoverable.md",
       "aliases": [
         "acionamento recuperável de demandas",
@@ -47,8 +47,8 @@
         "fase recuperável GitHub operacional",
         "aplicação recuperável de demandas pelo GitHub"
       ],
-      "category": "recoverable_on_demand",
-      "classification_basis": "default_title_rule"
+      "category": "continuous_automation",
+      "classification_basis": "explicit_operational_reclassification"
     },
     {
       "id": "promptaria-instrument-template",
