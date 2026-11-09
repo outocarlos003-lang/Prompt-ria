@@ -6,7 +6,8 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "config" / "instrument-registry.json"
 CONTINUOUS_ID = "github-operational-recoverable"
 REFERENCE_ID = "github-operational"
-MIRROR_ID = "github-operational-demand-mirror"
+TRANSFERRED_ID = "github-operational-demand-mirror"
+COUNTERPART_ID = "github-operational-demand"
 
 
 class GitHubOperationalContinuousTests(unittest.TestCase):
@@ -42,29 +43,35 @@ class GitHubOperationalContinuousTests(unittest.TestCase):
         self.assertEqual(item["category"], "continuous_automation")
 
 
-    def test_new_demand_mirror_is_independent_and_exclusively_recoverable(self):
-        mirror = self.entries[MIRROR_ID]
-        reference = self.entries[REFERENCE_ID]
+    def test_transferred_instrument_and_new_counterpart_are_exclusively_partitioned(self):
+        transferred = self.entries[TRANSFERRED_ID]
+        counterpart = self.entries[COUNTERPART_ID]
         continuous = json.loads((ROOT / "config" / "continuous-automation-catalog.json").read_text(encoding="utf-8"))
         recoverable = json.loads((ROOT / "config" / "recoverable-on-demand-catalog.json").read_text(encoding="utf-8"))
         continuous_ids = {item["id"] for item in continuous["instruments"]}
         recoverable_ids = {item["id"] for item in recoverable["instruments"]}
-        self.assertEqual(reference["category"], "continuous_automation")
-        self.assertEqual(mirror["category"], "recoverable_on_demand")
-        self.assertNotEqual(reference["id"], mirror["id"])
-        self.assertNotEqual(reference["path"], mirror["path"])
-        self.assertIn(REFERENCE_ID, continuous_ids)
-        self.assertNotIn(MIRROR_ID, continuous_ids)
-        self.assertIn(MIRROR_ID, recoverable_ids)
-        self.assertNotIn(REFERENCE_ID, recoverable_ids)
-        self.assertIs(mirror["ui"]["visible"], True)
-        self.assertEqual(mirror["activation"]["mode"], "on_demand_title")
-        self.assertIn(f"{REFERENCE_ID}->{MIRROR_ID}", reference["relations"])
-        self.assertIn(f"{MIRROR_ID}->{REFERENCE_ID}", mirror["relations"])
-        self.assertTrue((ROOT / mirror["path"]).is_file())
+
+        self.assertEqual(transferred["category"], "continuous_automation")
+        self.assertEqual(transferred["activation"]["mode"], "continuous_preconfiguration")
+        self.assertIs(transferred["ui"]["visible"], False)
+        self.assertIn(TRANSFERRED_ID, continuous_ids)
+        self.assertNotIn(TRANSFERRED_ID, recoverable_ids)
+
+        self.assertEqual(counterpart["category"], "recoverable_on_demand")
+        self.assertEqual(counterpart["activation"]["mode"], "on_demand_title")
+        self.assertIs(counterpart["ui"]["visible"], True)
+        self.assertIn(COUNTERPART_ID, recoverable_ids)
+        self.assertNotIn(COUNTERPART_ID, continuous_ids)
+
+        self.assertNotEqual(transferred["id"], counterpart["id"])
+        self.assertNotEqual(transferred["path"], counterpart["path"])
+        self.assertIn(f"{TRANSFERRED_ID}->{COUNTERPART_ID}", transferred["relations"])
+        self.assertIn(f"{COUNTERPART_ID}->{TRANSFERRED_ID}", counterpart["relations"])
+        self.assertTrue((ROOT / transferred["path"]).is_file())
+        self.assertTrue((ROOT / counterpart["path"]).is_file())
         self.assertNotEqual(
-            (ROOT / reference["path"]).read_text(encoding="utf-8"),
-            (ROOT / mirror["path"]).read_text(encoding="utf-8"),
+            (ROOT / transferred["path"]).read_text(encoding="utf-8"),
+            (ROOT / counterpart["path"]).read_text(encoding="utf-8"),
         )
 
 
