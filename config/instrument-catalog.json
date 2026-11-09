@@ -69,8 +69,8 @@
         "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência",
         "pré-configurar continuamente a interface entre demanda, instrumentos e GitHub",
         "carregar o contrato operacional como contexto interno em toda demanda",
-        "preparar a fase recuperável complementar sem ocupar seu lugar no catálogo público",
-        "manter interconexão entre pré-configuração contínua e futuro instrumento recuperável de mesmo título"
+        "integrar a unidade complementar à automação contínua interna",
+        "manter interconexão entre unidades complementares da automação contínua"
       ],
       "relations": [
         "request->github-operational",
@@ -107,14 +107,10 @@
         "instrument-registry.github-operational->standard-preconfiguration",
         "functional-correference-architecture->master-activation",
         "master-activation->functional-correference-architecture",
-        "github-operational-preconfiguration->github-operational-recoverable",
-        "github-operational-recoverable->github-operational-preconfiguration",
         "continuous-preconfiguration->demand-routing",
         "demand-routing->recoverable-github-instrument",
         "github-operational-preconfiguration->nocturna-architecture",
-        "nocturna-architecture->github-operational-preconfiguration",
-        "github-operational->github-operational-recoverable",
-        "github-operational-recoverable->github-operational"
+        "nocturna-architecture->github-operational-preconfiguration"
       ],
       "operations": [
         "inspect",
@@ -260,12 +256,11 @@
     {
       "id": "github-operational-recoverable",
       "path": "instruments/github-operational-recoverable.md",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL — EXECUÇÃO SOB DEMANDA DE INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO CONTÍNUA — INSERÇÃO, RECUPERAÇÃO E APLICAÇÃO NA PROMPTÁRIA",
       "aliases": [
-        "acionamento recuperável de demandas",
-        "execução sob demanda da Promptária",
-        "fase recuperável GitHub operacional",
-        "aplicação recuperável de demandas pelo GitHub"
+        "automação contínua de demandas pelo GitHub",
+        "pré-configuração contínua de recuperação e aplicação",
+        "fase contínua GitHub operacional"
       ],
       "keywords": [
         "github",
@@ -274,23 +269,25 @@
         "inserir",
         "recuperar",
         "aplicar",
-        "seleção explícita",
-        "execução sob demanda",
-        "instrumento recuperável",
         "rastreabilidade",
         "validação",
         "correferência",
         "autorização",
-        "fonte integral"
+        "fonte integral",
+        "automação contínua",
+        "pré-configuração contínua",
+        "contexto operacional permanente",
+        "recuperação contextual",
+        "coordenação contínua"
       ],
       "functions": [
-        "recuperar instrumentos promptuais integrais para uma demanda explicitamente selecionada",
+        "carregar continuamente contexto operacional para cada demanda",
+        "identificar e recuperar instrumentos pertinentes por identidade canônica",
         "contextualizar e parametrizar instrumentos conforme a demanda específica",
-        "coordenar instrumentos selecionados preservando identidades e funções individuais",
-        "executar operações solicitadas dentro das permissões e autorizações disponíveis",
+        "coordenar instrumentos preservando identidades e funções individuais",
+        "preparar operações solicitadas dentro das permissões e autorizações disponíveis",
         "validar resultados e registrar evidências rastreáveis",
-        "complementar a pré-configuração contínua sem substituí-la",
-        "preservar separação entre seleção, execução e autorização de efeitos externos"
+        "preservar separação entre preparação contínua, seleção individual e autorização de efeitos externos"
       ],
       "relations": [
         "github-operational->github-operational-recoverable",
@@ -298,39 +295,41 @@
         "instrument:github-operational->instrument:github-operational-recoverable",
         "instrument:github-operational-recoverable->instrument:github-operational",
         "continuous_preconfiguration->demand_routing",
-        "demand_routing->recoverable_execution",
-        "recoverable_execution->validated_result",
         "github-operational-recoverable->instrument-registry",
         "instrument-registry->instrument-catalog",
         "instrument-registry->instrument-execution-map",
         "instrument-execution-map->handler_github_operational_recoverable",
         "demand->github-operational-recoverable",
-        "github-operational-recoverable->explicit_selection_gate",
-        "explicit_selection_gate->authorization_gate",
-        "authorization_gate->validated_result"
+        "authorization_gate->validated_result",
+        "continuous_preconfiguration->demand_context",
+        "demand_context->canonical_instrument_recovery",
+        "canonical_instrument_recovery->contextualized_application",
+        "contextualized_application->authorized_operation",
+        "authorized_operation->validated_result"
       ],
       "operations": [
-        "resolve-explicit-selection",
+        "load-as-continuous-context",
+        "resolve-canonical-identity",
         "recover-full-source",
-        "verify-canonical-identity",
+        "verify-source-integrity",
         "contextualize-demand",
         "parameterize-application",
-        "coordinate-selected-instruments",
-        "execute-authorized-operation",
+        "coordinate-relevant-instruments",
+        "prepare-authorized-operation",
         "validate-result",
         "trace-cross-segment-operation"
       ],
-      "category": "recoverable_on_demand",
-      "classification_basis": "default_title_rule",
+      "category": "continuous_automation",
+      "classification_basis": "explicit_operational_reclassification",
       "ui": {
         "node_id": "instrument:github-operational-recoverable",
-        "visible": true,
+        "visible": false,
         "featured": false
       },
       "activation": {
         "enabled": true,
         "status": "active",
-        "mode": "on_demand_title"
+        "mode": "continuous_preconfiguration"
       }
     },
     {
