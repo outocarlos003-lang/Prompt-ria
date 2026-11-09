@@ -52,8 +52,8 @@ class RegistryAuditTests(unittest.TestCase):
             (root / "config").mkdir()
             (root / "instruments").mkdir()
             title = "Arquitetura Unificada de Acionamento"
-            (root / "instruments/continuous.md").write_text(f"# {title}\\n", encoding="utf-8")
-            (root / "instruments/recoverable.md").write_text(f"# {title}\\n", encoding="utf-8")
+            (root / "instruments/continuous.md").write_text(f"# {title}\n", encoding="utf-8")
+            (root / "instruments/recoverable.md").write_text(f"# {title}\n", encoding="utf-8")
             entries = []
             for ident, path, category, visible in (
                 ("continuous-phase", "instruments/continuous.md", "continuous_automation", False),
