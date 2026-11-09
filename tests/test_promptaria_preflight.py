@@ -84,13 +84,21 @@ class PromptariaPreflightTests(unittest.TestCase):
             "Acione a Promptária pelo GitHub para Inserir, Recuperar e Aplicar Demandas."
         )
         plan = result["cross_category_interconnection"]
-        self.assertEqual(plan["continuous_instrument_count"], 7)
-        self.assertEqual(plan["recoverable_instrument_count"], 2)
-        self.assertTrue(any(
-            link["continuous_instrument"]["id"] == "github-operational"
-            and link["recoverable_instrument"]["id"] == "github-operational-recoverable"
-            for link in plan["interconnections"]
-        ))
+        registry = json.loads((ROOT / "config" / "instrument-registry.json").read_text(encoding="utf-8"))
+        continuous_ids = {
+            item["id"] for item in registry["instruments"]
+            if item.get("activation", {}).get("enabled") is True
+            and item.get("category") == "continuous_automation"
+        }
+        recoverable_ids = {
+            item["id"] for item in registry["instruments"]
+            if item.get("activation", {}).get("enabled") is True
+            and item.get("category") == "recoverable_on_demand"
+        }
+        self.assertEqual(plan["continuous_instrument_count"], len(continuous_ids))
+        self.assertEqual(plan["recoverable_instrument_count"], len(recoverable_ids))
+        self.assertIn("github-operational-recoverable", continuous_ids)
+        self.assertNotIn("github-operational-recoverable", recoverable_ids)
         self.assertGreater(plan["interconnection_count"], 0)
         for link in plan["interconnections"]:
             self.assertNotEqual(link["continuous_instrument"]["id"], link["recoverable_instrument"]["id"])
