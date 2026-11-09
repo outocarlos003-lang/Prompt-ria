@@ -43,7 +43,7 @@ O arquivo de entrada deve conter JSON com `request` e, opcionalmente, `destinati
 
 O instrumento `instruments/protocolo-mestre-acionamento-automatico.md` preserva o modelo genérico com seus quatro elementos estruturais e serve como préconfiguração para demandas futuras. O resolvedor inclui automaticamente, em cada plano, os três componentes-base: a arquitetura coordenadora, o protocolo-mestre e o instrumento operacional do GitHub. Títulos adicionais mencionados são todos recuperados por correspondência normalizada.
 
-A unidade `github-operational-recoverable` foi reclassificada como extensão de automação contínua interna e não integra o catálogo público sob demanda. A composição é validada por ID, caminho, categoria, estado de ativação e H1 canônico: `functional-correference-architecture`, `master-activation` e `github-operational` são carregados como contexto contínuo (`continuous_automation`). O instrumento GitHub existente passa a ser a fase interna de pré-configuração: não é resolvido individualmente por título nem exibido no catálogo público. A futura fase recuperável, mais completa e de mesmo título conceitual, deverá possuir ID e arquivo próprios, complementar esta fase e preservar a separação entre preparação contínua e acionamento explícito. Os instrumentos contínuos não são resolvidos individualmente por título. O plano inclui seu conteúdo no campo `preconfiguration.continuous_context`; qualquer arquivo ausente, desativado ou divergente produz estado incompleto e reprovação no validador.
+`github-operational-recoverable` permanece como extensão de automação contínua interna e não integra o catálogo público sob demanda. A versão espelho independente `github-operational-demand-mirror` foi constituída em `instruments/github-operational-demand-mirror.md`, registrada exclusivamente em `recoverable_on_demand` e disponibilizada no catálogo público por seleção explícita. Seu instrumento contínuo de referência é `github-operational`, que permanece exclusivamente em `continuous_automation`. A relação é registrada por referências recíprocas e IDs distintos; não há sincronização automática de conteúdo nem ativação da fase recuperável pela mera presença do contexto contínuo. A composição é validada por ID, caminho, categoria, estado de ativação e H1 canônico. Os demais instrumentos contínuos permanecem internos, não resolvidos individualmente por título nem exibidos no catálogo público. O plano inclui o conteúdo contínuo no campo `preconfiguration.continuous_context`; qualquer arquivo ausente, desativado ou divergente produz estado incompleto e reprovação no validador.
 
 A inclusão automática é uma préconfiguração de reconhecimento e planejamento, não uma alegação de que as instruções especializadas foram executadas. O resolvedor rejeita `dry_run` que não seja booleano JSON; o padrão é `true`. A escrita é tratada por um executor separado e nunca é disparada apenas porque um título ou prompt foi recuperado. No workflow GitHub Actions, a integração do executor é deliberadamente restrita à simulação; escrita real não é autorizada pelo workflow. Exceções semânticas de função diversa exigem revisão contextual; o resolvedor não as decide por mera comparação lexical.
 
@@ -191,10 +191,11 @@ O script `scripts/sync_readme_inventory.py` sincroniza automaticamente as seçõ
 
 ## Inventário versionado — conferido com a árvore de main
 
-### Instrumentos operacionais (9)
+### Instrumentos operacionais (10)
 
 - `instruments/acione-a-promptaria-pelo-github.md`
 - `instruments/arquitetura-unificada-acionamento-correferencia-recuperacao-aplicacao.md`
+- `instruments/github-operational-demand-mirror.md`
 - `instruments/github-operational-recoverable.md`
 - `instruments/modelo-instrumento-promptual-correferencia.md`
 - `instruments/nocturna-arquitetura-necessidade-identidade-sistemica.md`

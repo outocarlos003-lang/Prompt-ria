@@ -105,7 +105,9 @@
         "continuous-preconfiguration->demand-routing",
         "demand-routing->recoverable-github-instrument",
         "github-operational-preconfiguration->nocturna-architecture",
-        "nocturna-architecture->github-operational-preconfiguration"
+        "nocturna-architecture->github-operational-preconfiguration",
+        "github-operational->github-operational-demand-mirror",
+        "instrument:github-operational->instrument:github-operational-demand-mirror"
       ],
       "operations": [
         "inspect",

@@ -5,6 +5,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "config" / "instrument-registry.json"
 CONTINUOUS_ID = "github-operational-recoverable"
+REFERENCE_ID = "github-operational"
+MIRROR_ID = "github-operational-demand-mirror"
 
 
 class GitHubOperationalContinuousTests(unittest.TestCase):
@@ -38,6 +40,32 @@ class GitHubOperationalContinuousTests(unittest.TestCase):
         manifest = json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))
         item = next(item for item in manifest["instruments"] if item["id"] == CONTINUOUS_ID)
         self.assertEqual(item["category"], "continuous_automation")
+
+
+    def test_new_demand_mirror_is_independent_and_exclusively_recoverable(self):
+        mirror = self.entries[MIRROR_ID]
+        reference = self.entries[REFERENCE_ID]
+        continuous = json.loads((ROOT / "config" / "continuous-automation-catalog.json").read_text(encoding="utf-8"))
+        recoverable = json.loads((ROOT / "config" / "recoverable-on-demand-catalog.json").read_text(encoding="utf-8"))
+        continuous_ids = {item["id"] for item in continuous["instruments"]}
+        recoverable_ids = {item["id"] for item in recoverable["instruments"]}
+        self.assertEqual(reference["category"], "continuous_automation")
+        self.assertEqual(mirror["category"], "recoverable_on_demand")
+        self.assertNotEqual(reference["id"], mirror["id"])
+        self.assertNotEqual(reference["path"], mirror["path"])
+        self.assertIn(REFERENCE_ID, continuous_ids)
+        self.assertNotIn(MIRROR_ID, continuous_ids)
+        self.assertIn(MIRROR_ID, recoverable_ids)
+        self.assertNotIn(REFERENCE_ID, recoverable_ids)
+        self.assertIs(mirror["ui"]["visible"], True)
+        self.assertEqual(mirror["activation"]["mode"], "on_demand_title")
+        self.assertIn(f"{REFERENCE_ID}->{MIRROR_ID}", reference["relations"])
+        self.assertIn(f"{MIRROR_ID}->{REFERENCE_ID}", mirror["relations"])
+        self.assertTrue((ROOT / mirror["path"]).is_file())
+        self.assertNotEqual(
+            (ROOT / reference["path"]).read_text(encoding="utf-8"),
+            (ROOT / mirror["path"]).read_text(encoding="utf-8"),
+        )
 
 
 if __name__ == "__main__":
