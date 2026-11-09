@@ -456,9 +456,52 @@ def handler_nocturna_architecture(context: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+
+def handler_github_operational_demand_mirror(context: dict[str, Any]) -> dict[str, Any]:
+    item_id = context["current_instrument_id"]
+    source = context["sources"][item_id]
+    return {
+        "handler": "handler_github_operational_demand_mirror",
+        "result": "on_demand_mirror_application_prepared",
+        "demand": context["demand"],
+        "source_sha256": context["source_hashes"][item_id],
+        "source_bytes": len(source.encode("utf-8")),
+        "canonical_identity": {
+            "instrument_id": item_id,
+            "registry_path": "config/instrument-registry.json",
+            "node_id": f"instrument:{item_id}",
+            "category": "recoverable_on_demand",
+            "activation_mode": "on_demand_title",
+        },
+        "continuous_reference": {
+            "instrument_id": "github-operational",
+            "node_id": "instrument:github-operational",
+            "category": "continuous_automation",
+        },
+        "phase_contract": {
+            "canonical_ids_distinct": True,
+            "source_paths_distinct": True,
+            "catalog_membership_exclusive": True,
+            "continuous_presence_triggers_mirror": False,
+            "explicit_selection_required": True,
+            "prompt_content_synchronized_automatically": False,
+        },
+        "operations": [
+            "resolve_explicit_selection", "recover_full_source", "contextualize_demand",
+            "parameterize_application", "coordinate_selected_instruments",
+            "preserve_promptual_differences", "validate_result", "trace_cross_segment_operation",
+        ],
+        "execution_boundary": {
+            "title_alone_authorizes_external_side_effects": False,
+            "external_side_effects": False,
+        },
+    }
+
+
 HANDLERS = {
     "github-operational": handler_github_operational,
     "github-operational-recoverable": handler_github_operational_recoverable,
+    "github-operational-demand-mirror": handler_github_operational_demand_mirror,
     "master-activation": handler_master_activation,
     "master-execution": handler_master_execution,
     "functional-correference-architecture": handler_unified_architecture,
