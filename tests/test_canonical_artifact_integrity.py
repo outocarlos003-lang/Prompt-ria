@@ -94,6 +94,11 @@ class CanonicalArtifactIntegrityTests(unittest.TestCase):
                 continue
             entry = self.execution_by_id[instrument_id]
             with self.subTest(instrument=instrument_id):
+                if entry.get("specialized_execution_status") == "planning_only":
+                    self.assertEqual(source.get("category"), "recoverable_on_demand")
+                    self.assertIs(entry.get("side_effects_authorized_by_title"), False)
+                    self.assertFalse(entry.get("specialized_handler"))
+                    continue
                 self.assertEqual(entry.get("specialized_execution_status"), "implemented")
                 self.assertIs(entry.get("side_effects_authorized_by_title"), False)
                 executor = entry.get("specialized_executor")
