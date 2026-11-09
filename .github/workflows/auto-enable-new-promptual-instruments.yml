@@ -36,7 +36,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md config/instrument-registry.json instrument-registry.json config/instrument-catalog.json instrument-catalog.json manifest.json tests/manifest.json
+          git add README.md config/instrument-registry.json instrument-registry.json config/instrument-catalog.json instrument-catalog.json config/continuous-automation-catalog.json continuous-automation-catalog.json config/recoverable-on-demand-catalog.json recoverable-on-demand-catalog.json manifest.json tests/manifest.json
           if git diff --cached --quiet; then
             echo "No activation metadata changes to commit."
             exit 0
