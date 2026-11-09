@@ -193,8 +193,24 @@
     },
     {
       "id": "github-operational-demand-mirror",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — APLICAÇÃO OPERACIONAL DA PROMPTÁRIA PELO GITHUB",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO FUNCIONAL CONTÍNUA — PREPARAÇÃO, CORRELAÇÃO E ENCAMINHAMENTO DA PROMPTÁRIA PELO GITHUB",
       "path": "instruments/github-operational-demand-mirror.md",
+      "resolution_status": "loaded_as_continuous_preconfiguration",
+      "planning_capabilities": [
+        "load_as_continuous_context",
+        "prepare_demand_routing",
+        "preserve_cross_phase_traceability"
+      ],
+      "specialized_executor": "scripts/promptaria_specialized_executor.py",
+      "specialized_execution_status": "implemented",
+      "side_effects_authorized_by_title": false,
+      "notes": "Instância preexistente transferida efetivamente para continuous_automation; não é resolvida por título nem exibida no catálogo recuperável. Encaminha sem acionar automaticamente a contraparte.",
+      "specialized_handler": "handler_github_operational_demand_mirror_continuous"
+    },
+    {
+      "id": "github-operational-demand",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — ACIONAMENTO, RECUPERAÇÃO, PERSONALIZAÇÃO E EXECUÇÃO DA PROMPTÁRIA PELO GITHUB",
+      "path": "instruments/github-operational-demand.md",
       "resolution_status": "resolved_by_canonical_identity",
       "planning_capabilities": [
         "match_unambiguous_title",
@@ -202,13 +218,15 @@
         "emit_traceable_plan",
         "contextualize_demand",
         "parameterize_application",
+        "coordinate_selected_instruments",
+        "validate_result",
         "trace_continuous_reference"
       ],
       "specialized_executor": "scripts/promptaria_specialized_executor.py",
       "specialized_execution_status": "implemented",
       "side_effects_authorized_by_title": false,
-      "notes": "Versão espelho independente selecionável apenas sob demanda; correlacionada a github-operational sem alterar a identidade ou o pertencimento contínuo. O handler valida a fonte e prepara a aplicação; não executa efeitos externos.",
-      "specialized_handler": "handler_github_operational_demand_mirror"
+      "notes": "Contraparte independente selecionável exclusivamente sob demanda; recupera fontes, prepara aplicação contextual e valida o resultado. Não autoriza efeitos externos.",
+      "specialized_handler": "handler_github_operational_demand"
     }
   ]
 }
