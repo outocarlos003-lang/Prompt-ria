@@ -64,8 +64,8 @@
         "preservar rastreabilidade bidirecional entre segmento, ID, nó, fonte, operação e evidência",
         "pré-configurar continuamente a interface entre demanda, instrumentos e GitHub",
         "carregar o contrato operacional como contexto interno em toda demanda",
-        "preparar a fase recuperável complementar sem ocupar seu lugar no catálogo público",
-        "manter interconexão entre pré-configuração contínua e futuro instrumento recuperável de mesmo título"
+        "integrar a unidade complementar à automação contínua interna",
+        "manter interconexão entre unidades complementares da automação contínua"
       ],
       "relations": [
         "request->github-operational",
@@ -102,14 +102,10 @@
         "instrument-registry.github-operational->standard-preconfiguration",
         "functional-correference-architecture->master-activation",
         "master-activation->functional-correference-architecture",
-        "github-operational-preconfiguration->github-operational-recoverable",
-        "github-operational-recoverable->github-operational-preconfiguration",
         "continuous-preconfiguration->demand-routing",
         "demand-routing->recoverable-github-instrument",
         "github-operational-preconfiguration->nocturna-architecture",
-        "nocturna-architecture->github-operational-preconfiguration",
-        "github-operational->github-operational-recoverable",
-        "github-operational-recoverable->github-operational"
+        "nocturna-architecture->github-operational-preconfiguration"
       ],
       "operations": [
         "inspect",
