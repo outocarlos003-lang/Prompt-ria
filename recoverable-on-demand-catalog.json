@@ -8,11 +8,11 @@
     {
       "id": "github-operational-demand",
       "path": "instruments/github-operational-demand.md",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — ACIONAMENTO, RECUPERAÇÃO, PERSONALIZAÇÃO E EXECUÇÃO DA PROMPTÁRIA PELO GITHUB",
+      "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
       "aliases": [
-        "acionamento recuperável da Promptária pelo GitHub",
-        "aplicação sob demanda pelo GitHub",
-        "fase recuperável de inserção recuperação e aplicação"
+        "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
+        "acionamento fixo da Promptária pelo GitHub",
+        "instrumento promptual fixo de acionamento, recuperação, personalização e execução"
       ],
       "keywords": [
         "GitHub",
@@ -25,17 +25,21 @@
         "seleção explícita",
         "rastreabilidade",
         "correlação contínua",
-        "catálogo recuperável"
+        "catálogo recuperável",
+        "acionar",
+        "recuperar conteúdos integrais",
+        "personalização",
+        "instrumento fixo"
       ],
       "functions": [
-        "identificar a demanda específica e os títulos dos instrumentos indicados",
-        "localizar e recuperar conteúdos integrais no GitHub autorizado",
-        "contextualizar, parametrizar e adaptar os instrumentos recuperados",
-        "coordenar contribuições preservando identidades e funções individuais",
-        "inserir demandas quando houver autorização e mecanismo disponível",
-        "executar operações compatíveis com permissões e recursos disponíveis",
-        "validar resultados e distinguir execução integral, parcial, pendente ou impossibilitada",
-        "manter correlação rastreável com a fase contínua sem compartilhar identidade ou pertencimento"
+        "acionar o mecanismo fixo a partir da demanda específica apresentada no chat",
+        "identificar os títulos dos instrumentos promptuais indicados pelo usuário",
+        "localizar e recuperar conteúdos efetivos no GitHub autorizado",
+        "contextualizar, parametrizar e adaptar instrumentos sem distorcer suas funções",
+        "coordenar instrumentos preservando identidades e responsabilidades",
+        "inserir demandas somente quando autorizado e houver mecanismo disponível",
+        "executar operações compatíveis com permissões, recursos e informações disponíveis",
+        "validar resultados e distinguir execução integral, parcial, pendente ou impossibilitada"
       ],
       "relations": [
         "github-operational-demand-mirror->github-operational-demand",
@@ -49,17 +53,18 @@
         "authorization_gate->external_side_effects"
       ],
       "operations": [
-        "resolve-explicit-selection",
-        "identify-demand",
-        "recover-full-source",
-        "verify-source-integrity",
+        "activate-fixed-github-mechanism",
+        "identify-specific-demand",
+        "resolve-user-specified-instrument-titles",
+        "recover-effective-source",
         "contextualize-demand",
         "parameterize-application",
-        "coordinate-selected-instruments",
-        "insert-demand-if-authorized",
+        "adapt-without-function-drift",
+        "coordinate-instruments",
+        "insert-if-authorized",
         "execute-permitted-operation",
         "validate-result",
-        "trace-continuous-reference"
+        "trace-operation"
       ],
       "category": "recoverable_on_demand",
       "classification_basis": "default_title_rule",

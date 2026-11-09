@@ -209,7 +209,7 @@
     },
     {
       "id": "github-operational-demand",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — ACIONAMENTO, RECUPERAÇÃO, PERSONALIZAÇÃO E EXECUÇÃO DA PROMPTÁRIA PELO GITHUB",
+      "title": "ACIONE A PROMPTÁRIA PELO GITHUB PARA INSERIR, RECUPERAR E APLICAR DEMANDAS",
       "path": "instruments/github-operational-demand.md",
       "resolution_status": "resolved_by_canonical_identity",
       "planning_capabilities": [

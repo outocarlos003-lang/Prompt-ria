@@ -285,7 +285,9 @@
         "preservar autorização explícita para efeitos externos",
         "carregar continuamente a preparação, correlação e encaminhamento da demanda",
         "permanecer como contexto interno sem seleção individual recuperável",
-        "não ativar automaticamente instrumentos especializados nem efeitos externos"
+        "não ativar automaticamente instrumentos especializados nem efeitos externos",
+        "preservar o conteúdo funcional anteriormente publicado na unidade recuperável",
+        "manter preparação e encaminhamento contínuos sem seleção recuperável automática"
       ],
       "relations": [
         "github-operational->github-operational-demand-mirror",
@@ -314,7 +316,9 @@
         "validate-result",
         "load-as-continuous-context",
         "prepare-demand-routing",
-        "preserve-explicit-recoverable-activation"
+        "preserve-explicit-recoverable-activation",
+        "preserve-transferred-source-content",
+        "route-to-recoverable-fixed-instrument"
       ],
       "category": "continuous_automation",
       "classification_basis": "explicit_controlled_transfer",
