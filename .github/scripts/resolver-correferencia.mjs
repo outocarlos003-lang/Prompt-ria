@@ -64,9 +64,10 @@ export function resolveReference(reference, catalog) {
     const key = norm(raw);
     list = index.terms.filter(t => t.key === key).map(t => t.item);
     const kinds = index.terms.filter(t => t.key === key);
-    const hasTitle = kinds.some(t => t.kind === "canonical_title");
+    const titleCount = kinds.filter(t => t.kind === "canonical_title").length;
+    const hasTitle = titleCount > 0;
     const hasAlias = kinds.some(t => t.kind === "canonical_alias");
-    matchType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "canonical_title" : "canonical_alias";
+    matchType = hasTitle && hasAlias ? (titleCount > 1 ? "ambiguous_title" : "ambiguous_title_alias") : hasTitle ? "canonical_title" : "canonical_alias";
   }
   const active = [...new Map(list.filter(enabled).map(x => [x.id, x])).values()];
   if (active.length === 1) return result(active[0], { activation: true, match_type: matchType });
@@ -129,9 +130,10 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
       !/preservar|manter|própria/i.test(suffix);
     const exception = afterMarker || beforeMarker;
     const ambiguous = ids.length > 1;
-    const hasTitle = collisions.some(t=>t.kind==="canonical_title");
+    const titleCount = collisions.filter(t=>t.kind==="canonical_title").length;
+    const hasTitle = titleCount > 0;
     const hasAlias = collisions.some(t=>t.kind==="canonical_alias");
-    const ambiguousType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "ambiguous_title" : "ambiguous_alias";
+    const ambiguousType = hasTitle && hasAlias ? (titleCount > 1 ? "ambiguous_title" : "ambiguous_title_alias") : hasTitle ? "ambiguous_title" : "ambiguous_alias";
     out.push(result(term.item,{start,end,activation:!ambiguous&&!exception,function_status:ambiguous?"ambiguous":exception?"diverse":"own",match_type:ambiguous?ambiguousType:term.kind,...(ambiguous?{candidates:ids}:{}),exception_scope:exception?{type:"local",start,end}:null}));
   }
   // Preserve shorter canonical identities nested inside a longer title mention.
@@ -151,9 +153,10 @@ export function resolveMentions(request, instruments = [], suppliedIndex) {
         const collisions = index.terms.filter(t => t.key === term.key);
         const ids = [...new Set(collisions.map(t => t.item.id))];
         const ambiguous = ids.length > 1;
-        const hasTitle = collisions.some(t => t.kind === "canonical_title");
+        const titleCount = collisions.filter(t => t.kind === "canonical_title").length;
+        const hasTitle = titleCount > 0;
         const hasAlias = collisions.some(t => t.kind === "canonical_alias");
-        const ambiguousType = hasTitle && hasAlias ? "ambiguous_title_alias" : hasTitle ? "ambiguous_title" : "ambiguous_alias";
+        const ambiguousType = hasTitle && hasAlias ? (titleCount > 1 ? "ambiguous_title" : "ambiguous_title_alias") : hasTitle ? "ambiguous_title" : "ambiguous_alias";
         out.push(result(term.item, { start, end, activation: !ambiguous, function_status: ambiguous ? "ambiguous" : "own", match_type: ambiguous ? ambiguousType : term.kind, ...(ambiguous ? { candidates: ids } : {}) }));
       }
     }
