@@ -36,7 +36,7 @@ class SpecializedExecutorTests(unittest.TestCase):
         implemented = {instrument_id for instrument_id, item in mapped.items() if item.get("specialized_execution_status") == "implemented"}
         planning_only = {instrument_id for instrument_id, item in mapped.items() if item.get("specialized_execution_status") == "planning_only"}
         self.assertEqual(implemented, set(specialized.HANDLERS))
-        self.assertEqual(planning_only, {"functional-correference-architecture-recoverable"})
+        self.assertEqual(planning_only, set())
         for instrument_id, item in mapped.items():
             with self.subTest(instrument=instrument_id):
                 self.assertEqual(item["specialized_executor"], "scripts/promptaria_specialized_executor.py")
@@ -377,6 +377,17 @@ class SpecializedExecutorTests(unittest.TestCase):
                 "request": "functional-correference-architecture-recoverable",
                 "parameters": ["not", "an", "object"],
             })
+
+    def test_shared_title_resolves_recoverable_phase_not_continuous_phase(self):
+        canonical, _ = specialized.load_catalog()
+        shared_title = canonical["functional-correference-architecture-recoverable"]["title"]
+        matches = specialized.resolve_ids(shared_title, canonical)
+        self.assertEqual([item["id"] for item in matches if item["activation"]], [
+            "functional-correference-architecture-recoverable"
+        ])
+        self.assertEqual(specialized.resolve_ids(
+            canonical["functional-correference-architecture"]["title"], canonical
+        ), [])
 
     def test_continuous_automation_instrument_is_context_only_not_executable(self):
         with self.assertRaisesRegex(SystemExit, "Instrumentos não ativados no registro"):
