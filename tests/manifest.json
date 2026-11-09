@@ -106,15 +106,27 @@
     },
     {
       "id": "github-operational-demand-mirror",
-      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — APLICAÇÃO OPERACIONAL DA PROMPTÁRIA PELO GITHUB",
+      "title": "INSTRUMENTO PROMPTUAL DE AUTOMAÇÃO FUNCIONAL CONTÍNUA — PREPARAÇÃO, CORRELAÇÃO E ENCAMINHAMENTO DA PROMPTÁRIA PELO GITHUB",
       "path": "instruments/github-operational-demand-mirror.md",
       "aliases": [
         "aplicação recuperável da Promptária pelo GitHub",
         "espelho recuperável do acionamento GitHub",
         "fase recuperável sob demanda da Promptária"
       ],
+      "category": "continuous_automation",
+      "classification_basis": "explicit_controlled_transfer"
+    },
+    {
+      "id": "github-operational-demand",
+      "title": "INSTRUMENTO PROMPTUAL RECUPERÁVEL SOB DEMANDA — ACIONAMENTO, RECUPERAÇÃO, PERSONALIZAÇÃO E EXECUÇÃO DA PROMPTÁRIA PELO GITHUB",
+      "path": "instruments/github-operational-demand.md",
+      "aliases": [
+        "acionamento recuperável da Promptária pelo GitHub",
+        "aplicação sob demanda pelo GitHub",
+        "fase recuperável de inserção recuperação e aplicação"
+      ],
       "category": "recoverable_on_demand",
-      "classification_basis": "default_title_rule"
+      "classification_basis": "explicit_new_counterpart"
     }
   ]
 }
