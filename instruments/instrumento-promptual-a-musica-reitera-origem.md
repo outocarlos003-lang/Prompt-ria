@@ -558,6 +558,65 @@ Preserve a ambiguidade quando ela sustentar múltiplas interpretações compatí
 
 Cada imagem deverá possuir uma função reconhecível na arquitetura e, simultaneamente, conservar a possibilidade de significações adicionais legitimamente sustentadas por sua constituição.
 
+## XIII-A. CAMADA COMPLEMENTAR INTEGRADA — TOTALIDADE TEMÁTICA, ESTÉTICA E EXPRESSÃO IMPLÍCITA
+
+Esta camada amplia o instrumento sem substituir, reduzir, reordenar ou enfraquecer suas diretrizes anteriores. Todas as orientações desta seção devem operar em conjunto com a reconstrução da necessidade, a integração documental, a seleção arquitetônica, a ambiguidade produtiva, o reaproveitamento estrutural, a arquitetura causal, a recursividade, a correferência multiescalar, a indução fractal, a identidade sistêmica, a dupla direção entre físico e metafísico, a derivação lírico-musical, a identidade artística e sonora, a instrumentação, a progressão musical, a voz, a produção e a identidade lírica já estabelecidas.
+
+### 13-A.1. Campo temático complementar e indissociável
+
+Incorpore, como dimensões simultâneas de uma única orientação composicional, os seguintes eixos:
+
+- Esvaziamento;
+- Mortificação;
+- Desprendimento;
+- Rendição;
+- Abandono;
+- Renúncia;
+- Abnegação;
+- Autonegação;
+- Crucificação;
+- Sacrifício;
+- Desapego;
+- Humilhação;
+- Quebrantamento;
+- Submissão.
+
+Nenhum desses eixos constitui tema alternativo, escolha facultativa, faixa independente, etapa obrigatória da narrativa ou motivo a ser isoladamente ilustrado. Sua incorporação é cumulativa, recíproca e indissociável: cada dimensão deverá participar da configuração das demais, de modo que a composição possa expressar uma experiência complexa e unificada, sem converter a lista em sequência literal, inventário de palavras ou roteiro temático.
+
+A simultaneidade não exige equivalência semântica entre os termos nem apaga suas diferenças. Preserve suas tensões, gradações, complementaridades e possíveis contradições produtivas. Faça com que a relação entre perda e transformação, limite e abertura, vulnerabilidade e entrega, ruptura e continuidade, ausência e presença, custo e possibilidade possa emergir da necessidade específica da obra. Nenhum eixo deverá ser tratado como substituto ou resumo dos demais.
+
+### 13-A.2. Integração integral das diretrizes preexistentes
+
+A camada complementar deverá permanecer interconectada a todos os elementos já estabelecidos no instrumento, sem exceção seletiva. Isso inclui, em sua formulação e grafia vigentes, Emo Core Confessional, Alternative Rock, Slowcore, Pop Punk, Emo Melódico dos anos 2000, Dark Romanticism, Hermetismo, Poética da ambiguidade, lirismo polissêmico, poética polissêmico, Surrealismo rimas, prosopopeia, ironias, sinestesia, dark romanticism, abismo sublime, contrastes, rupturas sintáticas, imagens de romantismo sombrio e todas as demais orientações estéticas, linguísticas, musicais, instrumentais, vocais, narrativas, arquitetônicas e documentais já presentes.
+
+Permaneçam igualmente integradas as possibilidades temáticas já nomeadas no instrumento: Saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma e salvação. A orientação conjunta passa a considerar a totalidade desse campo temático em relação com a nova camada, sem transformar qualquer palavra em obrigação de aparecer na letra, sem exigir que cada tema receba uma estrofe própria e sem reduzir a composição a uma enumeração.
+
+As menções nominais preexistentes às estéticas e aos temas devem permanecer exatamente como estão escritas nas partes originais. Esta seção é aditiva: não corrige, normaliza, renomeia nem substitui suas formulações. As relações aqui estabelecidas ampliam sua operação conjunta, preservando as nuances e as diferenças de cada elemento.
+
+### 13-A.3. Manifestação musical implícita, simbólica e não literal
+
+As diretrizes temáticas e estéticas pertencem ao instrumento e orientam a concepção da obra; não constituem vocabulário obrigatório da composição. Não exija que a letra nomeie, explique, descreva ou represente literalmente qualquer um dos catorze eixos complementares, nem que declare sua presença por símbolos convencionais ou referências conceituais evidentes.
+
+A assimilação deverá ocorrer organicamente por meio de imagens, relações, gestos, objetos, espaços, temporalidades, contrastes, silêncios, subtexto, perspectiva lírica, tensão harmônica, recorrência e transformação de motivos, dinâmica, timbre, articulação vocal, arranjo e produção. A música poderá sugerir essas dimensões por consequências sensíveis e relações evocativas, sem fornecer uma chave explicativa que encerre a interpretação.
+
+O tratamento implícito não autoriza obscuridade arbitrária. Cada imagem, silêncio ou deslocamento deverá manter vínculo reconhecível com a necessidade arquitetônica da obra, ainda que sua significação não seja unívoca. Preserve a inteligibilidade emocional, a cantabilidade, a identidade sonora e a unidade da composição. A sutileza deverá ampliar a densidade expressiva, não ocultar a progressão musical nem dissolver a coerência.
+
+### 13-A.4. Simultaneidade na arquitetura da composição
+
+A totalidade das diretrizes deverá atravessar conjuntamente a composição, e não ser distribuída como uma lista de tarefas por seção. Intro, versos, pré-refrões, refrões, ponte, clímax e Outro deverão participar, cada qual segundo sua função musical própria, de uma mesma arquitetura de tensões e transformações. Não se exige que todas as dimensões apareçam com igual intensidade em cada seção; exige-se que nenhuma seja isolada como orientação autônoma ou descartada como se fosse incompatível apenas por não estar literalmente nomeada.
+
+A simultaneidade deverá ser alcançada por interdependência, recorrência transformada, contraponto, ambivalência estruturada e continuidade de motivos. Um mesmo elemento musical poderá carregar mais de uma dimensão; elementos diferentes poderão revelar aspectos distintos de uma mesma necessidade. O refrão deverá conservar e transformar; a ponte deverá deslocar e aprofundar; o clímax deverá tornar sensível a convergência das tensões; o Outro deverá preservar a memória da totalidade sem explicá-la nem esgotá-la.
+
+A integração não estabelece hierarquia excludente entre os temas originais, os catorze eixos complementares e as estéticas preexistentes. A função de cada elemento será determinada por sua relação com o conjunto, sem que a centralidade momentânea de um aspecto elimine os demais. Conserve as diferenças e faça-as cooperar.
+
+### 13-A.5. Regra de preservação e adequação mínima
+
+Esta camada é estritamente complementar e cumulativa. Nenhuma instrução preexistente deverá ser omitida, substituída, enfraquecida, descaracterizada ou excluída em razão de sua inclusão. Eventual tensão entre formulações deverá ser resolvida pela interpretação conjunta que preserve o maior conteúdo compatível e restrinja ajustes ao mínimo indispensável, sem apagar distinções legítimas.
+
+A exigência de integração total refere-se à orientação composicional do instrumento, não à obrigação de inserir todos os nomes ou conceitos na letra. A composição deverá assimilar, encarnar e revelar a totalidade por meios implícitos, simbólicos, sutis, orgânicos e evocativos, mantendo a identidade musical geral e a referência artística já estabelecida.
+
+Em síntese operacional: todos os fundamentos originais, todas as estéticas já nomeadas, todas as possibilidades temáticas preexistentes e os catorze eixos complementares permanecem simultaneamente ativos como uma orientação única e interconectada. Nada é substituído; nada precisa ser anunciado. A arquitetura orienta a música, e a música manifesta a arquitetura sem precisar nomeá-la.
+
 ## XIV. DIRETRIZES DE ENTREGA E VERIFICAÇÃO FINAL
 
 Entregue os seguintes componentes, sem produzir um eixo discursivo textual independente da composição.
