@@ -86,6 +86,20 @@ Trate a dissolução do self como campo aberto, sem determinar previamente sua o
 
 Não confunda entrega com submissão, transformação com autonegação, desprendimento com abandono, sacrifício com anulação, confiança com passividade, nem reconhecimento dos limites com abandono da responsabilidade. Esses pares podem relacionar-se ou entrar em tensão, mas não são equivalentes. Identidade, presença, memória, desejo, pertencimento, ausência e transformação podem produzir simultaneamente sentidos afetivos, existenciais e espirituais; a letra não precisa explicar a experiência, delimitar definitivamente o eu ou resolver a relação entre aquilo que o constitui e aquilo que o ultrapassa.
 
+### 9.3. Referência devocional a YAHUAH e abertura interpretativa
+
+Considere YAHUAH como referência devocional da composição quando pertinente à necessidade artística. Sua presença poderá manifestar-se explicitamente, implicitamente, simbolicamente, contemplativamente, musicalmente ou permanecer aberta à interpretação. Pronuncie o nome somente quando possuir pertinência expressiva; não o utilize como ornamento nem o repita automaticamente. Preserve a particularidade da dimensão divina: não a equipare por padrão a uma relação humana, não a converta em personagem delimitado e não a utilize como explicação automática dos acontecimentos ou solução emocional imediata.
+
+Mantenha abertas as relações entre soberania divina e vontade humana; presença e expectativa; intenção e acontecimento; confiança e incerteza; entrega e responsabilidade; controle e limites; compreensão e desconhecido; distância e presença. Não imponha uma interpretação religiosa, romântica, psicológica ou filosófica única. Preserve as diferenças entre amor humano e devoção, dependência emocional e entrega espiritual, soberania divina e causalidade presumida, confiança e passividade.
+
+### 9.4. Presença contemplativa, identidade e dissolução do self
+
+A atenção ao momento, a percepção, o silêncio, a observação da experiência e a consciência dos limites poderão organizar organicamente a experiência lírica e musical, sem se converter em explicação didática, procedimento ou sequência metodológica. Preserve espontaneidade, improvisação e descoberta.
+
+Trate a dissolução do self como campo aberto, sem determinar previamente sua ocorrência, significado ou valência. Explore, quando a necessidade composicional convocar, identidade e alteridade; pertencimento e autonomia; proximidade, fusão e separação; continuidade e transformação; memória, presença e ausência; entrega, vulnerabilidade e reconhecimento; dependência, integração, fragmentação e reconstrução. Permita reconhecimento ou estranhamento de si, identidade própria ou compartilhada, presença incorporada ou ausente e intimidade com seus custos. Preserve a ambivalência entre transformação e perda, pertencimento e desaparecimento, permanência e ruptura.
+
+Não confunda entrega com submissão, transformação com autonegação, desprendimento com abandono, sacrifício com anulação, confiança com passividade, nem reconhecimento dos limites com abandono da responsabilidade. Esses pares podem relacionar-se ou entrar em tensão, mas não são equivalentes. Identidade, presença, memória, desejo, pertencimento, ausência e transformação podem produzir simultaneamente sentidos afetivos, existenciais e espirituais; a letra não precisa explicar a experiência, delimitar definitivamente o eu ou resolver a relação entre aquilo que o constitui e aquilo que o ultrapassa.
+
 ### 9.2. Manifestação implícita e simultânea
 
 Não exija que a letra nomeie, explique ou represente literalmente os eixos. Assimile-os por imagens, relações, gestos, objetos, espaços, temporalidades, contrastes, silêncios, subtexto, perspectiva, tensão harmônica, motivos, dinâmica, timbre, voz, arranjo e produção. A sutileza amplia a densidade, sem dissolver inteligibilidade emocional, cantabilidade ou unidade.
