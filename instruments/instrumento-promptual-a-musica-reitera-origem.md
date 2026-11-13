@@ -72,6 +72,34 @@ Mantenha simultaneamente interconectados: **esvaziamento, mortificação, despre
 
 Todos os temas e estéticas originais e complementares permanecem ativos e interconectados, sem hierarquia excludente. A integração é orientação composicional, não obrigação de nomear cada elemento na letra. Não corrija nem renomeie as formulações estéticas preexistentes.
 
+### 9.3. Referência devocional a YAHUAH e abertura interpretativa
+
+Considere YAHUAH como referência devocional da composição quando pertinente à necessidade artística. Sua presença poderá manifestar-se explicitamente, implicitamente, simbolicamente, contemplativamente, musicalmente ou permanecer aberta à interpretação. Pronuncie o nome somente quando possuir pertinência expressiva; não o utilize como ornamento nem o repita automaticamente. Preserve a particularidade da dimensão divina: não a equipare por padrão a uma relação humana, não a converta em personagem delimitado e não a utilize como explicação automática dos acontecimentos ou solução emocional imediata.
+
+Mantenha abertas as relações entre soberania divina e vontade humana; presença e expectativa; intenção e acontecimento; confiança e incerteza; entrega e responsabilidade; controle e limites; compreensão e desconhecido; distância e presença. Não imponha uma interpretação religiosa, romântica, psicológica ou filosófica única. Preserve as diferenças entre amor humano e devoção, dependência emocional e entrega espiritual, soberania divina e causalidade presumida, confiança e passividade.
+
+### 9.4. Presença contemplativa, identidade e dissolução do self
+
+A atenção ao momento, a percepção, o silêncio, a observação da experiência e a consciência dos limites poderão organizar organicamente a experiência lírica e musical, sem se converter em explicação didática, procedimento ou sequência metodológica. Preserve espontaneidade, improvisação e descoberta.
+
+Trate a dissolução do self como campo aberto, sem determinar previamente sua ocorrência, significado ou valência. Explore, quando a necessidade composicional convocar, identidade e alteridade; pertencimento e autonomia; proximidade, fusão e separação; continuidade e transformação; memória, presença e ausência; entrega, vulnerabilidade e reconhecimento; dependência, integração, fragmentação e reconstrução. Permita reconhecimento ou estranhamento de si, identidade própria ou compartilhada, presença incorporada ou ausente e intimidade com seus custos. Preserve a ambivalência entre transformação e perda, pertencimento e desaparecimento, permanência e ruptura.
+
+Não confunda entrega com submissão, transformação com autonegação, desprendimento com abandono, sacrifício com anulação, confiança com passividade, nem reconhecimento dos limites com abandono da responsabilidade. Esses pares podem relacionar-se ou entrar em tensão, mas não são equivalentes. Identidade, presença, memória, desejo, pertencimento, ausência e transformação podem produzir simultaneamente sentidos afetivos, existenciais e espirituais; a letra não precisa explicar a experiência, delimitar definitivamente o eu ou resolver a relação entre aquilo que o constitui e aquilo que o ultrapassa.
+
+### 9.3. Referência devocional a YAHUAH e abertura interpretativa
+
+Considere YAHUAH como referência devocional da composição quando pertinente à necessidade artística. Sua presença poderá manifestar-se explicitamente, implicitamente, simbolicamente, contemplativamente, musicalmente ou permanecer aberta à interpretação. Pronuncie o nome somente quando possuir pertinência expressiva; não o utilize como ornamento nem o repita automaticamente. Preserve a particularidade da dimensão divina: não a equipare por padrão a uma relação humana, não a converta em personagem delimitado e não a utilize como explicação automática dos acontecimentos ou solução emocional imediata.
+
+Mantenha abertas as relações entre soberania divina e vontade humana; presença e expectativa; intenção e acontecimento; confiança e incerteza; entrega e responsabilidade; controle e limites; compreensão e desconhecido; distância e presença. Não imponha uma interpretação religiosa, romântica, psicológica ou filosófica única. Preserve as diferenças entre amor humano e devoção, dependência emocional e entrega espiritual, soberania divina e causalidade presumida, confiança e passividade.
+
+### 9.4. Presença contemplativa, identidade e dissolução do self
+
+A atenção ao momento, a percepção, o silêncio, a observação da experiência e a consciência dos limites poderão organizar organicamente a experiência lírica e musical, sem se converter em explicação didática, procedimento ou sequência metodológica. Preserve espontaneidade, improvisação e descoberta.
+
+Trate a dissolução do self como campo aberto, sem determinar previamente sua ocorrência, significado ou valência. Explore, quando a necessidade composicional convocar, identidade e alteridade; pertencimento e autonomia; proximidade, fusão e separação; continuidade e transformação; memória, presença e ausência; entrega, vulnerabilidade e reconhecimento; dependência, integração, fragmentação e reconstrução. Permita reconhecimento ou estranhamento de si, identidade própria ou compartilhada, presença incorporada ou ausente e intimidade com seus custos. Preserve a ambivalência entre transformação e perda, pertencimento e desaparecimento, permanência e ruptura.
+
+Não confunda entrega com submissão, transformação com autonegação, desprendimento com abandono, sacrifício com anulação, confiança com passividade, nem reconhecimento dos limites com abandono da responsabilidade. Esses pares podem relacionar-se ou entrar em tensão, mas não são equivalentes. Identidade, presença, memória, desejo, pertencimento, ausência e transformação podem produzir simultaneamente sentidos afetivos, existenciais e espirituais; a letra não precisa explicar a experiência, delimitar definitivamente o eu ou resolver a relação entre aquilo que o constitui e aquilo que o ultrapassa.
+
 ### 9.2. Manifestação implícita e simultânea
 
 Não exija que a letra nomeie, explique ou represente literalmente os eixos. Assimile-os por imagens, relações, gestos, objetos, espaços, temporalidades, contrastes, silêncios, subtexto, perspectiva, tensão harmônica, motivos, dinâmica, timbre, voz, arranjo e produção. A sutileza amplia a densidade, sem dissolver inteligibilidade emocional, cantabilidade ou unidade.
@@ -84,7 +112,7 @@ Use **duas guitarras elétricas em estéreo**, complementares, nunca mera duplic
 
 ## XI. PROGRESSÃO MUSICAL E DINÂMICA
 
-Organize conforme a necessidade narrativa, preservando estas seções e funções:
+Considere esta arquitetura de referência e organize conforme a necessidade narrativa. Quando as seções forem utilizadas, preserve suas funções musicais, sem impor conteúdos ou correspondências temáticas fixos:
 
 - **[Intro]** Ambiência contemplativa e intimista, texturas em camadas e motivo que antecipe a identidade e retorne transformado.
 - **[Verso 1]** Voz rouca, vulnerável e confessional; guitarras discretas, palm mute, baixo firme e bateria controlada. Alterne 120 BPM e 81 BPM conforme a expressão. Instaure conflito e tensão latente.
@@ -96,6 +124,12 @@ Organize conforme a necessidade narrativa, preservando estas seções e funçõe
 - **[Outro]** Dissolução extensa e atmosférica: delays amplos, reverberação profunda, drones subgraves, ressonância harmônica, modulação delicada e texturas ascendentes. Transforme e dissolva motivos, mantendo memória, identidade e suspensão, sem resolução artificial.
 
 Andamentos, transições, pausas, acelerações e crescendos servem à progressão emocional, nunca ao virtuosismo gratuito.
+
+## XI-A. FLEXIBILIDADE DA FORMA E DA PROGRESSÃO
+
+A sequência de [Intro], [Verso 1], [Pré-Refrão], [Refrão], [Verso 2], [Ponte], [Clímax/Refrão Final] e [Outro] constitui uma arquitetura de referência. Preserve a identidade e a função musical das seções utilizadas, sem impor-lhes conteúdos, imagens, estados psicológicos, correspondências temáticas ou progressão identitária fixos. A composição poderá ser linear, fragmentária, recorrente ou ambígua, conforme a necessidade artística. A progressão entre melancolia e catarse pode alternar intimidade, expansão, recolhimento, ruptura, suspensão e transformação, sem sequência narrativa predeterminada.
+
+Os andamentos de referência em 120, 81 e 170 BPM permanecem disponíveis, não obrigatórios. A voz, os motivos, as harmonias, os timbres, a dinâmica e a espacialidade deverão participar de uma unidade expressiva; a identidade musical poderá permanecer reconhecível mesmo quando seus elementos se transformem.
 
 ## XII. VOZ E PRODUÇÃO
 
@@ -112,6 +146,14 @@ Entregue aqui, em documento textual autônomo e reutilizável, sem destino exter
 1. **Síntese arquitetônica breve e verificável:** fundamentos selecionados, relações, proveniência, funções originais, transformações e limites. Separe explícito, inferido, hipotético e possibilidade aberta. Justifique conservações, exclusões por redundância/incompatibilidade e deslocamentos. Declare fontes inacessíveis.
 2. **Letra completa:** original, coesa, intensa e cantável, com [Intro], [Verso 1], [Pré-Refrão], [Refrão], [Verso 2], [Ponte], [Clímax/Refrão Final] e [Outro]. Preserve proximidade confessional, alternância de murmúrio e intensidade, tensão e catarse. CAIXA ALTA somente nos ápices; pausas, reticências, repetições e rupturas com função; acentuação, extensão dos versos e melodia cantáveis. Cada seção tem identidade e integra a progressão.
 3. **Indicações musicais essenciais:** andamento, dinâmica, instrumentos, transições, voz, texturas e produção; funções das duas guitarras estéreo, baixo e bateria acústica; transformação dos motivos, pausas, acelerações, crescendos e ambiência. Precisão sem ficha técnica intrusiva.
+
+## XIV-A. DIRETRIZES CONSOLIDADAS DE COMPOSIÇÃO E ENTREGA
+
+Entregue a composição original integralmente neste chat, em texto autônomo e reutilizável, sem inserir, editar, armazenar ou publicar a obra no projeto Lírica, em Nocturna ou em ambientes externos. Utilize Lírica exclusivamente como referência artística, estética, temática, expressiva e musical, apenas quando seus materiais estiverem efetivamente acessíveis nesta conta. Não invente elementos biográficos ou documentais nem simule consultas indisponíveis.
+
+A entrega deverá conter título original, identificação breve da direção musical quando pertinente, letra completa de extensão média e indicações musicais essenciais integradas às seções quando necessárias. Mantenha a letra isolada de explicações e descrições dispensáveis, pronta para cópia e reutilização; identifique as seções entre colchetes e utilize caixa alta somente nos ápices expressivos. Preserve acentuação verbal, cantabilidade, identidade melódica e progressão expressiva. Pausas, reticências e repetições devem ter função musical ou emocional. Não produza um ensaio filosófico independente: manifeste a dimensão conceitual preferencialmente na própria obra. Uma síntese arquitetônica breve só deverá acompanhar a letra quando esclarecer escolhas efetivamente realizadas.
+
+O repertório temático permanece aberto: saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, desesperança, autodestruição, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma, salvação, devoção, reverência, rendição, presença, soberania e ilusão de controle humano podem emergir isolada, simultânea, contraditória ou implicitamente, sem se converter em lista de exigências. Preserve Emo Core Confessional, Dark Romanticism, hermetismo, ambiguidade, polissemia, surrealismo, rimas, prosopopeia, abismo sublime, perguntas, contrastes, silêncios e rupturas sintáticas, priorizando clareza emocional, densidade simbólica e cantabilidade.
 
 ## XV. FECHAMENTO
 
