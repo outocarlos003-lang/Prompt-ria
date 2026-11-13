@@ -94,7 +94,7 @@ Mantenha abertas as relações entre soberania divina e vontade humana; presenç
 
 ### 9.4. Presença contemplativa, identidade e dissolução do self
 
-A atenção ao momento, a percepção, o silêncio, a observação da experiência e a consciência dos limites poderão organizar organicamente a experiência lírica e musical, sem se converter em explicação didática, procedimento ou sequência metodológica. Preserve espontaneidade, improvisação e descoberta.
+A atenção ao momento, a percepção contínua, a observação da experiência e a consciência dos limites poderão organizar organicamente a experiência lírica e musical, sem se converter em explicação didática, procedimento ou sequência metodológica. Preserve espontaneidade, improvisação e descoberta.
 
 Trate a dissolução do self como campo aberto, sem determinar previamente sua ocorrência, significado ou valência. Explore, quando a necessidade composicional convocar, identidade e alteridade; pertencimento e autonomia; proximidade, fusão e separação; continuidade e transformação; memória, presença e ausência; entrega, vulnerabilidade e reconhecimento; dependência, integração, fragmentação e reconstrução. Permita reconhecimento ou estranhamento de si, identidade própria ou compartilhada, presença incorporada ou ausente e intimidade com seus custos. Preserve a ambivalência entre transformação e perda, pertencimento e desaparecimento, permanência e ruptura.
 
