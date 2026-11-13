@@ -904,3 +904,184 @@ em algum lugar
 entre te esquecer…
 e não conseguir 🖤
 ```
+
+
+---
+
+# ADITAMENTO COMPLEMENTAR — IDENTIDADE DEVOCIONAL, EXPERIÊNCIA CONTEMPLATIVA E DERIVAÇÃO LÍRICO-MUSICAL
+
+Esta camada é complementar e cumulativa. Permanece independente em relação aos fundamentos anteriores: não os substitui, omite, reordena ou altera. Suas possibilidades coexistem com a arquitetura original, sem impor correspondências, sequências, imagens, interpretações ou resultados. O que se aproxima poderá também permanecer distinto; o que emerge não precisa ser antecipado.
+
+## 1. CAMPOS DE EXPERIÊNCIA, IDENTIDADE E LINGUAGEM
+
+### 1.1. Identidade devocional e presença de YAHUAH
+
+Permita a possibilidade de uma dimensão devocional relacionada a YAHUAH, nome do Deus do monoteísmo. Sua presença poderá participar da experiência de modo explícito, implícito, simbólico, contemplativo ou inteiramente aberto à interpretação, sem que sua manifestação seja antecipada ou determinada.
+
+### 1.2. Soberania divina e limites do controle humano
+
+Mantenha abertas as relações entre soberania divina e vontade humana; presença e expectativa; intenção e acontecimento; confiança e incerteza; entrega e responsabilidade; controle e reconhecimento dos próprios limites; compreensão e aquilo que permanece desconhecido; distância e presença. Essas relações poderão coexistir, tensionar-se, contradizer-se ou permanecer sem resolução.
+
+### 1.3. Arquitetura contemplativa
+
+A atenção, a presença, a percepção imediata, o silêncio, a observação da experiência, a consciência dos limites e a relação com a própria vontade poderão participar da organização da experiência musical e lírica, inclusive em aproximação livre com sensibilidades contemplativas associadas ao mindfulness. Não converter essa possibilidade em explicação, representação didática, procedimento, método, sequência ou resultado predeterminado. A experiência permanece espontânea, improvisável e aberta à descoberta.
+
+### 1.4. Dissolução do self e transformação identitária
+
+Mantenha a dissolução do self como campo possível de investigação, sem determinar sua ocorrência ou interpretação. Poderão emergir relações entre identidade, pertencimento e alteridade; proximidade, fusão e separação; continuidade e transformação do eu; memória, presença e ausência; autonomia e dependência; entrega, vulnerabilidade e reconhecimento; permanência, perda e reconstrução identitária; transformação e autonegação. A experiência poderá aproximar-se de intimidade, mudança, fragmentação, integração, transcendência ou de possibilidades ainda não formuladas. O eu lírico poderá reconhecer-se, desconhecer-se ou permanecer entre essas condições.
+
+### 1.5. Desenvolvimento semântico da identidade
+
+Permita que identidade, presença, memória, desejo, pertencimento, ausência e transformação estabeleçam relações variáveis. Quando organicamente pertinente, poderão coexistir reconhecimento e estranhamento de si; identidade própria e compartilhada; presença incorporada e presença ausente; entrega voluntária e autonegação; intimidade e dependência; continuidade e ruptura; memória e transformação. Nenhuma dessas relações exige uma leitura única.
+
+### 1.6. Relação com os catorze eixos complementares
+
+Os catorze eixos permanecem disponíveis como possibilidades de interpretação e desenvolvimento da experiência, sem correspondências fixas com acontecimentos da letra ou etapas da composição:
+
+| Eixo | Campo de exploração possível |
+|---|---|
+| Esvaziamento | Ausência, identidade, silêncio e espaço interior. |
+| Mortificação | Transformação, encerramento ou desaparecimento de versões anteriores de si. |
+| Desprendimento | Separação, liberdade, pertencimento e entrega. |
+| Rendição | Vontade, confiança, limites e aquilo que ultrapassa o controle. |
+| Abandono | Ausência, desamparo, liberdade ou suspensão de referenciais. |
+| Renúncia | Escolha, perda, transformação e renúncia de possibilidades. |
+| Abnegação | Relação entre o próprio existir e a existência de outro. |
+| Autonegação | Tensão entre entrega, identidade e reconhecimento das próprias necessidades. |
+| Crucificação | Suspensão simbólica entre sofrimento, transformação e permanência. |
+| Sacrifício | Custo, escolha, perda e significado. |
+| Desapego | Memória, identidade e libertação. |
+| Humilhação | Vulnerabilidade, valor próprio, exposição e reconhecimento. |
+| Quebrantamento | Ruptura, fragilidade, transformação e reconstrução. |
+| Submissão | Tensão entre vontade, entrega, autonomia e limites. |
+
+Não é necessário nomear, utilizar ou desenvolver todos os eixos em uma composição. Permita combinações, sobreposições, contradições e interpretações alternativas, preservando as diferenças entre entrega e submissão; transformação e autonegação; desprendimento e abandono; sacrifício e anulação; confiança e passividade; reconhecimento dos limites e abandono da responsabilidade.
+
+### 1.7. Campo temático
+
+Permanece aberto o repertório já contemplado pelo instrumento, incluindo saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, desesperança, autodestruição, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma e salvação. Poderão aproximar-se também autodestruição, devoção, reverência, soberania divina, presença, rendição e ilusão de controle humano. Os temas poderão surgir isoladamente, simultaneamente, em contradição, de modo implícito ou como emergência não antecipada.
+
+### 1.8. Linguagem confessional e liberdade interpretativa
+
+Preserve hermetismo, ambiguidade, polissemia, surrealismo, rimas, prosopopeia, perguntas, silêncios e rupturas sintáticas. Permita afirmações existenciais e afetivas; contradições entre desejo, memória e identidade; expressões de significados simultâneos; ambiguidade entre experiências humanas, espirituais e existenciais; inversões entre presença, ausência e reconhecimento; e interpretações que permaneçam abertas. A letra não precisa explicar a própria experiência: sua emoção poderá ser perceptível sem que seu significado esteja inteiramente definido.
+
+## 2. ARQUITETURA MUSICAL
+
+A identidade sonora e a arquitetura instrumental do instrumento original permanecem preservadas. Os elementos poderão encontrar funções variáveis conforme a necessidade de cada composição, sem combinação obrigatória ou direção estilística única.
+
+O campo de referências permanece aberto a PopPunkEmoPostHardcoreWhisperDarkromanticismMelodramaticoAcústicoAtmosféricoInfluênciasGospelGuitarraLimpaComBatidasSincopadasEAbafadasPelaPalmaDaMãoBateriaAoVivoEnergéticaComCaixaEmDestaqueEChimbalConstanteEmColcheiasBaixoDistorcidoEEncorpadoSincronizadoComOBumboVocalÍntimoEPróximoAoMicrofoneVozMistaSuaveESoprosaLimpaEmotivaVocaisOfegantesGemidosSoprososEntrecortadoMelodicoLimpoSensualMurmuriosAngustiaAsperezaHarmoniasDevocionalSolenePulsoFirmeComFalsetesOcasionaisInterpretaçãoContidaEDeBaixaIntensidadeQueCresceAtéRefrõesUrgentesEGrandiososComHarmoniasEmCamadasTransiçõesAbruptasEntrePassagensEspaçosasEReflexivasESeçõesRápidasECatárticasAtmosferaEmTomMenorMixagemModernaEBemComprimidaGuitarrasAmplasEAmbiênciaEletrônicaSutilClimaDevocionalESoleneMúsicaSustentadaEm81BPMComPulsaçãoEstávelEPresençaRítmicaContidaTransiçõesAbruptasQueLevamA170BPMEmRefroesAceleradosPonteAscendenteHimnicaEEnergiaCatárticaRetomandoOImpactoDasBateriasAoVivoEDasGuitarrasAmplasUnindoContrasteDinamismoEspaçoEÊxtase.
+
+As referências instrumentais permanecem: duas guitarras elétricas estéreo, baixo e bateria acústica.
+
+### 2.1. Duas guitarras e relações identitárias
+
+Explore, quando pertinente, complementaridade, contraste, resposta, sobreposição e transformação entre as duas guitarras. Motivos, frases e contornos melódicos poderão sugerir individualidade, proximidade, fusão, separação ou incorporação. A origem e a função de cada motivo poderão permanecer reconhecíveis, tornar-se ambíguas ou transformar-se. Não estabeleça correspondência fixa entre guitarra, identidade, personagem ou presença.
+
+### 2.2. Baixo e bateria
+
+Preserve as funções harmônicas, rítmicas e expressivas do baixo e da bateria acústica. Continuidade, interrupção, sustentação, ausência, pulsação e silêncio poderão participar da dinâmica musical e contribuir para percepções de estabilidade, tensão, fragmentação ou transformação, sem significado obrigatório.
+
+### 2.3. Motivos musicais e memória
+
+Motivos recorrentes e transformações musicais poderão sustentar continuidade e desenvolvimento. Um motivo poderá retornar reconhecível, modificado, fragmentado, invertido, deslocado ou reduzido. Sua transformação poderá sugerir memória, identidade, repetição, incorporação ou afastamento, sem fixar interpretação.
+
+### 2.4. Progressão musical e emocional
+
+Permanece possível a progressão entre intro, versos, pré-refrão, refrão, ponte, clímax e Outro, assim como a progressão melancolia-catarse e os contrastes de crescimento, retração, suspensão e transformação. A dinâmica deverá emergir do material musical e lírico, sem sequência narrativa ou identitária obrigatória para cada seção.
+
+### 2.5. Direção vocal
+
+Explore, conforme a composição, voz confessional, vulnerabilidade, rouquidão, dobras, harmonizações, melodias ascendentes, sobreposições, ecos e variações de intensidade. A voz poderá conservar identidade individual, sugerir multiplicidade, afastar-se, fragmentar-se ou deixar vestígios. Nenhuma técnica vocal deverá corresponder previamente a um estado psicológico ou espiritual.
+
+### 2.6. Produção e espacialidade
+
+Preserve a possibilidade de produção orgânica, compressão seletiva, ambiência, delays, reverberação, drones e separação espacial. Proximidade, distância, presença, ausência, sobreposição, expansão e recolhimento poderão participar da experiência sonora e sugerir relações entre identidade individual e compartilhada, sem representação literal obrigatória.
+
+## 3. RELAÇÃO ENTRE LETRA E IDENTIDADE DEVOCIONAL
+
+A dimensão lírica permanece aberta às relações entre experiência humana, existencial, afetiva, contemplativa e espiritual, sem interpretação religiosa, romântica, psicológica ou filosófica única.
+
+### 3.1. Projeto Lírica como referência artística
+
+Quando houver materiais disponíveis do projeto Lírica, utilize-os exclusivamente como referência artística. Consulte somente materiais efetivamente disponíveis; não invente informações biográficas; não insira a composição no projeto; não edite nem altere seus conteúdos; crie a composição integralmente no chat; e preserve sua autonomia documental. Não estabeleça relações documentais ou biográficas sem sustentação no material disponível.
+
+### 3.2. Preservação das diferenças conceituais
+
+Não equipare automaticamente amor humano e devoção; dependência emocional e entrega espiritual; submissão e anulação da individualidade; soberania divina e explicação automática dos acontecimentos; presença divina e solução emocional imediata. Aproximações, tensões e ambiguidades poderão existir sem se converter em equivalências obrigatórias.
+
+### 3.3. Abertura interpretativa da presença divina
+
+Não antecipe metáforas, personagens, cenas, objetos, fenômenos ou imagens para representar YAHUAH, sua presença ou soberania. A presença divina poderá ser explícita, implícita, simbólica, contemplativa, indeterminada ou ausente da expressão verbal. A dimensão espiritual poderá emergir organicamente da experiência musical, preservando leituras diversas e sem reduzir a presença divina a uma figura ou relação humana delimitada.
+
+## 4. DIRETRIZES DE COMPOSIÇÃO E ENTREGA
+
+Produza uma composição original, integral e coerente com a necessidade criativa identificada. A entrega poderá contemplar título original; identificação breve da direção musical, quando pertinente; letra completa; indicações musicais integradas à estrutura, quando necessárias; e extensão média em caracteres, quando útil à identificação do resultado.
+
+Entregue a composição integralmente no chat. Mantenha a letra isolada de descrições desnecessárias no texto reutilizável. Não produza ensaio filosófico independente: a dimensão conceitual deverá, preferencialmente, manifestar-se na própria composição e em sua organização musical. Uma síntese arquitetônica breve poderá esclarecer escolhas efetivamente realizadas, sem se tornar explicação obrigatória.
+
+## 5. FUNDAMENTOS DO INSTRUMENTO ORIGINAL A PRESERVAR
+
+Não apresente como novidade elementos que já pertencem à arquitetura original. Permanecem como fundamentos e possibilidades preexistentes:
+
+| Elemento | Situação |
+|---|---|
+| Emo Core Confessional | Fundamento existente |
+| Alternative Rock | Fundamento existente |
+| Slowcore | Fundamento existente |
+| Pop Punk | Fundamento existente |
+| Emo Melódico dos anos 2000 | Fundamento existente |
+| Dark Romanticism | Fundamento existente |
+| Hermetismo | Fundamento existente |
+| Ambiguidade | Fundamento existente |
+| Polissemia | Fundamento existente |
+| Surrealismo | Fundamento existente |
+| Rimas e prosopopeia | Fundamentos existentes |
+| Duas guitarras elétricas estéreo | Fundamento existente |
+| Baixo e bateria acústica | Fundamentos existentes |
+| Motivos recorrentes transformados | Fundamento existente |
+| Progressão melancolia-catarse | Fundamento existente |
+| Andamentos de 120, 81 e 170 BPM | Referências existentes |
+| Intro, versos, pré-refrão, refrão, ponte, clímax e Outro | Estrutura existente |
+| Voz rouca e confessional | Fundamento existente |
+| Produção orgânica | Fundamento existente |
+| Os catorze eixos complementares | Fundamento existente |
+| Manifestação temática implícita | Fundamento existente |
+| Simultaneidade temática | Fundamento existente |
+| Entrega da composição no chat | Determinação existente |
+| Proibição de inserir a composição em Lírica | Determinação existente |
+
+Esses elementos constituem repertório e possibilidades estruturais. Sua utilização respeita a identidade particular de cada composição, sem aplicação mecânica ou obrigatoriedade indiscriminada.
+
+## 6. INVENTÁRIO CONSOLIDADO DAS CAMADAS TEMÁTICAS E FUNCIONAIS
+
+Os campos seguintes constituem possibilidades adicionais de exploração, não uma lista de exigências:
+
+| Nº | Campo de exploração |
+|---:|---|
+| 1 | Identidade devocional relacionada a YAHUAH. |
+| 2 | Soberania divina e limites do controle humano. |
+| 3 | Atenção contemplativa e presença. |
+| 4 | Dissolução do self e transformação identitária. |
+| 5 | Fusão relacional e permeabilidade dos limites individuais. |
+| 6 | Desenvolvimento semântico da identidade, da presença e da ausência. |
+| 7 | Relações possíveis entre os catorze eixos complementares e a experiência identitária. |
+| 8 | Representação musical da memória e da transformação identitária. |
+| 9 | Exploração vocal e espacial de individualidade, multiplicidade, fusão e fragmentação. |
+| 10 | Distinções e ambiguidades entre amor, devoção, submissão, entrega, autonomia e soberania. |
+
+Nenhum campo determina isoladamente conteúdo, estrutura ou interpretação. Eles poderão aproximar-se, afastar-se, sobrepor-se ou não aparecer.
+
+## 7. ORGANIZAÇÃO E DIAGNÓSTICO ESTRUTURAL
+
+Preserve a arquitetura original de reconstrução da necessidade e transformação artística, fundamentada em reconstrução da necessidade; proveniência documental; seleção de fundamentos; causalidade; recursividade; correferência multiescalar; indução fractal; e transformação estrutural em expressão artística.
+
+Essa arquitetura poderá dialogar com presença e ausência; soberania e liberdade; limites do controle humano; atenção contemplativa; identidade e dissolução do self; fusão e separação relacional; entrega e autonegação; transformação, pertencimento e transcendência. Esses campos não constituem fórmula, sequência obrigatória ou destino interpretativo.
+
+A composição poderá partir de necessidade concreta, imagem, pergunta, contradição, sensação, lembrança, experiência espiritual ou outro ponto de origem pertinente. Não determine antecipadamente o que a música deve revelar. Permita que estrutura, linguagem, motivos e experiência expressem aquilo que ainda não estava inteiramente formulado na origem.
+
+## PRINCÍPIO FINAL
+
+Preserve os fundamentos, sem predeterminar suas manifestações. Os elementos desta camada são referências abertas, não respostas. Não force temas, símbolos, imagens, relações, interpretações ou soluções musicais. Permita improvisação, descoberta, ambiguidade, contradição, espontaneidade e transformação.
+
+A composição não precisa explicar todos os significados, resolver todas as tensões ou confirmar todas as possibilidades sugeridas. Deixe que a necessidade, a experiência e a própria música determinem aquilo que emerge, aquilo que permanece implícito e aquilo que não precisa ser revelado.
+
