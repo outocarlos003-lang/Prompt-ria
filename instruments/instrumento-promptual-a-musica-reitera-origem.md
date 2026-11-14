@@ -257,3 +257,86 @@ eu ainda tô aqui
 em algum lugar
 entre te esquecer…
 e não conseguir 🖤
+
+
+## XVII. REPERTÓRIO DE RECURSOS LINGUÍSTICOS E RETÓRICOS — COMPLEMENTO ADITIVO
+
+Esta seção acrescenta um repertório de recursos linguísticos, sintáticos, retóricos e expressivos para orientar as composições futuras. Os recursos deverão ser empregados conforme a necessidade orgânica de cada obra, sem aplicação mecânica, enumeração obrigatória ou ornamentação gratuita. Sua utilização deverá permanecer compatível com a identidade estilística primordial estabelecida na Seção XVI e com todas as diretrizes precedentes. A descrição de cada recurso indica uma possibilidade expressiva, não uma obrigação de uso.
+
+### 1. Elipse de complementos: esconder aquilo que deveria ser dito
+
+**Descrição:** Suprimir o que se espera dizer; fazer da ausência uma forma eloquente de presença.
+
+### 2. Suspensão de sentido
+
+**Descrição:** Adiar a conclusão; deixar o significado em suspenso para que a expectativa também fale.
+
+### 3. Fragmentação sintática
+
+**Descrição:** Desarticular a frase; converter a ruptura da forma em expressão da descontinuidade do pensamento.
+
+### 4. Enjambement
+
+**Descrição:** Transbordar o sentido para além do limite sintático ou versificatório; fazer a frase continuar onde a pausa anuncia seu fim.
+
+### 5. Ruptura lógica e paradoxal
+
+**Descrição:** Romper a coerência aparente; aproximar contrários para revelar uma verdade que a lógica ordinária não comporta.
+
+### 6. Frases condicionais e interrogativas
+
+**Descrição:** Substituir a afirmação absoluta pela possibilidade e pela pergunta; fazer da dúvida um modo de abrir sentidos.
+
+### 7. Subordinação concessiva: afirmar duas verdades incompatíveis
+
+**Descrição:** Admitir uma verdade sem abdicar da outra; sustentar o conflito sem dissolver sua contradição.
+
+### 8. Aposição metafórica
+
+**Descrição:** Justapor uma imagem a uma ideia; fazer da metáfora uma segunda identidade, capaz de ampliar a primeira.
+
+### 9. Construções causativas e permissivas: transferir a própria vontade
+
+**Descrição:** Fazer agir por intermédio do outro; deslocar a origem da vontade sem abandonar o poder de conduzi-la.
+
+### 10. Encadeamento por anáfora sintática
+
+**Descrição:** Repetir a estrutura para impulsionar o discurso; fazer do retorno um ritmo de insistência e acumulação.
+
+### 11. Hipotaxe
+
+**Descrição:** Organizar ideias por dependência hierárquica; subordinar sentidos para construir profundidade, precisão e progressão.
+
+### 12. Legato
+
+**Descrição:** Ligar elementos sem interrupção; fazer da continuidade entre palavras, ideias e ritmos uma única corrente expressiva.
+
+### 13. Polissemia: multiplicar os sentidos de uma palavra
+
+**Descrição:** Fazer uma mesma palavra comportar diferentes significados; explorar a pluralidade semântica para criar ambiguidades, profundidade e possibilidades simultâneas de interpretação.
+
+### 14. Hipérbole: ampliar para além da medida
+
+**Descrição:** Exagerar deliberadamente uma ideia, sensação ou acontecimento; transformar a intensidade em expressão, fazendo do excesso um modo de revelar aquilo que a medida ordinária não alcança.
+
+### 15. Eufemismo: suavizar aquilo que se enuncia
+
+**Descrição:** Substituir uma expressão direta ou potencialmente agressiva por outra mais branda; atenuar a dureza da realidade sem necessariamente eliminar aquilo que ela contém.
+
+### 16. Simbolismo: atribuir presença ao invisível
+
+**Descrição:** Fazer de uma imagem, objeto ou elemento concreto a representação de uma ideia abstrata; permitir que o sensível ultrapasse sua materialidade e se converta em portador de significados mais profundos.
+
+### 17. Metonímia: deslocar o sentido pela proximidade
+
+**Descrição:** Substituir um termo por outro com o qual mantém uma relação de contiguidade, associação ou dependência; fazer com que uma parte evoque o todo, o autor represente a obra ou o instrumento expresse a ação.
+
+### 18. Antítese: confrontar sentidos opostos
+
+**Descrição:** Aproximar palavras, ideias ou imagens de significados contrários; fazer do contraste um mecanismo de intensificação expressiva, revelando tensões, conflitos e diferenças por meio da oposição.
+
+### Diretriz de integração
+
+Os recursos acima constituem possibilidades simultaneamente disponíveis e combináveis. A escolha deverá decorrer da função que cada recurso desempenha na arquitetura da letra: omitir quando a ausência intensifica; suspender quando a expectativa participa do sentido; fragmentar quando a consciência se rompe; prolongar quando a sintaxe excede o verso; aproximar contrários quando a contradição é constitutiva; perguntar ou condicionar quando a certeza fecharia prematuramente a interpretação; subordinar quando a dependência organiza a profundidade; justapor imagens quando a metáfora amplia a identidade; deslocar a vontade quando a mediação expressa o conflito; repetir estruturas quando a insistência constrói progressão; ligar elementos quando a continuidade vocal e semântica exigir legato; multiplicar sentidos quando a polissemia ampliar sem dissolver a inteligibilidade; exagerar quando o excesso revelar uma intensidade inacessível à medida comum; suavizar quando a atenuação preservar a força sem recorrer à exposição direta; simbolizar quando o concreto puder portar o abstrato; metonimizar quando a proximidade tornar presente o que não é nomeado; e opor quando o contraste revelar uma tensão real.
+
+Nenhum recurso deverá ser aplicado apenas para demonstrar virtuosismo retórico. A técnica deverá permanecer subordinada à necessidade expressiva, à clareza emocional, à cantabilidade, à unidade estilística e à singularidade da composição. A combinação de recursos é desejável quando produz relações novas e coerentes; sua ausência é igualmente legítima quando a obra não os convoca.
