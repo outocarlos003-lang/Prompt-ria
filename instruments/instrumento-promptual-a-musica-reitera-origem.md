@@ -164,3 +164,96 @@ O repertório temático permanece aberto: saudade, vazio, conflito interno, ment
 Não reproduza mecanicamente estruturas anteriores nem inclua elementos apenas por constarem deste instrumento. Letra, motivos, progressão, instrumentos, voz, dinâmica e produção deverão manifestar a mesma necessidade, sem arbitrariedade. **O refrão transforma; a ponte desloca; o clímax revela; o Outro dissolve sem apagar.**
 
 A obra será completa em sua identidade realizada e aberta às derivações não realizadas. Atualize uma possibilidade legítima sem eliminar outras compatíveis: mínima em conservação e redundância, máxima em potência e multiplicidade; determinada o suficiente para possuir identidade, aberta o suficiente para sustentar novas interpretações.
+
+
+## XVI. REFERÊNCIA ESTILÍSTICA PRIMORDIAL E VINCULANTE — COMPLEMENTO ADITIVO
+
+**Esta seção é exclusivamente complementar e aditiva.** Todo o conteúdo precedente deste instrumento permanece integralmente preservado, sem supressão, alteração, substituição, deslocamento ou reconfiguração. Em caso de aparente tensão interpretativa, esta seção não revoga nem modifica qualquer disposição anterior; acrescenta uma referência linguística e estilística para orientar as composições futuras em compatibilidade com o instrumento como um todo.
+
+A composição musical apresentada ao final desta seção constitui a **referência estilística primordial e vinculante** de toda nova composição elaborada mediante este instrumento. Sua identidade estética e expressiva deverá orientar de modo consistente a linguagem, a estrutura, a organização expressiva, a construção textual, a cadência, o fraseado, a escolha vocabular, a imagética, a progressão emocional, a distribuição das seções e os demais aspectos pertinentes à composição lírico-musical.
+
+Essa referência não é inspiração facultativa, sugestão circunstancial nem elemento decorativo. Funciona como matriz orientadora permanente: cada nova composição deverá preservar coerência linguística, unidade expressiva e continuidade estilística com a música de referência. A vinculação incide sobre seus traços de linguagem e expressão, não sobre a reprodução de seu conteúdo. Portanto, não se deverá copiar mecanicamente versos, imagens, sequências, formulações ou soluções específicas; cada obra deverá conservar sua singularidade, originalidade e necessidade própria, realizando a matriz estilística por meios novos e adequados à sua arquitetura.
+
+A referência deverá ser observada em conjunto com todas as disposições anteriores, que permanecem vigentes e intactas. Este acréscimo não cria autorização para descartar, relativizar ou subordinar qualquer fundamento preexistente do instrumento. A continuidade estilística deverá coexistir com a derivação original e com a preservação das funções, limites e exigências já estabelecidos.
+
+### Música de referência
+
+[Intro — (pure whisper, close-mic)]
+o silêncio respira entre nós
+como um segredo que não quer morrer
+meu nome na tua boca
+soa como algo que você esqueceu de sentir
+[guitarra limpa — riff sincopado com palm mute]
+[Verso 1 — (breathy, íntimo)]
+eu conto rachaduras no teto
+como se fossem constelações quebradas
+cada estrela apaga um pouco de mim
+cada noite te recria em nada
+eu me escondo em mensagens não enviadas
+em promessas que nunca aconteceram
+tua ausência tem forma de abraço
+e eu me perco onde você não veio
+[Pré-Refrão — (crescendo suave)]
+se eu disser que ainda dói
+você volta ou só ecoa?
+minha fé virou ruído branco
+entre mentiras que me contam quem eu sou
+[Refrão — (explosão emocional, ainda limpo)]
+e eu grito teu nome em silêncio
+até minha voz desaparecer
+se amar você é me perder
+então me deixa desaparecer
+eu me afogo no que restou
+de tudo que a gente não foi
+salvação soa como você
+mesmo sendo o que me destrói
+[Verso 2 — (retorno ao sussurro)]
+tem um vazio com teu formato
+deitado no lado esquerdo do peito
+eu tento preencher com lembranças
+mas só sangra do mesmo jeito
+eu finjo que já não te sinto
+mas teu fantasma mora em mim
+em cada música triste
+em cada “quase” que não tem fim
+[Pré-Refrão — (mais tenso)]
+e se eu me quebrar de vez
+você junta ou só observa?
+minha mente cria versões suas
+que me salvam enquanto me enterram
+[Refrão — (mais intenso, até 170 BPM)]
+e eu grito teu nome em silêncio
+até minha voz desaparecer
+se amar você é me perder
+então me deixa desaparecer
+eu me afogo no que restou
+de tudo que a gente não foi
+salvação soa como você
+mesmo sendo o que me destrói
+[Ponte — (quase falsetto, etéreo)]
+(pure whisper)
+talvez o amor seja isso
+um erro bonito que a gente não corrige
+um lugar onde eu morro devagar
+só pra sentir você existir
+(pausa — ambiência eletrônica)
+se você voltar
+não promete ficar
+só me deixa acreditar
+mais uma vez…
+[Refrão Final — (catártico, aberto)]
+e eu grito teu nome em silêncio
+até o mundo inteiro ceder
+se amar você é me perder
+eu nasci pra me desfazer
+eu me afogo no que restou
+de tudo que a gente não foi
+salvação soa como você
+mesmo sendo o que me destrói
+[Outro — (close-mic, fading)]
+(pure whisper)
+se você ouvir isso…
+eu ainda tô aqui
+em algum lugar
+entre te esquecer…
+e não conseguir 🖤
