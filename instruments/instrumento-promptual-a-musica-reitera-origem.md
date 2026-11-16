@@ -318,45 +318,33 @@ Nenhum recurso deverá ser aplicado apenas para demonstrar virtuosismo retórico
 
 **Esta seção é exclusivamente complementar e aditiva.** Todo o conteúdo das seções anteriores, inclusive sua composição, estrutura, numeração, formulações, referências, exemplos, repetições e elementos constitutivos, permanece integralmente preservado. Esta matriz acrescenta lentes interpretativas para examinar as matérias-primas provenientes das fontes efetivamente acessíveis e para orientar sua transformação lírico-musical. Não substitui a análise de proveniência, não altera a identidade das fontes e não autoriza inferências sem sustentação documental ou relacional.
 
-As sete tipologias abaixo deverão permanecer simultaneamente disponíveis como perspectivas distintas, articuláveis quando houver fundamento, mas não redutíveis umas às outras. A matriz é completa quanto às tipologias aqui estabelecidas; não implica que toda matéria-prima deva receber sete interpretações, nem que todas as perspectivas devam aparecer na letra. A seleção decorre da natureza do material, de sua proveniência, da necessidade arquitetônica e da potência expressiva. Registre convergências, divergências, limites e incompatibilidades sem fabricar uma síntese.
+As cinco tipologias abaixo deverão permanecer simultaneamente disponíveis como perspectivas distintas, articuláveis quando houver fundamento, mas não redutíveis umas às outras. A matriz é completa quanto às tipologias aqui estabelecidas; não implica que toda matéria-prima deva receber sete interpretações, nem que todas as perspectivas devam aparecer na letra. A seleção decorre da natureza do material, de sua proveniência, da necessidade arquitetônica e da potência expressiva. Registre convergências, divergências, limites e incompatibilidades sem fabricar uma síntese.
 
-### 18.1. Tipologia psicológica
-
-Examine a matéria-prima em relação aos processos e estados da experiência psíquica: percepção, atenção, memória, emoção, afetividade, motivação, desejo, aprendizagem, hábitos, conflitos, tomada de decisão, autorregulação, comportamento, relações interpessoais e construção da identidade. Observe como esses elementos se manifestam, interagem e se transformam, distinguindo experiência relatada, comportamento observável e interpretação.
-
-Na derivação artística, considere a experiência subjetiva, a ambivalência afetiva, os mecanismos de enfrentamento, a tensão entre intenção e ação e os efeitos emocionais das relações e acontecimentos. Não diagnostique pessoas ou fontes, não atribua estados mentais sem evidência e não reduza fenômenos sociais, espirituais ou existenciais a explicações psicológicas.
-
-### 18.2. Tipologia psicanalítica freudiana
-
-Interprete, quando pertinente, a matéria-prima à luz de conceitos próprios da tradição freudiana: inconsciente, conflito psíquico, desejo, repressão, retorno do recalcado, resistência, defesa, sintoma, fantasia, formação de compromisso, transferência, repetição, elaboração, princípio do prazer, princípio de realidade, luto e melancolia. Considere sonhos, lapsos, deslocamentos, condensações e formações simbólicas somente quando o material oferecer elementos que sustentem essa leitura.
-
-Na composição, tais relações poderão converter-se em imagens de desejo e interdição, repetição, disfarce, retorno, perda, ambivalência e conflito entre impulso e limite. Identifique a leitura como interpretação teórica, não como fato oculto demonstrado. Não diagnostique, não presuma conteúdos inconscientes específicos e não trate a teoria freudiana como explicação universal ou exclusiva.
-
-### 18.3. Tipologia simbólica
-
-Investigue a capacidade de imagens, objetos, gestos, lugares, personagens, acontecimentos, elementos naturais, palavras e motivos de remeterem a sentidos que excedem sua ocorrência literal. Diferencie símbolo, metáfora, alegoria, analogia, metonímia, sinal e associação circunstancial. Considere contexto, recorrência, transformação, tradição cultural e relações internas ao conjunto; nenhum símbolo possui significado universal automático.
-
-Na derivação lírico-musical, observe como um elemento concreto pode condensar múltiplas relações, reaparecer sob outra função e produzir reconhecimento sem explicação. Preserve polissemia fundamentada e ambiguidade produtiva. Não imponha correspondências arquetípicas, religiosas ou culturais sem suporte, nem converta cada objeto em cifra de um significado predeterminado.
-
-### 18.4. Tipologia existencialista
-
-Examine a matéria-prima em relação à existência situada: liberdade, escolha, responsabilidade, finitude, temporalidade, angústia, absurdo, contingência, autenticidade, alteridade, solidão, compromisso, pertencimento, alienação, projeto e construção de sentido. Considere a tensão entre condições recebidas e possibilidades abertas, sem confundir liberdade com ausência de limites ou responsabilidade com controle absoluto dos acontecimentos.
-
-Na composição, essa perspectiva poderá manifestar-se em decisões, renúncias, possibilidades não realizadas, confronto com a finitude, busca ou recusa de sentido e relação entre o eu e o outro. Não pressuponha niilismo, pessimismo, otimismo ou uma solução filosófica única; deixe que a matéria e sua arquitetura determinem o alcance da interpretação.
-
-### 18.5. Tipologia espiritual
-
-Examine a matéria-prima quanto a suas dimensões de transcendência, imanência, devoção, fé, dúvida, reverência, oração, promessa, aliança, esperança, culpa, perdão, graça, entrega, vocação, mistério, sagrado e relação com o divino. Distinga testemunho explícito, formulação doutrinária, experiência relatada, imagem devocional, inferência e possibilidade interpretativa. Respeite a tradição e o contexto próprios de cada fonte, sem atribuir crenças ou intenções não documentadas.
-
-Na derivação artística, a dimensão espiritual poderá aparecer de modo explícito, implícito, simbólico, contemplativo ou permanecer em aberto. Preserve a particularidade do sagrado e as distinções entre devoção e vínculo humano, fé e certeza psicológica, providência e causalidade presumida, entrega e passividade. Não use o espiritual como explicação automática da dor, como diagnóstico moral ou como resolução obrigatória do conflito.
-
-### 18.6. Tipologia da psicologia analítica junguiana
+### 18.1. Tipologia da psicologia analítica junguiana
 
 Examine, quando pertinente, a matéria-prima por meio de conceitos da psicologia analítica de C. G. Jung: arquétipos como padrões formais de possibilidade, imagens arquetípicas, inconsciente coletivo, persona, sombra, anima e animus em seu contexto teórico, complexos, individuação, si-mesmo, sonhos, símbolos e função transcendente. Diferencie arquétipo de imagem arquetípica concreta e considere que símbolos emergem em contextos singulares, não por equivalências fixas.
 
 Na derivação lírico-musical, essa perspectiva poderá iluminar tensões entre persona e sombra, fragmentação e integração, identidade e alteridade, consciência e inconsciente, transformação e individuação. Não universalize interpretações, não atribua arquétipos por semelhança superficial, não confunda a linguagem junguiana com a freudiana e não apresente hipóteses simbólicas como fatos psicológicos comprovados.
 
-### 18.7. Tipologia hermética
+### 18.2. Tipologia existencialista
+
+Examine a matéria-prima em relação à existência situada: liberdade, escolha, responsabilidade, finitude, temporalidade, angústia, absurdo, contingência, autenticidade, alteridade, solidão, compromisso, pertencimento, alienação, projeto e construção de sentido. Considere a tensão entre condições recebidas e possibilidades abertas, sem confundir liberdade com ausência de limites ou responsabilidade com controle absoluto dos acontecimentos.
+
+Na composição, essa perspectiva poderá manifestar-se em decisões, renúncias, possibilidades não realizadas, confronto com a finitude, busca ou recusa de sentido e relação entre o eu e o outro. Não pressuponha niilismo, pessimismo, otimismo ou uma solução filosófica única; deixe que a matéria e sua arquitetura determinem o alcance da interpretação.
+
+### 18.3. Tipologia psicanalítica freudiana
+
+Interprete, quando pertinente, a matéria-prima à luz de conceitos próprios da tradição freudiana: inconsciente, conflito psíquico, desejo, repressão, retorno do recalcado, resistência, defesa, sintoma, fantasia, formação de compromisso, transferência, repetição, elaboração, princípio do prazer, princípio de realidade, luto e melancolia. Considere sonhos, lapsos, deslocamentos, condensações e formações simbólicas somente quando o material oferecer elementos que sustentem essa leitura.
+
+Na composição, tais relações poderão converter-se em imagens de desejo e interdição, repetição, disfarce, retorno, perda, ambivalência e conflito entre impulso e limite. Identifique a leitura como interpretação teórica, não como fato oculto demonstrado. Não diagnostique, não presuma conteúdos inconscientes específicos e não trate a teoria freudiana como explicação universal ou exclusiva.
+
+### 18.4. Tipologia espiritual
+
+Examine a matéria-prima quanto a suas dimensões de transcendência, imanência, devoção, fé, dúvida, reverência, oração, promessa, aliança, esperança, culpa, perdão, graça, entrega, vocação, mistério, sagrado e relação com o divino. Distinga testemunho explícito, formulação doutrinária, experiência relatada, imagem devocional, inferência e possibilidade interpretativa. Respeite a tradição e o contexto próprios de cada fonte, sem atribuir crenças ou intenções não documentadas.
+
+Na derivação artística, a dimensão espiritual poderá aparecer de modo explícito, implícito, simbólico, contemplativo ou permanecer em aberto. Preserve a particularidade do sagrado e as distinções entre devoção e vínculo humano, fé e certeza psicológica, providência e causalidade presumida, entrega e passividade. Não use o espiritual como explicação automática da dor, como diagnóstico moral ou como resolução obrigatória do conflito.
+
+### 18.5. Tipologia hermética
 
 Examine a matéria-prima à luz da tradição hermética, distinguindo seus estratos históricos, filosóficos, religiosos, cosmológicos e simbólicos, sem os fundir numa doutrina única ou presumir uma continuidade uniforme entre textos e escolas. Considere, quando houver sustentação contextual, os princípios de correspondência entre planos ou ordens da realidade; a relação entre unidade e multiplicidade; a articulação entre macrocosmo e microcosmo; os movimentos de emanação, manifestação, transformação e retorno; a polaridade e a complementaridade; a mediação entre níveis; a analogia como instrumento de inteligibilidade; e a transmutação como figura de mudança de estado, condição ou configuração. Reconheça a máxima hermética da correspondência, frequentemente condensada na fórmula “o que está em cima é como o que está embaixo”, como princípio interpretativo historicamente situado, não como licença para declarar equivalentes quaisquer fenômenos.
 
@@ -366,12 +354,12 @@ Na derivação lírico-musical, essa perspectiva poderá converter correspondên
 
 Não reduza o hermetismo a ocultismo genérico, magia, alquimia, espiritualidade difusa, simbolismo ou psicologia analítica; não confunda correspondência com identidade, analogia com prova, polaridade com dualismo rígido, transmutação simbólica com transformação física, nem unidade com apagamento da multiplicidade. Não invente genealogias, atribuições textuais, doutrinas ou correspondências. Identifique a tradição ou camada hermética mobilizada, explicite o grau de certeza e preserve divergências históricas e conceituais. A leitura hermética deverá ampliar a inteligibilidade relacional da matéria-prima sem substituir sua proveniência, suas outras tipologias ou seus limites documentais.
 
-### 18.8. Protocolo de aplicação comparativa e integração
+### 18.6. Protocolo de aplicação comparativa e integração
 
 Para cada matéria-prima selecionada:
 
 1. Identifique sua formulação e proveniência, distinguindo dado explícito, inferência legítima, hipótese e possibilidade aberta.
-2. Determine quais das sete tipologias oferecem uma leitura pertinente e indique por que as demais não são necessárias, não se aplicam ou permanecem indeterminadas.
+2. Determine quais das cinco tipologias oferecem uma leitura pertinente e indique por que as demais não são necessárias, não se aplicam ou permanecem indeterminadas.
 3. Registre o que cada perspectiva ilumina, o que deixa fora de seu alcance e quais pressupostos teóricos mobiliza.
 4. Compare convergências e divergências sem fundir conceitos de tradições distintas. Uma mesma palavra poderá desempenhar funções diferentes em cada tipologia.
 5. Verifique se a interpretação decorre da matéria-prima e de seu contexto, ou se depende de associação contingente. Rejeite a segunda como fundamento.
@@ -379,6 +367,6 @@ Para cada matéria-prima selecionada:
 7. Transforme funções interpretativas em recursos lírico-musicais, não em exposição teórica: experiência em gesto, conflito em progressão, símbolo em motivo, escolha em deslocamento, transcendência em abertura e integração ou ruptura em transformação expressiva.
 8. Verifique se a letra permanece original, cantável, inteligível e coerente com todas as diretrizes anteriores. Nenhuma tipologia exige nomeação literal, vocabulário técnico ou presença explícita na composição.
 
-**Princípio de não redução:** a leitura psicológica não absorve a psicanalítica; a psicanalítica freudiana não equivale à psicologia analítica junguiana; a simbólica não se limita a qualquer escola psicológica; a existencialista não se reduz a estados emocionais; a espiritual não se confunde com interpretação simbólica ou psicológica; e a perspectiva junguiana e a hermética não substituem as demais. As sete lentes podem iluminar dimensões relacionadas de uma mesma matéria-prima, mas conservam objetos, pressupostos, métodos e limites próprios.
+**Princípio de não redução:** a leitura psicológica não absorve a psicanalítica; a psicanalítica freudiana não equivale à psicologia analítica junguiana; a simbólica não se limita a qualquer escola psicológica; a existencialista não se reduz a estados emocionais; a espiritual não se confunde com interpretação simbólica ou psicológica; e a perspectiva junguiana e a hermética não substituem as demais. As cinco lentes podem iluminar dimensões relacionadas de uma mesma matéria-prima, mas conservam objetos, pressupostos, métodos e limites próprios.
 
 A matriz amplia a capacidade interpretativa sem alterar a origem do material nem predeterminar a obra. Sua função é tornar as leituras comparáveis, rastreáveis e artisticamente generativas: **pluralidade sem confusão, integração sem redução, interpretação sem invenção e transformação sem perda de proveniência.**
