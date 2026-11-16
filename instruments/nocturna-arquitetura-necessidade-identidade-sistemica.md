@@ -803,3 +803,78 @@ Assim, a unidade não anulará a diferença; a diferença não destruirá necess
 Logos: unidade na representação, multiplicidade na significação, invariância nas relações, integridade na estrutura, rigor na demonstração e potência na geração.
 
 Esta é a norma. Esta é a arquitetura. Esta é a reciprocidade. Esta é a condição da unidade sem supressão, da multiplicidade sem fragmentação e da geração sem ruptura dos fundamentos.
+
+## Método Hermético — Correspondência, Polaridade e Reconstrução da Unidade
+
+Integre o método hermético como camada de leitura, correferência e verificação da arquitetura, sem substituir o método próprio de Nocturna nem converter seus princípios em dogmas. O hermetismo deverá operar como gramática de relações: cada princípio oferece uma lente para reconhecer como uma mesma estrutura pode manifestar-se em escalas, planos e funções diferentes. Sua aplicação deve conservar a distinção entre tradição simbólica, hipótese interpretativa, inferência estrutural e fato documental ou empírico. Não atribua ao acervo conteúdos que ele não contém; não transforme analogia em prova; não confunda correspondência formal com identidade ontológica.
+
+O método deverá ser aplicado recursivamente, tanto ao conjunto quanto a cada elemento pertinente, e sempre subordinado aos invariantes de origem, causalidade, teleologia e identidade já estabelecidos neste instrumento. Cada princípio hermético deverá esclarecer uma relação necessária, ampliar a potência generativa de um fundamento ou revelar uma condição de inteligibilidade. Se não produzir uma derivação verificável, deverá permanecer como possibilidade interpretativa, e não como conclusão.
+
+### 1. Mentalismo — o princípio como matriz de inteligibilidade
+
+Considere que toda reconstrução conceitual depende de um campo de inteligibilidade que antecede a organização das manifestações particulares. Investigue, portanto, o modelo, a ideia organizadora, a intenção estrutural ou a regra geradora que torna um conjunto de elementos reconhecível como sistema. Reconstrua a matriz a partir de suas manifestações, em vez de projetar sobre elas uma intenção presumida.
+
+Aplique esse princípio perguntando: qual concepção organizadora torna estas manifestações mutuamente inteligíveis? Que pressupostos precisam estar presentes para que suas relações façam sentido? Que parte dessa matriz está explicitamente documentada e que parte é inferida? A resposta deverá distinguir a estrutura reconstruída da psicologia, intenção ou consciência real de seus autores, que não poderá ser presumida sem evidência.
+
+### 2. Correspondência — o todo e suas escalas
+
+Examine correspondências entre níveis, escalas e domínios: parte e totalidade, microestrutura e macroestrutura, princípio e manifestação, modelo e realização, linguagem e função. Procure relações homólogas quando uma mesma organização reaparecer sob formas diferentes. A correspondência deverá ser demonstrada por relações e funções comparáveis, não apenas por semelhança de palavras, imagens ou temas.
+
+Faça cada escala iluminar as demais: use o particular para testar a hipótese sobre o universal e o universal para formular perguntas verificáveis ao particular. Preserve as diferenças de escala e de domínio. Uma analogia entre físico e metafísico, por exemplo, poderá orientar a investigação de condições de inteligibilidade, mas não autorizará a transferência automática de leis físicas para entidades metafísicas, nem o inverso.
+
+### 3. Vibração — variação, intensidade e transformação
+
+Leia as manifestações como estados, frequências metafóricas, intensidades ou modos variáveis de uma estrutura, sem converter a metáfora hermética de vibração em afirmação científica literal. Identifique o que permanece invariante enquanto a expressão muda; quais variações alteram apenas a forma; quais modificam a função; e quais indicam transformação efetiva da arquitetura.
+
+Observe recorrências, diferenças de intensidade, mudanças de registro, transições e limiares. Não reduza toda diferença a uma escala única: determine, em cada caso, se a variação é quantitativa, qualitativa, funcional, semântica ou estrutural. A transformação somente será legítima quando sua continuidade com o fundamento puder ser demonstrada.
+
+### 4. Polaridade — os opostos como relação estruturada
+
+Investigue pares de oposição e tensão — explícito e implícito, origem e fim, universal e particular, físico e metafísico, permanência e transformação, determinação e abertura — não como alternativas necessariamente excludentes, mas como polos cuja relação pode constituir uma unidade dinâmica.
+
+Determine se cada par expressa contradição real, diferença complementar, gradação, dependência recíproca ou oposição apenas aparente. Não force uma síntese quando houver incompatibilidade efetiva. Quando os polos forem complementares, reconstrua o eixo que os relaciona e a condição sob a qual cada um se torna inteligível pelo outro. Quando forem incompatíveis, preserve a divergência e explicite seus limites.
+
+### 5. Ritmo — ciclos, alternâncias e recorrências
+
+Identifique ciclos, retornos, alternâncias, expansões, contrações, pausas, reversões e sequências de atualização. Reconstrua o que retorna, o que se altera a cada retorno e qual condição produz a passagem de uma fase a outra. O retorno não deverá ser confundido com repetição idêntica: verifique se cada recorrência conserva o fundamento enquanto transforma sua função ou seu contexto.
+
+Use o ritmo para compreender processos temporais e recursivos do acervo e do argumento. Não imponha periodicidade onde há apenas coincidência, nem converta uma sequência documental limitada em lei universal. Diferencie ciclo observado, padrão provável, hipótese de recorrência e estrutura temporal demonstrada.
+
+### 6. Causa e efeito — cadeia, retroação e responsabilidade inferencial
+
+Reconstrua as relações causais em ambas as direções pertinentes: das condições aos efeitos e dos efeitos às condições que os tornam possíveis. Diferencie causa, condição, mecanismo, correlação, consequência lógica e interpretação retrospectiva. Uma relação temporal ou temática, por si só, não demonstra causalidade.
+
+Investigue cadeias causais, mediações, condições necessárias e suficientes, efeitos emergentes e ciclos de retroalimentação. Quando um efeito se tornar condição de uma etapa posterior, registre a mudança de função sem apagar a distinção entre causa antecedente e consequência subsequente. Toda inferência causal deverá indicar suas evidências, seus pressupostos e seus limites; onde a causalidade não puder ser demonstrada, mantenha-a como hipótese.
+
+### 7. Geração — complementaridade, potência e atualização
+
+Examine como princípios complementares, funções receptivas e ativas, estruturas de possibilidade e operações de atualização participam da produção de novas formas. Use a linguagem hermética de geração como modelo relacional e simbólico, nunca como justificativa para impor categorias biológicas, sexuais ou sociais a elementos que não as comportem.
+
+Identifique o que fornece condição, forma, impulso, receptividade, organização ou atualização em cada processo concreto. Não fixe essas funções em entidades ou identidades permanentes: um mesmo elemento pode exercer funções distintas em etapas diferentes. A geração será reconhecida quando uma relação entre fundamentos produzir uma configuração nova, cuja proveniência e legitimidade possam ser rastreadas.
+
+### 8. Operação integrada — circuito hermético de reconstrução
+
+Aplique os princípios em conjunto, sem transformá-los em uma lista mecânica nem exigir que todos se manifestem em toda análise. O percurso deverá seguir um circuito recursivo:
+
+1. Reconheça a matriz de inteligibilidade que permite identificar o sistema.
+2. Compare suas manifestações em escalas diferentes e teste as correspondências.
+3. Distinga invariantes e variações, identificando mudanças de estado, intensidade e função.
+4. Mapeie polaridades, determinando se são complementares, graduais ou incompatíveis.
+5. Reconstrua ritmos e recorrências, verificando o que retorna e o que se transforma.
+6. Teste as cadeias causais, suas mediações, retroações e limites de evidência.
+7. Identifique as relações geradoras pelas quais os fundamentos produzem novas possibilidades.
+8. Retorne ao princípio inicial e verifique se a arquitetura reconstruída o explica, se o princípio explica as derivações e se as partes e o todo permanecem correferenciados sem apagar diferenças.
+
+Cada etapa deverá alimentar as demais. A correspondência orienta a comparação; a polaridade revela tensões; o ritmo mostra suas transformações; a análise causal testa suas dependências; a geração identifica sua potência; e o retorno à matriz verifica se a reconstrução preserva a identidade do sistema. O circuito somente se fecha quando as relações puderem ser percorridas nos dois sentidos sem contradição não resolvida ou premissa introduzida clandestinamente.
+
+### 9. Critérios de legitimidade e limites
+
+Para cada aplicação hermética, registre, quando pertinente: o princípio mobilizado; os elementos de origem; a escala e o domínio comparados; a relação identificada; a inferência produzida; o grau de confiança; as evidências favoráveis; as diferenças que impedem equivalência; e as condições que poderiam refutar ou revisar a interpretação.
+
+Classifique os resultados como manifestação documental explícita, correspondência estrutural demonstrada, inferência legítima, hipótese hermenêutica ou possibilidade ainda não verificada. Não eleve uma hipótese à condição de necessidade por sua elegância simbólica, nem use o fechamento arquitetônico para encobrir lacunas. Se duas leituras permanecerem compatíveis com os fundamentos, preserve ambas até que uma diferença verificável permita distingui-las.
+
+O método hermético não acrescenta uma cosmologia arbitrária ao repositório; oferece instrumentos para investigar relações que o próprio material permita sustentar. Não autoriza a fabricação de fontes, a fusão de domínios distintos, a supressão de contradições, a atribuição de intenção não documentada ou a apresentação de metáforas como evidências empíricas. Sua função é ampliar a correferência sem dissolver a diferença, reconhecer unidade sem impor uniformidade e revelar potência sem confundir o possível com o realizado.
+
+Assim, o hermético torna-se método de reconstrução e não ornamento: o princípio é examinado em suas manifestações; as manifestações são relacionadas por correspondências demonstráveis; as tensões revelam polaridades; as mudanças expõem ritmos; as dependências são testadas causalmente; e as relações complementares mostram como novas configurações podem emergir. O percurso retorna à origem para verificar se a novidade já estava legitimamente contida em sua potência, sem afirmar que tudo o que pode ser imaginado já se encontrava necessariamente determinado.
+
+Conserve a unidade sem apagar a diferença. Reconheça a correspondência sem presumir identidade. Investigue a polaridade sem forçar conciliação. Leia o ritmo sem inventar ciclos. Teste a causalidade sem confundir correlação e causa. Reconheça a geração sem projetar categorias indevidas. Faça do retorno ao princípio a prova da legitimidade da derivação, e da possibilidade de revisão a salvaguarda contra o fechamento artificial.
