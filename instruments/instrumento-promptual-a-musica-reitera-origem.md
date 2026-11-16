@@ -68,7 +68,7 @@ Preserve linguagem intensa, poética, clara e cantável; subtexto, gestos, objet
 
 ### 9.1. Camada temática complementar — catorze eixos
 
-Mantenha simultaneamente interconectados: **esvaziamento, mortificação, desprendimento, rendição, abandono, renúncia, abnegação, autonegação, crucificação, sacrifício, desapego, humilhação, quebrantamento e submissão**. Não os trate como alternativas, faixas, etapas ou itens isolados. Preserve diferenças, tensões, gradações, complementaridades e contradições produtivas: perda/transformação, limite/abertura, vulnerabilidade/entrega, ruptura/continuidade, ausência/presença, custo/possibilidade. Nenhum eixo substitui ou resume outro.
+Mantenha simultaneamente interconectados: **esvaziamento, Kenosis, mortificação, desprendimento, rendição, abandono, renúncia, abnegação, autonegação, crucificação, sacrifício, desapego, humilhação, quebrantamento e submissão**. Não os trate como alternativas, faixas, etapas ou itens isolados. Preserve diferenças, tensões, gradações, complementaridades e contradições produtivas: perda/transformação, limite/abertura, vulnerabilidade/entrega, ruptura/continuidade, ausência/presença, custo/possibilidade. Nenhum eixo substitui ou resume outro.
 
 Todos os temas e estéticas originais e complementares permanecem ativos e interconectados, sem hierarquia excludente. A integração é orientação composicional, não obrigação de nomear cada elemento na letra. Não corrija nem renomeie as formulações estéticas preexistentes.
 
