@@ -112,22 +112,22 @@ Não exija que a letra nomeie, explique ou represente literalmente os eixos. Ass
 
 Intro, versos, pré-refrões, refrões, ponte, clímax e Outro participam de uma arquitetura comum, cada qual segundo sua função; não precisam exibir todos os eixos com igual intensidade. Use interdependência, recorrência transformada, contraponto e ambivalência. Nada precisa ser anunciado: a arquitetura orienta, a música manifesta. Preserve todas as diretrizes anteriores; ajustes limitam-se ao mínimo necessário para compatibilizá-las.
 
-## X. INSTRUMENTAÇÃO E ARRANJO
-
-Use ** elétricas amplas em estéreo**, complementares, nunca mera duplicação; **ambiência eletrônica alta**, **** e ****. Distribua harmonia, ritmo, contraponto, respostas, motivos, tensão e atmosfera conforme a obra. Guitarras, baixo e bateria sustentam a unidade //Whisper/ sob Dark Romanticism atmosférico. A mixagem será moderna e comprimida, com dinâmica preservada; dissonâncias somente quando justificadas pela necessidade harmônica ou expressiva. Motivos recorrentes retornam transformados, aprofundando ou deslocando sentidos. Preserve organicidade, definição e contraste; mantenha o fluxo vocal contínuo em legato.
-
-## XI. PROGRESSÃO MUSICAL E DINÂMICA
+## X. FORMA E IDENTIDADE EXPRESSIVA
 
 Organize a composição em torno de **[Introdução] [Versos] [Pré-refrão] [Refrão] [Ponte] [Encerramento]**. A ordem poderá flexionar-se conforme a necessidade narrativa, sem perder a função de cada movimento. O motivo inicial deverá retornar transformado; os versos recontextualizam, o pré-refrão eleva, o refrão transforma, a ponte desloca e ascende, o refrão final culmina e o encerramento dissolve sem apagar.
 
-Mantenha pulso estável em **81 BPM** como eixo de sustentação. Nos refrões, admita viradas abruptas e expansões até **170 BPM**, preservando a percepção de unidade e a continuidade vocal. A ponte poderá crescer em ascensão hínica e catártica. Tom menor, tonalidade definida, harmonia devocional e solene, acordes e transições suaves; dissonâncias apenas quando justificadas. O contraste entre contenção e explosão deverá nascer da mesma matéria musical, não de uma troca arbitrária de identidade.
+Mantenha a progressão entre contenção e expansão, preservando unidade, continuidade vocal e coerência emocional. A ponte poderá crescer em caráter contemplativo e catártico. A unidade harmônica, quando definida na concepção da obra, deverá servir à progressão expressiva, sem impor resolução artificial.
 
-- **[Introdução]** Ambiência atmosférica e íntima; apresente um motivo simples, com espaço para que sua memória se transforme.
-- **[Versos]** Voz próxima, baixa e soprosa; recontextualize imagens e conflitos, com bateria contida e texturas amplas em reserva.
-- **[Pré-refrão]** Elevação melódica e harmônica; amplie a respiração, a ambiência e a expectativa sem antecipar a resolução.
-- **[Refrão]** Expansão /, texturas amplas, bateria viva e viradas até 170 BPM; transforme o motivo e o sentido, não apenas repita o verso.
-- **[Ponte]** Deslocamento e ascensão hínica; permita redução, vulnerabilidade e crescimento até a catarse, preservando a continuidade do legato.
-- **[Encerramento]** Retome o motivo em estado alterado; dissolva camadas, ressonâncias e ambiência sem apagar sua origem nem impor resolução artificial.
+- **[Introdução]** Ambiência íntima; apresente um motivo simples, com espaço para que sua memória se transforme.
+- **[Versos]** Interpretação próxima e contida; recontextualize imagens e conflitos.
+- **[Pré-refrão]** Elevação expressiva; amplie a expectativa sem antecipar a resolução.
+- **[Refrão]** Expansão emocional; transforme o motivo e o sentido, não apenas repita o verso.
+- **[Ponte]** Deslocamento e ascensão contemplativa; permita vulnerabilidade e crescimento até a catarse, preservando a continuidade.
+- **[Encerramento]** Retome o motivo em estado alterado; dissolva a tensão sem apagar sua origem nem impor resolução artificial.
+
+## XI. PROGRESSÃO E DINÂMICA
+
+A progressão deverá preservar unidade expressiva, continuidade vocal e relação transformadora entre os motivos. A dinâmica poderá partir da contenção e alcançar expansão contemplativa e catártica. A flexibilidade formal não autoriza perder a coerência emocional nem impor resolução que a obra não sustente.
 
 ## XI-A. FLEXIBILIDADE DA FORMA E DA PROGRESSÃO
 
