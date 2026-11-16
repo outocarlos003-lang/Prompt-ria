@@ -36,7 +36,7 @@ Reaproveitar é deslocar capacidade estrutural, não transportar conteúdo indis
 
 Desenvolva uma única necessidade que se desdobra, não uma sucessão de afirmações independentes. Cada proposição procede da anterior e prepara a seguinte; cada conclusão revela sua origem e cada premissa contém possibilidades de desdobramento. Organize objeções retóricas em cadeia causal: objeção, consequência, resposta e nova necessidade. Cada objeção deverá conter implicitamente a possibilidade de sua superação; a resposta revela, não interrompe, o movimento.
 
-A convergência deverá ser cumulativa, não arbitrária. A conclusão explicita algo já contido na origem. Na música, perguntas, contradições, imagens, continuidade vocal legato, rupturas expressivas e intensidades realizam essa cadeia sem explicá-la. Pergunta, resposta, contradição e consequência deslocam o eu lírico e preparam o movimento seguinte. Não use perguntas ornamentais nem transforme a letra em ensaio. A forma deverá executar a coerência que manifesta.
+A convergência deverá ser cumulativa, não arbitrária. A conclusão explicita algo já contido na origem. Na composição, perguntas, contradições, imagens, continuidade vocal e rupturas expressivas realizam essa cadeia sem explicá-la. Pergunta, resposta, contradição e consequência deslocam o eu lírico e preparam o movimento seguinte. Não use perguntas ornamentais nem transforme a letra em ensaio. A forma deverá executar a coerência que manifesta.
 
 ## V. RECURSIVIDADE, CORREFERÊNCIA E INDUÇÃO FRACTAL
 
@@ -56,15 +56,15 @@ Reconstrua a dupla direção quando pertinente: do físico, extraia apenas a met
 
 ## VIII. DERIVAÇÃO LÍRICO-MUSICAL
 
-Transforme funções, não conteúdos: conceito em imagem; relação em conflito; oposição em objeção lírica; pressuposto em subtexto; consequência em progressão emocional; ambiguidade em duplo sentido; tensão em dinâmica; recorrência em motivo; convergência em clímax; lacuna em continuidade melódica legato, sustentação ou abertura; dependência em antecipação melódica; transformação em mudança vocal ou instrumental; correferência em retorno contextualizado; diferença em contraste de timbre, andamento, textura ou perspectiva; retroalimentação em retorno que reinterpreta a primeira aparição. Use essas correspondências apenas quando necessárias.
+Transforme funções, não conteúdos: conceito em imagem; relação em conflito; oposição em objeção lírica; pressuposto em subtexto; consequência em progressão emocional; ambiguidade em duplo sentido; tensão em dinâmica; recorrência em motivo; convergência em clímax; lacuna em continuidade vocal, sustentação ou abertura; dependência em antecipação expressiva; transformação em mudança de interpretação; correferência em retorno contextualizado; diferença em contraste de perspectiva ou textura; retroalimentação em retorno que reinterpreta a primeira aparição. Use essas correspondências apenas quando necessárias.
 
-A música realiza o que a arquitetura permite; esta explica retrospectivamente a forma musical. Não resuma fontes, enumere conceitos nem explique aquilo que a música pode tornar sensível. Imagens, conflitos, progressão emocional, motivos, interpretação, arranjo e produção deverão manifestar uma mesma necessidade por meios próprios. Não reproduza letras, imagens, conclusões ou estruturas anteriores.
+A composição realiza o que a arquitetura permite; esta explica retrospectivamente sua forma. Não resuma fontes, enumere conceitos nem explique aquilo que a música pode tornar sensível. Imagens, conflitos, progressão emocional, motivos, interpretação, arranjo e produção deverão manifestar uma mesma necessidade por meios próprios. Não reproduza letras, imagens, conclusões ou estruturas anteriores.
 
 ## IX. IDENTIDADE ARTÍSTICA, ESTÉTICA E TEMAS
 
-Substitua a identidade de gênero anterior por **Pop Punk / Emocore / Whisper / Dark Romanticism atmosférico / Gospel**, em unidade orgânica, sem justaposição decorativa. Preserve os demais fundamentos líricos e estéticos que não dependam da classificação substituída. Faça a intimidade respirar dentro da amplitude, a devoção atravessar a tensão e a catarse nascer da transformação dos motivos.
+Preserve a identidade estética de romantismo sombrio e atmosfera contemplativa, em unidade orgânica, sem justaposição decorativa. Preserve os fundamentos líricos, temáticos e expressivos. Faça a intimidade respirar dentro da amplitude, a devoção atravessar a tensão e a catarse nascer da transformação dos motivos.
 
-Preserve linguagem intensa, poética, clara e cantável; subtexto, gestos, objetos, perguntas, continuidade vocal legato, paradoxos, abismo sublime, Hermetismo, Poética da ambiguidade, lirismo polissêmico, poética polissêmico, Surrealismo rimas, prosopopeia, ironias, sinestesia, dark romanticism, contrastes, rupturas sintáticas e imagens de romantismo sombrio. Preserve também as possibilidades temáticas: saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma e salvação. São campos da arquitetura, não palavras ou cenas obrigatórias; use o que a necessidade da obra convocar.
+Preserve linguagem intensa, poética, clara e cantável; subtexto, gestos, objetos, perguntas, continuidade vocal legato, paradoxos, abismo sublime, Hermetismo, Poética da ambiguidade, lirismo polissêmico, surrealismo, rimas, prosopopeia, ironias, sinestesia, dark romanticism, contrastes, rupturas sintáticas e imagens de romantismo sombrio. Preserve também as possibilidades temáticas: saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma e salvação. São campos da arquitetura, não palavras ou cenas obrigatórias; use o que a necessidade da obra convocar.
 
 ### 9.1. Camada temática complementar — catorze eixos
 
@@ -114,7 +114,7 @@ Intro, versos, pré-refrões, refrões, ponte, clímax e Outro participam de uma
 
 ## X. INSTRUMENTAÇÃO E ARRANJO
 
-Use **duas guitarras elétricas amplas em estéreo**, complementares, nunca mera duplicação; **ambiência eletrônica alta**, **baixo firme** e **bateria acústica ao vivo**. Distribua harmonia, ritmo, contraponto, respostas, motivos, tensão e atmosfera conforme a obra. Guitarras, baixo e bateria sustentam a unidade Pop Punk/Emocore/Whisper/Gospel sob Dark Romanticism atmosférico. A mixagem será moderna e comprimida, com dinâmica preservada; dissonâncias somente quando justificadas pela necessidade harmônica ou expressiva. Motivos recorrentes retornam transformados, aprofundando ou deslocando sentidos. Preserve organicidade, definição e contraste; mantenha o fluxo vocal contínuo em legato.
+Use ** elétricas amplas em estéreo**, complementares, nunca mera duplicação; **ambiência eletrônica alta**, **** e ****. Distribua harmonia, ritmo, contraponto, respostas, motivos, tensão e atmosfera conforme a obra. Guitarras, baixo e bateria sustentam a unidade //Whisper/ sob Dark Romanticism atmosférico. A mixagem será moderna e comprimida, com dinâmica preservada; dissonâncias somente quando justificadas pela necessidade harmônica ou expressiva. Motivos recorrentes retornam transformados, aprofundando ou deslocando sentidos. Preserve organicidade, definição e contraste; mantenha o fluxo vocal contínuo em legato.
 
 ## XI. PROGRESSÃO MUSICAL E DINÂMICA
 
@@ -123,9 +123,9 @@ Organize a composição em torno de **[Introdução] [Versos] [Pré-refrão] [Re
 Mantenha pulso estável em **81 BPM** como eixo de sustentação. Nos refrões, admita viradas abruptas e expansões até **170 BPM**, preservando a percepção de unidade e a continuidade vocal. A ponte poderá crescer em ascensão hínica e catártica. Tom menor, tonalidade definida, harmonia devocional e solene, acordes e transições suaves; dissonâncias apenas quando justificadas. O contraste entre contenção e explosão deverá nascer da mesma matéria musical, não de uma troca arbitrária de identidade.
 
 - **[Introdução]** Ambiência atmosférica e íntima; apresente um motivo simples, com espaço para que sua memória se transforme.
-- **[Versos]** Voz próxima, baixa e soprosa; recontextualize imagens e conflitos, com baixo firme, bateria contida e guitarras amplas em reserva.
+- **[Versos]** Voz próxima, baixa e soprosa; recontextualize imagens e conflitos, com bateria contida e texturas amplas em reserva.
 - **[Pré-refrão]** Elevação melódica e harmônica; amplie a respiração, a ambiência e a expectativa sem antecipar a resolução.
-- **[Refrão]** Expansão Pop Punk/Emocore, guitarras abertas, bateria viva e viradas até 170 BPM; transforme o motivo e o sentido, não apenas repita o verso.
+- **[Refrão]** Expansão /, texturas amplas, bateria viva e viradas até 170 BPM; transforme o motivo e o sentido, não apenas repita o verso.
 - **[Ponte]** Deslocamento e ascensão hínica; permita redução, vulnerabilidade e crescimento até a catarse, preservando a continuidade do legato.
 - **[Encerramento]** Retome o motivo em estado alterado; dissolva camadas, ressonâncias e ambiência sem apagar sua origem nem impor resolução artificial.
 
@@ -133,11 +133,11 @@ Mantenha pulso estável em **81 BPM** como eixo de sustentação. Nos refrões, 
 
 A forma de referência [Introdução], [Versos], [Pré-refrão], [Refrão], [Ponte] e [Encerramento] não exige ordem rígida nem distribuição fixa de conteúdo. Preserve a identidade funcional de cada seção; permita retornos, deslocamentos, fragmentos e reordenações quando a necessidade musical os sustentar. O motivo retorna transformado; os versos recontextualizam, o pré eleva, o refrão transforma, a ponte desloca e ascende, o refrão final culmina e o encerramento dissolve sem apagar.
 
-O eixo rítmico permanece em 81 BPM, com viradas abruptas e expansões até 170 BPM nos refrões. A ponte poderá ascender em caráter hínico e catártico. A tonalidade permanece definida, em tom menor, com harmonia devocional/solene e transições suaves. A flexibilidade formal não autoriza perder a unidade tonal, a continuidade vocal ou a relação transformadora entre os motivos.
+A progressão deverá preservar a unidade expressiva, a continuidade vocal e a relação transformadora entre os motivos. A flexibilidade formal não autoriza perder a coerência emocional nem impor uma resolução que a obra não sustente.
 
 ## XII. VOZ E PRODUÇÃO
 
-Use voz limpa e soprosa, emotiva e melódica, íntima, sensual e próxima; alterne murmúrio, angústia, paixão, contenção baixa, aspereza e respiração audível, com gemidos e falsetes quando expressivamente necessários. Mantenha baixa pressão subglótica, articulação entrecortada e legato ininterrupto: a segmentação expressiva não interrompe a linha vocal. Preserve proximidade nos versos; amplie refrões com dobras e melodias ascendentes. A produção será moderna, comprimida e espacial, com dinâmica preservada, ambiência eletrônica alta, guitarras amplas, baixo firme e bateria acústica ao vivo. Cada recurso deverá servir à identidade e à progressão.
+Use interpretação vocal limpa, emotiva e melódica, íntima e próxima; alterne murmúrio, angústia, paixão, contenção, aspereza e respiração audível, com variações de intensidade quando expressivamente necessárias. Mantenha articulação expressiva e continuidade vocal: a segmentação não interrompe o fluxo da emissão. Preserve proximidade nos versos e amplie a expressão nos refrões. Cada escolha de interpretação, dinâmica, textura e atmosfera deverá servir à identidade e à progressão.
 
 ## XIII. IDENTIDADE LÍRICA
 
@@ -149,19 +149,19 @@ Entregue aqui, em documento textual autônomo e reutilizável, sem destino exter
 
 1. **Síntese arquitetônica breve e verificável:** fundamentos selecionados, relações, proveniência, funções originais, transformações e limites. Separe explícito, inferido, hipotético e possibilidade aberta. Justifique conservações, exclusões por redundância/incompatibilidade e deslocamentos. Declare fontes inacessíveis.
 2. **Letra completa:** original, coesa, intensa e cantável, com [Introdução], [Versos], [Pré-refrão], [Refrão], [Ponte] e [Encerramento], admitindo retornos transformados e ordem flexível. Preserve proximidade confessional, alternância de murmúrio e intensidade, tensão e catarse. CAIXA ALTA somente nos ápices; fraseado vocal integralmente em legato, sem pausas, silêncios, reticências, interrupções ou paradas; repetições e rupturas expressivas devem preservar a continuidade da emissão; acentuação, extensão dos versos e melodia cantáveis. Cada seção tem identidade e integra a progressão.
-3. **Indicações musicais essenciais:** andamento, dinâmica, instrumentos, transições, voz, texturas e produção; funções das duas guitarras estéreo, baixo e bateria acústica; transformação dos motivos, transições contínuas, acelerações, crescendos e ambiência. Precisão sem ficha técnica intrusiva.
+3. **Indicações expressivas essenciais:** andamento quando pertinente, dinâmica, transições, interpretação vocal, texturas, atmosfera e transformação dos motivos. Precisão sem ficha técnica intrusiva.
 
 ## XIV-A. DIRETRIZES CONSOLIDADAS DE COMPOSIÇÃO E ENTREGA
 
 Entregue a composição original integralmente neste chat, em texto autônomo e reutilizável, sem inserir, editar, armazenar ou publicar a obra no projeto Lírica, em Nocturna ou em ambientes externos. Utilize Lírica exclusivamente como referência artística, estética, temática, expressiva e musical, apenas quando seus materiais estiverem efetivamente acessíveis nesta conta. Não invente elementos biográficos ou documentais nem simule consultas indisponíveis.
 
-A entrega deverá conter título original, identificação breve da direção musical quando pertinente, letra completa de extensão média e indicações musicais essenciais integradas às seções quando necessárias. Mantenha a letra isolada de explicações e descrições dispensáveis, pronta para cópia e reutilização; identifique as seções entre colchetes e utilize caixa alta somente nos ápices expressivos. Preserve acentuação verbal, cantabilidade, identidade melódica e progressão expressiva. Toda composição musical deve ser concebida para ser cantada integralmente em legato: notas e sílabas conectam-se em fluxo vocal contínuo, com sustentação das vogais e transições melódicas ligadas. A voz será limpa/soprosa, emotiva/melódica, íntima/próxima, murmurada/angustiada/apaixonada, contida/baixa e, quando necessário, áspera/ofegante, com gemidos/falsetes; baixa pressão subglótica e articulação entrecortada sem romper o legato. Tom menor, tonalidade definida, harmonia devocional/solene, pulso estável em 81 BPM e viradas abruptas até 170 BPM nos refrões; ponte ascendente/hínica/catártica. Duas guitarras amplas em estéreo, ambiência eletrônica alta, baixo firme, bateria acústica ao vivo e mix moderna/comprimida com dinâmica preservada; dissonâncias somente justificadas. Não utilizar pausas, silêncios, reticências, fermatas que interrompam o fluxo, cesuras, interrupções, cortes vocais ou paradas abruptas. Repetições, mudanças de seção, variações dinâmicas e rupturas expressivas devem preservar a continuidade do fraseado e da emissão vocal. Não produza um ensaio filosófico independente: manifeste a dimensão conceitual preferencialmente na própria obra. Uma síntese arquitetônica breve só deverá acompanhar a letra quando esclarecer escolhas efetivamente realizadas.
+A entrega deverá conter título original, identificação breve da direção musical quando pertinente, letra completa de extensão média e indicações musicais essenciais integradas às seções quando necessárias. Mantenha a letra isolada de explicações e descrições dispensáveis, pronta para cópia e reutilização; identifique as seções entre colchetes e utilize caixa alta somente nos ápices expressivos. Preserve acentuação verbal, cantabilidade, identidade melódica e progressão expressiva. Toda composição deverá preservar continuidade expressiva: palavras e frases conectam-se em fluxo vocal, com sustentação e transições naturais. A interpretação será limpa, emotiva, íntima e próxima, murmurada ou intensa conforme a progressão, podendo tornar-se áspera ou ofegante quando necessário. Preserve articulação expressiva sem romper a continuidade. A dinâmica poderá partir da contenção e alcançar expansão contemplativa e catártica. Não utilizar pausas, silêncios, reticências, interrupções ou paradas abruptas que contrariem o fluxo vocal. Repetições, mudanças de seção, variações dinâmicas e rupturas expressivas devem preservar a continuidade do fraseado e da emissão vocal. Não produza um ensaio filosófico independente: manifeste a dimensão conceitual preferencialmente na própria obra. Uma síntese arquitetônica breve só deverá acompanhar a letra quando esclarecer escolhas efetivamente realizadas.
 
-O repertório temático permanece aberto: saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, desesperança, autodestruição, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma, salvação, devoção, reverência, rendição, presença, soberania e ilusão de controle humano podem emergir isolada, simultânea, contraditória ou implicitamente, sem se converter em lista de exigências. Preserve Pop Punk/Emocore/Whisper/Dark Romanticism atmosférico/Gospel, hermetismo, ambiguidade, polissemia, surrealismo, rimas, prosopopeia, abismo sublime, perguntas, contrastes, continuidade vocal legato e rupturas sintáticas, priorizando clareza emocional, densidade simbólica e cantabilidade.
+O repertório temático permanece aberto: saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, desesperança, autodestruição, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma, salvação, devoção, reverência, rendição, presença, soberania e ilusão de controle humano podem emergir isolada, simultânea, contraditória ou implicitamente, sem se converter em lista de exigências. Preserve romantismo sombrio e atmosfera contemplativa, hermetismo, ambiguidade, polissemia, surrealismo, rimas, prosopopeia, abismo sublime, perguntas, contrastes, continuidade vocal e rupturas sintáticas, priorizando clareza emocional, densidade simbólica e cantabilidade.
 
 ## XV. FECHAMENTO
 
-Não reproduza mecanicamente estruturas anteriores nem inclua elementos apenas por constarem deste instrumento. Letra, motivos, progressão, instrumentos, voz, dinâmica e produção deverão manifestar a mesma necessidade, sem arbitrariedade. **O refrão transforma; a ponte desloca; o clímax revela; o Outro dissolve sem apagar.**
+Não reproduza mecanicamente estruturas anteriores nem inclua elementos apenas por constarem deste instrumento. Letra, motivos, progressão, voz, dinâmica e atmosfera deverão manifestar a mesma necessidade, sem arbitrariedade. **O refrão transforma; a ponte desloca; o clímax revela; o Outro dissolve sem apagar.**
 
 A obra será completa em sua identidade realizada e aberta às derivações não realizadas. Atualize uma possibilidade legítima sem eliminar outras compatíveis: mínima em conservação e redundância, máxima em potência e multiplicidade; determinada o suficiente para possuir identidade, aberta o suficiente para sustentar novas interpretações.
 
@@ -178,27 +178,27 @@ A referência deverá ser observada em conjunto com todas as disposições anter
 
 ### Música de referência
 
-[Intro — (pure whisper, close-mic)]
+[Introdução]
 o silêncio respira entre nós
 como um segredo que não quer morrer
 meu nome na tua boca
 soa como algo que você esqueceu de sentir
-[guitarra limpa — riff sincopado com palm mute]
-[Verso 1 — (breathy, íntimo)]
+
+[Versos]
 eu conto rachaduras no teto
-como se fossem constelações quebradas
+como constelações quebradas
 cada estrela apaga um pouco de mim
 cada noite te recria em nada
-eu me escondo em mensagens não enviadas
-em promessas que nunca aconteceram
 tua ausência tem forma de abraço
 e eu me perco onde você não veio
-[Pré-Refrão — (crescendo suave)]
+
+[Pré-refrão]
 se eu disser que ainda dói
 você volta ou só ecoa?
 minha fé virou ruído branco
-entre mentiras que me contam quem eu sou
-[Refrão — (explosão emocional, ainda limpo)]
+entre mentiras que me contam quem sou
+
+[Refrão]
 e eu grito teu nome em silêncio
 até minha voz desaparecer
 se amar você é me perder
@@ -207,57 +207,31 @@ eu me afogo no que restou
 de tudo que a gente não foi
 salvação soa como você
 mesmo sendo o que me destrói
-[Verso 2 — (retorno ao sussurro)]
-tem um vazio com teu formato
-deitado no lado esquerdo do peito
-eu tento preencher com lembranças
-mas só sangra do mesmo jeito
-eu finjo que já não te sinto
-mas teu fantasma mora em mim
-em cada música triste
-em cada “quase” que não tem fim
-[Pré-Refrão — (mais tenso)]
-e se eu me quebrar de vez
-você junta ou só observa?
-minha mente cria versões suas
-que me salvam enquanto me enterram
-[Refrão — (mais intenso, até 170 BPM)]
-e eu grito teu nome em silêncio
-até minha voz desaparecer
-se amar você é me perder
-então me deixa desaparecer
-eu me afogo no que restou
-de tudo que a gente não foi
-salvação soa como você
-mesmo sendo o que me destrói
-[Ponte — (quase falsetto, etéreo)]
-(pure whisper)
+
+[Ponte]
 talvez o amor seja isso
 um erro bonito que a gente não corrige
 um lugar onde eu morro devagar
 só pra sentir você existir
-(pausa — ambiência eletrônica)
 se você voltar
 não promete ficar
 só me deixa acreditar
-mais uma vez…
-[Refrão Final — (catártico, aberto)]
+mais uma vez
+
+[Refrão final]
 e eu grito teu nome em silêncio
 até o mundo inteiro ceder
 se amar você é me perder
 eu nasci pra me desfazer
-eu me afogo no que restou
-de tudo que a gente não foi
 salvação soa como você
 mesmo sendo o que me destrói
-[Outro — (close-mic, fading)]
-(pure whisper)
-se você ouvir isso…
+
+[Encerramento]
+se você ouvir isso
 eu ainda tô aqui
 em algum lugar
-entre te esquecer…
-e não conseguir 🖤
-
+entre te esquecer
+e não conseguir
 
 ## XVII. REPERTÓRIO DE RECURSOS LINGUÍSTICOS E RETÓRICOS — COMPLEMENTO ADITIVO
 
