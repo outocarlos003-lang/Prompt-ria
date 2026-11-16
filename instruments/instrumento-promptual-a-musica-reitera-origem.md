@@ -137,10 +137,6 @@ A forma de referência [Introdução], [Versos], [Pré-refrão], [Refrão], [Pon
 
 A progressão deverá preservar a unidade expressiva, a continuidade vocal e a relação transformadora entre os motivos. A flexibilidade formal não autoriza perder a coerência emocional nem impor uma resolução que a obra não sustente.
 
-## XII. VOZ E PRODUÇÃO
-
-Use interpretação vocal limpa, emotiva e melódica, íntima e próxima; alterne murmúrio, angústia, paixão, contenção, aspereza e respiração audível, com variações de intensidade quando expressivamente necessárias. Mantenha articulação expressiva e continuidade vocal: a segmentação não interrompe o fluxo da emissão. Preserve proximidade nos versos e amplie a expressão nos refrões. Cada escolha de interpretação, dinâmica, textura e atmosfera deverá servir à identidade e à progressão.
-
 ## XIII. IDENTIDADE LÍRICA
 
 Use no máximo um título honorífico e/ou epíteto encadeado em dupla camada, somente se estruturalmente justificado; não introduza concorrentes. Preserve unidade de imagens, perspectiva, vocabulário, conflito e progressão. Não inventarie símbolos do acervo. Conceitos compostos, tipologias, analogias, correspondências arquetípicas, metonímias, trocadilhos conceituais e sinonímias progressivas são admissíveis quando aumentarem precisão e densidade. Figuras retóricas não serão ornamento gratuito. Preserve ambiguidade compatível; restrinja obscuridade arbitrária.
