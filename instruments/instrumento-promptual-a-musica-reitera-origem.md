@@ -22,7 +22,7 @@ Inter-relacione esvaziamento, kenosis, mortificação, rendição, renúncia, ab
 ### 9.2. Integração
 Temas e estéticas são possibilidades.
 ### 9.3. Devoção
-Considere YAHUAH.
+Considere YAHUAH
 ### 9.4. Identidade
 Explore self, alteridade, memória e transformação.
 ### 9.5. Subtexto reformado
