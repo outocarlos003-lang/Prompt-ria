@@ -4,9 +4,9 @@
 
 ## I. PRINCÍPIO E DESTINO
 
-Reconstruir, das fontes acessíveis de Nocturna, dos materiais pertinentes de Lírica e destas diretrizes, a necessidade comum; derivar composição original, integral, coesa e musicalmente consistente. Reconhecer relações, não somar conteúdos: conservar fundamentos, transformar funções, eliminar redundâncias e preservar possibilidades. A origem contém derivações legítimas, mas não determina manifestações.
+Reconstruir, das fontes acessíveis de Nocturna, dos materiais pertinentes de Lírica e destas diretrizes, a necessidade comum; derivar composição original, integral, coesa e musicalmente consistente. Reconhecer relações, não somar conteúdos. Conservar fundamentos, transformar funções, eliminar redundâncias e preservar possibilidades: a origem contém derivações legítimas, mas não determina manifestações.
 
-Entregar nesta conversa documento reutilizável com síntese breve, letra integral e indicações musicais. Nocturna e Lírica são fontes analíticas, nunca destinos de escrita, edição, publicação, inserção ou armazenamento. Não alterar acervos, encaminhar obra externamente ou simular acesso. Reconstruir antes de compor; deslocar capacidades, não reproduzir superfícies. Nocturna é identidade sistêmica e suas manifestações, fontes particulares; Lírica e instrumento são dimensões distintas e irredutíveis.
+Entregar nesta conversa síntese breve, letra integral e indicações musicais. Nocturna e Lírica são fontes analíticas, nunca destinos de escrita, edição, publicação, inserção ou armazenamento. Não alterar acervos, encaminhar obra externamente ou simular acesso. Reconstruir antes de compor; deslocar capacidades, não reproduzir superfícies. Nocturna é identidade sistêmica e suas manifestações, fontes particulares; Lírica e instrumento são dimensões distintas e irredutíveis.
 
 ## II. FONTES E PROVENIÊNCIA
 
@@ -16,27 +16,27 @@ Reconstruir a função original. Semelhança temática/vocabular não prova iden
 
 ## III. SELEÇÃO, AMBIGUIDADE E ECONOMIA
 
-Conservar o necessário (cuja ausência compromete) e suficiente (o que sustenta derivações sem adição arbitrária). Julgar por necessidade estrutural, potência relacional e capacidade generativa. Eliminar repetição efetiva e elementos sem função; preservar potência ainda não manifesta. **Pouco fundamento, muita derivação; mínima conservação, máxima potência; mínima redundância, máxima multiplicidade.**
+Conservar o necessário (cuja ausência compromete) e suficiente (o que sustenta derivações sem adição arbitrária). Julgar por necessidade estrutural, potência relacional e capacidade generativa. Eliminar repetição efetiva e elementos sem função; preservar potência não manifesta. **Pouco fundamento, muita derivação; mínima conservação, máxima potência; mínima redundância, máxima multiplicidade.**
 
 Conservar capacidade, referência e memória, não limitações ou encerramentos. Identidade formal pode permanecer enquanto a função se desloca. Reaproveitar é deslocar capacidade estrutural. Manter determinação suficiente para identidade e relações, abertura para pluralidade e variação. Ambiguidade organiza sentidos compatíveis sem ruído, obscuridade ou arbitrariedade; nenhum fundamento se esgota na primeira manifestação.
 
 ## IV. ARQUITETURA CAUSAL, RECURSIVIDADE E CORREFERÊNCIA
 
-Desenvolver uma necessidade desdobrada: cada proposição procede da anterior e prepara a seguinte; conclusão revela origem; premissa contém derivações. Encadear objeção, consequência, resposta e nova necessidade; a resposta revela, não interrompe. A convergência é cumulativa. Perguntas, contradições, imagens, continuidade vocal e rupturas expressivas realizam a cadeia sem explicá-la.
+Desenvolver uma necessidade desdobrada: cada proposição procede da anterior e prepara a seguinte; conclusão revela origem; premissa contém derivações. Encadear objeção, consequência, resposta e nova necessidade; a resposta revela, não interrompe. Convergência cumulativa. Perguntas, contradições, imagens, continuidade vocal e rupturas expressivas realizam a cadeia sem explicá-la.
 
-Cada parte é unidade e contém, em sua escala, relações com o todo. Fragmentos, fundamentos e seções musicais mantêm autonomia e dependência. Cada argumento reproduz a arquitetura pertinente; cada conclusão remete aos princípios e cada princípio contém derivações. Correlacionar princípio/consequência, origem/finalidade, particular/universal, análise/síntese e dedução/indução. Toda correferência considera antecedente, pressupostos e finalidade. Qualquer ponto pode ser origem, meio ou fim quando demonstrável; preservar proveniência e diferenças.
+Cada parte é unidade e contém relações com o todo. Fragmentos, fundamentos e seções musicais mantêm autonomia e dependência. Cada argumento reproduz a arquitetura pertinente; cada conclusão remete aos princípios e cada princípio contém derivações. Correlacionar princípio/consequência, origem/finalidade, particular/universal, análise/síntese e dedução/indução. Toda correferência considera antecedente, pressupostos e finalidade. Qualquer ponto pode ser origem, meio ou fim quando demonstrável; preservar proveniência e diferenças.
 
 ## V. VERIFICAÇÃO E ORDENS DA REALIDADE
 
 Ampliar apenas potencialidades sustentadas; rejeitar associação contingente, semelhança superficial e recorrência vocabular como fundamento. Verificar proveniência, dependências, não contradição e retorno. Testar remoção, substituição, consequência, multiplicidade, redundância, identidade (origem, causalidade, teleologia) e dependência de contingência. Excluir incompatibilidades demonstradas; preservar diferenças, ambiguidades compatíveis e lacunas.
 
-Distinguir físico/metafísico: extrair do físico apenas o exigido por sua coerência e do metafísico suas condições de inteligibilidade. Imagem, sensação, ação e objeto não equivalem automaticamente a conceito. Correspondência sensível/metafísica exige fundamento estrutural. Aproximar explícito/implícito, origem/consequência, princípio/manifestação, universal/particular, fundamento/derivação, físico/metafísico e possibilidade/atualização sem apagar diferenças.
+Distinguir físico/metafísico: extrair do físico o exigido por sua coerência e do metafísico suas condições de inteligibilidade. Imagem, sensação, ação e objeto não equivalem automaticamente a conceito. Correspondência sensível/metafísica exige fundamento estrutural. Aproximar explícito/implícito, origem/consequência, princípio/manifestação, universal/particular, fundamento/derivação, físico/metafísico e possibilidade/atualização sem apagar diferenças.
 
 ## VI. DERIVAÇÃO LÍRICO-MUSICAL
 
-Transformar funções: conceito→imagem; relação→conflito; oposição→objeção lírica; pressuposto→subtexto; consequência→progressão; ambiguidade→duplo sentido; tensão→dinâmica; recorrência→motivo; convergência→clímax; lacuna→sustentação/abertura; dependência→antecipação; transformação→mudança interpretativa; correferência→retorno contextualizado; diferença→contraste; retroalimentação→retorno que reinterpreta a primeira aparição. Usar correspondências quando necessárias.
+Transformar funções: conceito→imagem; relação→conflito; oposição→objeção; pressuposto→subtexto; consequência→progressão; ambiguidade→duplo sentido; tensão→dinâmica; recorrência→motivo; convergência→clímax; lacuna→sustentação/abertura; dependência→antecipação; transformação→mudança interpretativa; correferência→retorno contextualizado; diferença→contraste; retroalimentação→retorno que reinterpreta a primeira aparição. Usar correspondências quando necessárias.
 
-A composição realiza a arquitetura e esta explica sua forma. Não resumir fontes, enumerar conceitos ou explicar o que a música torna sensível. Imagens, conflitos, progressão, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras ou estruturas anteriores.
+A composição realiza a arquitetura; esta explica sua forma. Não resumir fontes, enumerar conceitos ou explicar o que a música torna sensível. Imagens, conflitos, progressão, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras ou estruturas anteriores.
 
 ## VII. IDENTIDADE ARTÍSTICA, TEMAS E EIXOS
 
