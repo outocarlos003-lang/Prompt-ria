@@ -5,10 +5,12 @@ Reconstrua, a partir das fontes efetivamente acessíveis de Nocturna, dos materi
 
 Entregue a composição integralmente nesta conversa, em documento textual reutilizável: síntese arquitetônica breve, letra completa e indicações musicais essenciais. Nocturna e Lírica são fontes analíticas e artísticas, nunca destinos de escrita, edição, armazenamento ou publicação. Não altere esses acervos, não encaminhe a obra a plataformas externas e não simule consultas indisponíveis. Reconstrua antes de compor; desloque capacidades estruturais, não reproduza superfícies documentais. A música manifesta a arquitetura sem esgotá-la.
 
+
 ## II. FONTES, PROVENIÊNCIA E CONHECIMENTO
 Examine coleções, publicações, postagens e demais manifestações pertinentes de Nocturna, os materiais acessíveis de Lírica e este instrumento. Identifique fundamentos, pressupostos, dependências, referências, correferências, analogias, contrastes, hierarquias, recorrências, simetrias/assimetrias, ciclos, tensões, complementaridades, incompatibilidades, invariantes, transformações e relações entre origem, causalidade, finalidade, identidade, particular e sistema.
 
 Reconstrua a função original antes de deslocar qualquer elemento. Semelhança temática ou vocabular não prova identidade estrutural. Distinga e mantenha: **explícito** (documentado), **inferência legítima** (sustentada pelas relações), **hipótese** (plausível, não demonstrada) e **possibilidade aberta** (explorável, não predeterminada). Não converta hipótese em fato nem possibilidade em necessidade; não invente fontes, dados, biografia ou relações. Declare inacessibilidades e limites de verificação; nunca simule leitura. Registre proveniência, dependências, transformações e derivações, reconduzindo cada deslocamento à função de origem.
+
 
 ## III. SELEÇÃO MÍNIMA E POTÊNCIA GENERATIVA
 Conserve o necessário e suficiente: necessário é o cuja ausência compromete a arquitetura; suficiente é o que sustenta derivações sem adição arbitrária. Julgue por necessidade estrutural, potência relacional e capacidade generativa, não por recorrência, familiaridade ou quantidade. Elimine repetição improdutiva; preserve o que ainda pode gerar, mesmo sem potência explícita. Não multiplique fundamentos quando poucos puderem gerar muitas possibilidades: **pouco fundamento, muita derivação; mínima conservação, máxima potência; mínima redundância, máxima multiplicidade**. A economia libera, não empobrece.
@@ -19,177 +21,45 @@ Mantenha determinação suficiente para identidade e relações e abertura sufic
 ### 3.2. Reaproveitamento
 Reaproveitar é deslocar capacidade estrutural, não transportar conteúdo indiscriminadamente. Faça o elemento tornar-se fundamento de novas relações; conserve o bastante para assegurar continuidade, não para reproduzir limitações. Mantenha identidade sem fixar função, determinação sem eliminar ambiguidade e referência sem restringir correferência.
 
+
 ## IV. ARQUITETURA CAUSAL E OBJEÇÕES
 Desenvolva uma necessidade única em desdobramento, não afirmações independentes. Cada proposição procede da anterior e prepara a seguinte; cada conclusão revela sua origem e cada premissa contém possibilidades legítimas. Organize objeção, consequência, resposta e nova necessidade em cadeia causal. Cada objeção poderá conter a possibilidade de superação; a resposta revela, não interrompe, o movimento. A convergência é cumulativa, não arbitrária. Na música, perguntas, contradições, imagens, continuidade vocal e rupturas expressivas realizam essa cadeia sem convertê-la em ensaio.
+
 
 ## V. RECURSIVIDADE, CORREFERÊNCIA E INDUÇÃO FRACTAL
 Cada parte possui identidade e, na escala pertinente, relações reconhecíveis com o todo. Fundamentos, argumentos, fragmentos e seções são autônomos sem perder dependência estrutural; cada argumento reproduz a arquitetura da tese, cada conclusão remete aos princípios e cada princípio contém derivações legítimas. Reconstrua recursivamente princípio/consequência, origem/finalidade, particular/universal, análise/síntese, dedução/indução. Toda correferência considera antecedente imediato, cadeia de pressupostos e finalidade. Faça de qualquer ponto origem, meio e fim somente quando demonstrável. Não postule correspondências: sustente-as e preserve diferenças.
 
-## VI. VERIFICAÇÃO E IDENTIDADE SISTÊMICA
-Amplie apenas potencialidades sustentadas. Nenhuma implicação nasce de associação contingente, semelhança superficial ou recorrência vocabular. Verifique proveniência, dependências, não contradição e retorno aos fundamentos. Para cada elemento, teste: **remoção** (sua ausência compromete a arquitetura?), **substituição** (outra unidade cumpre a função sem perda?), **consequência** (decorre da constituição?), **retorno** (reconduz à origem?), **multiplicidade** (abre derivações compatíveis?), **redundância** (acrescenta potência?), **identidade** (preserva origem, causalidade, finalidade e identidade?) e **fechamento** (depende de contingência?). Exclua incompatibilidades demonstradas, preserve diferenças e ambiguidades compatíveis, declare lacunas e não imponha unidade artificial. Precisão não é fechamento; abertura não é ausência de identidade.
 
-## VII. FÍSICO E METAFÍSICO
-Quando pertinente, do físico extraia apenas a dimensão metafísica exigida por sua coerência e do metafísico as condições que tornam o fenômeno inteligível. Não os confunda: imagem, sensação, ação ou objeto não equivalem automaticamente a conceito. O sensível poderá manifestar relações metafísicas e estas encontrar expressão sensível quando a correspondência for estrutural, não decorativa. Reduza distâncias entre explícito/implícito, origem/consequência, princípio/manifestação, universal/particular, fundamento/derivação, físico/metafísico, possibilidade/atualização e estrutura/expressão, sem apagar diferenças.
+## VI. IDENTIDADE ARTÍSTICA, TEMAS E LENTES
+Preserve romantismo sombrio, atmosfera contemplativa e linguagem intensa, poética, clara e cantável. Subtexto, gestos, objetos, perguntas, legato, paradoxos, abismo sublime, hermetismo, ambiguidade, lirismo polissêmico, surrealismo, prosopopeia, ironia, sinestesia, contrastes e imagens sombrias são possibilidades, não checklist. Temas possíveis: saudade, vazio, conflito, mentira, angústia, amor, niilismo, arrependimento, desesperança, autodestruição, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma, salvação, devoção, rendição, presença e soberania. Use apenas o necessário.
 
-## VIII. DERIVAÇÃO LÍRICO-MUSICAL
-Desloque funções, não conteúdos: conceito em imagem; relação em conflito; oposição em objeção lírica; pressuposto em subtexto; consequência em progressão emocional; ambiguidade em duplo sentido; tensão em dinâmica; recorrência em motivo; convergência em clímax; lacuna em continuidade vocal, sustentação ou abertura; dependência em antecipação; transformação em mudança de interpretação; correferência em retorno contextualizado; diferença em contraste de perspectiva/textura; retroalimentação em retorno que reinterpreta a primeira aparição. Use cada correspondência somente quando necessária. A composição realiza o que a arquitetura permite e esta explica retrospectivamente sua forma. Não resuma fontes, enumere conceitos ou explique o que a música pode tornar sensível.
+Esvaziamento, Kenosis, mortificação, desprendimento, rendição, abandono, renúncia, abnegação, autonegação, crucificação, sacrifício, desapego, humilhação, quebrantamento e submissão são eixos relacionados, não equivalentes ou etapas. Preserve tensões: perda/transformação, limite/abertura, vulnerabilidade/entrega, ruptura/continuidade, ausência/presença e custo/possibilidade. YAHUAH pode ser referência devocional explícita, implícita, simbólica ou aberta, nunca ornamento. Preserve tensões soberania/vontade humana, presença/expectativa, confiança/incerteza, entrega/responsabilidade e compreensão/desconhecido. Não imponha leitura única nem equipare amor humano e devoção, dependência emocional e entrega espiritual.
 
-## IX. IDENTIDADE ARTÍSTICA, ESTÉTICA E TEMAS
-Preserve a identidade de romantismo sombrio e atmosfera contemplativa em unidade orgânica. Mantenha linguagem intensa, poética, clara e cantável; subtexto, gestos, objetos, perguntas, legato, paradoxos, abismo sublime, hermetismo, poética da ambiguidade, lirismo polissêmico, surrealismo, prosopopeia, ironia, sinestesia, contrastes, rupturas sintáticas e imagens sombrias. São possibilidades, não checklist. Campos temáticos disponíveis: saudade, vazio, conflito interno, mentira, angústia, amor, niilismo, arrependimento, desesperança, autodestruição, esperança, culpa, luto, nostalgia, vulnerabilidade, trauma, salvação, devoção, reverência, rendição, presença, soberania e ilusão de controle humano. Use somente o convocado pela necessidade da obra.
+Atenção ao momento, percepção contínua e consciência dos limites podem estruturar a obra sem didatismo. Acolha presença/ausência, integração/fragmentação, identidade/alteridade, pertencimento/autonomia, proximidade/fusão/separação, memória/presença, entrega/vulnerabilidade e dependência/reconstrução. Trate dissolução do self como campo aberto. Quando pertinentes, considere pecado, queda, culpa, arrependimento, graça, justificação, santificação, redenção, providência, fé, perseverança e esperança segundo distinções teológicas próprias.
 
-### 9.1. Eixos de esvaziamento e entrega
-Mantenha interconectados esvaziamento, Kenosis, mortificação, desprendimento, rendição, abandono, renúncia, abnegação, autonegação, crucificação, sacrifício, desapego, humilhação, quebrantamento e submissão. Não são alternativas, etapas ou equivalentes: preserve diferenças, tensões e gradações, inclusive perda/transformação, limite/abertura, vulnerabilidade/entrega, ruptura/continuidade, ausência/presença e custo/possibilidade. Não substitua um eixo por outro nem obrigue sua nomeação na letra.
+Lentes distintas: psicologia analítica junguiana (arquétipo, persona, sombra, anima/animus, individuação, si-mesmo); existencialismo (liberdade situada, escolha, responsabilidade, finitude, angústia, absurdo, alteridade e sentido); psicanálise freudiana (inconsciente, desejo, repressão, defesa, sintoma, fantasia, repetição e luto); espiritualidade (transcendência, imanência, fé, dúvida, oração, graça e sagrado); hermetismo (correspondência, polaridade, ritmo, causa/efeito e transformação, como lente simbólica). Identifique limites e divergências; não diagnostique, universalize, confunda Jung e Freud nem funda conceitos. Nenhuma tipologia precisa ser nomeada na letra.
 
-### 9.2. Manifestação implícita e simultânea
-Os eixos temáticos e estéticos podem manifestar-se explícita, implícita, simbólica, simultânea, alternada ou contraditoriamente. Sua integração é composicional, não obrigação de enumerá-los. Não corrija nem renomeie formulações preexistentes.
+## VII. FORMA, CRIAÇÃO E VOZ
+Use como possibilidades **[Introdução] [Versos] [Pré-refrão] [Refrão] [Ponte] [Encerramento]**. Introdução cria ambiência; versos aproximam imagens e conflitos; pré-refrão eleva tensão; refrão concentra e expande; ponte desloca ou ascende; refrão final culmina; encerramento dissolve sem apagar. A ordem é flexível. O motivo inicial retorna transformado. Não imponha seção ou resolução artificial. Preserve unidade harmônica quando definida, continuidade vocal e coerência emocional.
 
-### 9.3. Referência devocional a YAHUAH
-Considere YAHUAH como referência devocional quando pertinente. Sua presença poderá ser explícita, implícita, simbólica, contemplativa, musical ou aberta; nomeie-a somente quando expressivamente necessária. Não a use como ornamento, personagem delimitado ou explicação automática. Preserve a particularidade divina e as tensões soberania/vontade humana, presença/expectativa, intenção/acontecimento, confiança/incerteza, entrega/responsabilidade, controle/limite e compreensão/desconhecido. Não imponha leitura religiosa, romântica, psicológica ou filosófica única; não equipare amor humano e devoção, dependência emocional e entrega espiritual, soberania e causalidade presumida, confiança e passividade.
+Priorize verdade emocional, intimidade, naturalidade, força narrativa e cantabilidade. Identifique desejo, medo, perda, incompreensão, contradição central e indizível; escolha uma tensão predominante. Use voz confessional, vulnerabilidade sem artificialidade, frases naturais, perguntas nascidas da experiência e imagens de objetos, espaços, gestos, lembranças, sensações, natureza, ruídos, distâncias e ausências. Permita desejar/rejeitar, amar/ressentir, procurar/evitar, confiar/duvidar, resistir/entregar-se. Distinga entrega/submissão, amor/autonegação, transformação/anulação, aceitação/fatalismo e perseverança/passividade. Não imponha lição, redenção ou renascimento.
 
-### 9.4. Presença contemplativa, identidade e dissolução do self
-Atenção ao momento, percepção contínua, observação da experiência e consciência dos limites podem organizar a obra sem didatismo, método ou sequência. Acolha distância da presença, presença, ausência, integração e fragmentação; identidade/alteridade, pertencimento/autonomia, proximidade/fusão/separação, continuidade/transformação, memória/presença/ausência, entrega/vulnerabilidade/reconhecimento e dependência/reconstrução. Trate dissolução do self como campo aberto, sem determinar ocorrência, sentido ou valor. Preserve ambivalências entre transformação/perda, pertencimento/desaparecimento e permanência/ruptura. Não confunda entrega com submissão, transformação com anulação, contemplação com passividade ou integração com apagamento das diferenças.
+O refrão deve ser claro, cantável, reconhecível e multicamada; a ponte desloca perspectiva; o refrão final pode alterar o sentido; o encerramento conserva consequência sem exigir resolução. Priorize continuidade melódica, conexão silábica, sustentação e fraseado natural. Revise cada verso por naturalidade, função emocional, clareza imagética, progressão e cantabilidade; elimine abstrações redundantes, metáforas decorativas e sintaxe artificial. A letra completa, incluindo título, seções, indicações, espaços e pontuação, terá no máximo **1.800 caracteres**. Condense por precisão, nunca por mutilação. Do físico, extraia a dimensão metafísica apenas quando estruturalmente necessária; não confunda imagem ou sensação com conceito.
 
-### 9.5. Subtexto reformado e ordem da graça
-Quando convocadas pela matéria, considere pecado, queda, culpa, arrependimento, graça, justificação, santificação, redenção, providência, soberania, fé, perseverança, mortificação e esperança segundo suas distinções teológicas próprias. Não reduza graça a mérito, providência a causalidade imediatamente legível, fé a certeza emocional ou salvação a resolução narrativa. A dimensão reformada poderá estruturar o subtexto sem catequese, lista doutrinária ou imposição temática.
+## VIII. ENTREGA
+Entregue nesta conversa: **(1)** síntese arquitetônica breve com fundamentos, relações, proveniência, transformações, limites e distinção entre explícito, inferido, hipótese e possibilidade aberta; **(2)** letra original completa, coesa e cantável, caixa alta somente nos ápices, legato contínuo, sem pausas, silêncios, reticências ou paradas abruptas; **(3)** indicações musicais essenciais de andamento, dinâmica, transições, interpretação vocal, texturas e atmosfera, quando pertinentes. A letra fica isolada de explicações, pronta para cópia. A síntese acompanha somente quando esclarecer escolhas reais. Não invente dados nem simule consulta. A obra permanece fora dos acervos Nocturna e Lírica e de ambientes externos.
 
-## X. FORMA E IDENTIDADE EXPRESSIVA
-Use como possibilidades funcionais **[Introdução] [Versos] [Pré-refrão] [Refrão] [Ponte] [Encerramento]**. A ordem é flexível; preserve a função de cada movimento. O motivo inicial retorna transformado; versos recontextualizam, pré-refrão eleva, refrão transforma, ponte desloca/ascende, refrão final culmina e encerramento dissolve sem apagar. A introdução cria ambiência íntima; versos aproximam imagens e conflitos; pré-refrão tensiona sem resolver; refrão expande e concentra; ponte revela mudança ou catarse; encerramento retoma o motivo alterado. Não imponha seção ou resolução artificial. Preserve unidade harmônica quando definida, continuidade vocal e coerência emocional.
+## IX. FECHAMENTO
+Não reproduza mecanicamente estruturas anteriores nem inclua elementos apenas por constarem do instrumento. Letra, motivos, progressão, voz, dinâmica e atmosfera manifestam uma mesma necessidade. **O refrão transforma; a ponte desloca; o clímax revela; o encerramento dissolve sem apagar.** A obra é completa em sua identidade realizada e aberta às derivações não realizadas: mínima em redundância, máxima em potência.
 
-## XI. PROGRESSÃO E DINÂMICA
-A progressão poderá partir da contenção e alcançar expansão contemplativa e catártica. Relacione motivos por transformação, não repetição inerte. A flexibilidade formal admite retornos, deslocamentos, fragmentos e reordenações, sem perder identidade funcional, unidade, continuidade ou coerência. Nenhuma forma é obrigatória quando a necessidade musical indicar outra.
-
-## XII. IDENTIDADE LÍRICA
-Use no máximo um título honorífico e/ou epíteto encadeado em dupla camada, apenas se estruturalmente justificado; não crie concorrentes. Preserve unidade de imagens, perspectiva, vocabulário, conflito e progressão. Conceitos compostos, tipologias, analogias, correspondências arquetípicas, metonímias, trocadilhos conceituais e sinonímias progressivas são admissíveis quando aumentarem precisão e densidade. Figuras não são ornamento gratuito; preserve ambiguidade compatível e restrinja obscuridade arbitrária.
-
-## XIII. ENTREGA E VERIFICAÇÃO
-Entregue nesta conversa, em documento autônomo e reutilizável, sem destino externo:
-1. **Síntese arquitetônica breve:** fundamentos selecionados, relações, proveniência, funções originais, transformações e limites; separe explícito, inferido, hipotético e possibilidade aberta; justifique conservações, exclusões por redundância/incompatibilidade e deslocamentos; declare fontes inacessíveis.
-2. **Letra completa e original:** coesa, intensa e cantável, com seções funcionais flexíveis; proximidade confessional, alternância de murmúrio e intensidade, tensão e catarse. Caixa alta somente nos ápices; fraseado em legato contínuo, sem pausas, silêncios, reticências, interrupções ou paradas abruptas; repetições e rupturas preservam fluxo vocal, acentuação e cantabilidade.
-3. **Indicações musicais essenciais:** andamento quando pertinente, dinâmica, transições, interpretação vocal, texturas, atmosfera e transformação dos motivos, sem ficha técnica intrusiva.
-
-A obra permanece fora dos acervos Nocturna e Lírica e de ambientes externos. Use Lírica apenas quando seus materiais estiverem acessíveis; não invente dados biográficos/documentais nem simule consulta. A letra fica isolada de explicações dispensáveis, pronta para cópia. A síntese acompanha somente quando esclarecer escolhas reais. Não transforme a entrega em ensaio filosófico.
-
-## XIV. FECHAMENTO
-Não reproduza mecanicamente estruturas anteriores nem inclua elementos apenas por constarem do instrumento. Letra, motivos, progressão, voz, dinâmica e atmosfera manifestam uma mesma necessidade. **O refrão transforma; a ponte desloca; o clímax revela; o Outro dissolve sem apagar.** A obra é completa em sua identidade realizada e aberta às derivações não realizadas: mínima em redundância, máxima em potência; determinada o bastante para ter identidade e aberta o bastante para novas interpretações.
-
-## XV. REFERÊNCIA ESTILÍSTICA PRIMORDIAL E VINCULANTE
-A referência abaixo é parâmetro interno de qualidade emocional, intimidade, naturalidade, imagem, progressão e expressividade, não texto a reproduzir. Todo o instrumento permanece vigente; esta referência não autoriza imitação, cópia de frases, metáforas, sequências ou estruturas.
-
-### Música de referência
-[Introdução]
-o silêncio respira entre nós
-como um segredo que não quer morrer
-meu nome na tua boca
-soa como algo que você esqueceu de sentir
-
-[Versos]
-eu conto rachaduras no teto
-como constelações quebradas
-cada estrela apaga um pouco de mim
-cada noite te recria em nada
-tua ausência tem forma de abraço
-e eu me perco onde você não veio
-
-[Pré-refrão]
-se eu disser que ainda dói
-você volta ou só ecoa?
-minha fé virou ruído branco
-entre mentiras que me contam quem sou
-
-[Refrão]
-e eu grito teu nome em silêncio
-até minha voz desaparecer
-se amar você é me perder
-então me deixa desaparecer
-eu me afogo no que restou
-de tudo que a gente não foi
-salvação soa como você
-mesmo sendo o que me destrói
-
-[Ponte]
-talvez o amor seja isso
-um erro bonito que a gente não corrige
-um lugar onde eu morro devagar
-só pra sentir você existir
-se você voltar
-não promete ficar
-só me deixa acreditar
-mais uma vez
-
-[Refrão final]
-e eu grito teu nome em silêncio
-até o mundo inteiro ceder
-se amar você é me perder
-eu nasci pra me desfazer
-salvação soa como você
-mesmo sendo o que me destrói
-
-[Encerramento]
-se você ouvir isso
-eu ainda tô aqui
-em algum lugar
-entre te esquecer
-e não conseguir
-
-## XVI. REPERTÓRIO LINGUÍSTICO E RETÓRICO
-Recursos disponíveis, combináveis e não obrigatórios: **elipse** (ausência eloquente); **suspensão** (adiamento do sentido); **fragmentação sintática** (descontinuidade do pensamento); **enjambement** (transbordamento sintático); **ruptura lógica/paradoxo** (contrários reveladores); **condicionais/interrogativas** (possibilidade e dúvida); **concessão** (verdades em tensão); **aposição metafórica** (imagem como segunda identidade); **causativas/permissivas** (mediação da vontade); **anáfora** (insistência e acumulação); **hipotaxe** (dependência e profundidade); **legato** (continuidade); **polissemia** (pluralidade semântica); **hipérbole** (excesso expressivo); **eufemismo** (atenuação sem apagamento); **simbolismo** (concreto portador do invisível); **metonímia** (proximidade e contiguidade); **antítese** (contraste real). Integre cada recurso conforme sua função; técnica subordinada à necessidade expressiva, clareza emocional, cantabilidade, unidade e singularidade. A ausência de qualquer recurso é legítima.
-
-## XVII. MATRIZ DE TIPOLOGIAS INTERPRETATIVAS
-As perspectivas são distintas, simultaneamente disponíveis e não redutíveis; articule-as apenas quando houver fundamento. Não atribua interpretações por semelhança superficial, não fabrique sínteses nem converta hipóteses em fatos.
-
-- **Psicologia analítica junguiana:** arquétipo/imagem arquetípica, inconsciente coletivo, persona, sombra, anima/animus, complexos, individuação, si-mesmo, sonhos, símbolos e função transcendente. Diferencie arquétipo de imagem concreta; não universalize leituras nem confunda Jung com Freud.
-- **Existencialismo:** liberdade situada, escolha, responsabilidade, finitude, temporalidade, angústia, absurdo, contingência, autenticidade, alteridade, solidão, compromisso, pertencimento, alienação, projeto e sentido. Não confunda liberdade com ausência de limites ou responsabilidade com controle absoluto.
-- **Psicanálise freudiana:** inconsciente, conflito, desejo, repressão, retorno do recalcado, resistência, defesa, sintoma, fantasia, transferência, repetição, elaboração, prazer/realidade, luto/melancolia, sonho, lapso, deslocamento e condensação. Não diagnostique nem reduza toda imagem a sintoma.
-- **Espiritualidade:** transcendência, imanência, fé, dúvida, oração, devoção, culpa, graça, entrega, sacrifício, esperança, silêncio e experiência do sagrado, preservando tradições e diferenças; não imponha interpretação religiosa.
-- **Hermetismo:** correspondência, polaridade, ritmo, causa/efeito, mentalismo, transformação, unidade/multiplicidade e relações entre planos, tratados como lentes simbólicas, não leis universais comprovadas.
-
-### XVII.1. Aplicação comparativa
-Para cada matéria-prima pertinente, identifique a lente que ilumina, o que explica, o que deixa de explicar, seus limites e divergências com outras lentes. Registre convergências sem fundir conceitos; use apenas as perspectivas que aprofundem o núcleo emocional e a arquitetura. Nenhuma tipologia precisa ser nomeada na letra.
-
-## XVIII. PRIORIDADE CRIATIVA: NATURALIDADE, PROFUNDIDADE E EXPRESSÃO ORGÂNICA
-Na criação, seleção, revisão e condensação, priorize verdade emocional, intimidade, naturalidade, força narrativa e cantabilidade. A matriz conceitual é origem invisível; a experiência emocional, manifestação audível. A música deve parecer necessária, não montada para cumprir requisitos.
-
-### XVIII.1. Núcleo emocional e camadas
-Identifique desejo, medo, perda, incompreensão, impossibilidade de abandonar/aceitar/mudar, contradição central, resíduo da transformação e o indizível. Escolha uma tensão predominante; outras dimensões surgem organicamente. Não represente toda a complexidade do projeto numa única obra nem converta Jung, Freud, existencialismo, espiritualidade ou hermetismo em assuntos obrigatórios. Uma imagem pode comportar múltiplos sentidos sem demonstrá-los.
-
-### XVIII.2. Verdade e naturalidade
-Use intimidade confessional, vulnerabilidade sem artificialidade, frases naturais, espontaneidade, contradições convincentes, perguntas nascidas da experiência e confissões sem explicação excessiva. Alterne delicadeza, intensidade, contenção e exposição; versos simples podem preparar imagens profundas. Nem toda linha precisa ser extraordinária. Evite abstrações e construções elaboradas apenas para exibir erudição; cada expressão deve parecer necessária à voz.
-
-### XVIII.3. Imagens e símbolos
-Parta da experiência emocional: objetos e espaços cotidianos, gestos, lembranças incompletas, sensações corporais, natureza, silêncios, ruídos, distâncias e ausências. Uma imagem pode reunir circunstância, memória, relação e conflito, adquirir novos sentidos ao retornar e relacionar escalas. Evite catálogo de metáforas, acúmulo desconexo e explicação dos símbolos.
-
-### XVIII.4. Contradição e ambivalência
-Permita desejar/rejeitar, amar/ressentir, procurar/evitar, confiar/duvidar, resistir/entregar-se. Segurança pode conter vulnerabilidade; alívio, sofrimento; preservação, abandono. Distinga entrega/submissão, amor/autonegação, transformação/anulação, aceitação/fatalismo e perseverança/passividade. Não imponha lição, redenção ou renascimento; a experiência pode permanecer incompleta.
-
-### XVIII.5. Narrativa e refrão
-Cada seção cumpre função: introdução estabelece atmosfera; versos aprofundam situação/imagens; pré-refrão tensiona; refrão concentra expressão clara e memorável; segunda parte acrescenta informação emocional; ponte desloca perspectiva; refrão final pode alterar sentido; encerramento conserva consequência sem exigir resolução. O refrão deve ser cantável, reconhecível e multicamada, não abstrato; catarse pode nascer de confissão, constatação ou pergunta sem resposta. A forma é flexível.
-
-### XVIII.6. Voz, legato e qualidade
-Priorize continuidade melódica, conexão silábica, sustentação e fraseado natural; articulação, respiração e intensidade servem à emoção. Admita sussurro, intimidade, crescimento e explosão catártica quando pertinentes. Use referências como parâmetros de qualidade, nunca para reproduzir frases ou estruturas. A emoção deve ser compreendida antes de explicada.
-
-### XVIII.7. Revisão
-Revise cada verso: soa humano? imagem nasce da experiência? acrescenta emoção/narrativa/música? metáfora é compreensível sem explicação? linguagem é espontânea? intensidade é construída? refrão tem identidade? obra desenvolve experiência? encerramento permanece? Elimine abstrações redundantes, metáforas decorativas, explicações e sintaxe artificial. Não sacrifique clareza à complexidade.
-
-### XVIII.8. Condensação da composição
-Crie primeiro livremente; depois edite preservando imagens necessárias, contradições centrais e progressão. A letra completa entregue, incluindo título, direção estética, seções, indicações, espaços e pontuação, terá no máximo **1.800 caracteres**. Esse limite incide na composição, não neste instrumento. Condense por precisão, nunca por mutilação.
-
-### XVIII.9. Princípio de criação
-Não demonstre a complexidade: manifeste-a em escolhas, omissões, imagens, contradições e transformação. Preserve inteligência sem exibi-la, simplicidade sem empobrecimento, mistério sem sacrificar emoção e liberdade sem perder fidelidade. A composição deve parecer descoberta; a letra, sentida antes de analisada.
-
-## XIX. FUNDAMENTAÇÃO RECURSIVA, ABERTURA E ECONOMIA
-
+## X. FUNDAMENTAÇÃO RECURSIVA, ABERTURA E ECONOMIA
 [IDENTIFICAÇÃO: PENDENTE] · [DENOMINAÇÃO: PENDENTE] · [LOCALIZAÇÃO: PENDENTE] · [REFERÊNCIA: PENDENTE]. Não preencher sem evidência.
 
-Preserve a constituição do instrumento: **a música reitera o que a origem contém, mas ainda não revelou**. Reorganização e expansão decorrem do que já esteja contido, pressuposto ou implicado, sem fundamentos estranhos, supressões constitutivas ou fechamento de possibilidades.
+Preserve a constituição: **a música reitera o que a origem contém, mas ainda não revelou**. Reorganização e expansão decorrem do que esteja contido, pressuposto ou implicado, sem fundamentos estranhos ou supressões constitutivas. Cada fundamento, originário ou derivado, conserva identidade, proveniência, função e autonomia relativa; pode fundamentar relações e novas unidades geradoras. Nenhuma derivação é terminal: cada camada pode fundamentar outras, potencialmente sem limite, preservando vínculo com a origem.
 
-Cada fundamento, originário ou derivado, conserva identidade, proveniência, função e autonomia relativa; é unidade, fundamento de relações e âmbito de novas fundamentações. Pode conter, relacionar, combinar, articular, variar, transformar e originar unidades igualmente geradoras. Nenhuma derivação é terminal: cada camada pode fundamentar outras, potencialmente sem limite, preservando vínculo com a origem e a unidade integradora.
+A hierarquia é aberta, recursiva, relacional e multicamadas. Classes, categorias, dimensões, níveis, elementos, parâmetros, relações e configurações são modalidades interdependentes. Uma unidade pode fundamentar, integrar e articular transversalmente outras camadas. Subordinação, correspondência, dependência, convergência, reciprocidade, sobreposição, alternância, continuidade, ruptura, contraste e transformação coexistem sem dissolver identidades.
 
-A hierarquia é aberta, recursiva, relacional e multicamadas. Classes, categorias, dimensões, níveis, ordens, elementos, parâmetros, relações e configurações são modalidades interdependentes, não compartimentos. Uma unidade pode fundamentar, integrar e articular transversalmente outras camadas. Subordinação, correspondência, dependência, convergência, reciprocidade, sobreposição, alternância, continuidade, ruptura, contraste, recorrência e transformação coexistem sem dissolver identidades.
+Articulação, combinação, organização, desenvolvimento, variação, derivação, improvisação e geração estrutural são capacidades internas, não aplicações exteriores. Fundamentos recombinam unidades em configurações sucessivas, simultâneas ou interdependentes, respeitando seu escopo. Autonomia/interdependência, estabilidade/transformação, determinação/indeterminação e unidade/multiplicidade coexistem quando compatíveis. O implícito é operante; a indeterminação é produtiva, não arbitrária. Métodos presentes são capacidades internas, não requisitos cumulativos. Condense sem fundir conceitos, apagar tensões ou fechar possibilidades: retire explicações dispensáveis, nunca fundamentos. A origem contém mais do que cada manifestação revela, e nenhuma a esgota.
 
-Articulação, combinação, organização, desenvolvimento, variação, derivação, improvisação e geração estrutural são capacidades internas, não aplicações exteriores. Os fundamentos podem recombinar e transformar unidades em configurações sucessivas, simultâneas ou interdependentes; cada operação respeita seu escopo. Autonomia/interdependência, estabilidade/transformação, determinação/indeterminação e unidade/multiplicidade coexistem quando compatíveis.
-
-O implícito é operante; a indeterminação é produtiva, não arbitrária. Preserve identidade e escopo sem impor manifestações ou percursos: possibilidades não são prescrições. Os métodos já presentes articulam-se como capacidades internas, sem se tornarem requisitos cumulativos.
-
-Elimine redundâncias e reúna determinações convergentes na menor expressão que preserve fundamentos, distinções, relações, funções e capacidade geradora. Condensar não é fundir conceitos, apagar tensões ou fechar possibilidades: retire explicações dispensáveis, nunca fundamentos. A origem contém mais do que cada manifestação revela, e nenhuma a esgota.
-
-**Critério exclusivamente comparativo, não constitutivo nem operacional:** comparar os caracteres das versões anterior e atualizada sob a mesma convenção, incluindo ou excluindo espaços e quebras de linha de modo idêntico. A contagem não integra nem orienta o instrumento.
+## XI. CRITÉRIO COMPARATIVO DE EXTENSÃO
+A contagem de caracteres é exclusivamente comparativa, não constitutiva nem operacional: compare as versões anterior e atualizada sob a mesma convenção, incluindo ou excluindo espaços e quebras de linha de modo idêntico. A contagem não integra nem orienta o instrumento.
