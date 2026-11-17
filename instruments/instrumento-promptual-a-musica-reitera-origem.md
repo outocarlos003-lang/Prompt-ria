@@ -84,9 +84,9 @@ Compor integralmente e condensar por precisão. Letra final: **até 1.800 caract
 
 ## XI. FECHAMENTO E REFERÊNCIAS
 
-Não incluir elementos mecanicamente. Letra, motivos, progressão, voz, dinâmica e atmosfera manifestam uma necessidade. **O refrão transforma; a ponte desloca; o clímax revela; o encerramento dissolve sem apagar.** A obra é completa e aberta às derivações legítimas.
+Não incluir elementos mecanicamente. Letra, motivos, progressão, voz, dinâmica e atmosfera manifestam uma necessidade. **O refrão transforma; a ponte desloca; o clímax revela; o encerramento dissolve sem apagar.**
 
-A música de referência integral e o repertório detalhado permanecem no arquivo histórico indicado no início (Seções XVI e XVII), como matriz vinculante, sem licença para copiar. O repertório inclui elipse, suspensão, fragmentação, enjambement, paradoxo, condicionais, interrogativas, concessivas, aposição metafórica, causativas, anáfora, hipotaxe, legato, polissemia, hipérbole, eufemismo, simbolismo, metonímia e antítese; uso não obrigatório.
+A versão integral, música de referência e repertório permanecem no arquivo histórico indicado no início. A referência é matriz vinculante, sem licença para copiar; repertório retórico permanece disponível, não obrigatório.
 
 ## XII. FUNDAMENTAÇÃO RECURSIVA, ABERTURA E ECONOMIA
 
