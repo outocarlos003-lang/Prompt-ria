@@ -10,9 +10,9 @@ Entregar nesta conversa síntese breve, letra integral e indicações musicais. 
 
 ## II. FONTES E PROVENIÊNCIA
 
-Examinar manifestações pertinentes de Nocturna, materiais acessíveis de Lírica e estas diretrizes; inventariar fundamentos, pressupostos, dependências, referências, correferências, analogias, contrastes, hierarquias, recorrências, simetrias/assimetrias, ciclos, tensões, complementaridades, incompatibilidades, invariantes e transformações; relacionar origem, causalidade, finalidade, identidade, particular e sistema.
+Examinar manifestações pertinentes de Nocturna, materiais acessíveis de Lírica e estas diretrizes; inventariar fundamentos, pressupostos, dependências, referências, correferências, analogias, contrastes, hierarquias, recorrências, simetrias/assimetrias, ciclos, tensões, complementaridades, incompatibilidades e transformações; relacionar origem, causalidade, finalidade, identidade, particular e sistema.
 
-Reconstruir funções originais. Semelhança temática/vocabular não prova identidade estrutural. Distinguir **explícito**, **inferência legítima**, **hipótese** e **possibilidade aberta**; não converter hipótese em fato ou possibilidade em necessidade, nem inventar fontes, dados, biografia ou relações. Declarar inacessibilidade e limites; nunca simular leitura. Registrar proveniência e dependências; cada deslocamento reconduz à função de origem.
+Reconstruir funções originais. Semelhança temática/vocabular não prova identidade estrutural. Distinguir **explícito**, **inferência legítima**, **hipótese** e **possibilidade aberta**. Não converter hipótese em fato ou possibilidade em necessidade; não inventar fontes, dados, biografia ou relações. Declarar inacessibilidade e limites; nunca simular leitura. Registrar proveniência; cada deslocamento reconduz à função de origem.
 
 ## III. SELEÇÃO, AMBIGUIDADE E ECONOMIA
 
@@ -28,9 +28,9 @@ Cada parte é unidade e contém relações com o todo. Fragmentos, fundamentos e
 
 ## V. VERIFICAÇÃO E ORDENS DA REALIDADE
 
-Ampliar somente potencialidades sustentadas; rejeitar associação contingente, semelhança superficial e recorrência vocabular como fundamento. Verificar proveniência, dependências, não contradição e retorno; testar remoção, substituição, consequência, multiplicidade, redundância, identidade e dependência de contingência. Excluir incompatibilidades demonstradas; preservar diferenças, ambiguidades compatíveis e lacunas.
+Ampliar somente potencialidades sustentadas; rejeitar associação contingente, semelhança superficial e recorrência vocabular como fundamento. Verificar proveniência, dependências, não contradição e retorno; testar remoção, substituição, consequência, multiplicidade, redundância, identidade e contingência. Excluir incompatibilidades demonstradas; preservar diferenças, ambiguidades compatíveis e lacunas.
 
-Distinguir físico/metafísico. Imagem, sensação, ação e objeto não equivalem automaticamente a conceito. Correspondência sensível/metafísica exige fundamento estrutural. Aproximar explícito/implícito, origem/consequência, princípio/manifestação, universal/particular, fundamento/derivação, físico/metafísico e possibilidade/atualização sem apagar diferenças.
+Distinguir físico/metafísico. Imagem, sensação, ação e objeto não equivalem automaticamente a conceito; correspondência sensível/metafísica exige fundamento estrutural. Aproximar explícito/implícito, origem/consequência, princípio/manifestação, universal/particular, fundamento/derivação e possibilidade/atualização sem apagar diferenças.
 
 ## VI. DERIVAÇÃO LÍRICO-MUSICAL
 
