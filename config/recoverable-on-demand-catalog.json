@@ -185,7 +185,17 @@
         "eleição incondicional",
         "redenção particular em Cristo",
         "graça",
-        "perseverança"
+        "perseverança",
+        "fundamentação recursiva",
+        "hierarquia aberta",
+        "múltiplas camadas",
+        "potência geradora",
+        "economia textual",
+        "contagem de caracteres",
+        "identificação pendente",
+        "denominação pendente",
+        "localização pendente",
+        "referência pendente"
       ],
       "functions": [
         "reconstruir a necessidade que vincula as fontes documentais indicadas na demanda",
@@ -197,7 +207,11 @@
         "integrar hermetismo, ambiguidade, polissemia e deslocamento surrealista com inteligibilidade",
         "especificar identidade sonora, instrumentação, arranjo, dinâmica, voz e produção",
         "entregar síntese arquitetônica, letra completa e indicações musicais em documento reutilizável no chat",
-        "preservar a distinção entre fontes de análise e destino de criação explicitamente determinado"
+        "preservar a distinção entre fontes de análise e destino de criação explicitamente determinado",
+        "organizar fundamentos originários e derivados em hierarquia aberta e recursiva",
+        "preservar a potência geradora de cada fundamento em todas as camadas",
+        "manter pendentes explícitas as informações de identificação, denominação, localização e referência",
+        "condensar a expressão sem suprimir conteúdo essencial e comparar contagens de caracteres"
       ],
       "relations": [
         "demand->instrumento-promptual-musica-reitera-origem",
@@ -207,7 +221,12 @@
         "causal-objections->emotional-progression",
         "musical-motifs->transformed-recurrence",
         "recoverable-on-demand->explicit-title-resolution",
-        "chat->composition-delivery"
+        "chat->composition-delivery",
+        "foundation->subordinate-foundations",
+        "derived-foundation->further-derivations",
+        "all-layers->open-recursion",
+        "hierarchy<->transversal-relations",
+        "semantic-density->textual-economy"
       ],
       "operations": [
         "resolve-title",
@@ -221,7 +240,12 @@
         "arrange",
         "specify-production",
         "validate-provenance",
-        "deliver-reusable-document"
+        "deliver-reusable-document",
+        "trace-foundation-dependencies",
+        "derive-recursively",
+        "preserve-open-hierarchy",
+        "condense-without-loss",
+        "compare-character-counts"
       ],
       "category": "recoverable_on_demand",
       "classification_basis": "default_title_rule",
