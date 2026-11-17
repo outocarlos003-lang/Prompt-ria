@@ -36,7 +36,7 @@ Distinguir físico/metafísico. Imagem, sensação, ação e objeto não equival
 
 Transformar funções: conceito→imagem; relação→conflito; oposição→objeção; pressuposto→subtexto; consequência→progressão; ambiguidade→duplo sentido; tensão→dinâmica; recorrência→motivo; convergência→clímax; lacuna→abertura; dependência→antecipação; transformação→mudança interpretativa; correferência→retorno; diferença→contraste; retroalimentação→retorno reinterpretativo. Usar correspondências quando necessárias.
 
-A composição realiza a arquitetura; esta explica sua forma. Não resumir fontes, enumerar conceitos ou explicar o que a música torna sensível. Imagens, conflitos, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras anteriores.
+A composição realiza a arquitetura sem explicá-la, enumerá-la ou resumir fontes. Imagens, conflitos, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras anteriores.
 
 ## VII. IDENTIDADE ARTÍSTICA, TEMAS E EIXOS
 
