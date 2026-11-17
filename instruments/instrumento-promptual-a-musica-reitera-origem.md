@@ -16,9 +16,9 @@ Reconstruir funções originais. Semelhança temática/vocabular não prova iden
 
 ## III. SELEÇÃO, AMBIGUIDADE E ECONOMIA
 
-Conservar o necessário (cuja ausência compromete) e suficiente (o que sustenta derivações sem adição arbitrária). Julgar por necessidade estrutural e potência generativa. Eliminar repetição efetiva e elementos sem função; preservar potência não manifesta. **Pouco fundamento, muita derivação; mínima conservação, máxima potência; mínima redundância, máxima multiplicidade.**
+Conservar o necessário (cuja ausência compromete) e suficiente (o que sustenta derivações sem adição arbitrária). Julgar por necessidade estrutural e potência generativa. Eliminar repetição efetiva e elementos sem função; preservar potência ainda não manifesta. **Pouco fundamento, muita derivação; mínima conservação, máxima potência; mínima redundância, máxima multiplicidade.**
 
-Conservar capacidade, referência e memória, não limitações. Identidade formal pode permanecer enquanto a função se desloca. Reaproveitar é deslocar capacidade estrutural. Manter determinação para identidade e relações, abertura para pluralidade. Ambiguidade organiza sentidos compatíveis sem ruído, obscuridade ou arbitrariedade; nenhum fundamento se esgota na primeira manifestação.
+Conservar capacidade, referência e memória, não limitações. Reaproveitar é deslocar capacidade estrutural. Manter determinação para identidade e relações, abertura para pluralidade. Ambiguidade organiza sentidos compatíveis sem ruído, obscuridade ou arbitrariedade; nenhum fundamento se esgota na primeira manifestação.
 
 ## IV. ARQUITETURA CAUSAL, RECURSIVIDADE E CORREFERÊNCIA
 
@@ -28,9 +28,9 @@ Cada parte é unidade e contém relações com o todo. Fragmentos, fundamentos e
 
 ## V. VERIFICAÇÃO E ORDENS DA REALIDADE
 
-Ampliar apenas potencialidades sustentadas; rejeitar associação contingente, semelhança superficial e recorrência vocabular como fundamento. Verificar proveniência, dependências, não contradição e retorno; testar remoção, substituição, consequência, multiplicidade, redundância, identidade (origem, causalidade, teleologia) e dependência de contingência. Excluir incompatibilidades demonstradas; preservar diferenças, ambiguidades compatíveis e lacunas.
+Ampliar somente potencialidades sustentadas; rejeitar associação contingente, semelhança superficial e recorrência vocabular como fundamento. Verificar proveniência, dependências, não contradição e retorno; testar remoção, substituição, consequência, multiplicidade, redundância, identidade e dependência de contingência. Excluir incompatibilidades demonstradas; preservar diferenças, ambiguidades compatíveis e lacunas.
 
-Distinguir físico/metafísico: extrair do físico o exigido por sua coerência e do metafísico suas condições de inteligibilidade. Imagem, sensação, ação e objeto não equivalem automaticamente a conceito. Correspondência sensível/metafísica exige fundamento estrutural. Aproximar explícito/implícito, origem/consequência, princípio/manifestação, universal/particular, fundamento/derivação, físico/metafísico e possibilidade/atualização sem apagar diferenças.
+Distinguir físico/metafísico. Imagem, sensação, ação e objeto não equivalem automaticamente a conceito. Correspondência sensível/metafísica exige fundamento estrutural. Aproximar explícito/implícito, origem/consequência, princípio/manifestação, universal/particular, fundamento/derivação, físico/metafísico e possibilidade/atualização sem apagar diferenças.
 
 ## VI. DERIVAÇÃO LÍRICO-MUSICAL
 
