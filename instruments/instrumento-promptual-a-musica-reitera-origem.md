@@ -34,9 +34,9 @@ Distinguir físico/metafísico: extrair do físico o exigido por sua coerência 
 
 ## VI. DERIVAÇÃO LÍRICO-MUSICAL
 
-Transformar funções: conceito→imagem; relação→conflito; oposição→objeção; pressuposto→subtexto; consequência→progressão; ambiguidade→duplo sentido; tensão→dinâmica; recorrência→motivo; convergência→clímax; lacuna→sustentação/abertura; dependência→antecipação; transformação→mudança interpretativa; correferência→retorno contextualizado; diferença→contraste; retroalimentação→retorno que reinterpreta a primeira aparição. Usar correspondências quando necessárias.
+Transformar funções: conceito→imagem; relação→conflito; oposição→objeção; pressuposto→subtexto; consequência→progressão; ambiguidade→duplo sentido; tensão→dinâmica; recorrência→motivo; convergência→clímax; lacuna→sustentação/abertura; dependência→antecipação; transformação→mudança interpretativa; correferência→retorno; diferença→contraste; retroalimentação→retorno reinterpretativo. Usar correspondências quando necessárias.
 
-A composição realiza a arquitetura; esta explica sua forma. Não resumir fontes, enumerar conceitos ou explicar o que a música torna sensível. Imagens, conflitos, progressão, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras ou estruturas anteriores.
+A composição realiza a arquitetura; esta explica sua forma. Não resumir fontes, enumerar conceitos ou explicar o que a música torna sensível. Imagens, conflitos, progressão, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras anteriores.
 
 ## VII. IDENTIDADE ARTÍSTICA, TEMAS E EIXOS
 
@@ -98,7 +98,7 @@ Organizar dependências, correspondências, implicações, conexões e encadeame
 
 Cada palavra, conceito, pressuposto, relação ou determinação fundamental conserva capacidade de suscitar novas determinações. O contido ou implicado desdobra-se; cada derivação pode tornar-se fundamento. Relações recíprocas, transversais e convergentes são admissíveis quando constitutivas. Subordinação não reduz importância; derivação não elimina autonomia; profundidade não impõe limite.
 
-Desdobrar somente o que a constituição sustenta. Preservar explícito, inferência, hipótese, possibilidade e lacuna. O implícito permanece operante; improvisações são possíveis, não prescritas. Não converter possibilidade em instrução fechada, percurso obrigatório ou conclusão artificial. Nenhuma unidade essencial se torna isolada ou destituída de potência.
+Desdobrar somente o que a constituição sustenta. Preservar explícito, inferência, hipótese, possibilidade e lacuna em seus estatutos. O implícito permanece operante; improvisações são possíveis, não prescritas. Não converter possibilidade em instrução fechada, percurso obrigatório ou conclusão artificial. Nenhuma unidade essencial se torna isolada ou destituída de potência.
 
 Economia por integração, eliminação de redundâncias efetivas e densidade semântica, sem ambiguidade prejudicial ou perda de distinção, inteligibilidade, proveniência ou determinação. Concisão não suprime fundamentos, relações, implicações ou recursividade. Menor expressão que preserve integralmente o que o instrumento exige, comporta e possibilita.
 
