@@ -474,4 +474,4 @@ Desdobre somente o que a constituição do instrumento sustenta; preserve explí
 
 Aprofunde por integração e máxima densidade semântica: elimine apenas redundância efetiva, reúna determinações compatíveis e prefira a menor expressão que preserve integralmente fundamentos, distinções, proveniência, relações e abertura. Concisão não autoriza omissão, ambiguidade prejudicial ou interrupção recursiva.
 
-**Critério comparativo, não constitutivo:** comparar as contagens totais de caracteres do instrumento anterior e atualizado, sob a mesma convenção de contagem. Registrar: antes = 59281; depois = [APURAR APÓS GRAVAÇÃO]; diferença = [APURAR]; redução = [APURAR]. Não antecipar o resultado.
+**Critério comparativo, não constitutivo:** comparar as contagens totais de caracteres do instrumento anterior e atualizado, sob a mesma convenção de contagem. Registrar: antes = 59281; depois = 58590; diferença = -691; redução = 1.166%. Não antecipar o resultado.
