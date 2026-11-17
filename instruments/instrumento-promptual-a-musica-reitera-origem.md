@@ -34,9 +34,9 @@ Distinguir físico/metafísico: extrair do físico o exigido por sua coerência 
 
 ## VI. DERIVAÇÃO LÍRICO-MUSICAL
 
-Transformar funções: conceito→imagem; relação→conflito; oposição→objeção; pressuposto→subtexto; consequência→progressão; ambiguidade→duplo sentido; tensão→dinâmica; recorrência→motivo; convergência→clímax; lacuna→sustentação/abertura; dependência→antecipação; transformação→mudança interpretativa; correferência→retorno; diferença→contraste; retroalimentação→retorno reinterpretativo. Usar correspondências quando necessárias.
+Transformar funções: conceito→imagem; relação→conflito; oposição→objeção; pressuposto→subtexto; consequência→progressão; ambiguidade→duplo sentido; tensão→dinâmica; recorrência→motivo; convergência→clímax; lacuna→abertura; dependência→antecipação; transformação→mudança interpretativa; correferência→retorno; diferença→contraste; retroalimentação→retorno reinterpretativo. Usar correspondências quando necessárias.
 
-A composição realiza a arquitetura; esta explica sua forma. Não resumir fontes, enumerar conceitos ou explicar o que a música torna sensível. Imagens, conflitos, progressão, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras anteriores.
+A composição realiza a arquitetura; esta explica sua forma. Não resumir fontes, enumerar conceitos ou explicar o que a música torna sensível. Imagens, conflitos, motivos, interpretação, arranjo e produção manifestam uma necessidade. Não reproduzir obras anteriores.
 
 ## VII. IDENTIDADE ARTÍSTICA, TEMAS E EIXOS
 
@@ -84,9 +84,9 @@ Compor integralmente e condensar por precisão. Letra final: **até 1.800 caract
 
 ## XI. FECHAMENTO E REFERÊNCIAS
 
-Não reproduzir estruturas mecanicamente nem incluir elementos apenas por constarem. Letra, motivos, progressão, voz, dinâmica e atmosfera manifestam uma necessidade. **O refrão transforma; a ponte desloca; o clímax revela; o encerramento dissolve sem apagar.** A obra é completa em sua identidade realizada e aberta às derivações não realizadas.
+Não incluir elementos mecanicamente. Letra, motivos, progressão, voz, dinâmica e atmosfera manifestam uma necessidade. **O refrão transforma; a ponte desloca; o clímax revela; o encerramento dissolve sem apagar.** A obra é completa e aberta às derivações legítimas.
 
-A música de referência integral e o repertório detalhado permanecem preservados no arquivo de proveniência indicado no início (Seções XVI e XVII). A referência é matriz vinculante de linguagem, estrutura, cadência, fraseado, vocabulário, imagética, progressão e seções, sem licença para copiar. Repertório preservado: elipse, suspensão, fragmentação, enjambement, paradoxo, condicionais, interrogativas, concessivas, aposição metafórica, causativas/permissivas, anáfora, hipotaxe, legato, polissemia, hipérbole, eufemismo, simbolismo, metonímia e antítese; uso não obrigatório.
+A música de referência integral e o repertório detalhado permanecem no arquivo histórico indicado no início (Seções XVI e XVII), como matriz vinculante, sem licença para copiar. O repertório inclui elipse, suspensão, fragmentação, enjambement, paradoxo, condicionais, interrogativas, concessivas, aposição metafórica, causativas, anáfora, hipotaxe, legato, polissemia, hipérbole, eufemismo, simbolismo, metonímia e antítese; uso não obrigatório.
 
 ## XII. FUNDAMENTAÇÃO RECURSIVA, ABERTURA E ECONOMIA
 
