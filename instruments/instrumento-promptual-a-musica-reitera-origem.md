@@ -22,7 +22,7 @@ Conservar capacidade, referência e memória, não limitações. Reaproveitar é
 
 ## IV. ARQUITETURA CAUSAL, RECURSIVIDADE E CORREFERÊNCIA
 
-Desenvolver uma necessidade desdobrada: cada proposição procede da anterior e prepara a seguinte; conclusão revela origem; premissa contém derivações. Encadear objeção, consequência, resposta e nova necessidade; a resposta revela, não interrompe. Convergência cumulativa; perguntas, contradições, imagens, continuidade vocal e rupturas expressivas realizam a cadeia sem explicá-la.
+Desenvolver uma necessidade desdobrada: cada proposição procede da anterior e prepara a seguinte; conclusão revela origem; premissa contém derivações. Encadear objeção, consequência, resposta e nova necessidade; perguntas, contradições, imagens, continuidade vocal e rupturas expressivas realizam a cadeia sem explicá-la.
 
 Cada parte é unidade e contém relações com o todo. Fragmentos, fundamentos e seções musicais mantêm autonomia e dependência. Cada argumento reproduz a arquitetura pertinente; conclusões remetem aos princípios e princípios contêm derivações. Correlacionar princípio/consequência, origem/finalidade, particular/universal, análise/síntese e dedução/indução. Correferência considera antecedente, pressupostos e finalidade. Qualquer ponto pode ser origem, meio ou fim quando demonstrável; preservar proveniência e diferenças.
 
