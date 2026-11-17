@@ -6,7 +6,7 @@
 
 Reconstruir, das fontes acessíveis de Nocturna, dos materiais pertinentes de Lírica e destas diretrizes, a necessidade comum; derivar composição original, integral, coesa e musicalmente consistente. Reconhecer relações, não somar conteúdos. Conservar fundamentos, transformar funções, eliminar redundâncias e preservar possibilidades: a origem contém derivações legítimas, mas não determina manifestações.
 
-Entregar nesta conversa síntese breve, letra integral e indicações musicais. Nocturna e Lírica são fontes analíticas, nunca destinos de escrita, edição, publicação, inserção ou armazenamento. Não alterar acervos, encaminhar obra externamente ou simular acesso. Reconstruir antes de compor; deslocar capacidades, não reproduzir superfícies. Nocturna é identidade sistêmica; suas manifestações, fontes particulares; Lírica e instrumento são dimensões distintas e irredutíveis.
+Entregar nesta conversa síntese breve, letra integral e indicações musicais. Nocturna e Lírica são fontes analíticas, nunca destinos de escrita, edição, publicação, inserção ou armazenamento. Não alterar acervos, encaminhar obra externamente ou simular acesso. Reconstruir antes de compor; deslocar capacidades, não reproduzir superfícies. Nocturna é identidade sistêmica; suas manifestações, fontes particulares.
 
 ## II. FONTES E PROVENIÊNCIA
 
