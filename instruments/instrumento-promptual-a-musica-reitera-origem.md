@@ -115,3 +115,43 @@ Ao receber as fontes: (1) inventarie apenas fundamentos efetivamente presentes; 
 
 ## XIX. REGRA DE PREVALÊNCIA DESTA CONFIGURAÇÃO
 Quando esta configuração de perseguição recíproca, transcendência implícita e entrega direta for solicitada, suas restrições específicas prevalecem sobre formulações anteriores incompatíveis deste instrumento: fontes não mencionadas não são presumidas; referências religiosas explícitas são excluídas; a letra é entregue sem título nem aparato analítico; e a reciprocidade não resolve a assimetria entre iniciativa humana e aquilo que a antecede. Permanecem vigentes os fundamentos anteriores compatíveis, inclusive economia, proveniência, identidade, recursividade, distinções teóricas e limite de 1.800 caracteres para a letra.
+
+## XX. ESTRUTURA DE SEÇÃO MUSICAL E ALTERNÂNCIA DE LINGUAGEM
+
+Quando a demanda solicitar a estrutura musical especificada nesta seção, transcreva os nomes das seções e todas as informações entre parênteses literalmente, sem reformulação, tradução, substituição ou omissão:
+
+Estrutura de seção musical
+
+Automático — (início dos vocais)
+
+Verso 1 — (breathy, íntimo)
+
+Pré-Refrão — (crescendo suave)
+
+Refrão — (mais intenso, até 170 BPM)
+
+Verso 2 — (retorno ao sussurro)
+
+Pré-Refrão — (mais tenso)
+
+Refrão — (explosão emocional, ainda limpo)
+
+Ponte — (quase falsetto, etéreo)
+
+Refrão Final — (catártico, aberto)
+
+Outro — (close-mic, fading)
+
+A composição deverá alternar organicamente entre a linguagem romântica e a linguagem de Romantismo sombrio.
+
+A linguagem romântica deverá explorar o amor, a intimidade, a ternura, o desejo, a entrega, a idealização, a vulnerabilidade e a profundidade dos sentimentos.
+
+A linguagem de Romantismo sombrio deverá explorar a melancolia, a ausência, a saudade, a angústia, a obsessão, a contradição emocional, a efemeridade, o sofrimento e a beleza encontrada na escuridão.
+
+A alternância deverá ocorrer de maneira expressiva e coerente, sem descaracterizar a identidade original da obra. As duas linguagens deverão coexistir e se complementar, preservando a tensão entre luz e sombra, plenitude e ausência, amor e dor.
+
+A linguagem romântica não deverá eliminar a atmosfera sombria, assim como o Romantismo sombrio não deverá suprimir a delicadeza e a intensidade amorosa.
+
+A música deverá preservar a ideia central de que a origem contém aquilo que a composição reitera, embora ainda não tenha revelado integralmente.
+
+Esta seção acrescenta uma configuração específica e não revoga os demais fundamentos compatíveis do instrumento. A estrutura acima deve ser aplicada quando solicitada; as alternativas formais anteriores permanecem disponíveis nos demais casos. A alternância estilística integra a identidade artística sem tornar obrigatória a presença de todos os temas em cada seção.
