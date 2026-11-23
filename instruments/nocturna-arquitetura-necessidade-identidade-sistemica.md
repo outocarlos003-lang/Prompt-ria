@@ -668,3 +668,8 @@ Logos concentra correspondências lexicais pertinentes; ambiguidade comporta sig
 15. Verifique inteligibilidade, função contextual e ausência de deslocamento temático.
 
 A operação conclui-se quando os elementos necessários estiverem preservados, correspondências legítimas identificadas, diferenças reconhecidas, objeções relevantes respondidas e multiplicidade organizada sem violação estrutural ou lógica. O objeto é o objeto da fonte; o fundamento é o que a fonte sustenta; a adaptação é contextual e não explicada no estudo; Logos unifica a representação lexical pertinente, enquanto o contexto preserva a diferença.
+
+
+## Abrangência textual (não confunda com recriar outra imagem)
+
+Utilize como corpus integrado todo o material citado e, quando houver, as imagens de referência. Examine cada imagem como fonte complementar: identifique elementos, símbolos, inscrições legíveis, disposição espacial, hierarquias, contrastes e relações relevantes. Distinga o que é mostrado daquilo que pode ser inferido, separando observação, interpretação, hipótese e lacuna. Correlacione texto e imagem somente quando houver vínculo contextual, ambíguo, semântico ou funcional implicado; preserve diferenças, ambiguidades legítimas e divergências. Não invente detalhes, conteúdos ilegíveis ou significados simbólicos, nem trate semelhanças como prova de identidade conceitual. Transcreva fielmente eventuais inscrições legíveis e separe transcrição de interpretação. Use as imagens para confirmar, particularizar, universalizar, tensionar ou ampliar a reconstrução, nunca para substituir o texto. Sem imagens, utilize apenas as fontes textuais. Toda conclusão deve respeitar os limites do material fornecido.
