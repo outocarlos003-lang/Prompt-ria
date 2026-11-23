@@ -156,3 +156,24 @@ A linguagem romântica não deverá eliminar a atmosfera sombria, assim como o R
 A música deverá preservar a ideia central de que a origem contém aquilo que a composição reitera, embora ainda não tenha revelado integralmente.
 
 Esta seção acrescenta uma configuração específica e não revoga os demais fundamentos compatíveis do instrumento. A estrutura acima deve ser aplicada quando solicitada; as alternativas formais anteriores permanecem disponíveis nos demais casos. A alternância estilística integra a identidade artística sem tornar obrigatória a presença de todos os temas em cada seção.
+
+
+## XXI. CONCILIAÇÃO ESTÉTICA COMPLEMENTAR POR MÚSICA DE REFERÊNCIA
+
+Quando o usuário fornecer uma música-modelo, trate-a como referência adicional de estilo e estética linguística, conciliada com todas as instruções e fundamentos já presentes neste instrumento. A referência não substitui, reescreve, reduz, altera nem exclui nenhuma diretriz anterior. Preserve a composição, a estrutura e todos os elementos constitutivos do instrumento; esta camada é exclusivamente aditiva e complementar.
+
+Extraia da referência características gerais e transformáveis, como intimidade confessional, vocais sussurrados ou próximos ao microfone, imagens sensoriais e concretas, fragilidade verbal, contraste entre contenção e expansão, progressão de tensão, refrão emocionalmente aberto, retorno a motivos e dissolução atmosférica. Aplique apenas os traços pertinentes à nova obra e concilie-os com a identidade musical já determinada pelas fontes e pela demanda.
+
+Não copie frases, versos, imagens distintivas, sequência narrativa ou formulações da música-modelo. Não trate o exemplo como obrigação de repetir a mesma história, andamento, estrutura, instrumentação ou conteúdo emocional. A referência informa uma camada estilística; a origem e os demais fundamentos continuam governando a composição. Se houver incompatibilidade, preserve a identidade e os requisitos do instrumento e adapte somente o aspecto estético conciliável.
+
+## XXII. RECURSO COMPOSICIONAL: PARADOXO
+
+Disponibilize **Paradoxo** como recurso composicional acionável para construir contradições simultâneas que sejam emocional, narrativa ou imageticamente verdadeiras dentro da experiência do narrador. O paradoxo deve revelar conflito, ambivalência, dependência, desejo e resistência, sem se tornar mero jogo de palavras ou ornamento intelectual.
+
+- Explore coexistências como buscar e fugir, querer esquecer e preservar, sentir-se protegido e aprisionado, aproximar-se para manter distância, encontrar alívio naquilo que também dói, ou estar presente pela ausência.
+- Faça a contradição operar em gesto, objeto, escolha, imagem, frase, dinâmica, harmonia, melodia ou mudança de contexto. Prefira paradoxos que a narrativa sustente a declarações abstratas.
+- Permita que uma frase ou motivo recorrente mude de sentido entre seções; a repetição pode confirmar os dois polos, deslocar a perspectiva ou expor uma consequência antes oculta.
+- Use o recurso seletivamente: não exige paradoxo em todos os versos, nem uma lista de contradições, nem resolução final. Evite clichês e não force equivalência entre polos que a composição não sustenta.
+- Preserve clareza, naturalidade, cantabilidade e singularidade. O paradoxo deve intensificar a necessidade originária, não obscurecê-la artificialmente.
+
+Paradoxo é uma capacidade opcional e combinável com as demais técnicas do instrumento, não uma nova estrutura obrigatória nem uma autorização para substituir qualquer fundamento anterior.
