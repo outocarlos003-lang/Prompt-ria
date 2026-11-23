@@ -150,7 +150,9 @@
         "A música reitera o que a origem contém",
         "PROMPT-MESTRE de composição musical Nocturna",
         "instrumento promptual de derivação lírico-musical",
-        "composição musical a partir da arquitetura da necessidade"
+        "composição musical a partir da arquitetura da necessidade",
+        "recurso paradoxo para composição",
+        "conciliação estilística por música de referência"
       ],
       "keywords": [
         "composição musical",
@@ -195,7 +197,14 @@
         "identificação pendente",
         "denominação pendente",
         "localização pendente",
-        "referência pendente"
+        "referência pendente",
+        "paradoxo",
+        "paradoxical songwriting",
+        "paradoxo composicional",
+        "referência estética musical",
+        "conciliação estilística",
+        "whisper confessional vocals",
+        "contraste contenção e explosão emocional"
       ],
       "functions": [
         "reconstruir a necessidade que vincula as fontes documentais indicadas na demanda",
@@ -211,7 +220,10 @@
         "organizar fundamentos originários e derivados em hierarquia aberta e recursiva",
         "preservar a potência geradora de cada fundamento em todas as camadas",
         "manter pendentes explícitas as informações de identificação, denominação, localização e referência",
-        "condensar a expressão sem suprimir conteúdo essencial e comparar contagens de caracteres"
+        "condensar a expressão sem suprimir conteúdo essencial e comparar contagens de caracteres",
+        "conciliar aditivamente a estética de uma música de referência com os fundamentos e instruções existentes sem substituição ou omissão",
+        "aplicar traços estilísticos gerais da referência sem copiar versos, frases, imagens distintivas ou narrativa",
+        "usar paradoxo como recurso opcional para expressar contradições simultâneas emocionais, narrativas e imagéticas"
       ],
       "relations": [
         "demand->instrumento-promptual-musica-reitera-origem",
@@ -226,7 +238,10 @@
         "derived-foundation->further-derivations",
         "all-layers->open-recursion",
         "hierarchy<->transversal-relations",
-        "semantic-density->textual-economy"
+        "semantic-density->textual-economy",
+        "reference-song->complementary-style-layer",
+        "existing-instrument->preserved-with-additive-style-reconciliation",
+        "paradox->simultaneous-contradiction->emotional-narrative-revelation"
       ],
       "operations": [
         "resolve-title",
@@ -245,7 +260,10 @@
         "derive-recursively",
         "preserve-open-hierarchy",
         "condense-without-loss",
-        "compare-character-counts"
+        "compare-character-counts",
+        "reconcile-style-reference-additively",
+        "apply-reference-aesthetic-without-copying",
+        "compose-using-paradox"
       ],
       "category": "recoverable_on_demand",
       "classification_basis": "default_title_rule",

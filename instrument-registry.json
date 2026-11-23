@@ -971,7 +971,9 @@
         "A música reitera o que a origem contém",
         "PROMPT-MESTRE de composição musical Nocturna",
         "instrumento promptual de derivação lírico-musical",
-        "composição musical a partir da arquitetura da necessidade"
+        "composição musical a partir da arquitetura da necessidade",
+        "recurso paradoxo para composição",
+        "conciliação estilística por música de referência"
       ],
       "keywords": [
         "composição musical",
@@ -998,7 +1000,14 @@
         "progressão emocional",
         "catarse",
         "letra completa",
-        "arranjo musical"
+        "arranjo musical",
+        "paradoxo",
+        "paradoxical songwriting",
+        "paradoxo composicional",
+        "referência estética musical",
+        "conciliação estilística",
+        "whisper confessional vocals",
+        "contraste contenção e explosão emocional"
       ],
       "functions": [
         "reconstruir a necessidade que vincula as fontes documentais indicadas na demanda",
@@ -1010,7 +1019,10 @@
         "integrar hermetismo, ambiguidade, polissemia e deslocamento surrealista com inteligibilidade",
         "especificar identidade sonora, instrumentação, arranjo, dinâmica, voz e produção",
         "entregar síntese arquitetônica, letra completa e indicações musicais em documento reutilizável no chat",
-        "preservar a distinção entre fontes de análise e destino de criação explicitamente determinado"
+        "preservar a distinção entre fontes de análise e destino de criação explicitamente determinado",
+        "conciliar aditivamente a estética de uma música de referência com os fundamentos e instruções existentes sem substituição ou omissão",
+        "aplicar traços estilísticos gerais da referência sem copiar versos, frases, imagens distintivas ou narrativa",
+        "usar paradoxo como recurso opcional para expressar contradições simultâneas emocionais, narrativas e imagéticas"
       ],
       "files": [
         "instruments/instrumento-promptual-a-musica-reitera-origem.md",
@@ -1027,7 +1039,10 @@
         "causal-objections->emotional-progression",
         "musical-motifs->transformed-recurrence",
         "recoverable-on-demand->explicit-title-resolution",
-        "chat->composition-delivery"
+        "chat->composition-delivery",
+        "reference-song->complementary-style-layer",
+        "existing-instrument->preserved-with-additive-style-reconciliation",
+        "paradox->simultaneous-contradiction->emotional-narrative-revelation"
       ],
       "operations": [
         "resolve-title",
@@ -1041,7 +1056,10 @@
         "arrange",
         "specify-production",
         "validate-provenance",
-        "deliver-reusable-document"
+        "deliver-reusable-document",
+        "reconcile-style-reference-additively",
+        "apply-reference-aesthetic-without-copying",
+        "compose-using-paradox"
       ],
       "ui": {
         "node_id": "instrument:instrumento-promptual-musica-reitera-origem",
