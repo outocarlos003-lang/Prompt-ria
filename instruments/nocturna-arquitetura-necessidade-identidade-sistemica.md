@@ -680,3 +680,103 @@ Utilize como corpus integrado todo o material citado e, quando houver, as imagen
 ## Adendo normativo complementar XXV–XLIV — Ampliação da correferência polissêmica universal e da adaptação semântica desdobradora
 
 O adendo normativo XXV–XLIV, identificado como **O Arquiteto da Expansão Semântica e Guardião da Identidade Contextual**, integra este instrumento como continuação exclusivamente aditiva. Seu texto integral é mantido no arquivo [Adendo normativo — Ampliação da correferência polissêmica universal e da adaptação semântica desdobradora](adendo-nocturna-correfere%CC%82ncia-polisse%CC%82mica-universal-XXV-XLIV.md). Esta incorporação não substitui, reformula, reduz, reorganiza ou elimina disposições anteriores. Permanecem integralmente vigentes as disposições originais do Logos, incluindo axioma fundamental, unidade representacional, ambiguidade estruturada, princípio desdobrador, inventário de correspondências lexicais, correferência recíproca e adaptação contextual. A ampliação lexical universal é complementar e não converte Logos em sinônimo universal obrigatório.
+
+---
+
+## XLV. ADENDO COMPLEMENTAR — OBJEÇÃO RETÓRICA RECURSIVA, UNIFICAÇÃO MULTICAMADAS E FECHAMENTO NECESSÁRIO
+
+**Natureza:** extensão exclusivamente aditiva, não substitutiva, não omissiva, não alterativa e não excludente.  
+**Operação:** integrar o conteúdo precedente por reconstrução semântica, causal e relacional, preservando a proveniência, a ordem constitutiva e as distinções legítimas.
+
+### 1. Mandato de unificação
+
+Reestruture a compreensão do inteiro instrumento em uma síntese simultaneamente taxativa e intuitiva, expressiva e explicativa, fluida e concisa, analítica e aforística. A síntese não reduz o acervo: explicita sua arquitetura. Identifique fundamentos, funções, dependências, correspondências, tensões, implicações e consequências; reúna-os numa cadeia inteligível, na qual cada parte conserve sua particularidade e revele sua participação no todo.
+
+**Conservar o fundamento; transformar a função; reconstruir a necessidade; revelar o todo em cada parte.**
+
+### 2. Método da objeção que se desdobra
+
+Construa a unificação mediante perguntas retóricas que exponham objeções reais ou possíveis, sem caricaturá-las. Cada resposta deve ser fundamentada e, quando gerar uma nova implicação, converter-se em pergunta seguinte. A sequência não é uma coleção de perguntas independentes: é uma derivação, em que cada resposta abre o próximo nível de exame.
+
+Em cada camada, siga a cadeia:
+
+**Objeção → resposta demonstrada → consequência → nova objeção → resposta aprofundada → consequência reconstruída.**
+
+A recursão prossegue até que a nova pergunta deixe de revelar dependência, distinção, consequência ou fundamento adicional, ou até que se alcance um limite documental, lógico ou contextual explicitamente reconhecido. Não simule infinitude: a recursão é aberta em princípio, mas finita e verificável em cada execução.
+
+### 3. Escada de interrogatórios e respostas
+
+Use, conforme pertinência, a seguinte arquitetura cumulativa. As perguntas são moldes orientadores, não premissas a impor quando o conteúdo não as sustentar.
+
+**Camada I — Identidade e delimitação**  
+— *Objeção:* O instrumento não seria apenas uma reunião de enunciados extensos?  
+— *Resposta:* Sua identidade não reside no volume nem na repetição, mas nas relações constitutivas que fazem os enunciados convergirem em uma arquitetura.  
+— *Pergunta derivada:* Se a identidade depende das relações, quais relações são necessárias e quais são apenas circunstanciais?
+
+**Camada II — Necessidade e fundamento**  
+— *Objeção:* Uma relação recorrente não prova que seja necessária.  
+— *Resposta:* A recorrência evidencia um padrão; a necessidade exige demonstrar dependência, condição, invariância ou impossibilidade de retirar o elemento sem perda estrutural.  
+— *Pergunta derivada:* Como distinguir uma condição necessária de uma preferência, hipótese ou regularidade observada?
+
+**Camada III — Proveniência e correferência**  
+— *Objeção:* A unificação poderia apagar diferenças ao tratar expressões distintas como equivalentes.  
+— *Resposta:* A correferência é contextual e demonstrável; aproxima termos sem abolir suas diferenças, registrando origem, alcance, função e limite de cada correspondência.  
+— *Pergunta derivada:* Que contexto autoriza a correspondência, e que contexto a desfaz ou restringe?
+
+**Camada IV — Particular e universal**  
+— *Objeção:* A síntese universal talvez homogeneíze o particular.  
+— *Resposta:* A abrangência legítima comporta o particular e conserva suas determinações; não transforma diferença em identidade absoluta nem unidade em uniformidade.  
+— *Pergunta derivada:* O universal explica o particular sem exceder sua evidência, e o particular revela algo do universal sem pretender esgotá-lo?
+
+**Camada V — Explícito e implícito**  
+— *Objeção:* Inferir o implícito seria acrescentar conteúdo não declarado.  
+— *Resposta:* O implícito só pode ser derivado quando há vínculo lógico, contextual, causal ou documental rastreável; possibilidade imaginável não equivale a consequência legítima.  
+— *Pergunta derivada:* Qual premissa sustenta a inferência, e a conclusão continua válida se essa premissa for removida?
+
+**Camada VI — Causalidade, função e finalidade**  
+— *Objeção:* A função atual não revela necessariamente a origem, e a origem não determina sozinha o fim.  
+— *Resposta:* Reconstrua separadamente origem, condições, transformação, função, efeitos e finalidade; conecte-os somente por relações justificadas.  
+— *Pergunta derivada:* Que transformação explica a passagem entre fundamento e efeito, e quais alternativas causais permanecem possíveis?
+
+**Camada VII — Verificação e fechamento**  
+— *Objeção:* Uma síntese elegante pode parecer completa sem ser demonstrada.  
+— *Resposta:* A elegância não é prova. Verifique consistência, cobertura, rastreabilidade, lacunas, contraexemplos e dependências; declare o que está confirmado, o que é interpretativo e o que permanece indeterminado.  
+— *Pergunta derivada:* O que ainda falta para que a arquitetura seja necessária, coerente e suficientemente completa, e esse requisito pode ser demonstrado ou deve permanecer aberto?
+
+### 4. Regra de conversão recursiva
+
+Toda resposta deve gerar a próxima pergunta apenas quando sua consequência abrir um nível pertinente de análise. A pergunta derivada deve nascer do conteúdo da resposta anterior, e não de uma sequência arbitrária. Repita o processo, aprofundando o fundamento, a relação, a escala, a função ou a consequência.
+
+Quando a derivação retornar a uma questão já examinada, registre a correferência e compare o novo contexto com o anterior. Se não houver nova determinação, encerre esse ramo como convergência, não como repetição. Se houver conflito, exponha-o, delimite suas condições e tente resolvê-lo sem apagar a divergência. Se a resolução não for demonstrável, preserve-a como tensão ou lacuna.
+
+### 5. Invariantes de integração
+
+- **Preservação:** não apagar, substituir ou reformular retroativamente o conteúdo original.
+- **Proveniência:** cada afirmação integrada deve manter vínculo com sua fonte, contexto ou premissa.
+- **Distinção:** semelhança, analogia, correferência, causalidade e identidade não são intercambiáveis.
+- **Necessidade:** declarar necessário somente o que a derivação sustenta.
+- **Multiescalaridade:** relacionar níveis micro, intermediário e macro sem presumir que a regra de uma escala se transfira automaticamente a outra.
+- **Recursividade disciplinada:** cada nova pergunta deve aprofundar a derivação ou esclarecer um limite.
+- **Não contradição:** identificar contradições efetivas, aparentes, condicionais e não resolvidas, sem as confundir.
+- **Completude proporcional:** buscar cobertura integral dos elementos pertinentes, sem fabricar conteúdo para preencher lacunas.
+- **Legibilidade:** tornar a arquitetura compreensível por uma síntese clara, com terminologia consistente e transições naturais.
+- **Verificabilidade:** separar texto-fonte, interpretação, inferência, hipótese e conclusão.
+
+### 6. Forma de apresentação da unificação
+
+Ao concluir a reconstrução, apresente, conforme a demanda e sem obrigar formato excessivo:
+
+1. **Tese unificadora:** o princípio que organiza o instrumento em uma única expressão.
+2. **Arquitetura:** fundamentos, relações, funções e consequências, articulados numa ordem inteligível.
+3. **Cadeia dialética:** objeções, respostas e perguntas derivadas, mostrando como cada camada aprofunda a precedente.
+4. **Síntese contextual:** o universal que comporta os particulares sem dissolvê-los.
+5. **Verificação:** evidências, derivações confirmadas, tensões, lacunas e limites.
+6. **Fechamento aforístico:** formulação breve que condense a necessidade demonstrada, sem substituir a demonstração.
+
+### 7. Critério de término e princípio conclusivo
+
+Encerre cada ramo quando a pergunta derivada não acrescentar fundamento, distinção, consequência, correferência ou verificação relevante; quando atingir uma premissa irredutível explicitamente reconhecida; ou quando a evidência disponível não permitir avançar. O término de um ramo não encerra automaticamente os demais. O fechamento global exige que os elementos pertinentes tenham sido examinados, suas relações justificadas, as objeções significativas respondidas ou qualificadas e os limites registrados.
+
+**A pergunta revela a dependência; a resposta fundamenta a passagem; a nova pergunta testa a consequência; a recursão aprofunda sem repetir; a verificação distingue o necessário do possível; e a síntese reúne sem apagar.**
+
+**A unidade não elimina a diferença. A necessidade não dispensa a prova. A totalidade não autoriza a invenção. O fechamento não oculta a lacuna.**
