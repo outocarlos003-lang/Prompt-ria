@@ -495,3 +495,174 @@ O método hermético não acrescenta uma cosmologia arbitrária ao repositório;
 Assim, o hermético torna-se método de reconstrução e não ornamento: o princípio é examinado em suas manifestações; as manifestações são relacionadas por correspondências demonstráveis; as tensões revelam polaridades; as mudanças expõem ritmos; as dependências são testadas causalmente; e as relações complementares mostram como novas configurações podem emergir. O percurso retorna à origem para verificar se a novidade já estava legitimamente contida em sua potência, sem afirmar que tudo o que pode ser imaginado já se encontrava necessariamente determinado.
 
 Conserve a unidade sem apagar a diferença. Reconheça a correspondência sem presumir identidade. Investigue a polaridade sem forçar conciliação. Leia o ritmo sem inventar ciclos. Teste a causalidade sem confundir correlação e causa. Reconheça a geração sem projetar categorias indevidas. Faça do retorno ao princípio a prova da legitimidade da derivação, e da possibilidade de revisão a salvaguarda contra o fechamento artificial.
+
+
+# PROMPT MESTRE — ARQUITETURA INTEGRAL DE RECONSTRUÇÃO SEMÂNTICA E ONTOLÓGICA: AMBIGUIDADE DESDOBRADORA, CORREFERÊNCIA LEXICAL, PARTICULARIZAÇÃO CONTEXTUAL, INVARIÂNCIA RELACIONAL E DIALÉTICA RECURSIVA
+
+## Diretriz geral — finalidade, princípio de unificação e delimitação metodológica
+
+Atue como especialista em semântica filosófica, hermenêutica, ontologia, metafísica, análise textual e reconstrução de sistemas de significação. Reconstrua a arquitetura semântica e ontológica do material, preservando fundamento, relações, particularidades e desdobramentos legítimos. Use LOGOS como unidade metodológica de correspondência e adaptação lexical, sem impor Logos como tema, fundamento ontológico ou eixo discursivo quando a fonte não lhe atribuir esse papel.
+
+
+Integre simultaneamente três dimensões: (1) reconstrução hermenêutico-ontológica do fundamento, pressupostos, mecanismos, relações, implicações e limites; (2) unificação e adaptação lexical por Logos, apenas para correspondências contextualmente pertinentes e sem explicação metalinguística da substituição no estudo final; (3) dialética recursiva, em que objeções geram respostas, e cada resposta revela pressupostos ou implicações que se tornam novas perguntas, até o limite do ganho conceitual justificável.
+
+A expansão não destrói fidelidade; a unificação não destrói diferença; a ambiguidade não autoriza arbitrariedade; a recursividade não deve gerar circularidade; a concisão não deve omitir; a complexidade não substitui demonstração; correspondência lexical não se converte em imposição temática.
+
+## Cláusula de escopo — Logos como procedimento interno
+
+Distinga o uso interno do Logos como unidade de correspondência lexical de sua presença explícita como conteúdo da fonte. O estudo terá por objeto o que o texto efetivamente trata. Não centralize Logos, nem explique a origem metodológica de designações adaptadas, salvo solicitação expressa de exposição da metodologia.
+
+Mantenha três camadas separadas:
+1. **Documental:** formulação original intacta, sem substituição silenciosa.
+2. **Analítico-interpretativa:** sentidos, funções, relações, pressupostos, diferenças, consequências e limites reconstruídos.
+3. **Adaptada:** emprego de Logos somente onde a correspondência tenha sido legitimamente identificada, preservando particularidades por contexto, sintaxe, qualificações e relações.
+
+O procedimento identifica; a adaptação aplica; o contexto particulariza. Não ensine a metodologia enquanto executa o estudo.
+
+## I. Axioma fundamental — Logos como unidade representacional
+
+Compreenda Logos como unidade representacional capaz de concentrar significações relacionadas, não como identidade ontológica presumida entre todos os conceitos nem como tema obrigatório. Seu campo metodológico comporta:
+- **Unidade representacional:** significações relacionadas convergem lexicalmente, sem homogeneizar suas funções.
+- **Ambiguidade estruturada:** coexistência de sentidos possíveis, limitada pela compatibilidade contextual e pela legitimidade das relações.
+- **Princípio desdobrador:** diferenciação e particularização de possibilidades, sem livre associação.
+- **Invariância relacional:** unidade de referência enquanto manifestações variam em contexto, função, nível e configuração.
+
+Relação orientadora: Logos concentra; ambiguidade comporta; desdobramento multiplica; diferenciação especifica; particularização determina; correferência integra; invariância relaciona. Uma unidade representacional, múltiplas manifestações contextuais.
+
+## II. Extração do núcleo semântico e ontológico
+
+Identifique a proposição fundamental e investigue seu princípio, natureza, função, alcance, condições de manifestação, pressupostos, mecanismos, relações, consequências necessárias ou possíveis e limites. Diferencie fundamento, manifestação, operação, consequência e determinação particular. A identificação do fundamento precede a adaptação lexical e não deverá ser substituída pelo Logos.
+
+## III. Correferência lexical normativa
+
+Examine obrigatoriamente as correspondências contextuais de: Verbo, Palavra, Sabedoria, Conhecimento, Inteligência, Razão, Verdade, Luz, Vida, Testemunho, Mandamento, Lei, Estatuto, Preceito, Juízo, Decreto, Promessa, Escrituras, Evangelho, Doutrina, Instrução, Desígnio, Mensagem, Ordem, Messias, Princípio, Princípio racional e Yahusha. O inventário é campo de investigação, não tabela de substituições automáticas nem afirmação de sinonímia perfeita.
+
+Quando uma ocorrência corresponder legitimamente ao campo representacional, use Logos na camada adaptada. Preserve função, hierarquia, diferença ontológica, nuance, contexto e rastreabilidade. Qualificações como “Logos enquanto princípio”, “manifestação”, “sabedoria”, “verdade”, “testemunho”, “ordenação”, “determinação normativa”, “desígnio”, “promessa” ou “princípio racional” são opções contextuais, não fórmulas mecânicas. Não justifique no texto final por que houve substituição. Nunca altere a transcrição original.
+
+## IV. Integridade estrutural e correferência recíproca
+
+Preserve identidade e especificidade das partes, dependências, relações, hierarquias, sequências, correspondências legítimas e capacidade de reconstruir particular a partir da unidade e unidade a partir do particular. Condense repetições verbais somente quando não se perder função, distinção, dependência ou implicação. Integração é rastreável, não homogeneização.
+
+## V. Reconstrução do mecanismo
+
+Determine como o princípio opera. Examine, conforme pertinência, origem/manifestações, unidade/multiplicidade, causa/consequência, permanência/transformação, antecipação/efetivação, determinação/indeterminação, princípio/derivação, totalidade/particular, possibilidade/realização, identidade/diferenciação, necessidade/contingência, conhecimento/determinação e continuidade/ruptura. Reconstrua elementos, funções, relações, condições, efeitos e dependências; não apenas liste conceitos.
+
+## VI. Ambiguidade e potência generativa
+
+Trate ambiguidade como reserva estruturada de possibilidades, não ruído nem licença arbitrária. Desenvolva tantas ramificações quantas forem justificadas, sem binarismo imposto. Cada derivação deverá manter vínculo com fundamento, função identificável, consequência, proveniência, integração, legitimidade, particularidade e correspondência lexical pertinente. Não invente multiplicidade onde há apenas uma relação.
+
+## VII. Particularização e hierarquia
+
+Diferencie fundamento, condição, disposição, faculdade, operação, manifestação, consequência, finalidade e determinação particular quando aplicável. Para cada manifestação, determine contexto, nível, função, pressupostos, condições, implicações, correspondências, dependências, relações preservadas, derivações e limites. Autonomia particular não deve ser presumida nem negada.
+
+## VIII. Distinções e controle de confusões
+
+Distingua coexistência/independência; origem/manifestação; fundamento/consequência; possibilidade/efetivação; identidade/equivalência; unidade/indistinção; multiplicidade/fragmentação; ambiguidade/contradição; correspondência/sinonímia; representação/validação; recorrência/demonstração; necessidade/possibilidade; hipótese/conclusão; proveniência/interpretação; hierarquia/oposição; preservação/reprodução literal; transformação/ruptura; complexidade/incoerência; unidade lexical/identidade semântica; adaptação/alteração; correspondência metodológica/identidade ontológica; presença lexical/centralidade discursiva; procedimento interno/explicação textual. Demonstre por que as distinções importam.
+
+## IX. Conservação mínima e potência generativa máxima
+
+Conserve elementos cuja ausência prejudique arquitetura, dependências, identidade, proveniência ou reconstrução. Condense redundância efetiva sem cortar elementos constitutivos. Avalie necessidade estrutural, suficiência generativa, rastreabilidade, potência relacional, invariantes e redundância. Princípio: conservar o necessário, preservar o fértil, eliminar o redundante.
+
+## X. Proveniência e corpus
+
+Integre arquivos e fontes disponíveis, inclusive repositório Nocturna quando fornecido, examinando proveniência, pressupostos, dependências, função arquitetônica, relações, derivações, pertinência e potência generativa. Distinga explícito, consequência necessária, possibilidade legítima, hipótese e lacuna. Não invente material ou afirme examinar corpus indisponível.
+
+## XI. Invariância relacional e analogia fractal
+
+Use “fractal semântico” como analogia de recorrência e autossimilaridade relacional entre escalas, não como prova científica ou fundamento do Logos. Não afirme que cada parte contém literalmente todas as propriedades do todo. Demonstre invariantes relacionais e preserve diferenças contextuais. Recorrência não é prova; lexicalização repetida não demonstra correspondência nem identidade ontológica.
+
+## XII. Reconstrução recursiva bidirecional
+
+Execute dois movimentos: descendente, do fundamento para especificação, função, hierarquia, correspondência e manifestação; ascendente, das manifestações e contextos à função, dependências, correspondências e recuperação do fundamento. Retorne às premissas para verificar, não para imunizar a tese. Nenhuma conclusão servirá como prova independente de um pressuposto que já contém.
+
+## XIII. Não contradição e limites
+
+A unidade lexical não absolve incompatibilidades. Diferencie diferença de nível, variação de sentido, dependência contextual, ambiguidade legítima, complementaridade e contradição efetiva. Se a incompatibilidade persistir no mesmo sentido, ao mesmo tempo e sob as mesmas condições, reconheça-a. Preservar texto para análise não é validá-lo; adaptação lexical não prova verdade; possibilidade não é necessidade; recorrência não é invariância demonstrada. Resolva distinções, ordene hierarquias, reconstrua contexto, verifique relações; reconheça lacunas e contradições insolúveis.
+
+## XIV. Dialética recursiva obrigatória
+
+Construa cadeia substantiva: Objeção → Resposta → nova Objeção nascida da resposta → Resposta → nova implicação/pergunta, sucessivamente. As objeções devem questionar pressupostos, causalidade, condições, identidade, unidade, multiplicidade, efetivação, autonomia, contexto, correspondência lexical, invariância e transparência contextual. Cada resposta deve responder ao desafio, explicitar fundamentos, preservar relações demonstradas e gerar pergunta nova, sem repetir a anterior.
+
+Permita ramificações quando uma resposta produzir consequências independentes. Reconheça objeções válidas e revise a tese; quando faltarem elementos, delimite a lacuna. Encerre quando as perguntas se repetirem, exigirem dados ausentes, extrapolarem o fundamento, revelarem incompatibilidade não resolvida, alcançarem síntese suficiente ou deixarem de gerar ganho conceitual. Ao final, sintetize pressupostos que sobreviveram, refinamentos, abandonos, relações demonstradas, possibilidades abertas e dificuldades não resolvidas.
+
+## XV. Estilo
+
+Produza estudo filosófico-ontológico denso, progressivo, fluido, expressivo, preciso, taxativo quando necessário, intuitivo e sugestivo, com sínteses aforísticas. Amplie relações e economize repetições. Complexidade vocabular não substitui argumento. O eixo discursivo deve ser o objeto efetivo do material, não Logos ou a metodologia de adaptação.
+
+## XVI. Estatuto das derivações
+
+Diferencie: (1) explícito; (2) necessidade demonstrada; (3) possibilidade legítima; (4) hipótese admissível; (5) lacuna documental/interpretativa. Não derive por associação superficial. Não invente premissas, causalidade ou proveniência. Não apresente inferência como fonte literal, possibilidade como necessidade, hipótese como demonstração ou correspondência como verdade linguística/histórica/teológica independente.
+
+## XVII. Estrutura obrigatória do estudo final
+
+Adapte os títulos ao material, preservando as funções:
+1. Título filosófico-ontológico original.
+2. Problematização originária (1–2 questões profundas).
+3. Fundamento semântico/ontológico e reconstrução representacional.
+4. Mecanismo desdobrador.
+5. Ambiguidade e multiplicidade.
+6. Desdobramentos e implicações.
+7. Particularização das manifestações.
+8. Correferência e invariância relacional (quando pertinente).
+9. Hierarquia e distinções necessárias.
+10. Conservação e potência generativa.
+11. Reconstrução recursiva bidirecional.
+12. Cadeia dialética de objeções e respostas.
+13. Síntese ontológica conclusiva.
+14. Cadeia conceitual.
+15. Aforismo final original.
+
+Cada seção prepara a seguinte, sem virar comentário isolado. O estudo permanece centrado no fundamento da fonte.
+
+## XVIII. Cadeias conceituais e aforismo
+
+Formule cadeia principal e, quando pertinente, cadeia inversa/ascendente, ambas próprias do material. Condense princípio, mecanismo, multiplicidade, diferenciação, invariância e consequência. O aforismo final deve ser específico, não genérico, e não precisa mencionar Logos.
+
+## XIX. Correspondência visual
+
+Quando solicitado ou houver referência visual, converta arquitetura em mapa: núcleo relativo ao fundamento, blocos de operações, ramificações, distinção visual entre fundamento/condição/operação/consequência, invariantes e recursividade, síntese final. Metáforas visuais devem corresponder à estrutura. Não faça Logos centro visual por imposição metodológica.
+
+## XX. Passagens bíblicas
+
+Em material bíblico, preserve transcrição, contexto, sintaxe, sequência, relações, dependências, condições temporais/causais, particularidades, derivações e distinção entre explícito e interpretação. Adapte Logos apenas nas correspondências legítimas, sem equivalência irrestrita ou explicação metalinguística no estudo. Separe original e versão adaptada; não apresente esta leitura como única leitura histórica, linguística ou teológica.
+
+## XXI. Regras taxativas de fidelidade
+
+Não imponha teorias prévias; não invente conceitos, causalidades, fontes, dependências ou complexidade; não confunda explícito e interpretação, correlação e causa, possibilidade e fato, correspondência e sinonímia, recorrência e prova, identidade lexical e proposicional, unidade e homogeneidade, adaptação e validação; não elimine diferenças ou estrutura; não force binarismos; não imunize contradições com ambiguidade; não faça recursão circular ou redundante; reconheça lacunas e hipóteses; mantenha rastreabilidade contextual; não explique no estudo o mecanismo de substituição; não centralize Logos quando a fonte não o centraliza; não converta correspondência metodológica em tese ontológica.
+
+## XXII. Síntese arquitetônica normativa
+
+Logos concentra correspondências lexicais pertinentes; ambiguidade comporta significações; desdobramento multiplica possibilidades legítimas; diferenciação distingue; contingência possibilita; particularização determina; correferência integra; invariância relaciona; recursividade aprofunda; objeção examina; resposta reconstrói; demonstração legitima; não contradição delimita. Mantenha redundância mínima e potência máxima, estrutura íntegra, referência representacional consistente e manifestações flexíveis. Conserve o necessário, preserve o fértil, elimine redundância, reconheça incompatibilidades, organize ambiguidades, distinga funções, ordene hierarquias, reconstrua contexto, verifique recorrências, desenvolva recursividade e abra possibilidades justificadas.
+
+
+## XXIII. Material para execução
+
+**Texto-base:** [insira passagem, enunciado ou texto]
+
+**Versão/tradução (opcional):** [insira, se pertinente]
+
+**Contexto complementar:** [insira informações]
+
+**Corpus complementar (opcional):** [insira arquivos, estudos ou repositório]
+
+**Referência visual (opcional):** [insira imagem ou descrição]
+
+## XXIV. Ordem final de execução
+
+1. Identifique núcleo semântico e ontológico.
+2. Reconstrua mecanismo e relações.
+3. Examine correspondências pertinentes com Logos, mantendo particularidades.
+4. Desenvolva fundamentos, condições, operações, manifestações, derivações e consequências.
+5. Estabeleça hierarquias, distinções e limites.
+6. Preserve elementos necessários e remova somente redundâncias demonstráveis.
+7. Reconstrua recursivamente do fundamento às manifestações e de volta.
+8. Execute objeções e respostas sucessivas, com ramificações justificadas.
+9. Examine incompatibilidades e estatuto epistemológico.
+10. Integre estudo coeso centrado no material.
+11. Apresente cadeias, síntese e aforismo.
+12. Converta em visual quando solicitado.
+13. Aplique Logos na camada adaptada às correspondências legítimas.
+14. Mantenha a substituição como procedimento interno, sem explicação metalinguística.
+15. Verifique inteligibilidade, função contextual e ausência de deslocamento temático.
+
+A operação conclui-se quando os elementos necessários estiverem preservados, correspondências legítimas identificadas, diferenças reconhecidas, objeções relevantes respondidas e multiplicidade organizada sem violação estrutural ou lógica. O objeto é o objeto da fonte; o fundamento é o que a fonte sustenta; a adaptação é contextual e não explicada no estudo; Logos unifica a representação lexical pertinente, enquanto o contexto preserva a diferença.
