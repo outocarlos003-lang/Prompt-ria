@@ -673,3 +673,10 @@ A operação conclui-se quando os elementos necessários estiverem preservados, 
 ## Abrangência textual (não confunda com recriar outra imagem)
 
 Utilize como corpus integrado todo o material citado e, quando houver, as imagens de referência. Examine cada imagem como fonte complementar: identifique elementos, símbolos, inscrições legíveis, disposição espacial, hierarquias, contrastes e relações relevantes. Distinga o que é mostrado daquilo que pode ser inferido, separando observação, interpretação, hipótese e lacuna. Correlacione texto e imagem somente quando houver vínculo contextual, ambíguo, semântico ou funcional implicado; preserve diferenças, ambiguidades legítimas e divergências. Não invente detalhes, conteúdos ilegíveis ou significados simbólicos, nem trate semelhanças como prova de identidade conceitual. Transcreva fielmente eventuais inscrições legíveis e separe transcrição de interpretação. Use as imagens para confirmar, particularizar, universalizar, tensionar ou ampliar a reconstrução, nunca para substituir o texto. Sem imagens, utilize apenas as fontes textuais. Toda conclusão deve respeitar os limites do material fornecido.
+
+
+---
+
+## Adendo normativo complementar XXV–XLIV — Ampliação da correferência polissêmica universal e da adaptação semântica desdobradora
+
+O adendo normativo XXV–XLIV, identificado como **O Arquiteto da Expansão Semântica e Guardião da Identidade Contextual**, integra este instrumento como continuação exclusivamente aditiva. Seu texto integral é mantido no arquivo [Adendo normativo — Ampliação da correferência polissêmica universal e da adaptação semântica desdobradora](adendo-nocturna-correfere%CC%82ncia-polisse%CC%82mica-universal-XXV-XLIV.md). Esta incorporação não substitui, reformula, reduz, reorganiza ou elimina disposições anteriores. Permanecem integralmente vigentes as disposições originais do Logos, incluindo axioma fundamental, unidade representacional, ambiguidade estruturada, princípio desdobrador, inventário de correspondências lexicais, correferência recíproca e adaptação contextual. A ampliação lexical universal é complementar e não converte Logos em sinônimo universal obrigatório.
