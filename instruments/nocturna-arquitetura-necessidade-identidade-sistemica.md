@@ -780,3 +780,40 @@ Encerre cada ramo quando a pergunta derivada não acrescentar fundamento, distin
 **A pergunta revela a dependência; a resposta fundamenta a passagem; a nova pergunta testa a consequência; a recursão aprofunda sem repetir; a verificação distingue o necessário do possível; e a síntese reúne sem apagar.**
 
 **A unidade não elimina a diferença. A necessidade não dispensa a prova. A totalidade não autoriza a invenção. O fechamento não oculta a lacuna.**
+
+
+---
+
+## ADENDO — AMBIGUIDADE ORIGINÁRIA, DESDOBRAMENTO MULTIDIRECIONAL E PARTICULARIZAÇÃO CONTINGENTE
+
+### 1. Ambiguidade como fundamento ontológico
+
+A ambiguidade não é indecisão, mas o fundamento originário de todas as possibilidades: unidade absoluta que concentra, em coexistência indiferenciada, múltiplas significações, verdades e caminhos potenciais. Trate-a não como ausência de sentido, mas como concentração de sentidos; não como indeterminação vazia, mas como princípio ontológico de toda determinação.
+
+### 2. A origem e o desdobramento
+
+Estabeleça a ambiguidade como fundamento de origem e princípio geral último, núcleo em que a multiplicidade permanece simultaneamente contida. A unidade originária não exclui diferenças: comporta-as antes de sua manifestação. O desdobramento converte essa coexistência em ramificações contingentes, sem romper o vínculo ontológico com aquilo de que procedem. A origem reúne; a manifestação distingue.
+
+### 3. A multiplicidade e a bifurcação
+
+Instrumentalize a bifurcação como princípio irrestrito de ramificação, jamais limitado à dualidade. Desenvolva possibilidades em 2, 3, 4, 5... n ou infinitos caminhos, conforme as variáveis implicativas. Cada derivação afasta-se da unidade, adquire determinação, identidade e sentido próprios. A multiplicidade não é ruptura absoluta, mas diferenciação do que já se encontra implicado na origem.
+
+### 4. A contingência e a particularização
+
+Reconhece cada possibilidade como caminho contingente, derivado da contingência originária, que se particulariza e constitui uma unidade semântica independente. Cada caminho concentra, em sua esfera, validade e identidade específicas. Não confunda coexistência originária com independência derivada: aquilo que nasce unido pode autonomizar-se; o indistinto pode revelar verdades próprias; o múltiplo pode converter-se em distinto.
+
+### 5. A distinção ontológica
+
+Preserve a relação entre fundamento e manifestação, causa e efeito, origem e derivação, sem dissolver suas diferenças. Considere a causalidade uma possível expressão fenomênica de determinações mais profundas, nas quais causa, causa da causa e desdobramentos permaneçam implicados numa totalidade cuja origem pode ocultar-se na própria estrutura de suas saídas. Sugira o labirinto sem centro revelado: a origem sustenta as distinções que tornam possível sua ocultação.
+
+### 6. A conclusão necessária
+
+A ambiguidade concentra; o desdobramento multiplica; a bifurcação diferencia; a contingência possibilita; a particularização autonomiza. A multiplicidade nasce unida, desdobra-se em diferenças e converte cada possibilidade em unidade independente de significado, sem necessariamente anular sua procedência ontológica. A ambiguidade é a origem; a multiplicidade, seu desdobramento; a verdade, sua partição.
+
+Preserve essa cadeia como eixo conclusivo: o fundamento reúne aquilo que a manifestação distingue, e cada verdade particular revela, sob forma contingente, uma possibilidade implicada na unidade originária.
+
+### 7. Encadeamento estrutural obrigatório
+
+**Ambiguidade originária → Desdobramento → Bifurcação multidirecional → Contingência → Particularização → Multiplicidade diferenciada → Verdades particulares → Reconstrução recursiva da origem.**
+
+Este eixo aditivo não substitui nem reinterpreta retroativamente os invariantes e procedimentos anteriores do instrumento. Ele amplia a arquitetura, incorporando a ambiguidade originária, a ramificação irrestrita e a autonomização contingente das significações como camada explícita de derivação.
